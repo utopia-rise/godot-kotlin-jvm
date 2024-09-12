@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
@@ -37,75 +38,115 @@ public open class OpenXRHand : Node3D() {
   /**
    * Specifies whether this node tracks the left or right hand of the player.
    */
-  public var hand: Hands
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
-      return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var hand: Hands
+    @JvmName("handProperty")
+    get() = getHand()
+    @JvmName("handProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
+      setHand(value)
     }
 
   /**
    * Set the motion range (if supported) limiting the hand motion.
    */
-  public var motionRange: MotionRange
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
-      return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var motionRange: MotionRange
+    @JvmName("motionRangeProperty")
+    get() = getMotionRange()
+    @JvmName("motionRangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
+      setMotionRange(value)
     }
 
   /**
    * Set a [Skeleton3D] node for which the pose positions will be updated.
    */
-  public var handSkeleton: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var handSkeleton: NodePath
+    @JvmName("handSkeletonProperty")
+    get() = getHandSkeleton()
+    @JvmName("handSkeletonProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
+      setHandSkeleton(value)
     }
 
   /**
    * Set the type of skeleton rig the [handSkeleton] is compliant with.
    */
-  public var skeletonRig: SkeletonRig
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
-      return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var skeletonRig: SkeletonRig
+    @JvmName("skeletonRigProperty")
+    get() = getSkeletonRig()
+    @JvmName("skeletonRigProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
+      setSkeletonRig(value)
     }
 
   /**
    * Specify the type of updates to perform on the bone.
    */
-  public var boneUpdate: BoneUpdate
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-      return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var boneUpdate: BoneUpdate
+    @JvmName("boneUpdateProperty")
+    get() = getBoneUpdate()
+    @JvmName("boneUpdateProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+      setBoneUpdate(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRHAND, scriptIndex)
+  }
+
+  public final fun setHand(hand: Hands): Unit {
+    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
+  }
+
+  public final fun getHand(): Hands {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
+    return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to handSkeleton)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
+  }
+
+  public final fun getHandSkeleton(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setMotionRange(motionRange: MotionRange): Unit {
+    TransferContext.writeArguments(LONG to motionRange.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
+  }
+
+  public final fun getMotionRange(): MotionRange {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
+    return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
+    TransferContext.writeArguments(LONG to skeletonRig.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
+  }
+
+  public final fun getSkeletonRig(): SkeletonRig {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
+    return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
+    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+  }
+
+  public final fun getBoneUpdate(): BoneUpdate {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Hands(

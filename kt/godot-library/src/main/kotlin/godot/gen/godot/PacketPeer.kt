@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -43,15 +44,12 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than
    * [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
    */
-  public var encodeBufferMaxSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var encodeBufferMaxSize: Int
+    @JvmName("encodeBufferMaxSizeProperty")
+    get() = getEncodeBufferMaxSize()
+    @JvmName("encodeBufferMaxSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
+      setEncodeBufferMaxSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -66,7 +64,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * remote code execution.
    */
   @JvmOverloads
-  public fun getVar(allowObjects: Boolean = false): Any? {
+  public final fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -78,7 +76,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public fun putVar(_var: Any?, fullObjects: Boolean = false): GodotError {
+  public final fun putVar(_var: Any?, fullObjects: Boolean = false): GodotError {
     TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.putVarPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -87,7 +85,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Gets a raw packet.
    */
-  public fun getPacket(): PackedByteArray {
+  public final fun getPacket(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -96,7 +94,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Sends a raw packet.
    */
-  public fun putPacket(buffer: PackedByteArray): GodotError {
+  public final fun putPacket(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.putPacketPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -105,7 +103,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Returns the error state of the last packet received (via [getPacket] and [getVar]).
    */
-  public fun getPacketError(): GodotError {
+  public final fun getPacketError(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketErrorPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -114,10 +112,21 @@ public open class PacketPeer internal constructor() : RefCounted() {
   /**
    * Returns the number of packets currently available in the ring-buffer.
    */
-  public fun getAvailablePacketCount(): Int {
+  public final fun getAvailablePacketCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePacketCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun getEncodeBufferMaxSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setEncodeBufferMaxSize(maxSize: Int): Unit {
+    TransferContext.writeArguments(LONG to maxSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
 
   public companion object

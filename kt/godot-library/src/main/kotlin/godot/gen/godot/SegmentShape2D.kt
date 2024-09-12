@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a
@@ -29,30 +30,24 @@ public open class SegmentShape2D : Shape2D() {
    * The segment's first point position.
    */
   @CoreTypeLocalCopy
-  public var a: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var a: Vector2
+    @JvmName("aProperty")
+    get() = getA()
+    @JvmName("aProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
+      setA(value)
     }
 
   /**
    * The segment's second point position.
    */
   @CoreTypeLocalCopy
-  public var b: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var b: Vector2
+    @JvmName("bProperty")
+    get() = getB()
+    @JvmName("bProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
+      setB(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -77,7 +72,7 @@ public open class SegmentShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun aMutate(block: Vector2.() -> Unit): Vector2 = a.apply{
+  public final fun aMutate(block: Vector2.() -> Unit): Vector2 = a.apply{
       block(this)
       a = this
   }
@@ -101,11 +96,33 @@ public open class SegmentShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun bMutate(block: Vector2.() -> Unit): Vector2 = b.apply{
+  public final fun bMutate(block: Vector2.() -> Unit): Vector2 = b.apply{
       block(this)
       b = this
   }
 
+
+  public final fun setA(a: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to a)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
+  }
+
+  public final fun getA(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setB(b: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to b)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
+  }
+
+  public final fun getB(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

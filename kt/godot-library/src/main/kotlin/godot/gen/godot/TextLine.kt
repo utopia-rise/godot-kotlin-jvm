@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -49,128 +50,101 @@ public open class TextLine : RefCounted() {
   /**
    * Text writing direction.
    */
-  public var direction: TextServer.Direction
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, LONG)
-      return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var direction: TextServer.Direction
+    @JvmName("directionProperty")
+    get() = getDirection()
+    @JvmName("directionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
+      setDirection(value)
     }
 
   /**
    * Text orientation.
    */
-  public var orientation: TextServer.Orientation
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
-      return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var orientation: TextServer.Orientation
+    @JvmName("orientationProperty")
+    get() = getOrientation()
+    @JvmName("orientationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+      setOrientation(value)
     }
 
   /**
    * If set to `true` text will display invalid characters.
    */
-  public var preserveInvalid: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreserveInvalidPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var preserveInvalid: Boolean
+    @JvmName("preserveInvalidProperty")
+    get() = getPreserveInvalid()
+    @JvmName("preserveInvalidProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreserveInvalidPtr, NIL)
+      setPreserveInvalid(value)
     }
 
   /**
    * If set to `true` text will display control characters.
    */
-  public var preserveControl: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreserveControlPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var preserveControl: Boolean
+    @JvmName("preserveControlProperty")
+    get() = getPreserveControl()
+    @JvmName("preserveControlProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreserveControlPtr, NIL)
+      setPreserveControl(value)
     }
 
   /**
    * Text line width.
    */
-  public var width: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var width: Float
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * Sets text alignment within the line as if the line was horizontal.
    */
-  public var alignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var alignment: HorizontalAlignment
+    @JvmName("alignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
    * Line alignment rules. For more info see [TextServer].
    */
-  public var flags: TextServer.JustificationFlag
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
-      return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var flags: TextServer.JustificationFlag
+    @JvmName("flagsProperty")
+    get() = getFlags()
+    @JvmName("flagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+      setFlags(value)
     }
 
   /**
    * Sets the clipping behavior when the text exceeds the text line's set width. See
    * [TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: TextServer.OverrunBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textOverrunBehavior: TextServer.OverrunBehavior
+    @JvmName("textOverrunBehaviorProperty")
+    get() = getTextOverrunBehavior()
+    @JvmName("textOverrunBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+      setTextOverrunBehavior(value)
     }
 
   /**
    * Ellipsis character used for text clipping.
    */
-  public var ellipsisChar: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var ellipsisChar: String
+    @JvmName("ellipsisCharProperty")
+    get() = getEllipsisChar()
+    @JvmName("ellipsisCharProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+      setEllipsisChar(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -180,9 +154,53 @@ public open class TextLine : RefCounted() {
   /**
    * Clears text line (removes text and inline objects).
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+  }
+
+  public final fun setDirection(direction: TextServer.Direction): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
+  }
+
+  public final fun getDirection(): TextServer.Direction {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, LONG)
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setOrientation(orientation: TextServer.Orientation): Unit {
+    TransferContext.writeArguments(LONG to orientation.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+  }
+
+  public final fun getOrientation(): TextServer.Orientation {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
+    return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPreserveInvalid(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveInvalidPtr, NIL)
+  }
+
+  public final fun getPreserveInvalid(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveInvalidPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setPreserveControl(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveControlPtr, NIL)
+  }
+
+  public final fun getPreserveControl(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveControlPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -190,7 +208,7 @@ public open class TextLine : RefCounted() {
    * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
    * each range separately.
    */
-  public fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
+  public final fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(ARRAY to override)
     TransferContext.callMethod(rawPtr, MethodBindings.setBidiOverridePtr, NIL)
   }
@@ -199,9 +217,9 @@ public open class TextLine : RefCounted() {
    * Adds text span and font to draw it.
    */
   @JvmOverloads
-  public fun addString(
+  public final fun addString(
     text: String,
-    font: Font,
+    font: Font?,
     fontSize: Int,
     language: String = "",
     meta: Any? = null,
@@ -216,7 +234,7 @@ public open class TextLine : RefCounted() {
    * as [length] object replacement characters.
    */
   @JvmOverloads
-  public fun addObject(
+  public final fun addObject(
     key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
@@ -232,7 +250,7 @@ public open class TextLine : RefCounted() {
    * Sets new size and alignment of embedded object.
    */
   @JvmOverloads
-  public fun resizeObject(
+  public final fun resizeObject(
     key: Any?,
     size: Vector2,
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_CENTER,
@@ -243,18 +261,73 @@ public open class TextLine : RefCounted() {
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public final fun setWidth(width: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to width.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public final fun getWidth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Aligns text to the given tab-stops.
    */
-  public fun tabAlign(tabStops: PackedFloat32Array): Unit {
+  public final fun tabAlign(tabStops: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, MethodBindings.tabAlignPtr, NIL)
+  }
+
+  public final fun setFlags(flags: TextServer.JustificationFlag): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+  }
+
+  public final fun getFlags(): TextServer.JustificationFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
+    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setEllipsisChar(char: String): Unit {
+    TransferContext.writeArguments(STRING to char)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+  }
+
+  public final fun getEllipsisChar(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns array of inline objects.
    */
-  public fun getObjects(): VariantArray<Any?> {
+  public final fun getObjects(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -263,7 +336,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns bounding rectangle of the inline object.
    */
-  public fun getObjectRect(key: Any?): Rect2 {
+  public final fun getObjectRect(key: Any?): Rect2 {
     TransferContext.writeArguments(ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -272,7 +345,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns size of the bounding box of the text.
    */
-  public fun getSize(): Vector2 {
+  public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -281,7 +354,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns TextServer buffer RID.
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -291,7 +364,7 @@ public open class TextLine : RefCounted() {
    * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
    * left of baseline for vertical).
    */
-  public fun getLineAscent(): Float {
+  public final fun getLineAscent(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineAscentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -301,7 +374,7 @@ public open class TextLine : RefCounted() {
    * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
    * right of baseline for vertical).
    */
-  public fun getLineDescent(): Float {
+  public final fun getLineDescent(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineDescentPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -310,7 +383,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
-  public fun getLineWidth(): Float {
+  public final fun getLineWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -319,7 +392,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns pixel offset of the underline below the baseline.
    */
-  public fun getLineUnderlinePosition(): Float {
+  public final fun getLineUnderlinePosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlinePositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -328,7 +401,7 @@ public open class TextLine : RefCounted() {
   /**
    * Returns thickness of the underline.
    */
-  public fun getLineUnderlineThickness(): Float {
+  public final fun getLineUnderlineThickness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlineThicknessPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -339,7 +412,7 @@ public open class TextLine : RefCounted() {
    * corner of the bounding box.
    */
   @JvmOverloads
-  public fun draw(
+  public final fun draw(
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
@@ -353,7 +426,7 @@ public open class TextLine : RefCounted() {
    * corner of the bounding box.
    */
   @JvmOverloads
-  public fun drawOutline(
+  public final fun drawOutline(
     canvas: RID,
     pos: Vector2,
     outlineSize: Int = 1,
@@ -367,7 +440,7 @@ public open class TextLine : RefCounted() {
    * Returns caret character offset at the specified pixel offset at the baseline. This function
    * always returns a valid position.
    */
-  public fun hitTest(coords: Float): Int {
+  public final fun hitTest(coords: Float): Int {
     TransferContext.writeArguments(DOUBLE to coords.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.hitTestPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

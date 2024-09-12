@@ -43,7 +43,7 @@ public open class PropertyTweener : Tweener() {
    * move the node from position (100, 100) to (200, 100)
    * [/codeblock]
    */
-  public fun from(`value`: Any?): PropertyTweener? {
+  public final fun from(`value`: Any?): PropertyTweener? {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.fromPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -58,7 +58,7 @@ public open class PropertyTweener : Tweener() {
    * tween.tween_property(self, "position", Vector2(200, 100), 1).from_current()
    * [/codeblock]
    */
-  public fun fromCurrent(): PropertyTweener? {
+  public final fun fromCurrent(): PropertyTweener? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fromCurrentPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -73,7 +73,7 @@ public open class PropertyTweener : Tweener() {
    * move by 100 pixels to the right
    * [/codeblock]
    */
-  public fun asRelative(): PropertyTweener? {
+  public final fun asRelative(): PropertyTweener? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asRelativePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -83,7 +83,7 @@ public open class PropertyTweener : Tweener() {
    * Sets the type of used transition from [Tween.TransitionType]. If not set, the default
    * transition is used from the [Tween] that contains this Tweener.
    */
-  public fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
+  public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -93,7 +93,7 @@ public open class PropertyTweener : Tweener() {
    * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from
    * the [Tween] that contains this Tweener.
    */
-  public fun setEase(ease: Tween.EaseType): PropertyTweener? {
+  public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -119,7 +119,7 @@ public open class PropertyTweener : Tweener() {
    *     return curve.sample_baked(v)
    * [/codeblock]
    */
-  public fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
+  public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
     TransferContext.writeArguments(CALLABLE to interpolatorMethod)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)
@@ -129,7 +129,7 @@ public open class PropertyTweener : Tweener() {
    * Sets the time in seconds after which the [PropertyTweener] will start interpolating. By default
    * there's no delay.
    */
-  public fun setDelay(delay: Double): PropertyTweener? {
+  public final fun setDelay(delay: Double): PropertyTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PropertyTweener?)

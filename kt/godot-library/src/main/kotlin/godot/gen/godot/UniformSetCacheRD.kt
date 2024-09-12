@@ -35,7 +35,7 @@ public open class UniformSetCacheRD : Object() {
     /**
      * Creates/returns a cached uniform set based on the provided uniforms for a given shader.
      */
-    public fun getCache(
+    public final fun getCache(
       shader: RID,
       `set`: Long,
       uniforms: VariantArray<RDUniform>,

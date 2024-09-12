@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a
@@ -29,34 +30,50 @@ public open class InputEventJoypadMotion : InputEvent() {
   /**
    * Axis identifier. Use one of the [JoyAxis] axis constants.
    */
-  public var axis: JoyAxis
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
-      return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var axis: JoyAxis
+    @JvmName("axisProperty")
+    get() = getAxis()
+    @JvmName("axisProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+      setAxis(value)
     }
 
   /**
    * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A
    * value of `0` means the axis is in its resting position.
    */
-  public var axisValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var axisValue: Float
+    @JvmName("axisValueProperty")
+    get() = getAxisValue()
+    @JvmName("axisValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
+      setAxisValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION, scriptIndex)
+  }
+
+  public final fun setAxis(axis: JoyAxis): Unit {
+    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+  }
+
+  public final fun getAxis(): JoyAxis {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
+    return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAxisValue(axisValue: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to axisValue.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
+  }
+
+  public final fun getAxisValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAxisValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

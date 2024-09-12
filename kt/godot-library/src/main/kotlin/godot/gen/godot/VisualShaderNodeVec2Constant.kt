@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A constant [Vector2], which can be used as an input node.
@@ -28,15 +29,12 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
    * A [Vector2] constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var constant: Vector2
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,11 +59,22 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
+  public final fun constantMutate(block: Vector2.() -> Unit): Vector2 = constant.apply{
       block(this)
       constant = this
   }
 
+
+  public final fun setConstant(constant: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to constant)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public final fun getConstant(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross
@@ -27,19 +28,27 @@ public open class Marker3D : Node3D() {
   /**
    * Size of the gizmo cross that appears in the editor.
    */
-  public var gizmoExtents: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var gizmoExtents: Float
+    @JvmName("gizmoExtentsProperty")
+    get() = getGizmoExtents()
+    @JvmName("gizmoExtentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
+      setGizmoExtents(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MARKER3D, scriptIndex)
+  }
+
+  public final fun setGizmoExtents(extents: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to extents.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
+  }
+
+  public final fun getGizmoExtents(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

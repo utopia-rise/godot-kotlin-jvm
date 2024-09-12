@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D convex polygon shape, intended for use in physics. Used internally in [CollisionPolygon2D]
@@ -42,15 +43,12 @@ public open class ConvexPolygonShape2D : Shape2D() {
    * **Warning:** Only set this property to a list of points that actually form a convex hull. Use
    * [setPointCloud] to generate the convex hull of an arbitrary set of points.
    */
-  public var points: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+  public final inline var points: PackedVector2Array
+    @JvmName("pointsProperty")
+    get() = getPoints()
+    @JvmName("pointsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+      setPoints(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,9 +59,20 @@ public open class ConvexPolygonShape2D : Shape2D() {
    * Based on the set of points provided, this assigns the [points] property using the convex hull
    * algorithm, removing all unneeded points. See [Geometry2D.convexHull] for details.
    */
-  public fun setPointCloud(pointCloud: PackedVector2Array): Unit {
+  public final fun setPointCloud(pointCloud: PackedVector2Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointCloudPtr, NIL)
+  }
+
+  public final fun setPoints(points: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+  }
+
+  public final fun getPoints(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   public companion object

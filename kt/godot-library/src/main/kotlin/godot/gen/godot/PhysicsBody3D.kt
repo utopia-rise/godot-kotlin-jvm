@@ -26,6 +26,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -39,85 +40,67 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Lock the body's linear movement in the X axis.
    */
-  public var axisLockLinearX: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockLinearX: Boolean
+    @JvmName("axisLockLinearXProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X)
+    @JvmName("axisLockLinearXProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_X, value)
     }
 
   /**
    * Lock the body's linear movement in the Y axis.
    */
-  public var axisLockLinearY: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockLinearY: Boolean
+    @JvmName("axisLockLinearYProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y)
+    @JvmName("axisLockLinearYProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Y, value)
     }
 
   /**
    * Lock the body's linear movement in the Z axis.
    */
-  public var axisLockLinearZ: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockLinearZ: Boolean
+    @JvmName("axisLockLinearZProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z)
+    @JvmName("axisLockLinearZProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_LINEAR_Z, value)
     }
 
   /**
    * Lock the body's rotation in the X axis.
    */
-  public var axisLockAngularX: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockAngularX: Boolean
+    @JvmName("axisLockAngularXProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X)
+    @JvmName("axisLockAngularXProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_X, value)
     }
 
   /**
    * Lock the body's rotation in the Y axis.
    */
-  public var axisLockAngularY: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockAngularY: Boolean
+    @JvmName("axisLockAngularYProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y)
+    @JvmName("axisLockAngularYProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 16L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Y, value)
     }
 
   /**
    * Lock the body's rotation in the Z axis.
    */
-  public var axisLockAngularZ: Boolean
-    get() {
-      TransferContext.writeArguments(LONG to 32L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var axisLockAngularZ: Boolean
+    @JvmName("axisLockAngularZProperty")
+    get() = getAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z)
+    @JvmName("axisLockAngularZProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 32L, BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+      setAxisLock(PhysicsServer3D.BodyAxis.BODY_AXIS_ANGULAR_Z, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -139,7 +122,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads
-  public fun moveAndCollide(
+  public final fun moveAndCollide(
     motion: Vector3,
     testOnly: Boolean = false,
     safeMargin: Float = 0.001f,
@@ -166,7 +149,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * [maxCollisions] allows to retrieve more than one collision result.
    */
   @JvmOverloads
-  public fun testMove(
+  public final fun testMove(
     from: Transform3D,
     motion: Vector3,
     collision: KinematicCollision3D? = null,
@@ -183,16 +166,33 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * Returns the gravity vector computed from all sources that can affect the body, including all
    * gravity overrides from [Area3D] nodes and the global world gravity.
    */
-  public fun getGravity(): Vector3 {
+  public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
   }
 
   /**
+   * Locks or unlocks the specified linear or rotational [axis] depending on the value of [lock].
+   */
+  public final fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
+    TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the specified linear or rotational [axis] is locked.
+   */
+  public final fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
+    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
-  public fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
+  public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>)
@@ -201,7 +201,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
-  public fun addCollisionExceptionWith(body: Node): Unit {
+  public final fun addCollisionExceptionWith(body: Node?): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
@@ -209,7 +209,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
-  public fun removeCollisionExceptionWith(body: Node): Unit {
+  public final fun removeCollisionExceptionWith(body: Node?): Unit {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }

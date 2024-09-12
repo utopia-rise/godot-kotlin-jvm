@@ -32,7 +32,7 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
    * This method is called by the rendering server when the associated viewports configuration is
    * changed. It will discard the old buffers and recreate the internal buffers used.
    */
-  public fun configure(config: RenderSceneBuffersConfiguration): Unit {
+  public final fun configure(config: RenderSceneBuffersConfiguration?): Unit {
     TransferContext.writeArguments(OBJECT to config)
     TransferContext.callMethod(rawPtr, MethodBindings.configurePtr, NIL)
   }

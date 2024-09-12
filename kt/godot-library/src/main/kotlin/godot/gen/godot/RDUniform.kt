@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This object is used by [RenderingDevice].
@@ -29,40 +30,56 @@ public open class RDUniform : RefCounted() {
   /**
    * The uniform's data type.
    */
-  public var uniformType: RenderingDevice.UniformType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
-      return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var uniformType: RenderingDevice.UniformType
+    @JvmName("uniformTypeProperty")
+    get() = getUniformType()
+    @JvmName("uniformTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
+      setUniformType(value)
     }
 
   /**
    * The uniform's binding.
    */
-  public var binding: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var binding: Int
+    @JvmName("bindingProperty")
+    get() = getBinding()
+    @JvmName("bindingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
+      setBinding(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
   }
 
+  public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
+    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
+  }
+
+  public final fun getUniformType(): RenderingDevice.UniformType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
+    return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBinding(pMember: Int): Unit {
+    TransferContext.writeArguments(LONG to pMember.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
+  }
+
+  public final fun getBinding(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Binds the given id to the uniform. The data associated with the id is then used when the
    * uniform is passed to a shader.
    */
-  public fun addId(id: RID): Unit {
+  public final fun addId(id: RID): Unit {
     TransferContext.writeArguments(_RID to id)
     TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
@@ -70,7 +87,7 @@ public open class RDUniform : RefCounted() {
   /**
    * Unbinds all ids currently bound to the uniform.
    */
-  public fun clearIds(): Unit {
+  public final fun clearIds(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
   }
@@ -78,7 +95,7 @@ public open class RDUniform : RefCounted() {
   /**
    * Returns an array of all ids currently bound to the uniform.
    */
-  public fun getIds(): VariantArray<RID> {
+  public final fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)

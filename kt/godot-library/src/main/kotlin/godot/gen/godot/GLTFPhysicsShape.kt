@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -44,15 +45,12 @@ public open class GLTFPhysicsShape : Resource() {
    * The type of shape this shape represents. Valid values are "box", "capsule", "cylinder",
    * "sphere", "hull", and "trimesh".
    */
-  public var shapeType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShapeTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var shapeType: String
+    @JvmName("shapeTypeProperty")
+    get() = getShapeType()
+    @JvmName("shapeTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShapeTypePtr, NIL)
+      setShapeType(value)
     }
 
   /**
@@ -60,30 +58,24 @@ public open class GLTFPhysicsShape : Resource() {
    * represents the "diameter" of the box. This value should not be negative.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+  public final inline var size: Vector3
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
    * The radius of the shape, in meters. This is only used when the shape type is "capsule",
    * "cylinder", or "sphere". This value should not be negative.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
@@ -91,15 +83,12 @@ public open class GLTFPhysicsShape : Resource() {
    * "cylinder". This value should not be negative, and for "capsule" it should be at least twice the
    * radius.
    */
-  public var height: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var height: Float
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
@@ -108,45 +97,36 @@ public open class GLTFPhysicsShape : Resource() {
    * This is the only variable not used in the [toNode] method, it's intended to be used alongside
    * when deciding where to add the generated node as a child.
    */
-  public var isTrigger: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIsTriggerPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var isTrigger: Boolean
+    @JvmName("isTriggerProperty")
+    get() = getIsTrigger()
+    @JvmName("isTriggerProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIsTriggerPtr, NIL)
+      setIsTrigger(value)
     }
 
   /**
    * The index of the shape's mesh in the GLTF file. This is only used when the shape type is "hull"
    * (convex hull) or "trimesh" (concave trimesh).
    */
-  public var meshIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var meshIndex: Int
+    @JvmName("meshIndexProperty")
+    get() = getMeshIndex()
+    @JvmName("meshIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshIndexPtr, NIL)
+      setMeshIndex(value)
     }
 
   /**
    * The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull"
    * (convex hull) or "trimesh" (concave trimesh).
    */
-  public var importerMesh: ImporterMesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getImporterMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
-    }
+  public final inline var importerMesh: ImporterMesh?
+    @JvmName("importerMeshProperty")
+    get() = getImporterMesh()
+    @JvmName("importerMeshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setImporterMeshPtr, NIL)
+      setImporterMesh(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -172,7 +152,7 @@ public open class GLTFPhysicsShape : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
@@ -182,7 +162,7 @@ public open class GLTFPhysicsShape : Resource() {
    * Converts this GLTFPhysicsShape instance into a Godot [CollisionShape3D] node.
    */
   @JvmOverloads
-  public fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
+  public final fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CollisionShape3D?)
@@ -192,7 +172,7 @@ public open class GLTFPhysicsShape : Resource() {
    * Converts this GLTFPhysicsShape instance into a Godot [Shape3D] resource.
    */
   @JvmOverloads
-  public fun toResource(cacheShapes: Boolean = false): Shape3D? {
+  public final fun toResource(cacheShapes: Boolean = false): Shape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
     TransferContext.callMethod(rawPtr, MethodBindings.toResourcePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
@@ -202,17 +182,94 @@ public open class GLTFPhysicsShape : Resource() {
    * Serializes this GLTFPhysicsShape instance into a [Dictionary] in the format defined by
    * `OMI_physics_shape`.
    */
-  public fun toDictionary(): Dictionary<Any?, Any?> {
+  public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+  }
+
+  public final fun getShapeType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShapeTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setShapeType(shapeType: String): Unit {
+    TransferContext.writeArguments(STRING to shapeType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShapeTypePtr, NIL)
+  }
+
+  public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public final fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHeight(height: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to height.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun getIsTrigger(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIsTriggerPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setIsTrigger(isTrigger: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to isTrigger)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIsTriggerPtr, NIL)
+  }
+
+  public final fun getMeshIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setMeshIndex(meshIndex: Int): Unit {
+    TransferContext.writeArguments(LONG to meshIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshIndexPtr, NIL)
+  }
+
+  public final fun getImporterMesh(): ImporterMesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getImporterMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
+  }
+
+  public final fun setImporterMesh(importerMesh: ImporterMesh?): Unit {
+    TransferContext.writeArguments(OBJECT to importerMesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setImporterMeshPtr, NIL)
   }
 
   public companion object {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */
-    public fun fromNode(shapeNode: CollisionShape3D): GLTFPhysicsShape? {
+    public final fun fromNode(shapeNode: CollisionShape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
@@ -221,7 +278,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [Shape3D] resource.
      */
-    public fun fromResource(shapeResource: Shape3D): GLTFPhysicsShape? {
+    public final fun fromResource(shapeResource: Shape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeResource)
       TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
@@ -230,7 +287,7 @@ public open class GLTFPhysicsShape : Resource() {
     /**
      * Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary].
      */
-    public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
+    public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)

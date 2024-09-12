@@ -38,7 +38,7 @@ public open class FramebufferCacheRD : Object() {
      * textures are allocated depending on their usage flags. [views] defines the number of views used
      * when rendering.
      */
-    public fun getCacheMultipass(
+    public final fun getCacheMultipass(
       textures: VariantArray<RID>,
       passes: VariantArray<RDFramebufferPass>,
       views: Long,

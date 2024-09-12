@@ -20,6 +20,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
@@ -36,47 +37,71 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * [Texture2D] to be applied to the [PanoramaSkyMaterial].
    */
-  public var panorama: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var panorama: Texture2D?
+    @JvmName("panoramaProperty")
+    get() = getPanorama()
+    @JvmName("panoramaProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
+      setPanorama(value)
     }
 
   /**
    * A boolean value to determine if the background texture should be filtered or not.
    */
-  public var filter: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var filter: Boolean
+    @JvmName("filterProperty")
+    get() = isFilteringEnabled()
+    @JvmName("filterProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
+      setFilteringEnabled(value)
     }
 
   /**
    * The sky's overall brightness multiplier. Higher values result in a brighter sky.
    */
-  public var energyMultiplier: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var energyMultiplier: Float
+    @JvmName("energyMultiplierProperty")
+    get() = getEnergyMultiplier()
+    @JvmName("energyMultiplierProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+      setEnergyMultiplier(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
+  }
+
+  public final fun setPanorama(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
+  }
+
+  public final fun getPanorama(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setFilteringEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
+  }
+
+  public final fun isFilteringEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setEnergyMultiplier(multiplier: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+  }
+
+  public final fun getEnergyMultiplier(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

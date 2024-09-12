@@ -63,7 +63,7 @@ public object JavaScriptBridge : Object() {
    * runtime environment.
    */
   @JvmOverloads
-  public fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
+  public final fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, MethodBindings.evalPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -74,7 +74,7 @@ public object JavaScriptBridge : Object() {
    * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
    * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
-  public fun getInterface(_interface: String): JavaScriptObject? {
+  public final fun getInterface(_interface: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to _interface)
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
@@ -85,7 +85,7 @@ public object JavaScriptBridge : Object() {
    * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
    * usage.
    */
-  public fun createCallback(callable: Callable): JavaScriptObject? {
+  public final fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.createCallbackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as JavaScriptObject?)
@@ -95,7 +95,7 @@ public object JavaScriptBridge : Object() {
    * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
    * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
-  public fun createObject(_object: String, vararg __var_args: Any?): Any? {
+  public final fun createObject(_object: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -112,7 +112,7 @@ public object JavaScriptBridge : Object() {
    * requests are made in a quick succession.
    */
   @JvmOverloads
-  public fun downloadBuffer(
+  public final fun downloadBuffer(
     buffer: PackedByteArray,
     name: String,
     mime: String = "application/octet-stream",
@@ -125,7 +125,7 @@ public object JavaScriptBridge : Object() {
    * Returns `true` if a new version of the progressive web app is waiting to be activated.
    * **Note:** Only relevant when exported as a Progressive Web App.
    */
-  public fun pwaNeedsUpdate(): Boolean {
+  public final fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -138,7 +138,7 @@ public object JavaScriptBridge : Object() {
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
    * `true`.
    */
-  public fun pwaUpdate(): GodotError {
+  public final fun pwaUpdate(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaUpdatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -149,7 +149,7 @@ public object JavaScriptBridge : Object() {
    * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write
    * files.
    */
-  public fun forceFsSync(): Unit {
+  public final fun forceFsSync(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceFsSyncPtr, NIL)
   }

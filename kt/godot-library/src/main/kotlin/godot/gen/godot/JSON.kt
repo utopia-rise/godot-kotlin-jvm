@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -71,15 +72,12 @@ public open class JSON : Resource() {
   /**
    * Contains the parsed JSON data in [Variant] form.
    */
-  public var `data`: Any?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
-      return (TransferContext.readReturnValue(ANY, true) as Any?)
-    }
+  public final inline var `data`: Any?
+    @JvmName("dataProperty")
+    get() = getData()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(ANY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+      setData(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -97,16 +95,27 @@ public open class JSON : Resource() {
    * resource (instead of generating new text from [data]).
    */
   @JvmOverloads
-  public fun parse(jsonText: String, keepText: Boolean = false): GodotError {
+  public final fun parse(jsonText: String, keepText: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
     TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun getData(): Any? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
+    return (TransferContext.readReturnValue(ANY, true) as Any?)
+  }
+
+  public final fun setData(`data`: Any?): Unit {
+    TransferContext.writeArguments(ANY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+  }
+
   /**
    * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
-  public fun getParsedText(): String {
+  public final fun getParsedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -116,7 +125,7 @@ public open class JSON : Resource() {
    * Returns `0` if the last call to [parse] was successful, or the line number where the parse
    * failed.
    */
-  public fun getErrorLine(): Int {
+  public final fun getErrorLine(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -126,7 +135,7 @@ public open class JSON : Resource() {
    * Returns an empty string if the last call to [parse] was successful, or the error message if it
    * failed.
    */
-  public fun getErrorMessage(): String {
+  public final fun getErrorMessage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorMessagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -183,7 +192,7 @@ public open class JSON : Resource() {
      * [/codeblock]
      */
     @JvmOverloads
-    public fun stringify(
+    public final fun stringify(
       `data`: Any?,
       indent: String = "",
       sortKeys: Boolean = true,
@@ -198,7 +207,7 @@ public open class JSON : Resource() {
      * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if
      * parse failed.
      */
-    public fun parseString(jsonString: String): Any? {
+    public final fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)
       TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
       return (TransferContext.readReturnValue(ANY, true) as Any?)

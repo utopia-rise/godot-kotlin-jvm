@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * A body tracking system will create an instance of this object and add it to the [XRServer]. This
@@ -33,39 +34,55 @@ public open class XRBodyTracker : XRPositionalTracker() {
   /**
    * If `true`, the body tracking data is valid.
    */
-  public var hasTrackingData: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var hasTrackingData: Boolean
+    @JvmName("hasTrackingDataProperty")
+    get() = getHasTrackingData()
+    @JvmName("hasTrackingDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+      setHasTrackingData(value)
     }
 
   /**
    * The type of body tracking data captured.
    */
-  public var bodyFlags: BodyFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
-      return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var bodyFlags: BodyFlags
+    @JvmName("bodyFlagsProperty")
+    get() = getBodyFlags()
+    @JvmName("bodyFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+      setBodyFlags(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRBODYTRACKER, scriptIndex)
   }
 
+  public final fun setHasTrackingData(hasData: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to hasData)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+  }
+
+  public final fun getHasTrackingData(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setBodyFlags(flags: BodyFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+  }
+
+  public final fun getBodyFlags(): BodyFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
+    return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Sets flags about the validity of the tracking data for the given body joint.
    */
-  public fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
+  public final fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
     TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.setJointFlagsPtr, NIL)
   }
@@ -74,7 +91,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * Returns flags about the validity of the tracking data for the given body joint (see
    * [XRBodyTracker.JointFlags]).
    */
-  public fun getJointFlags(joint: Joint): JointFlags {
+  public final fun getJointFlags(joint: Joint): JointFlags {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getJointFlagsPtr, LONG)
     return JointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
@@ -83,7 +100,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   /**
    * Sets the transform for the given body joint.
    */
-  public fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
+  public final fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
     TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.setJointTransformPtr, NIL)
   }
@@ -91,7 +108,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   /**
    * Returns the transform for the given body joint.
    */
-  public fun getJointTransform(joint: Joint): Transform3D {
+  public final fun getJointTransform(joint: Joint): Transform3D {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)

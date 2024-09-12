@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
@@ -56,15 +57,12 @@ public open class CanvasGroup : Node2D() {
    * [CanvasGroup] both of which can reduce performance. This should be kept as small as possible and
    * should only be expanded when an increased size is needed (e.g. for custom shader effects).
    */
-  public var fitMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var fitMargin: Float
+    @JvmName("fitMarginProperty")
+    get() = getFitMargin()
+    @JvmName("fitMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+      setFitMargin(value)
     }
 
   /**
@@ -75,15 +73,12 @@ public open class CanvasGroup : Node2D() {
    * this should be left as small as possible, but should be increased if artifacts appear along the
    * edges of the canvas group.
    */
-  public var clearMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var clearMargin: Float
+    @JvmName("clearMarginProperty")
+    get() = getClearMargin()
+    @JvmName("clearMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+      setClearMargin(value)
     }
 
   /**
@@ -91,19 +86,49 @@ public open class CanvasGroup : Node2D() {
    * mipmaps can be used in a custom [ShaderMaterial] attached to the [CanvasGroup]. Generating mipmaps
    * has a performance cost so this should not be enabled unless required.
    */
-  public var useMipmaps: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useMipmaps: Boolean
+    @JvmName("useMipmapsProperty")
+    get() = isUsingMipmaps()
+    @JvmName("useMipmapsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+      setUseMipmaps(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CANVASGROUP, scriptIndex)
+  }
+
+  public final fun setFitMargin(fitMargin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+  }
+
+  public final fun getFitMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setClearMargin(clearMargin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+  }
+
+  public final fun getClearMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useMipmaps)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+  }
+
+  public final fun isUsingMipmaps(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

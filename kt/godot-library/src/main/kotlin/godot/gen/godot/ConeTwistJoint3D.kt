@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket
@@ -34,78 +35,80 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Could be defined as looseness in the [ConeTwistJoint3D].
    * If below 0.05, this behavior is locked.
    */
-  public var swingSpan: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var swingSpan: Float
+    @JvmName("swingSpanProperty")
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_SWING_SPAN)
+    @JvmName("swingSpanProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(ConeTwistJoint3D.Param.PARAM_SWING_SPAN, value)
     }
 
   /**
    * Twist is the rotation around the twist axis, this value defined how far the joint can twist.
    * Twist is locked if below 0.05.
    */
-  public var twistSpan: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var twistSpan: Float
+    @JvmName("twistSpanProperty")
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_TWIST_SPAN)
+    @JvmName("twistSpanProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(ConeTwistJoint3D.Param.PARAM_TWIST_SPAN, value)
     }
 
   /**
    * The speed with which the swing or twist will take place.
    * The higher, the faster.
    */
-  public var bias: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bias: Float
+    @JvmName("biasProperty")
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_BIAS)
+    @JvmName("biasProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(ConeTwistJoint3D.Param.PARAM_BIAS, value)
     }
 
   /**
    * The ease with which the joint starts to twist. If it's too low, it takes more force to start
    * twisting the joint.
    */
-  public var softness: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var softness: Float
+    @JvmName("softnessProperty")
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_SOFTNESS)
+    @JvmName("softnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(ConeTwistJoint3D.Param.PARAM_SOFTNESS, value)
     }
 
   /**
    * Defines, how fast the swing- and twist-speed-difference on both sides gets synced.
    */
-  public var relaxation: Float
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var relaxation: Float
+    @JvmName("relaxationProperty")
+    get() = getParam(ConeTwistJoint3D.Param.PARAM_RELAXATION)
+    @JvmName("relaxationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(ConeTwistJoint3D.Param.PARAM_RELAXATION, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONETWISTJOINT3D, scriptIndex)
+  }
+
+  /**
+   * Sets the value of the specified parameter.
+   */
+  public final fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+  }
+
+  /**
+   * Returns the value of the specified parameter.
+   */
+  public final fun getParam(`param`: Param): Float {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Param(

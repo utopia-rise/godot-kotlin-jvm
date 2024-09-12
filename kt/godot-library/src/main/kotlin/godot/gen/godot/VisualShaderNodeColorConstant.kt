@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Has two output ports representing RGB and alpha channels of [Color].
@@ -29,15 +30,12 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * A [Color] constant which represents a state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var constant: Color
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -62,11 +60,22 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
+  public final fun constantMutate(block: Color.() -> Unit): Color = constant.apply{
       block(this)
       constant = this
   }
 
+
+  public final fun setConstant(constant: Color): Unit {
+    TransferContext.writeArguments(COLOR to constant)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public final fun getConstant(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
 
   public companion object
 

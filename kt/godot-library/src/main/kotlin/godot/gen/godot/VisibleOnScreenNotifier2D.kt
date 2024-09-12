@@ -22,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
@@ -48,15 +49,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * The VisibleOnScreenNotifier2D's bounding rectangle.
    */
   @CoreTypeLocalCopy
-  public var rect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+  public final inline var rect: Rect2
+    @JvmName("rectProperty")
+    get() = getRect()
+    @JvmName("rectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+      setRect(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -81,11 +79,22 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
       block(this)
       rect = this
   }
 
+
+  public final fun setRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+  }
+
+  public final fun getRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
 
   /**
    * If `true`, the bounding rectangle is on the screen.
@@ -93,7 +102,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * once added to the scene tree, so this method will always return `false` right after it is
    * instantiated, before the draw pass.
    */
-  public fun isOnScreen(): Boolean {
+  public final fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

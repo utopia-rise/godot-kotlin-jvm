@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
@@ -44,19 +45,27 @@ public open class ConcavePolygonShape2D : Shape2D() {
    * length divisible by two) is naturally divided into pairs (one pair for each segment); each pair
    * consists of the starting point of a segment and the endpoint of a segment.
    */
-  public var segments: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+  public final inline var segments: PackedVector2Array
+    @JvmName("segmentsProperty")
+    get() = getSegments()
+    @JvmName("segmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
+      setSegments(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D, scriptIndex)
+  }
+
+  public final fun setSegments(segments: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to segments)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
+  }
+
+  public final fun getSegments(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   public companion object

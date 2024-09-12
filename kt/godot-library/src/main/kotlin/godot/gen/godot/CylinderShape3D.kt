@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 3D cylinder shape, intended for use in physics. Usually used to provide a shape for a
@@ -31,33 +32,49 @@ public open class CylinderShape3D : Shape3D() {
   /**
    * The cylinder's height.
    */
-  public var height: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var height: Float
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
    * The cylinder's radius.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHeight(height: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to height.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun getHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

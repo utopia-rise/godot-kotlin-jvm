@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is
@@ -29,15 +30,12 @@ public open class PhysicsMaterial : Resource() {
   /**
    * The body's friction. Values range from `0` (frictionless) to `1` (maximum friction).
    */
-  public var friction: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var friction: Float
+    @JvmName("frictionProperty")
+    get() = getFriction()
+    @JvmName("frictionProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+      setFriction(value)
     }
 
   /**
@@ -46,15 +44,12 @@ public open class PhysicsMaterial : Resource() {
    * objects instead. If `true` for both colliding objects, the physics engine will use the highest
    * friction.
    */
-  public var rough: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isRoughPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var rough: Boolean
+    @JvmName("roughProperty")
+    get() = isRough()
+    @JvmName("roughProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRoughPtr, NIL)
+      setRough(value)
     }
 
   /**
@@ -64,34 +59,72 @@ public open class PhysicsMaterial : Resource() {
    * `1.0`, the body's linear damp mode to **Replace** (if applicable), its linear damp to `0.0`, its
    * angular damp mode to **Replace** (if applicable), and its angular damp to `0.0`.
    */
-  public var bounce: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bounce: Float
+    @JvmName("bounceProperty")
+    get() = getBounce()
+    @JvmName("bounceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+      setBounce(value)
     }
 
   /**
    * If `true`, subtracts the bounciness from the colliding object's bounciness instead of adding
    * it.
    */
-  public var absorbent: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAbsorbentPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var absorbent: Boolean
+    @JvmName("absorbentProperty")
+    get() = isAbsorbent()
+    @JvmName("absorbentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAbsorbentPtr, NIL)
+      setAbsorbent(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PHYSICSMATERIAL, scriptIndex)
+  }
+
+  public final fun setFriction(friction: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to friction.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+  }
+
+  public final fun getFriction(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRough(rough: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to rough)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRoughPtr, NIL)
+  }
+
+  public final fun isRough(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isRoughPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setBounce(bounce: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+  }
+
+  public final fun getBounce(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAbsorbent(absorbent: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to absorbent)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAbsorbentPtr, NIL)
+  }
+
+  public final fun isAbsorbent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAbsorbentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

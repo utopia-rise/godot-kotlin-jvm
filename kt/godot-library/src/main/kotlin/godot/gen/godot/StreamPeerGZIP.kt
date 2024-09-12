@@ -44,7 +44,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    * uses deflate instead of GZIP.
    */
   @JvmOverloads
-  public fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
+  public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535):
+      GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.startCompressionPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -55,7 +56,8 @@ public open class StreamPeerGZIP : StreamPeer() {
    * uses deflate instead of GZIP.
    */
   @JvmOverloads
-  public fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): GodotError {
+  public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535):
+      GodotError {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.startDecompressionPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -64,7 +66,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Finalizes the stream, compressing or decompressing any buffered chunk left.
    */
-  public fun finish(): GodotError {
+  public final fun finish(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -73,7 +75,7 @@ public open class StreamPeerGZIP : StreamPeer() {
   /**
    * Clears this stream, resetting the internal state.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }

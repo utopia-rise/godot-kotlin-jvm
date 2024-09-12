@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -32,19 +33,27 @@ public open class AnimatableBody3D : StaticBody3D() {
    * animating movement via [AnimationPlayer], for example on moving platforms. Do **not** use together
    * with [PhysicsBody3D.moveAndCollide].
    */
-  public var syncToPhysics: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var syncToPhysics: Boolean
+    @JvmName("syncToPhysicsProperty")
+    get() = isSyncToPhysicsEnabled()
+    @JvmName("syncToPhysicsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
+      setSyncToPhysics(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATABLEBODY3D, scriptIndex)
+  }
+
+  public final fun setSyncToPhysics(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
+  }
+
+  public final fun isSyncToPhysicsEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

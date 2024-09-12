@@ -24,6 +24,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can
@@ -34,30 +35,24 @@ public open class CollisionShape2D : Node2D() {
   /**
    * The actual shape owned by this collision shape.
    */
-  public var shape: Shape2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
-    }
+  public final inline var shape: Shape2D?
+    @JvmName("shapeProperty")
+    get() = getShape()
+    @JvmName("shapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+      setShape(value)
     }
 
   /**
    * A disabled collision shape has no effect in the world. This property should be changed with
    * [Object.setDeferred].
    */
-  public var disabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var disabled: Boolean
+    @JvmName("disabledProperty")
+    get() = isDisabled()
+    @JvmName("disabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+      setDisabled(value)
     }
 
   /**
@@ -65,30 +60,24 @@ public open class CollisionShape2D : Node2D() {
    * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D]
    * node.
    */
-  public var oneWayCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var oneWayCollision: Boolean
+    @JvmName("oneWayCollisionProperty")
+    get() = isOneWayCollisionEnabled()
+    @JvmName("oneWayCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+      setOneWayCollision(value)
     }
 
   /**
    * The margin used for one-way collision (in pixels). Higher values will make the shape thicker,
    * and work better for colliders that enter the shape at a high velocity.
    */
-  public var oneWayCollisionMargin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var oneWayCollisionMargin: Float
+    @JvmName("oneWayCollisionMarginProperty")
+    get() = getOneWayCollisionMargin()
+    @JvmName("oneWayCollisionMarginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+      setOneWayCollisionMargin(value)
     }
 
   /**
@@ -98,15 +87,12 @@ public open class CollisionShape2D : Node2D() {
    * color.
    */
   @CoreTypeLocalCopy
-  public var debugColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDebugColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var debugColor: Color
+    @JvmName("debugColorProperty")
+    get() = getDebugColor()
+    @JvmName("debugColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDebugColorPtr, NIL)
+      setDebugColor(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -134,11 +120,66 @@ public open class CollisionShape2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
+  public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply{
       block(this)
       debugColor = this
   }
 
+
+  public final fun setShape(shape: Shape2D?): Unit {
+    TransferContext.writeArguments(OBJECT to shape)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+  }
+
+  public final fun getShape(): Shape2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
+  }
+
+  public final fun setDisabled(disabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to disabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+  }
+
+  public final fun isDisabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setOneWayCollision(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+  }
+
+  public final fun isOneWayCollisionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setOneWayCollisionMargin(margin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to margin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+  }
+
+  public final fun getOneWayCollisionMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDebugColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDebugColorPtr, NIL)
+  }
+
+  public final fun getDebugColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDebugColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
 
   public companion object
 

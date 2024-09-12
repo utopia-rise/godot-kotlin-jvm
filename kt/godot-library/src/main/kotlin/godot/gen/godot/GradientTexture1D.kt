@@ -31,26 +31,23 @@ public open class GradientTexture1D : Texture2D() {
   /**
    * The [Gradient] used to fill the texture.
    */
-  public var gradient: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
-    }
+  public final inline var gradient: Gradient?
+    @JvmName("gradientProperty")
+    get() = getGradient()
+    @JvmName("gradientProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+      setGradient(value)
     }
 
   /**
    * The number of color samples that will be obtained from the [Gradient].
    */
-  public var width: Int
-    @JvmName("getWidth_prop")
-    get() = super.getWidth()
+  public final inline var width: Int
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
@@ -59,19 +56,43 @@ public open class GradientTexture1D : Texture2D() {
    * generated texture will use low dynamic range; overbright colors will be clamped
    * ([Image.FORMAT_RGBA8] format).
    */
-  public var useHdr: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useHdr: Boolean
+    @JvmName("useHdrProperty")
+    get() = isUsingHdr()
+    @JvmName("useHdrProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+      setUseHdr(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GRADIENTTEXTURE1D, scriptIndex)
+  }
+
+  public final fun setGradient(gradient: Gradient?): Unit {
+    TransferContext.writeArguments(OBJECT to gradient)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+  }
+
+  public final fun getGradient(): Gradient? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+  }
+
+  public final fun setWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public final fun setUseHdr(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+  }
+
+  public final fun isUsingHdr(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -35,7 +35,7 @@ public open class WeakRef : RefCounted() {
    * Returns the [Object] this weakref is referring to. Returns `null` if that object no longer
    * exists.
    */
-  public fun getRef(): Any? {
+  public final fun getRef(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRefPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)

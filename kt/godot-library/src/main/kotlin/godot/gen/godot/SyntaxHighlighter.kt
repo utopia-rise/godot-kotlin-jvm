@@ -71,7 +71,7 @@ public open class SyntaxHighlighter : Resource() {
    * [/codeblock]
    * This will color columns 0-4 red, and columns 5-eol in green.
    */
-  public fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
+  public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -82,7 +82,7 @@ public open class SyntaxHighlighter : Resource() {
    * **Note:** This is called automatically when the associated [TextEdit] node, updates its own
    * cache.
    */
-  public fun updateCache(): Unit {
+  public final fun updateCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.updateCachePtr, NIL)
   }
@@ -91,7 +91,7 @@ public open class SyntaxHighlighter : Resource() {
    * Clears all cached syntax highlighting data.
    * Then calls overridable method [_clearHighlightingCache].
    */
-  public fun clearHighlightingCache(): Unit {
+  public final fun clearHighlightingCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
@@ -99,7 +99,7 @@ public open class SyntaxHighlighter : Resource() {
   /**
    * Returns the associated [TextEdit] node.
    */
-  public fun getTextEdit(): TextEdit? {
+  public final fun getTextEdit(): TextEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as TextEdit?)

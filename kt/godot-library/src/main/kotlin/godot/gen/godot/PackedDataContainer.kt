@@ -56,7 +56,7 @@ public open class PackedDataContainer : Resource() {
    * [Dictionary], any other type will result in invalid data error.
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
-  public fun pack(`value`: Any?): GodotError {
+  public final fun pack(`value`: Any?): GodotError {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -65,7 +65,7 @@ public open class PackedDataContainer : Resource() {
   /**
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
-  public fun size(): Int {
+  public final fun size(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

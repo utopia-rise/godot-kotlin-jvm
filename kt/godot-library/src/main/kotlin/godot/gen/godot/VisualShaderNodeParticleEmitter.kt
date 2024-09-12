@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Particle emitter nodes can be used in "start" step of particle shaders and they define the
@@ -27,19 +28,27 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
    * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and
    * meant for use in 3D space.
    */
-  public var mode2d: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var mode2d: Boolean
+    @JvmName("mode2dProperty")
+    get() = isMode2d()
+    @JvmName("mode2dProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
+      setMode2d(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
+  }
+
+  public final fun setMode2d(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
+  }
+
+  public final fun isMode2d(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -66,7 +66,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the number or scene tiles this TileSet source has.
    */
-  public fun getSceneTilesCount(): Int {
+  public final fun getSceneTilesCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneTilesCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -75,7 +75,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the scene tile ID of the scene tile at [index].
    */
-  public fun getSceneTileId(index: Int): Int {
+  public final fun getSceneTileId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -84,7 +84,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns whether this TileSet source has a scene tile with [id].
    */
-  public fun hasSceneTileId(id: Int): Boolean {
+  public final fun hasSceneTileId(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasSceneTileIdPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -95,7 +95,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Returns a newly generated unique ID.
    */
   @JvmOverloads
-  public fun createSceneTile(packedScene: PackedScene, idOverride: Int = -1): Int {
+  public final fun createSceneTile(packedScene: PackedScene?, idOverride: Int = -1): Int {
     TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createSceneTilePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -105,7 +105,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with
    * an ID equal to [newId].
    */
-  public fun setSceneTileId(id: Int, newId: Int): Unit {
+  public final fun setSceneTileId(id: Int, newId: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileIdPtr, NIL)
   }
@@ -114,7 +114,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
    * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
-  public fun setSceneTileScene(id: Int, packedScene: PackedScene): Unit {
+  public final fun setSceneTileScene(id: Int, packedScene: PackedScene?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileScenePtr, NIL)
   }
@@ -122,7 +122,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the [PackedScene] resource of scene tile with [id].
    */
-  public fun getSceneTileScene(id: Int): PackedScene? {
+  public final fun getSceneTileScene(id: Int): PackedScene? {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileScenePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PackedScene?)
@@ -132,7 +132,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This
    * might be useful for scenes that are not visible.
    */
-  public fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
+  public final fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)
     TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileDisplayPlaceholderPtr, NIL)
   }
@@ -140,7 +140,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns whether the scene tile with [id] displays a placeholder in the editor.
    */
-  public fun getSceneTileDisplayPlaceholder(id: Int): Boolean {
+  public final fun getSceneTileDisplayPlaceholder(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileDisplayPlaceholderPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -149,7 +149,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Remove the scene tile with [id].
    */
-  public fun removeSceneTile(id: Int): Unit {
+  public final fun removeSceneTile(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeSceneTilePtr, NIL)
   }
@@ -157,7 +157,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Returns the scene ID a following call to [createSceneTile] would return.
    */
-  public fun getNextSceneTileId(): Int {
+  public final fun getNextSceneTileId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextSceneTileIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

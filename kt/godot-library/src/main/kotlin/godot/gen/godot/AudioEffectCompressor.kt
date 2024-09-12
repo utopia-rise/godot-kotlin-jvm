@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain
@@ -38,107 +39,163 @@ public open class AudioEffectCompressor : AudioEffect() {
   /**
    * The level above which compression is applied to the audio. Value can range from -60 to 0.
    */
-  public var threshold: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThresholdPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var threshold: Float
+    @JvmName("thresholdProperty")
+    get() = getThreshold()
+    @JvmName("thresholdProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setThresholdPtr, NIL)
+      setThreshold(value)
     }
 
   /**
    * Amount of compression applied to the audio once it passes the threshold level. The higher the
    * ratio, the more the loud parts of the audio will be compressed. Value can range from 1 to 48.
    */
-  public var ratio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var ratio: Float
+    @JvmName("ratioProperty")
+    get() = getRatio()
+    @JvmName("ratioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
+      setRatio(value)
     }
 
   /**
    * Gain applied to the output signal.
    */
-  public var gain: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var gain: Float
+    @JvmName("gainProperty")
+    get() = getGain()
+    @JvmName("gainProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+      setGain(value)
     }
 
   /**
    * Compressor's reaction time when the signal exceeds the threshold, in microseconds. Value can
    * range from 20 to 2000.
    */
-  public var attackUs: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttackUsPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var attackUs: Float
+    @JvmName("attackUsProperty")
+    get() = getAttackUs()
+    @JvmName("attackUsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttackUsPtr, NIL)
+      setAttackUs(value)
     }
 
   /**
    * Compressor's delay time to stop reducing the signal after the signal level falls below the
    * threshold, in milliseconds. Value can range from 20 to 2000.
    */
-  public var releaseMs: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReleaseMsPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var releaseMs: Float
+    @JvmName("releaseMsProperty")
+    get() = getReleaseMs()
+    @JvmName("releaseMsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReleaseMsPtr, NIL)
+      setReleaseMs(value)
     }
 
   /**
    * Balance between original signal and effect signal. Value can range from 0 (totally dry) to 1
    * (totally wet).
    */
-  public var mix: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMixPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var mix: Float
+    @JvmName("mixProperty")
+    get() = getMix()
+    @JvmName("mixProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMixPtr, NIL)
+      setMix(value)
     }
 
   /**
    * Reduce the sound level using another audio bus for threshold detection.
    */
-  public var sidechain: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSidechainPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var sidechain: StringName
+    @JvmName("sidechainProperty")
+    get() = getSidechain()
+    @JvmName("sidechainProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSidechainPtr, NIL)
+      setSidechain(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTCOMPRESSOR, scriptIndex)
+  }
+
+  public final fun setThreshold(threshold: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setThresholdPtr, NIL)
+  }
+
+  public final fun getThreshold(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThresholdPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
+  }
+
+  public final fun getRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setGain(gain: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gain.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+  }
+
+  public final fun getGain(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAttackUs(attackUs: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to attackUs.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttackUsPtr, NIL)
+  }
+
+  public final fun getAttackUs(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttackUsPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setReleaseMs(releaseMs: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to releaseMs.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReleaseMsPtr, NIL)
+  }
+
+  public final fun getReleaseMs(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReleaseMsPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMix(mix: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mix.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMixPtr, NIL)
+  }
+
+  public final fun getMix(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMixPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSidechain(sidechain: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to sidechain)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSidechainPtr, NIL)
+  }
+
+  public final fun getSidechain(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSidechainPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
   }
 
   public companion object

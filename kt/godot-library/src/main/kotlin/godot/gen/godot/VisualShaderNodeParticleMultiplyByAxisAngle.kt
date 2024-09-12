@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to
@@ -26,19 +27,27 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   /**
    * If `true`, the angle will be interpreted in degrees instead of radians.
    */
-  public var degreesMode: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDegreesModePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var degreesMode: Boolean
+    @JvmName("degreesModeProperty")
+    get() = isDegreesMode()
+    @JvmName("degreesModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
+      setDegreesMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE, scriptIndex)
+  }
+
+  public final fun setDegreesMode(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDegreesModePtr, NIL)
+  }
+
+  public final fun isDegreesMode(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDegreesModePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

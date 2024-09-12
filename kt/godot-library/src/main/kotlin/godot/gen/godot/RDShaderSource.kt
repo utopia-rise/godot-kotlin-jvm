@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Shader source code in text form.
@@ -30,89 +31,103 @@ public open class RDShaderSource : RefCounted() {
   /**
    * Source code for the shader's vertex stage.
    */
-  public var sourceVertex: String
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sourceVertex: String
+    @JvmName("sourceVertexProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
+    @JvmName("sourceVertexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
     }
 
   /**
    * Source code for the shader's fragment stage.
    */
-  public var sourceFragment: String
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sourceFragment: String
+    @JvmName("sourceFragmentProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
+    @JvmName("sourceFragmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
     }
 
   /**
    * Source code for the shader's tessellation control stage.
    */
-  public var sourceTesselationControl: String
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sourceTesselationControl: String
+    @JvmName("sourceTesselationControlProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
+    @JvmName("sourceTesselationControlProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
     }
 
   /**
    * Source code for the shader's tessellation evaluation stage.
    */
-  public var sourceTesselationEvaluation: String
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sourceTesselationEvaluation: String
+    @JvmName("sourceTesselationEvaluationProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
+    @JvmName("sourceTesselationEvaluationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
     }
 
   /**
    * Source code for the shader's compute stage.
    */
-  public var sourceCompute: String
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sourceCompute: String
+    @JvmName("sourceComputeProperty")
+    get() = getStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
+    @JvmName("sourceComputeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+      setStageSource(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
     }
 
   /**
    * The language the shader is written in.
    */
-  public var language: RenderingDevice.ShaderLanguage
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
-      return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var language: RenderingDevice.ShaderLanguage
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSHADERSOURCE, scriptIndex)
+  }
+
+  /**
+   * Sets [source] code for the specified shader [stage]. Equivalent to setting one of
+   * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
+   * [sourceVertex].
+   */
+  public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
+    TransferContext.writeArguments(LONG to stage.id, STRING to source)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+  }
+
+  /**
+   * Returns source code for the specified shader [stage]. Equivalent to getting one of
+   * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
+   * [sourceVertex].
+   */
+  public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
+    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
+    TransferContext.writeArguments(LONG to language.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public final fun getLanguage(): RenderingDevice.ShaderLanguage {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
+    return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

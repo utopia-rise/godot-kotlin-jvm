@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
@@ -30,15 +31,12 @@ public open class DirectionalLight3D : Light3D() {
   /**
    * The light's shadow rendering algorithm. See [ShadowMode].
    */
-  public var directionalShadowMode: ShadowMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
-      return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var directionalShadowMode: ShadowMode
+    @JvmName("directionalShadowModeProperty")
+    get() = getShadowMode()
+    @JvmName("directionalShadowModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+      setShadowMode(value)
     }
 
   /**
@@ -46,34 +44,61 @@ public open class DirectionalLight3D : Light3D() {
    * Enabling shadow blend splitting also has a moderate performance cost. This is ignored when
    * [directionalShadowMode] is [SHADOW_ORTHOGONAL].
    */
-  public var directionalShadowBlendSplits: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var directionalShadowBlendSplits: Boolean
+    @JvmName("directionalShadowBlendSplitsProperty")
+    get() = isBlendSplitsEnabled()
+    @JvmName("directionalShadowBlendSplitsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
+      setBlendSplits(value)
     }
 
   /**
    * Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky
    * and in the scene. See [SkyMode] for options.
    */
-  public var skyMode: SkyMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
-      return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var skyMode: SkyMode
+    @JvmName("skyModeProperty")
+    get() = getSkyMode()
+    @JvmName("skyModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
+      setSkyMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DIRECTIONALLIGHT3D, scriptIndex)
+  }
+
+  public final fun setShadowMode(mode: ShadowMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+  }
+
+  public final fun getShadowMode(): ShadowMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBlendSplits(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
+  }
+
+  public final fun isBlendSplitsEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSkyMode(mode: SkyMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
+  }
+
+  public final fun getSkyMode(): SkyMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
+    return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ShadowMode(

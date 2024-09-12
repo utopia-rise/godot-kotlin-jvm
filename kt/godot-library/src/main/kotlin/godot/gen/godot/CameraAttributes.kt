@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
@@ -38,29 +39,23 @@ public open class CameraAttributes : Resource() {
    * enabled. When [autoExposureEnabled] this can be used as a method of exposure compensation,
    * doubling the value will increase the exposure value (measured in EV100) by 1 stop.
    */
-  public var exposureSensitivity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var exposureSensitivity: Float
+    @JvmName("exposureSensitivityProperty")
+    get() = getExposureSensitivity()
+    @JvmName("exposureSensitivityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExposureSensitivityPtr, NIL)
+      setExposureSensitivity(value)
     }
 
   /**
    * Multiplier for the exposure amount. A higher value results in a brighter image.
    */
-  public var exposureMultiplier: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var exposureMultiplier: Float
+    @JvmName("exposureMultiplierProperty")
+    get() = getExposureMultiplier()
+    @JvmName("exposureMultiplierProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExposureMultiplierPtr, NIL)
+      setExposureMultiplier(value)
     }
 
   /**
@@ -68,48 +63,94 @@ public open class CameraAttributes : Resource() {
    * renderer will automatically determine the exposure setting to adapt to the scene's illumination
    * and the observed light.
    */
-  public var autoExposureEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var autoExposureEnabled: Boolean
+    @JvmName("autoExposureEnabledProperty")
+    get() = isAutoExposureEnabled()
+    @JvmName("autoExposureEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureEnabledPtr, NIL)
+      setAutoExposureEnabled(value)
     }
 
   /**
    * The scale of the auto exposure effect. Affects the intensity of auto exposure.
    */
-  public var autoExposureScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var autoExposureScale: Float
+    @JvmName("autoExposureScaleProperty")
+    get() = getAutoExposureScale()
+    @JvmName("autoExposureScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureScalePtr, NIL)
+      setAutoExposureScale(value)
     }
 
   /**
    * The speed of the auto exposure effect. Affects the time needed for the camera to perform auto
    * exposure.
    */
-  public var autoExposureSpeed: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var autoExposureSpeed: Float
+    @JvmName("autoExposureSpeedProperty")
+    get() = getAutoExposureSpeed()
+    @JvmName("autoExposureSpeedProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
+      setAutoExposureSpeed(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTES, scriptIndex)
+  }
+
+  public final fun setExposureMultiplier(multiplier: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExposureMultiplierPtr, NIL)
+  }
+
+  public final fun getExposureMultiplier(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setExposureSensitivity(sensitivity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to sensitivity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExposureSensitivityPtr, NIL)
+  }
+
+  public final fun getExposureSensitivity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureEnabledPtr, NIL)
+  }
+
+  public final fun isAutoExposureEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to exposureSpeed.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
+  }
+
+  public final fun getAutoExposureSpeed(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureScale(exposureGrey: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to exposureGrey.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureScalePtr, NIL)
+  }
+
+  public final fun getAutoExposureScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

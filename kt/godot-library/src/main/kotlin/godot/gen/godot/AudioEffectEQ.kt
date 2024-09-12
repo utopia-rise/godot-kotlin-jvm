@@ -35,7 +35,7 @@ public open class AudioEffectEQ : AudioEffect() {
   /**
    * Sets band's gain at the specified index, in dB.
    */
-  public fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
+  public final fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBandGainDbPtr, NIL)
   }
@@ -43,7 +43,7 @@ public open class AudioEffectEQ : AudioEffect() {
   /**
    * Returns the band's gain at the specified index, in dB.
    */
-  public fun getBandGainDb(bandIdx: Int): Float {
+  public final fun getBandGainDb(bandIdx: Int): Float {
     TransferContext.writeArguments(LONG to bandIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -52,7 +52,7 @@ public open class AudioEffectEQ : AudioEffect() {
   /**
    * Returns the number of bands of the equalizer.
    */
-  public fun getBandCount(): Int {
+  public final fun getBandCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

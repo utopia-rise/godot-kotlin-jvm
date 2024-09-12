@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * GLTFBufferView is a data structure representing GLTF a `bufferView` that would be found in the
@@ -36,57 +37,45 @@ public open class GLTFBufferView : Resource() {
    * The index of the buffer this buffer view is referencing. If `-1`, this buffer view is not
    * referencing any buffer.
    */
-  public var buffer: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var buffer: Int
+    @JvmName("bufferProperty")
+    get() = getBuffer()
+    @JvmName("bufferProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+      setBuffer(value)
     }
 
   /**
    * The offset, in bytes, from the start of the buffer to the start of this buffer view.
    */
-  public var byteOffset: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var byteOffset: Int
+    @JvmName("byteOffsetProperty")
+    get() = getByteOffset()
+    @JvmName("byteOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
+      setByteOffset(value)
     }
 
   /**
    * The length, in bytes, of this buffer view. If `0`, this buffer view is empty.
    */
-  public var byteLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var byteLength: Int
+    @JvmName("byteLengthProperty")
+    get() = getByteLength()
+    @JvmName("byteLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setByteLengthPtr, NIL)
+      setByteLength(value)
     }
 
   /**
    * The stride, in bytes, between interleaved data. If `-1`, this buffer view is not interleaved.
    */
-  public var byteStride: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var byteStride: Int
+    @JvmName("byteStrideProperty")
+    get() = getByteStride()
+    @JvmName("byteStrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setByteStridePtr, NIL)
+      setByteStride(value)
     }
 
   /**
@@ -96,15 +85,12 @@ public open class GLTFBufferView : Resource() {
    * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
    * export.
    */
-  public var indices: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var indices: Boolean
+    @JvmName("indicesProperty")
+    get() = getIndices()
+    @JvmName("indicesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+      setIndices(value)
     }
 
   /**
@@ -114,15 +100,12 @@ public open class GLTFBufferView : Resource() {
    * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
    * export.
    */
-  public var vertexAttributes: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var vertexAttributes: Boolean
+    @JvmName("vertexAttributesProperty")
+    get() = getVertexAttributes()
+    @JvmName("vertexAttributesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
+      setVertexAttributes(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -134,10 +117,76 @@ public open class GLTFBufferView : Resource() {
    * [GLTFState]. Interleaved data with a byte stride is not yet supported by this method. The data is
    * returned as a [PackedByteArray].
    */
-  public fun loadBufferViewData(state: GLTFState): PackedByteArray {
+  public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+  }
+
+  public final fun getBuffer(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBuffer(buffer: Int): Unit {
+    TransferContext.writeArguments(LONG to buffer.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+  }
+
+  public final fun getByteOffset(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setByteOffset(byteOffset: Int): Unit {
+    TransferContext.writeArguments(LONG to byteOffset.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
+  }
+
+  public final fun getByteLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setByteLength(byteLength: Int): Unit {
+    TransferContext.writeArguments(LONG to byteLength.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setByteLengthPtr, NIL)
+  }
+
+  public final fun getByteStride(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setByteStride(byteStride: Int): Unit {
+    TransferContext.writeArguments(LONG to byteStride.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setByteStridePtr, NIL)
+  }
+
+  public final fun getIndices(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setIndices(indices: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to indices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+  }
+
+  public final fun getVertexAttributes(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setVertexAttributes(isAttributes: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to isAttributes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
   }
 
   public companion object

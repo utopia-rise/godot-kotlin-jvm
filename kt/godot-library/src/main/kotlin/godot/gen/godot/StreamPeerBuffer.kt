@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
@@ -33,15 +34,12 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * The underlying data buffer. Setting this value resets the cursor.
    */
-  public var dataArray: PackedByteArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var dataArray: PackedByteArray
+    @JvmName("dataArrayProperty")
+    get() = getDataArray()
+    @JvmName("dataArrayProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDataArrayPtr, NIL)
+      setDataArray(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -51,7 +49,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
-  public fun seek(position: Int): Unit {
+  public final fun seek(position: Int): Unit {
     TransferContext.writeArguments(LONG to position.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
@@ -59,7 +57,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns the size of [dataArray].
    */
-  public fun getSize(): Int {
+  public final fun getSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -68,7 +66,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns the current cursor position.
    */
-  public fun getPosition(): Int {
+  public final fun getPosition(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -77,15 +75,26 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
-  public fun resize(size: Int): Unit {
+  public final fun resize(size: Int): Unit {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
+  }
+
+  public final fun setDataArray(`data`: PackedByteArray): Unit {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDataArrayPtr, NIL)
+  }
+
+  public final fun getDataArray(): PackedByteArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
   /**
    * Clears the [dataArray] and resets the cursor.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -93,7 +102,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Returns a new [StreamPeerBuffer] with the same [dataArray] content.
    */
-  public fun duplicate(): StreamPeerBuffer? {
+  public final fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?)

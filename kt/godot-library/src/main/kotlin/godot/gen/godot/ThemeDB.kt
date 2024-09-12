@@ -45,7 +45,7 @@ public object ThemeDB : Object() {
    * Returns a reference to the default engine [Theme]. This theme resource is responsible for the
    * out-of-the-box look of [Control] nodes and cannot be overridden.
    */
-  public fun getDefaultTheme(): Theme? {
+  public final fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
@@ -56,62 +56,62 @@ public object ThemeDB : Object() {
    * default engine theme for every control node in the project.
    * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
-  public fun getProjectTheme(): Theme? {
+  public final fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
   }
 
-  public fun setFallbackBaseScale(baseScale: Float): Unit {
+  public final fun setFallbackBaseScale(baseScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackBaseScalePtr, NIL)
   }
 
-  public fun getFallbackBaseScale(): Float {
+  public final fun getFallbackBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
-  public fun setFallbackFont(font: Font): Unit {
+  public final fun setFallbackFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
   }
 
-  public fun getFallbackFont(): Font? {
+  public final fun getFallbackFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Font?)
   }
 
-  public fun setFallbackFontSize(fontSize: Int): Unit {
+  public final fun setFallbackFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontSizePtr, NIL)
   }
 
-  public fun getFallbackFontSize(): Int {
+  public final fun getFallbackFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setFallbackIcon(icon: Texture2D): Unit {
+  public final fun setFallbackIcon(icon: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
   }
 
-  public fun getFallbackIcon(): Texture2D? {
+  public final fun getFallbackIcon(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
-  public fun setFallbackStylebox(stylebox: StyleBox): Unit {
+  public final fun setFallbackStylebox(stylebox: StyleBox?): Unit {
     TransferContext.writeArguments(OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }
 
-  public fun getFallbackStylebox(): StyleBox? {
+  public final fun getFallbackStylebox(): StyleBox? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)

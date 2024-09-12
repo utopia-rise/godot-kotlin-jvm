@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling
@@ -34,19 +35,27 @@ public open class PolygonOccluder3D : Occluder3D() {
    * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
    * error message printed).
    */
-  public var polygon: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+  public final inline var polygon: PackedVector2Array
+    @JvmName("polygonProperty")
+    get() = getPolygon()
+    @JvmName("polygonProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+      setPolygon(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_POLYGONOCCLUDER3D, scriptIndex)
+  }
+
+  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+  }
+
+  public final fun getPolygon(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
   }
 
   public companion object

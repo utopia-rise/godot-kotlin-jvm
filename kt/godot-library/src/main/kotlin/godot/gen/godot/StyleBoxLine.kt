@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [StyleBox] that displays a single line of a given color and thickness. The line can be either
@@ -36,73 +37,58 @@ public open class StyleBoxLine : StyleBox() {
    * The line's color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var color: Color
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
    * The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a
    * negative value, the line will begin inside the [StyleBoxLine]'s bounds.
    */
-  public var growBegin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var growBegin: Float
+    @JvmName("growBeginProperty")
+    get() = getGrowBegin()
+    @JvmName("growBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+      setGrowBegin(value)
     }
 
   /**
    * The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a
    * negative value, the line will end inside the [StyleBoxLine]'s bounds.
    */
-  public var growEnd: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var growEnd: Float
+    @JvmName("growEndProperty")
+    get() = getGrowEnd()
+    @JvmName("growEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+      setGrowEnd(value)
     }
 
   /**
    * The line's thickness in pixels.
    */
-  public var thickness: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var thickness: Int
+    @JvmName("thicknessProperty")
+    get() = getThickness()
+    @JvmName("thicknessProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+      setThickness(value)
     }
 
   /**
    * If `true`, the line will be vertical. If `false`, the line will be horizontal.
    */
-  public var vertical: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var vertical: Boolean
+    @JvmName("verticalProperty")
+    get() = isVertical()
+    @JvmName("verticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+      setVertical(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -127,11 +113,66 @@ public open class StyleBoxLine : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
+
+  public final fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public final fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setThickness(thickness: Int): Unit {
+    TransferContext.writeArguments(LONG to thickness.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+  }
+
+  public final fun getThickness(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setGrowBegin(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+  }
+
+  public final fun getGrowBegin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setGrowEnd(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+  }
+
+  public final fun getGrowEnd(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setVertical(vertical: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to vertical)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+  }
+
+  public final fun isVertical(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

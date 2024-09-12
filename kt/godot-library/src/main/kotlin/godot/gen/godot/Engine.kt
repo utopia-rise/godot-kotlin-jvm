@@ -45,34 +45,34 @@ public object Engine : Object() {
     getSingleton(ENGINECLASS_ENGINE)
   }
 
-  public fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Int): Unit {
+  public final fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Int): Unit {
     TransferContext.writeArguments(LONG to physicsTicksPerSecond.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsTicksPerSecondPtr, NIL)
   }
 
-  public fun getPhysicsTicksPerSecond(): Int {
+  public final fun getPhysicsTicksPerSecond(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsTicksPerSecondPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Int): Unit {
+  public final fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Int): Unit {
     TransferContext.writeArguments(LONG to maxPhysicsSteps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPhysicsStepsPerFramePtr, NIL)
   }
 
-  public fun getMaxPhysicsStepsPerFrame(): Int {
+  public final fun getMaxPhysicsStepsPerFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPhysicsStepsPerFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
+  public final fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
     TransferContext.writeArguments(DOUBLE to physicsJitterFix)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsJitterFixPtr, NIL)
   }
 
-  public fun getPhysicsJitterFix(): Double {
+  public final fun getPhysicsJitterFix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsJitterFixPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -82,29 +82,29 @@ public object Engine : Object() {
    * Returns the fraction through the current physics tick we are at the time of rendering the
    * frame. This can be used to implement fixed timestep interpolation.
    */
-  public fun getPhysicsInterpolationFraction(): Double {
+  public final fun getPhysicsInterpolationFraction(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsInterpolationFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
-  public fun setMaxFps(maxFps: Int): Unit {
+  public final fun setMaxFps(maxFps: Int): Unit {
     TransferContext.writeArguments(LONG to maxFps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxFpsPtr, NIL)
   }
 
-  public fun getMaxFps(): Int {
+  public final fun getMaxFps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
-  public fun setTimeScale(timeScale: Double): Unit {
+  public final fun setTimeScale(timeScale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timeScale)
     TransferContext.callMethod(rawPtr, MethodBindings.setTimeScalePtr, NIL)
   }
 
-  public fun getTimeScale(): Double {
+  public final fun getTimeScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -115,7 +115,7 @@ public object Engine : Object() {
    * **Note:** On headless platforms, or if rendering is disabled with `--disable-render-loop` via
    * command line, this method always returns `0`. See also [getProcessFrames].
    */
-  public fun getFramesDrawn(): Int {
+  public final fun getFramesDrawn(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesDrawnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -124,7 +124,7 @@ public object Engine : Object() {
   /**
    * Returns the average frames rendered every second (FPS), also known as the framerate.
    */
-  public fun getFramesPerSecond(): Double {
+  public final fun getFramesPerSecond(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesPerSecondPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -154,7 +154,7 @@ public object Engine : Object() {
    * }
    * ```
    */
-  public fun getPhysicsFrames(): Long {
+  public final fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -185,7 +185,7 @@ public object Engine : Object() {
    * }
    * ```
    */
-  public fun getProcessFrames(): Long {
+  public final fun getProcessFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessFramesPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -197,7 +197,7 @@ public object Engine : Object() {
    * **Note:** The type instantiated as the main loop can changed with
    * [ProjectSettings.application/run/mainLoopType].
    */
-  public fun getMainLoop(): MainLoop? {
+  public final fun getMainLoop(): MainLoop? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMainLoopPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as MainLoop?)
@@ -242,7 +242,7 @@ public object Engine : Object() {
    * }
    * ```
    */
-  public fun getVersionInfo(): Dictionary<Any?, Any?> {
+  public final fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -253,7 +253,7 @@ public object Engine : Object() {
    * strings with the names of notable contributors to the Godot Engine: `lead_developers`, `founders`,
    * `project_managers`, and `developers`.
    */
-  public fun getAuthorInfo(): Dictionary<Any?, Any?> {
+  public final fun getAuthorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthorInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -270,7 +270,7 @@ public object Engine : Object() {
    * "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]" or
    * "[url=https://creativecommons.org/licenses/by/4.0/]CC-BY-4.0[/url]").
    */
-  public fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCopyrightInfoPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
@@ -281,7 +281,7 @@ public object Engine : Object() {
    * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`,
    * `gold_donors`, `silver_donors`, `bronze_donors`}
    */
-  public fun getDonorInfo(): Dictionary<Any?, Any?> {
+  public final fun getDonorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDonorInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -293,7 +293,7 @@ public object Engine : Object() {
    * "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]") and its
    * associated text.
    */
-  public fun getLicenseInfo(): Dictionary<Any?, Any?> {
+  public final fun getLicenseInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLicenseInfoPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -302,7 +302,7 @@ public object Engine : Object() {
   /**
    * Returns the full Godot license text.
    */
-  public fun getLicenseText(): String {
+  public final fun getLicenseText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLicenseTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -334,7 +334,7 @@ public object Engine : Object() {
    * [OS.getProcessorName]). For example, when running an `x86_32` Godot binary on an `x86_64` system,
    * the returned value will still be `"x86_32"`.
    */
-  public fun getArchitectureName(): String {
+  public final fun getArchitectureName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getArchitectureNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -355,7 +355,7 @@ public object Engine : Object() {
    *     print(Engine.is_in_physics_frame()) # Prints true
    * [/codeblock]
    */
-  public fun isInPhysicsFrame(): Boolean {
+  public final fun isInPhysicsFrame(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInPhysicsFramePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -383,7 +383,7 @@ public object Engine : Object() {
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */
-  public fun hasSingleton(name: StringName): Boolean {
+  public final fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSingletonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -395,7 +395,7 @@ public object Engine : Object() {
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */
-  public fun getSingleton(name: StringName): Object? {
+  public final fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getSingletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -405,7 +405,7 @@ public object Engine : Object() {
    * Registers the given [Object] [instance] as a singleton, available globally under [name]. Useful
    * for plugins.
    */
-  public fun registerSingleton(name: StringName, instance: Object): Unit {
+  public final fun registerSingleton(name: StringName, instance: Object?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
     TransferContext.callMethod(rawPtr, MethodBindings.registerSingletonPtr, NIL)
   }
@@ -414,7 +414,7 @@ public object Engine : Object() {
    * Removes the singleton registered under [name]. The singleton object is *not* freed. Only works
    * with user-defined singletons registered with [registerSingleton].
    */
-  public fun unregisterSingleton(name: StringName): Unit {
+  public final fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterSingletonPtr, NIL)
   }
@@ -422,7 +422,7 @@ public object Engine : Object() {
   /**
    * Returns a list of names of all available global singletons. See also [getSingleton].
    */
-  public fun getSingletonList(): PackedStringArray {
+  public final fun getSingletonList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSingletonListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -437,7 +437,7 @@ public object Engine : Object() {
    * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type.
    */
-  public fun registerScriptLanguage(language: ScriptLanguage): GodotError {
+  public final fun registerScriptLanguage(language: ScriptLanguage?): GodotError {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.registerScriptLanguagePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -449,7 +449,7 @@ public object Engine : Object() {
    * - [OK] on success;
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
-  public fun unregisterScriptLanguage(language: ScriptLanguage): GodotError {
+  public final fun unregisterScriptLanguage(language: ScriptLanguage?): GodotError {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterScriptLanguagePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -458,7 +458,7 @@ public object Engine : Object() {
   /**
    * Returns the number of available script languages. Use with [getScriptLanguage].
    */
-  public fun getScriptLanguageCount(): Int {
+  public final fun getScriptLanguageCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptLanguageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -467,7 +467,7 @@ public object Engine : Object() {
   /**
    * Returns an instance of a [ScriptLanguage] with the given [index].
    */
-  public fun getScriptLanguage(index: Int): ScriptLanguage? {
+  public final fun getScriptLanguage(index: Int): ScriptLanguage? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptLanguagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ScriptLanguage?)
@@ -500,7 +500,7 @@ public object Engine : Object() {
    * `OS.has_feature("editor")` evaluate to `true` both when the script is running in the editor and
    * when running the project from the editor, but returns `false` when run from an exported project.
    */
-  public fun isEditorHint(): Boolean {
+  public final fun isEditorHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorHintPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -511,18 +511,18 @@ public object Engine : Object() {
    * started in Movie Maker mode. The default path can be changed in
    * [ProjectSettings.editor/movieWriter/movieFile].
    */
-  public fun getWriteMoviePath(): String {
+  public final fun getWriteMoviePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteMoviePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
-  public fun setPrintErrorMessages(enabled: Boolean): Unit {
+  public final fun setPrintErrorMessages(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrintErrorMessagesPtr, NIL)
   }
 
-  public fun isPrintingErrorMessages(): Boolean {
+  public final fun isPrintingErrorMessages(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPrintingErrorMessagesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

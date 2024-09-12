@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples
@@ -37,15 +38,12 @@ public open class PrimitiveMesh : Mesh() {
   /**
    * The current [Material] of the primitive mesh.
    */
-  public var material: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+  public final inline var material: Material?
+    @JvmName("materialProperty")
+    get() = getMaterial()
+    @JvmName("materialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+      setMaterial(value)
     }
 
   /**
@@ -53,16 +51,12 @@ public open class PrimitiveMesh : Mesh() {
    * to avoid unexpected culling when using a shader to offset vertices.
    */
   @CoreTypeLocalCopy
-  public var customAabb: AABB
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-          godot.core.VariantType.AABB)
-      return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
-    }
+  public final inline var customAabb: AABB
+    @JvmName("customAabbProperty")
+    get() = getCustomAabb()
+    @JvmName("customAabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+      setCustomAabb(value)
     }
 
   /**
@@ -70,30 +64,24 @@ public open class PrimitiveMesh : Mesh() {
    * the mesh being drawn.
    * This gives the same result as using [BaseMaterial3D.CULL_FRONT] in [BaseMaterial3D.cullMode].
    */
-  public var flipFaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flipFaces: Boolean
+    @JvmName("flipFacesProperty")
+    get() = getFlipFaces()
+    @JvmName("flipFacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+      setFlipFaces(value)
     }
 
   /**
    * If set, generates UV2 UV coordinates applying a padding using the [uv2Padding] setting. UV2 is
    * needed for lightmapping.
    */
-  public var addUv2: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var addUv2: Boolean
+    @JvmName("addUv2Property")
+    get() = getAddUv2()
+    @JvmName("addUv2Property")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAddUv2Ptr, NIL)
+      setAddUv2(value)
     }
 
   /**
@@ -103,15 +91,12 @@ public open class PrimitiveMesh : Mesh() {
    * If the size of the lightmap texture can't be determined when generating the mesh, UV2 is
    * calculated assuming a texture size of 1024x1024.
    */
-  public var uv2Padding: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var uv2Padding: Float
+    @JvmName("uv2PaddingProperty")
+    get() = getUv2Padding()
+    @JvmName("uv2PaddingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
+      setUv2Padding(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -137,7 +122,7 @@ public open class PrimitiveMesh : Mesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
+  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply{
       block(this)
       customAabb = this
   }
@@ -150,6 +135,17 @@ public open class PrimitiveMesh : Mesh() {
    */
   public open fun _createMeshArray(): VariantArray<Any?> {
     throw NotImplementedError("_create_mesh_array is not implemented for PrimitiveMesh")
+  }
+
+  public final fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   /**
@@ -169,16 +165,60 @@ public open class PrimitiveMesh : Mesh() {
    * arrMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.Triangles, c.GetMeshArrays());
    * ```
    */
-  public fun getMeshArrays(): VariantArray<Any?> {
+  public final fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
+  public final fun setCustomAabb(aabb: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+  }
+
+  public final fun getCustomAabb(): AABB {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+  }
+
+  public final fun setFlipFaces(flipFaces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipFaces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+  }
+
+  public final fun getFlipFaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAddUv2(addUv2: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to addUv2)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAddUv2Ptr, NIL)
+  }
+
+  public final fun getAddUv2(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setUv2Padding(uv2Padding: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to uv2Padding.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
+  }
+
+  public final fun getUv2Padding(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Request an update of this primitive mesh based on its properties.
    */
-  public fun requestUpdate(): Unit {
+  public final fun requestUpdate(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.requestUpdatePtr, NIL)
   }

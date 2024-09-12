@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `uniform vec4` in the shader language.
@@ -29,30 +30,24 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var defaultValueEnabled: Boolean
+    @JvmName("defaultValueEnabledProperty")
+    get() = isDefaultValueEnabled()
+    @JvmName("defaultValueEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+      setDefaultValueEnabled(value)
     }
 
   /**
    * A default value to be assigned within the shader.
    */
   @CoreTypeLocalCopy
-  public var defaultValue: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var defaultValue: Color
+    @JvmName("defaultValueProperty")
+    get() = getDefaultValue()
+    @JvmName("defaultValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+      setDefaultValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -77,11 +72,33 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValueMutate(block: Color.() -> Unit): Color = defaultValue.apply{
+  public final fun defaultValueMutate(block: Color.() -> Unit): Color = defaultValue.apply{
       block(this)
       defaultValue = this
   }
 
+
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+  }
+
+  public final fun isDefaultValueEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDefaultValue(`value`: Color): Unit {
+    TransferContext.writeArguments(COLOR to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+  }
+
+  public final fun getDefaultValue(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
 
   public companion object
 

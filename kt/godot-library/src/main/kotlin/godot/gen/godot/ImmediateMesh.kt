@@ -62,7 +62,7 @@ public open class ImmediateMesh : Mesh() {
    * Begin a new surface.
    */
   @JvmOverloads
-  public fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
+  public final fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceBeginPtr, NIL)
   }
@@ -70,7 +70,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the color attribute that will be pushed with the next vertex.
    */
-  public fun surfaceSetColor(color: Color): Unit {
+  public final fun surfaceSetColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetColorPtr, NIL)
   }
@@ -78,7 +78,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the normal attribute that will be pushed with the next vertex.
    */
-  public fun surfaceSetNormal(normal: Vector3): Unit {
+  public final fun surfaceSetNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetNormalPtr, NIL)
   }
@@ -86,7 +86,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the tangent attribute that will be pushed with the next vertex.
    */
-  public fun surfaceSetTangent(tangent: Plane): Unit {
+  public final fun surfaceSetTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetTangentPtr, NIL)
   }
@@ -94,7 +94,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV attribute that will be pushed with the next vertex.
    */
-  public fun surfaceSetUv(uv: Vector2): Unit {
+  public final fun surfaceSetUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetUvPtr, NIL)
   }
@@ -102,7 +102,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV2 attribute that will be pushed with the next vertex.
    */
-  public fun surfaceSetUv2(uv2: Vector2): Unit {
+  public final fun surfaceSetUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetUv2Ptr, NIL)
   }
@@ -110,7 +110,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 3D vertex using the current attributes previously set.
    */
-  public fun surfaceAddVertex(vertex: Vector3): Unit {
+  public final fun surfaceAddVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceAddVertexPtr, NIL)
   }
@@ -118,7 +118,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 2D vertex using the current attributes previously set.
    */
-  public fun surfaceAddVertex2d(vertex: Vector2): Unit {
+  public final fun surfaceAddVertex2d(vertex: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to vertex)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceAddVertex2dPtr, NIL)
   }
@@ -127,7 +127,7 @@ public open class ImmediateMesh : Mesh() {
    * End and commit current surface. Note that surface being created will not be visible until this
    * function is called.
    */
-  public fun surfaceEnd(): Unit {
+  public final fun surfaceEnd(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceEndPtr, NIL)
   }
@@ -135,7 +135,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Clear all surfaces.
    */
-  public fun clearSurfaces(): Unit {
+  public final fun clearSurfaces(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearSurfacesPtr, NIL)
   }

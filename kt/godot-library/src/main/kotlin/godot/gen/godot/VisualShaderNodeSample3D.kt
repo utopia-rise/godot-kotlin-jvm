@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A virtual class, use the descendants instead.
@@ -25,19 +26,27 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   /**
    * An input source type.
    */
-  public var source: Source
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
-      return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var source: Source
+    @JvmName("sourceProperty")
+    get() = getSource()
+    @JvmName("sourceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+      setSource(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESAMPLE3D, scriptIndex)
+  }
+
+  public final fun setSource(`value`: Source): Unit {
+    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+  }
+
+  public final fun getSource(): Source {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(

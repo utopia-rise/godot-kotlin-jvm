@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Class representing a capsule-shaped [PrimitiveMesh].
@@ -28,61 +29,93 @@ public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Radius of the capsule mesh.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
    * Total height of the capsule mesh (including the hemispherical ends).
    */
-  public var height: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var height: Float
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
    * Number of radial segments on the capsule mesh.
    */
-  public var radialSegments: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var radialSegments: Int
+    @JvmName("radialSegmentsProperty")
+    get() = getRadialSegments()
+    @JvmName("radialSegmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+      setRadialSegments(value)
     }
 
   /**
    * Number of rings along the height of the capsule.
    */
-  public var rings: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var rings: Int
+    @JvmName("ringsProperty")
+    get() = getRings()
+    @JvmName("ringsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+      setRings(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAPSULEMESH, scriptIndex)
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHeight(height: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to height.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun getHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRadialSegments(segments: Int): Unit {
+    TransferContext.writeArguments(LONG to segments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+  }
+
+  public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setRings(rings: Int): Unit {
+    TransferContext.writeArguments(LONG to rings.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+  }
+
+  public final fun getRings(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

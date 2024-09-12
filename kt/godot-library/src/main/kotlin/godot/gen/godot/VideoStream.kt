@@ -17,6 +17,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used
@@ -29,15 +30,12 @@ public open class VideoStream : Resource() {
    * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
    * extension.
    */
-  public var `file`: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var `file`: String
+    @JvmName("fileProperty")
+    get() = getFile()
+    @JvmName("fileProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
+      setFile(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -50,6 +48,17 @@ public open class VideoStream : Resource() {
    */
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
     throw NotImplementedError("_instantiate_playback is not implemented for VideoStream")
+  }
+
+  public final fun setFile(`file`: String): Unit {
+    TransferContext.writeArguments(STRING to file)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
+  }
+
+  public final fun getFile(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
@@ -36,25 +37,33 @@ public open class Shortcut : Resource() {
    * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent],
    * including an [InputEventAction].
    */
-  public var events: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+  public final inline var events: VariantArray<Any?>
+    @JvmName("eventsProperty")
+    get() = getEvents()
+    @JvmName("eventsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+      setEvents(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHORTCUT, scriptIndex)
   }
 
+  public final fun setEvents(events: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to events)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+  }
+
+  public final fun getEvents(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
   /**
    * Returns whether [events] contains an [InputEvent] which is valid.
    */
-  public fun hasValidEvent(): Boolean {
+  public final fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -63,7 +72,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns whether any [InputEvent] in [events] equals [event].
    */
-  public fun matchesEvent(event: InputEvent): Boolean {
+  public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -72,7 +81,7 @@ public open class Shortcut : Resource() {
   /**
    * Returns the shortcut's first valid [InputEvent] as a [String].
    */
-  public fun getAsText(): String {
+  public final fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

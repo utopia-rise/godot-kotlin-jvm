@@ -35,7 +35,7 @@ public open class X509Certificate : Resource() {
   /**
    * Saves a certificate to the given [path] (should be a "*.crt" file).
    */
-  public fun save(path: String): GodotError {
+  public final fun save(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -44,7 +44,7 @@ public open class X509Certificate : Resource() {
   /**
    * Loads a certificate from [path] ("*.crt" file).
    */
-  public fun load(path: String): GodotError {
+  public final fun load(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -54,7 +54,7 @@ public open class X509Certificate : Resource() {
    * Returns a string representation of the certificate, or an empty string if the certificate is
    * invalid.
    */
-  public fun saveToString(): String {
+  public final fun saveToString(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -63,7 +63,7 @@ public open class X509Certificate : Resource() {
   /**
    * Loads a certificate from the given [string].
    */
-  public fun loadFromString(string: String): GodotError {
+  public final fun loadFromString(string: String): GodotError {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
@@ -28,93 +29,141 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   /**
    * Range hint of this node. Use it to customize valid parameter range.
    */
-  public var hint: Hint
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
-      return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var hint: Hint
+    @JvmName("hintProperty")
+    get() = getHint()
+    @JvmName("hintProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+      setHint(value)
     }
 
   /**
    * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or
    * [HINT_RANGE_STEP] for this to take effect.
    */
-  public var min: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var min: Int
+    @JvmName("minProperty")
+    get() = getMin()
+    @JvmName("minProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+      setMin(value)
     }
 
   /**
    * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or
    * [HINT_RANGE_STEP] for this to take effect.
    */
-  public var max: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var max: Int
+    @JvmName("maxProperty")
+    get() = getMax()
+    @JvmName("maxProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+      setMax(value)
     }
 
   /**
    * The step between parameter's values. Forces the parameter to be a multiple of the given value.
    * [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
-  public var step: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var step: Int
+    @JvmName("stepProperty")
+    get() = getStep()
+    @JvmName("stepProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+      setStep(value)
     }
 
   /**
    * If `true`, the node will have a custom default value.
    */
-  public var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var defaultValueEnabled: Boolean
+    @JvmName("defaultValueEnabledProperty")
+    get() = isDefaultValueEnabled()
+    @JvmName("defaultValueEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+      setDefaultValueEnabled(value)
     }
 
   /**
    * Default value of this parameter, which will be used if not set externally.
    * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
-  public var defaultValue: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var defaultValue: Int
+    @JvmName("defaultValueProperty")
+    get() = getDefaultValue()
+    @JvmName("defaultValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+      setDefaultValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINTPARAMETER, scriptIndex)
+  }
+
+  public final fun setHint(hint: Hint): Unit {
+    TransferContext.writeArguments(LONG to hint.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+  }
+
+  public final fun getHint(): Hint {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMin(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+  }
+
+  public final fun getMin(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setMax(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+  }
+
+  public final fun getMax(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setStep(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+  }
+
+  public final fun getStep(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+  }
+
+  public final fun isDefaultValueEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDefaultValue(`value`: Int): Unit {
+    TransferContext.writeArguments(LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+  }
+
+  public final fun getDefaultValue(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public enum class Hint(

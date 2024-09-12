@@ -48,8 +48,8 @@ public object ResourceSaver : Object() {
    * be saved as the required code is only executed in editor mode.
    */
   @JvmOverloads
-  public fun save(
-    resource: Resource,
+  public final fun save(
+    resource: Resource?,
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): GodotError {
@@ -61,7 +61,7 @@ public object ResourceSaver : Object() {
   /**
    * Returns the list of extensions available for saving a resource of a given type.
    */
-  public fun getRecognizedExtensions(type: Resource): PackedStringArray {
+  public final fun getRecognizedExtensions(type: Resource?): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
         PACKED_STRING_ARRAY)
@@ -75,8 +75,8 @@ public object ResourceSaver : Object() {
    * [ResourceFormatSaver] for more information).
    */
   @JvmOverloads
-  public fun addResourceFormatSaver(formatSaver: ResourceFormatSaver, atFront: Boolean = false):
-      Unit {
+  public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
+      false): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
     TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
   }
@@ -84,7 +84,7 @@ public object ResourceSaver : Object() {
   /**
    * Unregisters the given [ResourceFormatSaver].
    */
-  public fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver): Unit {
+  public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }

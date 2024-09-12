@@ -38,7 +38,7 @@ public object Marshalls : Object() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
+  public final fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.variantToBase64Ptr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -53,7 +53,7 @@ public object Marshalls : Object() {
    * remote code execution.
    */
   @JvmOverloads
-  public fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
+  public final fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToVariantPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -62,7 +62,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of a given [PackedByteArray].
    */
-  public fun rawToBase64(array: PackedByteArray): String {
+  public final fun rawToBase64(array: PackedByteArray): String {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
     TransferContext.callMethod(rawPtr, MethodBindings.rawToBase64Ptr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -71,7 +71,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded [PackedByteArray] corresponding to the Base64-encoded string [base64Str].
    */
-  public fun base64ToRaw(base64Str: String): PackedByteArray {
+  public final fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToRawPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -80,7 +80,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of the UTF-8 string [utf8Str].
    */
-  public fun utf8ToBase64(utf8Str: String): String {
+  public final fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
     TransferContext.callMethod(rawPtr, MethodBindings.utf8ToBase64Ptr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -89,7 +89,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded string corresponding to the Base64-encoded string [base64Str].
    */
-  public fun base64ToUtf8(base64Str: String): String {
+  public final fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToUtf8Ptr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

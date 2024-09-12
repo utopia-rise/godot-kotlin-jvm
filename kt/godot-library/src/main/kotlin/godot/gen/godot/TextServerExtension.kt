@@ -714,7 +714,7 @@ public open class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-    image: Image,
+    image: Image?,
   ): Unit {
   }
 

@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Class representing a prism-shaped [PrimitiveMesh].
@@ -33,72 +34,57 @@ public open class PrismMesh : PrimitiveMesh() {
    * Displacement of the upper edge along the X axis. 0.0 positions edge straight above the
    * bottom-left edge.
    */
-  public var leftToRight: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var leftToRight: Float
+    @JvmName("leftToRightProperty")
+    get() = getLeftToRight()
+    @JvmName("leftToRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLeftToRightPtr, NIL)
+      setLeftToRight(value)
     }
 
   /**
    * Size of the prism.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+  public final inline var size: Vector3
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
    * Number of added edge loops along the X axis.
    */
-  public var subdivideWidth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var subdivideWidth: Int
+    @JvmName("subdivideWidthProperty")
+    get() = getSubdivideWidth()
+    @JvmName("subdivideWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+      setSubdivideWidth(value)
     }
 
   /**
    * Number of added edge loops along the Y axis.
    */
-  public var subdivideHeight: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var subdivideHeight: Int
+    @JvmName("subdivideHeightProperty")
+    get() = getSubdivideHeight()
+    @JvmName("subdivideHeightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
+      setSubdivideHeight(value)
     }
 
   /**
    * Number of added edge loops along the Z axis.
    */
-  public var subdivideDepth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var subdivideDepth: Int
+    @JvmName("subdivideDepthProperty")
+    get() = getSubdivideDepth()
+    @JvmName("subdivideDepthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+      setSubdivideDepth(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -123,11 +109,66 @@ public open class PrismMesh : PrimitiveMesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
+
+  public final fun setLeftToRight(leftToRight: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to leftToRight.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLeftToRightPtr, NIL)
+  }
+
+  public final fun getLeftToRight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  public final fun setSubdivideWidth(segments: Int): Unit {
+    TransferContext.writeArguments(LONG to segments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+  }
+
+  public final fun getSubdivideWidth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setSubdivideHeight(segments: Int): Unit {
+    TransferContext.writeArguments(LONG to segments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
+  }
+
+  public final fun getSubdivideHeight(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setSubdivideDepth(segments: Int): Unit {
+    TransferContext.writeArguments(LONG to segments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+  }
+
+  public final fun getSubdivideDepth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
 
   public companion object
 

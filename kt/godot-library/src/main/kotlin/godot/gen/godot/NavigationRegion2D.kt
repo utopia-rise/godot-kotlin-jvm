@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -61,89 +62,71 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * The [NavigationPolygon] resource to use.
    */
-  public var navigationPolygon: NavigationPolygon?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationPolygonPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
-    }
+  public final inline var navigationPolygon: NavigationPolygon?
+    @JvmName("navigationPolygonProperty")
+    get() = getNavigationPolygon()
+    @JvmName("navigationPolygonProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationPolygonPtr, NIL)
+      setNavigationPolygon(value)
     }
 
   /**
    * Determines if the [NavigationRegion2D] is enabled or disabled.
    */
-  public var enabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var enabled: Boolean
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+      setEnabled(value)
     }
 
   /**
    * If enabled the navigation region will use edge connections to connect with other navigation
    * regions within proximity of the navigation map edge connection margin.
    */
-  public var useEdgeConnections: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useEdgeConnections: Boolean
+    @JvmName("useEdgeConnectionsProperty")
+    get() = getUseEdgeConnections()
+    @JvmName("useEdgeConnectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
+      setUseEdgeConnections(value)
     }
 
   /**
    * A bitfield determining all navigation layers the region belongs to. These navigation layers can
    * be checked upon when requesting a path with [NavigationServer2D.mapGetPath].
    */
-  public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var navigationLayers: Long
+    @JvmName("navigationLayersProperty")
+    get() = getNavigationLayers()
+    @JvmName("navigationLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+      setNavigationLayers(value)
     }
 
   /**
    * When pathfinding enters this region's navigation mesh from another regions navigation mesh the
    * [enterCost] value is added to the path distance for determining the shortest path.
    */
-  public var enterCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var enterCost: Float
+    @JvmName("enterCostProperty")
+    get() = getEnterCost()
+    @JvmName("enterCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+      setEnterCost(value)
     }
 
   /**
    * When pathfinding moves inside this region's navigation mesh the traveled distances are
    * multiplied with [travelCost] for determining the shortest path.
    */
-  public var travelCost: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var travelCost: Float
+    @JvmName("travelCostProperty")
+    get() = getTravelCost()
+    @JvmName("travelCostProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+      setTravelCost(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -155,10 +138,32 @@ public open class NavigationRegion2D : Node2D() {
    * [NavigationServer2D.mapGetClosestPointOwner] can be used to identify the [NavigationRegion2D]
    * closest to a point on the merged navigation map.
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun setNavigationPolygon(navigationPolygon: NavigationPolygon?): Unit {
+    TransferContext.writeArguments(OBJECT to navigationPolygon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationPolygonPtr, NIL)
+  }
+
+  public final fun getNavigationPolygon(): NavigationPolygon? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationPolygonPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
+  }
+
+  public final fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+  }
+
+  public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -166,7 +171,7 @@ public open class NavigationRegion2D : Node2D() {
    * automatically join the [World2D] default navigation map so this function is only required to
    * override the default map.
    */
-  public fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID): Unit {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
@@ -174,17 +179,39 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Returns the current navigation map [RID] used by this region.
    */
-  public fun getNavigationMap(): RID {
+  public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun setUseEdgeConnections(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseEdgeConnectionsPtr, NIL)
+  }
+
+  public final fun getUseEdgeConnections(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setNavigationLayers(navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+  }
+
+  public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   /**
    * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
    * given a [layerNumber] between 1 and 32.
    */
-  public fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
@@ -193,7 +220,7 @@ public open class NavigationRegion2D : Node2D() {
    * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
    * a [layerNumber] between 1 and 32.
    */
-  public fun getNavigationLayerValue(layerNumber: Int): Boolean {
+  public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -202,10 +229,32 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Returns the [RID] of this region on the [NavigationServer2D].
    */
-  public fun getRegionRid(): RID {
+  public final fun getRegionRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun setEnterCost(enterCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+  }
+
+  public final fun getEnterCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setTravelCost(travelCost: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+  }
+
+  public final fun getTravelCost(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -213,7 +262,7 @@ public open class NavigationRegion2D : Node2D() {
    * a separate thread.
    */
   @JvmOverloads
-  public fun bakeNavigationPolygon(onThread: Boolean = true): Unit {
+  public final fun bakeNavigationPolygon(onThread: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to onThread)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeNavigationPolygonPtr, NIL)
   }
@@ -221,7 +270,7 @@ public open class NavigationRegion2D : Node2D() {
   /**
    * Returns `true` when the [NavigationPolygon] is being baked on a background thread.
    */
-  public fun isBaking(): Boolean {
+  public final fun isBaking(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

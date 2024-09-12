@@ -34,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
@@ -47,15 +48,12 @@ public open class VisualShader : Shader() {
    * The offset vector of the whole graph.
    */
   @CoreTypeLocalCopy
-  public var graphOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var graphOffset: Vector2
+    @JvmName("graphOffsetProperty")
+    get() = getGraphOffset()
+    @JvmName("graphOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+      setGraphOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -80,7 +78,7 @@ public open class VisualShader : Shader() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+  public final fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       block(this)
       graphOffset = this
   }
@@ -89,7 +87,7 @@ public open class VisualShader : Shader() {
   /**
    * Sets the mode of this shader.
    */
-  public fun setMode(mode: Shader.Mode): Unit {
+  public final fun setMode(mode: Shader.Mode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
@@ -97,9 +95,9 @@ public open class VisualShader : Shader() {
   /**
    * Adds the specified [node] to the shader.
    */
-  public fun addNode(
+  public final fun addNode(
     type: Type,
-    node: VisualShaderNode,
+    node: VisualShaderNode?,
     position: Vector2,
     id: Int,
   ): Unit {
@@ -110,7 +108,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the shader node instance with specified [type] and [id].
    */
-  public fun getNode(type: Type, id: Int): VisualShaderNode? {
+  public final fun getNode(type: Type, id: Int): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?)
@@ -119,7 +117,7 @@ public open class VisualShader : Shader() {
   /**
    * Sets the position of the specified node.
    */
-  public fun setNodePosition(
+  public final fun setNodePosition(
     type: Type,
     id: Int,
     position: Vector2,
@@ -131,7 +129,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the position of the specified node within the shader graph.
    */
-  public fun getNodePosition(type: Type, id: Int): Vector2 {
+  public final fun getNodePosition(type: Type, id: Int): Vector2 {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -140,7 +138,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of all nodes in the shader with the specified type.
    */
-  public fun getNodeList(type: Type): PackedInt32Array {
+  public final fun getNodeList(type: Type): PackedInt32Array {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -149,7 +147,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns next valid node ID that can be added to the shader graph.
    */
-  public fun getValidNodeId(type: Type): Int {
+  public final fun getValidNodeId(type: Type): Int {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getValidNodeIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -158,7 +156,7 @@ public open class VisualShader : Shader() {
   /**
    * Removes the specified node from the shader.
    */
-  public fun removeNode(type: Type, id: Int): Unit {
+  public final fun removeNode(type: Type, id: Int): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeNodePtr, NIL)
   }
@@ -166,7 +164,7 @@ public open class VisualShader : Shader() {
   /**
    * Replaces the specified node with a node of new class type.
    */
-  public fun replaceNode(
+  public final fun replaceNode(
     type: Type,
     id: Int,
     newClass: StringName,
@@ -178,7 +176,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified node and port connection exist.
    */
-  public fun isNodeConnection(
+  public final fun isNodeConnection(
     type: Type,
     fromNode: Int,
     fromPort: Int,
@@ -193,7 +191,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns `true` if the specified nodes and ports can be connected together.
    */
-  public fun canConnectNodes(
+  public final fun canConnectNodes(
     type: Type,
     fromNode: Int,
     fromPort: Int,
@@ -208,7 +206,7 @@ public open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  public fun connectNodes(
+  public final fun connectNodes(
     type: Type,
     fromNode: Int,
     fromPort: Int,
@@ -223,7 +221,7 @@ public open class VisualShader : Shader() {
   /**
    * Connects the specified nodes and ports.
    */
-  public fun disconnectNodes(
+  public final fun disconnectNodes(
     type: Type,
     fromNode: Int,
     fromPort: Int,
@@ -238,7 +236,7 @@ public open class VisualShader : Shader() {
    * Connects the specified nodes and ports, even if they can't be connected. Such connection is
    * invalid and will not function properly.
    */
-  public fun connectNodesForced(
+  public final fun connectNodesForced(
     type: Type,
     fromNode: Int,
     fromPort: Int,
@@ -252,16 +250,27 @@ public open class VisualShader : Shader() {
   /**
    * Returns the list of connected nodes with the specified type.
    */
-  public fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeConnectionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
+  public final fun setGraphOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+  }
+
+  public final fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
   /**
    * Attaches the given node to the given frame.
    */
-  public fun attachNodeToFrame(
+  public final fun attachNodeToFrame(
     type: Type,
     id: Int,
     frame: Int,
@@ -273,7 +282,7 @@ public open class VisualShader : Shader() {
   /**
    * Detaches the given node from the frame it is attached to.
    */
-  public fun detachNodeFromFrame(type: Type, id: Int): Unit {
+  public final fun detachNodeFromFrame(type: Type, id: Int): Unit {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.detachNodeFromFramePtr, NIL)
   }
@@ -281,7 +290,7 @@ public open class VisualShader : Shader() {
   /**
    * Adds a new varying value node to the shader.
    */
-  public fun addVarying(
+  public final fun addVarying(
     name: String,
     mode: VaryingMode,
     type: VaryingType,
@@ -294,7 +303,7 @@ public open class VisualShader : Shader() {
    * Removes a varying value node with the given [name]. Prints an error if a node with this name is
    * not found.
    */
-  public fun removeVarying(name: String): Unit {
+  public final fun removeVarying(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.removeVaryingPtr, NIL)
   }
@@ -302,7 +311,7 @@ public open class VisualShader : Shader() {
   /**
    * Returns `true` if the shader has a varying with the given [name].
    */
-  public fun hasVarying(name: String): Boolean {
+  public final fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasVaryingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -36,15 +37,12 @@ public open class RDShaderFile : Resource() {
    * stage if non-empty. If empty, shader compilation is not necessarily successful (check
    * [RDShaderSPIRV]'s error message members).
    */
-  public var baseError: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBaseErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var baseError: String
+    @JvmName("baseErrorProperty")
+    get() = getBaseError()
+    @JvmName("baseErrorProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBaseErrorPtr, NIL)
+      setBaseError(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -55,7 +53,8 @@ public open class RDShaderFile : Resource() {
    * Sets the SPIR-V [bytecode] that will be compiled for the specified [version].
    */
   @JvmOverloads
-  public fun setBytecode(bytecode: RDShaderSPIRV, version: StringName = StringName("")): Unit {
+  public final fun setBytecode(bytecode: RDShaderSPIRV?, version: StringName = StringName("")):
+      Unit {
     TransferContext.writeArguments(OBJECT to bytecode, STRING_NAME to version)
     TransferContext.callMethod(rawPtr, MethodBindings.setBytecodePtr, NIL)
   }
@@ -64,7 +63,7 @@ public open class RDShaderFile : Resource() {
    * Returns the SPIR-V intermediate representation for the specified shader [version].
    */
   @JvmOverloads
-  public fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
+  public final fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(rawPtr, MethodBindings.getSpirvPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?)
@@ -73,10 +72,21 @@ public open class RDShaderFile : Resource() {
   /**
    * Returns the list of compiled versions for this shader.
    */
-  public fun getVersionList(): VariantArray<StringName> {
+  public final fun getVersionList(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+  }
+
+  public final fun setBaseError(error: String): Unit {
+    TransferContext.writeArguments(STRING to error)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBaseErrorPtr, NIL)
+  }
+
+  public final fun getBaseError(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseErrorPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

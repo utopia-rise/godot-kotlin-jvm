@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.
@@ -38,45 +39,36 @@ public open class ParallaxBackground : CanvasLayer() {
    * can be used to manually manage scrolling when no camera is present.
    */
   @CoreTypeLocalCopy
-  public var scrollOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var scrollOffset: Vector2
+    @JvmName("scrollOffsetProperty")
+    get() = getScrollOffset()
+    @JvmName("scrollOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+      setScrollOffset(value)
     }
 
   /**
    * The base position offset for all [ParallaxLayer] children.
    */
   @CoreTypeLocalCopy
-  public var scrollBaseOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var scrollBaseOffset: Vector2
+    @JvmName("scrollBaseOffsetProperty")
+    get() = getScrollBaseOffset()
+    @JvmName("scrollBaseOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
+      setScrollBaseOffset(value)
     }
 
   /**
    * The base motion scale for all [ParallaxLayer] children.
    */
   @CoreTypeLocalCopy
-  public var scrollBaseScale: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var scrollBaseScale: Vector2
+    @JvmName("scrollBaseScaleProperty")
+    get() = getScrollBaseScale()
+    @JvmName("scrollBaseScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
+      setScrollBaseScale(value)
     }
 
   /**
@@ -84,15 +76,12 @@ public open class ParallaxBackground : CanvasLayer() {
    * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    */
   @CoreTypeLocalCopy
-  public var scrollLimitBegin: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var scrollLimitBegin: Vector2
+    @JvmName("scrollLimitBeginProperty")
+    get() = getLimitBegin()
+    @JvmName("scrollLimitBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
+      setLimitBegin(value)
     }
 
   /**
@@ -100,29 +89,23 @@ public open class ParallaxBackground : CanvasLayer() {
    * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    */
   @CoreTypeLocalCopy
-  public var scrollLimitEnd: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var scrollLimitEnd: Vector2
+    @JvmName("scrollLimitEndProperty")
+    get() = getLimitEnd()
+    @JvmName("scrollLimitEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
+      setLimitEnd(value)
     }
 
   /**
    * If `true`, elements in [ParallaxLayer] child aren't affected by the zoom level of the camera.
    */
-  public var scrollIgnoreCameraZoom: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var scrollIgnoreCameraZoom: Boolean
+    @JvmName("scrollIgnoreCameraZoomProperty")
+    get() = isIgnoreCameraZoom()
+    @JvmName("scrollIgnoreCameraZoomProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
+      setIgnoreCameraZoom(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -148,7 +131,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
+  public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply{
       block(this)
       scrollOffset = this
   }
@@ -172,7 +155,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 =
+  public final fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 =
       scrollBaseOffset.apply{
       block(this)
       scrollBaseOffset = this
@@ -197,7 +180,8 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply{
+  public final fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 =
+      scrollBaseScale.apply{
       block(this)
       scrollBaseScale = this
   }
@@ -222,7 +206,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 =
+  public final fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 =
       scrollLimitBegin.apply{
       block(this)
       scrollLimitBegin = this
@@ -248,11 +232,77 @@ public open class ParallaxBackground : CanvasLayer() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
+  public final fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply{
       block(this)
       scrollLimitEnd = this
   }
 
+
+  public final fun setScrollOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+  }
+
+  public final fun getScrollOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setScrollBaseOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
+  }
+
+  public final fun getScrollBaseOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setScrollBaseScale(scale: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
+  }
+
+  public final fun getScrollBaseScale(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setLimitBegin(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
+  }
+
+  public final fun getLimitBegin(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setLimitEnd(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
+  }
+
+  public final fun getLimitEnd(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setIgnoreCameraZoom(ignore: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ignore)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
+  }
+
+  public final fun isIgnoreCameraZoom(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

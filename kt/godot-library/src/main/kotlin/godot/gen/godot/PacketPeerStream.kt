@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
@@ -28,44 +29,68 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PacketPeerStream : PacketPeer() {
-  public var inputBufferMaxSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInputBufferMaxSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var inputBufferMaxSize: Int
+    @JvmName("inputBufferMaxSizeProperty")
+    get() = getInputBufferMaxSize()
+    @JvmName("inputBufferMaxSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInputBufferMaxSizePtr, NIL)
+      setInputBufferMaxSize(value)
     }
 
-  public var outputBufferMaxSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var outputBufferMaxSize: Int
+    @JvmName("outputBufferMaxSizeProperty")
+    get() = getOutputBufferMaxSize()
+    @JvmName("outputBufferMaxSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOutputBufferMaxSizePtr, NIL)
+      setOutputBufferMaxSize(value)
     }
 
   /**
    * The wrapped [StreamPeer] object.
    */
-  public var streamPeer: StreamPeer?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamPeerPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
-    }
+  public final inline var streamPeer: StreamPeer?
+    @JvmName("streamPeerProperty")
+    get() = getStreamPeer()
+    @JvmName("streamPeerProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamPeerPtr, NIL)
+      setStreamPeer(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_PACKETPEERSTREAM, scriptIndex)
+  }
+
+  public final fun setStreamPeer(peer: StreamPeer?): Unit {
+    TransferContext.writeArguments(OBJECT to peer)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPeerPtr, NIL)
+  }
+
+  public final fun getStreamPeer(): StreamPeer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPeerPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
+  }
+
+  public final fun setInputBufferMaxSize(maxSizeBytes: Int): Unit {
+    TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputBufferMaxSizePtr, NIL)
+  }
+
+  public final fun setOutputBufferMaxSize(maxSizeBytes: Int): Unit {
+    TransferContext.writeArguments(LONG to maxSizeBytes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOutputBufferMaxSizePtr, NIL)
+  }
+
+  public final fun getInputBufferMaxSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputBufferMaxSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun getOutputBufferMaxSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

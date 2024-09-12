@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Light3D is the *abstract* base class for light nodes. As it can't be instantiated, it shouldn't
@@ -45,15 +46,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is
    * about 13 lumens, while a streetlight can be approximately 60,000 lumens.
    */
-  public var lightIntensityLumens: Float
-    get() {
-      TransferContext.writeArguments(LONG to 20L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightIntensityLumens: Float
+    @JvmName("lightIntensityLumensProperty")
+    get() = getParam(Light3D.Param.PARAM_INTENSITY)
+    @JvmName("lightIntensityLumensProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_INTENSITY, value)
     }
 
   /**
@@ -65,15 +63,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical
    * room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.
    */
-  public var lightIntensityLux: Float
-    get() {
-      TransferContext.writeArguments(LONG to 20L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightIntensityLux: Float
+    @JvmName("lightIntensityLuxProperty")
+    get() = getParam(Light3D.Param.PARAM_INTENSITY)
+    @JvmName("lightIntensityLuxProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_INTENSITY, value)
     }
 
   /**
@@ -82,15 +77,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000
    * Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
    */
-  public var lightTemperature: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTemperaturePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightTemperature: Float
+    @JvmName("lightTemperatureProperty")
+    get() = getTemperature()
+    @JvmName("lightTemperatureProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTemperaturePtr, NIL)
+      setTemperature(value)
     }
 
   /**
@@ -98,15 +90,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * increasing the light's [lightEnergy].
    */
   @CoreTypeLocalCopy
-  public var lightColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var lightColor: Color
+    @JvmName("lightColorProperty")
+    get() = getColor()
+    @JvmName("lightColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
@@ -114,15 +103,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [SpotLight3D], changing this value will only change the light color's intensity, not the light's
    * radius.
    */
-  public var lightEnergy: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightEnergy: Float
+    @JvmName("lightEnergyProperty")
+    get() = getParam(Light3D.Param.PARAM_ENERGY)
+    @JvmName("lightEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_ENERGY, value)
     }
 
   /**
@@ -131,15 +117,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** This property is ignored if [lightEnergy] is equal to `0.0`, as the light won't be
    * present at all in the GI shader.
    */
-  public var lightIndirectEnergy: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightIndirectEnergy: Float
+    @JvmName("lightIndirectEnergyProperty")
+    get() = getParam(Light3D.Param.PARAM_INDIRECT_ENERGY)
+    @JvmName("lightIndirectEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_INDIRECT_ENERGY, value)
     }
 
   /**
@@ -151,15 +134,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * [Environment.volumetricFogTemporalReprojectionEnabled] is disabled (or unless the reprojection
    * amount is significantly lowered).
    */
-  public var lightVolumetricFogEnergy: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightVolumetricFogEnergy: Float
+    @JvmName("lightVolumetricFogEnergyProperty")
+    get() = getParam(Light3D.Param.PARAM_VOLUMETRIC_FOG_ENERGY)
+    @JvmName("lightVolumetricFogEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_VOLUMETRIC_FOG_ENERGY, value)
     }
 
   /**
@@ -172,15 +152,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** Light projector textures are only supported in the Forward+ and Mobile rendering
    * methods, not Compatibility.
    */
-  public var lightProjector: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProjectorPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var lightProjector: Texture2D?
+    @JvmName("lightProjectorProperty")
+    get() = getProjector()
+    @JvmName("lightProjectorProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProjectorPtr, NIL)
+      setProjector(value)
     }
 
   /**
@@ -194,15 +171,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering
    * methods, not Compatibility.
    */
-  public var lightSize: Float
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightSize: Float
+    @JvmName("lightSizeProperty")
+    get() = getParam(Light3D.Param.PARAM_SIZE)
+    @JvmName("lightSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SIZE, value)
     }
 
   /**
@@ -216,29 +190,23 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not
    * Mobile or Compatibility.
    */
-  public var lightAngularDistance: Float
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightAngularDistance: Float
+    @JvmName("lightAngularDistanceProperty")
+    get() = getParam(Light3D.Param.PARAM_SIZE)
+    @JvmName("lightAngularDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SIZE, value)
     }
 
   /**
    * If `true`, the light's effect is reversed, darkening areas and casting bright shadows.
    */
-  public var lightNegative: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isNegativePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var lightNegative: Boolean
+    @JvmName("lightNegativeProperty")
+    get() = isNegative()
+    @JvmName("lightNegativeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNegativePtr, NIL)
+      setNegative(value)
     }
 
   /**
@@ -246,15 +214,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections
    * when placing lights above an emissive surface.
    */
-  public var lightSpecular: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lightSpecular: Float
+    @JvmName("lightSpecularProperty")
+    get() = getParam(Light3D.Param.PARAM_SPECULAR)
+    @JvmName("lightSpecularProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SPECULAR, value)
     }
 
   /**
@@ -263,29 +228,23 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering.
    * See [GeometryInstance3D.giMode].
    */
-  public var lightBakeMode: BakeMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeModePtr, LONG)
-      return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var lightBakeMode: BakeMode
+    @JvmName("lightBakeModeProperty")
+    get() = getBakeMode()
+    @JvmName("lightBakeModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeModePtr, NIL)
+      setBakeMode(value)
     }
 
   /**
    * The light will affect objects in the selected layers.
    */
-  public var lightCullMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var lightCullMask: Long
+    @JvmName("lightCullMaskProperty")
+    get() = getCullMask()
+    @JvmName("lightCullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+      setCullMask(value)
     }
 
   /**
@@ -293,15 +252,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * enable shadow rendering when it makes a noticeable difference in the scene's appearance, and
    * consider using [distanceFadeEnabled] to hide the light when far away from the [Camera3D].
    */
-  public var shadowEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasShadowPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var shadowEnabled: Boolean
+    @JvmName("shadowEnabledProperty")
+    get() = hasShadow()
+    @JvmName("shadowEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowPtr, NIL)
+      setShadow(value)
     }
 
   /**
@@ -309,15 +265,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as
    * needed.
    */
-  public var shadowBias: Float
-    get() {
-      TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var shadowBias: Float
+    @JvmName("shadowBiasProperty")
+    get() = getParam(Light3D.Param.PARAM_SHADOW_BIAS)
+    @JvmName("shadowBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 15L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SHADOW_BIAS, value)
     }
 
   /**
@@ -325,15 +278,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * self-shadowing artifacts without using [shadowBias]. In practice, this value should be tweaked
    * along with [shadowBias] to reduce artifacts as much as possible.
    */
-  public var shadowNormalBias: Float
-    get() {
-      TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var shadowNormalBias: Float
+    @JvmName("shadowNormalBiasProperty")
+    get() = getParam(Light3D.Param.PARAM_SHADOW_NORMAL_BIAS)
+    @JvmName("shadowNormalBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SHADOW_NORMAL_BIAS, value)
     }
 
   /**
@@ -341,26 +291,20 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the
    * mesh to use double-sided shadows with [GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
    */
-  public var shadowReverseCullFace: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var shadowReverseCullFace: Boolean
+    @JvmName("shadowReverseCullFaceProperty")
+    get() = getShadowReverseCullFace()
+    @JvmName("shadowReverseCullFaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowReverseCullFacePtr, NIL)
+      setShadowReverseCullFace(value)
     }
 
-  public var shadowTransmittanceBias: Float
-    get() {
-      TransferContext.writeArguments(LONG to 19L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var shadowTransmittanceBias: Float
+    @JvmName("shadowTransmittanceBiasProperty")
+    get() = getParam(Light3D.Param.PARAM_TRANSMITTANCE_BIAS)
+    @JvmName("shadowTransmittanceBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 19L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_TRANSMITTANCE_BIAS, value)
     }
 
   /**
@@ -368,15 +312,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * light appear through shadows. This can be used to fake global illumination at a low performance
    * cost.
    */
-  public var shadowOpacity: Float
-    get() {
-      TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var shadowOpacity: Float
+    @JvmName("shadowOpacityProperty")
+    get() = getParam(Light3D.Param.PARAM_SHADOW_OPACITY)
+    @JvmName("shadowOpacityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 17L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SHADOW_OPACITY, value)
     }
 
   /**
@@ -384,15 +325,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * maps. A high value can impact performance, make shadows appear grainy and can cause other unwanted
    * artifacts. Try to keep as near default as possible.
    */
-  public var shadowBlur: Float
-    get() {
-      TransferContext.writeArguments(LONG to 18L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var shadowBlur: Float
+    @JvmName("shadowBlurProperty")
+    get() = getParam(Light3D.Param.PARAM_SHADOW_BLUR)
+    @JvmName("shadowBlurProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 18L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+      setParam(Light3D.Param.PARAM_SHADOW_BLUR, value)
     }
 
   /**
@@ -403,30 +341,24 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * performance.
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
-  public var distanceFadeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var distanceFadeEnabled: Boolean
+    @JvmName("distanceFadeEnabledProperty")
+    get() = isDistanceFadeEnabled()
+    @JvmName("distanceFadeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+      setEnableDistanceFade(value)
     }
 
   /**
    * The distance from the camera at which the light begins to fade away (in 3D units).
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
-  public var distanceFadeBegin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distanceFadeBegin: Float
+    @JvmName("distanceFadeBeginProperty")
+    get() = getDistanceFadeBegin()
+    @JvmName("distanceFadeBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+      setDistanceFadeBegin(value)
     }
 
   /**
@@ -436,15 +368,12 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D], and only when [shadowEnabled] is
    * `true`.
    */
-  public var distanceFadeShadow: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distanceFadeShadow: Float
+    @JvmName("distanceFadeShadowProperty")
+    get() = getDistanceFadeShadow()
+    @JvmName("distanceFadeShadowProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeShadowPtr, NIL)
+      setDistanceFadeShadow(value)
     }
 
   /**
@@ -452,30 +381,24 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * progressively reduced over this distance and is completely invisible at the end.
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
-  public var distanceFadeLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distanceFadeLength: Float
+    @JvmName("distanceFadeLengthProperty")
+    get() = getDistanceFadeLength()
+    @JvmName("distanceFadeLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+      setDistanceFadeLength(value)
     }
 
   /**
    * If `true`, the light only appears in the editor and will not be visible at runtime. If `true`,
    * the light will never be baked in [LightmapGI] regardless of its [lightBakeMode].
    */
-  public var editorOnly: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var editorOnly: Boolean
+    @JvmName("editorOnlyProperty")
+    get() = isEditorOnly()
+    @JvmName("editorOnlyProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+      setEditorOnly(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -501,18 +424,178 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply{
+  public final fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply{
       block(this)
       lightColor = this
   }
 
+
+  public final fun setEditorOnly(editorOnly: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to editorOnly)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+  }
+
+  public final fun isEditorOnly(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
+   * Sets the value of the specified [Light3D.Param] parameter.
+   */
+  public final fun setParam(`param`: Param, `value`: Float): Unit {
+    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+  }
+
+  /**
+   * Returns the value of the specified [Light3D.Param] parameter.
+   */
+  public final fun getParam(`param`: Param): Float {
+    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setShadow(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowPtr, NIL)
+  }
+
+  public final fun hasShadow(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasShadowPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setNegative(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNegativePtr, NIL)
+  }
+
+  public final fun isNegative(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isNegativePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCullMask(cullMask: Long): Unit {
+    TransferContext.writeArguments(LONG to cullMask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+  }
+
+  public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setEnableDistanceFade(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+  }
+
+  public final fun isDistanceFadeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDistanceFadeBegin(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+  }
+
+  public final fun getDistanceFadeBegin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDistanceFadeShadow(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeShadowPtr, NIL)
+  }
+
+  public final fun getDistanceFadeShadow(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDistanceFadeLength(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+  }
+
+  public final fun getDistanceFadeLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public final fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setShadowReverseCullFace(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowReverseCullFacePtr, NIL)
+  }
+
+  public final fun getShadowReverseCullFace(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setBakeMode(bakeMode: BakeMode): Unit {
+    TransferContext.writeArguments(LONG to bakeMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeModePtr, NIL)
+  }
+
+  public final fun getBakeMode(): BakeMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeModePtr, LONG)
+    return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setProjector(projector: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to projector)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProjectorPtr, NIL)
+  }
+
+  public final fun getProjector(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectorPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setTemperature(temperature: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to temperature.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTemperaturePtr, NIL)
+  }
+
+  public final fun getTemperature(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTemperaturePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   /**
    * Returns the [Color] of an idealized blackbody at the given [lightTemperature]. This value is
    * calculated internally based on the [lightTemperature]. This [Color] is multiplied by [lightColor]
    * before being sent to the [RenderingServer].
    */
-  public fun getCorrelatedColor(): Color {
+  public final fun getCorrelatedColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCorrelatedColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)

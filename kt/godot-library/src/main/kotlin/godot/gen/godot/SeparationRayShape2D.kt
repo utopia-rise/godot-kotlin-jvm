@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D ray shape, intended for use in physics. Usually used to provide a shape for a
@@ -31,15 +32,12 @@ public open class SeparationRayShape2D : Shape2D() {
   /**
    * The ray's length.
    */
-  public var length: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var length: Float
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+      setLength(value)
     }
 
   /**
@@ -47,19 +45,38 @@ public open class SeparationRayShape2D : Shape2D() {
    * If `true`, the shape can return the correct normal and separate in any direction, allowing
    * sliding motion on slopes.
    */
-  public var slideOnSlope: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSlideOnSlopePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var slideOnSlope: Boolean
+    @JvmName("slideOnSlopeProperty")
+    get() = getSlideOnSlope()
+    @JvmName("slideOnSlopeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnSlopePtr, NIL)
+      setSlideOnSlope(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE2D, scriptIndex)
+  }
+
+  public final fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public final fun getLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSlideOnSlope(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnSlopePtr, NIL)
+  }
+
+  public final fun getSlideOnSlope(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSlideOnSlopePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

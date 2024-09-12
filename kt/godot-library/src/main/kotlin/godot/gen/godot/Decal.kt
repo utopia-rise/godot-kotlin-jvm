@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Decal]s are used to project a texture onto a [Mesh] in the scene. Use Decals to add detail to a
@@ -66,15 +67,12 @@ public open class Decal : VisualInstance3D() {
    * the decals' AABB size without affecting their appearance.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+  public final inline var size: Vector3
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -85,15 +83,12 @@ public open class Decal : VisualInstance3D() {
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
    */
-  public var textureAlbedo: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureAlbedo: Texture2D?
+    @JvmName("textureAlbedoProperty")
+    get() = getTexture(Decal.DecalTexture.TEXTURE_ALBEDO)
+    @JvmName("textureAlbedoProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(Decal.DecalTexture.TEXTURE_ALBEDO, value)
     }
 
   /**
@@ -107,15 +102,12 @@ public open class Decal : VisualInstance3D() {
    * set [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the
    * underlying surface's normal map should be overridden (and its intensity).
    */
-  public var textureNormal: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureNormal: Texture2D?
+    @JvmName("textureNormalProperty")
+    get() = getTexture(Decal.DecalTexture.TEXTURE_NORMAL)
+    @JvmName("textureNormalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(Decal.DecalTexture.TEXTURE_NORMAL, value)
     }
 
   /**
@@ -129,15 +121,12 @@ public open class Decal : VisualInstance3D() {
    * [albedoMix] to `0.0`. The albedo texture's alpha channel will be used to determine where the
    * underlying surface's ORM map should be overridden (and its intensity).
    */
-  public var textureOrm: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureOrm: Texture2D?
+    @JvmName("textureOrmProperty")
+    get() = getTexture(Decal.DecalTexture.TEXTURE_ORM)
+    @JvmName("textureOrmProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(Decal.DecalTexture.TEXTURE_ORM, value)
     }
 
   /**
@@ -148,30 +137,24 @@ public open class Decal : VisualInstance3D() {
    * the filter mode for [Decal] textures is set globally with
    * [ProjectSettings.rendering/textures/decals/filter].
    */
-  public var textureEmission: Texture2D?
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureEmission: Texture2D?
+    @JvmName("textureEmissionProperty")
+    get() = getTexture(Decal.DecalTexture.TEXTURE_EMISSION)
+    @JvmName("textureEmissionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(Decal.DecalTexture.TEXTURE_EMISSION, value)
     }
 
   /**
    * Energy multiplier for the emission texture. This will make the decal emit light at a higher or
    * lower intensity, independently of the albedo color. See also [modulate].
    */
-  public var emissionEnergy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var emissionEnergy: Float
+    @JvmName("emissionEnergyProperty")
+    get() = getEmissionEnergy()
+    @JvmName("emissionEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyPtr, NIL)
+      setEmissionEnergy(value)
     }
 
   /**
@@ -181,15 +164,12 @@ public open class Decal : VisualInstance3D() {
    * independently of each other.
    */
   @CoreTypeLocalCopy
-  public var modulate: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var modulate: Color
+    @JvmName("modulateProperty")
+    get() = getModulate()
+    @JvmName("modulateProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+      setModulate(value)
     }
 
   /**
@@ -198,15 +178,12 @@ public open class Decal : VisualInstance3D() {
    * still required as its alpha channel will determine where the normal and ORM will be overridden.
    * See also [modulate].
    */
-  public var albedoMix: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoMixPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var albedoMix: Float
+    @JvmName("albedoMixProperty")
+    get() = getAlbedoMix()
+    @JvmName("albedoMixProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoMixPtr, NIL)
+      setAlbedoMix(value)
     }
 
   /**
@@ -216,15 +193,12 @@ public open class Decal : VisualInstance3D() {
    * **Note:** Setting [normalFade] to a value greater than `0.0` has a small performance cost due
    * to the added normal angle computations.
    */
-  public var normalFade: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNormalFadePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var normalFade: Float
+    @JvmName("normalFadeProperty")
+    get() = getNormalFade()
+    @JvmName("normalFadeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setNormalFadePtr, NIL)
+      setNormalFade(value)
     }
 
   /**
@@ -232,15 +206,12 @@ public open class Decal : VisualInstance3D() {
    * the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`). See also
    * [lowerFade].
    */
-  public var upperFade: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpperFadePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var upperFade: Float
+    @JvmName("upperFadeProperty")
+    get() = getUpperFade()
+    @JvmName("upperFadeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpperFadePtr, NIL)
+      setUpperFade(value)
     }
 
   /**
@@ -248,15 +219,12 @@ public open class Decal : VisualInstance3D() {
    * the [AABB]. Only positive values are valid (negative values will be clamped to `0.0`). See also
    * [upperFade].
    */
-  public var lowerFade: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLowerFadePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lowerFade: Float
+    @JvmName("lowerFadeProperty")
+    get() = getLowerFade()
+    @JvmName("lowerFadeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLowerFadePtr, NIL)
+      setLowerFade(value)
     }
 
   /**
@@ -265,29 +233,23 @@ public open class Decal : VisualInstance3D() {
    * after which it will be culled and not sent to the shader at all. Use this to reduce the number of
    * active Decals in a scene and thus improve performance.
    */
-  public var distanceFadeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var distanceFadeEnabled: Boolean
+    @JvmName("distanceFadeEnabledProperty")
+    get() = isDistanceFadeEnabled()
+    @JvmName("distanceFadeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+      setEnableDistanceFade(value)
     }
 
   /**
    * The distance from the camera at which the Decal begins to fade away (in 3D units).
    */
-  public var distanceFadeBegin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distanceFadeBegin: Float
+    @JvmName("distanceFadeBeginProperty")
+    get() = getDistanceFadeBegin()
+    @JvmName("distanceFadeBeginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+      setDistanceFadeBegin(value)
     }
 
   /**
@@ -295,15 +257,12 @@ public open class Decal : VisualInstance3D() {
    * transparent over this distance and is completely invisible at the end. Higher values result in a
    * smoother fade-out transition, which is more suited when the camera moves fast.
    */
-  public var distanceFadeLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distanceFadeLength: Float
+    @JvmName("distanceFadeLengthProperty")
+    get() = getDistanceFadeLength()
+    @JvmName("distanceFadeLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+      setDistanceFadeLength(value)
     }
 
   /**
@@ -312,15 +271,12 @@ public open class Decal : VisualInstance3D() {
    * not. This is especially useful so you can ensure that dynamic objects don't accidentally receive a
    * Decal intended for the terrain under them.
    */
-  public var cullMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var cullMask: Long
+    @JvmName("cullMaskProperty")
+    get() = getCullMask()
+    @JvmName("cullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+      setCullMask(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -350,7 +306,7 @@ public open class Decal : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
@@ -377,11 +333,185 @@ public open class Decal : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
+  public final fun modulateMutate(block: Color.() -> Unit): Color = modulate.apply{
       block(this)
       modulate = this
   }
 
+
+  public final fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
+
+  /**
+   * Sets the [Texture2D] associated with the specified [DecalTexture]. This is a convenience
+   * method, in most cases you should access the texture directly.
+   * For example, instead of `$Decal.set_texture(Decal.TEXTURE_ALBEDO, albedo_tex)`, use
+   * `$Decal.texture_albedo = albedo_tex`.
+   * One case where this is better than accessing the texture directly is when you want to copy one
+   * Decal's textures to another. For example:
+   *
+   * gdscript:
+   * ```gdscript
+   * for i in Decal.TEXTURE_MAX:
+   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
+   * ```
+   * csharp:
+   * ```csharp
+   * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
+   * {
+   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
+   * }
+   * ```
+   */
+  public final fun setTexture(type: DecalTexture, texture: Texture2D?): Unit {
+    TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  /**
+   * Returns the [Texture2D] associated with the specified [DecalTexture]. This is a convenience
+   * method, in most cases you should access the texture directly.
+   * For example, instead of `albedo_tex = $Decal.get_texture(Decal.TEXTURE_ALBEDO)`, use
+   * `albedo_tex = $Decal.texture_albedo`.
+   * One case where this is better than accessing the texture directly is when you want to copy one
+   * Decal's textures to another. For example:
+   *
+   * gdscript:
+   * ```gdscript
+   * for i in Decal.TEXTURE_MAX:
+   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
+   * ```
+   * csharp:
+   * ```csharp
+   * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
+   * {
+   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
+   * }
+   * ```
+   */
+  public final fun getTexture(type: DecalTexture): Texture2D? {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setEmissionEnergy(energy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to energy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyPtr, NIL)
+  }
+
+  public final fun getEmissionEnergy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAlbedoMix(energy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to energy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoMixPtr, NIL)
+  }
+
+  public final fun getAlbedoMix(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoMixPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setModulate(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+  }
+
+  public final fun getModulate(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setUpperFade(fade: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fade.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpperFadePtr, NIL)
+  }
+
+  public final fun getUpperFade(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpperFadePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setLowerFade(fade: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fade.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLowerFadePtr, NIL)
+  }
+
+  public final fun getLowerFade(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLowerFadePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setNormalFade(fade: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fade.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalFadePtr, NIL)
+  }
+
+  public final fun getNormalFade(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNormalFadePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setEnableDistanceFade(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+  }
+
+  public final fun isDistanceFadeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDistanceFadeBegin(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+  }
+
+  public final fun getDistanceFadeBegin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDistanceFadeLength(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+  }
+
+  public final fun getDistanceFadeLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCullMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+  }
+
+  public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
 
   public enum class DecalTexture(
     id: Long,

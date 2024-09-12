@@ -125,7 +125,7 @@ public open class MovieWriter : Object() {
      * **Note:** [addWriter] must be called early enough in the engine initialization to work, as
      * movie writing is designed to start at the same time as the rest of the engine.
      */
-    public fun addWriter(writer: MovieWriter): Unit {
+    public final fun addWriter(writer: MovieWriter?): Unit {
       TransferContext.writeArguments(OBJECT to writer)
       TransferContext.callMethod(0, MethodBindings.addWriterPtr, NIL)
     }

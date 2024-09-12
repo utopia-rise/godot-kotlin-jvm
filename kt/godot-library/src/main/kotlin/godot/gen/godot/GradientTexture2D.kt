@@ -37,39 +37,36 @@ public open class GradientTexture2D : Texture2D() {
   /**
    * The [Gradient] used to fill the texture.
    */
-  public var gradient: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
-    }
+  public final inline var gradient: Gradient?
+    @JvmName("gradientProperty")
+    get() = getGradient()
+    @JvmName("gradientProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+      setGradient(value)
     }
 
   /**
    * The number of horizontal color samples that will be obtained from the [Gradient], which also
    * represents the texture's width.
    */
-  public var width: Int
-    @JvmName("getWidth_prop")
-    get() = super.getWidth()
+  public final inline var width: Int
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * The number of vertical color samples that will be obtained from the [Gradient], which also
    * represents the texture's height.
    */
-  public var height: Int
-    @JvmName("getHeight_prop")
-    get() = super.getHeight()
+  public final inline var height: Int
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
@@ -78,60 +75,48 @@ public open class GradientTexture2D : Texture2D() {
    * generated texture will use low dynamic range; overbright colors will be clamped
    * ([Image.FORMAT_RGBA8] format).
    */
-  public var useHdr: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useHdr: Boolean
+    @JvmName("useHdrProperty")
+    get() = isUsingHdr()
+    @JvmName("useHdrProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+      setUseHdr(value)
     }
 
   /**
    * The gradient fill type, one of the [Fill] values. The texture is filled by interpolating colors
    * starting from [fillFrom] to [fillTo] offsets.
    */
-  public var fill: Fill
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillPtr, LONG)
-      return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var fill: Fill
+    @JvmName("fillProperty")
+    get() = getFill()
+    @JvmName("fillProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillPtr, NIL)
+      setFill(value)
     }
 
   /**
    * The initial offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeLocalCopy
-  public var fillFrom: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillFromPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var fillFrom: Vector2
+    @JvmName("fillFromProperty")
+    get() = getFillFrom()
+    @JvmName("fillFromProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillFromPtr, NIL)
+      setFillFrom(value)
     }
 
   /**
    * The final offset used to fill the texture specified in UV coordinates.
    */
   @CoreTypeLocalCopy
-  public var fillTo: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFillToPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var fillTo: Vector2
+    @JvmName("fillToProperty")
+    get() = getFillTo()
+    @JvmName("fillToProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFillToPtr, NIL)
+      setFillTo(value)
     }
 
   /**
@@ -139,15 +124,12 @@ public open class GradientTexture2D : Texture2D() {
    * [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the
    * entire texture.
    */
-  public var repeat: Repeat
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRepeatPtr, LONG)
-      return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var repeat: Repeat
+    @JvmName("repeatProperty")
+    get() = getRepeat()
+    @JvmName("repeatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
+      setRepeat(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -172,7 +154,7 @@ public open class GradientTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
+  public final fun fillFromMutate(block: Vector2.() -> Unit): Vector2 = fillFrom.apply{
       block(this)
       fillFrom = this
   }
@@ -196,11 +178,87 @@ public open class GradientTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
+  public final fun fillToMutate(block: Vector2.() -> Unit): Vector2 = fillTo.apply{
       block(this)
       fillTo = this
   }
 
+
+  public final fun setGradient(gradient: Gradient?): Unit {
+    TransferContext.writeArguments(OBJECT to gradient)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+  }
+
+  public final fun getGradient(): Gradient? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+  }
+
+  public final fun setWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public final fun setHeight(height: Int): Unit {
+    TransferContext.writeArguments(LONG to height.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun setUseHdr(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+  }
+
+  public final fun isUsingHdr(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setFill(fill: Fill): Unit {
+    TransferContext.writeArguments(LONG to fill.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillPtr, NIL)
+  }
+
+  public final fun getFill(): Fill {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillPtr, LONG)
+    return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setFillFrom(fillFrom: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to fillFrom)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillFromPtr, NIL)
+  }
+
+  public final fun getFillFrom(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillFromPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setFillTo(fillTo: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to fillTo)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFillToPtr, NIL)
+  }
+
+  public final fun getFillTo(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFillToPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setRepeat(repeat: Repeat): Unit {
+    TransferContext.writeArguments(LONG to repeat.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
+  }
+
+  public final fun getRepeat(): Repeat {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatPtr, LONG)
+    return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class Fill(
     id: Long,

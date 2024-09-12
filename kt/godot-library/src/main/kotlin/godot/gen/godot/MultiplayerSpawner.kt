@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -54,15 +55,12 @@ public open class MultiplayerSpawner : Node() {
    * Path to the spawn root. Spawnable scenes that are added as direct children are replicated to
    * other peers.
    */
-  public var spawnPath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnPathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var spawnPath: NodePath
+    @JvmName("spawnPathProperty")
+    get() = getSpawnPath()
+    @JvmName("spawnPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnPathPtr, NIL)
+      setSpawnPath(value)
     }
 
   /**
@@ -70,15 +68,12 @@ public open class MultiplayerSpawner : Node() {
    * custom spawns.
    * When set to `0` (the default), there is no limit.
    */
-  public var spawnLimit: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnLimitPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var spawnLimit: Long
+    @JvmName("spawnLimitProperty")
+    get() = getSpawnLimit()
+    @JvmName("spawnLimitProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnLimitPtr, NIL)
+      setSpawnLimit(value)
     }
 
   /**
@@ -87,15 +82,12 @@ public open class MultiplayerSpawner : Node() {
    * **Note:** The returned node should **not** be added to the scene with [Node.addChild]. This is
    * done automatically.
    */
-  public var spawnFunction: Callable
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
-      return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
-    }
+  public final inline var spawnFunction: Callable
+    @JvmName("spawnFunctionProperty")
+    get() = getSpawnFunction()
+    @JvmName("spawnFunctionProperty")
     set(`value`) {
-      TransferContext.writeArguments(CALLABLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpawnFunctionPtr, NIL)
+      setSpawnFunction(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -106,7 +98,7 @@ public open class MultiplayerSpawner : Node() {
    * Adds a scene path to spawnable scenes, making it automatically replicated from the multiplayer
    * authority to other peers when added as children of the node pointed by [spawnPath].
    */
-  public fun addSpawnableScene(path: String): Unit {
+  public final fun addSpawnableScene(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.addSpawnableScenePtr, NIL)
   }
@@ -114,7 +106,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    * Returns the count of spawnable scene paths.
    */
-  public fun getSpawnableSceneCount(): Int {
+  public final fun getSpawnableSceneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableSceneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -123,7 +115,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    * Returns the spawnable scene path by index.
    */
-  public fun getSpawnableScene(index: Int): String {
+  public final fun getSpawnableScene(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSpawnableScenePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -132,7 +124,7 @@ public open class MultiplayerSpawner : Node() {
   /**
    * Clears all spawnable scenes. Does not despawn existing instances on remote peers.
    */
-  public fun clearSpawnableScenes(): Unit {
+  public final fun clearSpawnableScenes(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearSpawnableScenesPtr, NIL)
   }
@@ -144,10 +136,43 @@ public open class MultiplayerSpawner : Node() {
    * **Note:** Spawnable scenes are spawned automatically. [spawn] is only needed for custom spawns.
    */
   @JvmOverloads
-  public fun spawn(`data`: Any? = null): Node? {
+  public final fun spawn(`data`: Any? = null): Node? {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.spawnPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+  }
+
+  public final fun getSpawnPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnPathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setSpawnPath(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnPathPtr, NIL)
+  }
+
+  public final fun getSpawnLimit(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnLimitPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setSpawnLimit(limit: Long): Unit {
+    TransferContext.writeArguments(LONG to limit)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnLimitPtr, NIL)
+  }
+
+  public final fun getSpawnFunction(): Callable {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpawnFunctionPtr, CALLABLE)
+    return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
+  }
+
+  public final fun setSpawnFunction(spawnFunction: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to spawnFunction)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpawnFunctionPtr, NIL)
   }
 
   public companion object

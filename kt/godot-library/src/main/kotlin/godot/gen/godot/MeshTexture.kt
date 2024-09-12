@@ -19,6 +19,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and
@@ -29,44 +30,35 @@ public open class MeshTexture : Texture2D() {
   /**
    * Sets the mesh used to draw. It must be a mesh using 2D vertices.
    */
-  public var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
-    }
+  public final inline var mesh: Mesh?
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * Sets the base texture that the Mesh will use to draw.
    */
-  public var baseTexture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var baseTexture: Texture2D?
+    @JvmName("baseTextureProperty")
+    get() = getBaseTexture()
+    @JvmName("baseTextureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
+      setBaseTexture(value)
     }
 
   /**
    * Sets the size of the image, needed for reference.
    */
   @CoreTypeLocalCopy
-  public var imageSize: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var imageSize: Vector2
+    @JvmName("imageSizeProperty")
+    get() = getImageSize()
+    @JvmName("imageSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
+      setImageSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -91,11 +83,44 @@ public open class MeshTexture : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun imageSizeMutate(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
+  public final fun imageSizeMutate(block: Vector2.() -> Unit): Vector2 = imageSize.apply{
       block(this)
       imageSize = this
   }
 
+
+  public final fun setMesh(mesh: Mesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+  }
+
+  public final fun setImageSize(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
+  }
+
+  public final fun getImageSize(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setBaseTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
+  }
+
+  public final fun getBaseTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
 
   public companion object
 

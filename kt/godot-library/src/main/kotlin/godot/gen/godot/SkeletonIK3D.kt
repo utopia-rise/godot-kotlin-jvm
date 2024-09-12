@@ -32,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -68,30 +69,24 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   /**
    * The name of the current root bone, the first bone in the IK chain.
    */
-  public var rootBone: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var rootBone: StringName
+    @JvmName("rootBoneProperty")
+    get() = getRootBone()
+    @JvmName("rootBoneProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+      setRootBone(value)
     }
 
   /**
    * The name of the current tip bone, the last bone in the IK chain placed at the [target]
    * transform (or [targetNode] if defined).
    */
-  public var tipBone: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTipBonePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var tipBone: StringName
+    @JvmName("tipBoneProperty")
+    get() = getTipBone()
+    @JvmName("tipBoneProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
+      setTipBone(value)
     }
 
   /**
@@ -100,30 +95,24 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * instead and this property is ignored.
    */
   @CoreTypeLocalCopy
-  public var target: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+  public final inline var target: Transform3D
+    @JvmName("targetProperty")
+    get() = getTargetTransform()
+    @JvmName("targetProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetTransformPtr, NIL)
+      setTargetTransform(value)
     }
 
   /**
    * If `true` overwrites the rotation of the tip bone with the rotation of the [target] (or
    * [targetNode] if defined).
    */
-  public var overrideTipBasis: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isOverrideTipBasisPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var overrideTipBasis: Boolean
+    @JvmName("overrideTipBasisProperty")
+    get() = isOverrideTipBasis()
+    @JvmName("overrideTipBasisProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOverrideTipBasisPtr, NIL)
+      setOverrideTipBasis(value)
     }
 
   /**
@@ -131,15 +120,12 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK
    * chain.
    */
-  public var useMagnet: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingMagnetPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useMagnet: Boolean
+    @JvmName("useMagnetProperty")
+    get() = isUsingMagnet()
+    @JvmName("useMagnetProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseMagnetPtr, NIL)
+      setUseMagnet(value)
     }
 
   /**
@@ -149,60 +135,48 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * magnet position.
    */
   @CoreTypeLocalCopy
-  public var magnet: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMagnetPositionPtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+  public final inline var magnet: Vector3
+    @JvmName("magnetProperty")
+    get() = getMagnetPosition()
+    @JvmName("magnetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMagnetPositionPtr, NIL)
+      setMagnetPosition(value)
     }
 
   /**
    * Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used
    * instead of the [target] property.
    */
-  public var targetNode: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var targetNode: NodePath
+    @JvmName("targetNodeProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodeProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   /**
    * The minimum distance between bone and goal target. If the distance is below this value, the IK
    * solver stops further iterations.
    */
-  public var minDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var minDistance: Float
+    @JvmName("minDistanceProperty")
+    get() = getMinDistance()
+    @JvmName("minDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinDistancePtr, NIL)
+      setMinDistance(value)
     }
 
   /**
    * Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone
    * chain results.
    */
-  public var maxIterations: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxIterationsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var maxIterations: Int
+    @JvmName("maxIterationsProperty")
+    get() = getMaxIterations()
+    @JvmName("maxIterationsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
+      setMaxIterations(value)
     }
 
   /**
@@ -210,15 +184,12 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0`
    * will visually disable the SkeletonIK.
    */
-  public var interpolation: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var interpolation: Float
+    @JvmName("interpolationProperty")
+    get() = getInterpolation()
+    @JvmName("interpolationProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
+      setInterpolation(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -245,7 +216,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply{
+  public final fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply{
       block(this)
       target = this
   }
@@ -272,18 +243,95 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply{
+  public final fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply{
       block(this)
       magnet = this
   }
 
+
+  public final fun setRootBone(rootBone: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to rootBone)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+  }
+
+  public final fun getRootBone(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public final fun setTipBone(tipBone: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to tipBone)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
+  }
+
+  public final fun getTipBone(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTipBonePtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public final fun setTargetTransform(target: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to target)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetTransformPtr, NIL)
+  }
+
+  public final fun getTargetTransform(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
+
+  public final fun setTargetNode(node: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public final fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setOverrideTipBasis(`override`: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to override)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOverrideTipBasisPtr, NIL)
+  }
+
+  public final fun isOverrideTipBasis(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isOverrideTipBasisPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setUseMagnet(use: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to use)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseMagnetPtr, NIL)
+  }
+
+  public final fun isUsingMagnet(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMagnetPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setMagnetPosition(localPosition: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to localPosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMagnetPositionPtr, NIL)
+  }
+
+  public final fun getMagnetPosition(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMagnetPositionPtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
 
   /**
    * Returns the parent [Skeleton3D] Node that was present when SkeletonIK entered the [SceneTree].
    * Returns null if the parent node was not a [Skeleton3D] Node when SkeletonIK3D entered the
    * [SceneTree].
    */
-  public fun getParentSkeleton(): Skeleton3D? {
+  public final fun getParentSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentSkeletonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
@@ -294,10 +342,32 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * bones. Returns `false` if SkeletonIK is stopped or [start] was used with the `one_time` parameter
    * set to `true`.
    */
-  public fun isRunning(): Boolean {
+  public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setMinDistance(minDistance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to minDistance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinDistancePtr, NIL)
+  }
+
+  public final fun getMinDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMaxIterations(iterations: Int): Unit {
+    TransferContext.writeArguments(LONG to iterations.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
+  }
+
+  public final fun getMaxIterations(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxIterationsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -306,7 +376,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * reset on the next frame.
    */
   @JvmOverloads
-  public fun start(oneTime: Boolean = false): Unit {
+  public final fun start(oneTime: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to oneTime)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
   }
@@ -315,9 +385,20 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * Stops applying IK effects on each frame to the [Skeleton3D] bones and also calls
    * [Skeleton3D.clearBonesGlobalPoseOverride] to remove existing overrides on all bones.
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+  }
+
+  public final fun setInterpolation(interpolation: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to interpolation.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
+  }
+
+  public final fun getInterpolation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

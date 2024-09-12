@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
@@ -29,49 +30,73 @@ public open class LightOccluder2D : Node2D() {
   /**
    * The [OccluderPolygon2D] used to compute the shadow.
    */
-  public var occluder: OccluderPolygon2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPolygonPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
-    }
+  public final inline var occluder: OccluderPolygon2D?
+    @JvmName("occluderProperty")
+    get() = getOccluderPolygon()
+    @JvmName("occluderProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPolygonPtr, NIL)
+      setOccluderPolygon(value)
     }
 
   /**
    * If enabled, the occluder will be part of a real-time generated signed distance field that can
    * be used in custom shaders.
    */
-  public var sdfCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var sdfCollision: Boolean
+    @JvmName("sdfCollisionProperty")
+    get() = isSetAsSdfCollision()
+    @JvmName("sdfCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAsSdfCollisionPtr, NIL)
+      setAsSdfCollision(value)
     }
 
   /**
    * The LightOccluder2D's occluder light mask. The LightOccluder2D will cast shadows only from
    * Light2D(s) that have the same light mask(s).
    */
-  public var occluderLightMask: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOccluderLightMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var occluderLightMask: Int
+    @JvmName("occluderLightMaskProperty")
+    get() = getOccluderLightMask()
+    @JvmName("occluderLightMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
+      setOccluderLightMask(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LIGHTOCCLUDER2D, scriptIndex)
+  }
+
+  public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {
+    TransferContext.writeArguments(OBJECT to polygon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPolygonPtr, NIL)
+  }
+
+  public final fun getOccluderPolygon(): OccluderPolygon2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPolygonPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as OccluderPolygon2D?)
+  }
+
+  public final fun setOccluderLightMask(mask: Int): Unit {
+    TransferContext.writeArguments(LONG to mask.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
+  }
+
+  public final fun getOccluderLightMask(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderLightMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setAsSdfCollision(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAsSdfCollisionPtr, NIL)
+  }
+
+  public final fun isSetAsSdfCollision(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

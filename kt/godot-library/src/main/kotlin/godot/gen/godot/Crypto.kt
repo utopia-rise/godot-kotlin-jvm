@@ -106,7 +106,7 @@ public open class Crypto : RefCounted() {
   /**
    * Generates a [PackedByteArray] of cryptographically secure random bytes with given [size].
    */
-  public fun generateRandomBytes(size: Int): PackedByteArray {
+  public final fun generateRandomBytes(size: Int): PackedByteArray {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.generateRandomBytesPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -116,7 +116,7 @@ public open class Crypto : RefCounted() {
    * Generates an RSA [CryptoKey] that can be used for creating self-signed certificates and passed
    * to [StreamPeerTLS.acceptStream].
    */
-  public fun generateRsa(size: Int): CryptoKey? {
+  public final fun generateRsa(size: Int): CryptoKey? {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.generateRsaPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CryptoKey?)
@@ -149,8 +149,8 @@ public open class Crypto : RefCounted() {
    * ```
    */
   @JvmOverloads
-  public fun generateSelfSignedCertificate(
-    key: CryptoKey,
+  public final fun generateSelfSignedCertificate(
+    key: CryptoKey?,
     issuerName: String = "CN=myserver,O=myorganisation,C=IT",
     notBefore: String = "20140101000000",
     notAfter: String = "20340101000000",
@@ -163,10 +163,10 @@ public open class Crypto : RefCounted() {
   /**
    * Sign a given [hash] of type [hashType] with the provided private [key].
    */
-  public fun sign(
+  public final fun sign(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
-    key: CryptoKey,
+    key: CryptoKey?,
   ): PackedByteArray {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
     TransferContext.callMethod(rawPtr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
@@ -177,11 +177,11 @@ public open class Crypto : RefCounted() {
    * Verify that a given [signature] for [hash] of type [hashType] against the provided public
    * [key].
    */
-  public fun verify(
+  public final fun verify(
     hashType: HashingContext.HashType,
     hash: PackedByteArray,
     signature: PackedByteArray,
-    key: CryptoKey,
+    key: CryptoKey?,
   ): Boolean {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(rawPtr, MethodBindings.verifyPtr, BOOL)
@@ -192,7 +192,7 @@ public open class Crypto : RefCounted() {
    * Encrypt the given [plaintext] with the provided public [key].
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
-  public fun encrypt(key: CryptoKey, plaintext: PackedByteArray): PackedByteArray {
+  public final fun encrypt(key: CryptoKey?, plaintext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
     TransferContext.callMethod(rawPtr, MethodBindings.encryptPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -202,7 +202,7 @@ public open class Crypto : RefCounted() {
    * Decrypt the given [ciphertext] with the provided private [key].
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
-  public fun decrypt(key: CryptoKey, ciphertext: PackedByteArray): PackedByteArray {
+  public final fun decrypt(key: CryptoKey?, ciphertext: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
     TransferContext.callMethod(rawPtr, MethodBindings.decryptPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -213,7 +213,7 @@ public open class Crypto : RefCounted() {
    * The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
    * Currently, only [HashingContext.HASH_SHA256] and [HashingContext.HASH_SHA1] are supported.
    */
-  public fun hmacDigest(
+  public final fun hmacDigest(
     hashType: HashingContext.HashType,
     key: PackedByteArray,
     msg: PackedByteArray,
@@ -230,7 +230,8 @@ public open class Crypto : RefCounted() {
    * [url=https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy]this
    * blog post[/url] for more information.
    */
-  public fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray): Boolean {
+  public final fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray):
+      Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
     TransferContext.callMethod(rawPtr, MethodBindings.constantTimeComparePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

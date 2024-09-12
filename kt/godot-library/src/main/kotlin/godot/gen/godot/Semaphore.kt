@@ -39,7 +39,7 @@ public open class Semaphore : RefCounted() {
    * Waits for the [Semaphore], if its value is zero, blocks until non-zero.
    */
   @JvmName("semaphoreWait")
-  public fun wait(): Unit {
+  public final fun wait(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, NIL)
   }
@@ -48,7 +48,7 @@ public open class Semaphore : RefCounted() {
    * Like [wait], but won't block, so if the value is zero, fails immediately and returns `false`.
    * If non-zero, it returns `true` to report success.
    */
-  public fun tryWait(): Boolean {
+  public final fun tryWait(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tryWaitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -57,7 +57,7 @@ public open class Semaphore : RefCounted() {
   /**
    * Lowers the [Semaphore], allowing one more thread in.
    */
-  public fun post(): Unit {
+  public final fun post(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.postPtr, NIL)
   }

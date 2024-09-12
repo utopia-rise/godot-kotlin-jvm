@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.
@@ -40,15 +41,12 @@ public open class GLTFLight : Resource() {
    * The [Color] of the light. Defaults to white. A black color causes the light to have no effect.
    */
   @CoreTypeLocalCopy
-  public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var color: Color
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
@@ -56,30 +54,24 @@ public open class GLTFLight : Resource() {
    * spot lights, and lux (lumens per m²) for directional lights. When creating a Godot light, this
    * value is converted to a unitless multiplier.
    */
-  public var intensity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var intensity: Float
+    @JvmName("intensityProperty")
+    get() = getIntensity()
+    @JvmName("intensityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+      setIntensity(value)
     }
 
   /**
    * The type of the light. The values accepted by Godot are "point", "spot", and "directional",
    * which correspond to Godot's [OmniLight3D], [SpotLight3D], and [DirectionalLight3D] respectively.
    */
-  public var lightType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var lightType: String
+    @JvmName("lightTypeProperty")
+    get() = getLightType()
+    @JvmName("lightTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightTypePtr, NIL)
+      setLightType(value)
     }
 
   /**
@@ -87,15 +79,12 @@ public open class GLTFLight : Resource() {
    * behave like physical lights (which have infinite range). When creating a Godot light, the range is
    * clamped to 4096.
    */
-  public var range: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var range: Float
+    @JvmName("rangeProperty")
+    get() = getRange()
+    @JvmName("rangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+      setRange(value)
     }
 
   /**
@@ -105,15 +94,12 @@ public open class GLTFLight : Resource() {
    * [SpotLight3D], the ratio between the inner and outer cone angles is used to calculate the
    * attenuation of the light.
    */
-  public var innerConeAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var innerConeAngle: Float
+    @JvmName("innerConeAngleProperty")
+    get() = getInnerConeAngle()
+    @JvmName("innerConeAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInnerConeAnglePtr, NIL)
+      setInnerConeAngle(value)
     }
 
   /**
@@ -123,15 +109,12 @@ public open class GLTFLight : Resource() {
    * the spotlight emits in all directions. When creating a Godot [SpotLight3D], the outer cone angle
    * is used as the angle of the spotlight.
    */
-  public var outerConeAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var outerConeAngle: Float
+    @JvmName("outerConeAngleProperty")
+    get() = getOuterConeAngle()
+    @JvmName("outerConeAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOuterConeAnglePtr, NIL)
+      setOuterConeAngle(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -156,7 +139,7 @@ public open class GLTFLight : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
@@ -165,7 +148,7 @@ public open class GLTFLight : Resource() {
   /**
    * Converts this GLTFLight instance into a Godot [Light3D] node.
    */
-  public fun toNode(): Light3D? {
+  public final fun toNode(): Light3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Light3D?)
@@ -174,19 +157,85 @@ public open class GLTFLight : Resource() {
   /**
    * Serializes this GLTFLight instance into a [Dictionary].
    */
-  public fun toDictionary(): Dictionary<Any?, Any?> {
+  public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
   }
 
-  public fun getAdditionalData(extensionName: StringName): Any? {
+  public final fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public final fun getIntensity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setIntensity(intensity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+  }
+
+  public final fun getLightType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setLightType(lightType: String): Unit {
+    TransferContext.writeArguments(STRING to lightType)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightTypePtr, NIL)
+  }
+
+  public final fun getRange(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRange(range: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to range.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRangePtr, NIL)
+  }
+
+  public final fun getInnerConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setInnerConeAngle(innerConeAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to innerConeAngle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInnerConeAnglePtr, NIL)
+  }
+
+  public final fun getOuterConeAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setOuterConeAngle(outerConeAngle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to outerConeAngle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOuterConeAnglePtr, NIL)
+  }
+
+  public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
   }
 
-  public fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
@@ -195,7 +244,7 @@ public open class GLTFLight : Resource() {
     /**
      * Create a new GLTFLight instance from the given Godot [Light3D] node.
      */
-    public fun fromNode(lightNode: Light3D): GLTFLight? {
+    public final fun fromNode(lightNode: Light3D?): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)
@@ -204,7 +253,7 @@ public open class GLTFLight : Resource() {
     /**
      * Creates a new GLTFLight instance by parsing the given [Dictionary].
      */
-    public fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
+    public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)

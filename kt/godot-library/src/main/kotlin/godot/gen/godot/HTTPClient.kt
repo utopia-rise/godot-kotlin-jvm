@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -70,44 +71,35 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, execution will block until all data is read from the response.
    */
-  public var blockingModeEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var blockingModeEnabled: Boolean
+    @JvmName("blockingModeEnabledProperty")
+    get() = isBlockingModeEnabled()
+    @JvmName("blockingModeEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBlockingModePtr, NIL)
+      setBlockingMode(value)
     }
 
   /**
    * The connection to use for this client.
    */
-  public var connection: StreamPeer?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
-    }
+  public final inline var connection: StreamPeer?
+    @JvmName("connectionProperty")
+    get() = getConnection()
+    @JvmName("connectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConnectionPtr, NIL)
+      setConnection(value)
     }
 
   /**
    * The size of the buffer used and maximum bytes to read per iteration. See
    * [readResponseBodyChunk].
    */
-  public var readChunkSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var readChunkSize: Int
+    @JvmName("readChunkSizeProperty")
+    get() = getReadChunkSize()
+    @JvmName("readChunkSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setReadChunkSizePtr, NIL)
+      setReadChunkSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -122,7 +114,7 @@ public open class HTTPClient : RefCounted() {
    * [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public fun connectToHost(
+  public final fun connectToHost(
     host: String,
     port: Int = -1,
     tlsOptions: TLSOptions? = null,
@@ -130,6 +122,17 @@ public open class HTTPClient : RefCounted() {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setConnection(connection: StreamPeer?): Unit {
+    TransferContext.writeArguments(OBJECT to connection)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionPtr, NIL)
+  }
+
+  public final fun getConnection(): StreamPeer? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
   }
 
   /**
@@ -142,7 +145,7 @@ public open class HTTPClient : RefCounted() {
    * Headers are HTTP request headers. For available HTTP methods, see [Method].
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
-  public fun requestRaw(
+  public final fun requestRaw(
     method: Method,
     url: String,
     headers: PackedStringArray,
@@ -187,7 +190,7 @@ public open class HTTPClient : RefCounted() {
    * query string in the URL. See [String.uriEncode] for an example.
    */
   @JvmOverloads
-  public fun request(
+  public final fun request(
     method: Method,
     url: String,
     headers: PackedStringArray,
@@ -201,7 +204,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Closes the current connection, allowing reuse of this [HTTPClient].
    */
-  public fun close(): Unit {
+  public final fun close(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
@@ -209,7 +212,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, this [HTTPClient] has a response available.
    */
-  public fun hasResponse(): Boolean {
+  public final fun hasResponse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasResponsePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -218,7 +221,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * If `true`, this [HTTPClient] has a response that is chunked.
    */
-  public fun isResponseChunked(): Boolean {
+  public final fun isResponseChunked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isResponseChunkedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -227,7 +230,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns the response's HTTP status code.
    */
-  public fun getResponseCode(): Int {
+  public final fun getResponseCode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseCodePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -236,7 +239,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * Returns the response headers.
    */
-  public fun getResponseHeaders(): PackedStringArray {
+  public final fun getResponseHeaders(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -254,7 +257,7 @@ public open class HTTPClient : RefCounted() {
    * }
    * [/codeblock]
    */
-  public fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
+  public final fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersAsDictionaryPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
@@ -266,7 +269,7 @@ public open class HTTPClient : RefCounted() {
    * `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    * **Note:** This function always returns `-1` on the Web platform due to browsers limitations.
    */
-  public fun getResponseBodyLength(): Long {
+  public final fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseBodyLengthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -275,16 +278,38 @@ public open class HTTPClient : RefCounted() {
   /**
    * Reads one chunk from the response.
    */
-  public fun readResponseBodyChunk(): PackedByteArray {
+  public final fun readResponseBodyChunk(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readResponseBodyChunkPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
   }
 
+  public final fun setReadChunkSize(bytes: Int): Unit {
+    TransferContext.writeArguments(LONG to bytes.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setReadChunkSizePtr, NIL)
+  }
+
+  public final fun getReadChunkSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBlockingMode(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBlockingModePtr, NIL)
+  }
+
+  public final fun isBlockingModeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns a [Status] constant. Need to call [poll] in order to get status updates.
    */
-  public fun getStatus(): Status {
+  public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
@@ -293,7 +318,7 @@ public open class HTTPClient : RefCounted() {
   /**
    * This needs to be called in order to have any request processed. Check results with [getStatus].
    */
-  public fun poll(): GodotError {
+  public final fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -303,7 +328,7 @@ public open class HTTPClient : RefCounted() {
    * Sets the proxy server for HTTP requests.
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpProxy(host: String, port: Int): Unit {
+  public final fun setHttpProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHttpProxyPtr, NIL)
   }
@@ -312,7 +337,7 @@ public open class HTTPClient : RefCounted() {
    * Sets the proxy server for HTTPS requests.
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
-  public fun setHttpsProxy(host: String, port: Int): Unit {
+  public final fun setHttpsProxy(host: String, port: Int): Unit {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setHttpsProxyPtr, NIL)
   }
@@ -356,7 +381,7 @@ public open class HTTPClient : RefCounted() {
    * // Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"
    * ```
    */
-  public fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
+  public final fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
     TransferContext.writeArguments(DICTIONARY to fields)
     TransferContext.callMethod(rawPtr, MethodBindings.queryStringFromDictPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

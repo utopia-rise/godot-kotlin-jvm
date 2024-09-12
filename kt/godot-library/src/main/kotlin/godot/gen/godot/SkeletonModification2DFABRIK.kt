@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse
@@ -48,39 +49,55 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * The NodePath to the node that is the target for the FABRIK modification. This node is what the
    * FABRIK chain will attempt to rotate the bone chain to.
    */
-  public var targetNodepath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var targetNodepath: NodePath
+    @JvmName("targetNodepathProperty")
+    get() = getTargetNode()
+    @JvmName("targetNodepathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+      setTargetNode(value)
     }
 
   /**
    * The number of FABRIK joints in the FABRIK modification.
    */
-  public var fabrikDataChainLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var fabrikDataChainLength: Int
+    @JvmName("fabrikDataChainLengthProperty")
+    get() = getFabrikDataChainLength()
+    @JvmName("fabrikDataChainLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
+      setFabrikDataChainLength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETONMODIFICATION2DFABRIK, scriptIndex)
   }
 
+  public final fun setTargetNode(targetNodepath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to targetNodepath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+  }
+
+  public final fun getTargetNode(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setFabrikDataChainLength(length: Int): Unit {
+    TransferContext.writeArguments(LONG to length.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
+  }
+
+  public final fun getFabrikDataChainLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Sets the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
-  public fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
+  public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNodepath)
     TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointBone2dNodePtr, NIL)
   }
@@ -88,7 +105,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   /**
    * Returns the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
-  public fun getFabrikJointBone2dNode(jointIdx: Int): NodePath {
+  public final fun getFabrikJointBone2dNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointBone2dNodePtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
@@ -98,7 +115,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * Sets the bone index, [boneIdx], of the FABRIK joint at [jointIdx]. When possible, this will
    * also update the `bone2d_node` of the FABRIK joint based on data provided by the linked skeleton.
    */
-  public fun setFabrikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
+  public final fun setFabrikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointBoneIndexPtr, NIL)
   }
@@ -106,7 +123,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   /**
    * Returns the index of the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
-  public fun getFabrikJointBoneIndex(jointIdx: Int): Int {
+  public final fun getFabrikJointBoneIndex(jointIdx: Int): Int {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointBoneIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -115,7 +132,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   /**
    * Sets the magnet position vector for the joint at [jointIdx].
    */
-  public fun setFabrikJointMagnetPosition(jointIdx: Int, magnetPosition: Vector2): Unit {
+  public final fun setFabrikJointMagnetPosition(jointIdx: Int, magnetPosition: Vector2): Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), VECTOR2 to magnetPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointMagnetPositionPtr, NIL)
   }
@@ -123,7 +140,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
   /**
    * Returns the magnet position vector for the joint at [jointIdx].
    */
-  public fun getFabrikJointMagnetPosition(jointIdx: Int): Vector2 {
+  public final fun getFabrikJointMagnetPosition(jointIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointMagnetPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -135,7 +152,8 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * **Note:** This option only works for the tip/final joint in the chain. For all other nodes,
    * this option will be ignored.
    */
-  public fun setFabrikJointUseTargetRotation(jointIdx: Int, useTargetRotation: Boolean): Unit {
+  public final fun setFabrikJointUseTargetRotation(jointIdx: Int, useTargetRotation: Boolean):
+      Unit {
     TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to useTargetRotation)
     TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointUseTargetRotationPtr, NIL)
   }
@@ -144,7 +162,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * Returns whether the joint is using the target's rotation rather than allowing FABRIK to rotate
    * the joint. This option only applies to the tip/final joint in the chain.
    */
-  public fun getFabrikJointUseTargetRotation(jointIdx: Int): Boolean {
+  public final fun getFabrikJointUseTargetRotation(jointIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointUseTargetRotationPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This is an abstract class. See the derived types for descriptions of the possible operations.
@@ -25,19 +26,27 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   /**
    * A vector type that this operation is performed on.
    */
-  public var opType: OpType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-      return VisualShaderNodeVectorBase.OpType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var opType: OpType
+    @JvmName("opTypeProperty")
+    get() = getOpType()
+    @JvmName("opTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+      setOpType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORBASE, scriptIndex)
+  }
+
+  public final fun setOpType(type: OpType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+  }
+
+  public final fun getOpType(): OpType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeVectorBase.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

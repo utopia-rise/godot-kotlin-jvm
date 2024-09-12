@@ -37,7 +37,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Returns a boolean that indicates whether the [PhysicalBoneSimulator3D] is running and
    * simulating.
    */
-  public fun isSimulatingPhysics(): Boolean {
+  public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -46,7 +46,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
-  public fun physicalBonesStopSimulation(): Unit {
+  public final fun physicalBonesStopSimulation(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
   }
@@ -58,7 +58,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * simulated.
    */
   @JvmOverloads
-  public fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
+  public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
@@ -68,7 +68,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Adds a collision exception to the physical bone.
    * Works just like the [RigidBody3D] node.
    */
-  public fun physicalBonesAddCollisionException(exception: RID): Unit {
+  public final fun physicalBonesAddCollisionException(exception: RID): Unit {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
   }
@@ -77,7 +77,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Removes a collision exception to the physical bone.
    * Works just like the [RigidBody3D] node.
    */
-  public fun physicalBonesRemoveCollisionException(exception: RID): Unit {
+  public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }

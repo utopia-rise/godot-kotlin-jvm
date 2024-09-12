@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
@@ -49,53 +50,77 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Number of vertices in the width of the height map. Changing this will resize the [mapData].
    */
-  public var mapWidth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMapWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var mapWidth: Int
+    @JvmName("mapWidthProperty")
+    get() = getMapWidth()
+    @JvmName("mapWidthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMapWidthPtr, NIL)
+      setMapWidth(value)
     }
 
   /**
    * Number of vertices in the depth of the height map. Changing this will resize the [mapData].
    */
-  public var mapDepth: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMapDepthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var mapDepth: Int
+    @JvmName("mapDepthProperty")
+    get() = getMapDepth()
+    @JvmName("mapDepthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMapDepthPtr, NIL)
+      setMapDepth(value)
     }
 
   /**
    * Height map data. The array's size must be equal to [mapWidth] multiplied by [mapDepth].
    */
-  public var mapData: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+  public final inline var mapData: PackedFloat32Array
+    @JvmName("mapDataProperty")
+    get() = getMapData()
+    @JvmName("mapDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMapDataPtr, NIL)
+      setMapData(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_HEIGHTMAPSHAPE3D, scriptIndex)
   }
 
+  public final fun setMapWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMapWidthPtr, NIL)
+  }
+
+  public final fun getMapWidth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMapWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setMapDepth(height: Int): Unit {
+    TransferContext.writeArguments(LONG to height.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMapDepthPtr, NIL)
+  }
+
+  public final fun getMapDepth(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMapDepthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setMapData(`data`: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMapDataPtr, NIL)
+  }
+
+  public final fun getMapData(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
   /**
    * Returns the smallest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
-  public fun getMinHeight(): Float {
+  public final fun getMinHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -104,7 +129,7 @@ public open class HeightMapShape3D : Shape3D() {
   /**
    * Returns the largest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
-  public fun getMaxHeight(): Float {
+  public final fun getMaxHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -119,8 +144,8 @@ public open class HeightMapShape3D : Shape3D() {
    * pixel). This range value gets remapped to [heightMin] and [heightMax] to form the final height
    * value.
    */
-  public fun updateMapDataFromImage(
-    image: Image,
+  public final fun updateMapDataFromImage(
+    image: Image?,
     heightMin: Float,
     heightMax: Float,
   ): Unit {

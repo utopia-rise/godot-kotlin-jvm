@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide
@@ -56,15 +57,12 @@ public open class LightmapGI : VisualInstance3D() {
    * To further speed up bake times, decrease [bounces], disable [useDenoiser] and increase the
    * lightmap texel size on 3D scenes in the Import doc.
    */
-  public var quality: BakeQuality
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
-      return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var quality: BakeQuality
+    @JvmName("qualityProperty")
+    get() = getBakeQuality()
+    @JvmName("qualityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
+      setBakeQuality(value)
     }
 
   /**
@@ -72,15 +70,12 @@ public open class LightmapGI : VisualInstance3D() {
    * brighter, more realistic lighting, at the cost of longer bake times. If set to `0`, only
    * environment lighting, direct light and emissive lighting is baked.
    */
-  public var bounces: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var bounces: Int
+    @JvmName("bouncesProperty")
+    get() = getBounces()
+    @JvmName("bouncesProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
+      setBounces(value)
     }
 
   /**
@@ -91,15 +86,12 @@ public open class LightmapGI : VisualInstance3D() {
    * **Note:** [bounceIndirectEnergy] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
-  public var bounceIndirectEnergy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bounceIndirectEnergy: Float
+    @JvmName("bounceIndirectEnergyProperty")
+    get() = getBounceIndirectEnergy()
+    @JvmName("bounceIndirectEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
+      setBounceIndirectEnergy(value)
     }
 
   /**
@@ -113,15 +105,12 @@ public open class LightmapGI : VisualInstance3D() {
    * **Note:** The property's name has no relationship with [DirectionalLight3D]. [directional]
    * works with all light types.
    */
-  public var directional: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var directional: Boolean
+    @JvmName("directionalProperty")
+    get() = isDirectional()
+    @JvmName("directionalProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+      setDirectional(value)
     }
 
   /**
@@ -132,29 +121,23 @@ public open class LightmapGI : VisualInstance3D() {
    * **Note:** [useTextureForBounces] only has an effect if [bounces] is set to a value greater than
    * or equal to `1`.
    */
-  public var useTextureForBounces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useTextureForBounces: Boolean
+    @JvmName("useTextureForBouncesProperty")
+    get() = isUsingTextureForBounces()
+    @JvmName("useTextureForBouncesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
+      setUseTextureForBounces(value)
     }
 
   /**
    * If `true`, ignore environment lighting when baking lightmaps.
    */
-  public var interior: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var interior: Boolean
+    @JvmName("interiorProperty")
+    get() = isInterior()
+    @JvmName("interiorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+      setInterior(value)
     }
 
   /**
@@ -163,15 +146,12 @@ public open class LightmapGI : VisualInstance3D() {
    * impacted significantly by the use of a denoiser, although lossless compression may do a better job
    * at compressing a denoised image.
    */
-  public var useDenoiser: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useDenoiser: Boolean
+    @JvmName("useDenoiserProperty")
+    get() = isUsingDenoiser()
+    @JvmName("useDenoiserProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
+      setUseDenoiser(value)
     }
 
   /**
@@ -179,15 +159,12 @@ public open class LightmapGI : VisualInstance3D() {
    * [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to
    * JNLM.
    */
-  public var denoiserStrength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var denoiserStrength: Float
+    @JvmName("denoiserStrengthProperty")
+    get() = getDenoiserStrength()
+    @JvmName("denoiserStrengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
+      setDenoiserStrength(value)
     }
 
   /**
@@ -196,15 +173,12 @@ public open class LightmapGI : VisualInstance3D() {
    * [useDenoiser] is `true` and [ProjectSettings.rendering/lightmapping/denoising/denoiser] is set to
    * JNLM.
    */
-  public var denoiserRange: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var denoiserRange: Int
+    @JvmName("denoiserRangeProperty")
+    get() = getDenoiserRange()
+    @JvmName("denoiserRangeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
+      setDenoiserRange(value)
     }
 
   /**
@@ -212,15 +186,12 @@ public open class LightmapGI : VisualInstance3D() {
    * baked lightmap, but can introduce peter-panning (shadows not connecting to their casters).
    * Real-time [Light3D] shadows are not affected by this [bias] property.
    */
-  public var bias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bias: Float
+    @JvmName("biasProperty")
+    get() = getBias()
+    @JvmName("biasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+      setBias(value)
     }
 
   /**
@@ -229,15 +200,12 @@ public open class LightmapGI : VisualInstance3D() {
    * per-mesh density multiplier (which is designed to be used when the same mesh is used at different
    * scales). Lower values will result in faster bake times.
    */
-  public var texelScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var texelScale: Float
+    @JvmName("texelScaleProperty")
+    get() = getTexelScale()
+    @JvmName("texelScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
+      setTexelScale(value)
     }
 
   /**
@@ -245,44 +213,35 @@ public open class LightmapGI : VisualInstance3D() {
    * slices being generated, but may not work on all hardware as a result of hardware limitations on
    * texture sizes. Leave [maxTextureSize] at its default value of `16384` if unsure.
    */
-  public var maxTextureSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var maxTextureSize: Int
+    @JvmName("maxTextureSizeProperty")
+    get() = getMaxTextureSize()
+    @JvmName("maxTextureSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
+      setMaxTextureSize(value)
     }
 
   /**
    * The environment mode to use when baking lightmaps.
    */
-  public var environmentMode: EnvironmentMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
-      return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var environmentMode: EnvironmentMode
+    @JvmName("environmentModeProperty")
+    get() = getEnvironmentMode()
+    @JvmName("environmentModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
+      setEnvironmentMode(value)
     }
 
   /**
    * The sky to use as a source of environment lighting. Only effective if [environmentMode] is
    * [ENVIRONMENT_MODE_CUSTOM_SKY].
    */
-  public var environmentCustomSky: Sky?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Sky?)
-    }
+  public final inline var environmentCustomSky: Sky?
+    @JvmName("environmentCustomSkyProperty")
+    get() = getEnvironmentCustomSky()
+    @JvmName("environmentCustomSkyProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
+      setEnvironmentCustomSky(value)
     }
 
   /**
@@ -290,30 +249,24 @@ public open class LightmapGI : VisualInstance3D() {
    * [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
   @CoreTypeLocalCopy
-  public var environmentCustomColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var environmentCustomColor: Color
+    @JvmName("environmentCustomColorProperty")
+    get() = getEnvironmentCustomColor()
+    @JvmName("environmentCustomColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
+      setEnvironmentCustomColor(value)
     }
 
   /**
    * The color multiplier to use for environment lighting. Only effective if [environmentMode] is
    * [ENVIRONMENT_MODE_CUSTOM_COLOR].
    */
-  public var environmentCustomEnergy: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var environmentCustomEnergy: Float
+    @JvmName("environmentCustomEnergyProperty")
+    get() = getEnvironmentCustomEnergy()
+    @JvmName("environmentCustomEnergyProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
+      setEnvironmentCustomEnergy(value)
     }
 
   /**
@@ -322,15 +275,12 @@ public open class LightmapGI : VisualInstance3D() {
    * range present when baking. If exposure is too high, the [LightmapGI] will have banding artifacts
    * or may have over-exposure artifacts.
    */
-  public var cameraAttributes: CameraAttributes?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
-    }
+  public final inline var cameraAttributes: CameraAttributes?
+    @JvmName("cameraAttributesProperty")
+    get() = getCameraAttributes()
+    @JvmName("cameraAttributesProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+      setCameraAttributes(value)
     }
 
   /**
@@ -342,30 +292,24 @@ public open class LightmapGI : VisualInstance3D() {
    * **Note:** Regardless of [generateProbesSubdiv], direct lighting on dynamic objects is always
    * applied using [Light3D] nodes in real-time.
    */
-  public var generateProbesSubdiv: GenerateProbes
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
-      return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var generateProbesSubdiv: GenerateProbes
+    @JvmName("generateProbesSubdivProperty")
+    get() = getGenerateProbes()
+    @JvmName("generateProbesSubdivProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
+      setGenerateProbes(value)
     }
 
   /**
    * The [LightmapGIData] associated to this [LightmapGI] node. This resource is automatically
    * created after baking, and is not meant to be created manually.
    */
-  public var lightData: LightmapGIData?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as LightmapGIData?)
-    }
+  public final inline var lightData: LightmapGIData?
+    @JvmName("lightDataProperty")
+    get() = getLightData()
+    @JvmName("lightDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
+      setLightData(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -391,12 +335,221 @@ public open class LightmapGI : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
+  public final fun environmentCustomColorMutate(block: Color.() -> Unit): Color =
       environmentCustomColor.apply{
       block(this)
       environmentCustomColor = this
   }
 
+
+  public final fun setLightData(`data`: LightmapGIData?): Unit {
+    TransferContext.writeArguments(OBJECT to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
+  }
+
+  public final fun getLightData(): LightmapGIData? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as LightmapGIData?)
+  }
+
+  public final fun setBakeQuality(bakeQuality: BakeQuality): Unit {
+    TransferContext.writeArguments(LONG to bakeQuality.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
+  }
+
+  public final fun getBakeQuality(): BakeQuality {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
+    return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBounces(bounces: Int): Unit {
+    TransferContext.writeArguments(LONG to bounces.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
+  }
+
+  public final fun getBounces(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBounceIndirectEnergy(bounceIndirectEnergy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bounceIndirectEnergy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
+  }
+
+  public final fun getBounceIndirectEnergy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setGenerateProbes(subdivision: GenerateProbes): Unit {
+    TransferContext.writeArguments(LONG to subdivision.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
+  }
+
+  public final fun getGenerateProbes(): GenerateProbes {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
+    return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+  }
+
+  public final fun getBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setEnvironmentMode(mode: EnvironmentMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
+  }
+
+  public final fun getEnvironmentMode(): EnvironmentMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
+    return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setEnvironmentCustomSky(sky: Sky?): Unit {
+    TransferContext.writeArguments(OBJECT to sky)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
+  }
+
+  public final fun getEnvironmentCustomSky(): Sky? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Sky?)
+  }
+
+  public final fun setEnvironmentCustomColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
+  }
+
+  public final fun getEnvironmentCustomColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setEnvironmentCustomEnergy(energy: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to energy.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
+  }
+
+  public final fun getEnvironmentCustomEnergy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setTexelScale(texelScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to texelScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
+  }
+
+  public final fun getTexelScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMaxTextureSize(maxTextureSize: Int): Unit {
+    TransferContext.writeArguments(LONG to maxTextureSize.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
+  }
+
+  public final fun getMaxTextureSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setUseDenoiser(useDenoiser: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useDenoiser)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
+  }
+
+  public final fun isUsingDenoiser(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDenoiserStrength(denoiserStrength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to denoiserStrength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
+  }
+
+  public final fun getDenoiserStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDenoiserRange(denoiserRange: Int): Unit {
+    TransferContext.writeArguments(LONG to denoiserRange.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
+  }
+
+  public final fun getDenoiserRange(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setInterior(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+  }
+
+  public final fun isInterior(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDirectional(directional: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to directional)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+  }
+
+  public final fun isDirectional(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setUseTextureForBounces(useTextureForBounces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to useTextureForBounces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
+  }
+
+  public final fun isUsingTextureForBounces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+    TransferContext.writeArguments(OBJECT to cameraAttributes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+  }
+
+  public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+  }
 
   public enum class BakeQuality(
     id: Long,

@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
@@ -27,19 +28,27 @@ public open class InputEventShortcut : InputEvent() {
    * The [Shortcut] represented by this event. Its [Shortcut.matchesEvent] method will always return
    * `true` for this event.
    */
-  public var shortcut: Shortcut?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
-    }
+  public final inline var shortcut: Shortcut?
+    @JvmName("shortcutProperty")
+    get() = getShortcut()
+    @JvmName("shortcutProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
+      setShortcut(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTSHORTCUT, scriptIndex)
+  }
+
+  public final fun setShortcut(shortcut: Shortcut?): Unit {
+    TransferContext.writeArguments(OBJECT to shortcut)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
+  }
+
+  public final fun getShortcut(): Shortcut? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
   }
 
   public companion object

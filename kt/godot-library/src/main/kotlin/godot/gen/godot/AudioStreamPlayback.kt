@@ -100,7 +100,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Associates [AudioSamplePlayback] to this [AudioStreamPlayback] for playing back the audio
    * sample of this stream.
    */
-  public fun setSamplePlayback(playbackSample: AudioSamplePlayback): Unit {
+  public final fun setSamplePlayback(playbackSample: AudioSamplePlayback?): Unit {
     TransferContext.writeArguments(OBJECT to playbackSample)
     TransferContext.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
   }
@@ -109,7 +109,7 @@ public open class AudioStreamPlayback : RefCounted() {
    * Returns the [AudioSamplePlayback] associated with this [AudioStreamPlayback] for playing back
    * the audio sample of this stream.
    */
-  public fun getSamplePlayback(): AudioSamplePlayback? {
+  public final fun getSamplePlayback(): AudioSamplePlayback? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioSamplePlayback?)

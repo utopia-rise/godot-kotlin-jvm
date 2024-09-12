@@ -52,10 +52,6 @@ class ClassGraphService(classRepository: ClassRepository) : IClassGraphService {
     }
 
     override fun doAncestorsHaveMethod(cl: EnrichedClass, method: EnrichedMethod): Boolean {
-        if (method.name == "toString") {
-            return true
-        }
-
         if (cl.inherits == "") return false
 
         return getMethodFromAncestor(cl, method) != null

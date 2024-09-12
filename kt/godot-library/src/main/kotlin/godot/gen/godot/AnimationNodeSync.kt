@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An animation node used to combine, mix, or blend two or more animations together while keeping
@@ -27,19 +28,27 @@ public open class AnimationNodeSync : AnimationNode() {
    * If `false`, the blended animations' frame are stopped when the blend value is `0`.
    * If `true`, forcing the blended animations to advance frame.
    */
-  public var sync: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var sync: Boolean
+    @JvmName("syncProperty")
+    get() = isUsingSync()
+    @JvmName("syncProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+      setUseSync(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESYNC, scriptIndex)
+  }
+
+  public final fun setUseSync(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseSyncPtr, NIL)
+  }
+
+  public final fun isUsingSync(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

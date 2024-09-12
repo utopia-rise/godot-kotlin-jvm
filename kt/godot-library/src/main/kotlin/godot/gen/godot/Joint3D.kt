@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
@@ -35,15 +36,12 @@ public open class Joint3D internal constructor() : Node3D() {
    * If left empty and [nodeB] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
-  public var nodeA: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var nodeA: NodePath
+    @JvmName("nodeAProperty")
+    get() = getNodeA()
+    @JvmName("nodeAProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+      setNodeA(value)
     }
 
   /**
@@ -51,54 +49,89 @@ public open class Joint3D internal constructor() : Node3D() {
    * If left empty and [nodeA] is set, the body is attached to a fixed [StaticBody3D] without
    * collision shapes.
    */
-  public var nodeB: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var nodeB: NodePath
+    @JvmName("nodeBProperty")
+    get() = getNodeB()
+    @JvmName("nodeBProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+      setNodeB(value)
     }
 
   /**
    * The priority used to define which solver is executed first for multiple joints. The lower the
    * value, the higher the priority.
    */
-  public var solverPriority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var solverPriority: Int
+    @JvmName("solverPriorityProperty")
+    get() = getSolverPriority()
+    @JvmName("solverPriorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
+      setSolverPriority(value)
     }
 
   /**
    * If `true`, the two bodies bound together do not collide with each other.
    */
-  public var excludeNodesFromCollision: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var excludeNodesFromCollision: Boolean
+    @JvmName("excludeNodesFromCollisionProperty")
+    get() = getExcludeNodesFromCollision()
+    @JvmName("excludeNodesFromCollisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+      setExcludeNodesFromCollision(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
   }
 
+  public final fun setNodeA(node: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+  }
+
+  public final fun getNodeA(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setNodeB(node: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to node)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+  }
+
+  public final fun getNodeB(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setSolverPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
+  }
+
+  public final fun getSolverPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+  }
+
+  public final fun getExcludeNodesFromCollision(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns the joint's internal [RID] from the [PhysicsServer3D].
    */
-  public fun getRid(): RID {
+  public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

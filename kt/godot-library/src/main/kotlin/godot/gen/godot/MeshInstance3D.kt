@@ -26,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -40,54 +41,78 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * The [Mesh] resource for the instance.
    */
-  public var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
-    }
+  public final inline var mesh: Mesh?
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * The [Skin] to be used by this instance.
    */
-  public var skin: Skin?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
-    }
+  public final inline var skin: Skin?
+    @JvmName("skinProperty")
+    get() = getSkin()
+    @JvmName("skinProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+      setSkin(value)
     }
 
   /**
    * [NodePath] to the [Skeleton3D] associated with the instance.
    */
-  public var skeleton: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var skeleton: NodePath
+    @JvmName("skeletonProperty")
+    get() = getSkeletonPath()
+    @JvmName("skeletonProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
+      setSkeletonPath(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHINSTANCE3D, scriptIndex)
   }
 
+  public final fun setMesh(mesh: Mesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+  }
+
+  public final fun setSkeletonPath(skeletonPath: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to skeletonPath)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPathPtr, NIL)
+  }
+
+  public final fun getSkeletonPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setSkin(skin: Skin?): Unit {
+    TransferContext.writeArguments(OBJECT to skin)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+  }
+
+  public final fun getSkin(): Skin? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
+  }
+
   /**
    * Returns the internal [SkinReference] containing the skeleton's [RID] attached to this RID. See
    * also [Resource.getRid], [SkinReference.getSkeleton], and [RenderingServer.instanceAttachSkeleton].
    */
-  public fun getSkinReference(): SkinReference? {
+  public final fun getSkinReference(): SkinReference? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinReferencePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
@@ -97,7 +122,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Returns the number of surface override materials. This is equivalent to [Mesh.getSurfaceCount].
    * See also [getSurfaceOverrideMaterial].
    */
-  public fun getSurfaceOverrideMaterialCount(): Int {
+  public final fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceOverrideMaterialCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -110,7 +135,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Override properties, not the material within the [Mesh] resource. To set the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
-  public fun setSurfaceOverrideMaterial(surface: Int, material: Material): Unit {
+  public final fun setSurfaceOverrideMaterial(surface: Int, material: Material?): Unit {
     TransferContext.writeArguments(LONG to surface.toLong(), OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceOverrideMaterialPtr, NIL)
   }
@@ -122,7 +147,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Override properties, not the material within the [Mesh] resource. To get the material within the
    * [Mesh] resource, use [Mesh.surfaceGetMaterial] instead.
    */
-  public fun getSurfaceOverrideMaterial(surface: Int): Material? {
+  public final fun getSurfaceOverrideMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceOverrideMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
@@ -135,7 +160,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * [GeometryInstance3D.materialOverride] is used, all surfaces will return the override material.
    * Returns `null` if no material is active, including when [mesh] is `null`.
    */
-  public fun getActiveMaterial(surface: Int): Material? {
+  public final fun getActiveMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getActiveMaterialPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Material?)
@@ -145,7 +170,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * This helper creates a [StaticBody3D] child node with a [ConcavePolygonShape3D] collision shape
    * calculated from the mesh geometry. It's mainly used for testing.
    */
-  public fun createTrimeshCollision(): Unit {
+  public final fun createTrimeshCollision(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createTrimeshCollisionPtr, NIL)
   }
@@ -159,7 +184,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * vertices. Disabled by default.
    */
   @JvmOverloads
-  public fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
+  public final fun createConvexCollision(clean: Boolean = true, simplify: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, MethodBindings.createConvexCollisionPtr, NIL)
   }
@@ -170,8 +195,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * operation can be controlled with parameters from the optional [settings].
    */
   @JvmOverloads
-  public fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? = null):
-      Unit {
+  public final fun createMultipleConvexCollisions(settings: MeshConvexDecompositionSettings? =
+      null): Unit {
     TransferContext.writeArguments(OBJECT to settings)
     TransferContext.callMethod(rawPtr, MethodBindings.createMultipleConvexCollisionsPtr, NIL)
   }
@@ -179,7 +204,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   /**
    * Returns the number of blend shapes available. Produces an error if [mesh] is `null`.
    */
-  public fun getBlendShapeCount(): Int {
+  public final fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -189,7 +214,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Returns the index of the blend shape with the given [name]. Returns `-1` if no blend shape with
    * this name exists, including when [mesh] is `null`.
    */
-  public fun findBlendShapeByName(name: StringName): Int {
+  public final fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findBlendShapeByNamePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -199,7 +224,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Returns the value of the blend shape at the given [blendShapeIdx]. Returns `0.0` and produces
    * an error if [mesh] is `null` or doesn't have a blend shape at that index.
    */
-  public fun getBlendShapeValue(blendShapeIdx: Int): Float {
+  public final fun getBlendShapeValue(blendShapeIdx: Int): Float {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeValuePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -209,7 +234,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * Sets the value of the blend shape at [blendShapeIdx] to [value]. Produces an error if [mesh] is
    * `null` or doesn't have a blend shape at that index.
    */
-  public fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
+  public final fun setBlendShapeValue(blendShapeIdx: Int, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong(), DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeValuePtr, NIL)
   }
@@ -218,7 +243,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * This helper creates a [MeshInstance3D] child node with gizmos at every vertex calculated from
    * the mesh geometry. It's mainly used for testing.
    */
-  public fun createDebugTangents(): Unit {
+  public final fun createDebugTangents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createDebugTangentsPtr, NIL)
   }
@@ -231,7 +256,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
    * in the process.
    */
   @JvmOverloads
-  public fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
+  public final fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeMeshFromCurrentBlendShapeMixPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)

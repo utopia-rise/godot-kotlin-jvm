@@ -34,7 +34,7 @@ public open class SliderJoint3D : Joint3D() {
   /**
    * Assigns [value] to the given parameter (see [Param] constants).
    */
-  public fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
@@ -42,7 +42,7 @@ public open class SliderJoint3D : Joint3D() {
   /**
    * Returns the value of the given parameter (see [Param] constants).
    */
-  public fun getParam(`param`: Param): Float {
+  public final fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

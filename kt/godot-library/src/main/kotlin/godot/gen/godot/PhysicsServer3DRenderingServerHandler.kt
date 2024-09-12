@@ -50,7 +50,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   /**
    * Sets the position for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
-  public fun setVertex(vertexId: Int, vertex: Vector3): Unit {
+  public final fun setVertex(vertexId: Int, vertex: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, MethodBindings.setVertexPtr, NIL)
   }
@@ -58,7 +58,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   /**
    * Sets the normal for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
-  public fun setNormal(vertexId: Int, normal: Vector3): Unit {
+  public final fun setNormal(vertexId: Int, normal: Vector3): Unit {
     TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
   }
@@ -66,7 +66,7 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   /**
    * Sets the bounding box for the [SoftBody3D].
    */
-  public fun setAabb(aabb: AABB): Unit {
+  public final fun setAabb(aabb: AABB): Unit {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }

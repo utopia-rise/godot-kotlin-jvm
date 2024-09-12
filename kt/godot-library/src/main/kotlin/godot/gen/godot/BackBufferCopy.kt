@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the
@@ -36,30 +37,24 @@ public open class BackBufferCopy : Node2D() {
   /**
    * Buffer mode. See [CopyMode] constants.
    */
-  public var copyMode: CopyMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
-      return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var copyMode: CopyMode
+    @JvmName("copyModeProperty")
+    get() = getCopyMode()
+    @JvmName("copyModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
+      setCopyMode(value)
     }
 
   /**
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    */
   @CoreTypeLocalCopy
-  public var rect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+  public final inline var rect: Rect2
+    @JvmName("rectProperty")
+    get() = getRect()
+    @JvmName("rectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+      setRect(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -84,11 +79,33 @@ public open class BackBufferCopy : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
+  public final fun rectMutate(block: Rect2.() -> Unit): Rect2 = rect.apply{
       block(this)
       rect = this
   }
 
+
+  public final fun setRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+  }
+
+  public final fun getRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public final fun setCopyMode(copyMode: CopyMode): Unit {
+    TransferContext.writeArguments(LONG to copyMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
+  }
+
+  public final fun getCopyMode(): CopyMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
+    return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class CopyMode(
     id: Long,

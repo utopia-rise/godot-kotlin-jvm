@@ -32,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * By changing various properties of this object, such as the shape, you can configure the
@@ -45,15 +46,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
    * layers and masks[/url] in the documentation for more information.
    */
-  public var collisionMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var collisionMask: Long
+    @JvmName("collisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("collisionMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+      setCollisionMask(value)
     }
 
   /**
@@ -63,44 +61,35 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * property value. To update the value you need to modify the returned array, and then assign it to
    * the property again.
    */
-  public var exclude: VariantArray<RID>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
-    }
+  public final inline var exclude: VariantArray<RID>
+    @JvmName("excludeProperty")
+    get() = getExclude()
+    @JvmName("excludeProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+      setExclude(value)
     }
 
   /**
    * The collision margin for the shape.
    */
-  public var margin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var margin: Float
+    @JvmName("marginProperty")
+    get() = getMargin()
+    @JvmName("marginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+      setMargin(value)
     }
 
   /**
    * The motion of the shape being queried for.
    */
   @CoreTypeLocalCopy
-  public var motion: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var motion: Vector2
+    @JvmName("motionProperty")
+    get() = getMotion()
+    @JvmName("motionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMotionPtr, NIL)
+      setMotion(value)
     }
 
   /**
@@ -108,15 +97,12 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * reference which avoids the shape to be released while being used for queries, so always prefer
    * using this over [shapeRid].
    */
-  public var shape: Resource?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
-    }
+  public final inline var shape: Resource?
+    @JvmName("shapeProperty")
+    get() = getShape()
+    @JvmName("shapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+      setShape(value)
     }
 
   /**
@@ -152,58 +138,46 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * PhysicsServer2D.FreeRid(shapeRid);
    * ```
    */
-  public var shapeRid: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShapeRidPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline var shapeRid: RID
+    @JvmName("shapeRidProperty")
+    get() = getShapeRid()
+    @JvmName("shapeRidProperty")
     set(`value`) {
-      TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShapeRidPtr, NIL)
+      setShapeRid(value)
     }
 
   /**
    * The queried shape's transform matrix.
    */
   @CoreTypeLocalCopy
-  public var transform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+  public final inline var transform: Transform2D
+    @JvmName("transformProperty")
+    get() = getTransform()
+    @JvmName("transformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+      setTransform(value)
     }
 
   /**
    * If `true`, the query will take [PhysicsBody2D]s into account.
    */
-  public var collideWithBodies: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var collideWithBodies: Boolean
+    @JvmName("collideWithBodiesProperty")
+    get() = isCollideWithBodiesEnabled()
+    @JvmName("collideWithBodiesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+      setCollideWithBodies(value)
     }
 
   /**
    * If `true`, the query will take [Area2D]s into account.
    */
-  public var collideWithAreas: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var collideWithAreas: Boolean
+    @JvmName("collideWithAreasProperty")
+    get() = isCollideWithAreasEnabled()
+    @JvmName("collideWithAreasProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+      setCollideWithAreas(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -228,7 +202,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
+  public final fun motionMutate(block: Vector2.() -> Unit): Vector2 = motion.apply{
       block(this)
       motion = this
   }
@@ -252,11 +226,110 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
+  public final fun transformMutate(block: Transform2D.() -> Unit): Transform2D = transform.apply{
       block(this)
       transform = this
   }
 
+
+  public final fun setShape(shape: Resource?): Unit {
+    TransferContext.writeArguments(OBJECT to shape)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+  }
+
+  public final fun getShape(): Resource? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+  }
+
+  public final fun setShapeRid(shape: RID): Unit {
+    TransferContext.writeArguments(_RID to shape)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShapeRidPtr, NIL)
+  }
+
+  public final fun getShapeRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShapeRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun setTransform(transform: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+  }
+
+  public final fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
+
+  public final fun setMotion(motion: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to motion)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionPtr, NIL)
+  }
+
+  public final fun getMotion(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setMargin(margin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to margin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+  }
+
+  public final fun getMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCollisionMask(collisionMask: Long): Unit {
+    TransferContext.writeArguments(LONG to collisionMask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setExclude(exclude: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(ARRAY to exclude)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+  }
+
+  public final fun getExclude(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+  }
+
+  public final fun setCollideWithBodies(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+  }
+
+  public final fun isCollideWithBodiesEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCollideWithAreas(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+  }
+
+  public final fun isCollideWithAreasEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

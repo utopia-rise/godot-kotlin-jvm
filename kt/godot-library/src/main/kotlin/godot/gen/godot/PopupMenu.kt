@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -82,43 +83,34 @@ public open class PopupMenu : Popup() {
   /**
    * If `true`, hides the [PopupMenu] when an item is selected.
    */
-  public var hideOnItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var hideOnItemSelection: Boolean
+    @JvmName("hideOnItemSelectionProperty")
+    get() = isHideOnItemSelection()
+    @JvmName("hideOnItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnItemSelectionPtr, NIL)
+      setHideOnItemSelection(value)
     }
 
   /**
    * If `true`, hides the [PopupMenu] when a checkbox or radio button is selected.
    */
-  public var hideOnCheckableItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnCheckableItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var hideOnCheckableItemSelection: Boolean
+    @JvmName("hideOnCheckableItemSelectionProperty")
+    get() = isHideOnCheckableItemSelection()
+    @JvmName("hideOnCheckableItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnCheckableItemSelectionPtr, NIL)
+      setHideOnCheckableItemSelection(value)
     }
 
   /**
    * If `true`, hides the [PopupMenu] when a state item is selected.
    */
-  public var hideOnStateItemSelection: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isHideOnStateItemSelectionPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var hideOnStateItemSelection: Boolean
+    @JvmName("hideOnStateItemSelectionProperty")
+    get() = isHideOnStateItemSelection()
+    @JvmName("hideOnStateItemSelectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnStateItemSelectionPtr, NIL)
+      setHideOnStateItemSelection(value)
     }
 
   /**
@@ -126,44 +118,35 @@ public open class PopupMenu : Popup() {
    * menu is added as a child of another (acting as a submenu), it will inherit the delay time of the
    * parent menu item.
    */
-  public var submenuPopupDelay: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubmenuPopupDelayPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var submenuPopupDelay: Float
+    @JvmName("submenuPopupDelayProperty")
+    get() = getSubmenuPopupDelay()
+    @JvmName("submenuPopupDelayProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubmenuPopupDelayPtr, NIL)
+      setSubmenuPopupDelay(value)
     }
 
   /**
    * If `true`, allows navigating [PopupMenu] with letter keys.
    */
-  public var allowSearch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var allowSearch: Boolean
+    @JvmName("allowSearchProperty")
+    get() = getAllowSearch()
+    @JvmName("allowSearchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+      setAllowSearch(value)
     }
 
   /**
    * If set to one of the values of [NativeMenu.SystemMenus], this [PopupMenu] is bound to the
    * special system menu. Only one [PopupMenu] can be bound to each special menu at a time.
    */
-  public var systemMenuId: NativeMenu.SystemMenus
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, LONG)
-      return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var systemMenuId: NativeMenu.SystemMenus
+    @JvmName("systemMenuIdProperty")
+    get() = getSystemMenu()
+    @JvmName("systemMenuIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSystemMenuPtr, NIL)
+      setSystemMenu(value)
     }
 
   /**
@@ -171,29 +154,23 @@ public open class PopupMenu : Popup() {
    * **Note:** If [PopupMenu] is linked to [StatusIndicator], [MenuBar], or another [PopupMenu] item
    * it can use native menu regardless of this property, use [isNativeMenu] to check it.
    */
-  public var preferNativeMenu: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isPreferNativeMenuPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var preferNativeMenu: Boolean
+    @JvmName("preferNativeMenuProperty")
+    get() = isPreferNativeMenu()
+    @JvmName("preferNativeMenuProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreferNativeMenuPtr, NIL)
+      setPreferNativeMenu(value)
     }
 
   /**
    * The number of items currently in the list.
    */
-  public var itemCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var itemCount: Int
+    @JvmName("itemCountProperty")
+    get() = getItemCount()
+    @JvmName("itemCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+      setItemCount(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -208,16 +185,28 @@ public open class PopupMenu : Popup() {
    * **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.
    */
   @JvmOverloads
-  public fun activateItemByEvent(event: InputEvent, forGlobalOnly: Boolean = false): Boolean {
+  public final fun activateItemByEvent(event: InputEvent?, forGlobalOnly: Boolean = false):
+      Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to forGlobalOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.activateItemByEventPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setPreferNativeMenu(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreferNativeMenuPtr, NIL)
+  }
+
+  public final fun isPreferNativeMenu(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isPreferNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if the system native menu is supported and currently used by this [PopupMenu].
    */
-  public fun isNativeMenu(): Boolean {
+  public final fun isNativeMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNativeMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -233,7 +222,7 @@ public open class PopupMenu : Popup() {
    * signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
   @JvmOverloads
-  public fun addItem(
+  public final fun addItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -250,8 +239,8 @@ public open class PopupMenu : Popup() {
    * have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   @JvmOverloads
-  public fun addIconItem(
-    texture: Texture2D,
+  public final fun addIconItem(
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -271,7 +260,7 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addCheckItem(
+  public final fun addCheckItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -291,8 +280,8 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addIconCheckItem(
-    texture: Texture2D,
+  public final fun addIconCheckItem(
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -312,7 +301,7 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addRadioCheckItem(
+  public final fun addRadioCheckItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -325,8 +314,8 @@ public open class PopupMenu : Popup() {
    * Same as [addIconCheckItem], but uses a radio check button.
    */
   @JvmOverloads
-  public fun addIconRadioCheckItem(
-    texture: Texture2D,
+  public final fun addIconRadioCheckItem(
+    texture: Texture2D?,
     label: String,
     id: Int = -1,
     accel: Key = Key.KEY_NONE,
@@ -364,7 +353,7 @@ public open class PopupMenu : Popup() {
    * [/codeblock]
    */
   @JvmOverloads
-  public fun addMultistateItem(
+  public final fun addMultistateItem(
     label: String,
     maxStates: Int,
     defaultState: Int = 0,
@@ -381,8 +370,8 @@ public open class PopupMenu : Popup() {
    * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
-  public fun addShortcut(
-    shortcut: Shortcut,
+  public final fun addShortcut(
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
@@ -398,9 +387,9 @@ public open class PopupMenu : Popup() {
    * If [allowEcho] is `true`, the shortcut can be activated with echo events.
    */
   @JvmOverloads
-  public fun addIconShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+  public final fun addIconShortcut(
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
@@ -418,8 +407,8 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addCheckShortcut(
-    shortcut: Shortcut,
+  public final fun addCheckShortcut(
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -436,9 +425,9 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addIconCheckShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+  public final fun addIconCheckShortcut(
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -455,8 +444,8 @@ public open class PopupMenu : Popup() {
    * control it.
    */
   @JvmOverloads
-  public fun addRadioCheckShortcut(
-    shortcut: Shortcut,
+  public final fun addRadioCheckShortcut(
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -468,9 +457,9 @@ public open class PopupMenu : Popup() {
    * Same as [addIconCheckShortcut], but uses a radio check button.
    */
   @JvmOverloads
-  public fun addIconRadioCheckShortcut(
-    texture: Texture2D,
-    shortcut: Shortcut,
+  public final fun addIconRadioCheckShortcut(
+    texture: Texture2D?,
+    shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
   ): Unit {
@@ -486,7 +475,7 @@ public open class PopupMenu : Popup() {
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   @JvmOverloads
-  public fun addSubmenuItem(
+  public final fun addSubmenuItem(
     label: String,
     submenu: String,
     id: Int = -1,
@@ -505,9 +494,9 @@ public open class PopupMenu : Popup() {
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
   @JvmOverloads
-  public fun addSubmenuNodeItem(
+  public final fun addSubmenuNodeItem(
     label: String,
-    submenu: PopupMenu,
+    submenu: PopupMenu?,
     id: Int = -1,
   ): Unit {
     TransferContext.writeArguments(STRING to label, OBJECT to submenu, LONG to id.toLong())
@@ -517,7 +506,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the text of the item at the given [index].
    */
-  public fun setItemText(index: Int, text: String): Unit {
+  public final fun setItemText(index: Int, text: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTextPtr, NIL)
   }
@@ -525,7 +514,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets item's text base writing direction.
    */
-  public fun setItemTextDirection(index: Int, direction: Control.TextDirection): Unit {
+  public final fun setItemTextDirection(index: Int, direction: Control.TextDirection): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to direction.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
@@ -534,7 +523,7 @@ public open class PopupMenu : Popup() {
    * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
    * empty current locale is used instead.
    */
-  public fun setItemLanguage(index: Int, language: String): Unit {
+  public final fun setItemLanguage(index: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemLanguagePtr, NIL)
   }
@@ -542,7 +531,7 @@ public open class PopupMenu : Popup() {
   /**
    * Replaces the [Texture2D] icon of the item at the given [index].
    */
-  public fun setItemIcon(index: Int, icon: Texture2D): Unit {
+  public final fun setItemIcon(index: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -552,7 +541,7 @@ public open class PopupMenu : Popup() {
    * applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The
    * height is adjusted according to the icon's ratio.
    */
-  public fun setItemIconMaxWidth(index: Int, width: Int): Unit {
+  public final fun setItemIconMaxWidth(index: Int, width: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconMaxWidthPtr, NIL)
   }
@@ -560,7 +549,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets a modulating [Color] of the item's icon at the given [index].
    */
-  public fun setItemIconModulate(index: Int, modulate: Color): Unit {
+  public final fun setItemIconModulate(index: Int, modulate: Color): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), COLOR to modulate)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIconModulatePtr, NIL)
   }
@@ -568,7 +557,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the checkstate status of the item at the given [index].
    */
-  public fun setItemChecked(index: Int, checked: Boolean): Unit {
+  public final fun setItemChecked(index: Int, checked: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to checked)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemCheckedPtr, NIL)
   }
@@ -577,7 +566,7 @@ public open class PopupMenu : Popup() {
    * Sets the [id] of the item at the given [index].
    * The [id] is used in [signal id_pressed] and [signal id_focused] signals.
    */
-  public fun setItemId(index: Int, id: Int): Unit {
+  public final fun setItemId(index: Int, id: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIdPtr, NIL)
   }
@@ -588,7 +577,7 @@ public open class PopupMenu : Popup() {
    * generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL |
    * KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
-  public fun setItemAccelerator(index: Int, accel: Key): Unit {
+  public final fun setItemAccelerator(index: Int, accel: Key): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemAcceleratorPtr, NIL)
   }
@@ -597,7 +586,7 @@ public open class PopupMenu : Popup() {
    * Sets the metadata of an item, which may be of any type. You can later get it with
    * [getItemMetadata], which provides a simple way of assigning context data to items.
    */
-  public fun setItemMetadata(index: Int, metadata: Any?): Unit {
+  public final fun setItemMetadata(index: Int, metadata: Any?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), ANY to metadata)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMetadataPtr, NIL)
   }
@@ -606,7 +595,7 @@ public open class PopupMenu : Popup() {
    * Enables/disables the item at the given [index]. When it is disabled, it can't be selected and
    * its action can't be invoked.
    */
-  public fun setItemDisabled(index: Int, disabled: Boolean): Unit {
+  public final fun setItemDisabled(index: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemDisabledPtr, NIL)
   }
@@ -615,7 +604,7 @@ public open class PopupMenu : Popup() {
    * Sets the submenu of the item at the given [index]. The submenu is the name of a child
    * [PopupMenu] node that would be shown when the item is clicked.
    */
-  public fun setItemSubmenu(index: Int, submenu: String): Unit {
+  public final fun setItemSubmenu(index: Int, submenu: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to submenu)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemSubmenuPtr, NIL)
   }
@@ -626,7 +615,7 @@ public open class PopupMenu : Popup() {
    * (in which case it will be automatically added as a child). If the [submenu] popup has another
    * parent, this method will fail.
    */
-  public fun setItemSubmenuNode(index: Int, submenu: PopupMenu): Unit {
+  public final fun setItemSubmenuNode(index: Int, submenu: PopupMenu?): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to submenu)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemSubmenuNodePtr, NIL)
   }
@@ -635,7 +624,7 @@ public open class PopupMenu : Popup() {
    * Mark the item at the given [index] as a separator, which means that it would be displayed as a
    * line. If `false`, sets the type of the item to plain text.
    */
-  public fun setItemAsSeparator(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsSeparator(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemAsSeparatorPtr, NIL)
   }
@@ -646,7 +635,7 @@ public open class PopupMenu : Popup() {
    * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
    * behavior and must be checked/unchecked manually.
    */
-  public fun setItemAsCheckable(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsCheckable(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemAsCheckablePtr, NIL)
   }
@@ -655,7 +644,7 @@ public open class PopupMenu : Popup() {
    * Sets the type of the item at the given [index] to radio button. If `false`, sets the type of
    * the item to plain text.
    */
-  public fun setItemAsRadioCheckable(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsRadioCheckable(index: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemAsRadioCheckablePtr, NIL)
   }
@@ -663,7 +652,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the [String] tooltip of the item at the given [index].
    */
-  public fun setItemTooltip(index: Int, tooltip: String): Unit {
+  public final fun setItemTooltip(index: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -672,9 +661,9 @@ public open class PopupMenu : Popup() {
    * Sets a [Shortcut] for the item at the given [index].
    */
   @JvmOverloads
-  public fun setItemShortcut(
+  public final fun setItemShortcut(
     index: Int,
-    shortcut: Shortcut,
+    shortcut: Shortcut?,
     global: Boolean = false,
   ): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to shortcut, BOOL to global)
@@ -684,7 +673,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the horizontal offset of the item at the given [index].
    */
-  public fun setItemIndent(index: Int, indent: Int): Unit {
+  public final fun setItemIndent(index: Int, indent: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to indent.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemIndentPtr, NIL)
   }
@@ -692,7 +681,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the state of a multistate item. See [addMultistateItem] for details.
    */
-  public fun setItemMultistate(index: Int, state: Int): Unit {
+  public final fun setItemMultistate(index: Int, state: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to state.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMultistatePtr, NIL)
   }
@@ -700,7 +689,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the max states of a multistate item. See [addMultistateItem] for details.
    */
-  public fun setItemMultistateMax(index: Int, maxStates: Int): Unit {
+  public final fun setItemMultistateMax(index: Int, maxStates: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to maxStates.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setItemMultistateMaxPtr, NIL)
   }
@@ -708,7 +697,7 @@ public open class PopupMenu : Popup() {
   /**
    * Disables the [Shortcut] of the item at the given [index].
    */
-  public fun setItemShortcutDisabled(index: Int, disabled: Boolean): Unit {
+  public final fun setItemShortcutDisabled(index: Int, disabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setItemShortcutDisabledPtr, NIL)
   }
@@ -716,7 +705,7 @@ public open class PopupMenu : Popup() {
   /**
    * Toggles the check state of the item at the given [index].
    */
-  public fun toggleItemChecked(index: Int): Unit {
+  public final fun toggleItemChecked(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.toggleItemCheckedPtr, NIL)
   }
@@ -724,7 +713,7 @@ public open class PopupMenu : Popup() {
   /**
    * Cycle to the next state of a multistate item. See [addMultistateItem] for details.
    */
-  public fun toggleItemMultistate(index: Int): Unit {
+  public final fun toggleItemMultistate(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.toggleItemMultistatePtr, NIL)
   }
@@ -732,7 +721,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the text of the item at the given [index].
    */
-  public fun getItemText(index: Int): String {
+  public final fun getItemText(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -741,7 +730,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns item's text base writing direction.
    */
-  public fun getItemTextDirection(index: Int): Control.TextDirection {
+  public final fun getItemTextDirection(index: Int): Control.TextDirection {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextDirectionPtr, LONG)
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
@@ -750,7 +739,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns item's text language code.
    */
-  public fun getItemLanguage(index: Int): String {
+  public final fun getItemLanguage(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -759,7 +748,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the icon of the item at the given [index].
    */
-  public fun getItemIcon(index: Int): Texture2D? {
+  public final fun getItemIcon(index: Int): Texture2D? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
@@ -768,7 +757,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the maximum allowed width of the icon for the item at the given [index].
    */
-  public fun getItemIconMaxWidth(index: Int): Int {
+  public final fun getItemIconMaxWidth(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconMaxWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -777,7 +766,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns a [Color] modulating the item's icon at the given [index].
    */
-  public fun getItemIconModulate(index: Int): Color {
+  public final fun getItemIconModulate(index: Int): Color {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconModulatePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -786,7 +775,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item at the given [index] is checked.
    */
-  public fun isItemChecked(index: Int): Boolean {
+  public final fun isItemChecked(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemCheckedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -796,7 +785,7 @@ public open class PopupMenu : Popup() {
    * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can
    * not.
    */
-  public fun getItemId(index: Int): Int {
+  public final fun getItemId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -806,7 +795,7 @@ public open class PopupMenu : Popup() {
    * Returns the index of the item containing the specified [id]. Index is automatically assigned to
    * each item by the engine and can not be set manually.
    */
-  public fun getItemIndex(id: Int): Int {
+  public final fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIndexPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -819,7 +808,7 @@ public open class PopupMenu : Popup() {
    * such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the
    * specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
    */
-  public fun getItemAccelerator(index: Int): Key {
+  public final fun getItemAccelerator(index: Int): Key {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemAcceleratorPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
@@ -829,7 +818,7 @@ public open class PopupMenu : Popup() {
    * Returns the metadata of the specified item, which might be of any type. You can set it with
    * [setItemMetadata], which provides a simple way of assigning context data to items.
    */
-  public fun getItemMetadata(index: Int): Any? {
+  public final fun getItemMetadata(index: Int): Any? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMetadataPtr, ANY)
     return (TransferContext.readReturnValue(ANY, true) as Any?)
@@ -840,7 +829,7 @@ public open class PopupMenu : Popup() {
    * selected, or its action invoked.
    * See [setItemDisabled] for more info on how to disable an item.
    */
-  public fun isItemDisabled(index: Int): Boolean {
+  public final fun isItemDisabled(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -850,7 +839,7 @@ public open class PopupMenu : Popup() {
    * Returns the submenu name of the item at the given [index]. See [addSubmenuItem] for more info
    * on how to add a submenu.
    */
-  public fun getItemSubmenu(index: Int): String {
+  public final fun getItemSubmenu(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemSubmenuPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -860,7 +849,7 @@ public open class PopupMenu : Popup() {
    * Returns the submenu of the item at the given [index], or `null` if no submenu was added. See
    * [addSubmenuNodeItem] for more info on how to add a submenu.
    */
-  public fun getItemSubmenuNode(index: Int): PopupMenu? {
+  public final fun getItemSubmenuNode(index: Int): PopupMenu? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemSubmenuNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
@@ -870,7 +859,7 @@ public open class PopupMenu : Popup() {
    * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See
    * [addSeparator] for more info on how to add a separator.
    */
-  public fun isItemSeparator(index: Int): Boolean {
+  public final fun isItemSeparator(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemSeparatorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -882,7 +871,7 @@ public open class PopupMenu : Popup() {
    * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in
    * checking behavior and must be checked/unchecked manually.
    */
-  public fun isItemCheckable(index: Int): Boolean {
+  public final fun isItemCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemCheckablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -893,7 +882,7 @@ public open class PopupMenu : Popup() {
    * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
    * radio groups.
    */
-  public fun isItemRadioCheckable(index: Int): Boolean {
+  public final fun isItemRadioCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemRadioCheckablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -902,7 +891,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns `true` if the specified item's shortcut is disabled.
    */
-  public fun isItemShortcutDisabled(index: Int): Boolean {
+  public final fun isItemShortcutDisabled(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemShortcutDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -911,7 +900,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the tooltip associated with the item at the given [index].
    */
-  public fun getItemTooltip(index: Int): String {
+  public final fun getItemTooltip(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -920,7 +909,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the [Shortcut] associated with the item at the given [index].
    */
-  public fun getItemShortcut(index: Int): Shortcut? {
+  public final fun getItemShortcut(index: Int): Shortcut? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemShortcutPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
@@ -929,7 +918,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the horizontal offset of the item at the given [index].
    */
-  public fun getItemIndent(index: Int): Int {
+  public final fun getItemIndent(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIndentPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -938,7 +927,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the max states of the item at the given [index].
    */
-  public fun getItemMultistateMax(index: Int): Int {
+  public final fun getItemMultistateMax(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMultistateMaxPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -947,7 +936,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the state of the item at the given [index].
    */
-  public fun getItemMultistate(index: Int): Int {
+  public final fun getItemMultistate(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMultistatePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -957,7 +946,7 @@ public open class PopupMenu : Popup() {
    * Sets the currently focused item as the given [index].
    * Passing `-1` as the index makes so that no item is focused.
    */
-  public fun setFocusedItem(index: Int): Unit {
+  public final fun setFocusedItem(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFocusedItemPtr, NIL)
   }
@@ -965,16 +954,27 @@ public open class PopupMenu : Popup() {
   /**
    * Returns the index of the currently focused item. Returns `-1` if no item is focused.
    */
-  public fun getFocusedItem(): Int {
+  public final fun getFocusedItem(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusedItemPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setItemCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setItemCountPtr, NIL)
+  }
+
+  public final fun getItemCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Moves the scroll view to make the item at the given [index] visible.
    */
-  public fun scrollToItem(index: Int): Unit {
+  public final fun scrollToItem(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.scrollToItemPtr, NIL)
   }
@@ -983,7 +983,7 @@ public open class PopupMenu : Popup() {
    * Removes the item at the given [index] from the menu.
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
-  public fun removeItem(index: Int): Unit {
+  public final fun removeItem(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
   }
@@ -994,7 +994,7 @@ public open class PopupMenu : Popup() {
    * A [label] can optionally be provided, which will appear at the center of the separator.
    */
   @JvmOverloads
-  public fun addSeparator(label: String = "", id: Int = -1): Unit {
+  public final fun addSeparator(label: String = "", id: Int = -1): Unit {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addSeparatorPtr, NIL)
   }
@@ -1004,18 +1004,84 @@ public open class PopupMenu : Popup() {
    * automatically freed.
    */
   @JvmOverloads
-  public fun clear(freeSubmenus: Boolean = false): Unit {
+  public final fun clear(freeSubmenus: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to freeSubmenus)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+  }
+
+  public final fun setHideOnItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnItemSelectionPtr, NIL)
+  }
+
+  public final fun isHideOnItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setHideOnCheckableItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnCheckableItemSelectionPtr, NIL)
+  }
+
+  public final fun isHideOnCheckableItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnCheckableItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setHideOnStateItemSelection(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnStateItemSelectionPtr, NIL)
+  }
+
+  public final fun isHideOnStateItemSelection(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isHideOnStateItemSelectionPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSubmenuPopupDelay(seconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubmenuPopupDelayPtr, NIL)
+  }
+
+  public final fun getSubmenuPopupDelay(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubmenuPopupDelayPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAllowSearch(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+  }
+
+  public final fun getAllowSearch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
    * Returns `true` if the menu is bound to the special system menu.
    */
-  public fun isSystemMenu(): Boolean {
+  public final fun isSystemMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSystemMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSystemMenu(systemMenuId: NativeMenu.SystemMenus): Unit {
+    TransferContext.writeArguments(LONG to systemMenuId.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSystemMenuPtr, NIL)
+  }
+
+  public final fun getSystemMenu(): NativeMenu.SystemMenus {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, LONG)
+    return NativeMenu.SystemMenus.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

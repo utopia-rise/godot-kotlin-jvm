@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node allows you to create a sphere for use with the CSG system.
@@ -35,76 +36,116 @@ public open class CSGSphere3D : CSGPrimitive3D() {
   /**
    * Radius of the sphere.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
    * Number of vertical slices for the sphere.
    */
-  public var radialSegments: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var radialSegments: Int
+    @JvmName("radialSegmentsProperty")
+    get() = getRadialSegments()
+    @JvmName("radialSegmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+      setRadialSegments(value)
     }
 
   /**
    * Number of horizontal slices for the sphere.
    */
-  public var rings: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var rings: Int
+    @JvmName("ringsProperty")
+    get() = getRings()
+    @JvmName("ringsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+      setRings(value)
     }
 
   /**
    * If `true` the normals of the sphere are set to give a smooth effect making the sphere seem
    * rounded. If `false` the sphere will have a flat shaded look.
    */
-  public var smoothFaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var smoothFaces: Boolean
+    @JvmName("smoothFacesProperty")
+    get() = getSmoothFaces()
+    @JvmName("smoothFacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+      setSmoothFaces(value)
     }
 
   /**
    * The material used to render the sphere.
    */
-  public var material: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+  public final inline var material: Material?
+    @JvmName("materialProperty")
+    get() = getMaterial()
+    @JvmName("materialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+      setMaterial(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGSPHERE3D, scriptIndex)
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRadialSegments(radialSegments: Int): Unit {
+    TransferContext.writeArguments(LONG to radialSegments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+  }
+
+  public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setRings(rings: Int): Unit {
+    TransferContext.writeArguments(LONG to rings.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+  }
+
+  public final fun getRings(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to smoothFaces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+  }
+
+  public final fun getSmoothFaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+  }
+
+  public final fun getMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
   }
 
   public companion object

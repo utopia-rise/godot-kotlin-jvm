@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
@@ -64,15 +65,12 @@ public open class Button : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var text: String
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
@@ -80,88 +78,70 @@ public open class Button : BaseButton() {
    * To edit margin and spacing of the icon, use [theme_item h_separation] theme property and
    * `content_margin_*` properties of the used [StyleBox]es.
    */
-  public var icon: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getButtonIconPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var icon: Texture2D?
+    @JvmName("iconProperty")
+    get() = getButtonIcon()
+    @JvmName("iconProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setButtonIconPtr, NIL)
+      setButtonIcon(value)
     }
 
   /**
    * Flat buttons don't display decoration.
    */
-  public var flat: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flat: Boolean
+    @JvmName("flatProperty")
+    get() = isFlat()
+    @JvmName("flatProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+      setFlat(value)
     }
 
   /**
    * Text alignment policy for the button's text, use one of the [HorizontalAlignment] constants.
    */
-  public var alignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var alignment: HorizontalAlignment
+    @JvmName("alignmentProperty")
+    get() = getTextAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextAlignmentPtr, NIL)
+      setTextAlignment(value)
     }
 
   /**
    * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
    * [TextServer.OverrunBehavior] for a description of all modes.
    */
-  public var textOverrunBehavior: TextServer.OverrunBehavior
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-      return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textOverrunBehavior: TextServer.OverrunBehavior
+    @JvmName("textOverrunBehaviorProperty")
+    get() = getTextOverrunBehavior()
+    @JvmName("textOverrunBehaviorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+      setTextOverrunBehavior(value)
     }
 
   /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle.
    */
-  public var autowrapMode: TextServer.AutowrapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-      return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var autowrapMode: TextServer.AutowrapMode
+    @JvmName("autowrapModeProperty")
+    get() = getAutowrapMode()
+    @JvmName("autowrapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+      setAutowrapMode(value)
     }
 
   /**
    * When this property is enabled, text that is too large to fit the button is clipped, when
    * disabled the Button will always be wide enough to hold the text.
    */
-  public var clipText: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClipTextPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var clipText: Boolean
+    @JvmName("clipTextProperty")
+    get() = getClipText()
+    @JvmName("clipTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+      setClipText(value)
     }
 
   /**
@@ -169,15 +149,12 @@ public open class Button : BaseButton() {
    * Uses the same [HorizontalAlignment] constants as the text alignment. If centered horizontally and
    * vertically, text will draw on top of the icon.
    */
-  public var iconAlignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIconAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var iconAlignment: HorizontalAlignment
+    @JvmName("iconAlignmentProperty")
+    get() = getIconAlignment()
+    @JvmName("iconAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIconAlignmentPtr, NIL)
+      setIconAlignment(value)
     }
 
   /**
@@ -185,63 +162,183 @@ public open class Button : BaseButton() {
    * Uses the same [VerticalAlignment] constants as the text alignment. If centered horizontally and
    * vertically, text will draw on top of the icon.
    */
-  public var verticalIconAlignment: VerticalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVerticalIconAlignmentPtr, LONG)
-      return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var verticalIconAlignment: VerticalAlignment
+    @JvmName("verticalIconAlignmentProperty")
+    get() = getVerticalIconAlignment()
+    @JvmName("verticalIconAlignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
+      setVerticalIconAlignment(value)
     }
 
   /**
    * When enabled, the button's icon will expand/shrink to fit the button's size while keeping its
    * aspect. See also [theme_item icon_max_width].
    */
-  public var expandIcon: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isExpandIconPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var expandIcon: Boolean
+    @JvmName("expandIconProperty")
+    get() = isExpandIcon()
+    @JvmName("expandIconProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandIconPtr, NIL)
+      setExpandIcon(value)
     }
 
   /**
    * Base text writing direction.
    */
-  public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textDirection: Control.TextDirection
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale
    * is used instead.
    */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var language: String
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_BUTTON, scriptIndex)
+  }
+
+  public final fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public final fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+  }
+
+  public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+  }
+
+  public final fun getAutowrapMode(): TextServer.AutowrapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public final fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setButtonIcon(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIconPtr, NIL)
+  }
+
+  public final fun getButtonIcon(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIconPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setFlat(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+  }
+
+  public final fun isFlat(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setClipText(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+  }
+
+  public final fun getClipText(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClipTextPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setTextAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextAlignmentPtr, NIL)
+  }
+
+  public final fun getTextAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setIconAlignment(iconAlignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to iconAlignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIconAlignmentPtr, NIL)
+  }
+
+  public final fun getIconAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIconAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVerticalIconAlignment(verticalIconAlignment: VerticalAlignment): Unit {
+    TransferContext.writeArguments(LONG to verticalIconAlignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
+  }
+
+  public final fun getVerticalIconAlignment(): VerticalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalIconAlignmentPtr, LONG)
+    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setExpandIcon(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandIconPtr, NIL)
+  }
+
+  public final fun isExpandIcon(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isExpandIconPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

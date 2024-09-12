@@ -94,7 +94,7 @@ public open class SurfaceTool : RefCounted() {
    * By default, only 4 bone influences are used ([SKIN_4_WEIGHTS])
    * **Note:** This function takes an enum, not the exact number of weights.
    */
-  public fun setSkinWeightCount(count: SkinWeightCount): Unit {
+  public final fun setSkinWeightCount(count: SkinWeightCount): Unit {
     TransferContext.writeArguments(LONG to count.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setSkinWeightCountPtr, NIL)
   }
@@ -104,7 +104,7 @@ public open class SurfaceTool : RefCounted() {
    * Returns [SKIN_8_WEIGHTS] if up to 8 influences are used.
    * **Note:** This function returns an enum, not the exact number of weights.
    */
-  public fun getSkinWeightCount(): SkinWeightCount {
+  public final fun getSkinWeightCount(): SkinWeightCount {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinWeightCountPtr, LONG)
     return SurfaceTool.SkinWeightCount.from(TransferContext.readReturnValue(LONG) as Long)
@@ -114,7 +114,7 @@ public open class SurfaceTool : RefCounted() {
    * Sets the color format for this custom [channelIndex]. Use [CUSTOM_MAX] to disable.
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
-  public fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
+  public final fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomFormatPtr, NIL)
   }
@@ -123,7 +123,7 @@ public open class SurfaceTool : RefCounted() {
    * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this
    * custom channel is unused.
    */
-  public fun getCustomFormat(channelIndex: Int): CustomFormat {
+  public final fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomFormatPtr, LONG)
     return SurfaceTool.CustomFormat.from(TransferContext.readReturnValue(LONG) as Long)
@@ -133,7 +133,7 @@ public open class SurfaceTool : RefCounted() {
    * Called before adding any vertices. Takes the primitive type as an argument (e.g.
    * [Mesh.PRIMITIVE_TRIANGLES]).
    */
-  public fun begin(primitive: Mesh.PrimitiveType): Unit {
+  public final fun begin(primitive: Mesh.PrimitiveType): Unit {
     TransferContext.writeArguments(LONG to primitive.id)
     TransferContext.callMethod(rawPtr, MethodBindings.beginPtr, NIL)
   }
@@ -142,7 +142,7 @@ public open class SurfaceTool : RefCounted() {
    * Specifies the position of current vertex. Should be called after specifying other vertex
    * properties (e.g. Color, UV).
    */
-  public fun addVertex(vertex: Vector3): Unit {
+  public final fun addVertex(vertex: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(rawPtr, MethodBindings.addVertexPtr, NIL)
   }
@@ -154,7 +154,7 @@ public open class SurfaceTool : RefCounted() {
    * **Note:** The material must have [BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex
    * color to be visible.
    */
-  public fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color): Unit {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
@@ -163,7 +163,7 @@ public open class SurfaceTool : RefCounted() {
    * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information
    * set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public fun setNormal(normal: Vector3): Unit {
+  public final fun setNormal(normal: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
   }
@@ -173,7 +173,7 @@ public open class SurfaceTool : RefCounted() {
    * information set and you fail to submit it for the first vertex, this information may not be used
    * at all.
    */
-  public fun setTangent(tangent: Plane): Unit {
+  public final fun setTangent(tangent: Plane): Unit {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(rawPtr, MethodBindings.setTangentPtr, NIL)
   }
@@ -183,7 +183,7 @@ public open class SurfaceTool : RefCounted() {
    * this information set and you fail to submit it for the first vertex, this information may not be
    * used at all.
    */
-  public fun setUv(uv: Vector2): Unit {
+  public final fun setUv(uv: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(rawPtr, MethodBindings.setUvPtr, NIL)
   }
@@ -193,7 +193,7 @@ public open class SurfaceTool : RefCounted() {
    * vertex needs to have this information set and you fail to submit it for the first vertex, this
    * information may not be used at all.
    */
-  public fun setUv2(uv2: Vector2): Unit {
+  public final fun setUv2(uv2: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(rawPtr, MethodBindings.setUv2Ptr, NIL)
   }
@@ -201,7 +201,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies an array of bones to use for the *next* vertex. [bones] must contain 4 integers.
    */
-  public fun setBones(bones: PackedInt32Array): Unit {
+  public final fun setBones(bones: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
     TransferContext.callMethod(rawPtr, MethodBindings.setBonesPtr, NIL)
   }
@@ -211,7 +211,7 @@ public open class SurfaceTool : RefCounted() {
    * vertex needs to have this information set and you fail to submit it for the first vertex, this
    * information may not be used at all.
    */
-  public fun setWeights(weights: PackedFloat32Array): Unit {
+  public final fun setWeights(weights: PackedFloat32Array): Unit {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(rawPtr, MethodBindings.setWeightsPtr, NIL)
   }
@@ -221,7 +221,7 @@ public open class SurfaceTool : RefCounted() {
    * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will
    * ignore other color channels.
    */
-  public fun setCustom(channelIndex: Int, customColor: Color): Unit {
+  public final fun setCustom(channelIndex: Int, customColor: Color): Unit {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), COLOR to customColor)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomPtr, NIL)
   }
@@ -233,7 +233,7 @@ public open class SurfaceTool : RefCounted() {
    * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue`
    * instead of `-1` to produce a mesh with flat normals.
    */
-  public fun setSmoothGroup(index: Long): Unit {
+  public final fun setSmoothGroup(index: Long): Unit {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.setSmoothGroupPtr, NIL)
   }
@@ -243,7 +243,7 @@ public open class SurfaceTool : RefCounted() {
    * Requires the primitive type be set to [Mesh.PRIMITIVE_TRIANGLES].
    */
   @JvmOverloads
-  public fun addTriangleFan(
+  public final fun addTriangleFan(
     vertices: PackedVector3Array,
     uvs: PackedVector2Array = PackedVector2Array(),
     colors: PackedColorArray = PackedColorArray(),
@@ -259,7 +259,7 @@ public open class SurfaceTool : RefCounted() {
    * Adds a vertex to index array if you are using indexed vertices. Does not need to be called
    * before adding vertices.
    */
-  public fun addIndex(index: Int): Unit {
+  public final fun addIndex(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addIndexPtr, NIL)
   }
@@ -268,7 +268,7 @@ public open class SurfaceTool : RefCounted() {
    * Shrinks the vertex array by creating an index array. This can improve performance by avoiding
    * vertex reuse.
    */
-  public fun index(): Unit {
+  public final fun index(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.indexPtr, NIL)
   }
@@ -276,7 +276,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Removes the index array by expanding the vertex array.
    */
-  public fun deindex(): Unit {
+  public final fun deindex(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.deindexPtr, NIL)
   }
@@ -294,7 +294,7 @@ public open class SurfaceTool : RefCounted() {
    * [setSmoothGroup] prior to adding vertices.
    */
   @JvmOverloads
-  public fun generateNormals(flip: Boolean = false): Unit {
+  public final fun generateNormals(flip: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(rawPtr, MethodBindings.generateNormalsPtr, NIL)
   }
@@ -303,7 +303,7 @@ public open class SurfaceTool : RefCounted() {
    * Generates a tangent vector for each vertex. Requires that each vertex have UVs and normals set
    * already (see [generateNormals]).
    */
-  public fun generateTangents(): Unit {
+  public final fun generateTangents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTangentsPtr, NIL)
   }
@@ -312,7 +312,7 @@ public open class SurfaceTool : RefCounted() {
    * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is
    * [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public fun optimizeIndicesForCache(): Unit {
+  public final fun optimizeIndicesForCache(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.optimizeIndicesForCachePtr, NIL)
   }
@@ -320,7 +320,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns the axis-aligned bounding box of the vertex positions.
    */
-  public fun getAabb(): AABB {
+  public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
     return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
@@ -331,7 +331,7 @@ public open class SurfaceTool : RefCounted() {
    * metric), using at most [targetIndexCount] indices.
    */
   @JvmOverloads
-  public fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
+  public final fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold.toDouble(), LONG to targetIndexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.generateLodPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
@@ -340,7 +340,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Sets [Material] to be used by the [Mesh] you are constructing.
    */
-  public fun setMaterial(material: Material): Unit {
+  public final fun setMaterial(material: Material?): Unit {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -348,7 +348,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns the type of mesh geometry, such as [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public fun getPrimitiveType(): Mesh.PrimitiveType {
+  public final fun getPrimitiveType(): Mesh.PrimitiveType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimitiveTypePtr, LONG)
     return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -357,7 +357,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Clear all information passed into the surface tool so far.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -365,7 +365,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from an existing [Mesh].
    */
-  public fun createFrom(existing: Mesh, surface: Int): Unit {
+  public final fun createFrom(existing: Mesh?, surface: Int): Unit {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromPtr, NIL)
   }
@@ -377,7 +377,7 @@ public open class SurfaceTool : RefCounted() {
    * defaulting to [Mesh.PRIMITIVE_TRIANGLES].
    */
   @JvmOverloads
-  public fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
+  public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
       Mesh.PrimitiveType.PRIMITIVE_TRIANGLES): Unit {
     TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.createFromArraysPtr, NIL)
@@ -387,8 +387,8 @@ public open class SurfaceTool : RefCounted() {
    * Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used
    * to extract a specific pose from a blend shape.
    */
-  public fun createFromBlendShape(
-    existing: Mesh,
+  public final fun createFromBlendShape(
+    existing: Mesh?,
     surface: Int,
     blendShape: String,
   ): Unit {
@@ -400,8 +400,8 @@ public open class SurfaceTool : RefCounted() {
    * Append vertices from a given [Mesh] surface onto the current vertex array with specified
    * [Transform3D].
    */
-  public fun appendFrom(
-    existing: Mesh,
+  public final fun appendFrom(
+    existing: Mesh?,
     surface: Int,
     transform: Transform3D,
   ): Unit {
@@ -416,7 +416,7 @@ public open class SurfaceTool : RefCounted() {
    * [Mesh.ArrayFormat].
    */
   @JvmOverloads
-  public fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
+  public final fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
@@ -427,7 +427,7 @@ public open class SurfaceTool : RefCounted() {
    * [ImporterMesh.addSurface], and [createFromArrays]. This way you can further process the mesh data
    * using the [ArrayMesh] or [ImporterMesh] APIs.
    */
-  public fun commitToArrays(): VariantArray<Any?> {
+  public final fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.commitToArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)

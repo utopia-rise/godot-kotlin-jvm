@@ -36,7 +36,7 @@ public open class Texture2DArray : ImageTextureLayered() {
   /**
    * Creates a placeholder version of this resource ([PlaceholderTexture2DArray]).
    */
-  public fun createPlaceholder(): Resource? {
+  public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)

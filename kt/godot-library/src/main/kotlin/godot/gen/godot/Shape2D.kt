@@ -32,6 +32,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
@@ -46,19 +47,27 @@ public open class Shape2D internal constructor() : Resource() {
    * When set to `0`, the default value from [ProjectSettings.physics/2d/solver/defaultContactBias]
    * is used.
    */
-  public var customSolverBias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var customSolverBias: Float
+    @JvmName("customSolverBiasProperty")
+    get() = getCustomSolverBias()
+    @JvmName("customSolverBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+      setCustomSolverBias(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
+  }
+
+  public final fun setCustomSolverBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+  }
+
+  public final fun getCustomSolverBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
@@ -66,9 +75,9 @@ public open class Shape2D internal constructor() : Resource() {
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
-  public fun collide(
+  public final fun collide(
     localXform: Transform2D,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -83,10 +92,10 @@ public open class Shape2D internal constructor() : Resource() {
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
    * ([shapeMotion]).
    */
-  public fun collideWithMotion(
+  public final fun collideWithMotion(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): Boolean {
@@ -106,9 +115,9 @@ public open class Shape2D internal constructor() : Resource() {
    * This method needs the transformation matrix for this shape ([localXform]), the shape to check
    * collisions with ([withShape]), and the transformation matrix of that shape ([shapeXform]).
    */
-  public fun collideAndGetContacts(
+  public final fun collideAndGetContacts(
     localXform: Transform2D,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
   ): PackedVector2Array {
     TransferContext.writeArguments(TRANSFORM2D to localXform, OBJECT to withShape, TRANSFORM2D to shapeXform)
@@ -131,10 +140,10 @@ public open class Shape2D internal constructor() : Resource() {
    * transformation matrix of that shape ([shapeXform]), and the movement to test onto the other object
    * ([shapeMotion]).
    */
-  public fun collideWithMotionAndGetContacts(
+  public final fun collideWithMotionAndGetContacts(
     localXform: Transform2D,
     localMotion: Vector2,
-    withShape: Shape2D,
+    withShape: Shape2D?,
     shapeXform: Transform2D,
     shapeMotion: Vector2,
   ): PackedVector2Array {
@@ -148,7 +157,7 @@ public open class Shape2D internal constructor() : Resource() {
    * Draws a solid shape onto a [CanvasItem] with the [RenderingServer] API filled with the
    * specified [color]. The exact drawing method is specific for each shape and cannot be configured.
    */
-  public fun draw(canvasItem: RID, color: Color): Unit {
+  public final fun draw(canvasItem: RID, color: Color): Unit {
     TransferContext.writeArguments(_RID to canvasItem, COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
   }
@@ -156,7 +165,7 @@ public open class Shape2D internal constructor() : Resource() {
   /**
    * Returns a [Rect2] representing the shapes boundary.
    */
-  public fun getRect(): Rect2 {
+  public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)

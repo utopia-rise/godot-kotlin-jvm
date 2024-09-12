@@ -24,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,
@@ -37,30 +38,24 @@ public open class CameraFeed : RefCounted() {
   /**
    * If `true`, the feed is active.
    */
-  public var feedIsActive: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var feedIsActive: Boolean
+    @JvmName("feedIsActiveProperty")
+    get() = isActive()
+    @JvmName("feedIsActiveProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+      setActive(value)
     }
 
   /**
    * The transform applied to the camera's image.
    */
   @CoreTypeLocalCopy
-  public var feedTransform: Transform2D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-      return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
-    }
+  public final inline var feedTransform: Transform2D
+    @JvmName("feedTransformProperty")
+    get() = getTransform()
+    @JvmName("feedTransformProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM2D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+      setTransform(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -85,7 +80,7 @@ public open class CameraFeed : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
+  public final fun feedTransformMutate(block: Transform2D.() -> Unit): Transform2D =
       feedTransform.apply{
       block(this)
       feedTransform = this
@@ -95,16 +90,27 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the unique ID for this feed.
    */
-  public fun getId(): Int {
+  public final fun getId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
+  public final fun isActive(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setActive(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+  }
+
   /**
    * Returns the camera's name.
    */
-  public fun getName(): String {
+  public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -113,16 +119,27 @@ public open class CameraFeed : RefCounted() {
   /**
    * Returns the position of camera on the device.
    */
-  public fun getPosition(): FeedPosition {
+  public final fun getPosition(): FeedPosition {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
     return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun getTransform(): Transform2D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+  }
+
+  public final fun setTransform(transform: Transform2D): Unit {
+    TransferContext.writeArguments(TRANSFORM2D to transform)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+  }
+
   /**
    * Returns feed image data type.
    */
-  public fun getDatatype(): FeedDataType {
+  public final fun getDatatype(): FeedDataType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDatatypePtr, LONG)
     return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)

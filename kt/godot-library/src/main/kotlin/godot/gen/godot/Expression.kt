@@ -89,7 +89,7 @@ public open class Expression : RefCounted() {
    * [inputNames], so that you can bind them when it gets executed.
    */
   @JvmOverloads
-  public fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
+  public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       GodotError {
     TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
     TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
@@ -103,7 +103,7 @@ public open class Expression : RefCounted() {
    * the same order.
    */
   @JvmOverloads
-  public fun execute(
+  public final fun execute(
     inputs: VariantArray<Any?> = godot.core.variantArrayOf(),
     baseInstance: Object? = null,
     showError: Boolean = true,
@@ -117,7 +117,7 @@ public open class Expression : RefCounted() {
   /**
    * Returns `true` if [execute] has failed.
    */
-  public fun hasExecuteFailed(): Boolean {
+  public final fun hasExecuteFailed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasExecuteFailedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -126,7 +126,7 @@ public open class Expression : RefCounted() {
   /**
    * Returns the error text if [parse] or [execute] has failed.
    */
-  public fun getErrorText(): String {
+  public final fun getErrorText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

@@ -37,70 +37,104 @@ public open class InputEventMouseButton : InputEventMouse() {
    * the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported
    * sensitivity varies depending on the platform. May be `0` if not supported.
    */
-  public var factor: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var factor: Float
+    @JvmName("factorProperty")
+    get() = getFactor()
+    @JvmName("factorProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+      setFactor(value)
     }
 
   /**
    * The mouse button identifier, one of the [MouseButton] button or button wheel constants.
    */
-  public var buttonIndex: MouseButton
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
-      return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var buttonIndex: MouseButton
+    @JvmName("buttonIndexProperty")
+    get() = getButtonIndex()
+    @JvmName("buttonIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+      setButtonIndex(value)
     }
 
   /**
    * If `true`, the mouse button event has been canceled.
    */
-  public var canceled: Boolean
-    @JvmName("isCanceled_prop")
-    get() = super.isCanceled()
+  public final inline var canceled: Boolean
+    @JvmName("canceledProperty")
+    get() = isCanceled()
+    @JvmName("canceledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+      setCanceled(value)
     }
 
   /**
    * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is
    * released.
    */
-  public var pressed: Boolean
-    @JvmName("isPressed_prop")
-    get() = super.isPressed()
+  public final inline var pressed: Boolean
+    @JvmName("pressedProperty")
+    get() = isPressed()
+    @JvmName("pressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+      setPressed(value)
     }
 
   /**
    * If `true`, the mouse button's state is a double-click.
    */
-  public var doubleClick: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var doubleClick: Boolean
+    @JvmName("doubleClickProperty")
+    get() = isDoubleClick()
+    @JvmName("doubleClickProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
+      setDoubleClick(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
+  }
+
+  public final fun setFactor(factor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to factor.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+  }
+
+  public final fun getFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
+    TransferContext.writeArguments(LONG to buttonIndex.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+  }
+
+  public final fun getButtonIndex(): MouseButton {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
+    return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+  }
+
+  public final fun setCanceled(canceled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to canceled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+  }
+
+  public final fun setDoubleClick(doubleClick: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to doubleClick)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDoubleClickPtr, NIL)
+  }
+
+  public final fun isDoubleClick(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

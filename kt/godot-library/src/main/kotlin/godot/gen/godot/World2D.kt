@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.
@@ -26,48 +27,60 @@ public open class World2D : Resource() {
   /**
    * The [RID] of this world's canvas resource. Used by the [RenderingServer] for 2D drawing.
    */
-  public val canvas: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline val canvas: RID
+    @JvmName("canvasProperty")
+    get() = getCanvas()
 
   /**
    * The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics,
    * treating it as both a space and an area.
    */
-  public val space: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline val space: RID
+    @JvmName("spaceProperty")
+    get() = getSpace()
 
   /**
    * The [RID] of this world's navigation map. Used by the [NavigationServer2D].
    */
-  public val navigationMap: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline val navigationMap: RID
+    @JvmName("navigationMapProperty")
+    get() = getNavigationMap()
 
   /**
    * Direct access to the world's physics 2D space state. Used for querying current and potential
    * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
    * main thread.
    */
-  public val directSpaceState: PhysicsDirectSpaceState2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
-    }
+  public final inline val directSpaceState: PhysicsDirectSpaceState2D?
+    @JvmName("directSpaceStateProperty")
+    get() = getDirectSpaceState()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
+  }
+
+  public final fun getCanvas(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun getSpace(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun getNavigationMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun getDirectSpaceState(): PhysicsDirectSpaceState2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
   }
 
   public companion object

@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
@@ -31,30 +32,24 @@ public open class AudioEffectPitchShift : AudioEffect() {
    * can range from `0.0` (infinitely low pitch, inaudible) to `16` (16 times higher than the initial
    * pitch).
    */
-  public var pitchScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var pitchScale: Float
+    @JvmName("pitchScaleProperty")
+    get() = getPitchScale()
+    @JvmName("pitchScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+      setPitchScale(value)
     }
 
   /**
    * The oversampling factor to use. Higher values result in better quality, but are more demanding
    * on the CPU and may cause audio cracking if the CPU can't keep up.
    */
-  public var oversampling: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var oversampling: Int
+    @JvmName("oversamplingProperty")
+    get() = getOversampling()
+    @JvmName("oversamplingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+      setOversampling(value)
     }
 
   /**
@@ -63,19 +58,49 @@ public open class AudioEffectPitchShift : AudioEffect() {
    * The effects of this higher latency are especially noticeable on sounds that have sudden amplitude
    * changes.
    */
-  public var fftSize: FFTSize
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
-      return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var fftSize: FFTSize
+    @JvmName("fftSizeProperty")
+    get() = getFftSize()
+    @JvmName("fftSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+      setFftSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, scriptIndex)
+  }
+
+  public final fun setPitchScale(rate: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to rate.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+  }
+
+  public final fun getPitchScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setOversampling(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+  }
+
+  public final fun getOversampling(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setFftSize(size: FFTSize): Unit {
+    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+  }
+
+  public final fun getFftSize(): FFTSize {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(

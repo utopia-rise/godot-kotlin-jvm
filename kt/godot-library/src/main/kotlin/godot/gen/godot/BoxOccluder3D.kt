@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.
@@ -29,15 +30,12 @@ public open class BoxOccluder3D : Occluder3D() {
    * The box's size in 3D units.
    */
   @CoreTypeLocalCopy
-  public var size: Vector3
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-      return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
-    }
+  public final inline var size: Vector3
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR3 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -62,11 +60,22 @@ public open class BoxOccluder3D : Occluder3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
+  public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply{
       block(this)
       size = this
   }
 
+
+  public final fun setSize(size: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun getSize(): Vector3 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+  }
 
   public companion object
 

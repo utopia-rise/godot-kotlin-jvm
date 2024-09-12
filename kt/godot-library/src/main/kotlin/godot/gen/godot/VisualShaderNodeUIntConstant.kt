@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `uint` in the shader language.
@@ -25,19 +26,27 @@ public open class VisualShaderNodeUIntConstant : VisualShaderNodeConstant() {
   /**
    * An unsigned integer constant which represents a state of this node.
    */
-  public var constant: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var constant: Int
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEUINTCONSTANT, scriptIndex)
+  }
+
+  public final fun setConstant(constant: Int): Unit {
+    TransferContext.writeArguments(LONG to constant.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public final fun getConstant(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

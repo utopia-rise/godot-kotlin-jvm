@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is
@@ -36,19 +37,27 @@ public open class OmniLight3D : Light3D() {
   /**
    * See [ShadowMode].
    */
-  public var omniShadowMode: ShadowMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
-      return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var omniShadowMode: ShadowMode
+    @JvmName("omniShadowModeProperty")
+    get() = getShadowMode()
+    @JvmName("omniShadowModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+      setShadowMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OMNILIGHT3D, scriptIndex)
+  }
+
+  public final fun setShadowMode(mode: ShadowMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+  }
+
+  public final fun getShadowMode(): ShadowMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ShadowMode(

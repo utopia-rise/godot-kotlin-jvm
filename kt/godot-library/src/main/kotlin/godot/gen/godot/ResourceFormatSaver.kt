@@ -39,7 +39,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * Returns [OK] on success, or an [Error] constant in case of failure.
    */
   public open fun _save(
-    resource: Resource,
+    resource: Resource?,
     path: String,
     flags: Long,
   ): GodotError {
@@ -57,7 +57,7 @@ public open class ResourceFormatSaver : RefCounted() {
   /**
    * Returns whether the given resource object can be saved by this saver.
    */
-  public open fun _recognize(resource: Resource): Boolean {
+  public open fun _recognize(resource: Resource?): Boolean {
     throw NotImplementedError("_recognize is not implemented for ResourceFormatSaver")
   }
 
@@ -65,7 +65,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * Returns the list of extensions available for saving the resource object, provided it is
    * recognized (see [_recognize]).
    */
-  public open fun _getRecognizedExtensions(resource: Resource): PackedStringArray {
+  public open fun _getRecognizedExtensions(resource: Resource?): PackedStringArray {
     throw NotImplementedError("_get_recognized_extensions is not implemented for ResourceFormatSaver")
   }
 
@@ -74,7 +74,7 @@ public open class ResourceFormatSaver : RefCounted() {
    * If this method is not implemented, the default behavior returns whether the path's extension is
    * within the ones provided by [_getRecognizedExtensions].
    */
-  public open fun _recognizePath(resource: Resource, path: String): Boolean {
+  public open fun _recognizePath(resource: Resource?, path: String): Boolean {
     throw NotImplementedError("_recognize_path is not implemented for ResourceFormatSaver")
   }
 

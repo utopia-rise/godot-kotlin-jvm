@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
@@ -35,15 +36,12 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * the opposite direction. Particles will be pushed *away* from the attractor's origin if
    * [directionality] is `0.0`, or towards local +Z if [directionality] is greater than `0.0`.
    */
-  public var strength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var strength: Float
+    @JvmName("strengthProperty")
+    get() = getStrength()
+    @JvmName("strengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+      setStrength(value)
     }
 
   /**
@@ -51,15 +49,12 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * as they come closer to the attractor's origin. Zero or negative values will cause particles to be
    * pushed very fast as soon as the touch the attractor's edges.
    */
-  public var attenuation: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var attenuation: Float
+    @JvmName("attenuationProperty")
+    get() = getAttenuation()
+    @JvmName("attenuationProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
+      setAttenuation(value)
     }
 
   /**
@@ -69,15 +64,12 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * **Note:** If [directionality] is greater than `0.0`, the direction in which particles are
    * pushed can be changed by rotating the [GPUParticlesAttractor3D] node.
    */
-  public var directionality: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var directionality: Float
+    @JvmName("directionalityProperty")
+    get() = getDirectionality()
+    @JvmName("directionalityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
+      setDirectionality(value)
     }
 
   /**
@@ -90,19 +82,60 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
    * Particle attraction can also be disabled on a per-process material basis by setting
    * [ParticleProcessMaterial.attractorInteractionEnabled] on the [GPUParticles3D] node.
    */
-  public var cullMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var cullMask: Long
+    @JvmName("cullMaskProperty")
+    get() = getCullMask()
+    @JvmName("cullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+      setCullMask(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESATTRACTOR3D, scriptIndex)
+  }
+
+  public final fun setCullMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+  }
+
+  public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+  }
+
+  public final fun getStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAttenuation(attenuation: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to attenuation.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
+  }
+
+  public final fun getAttenuation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDirectionality(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
+  }
+
+  public final fun getDirectionality(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

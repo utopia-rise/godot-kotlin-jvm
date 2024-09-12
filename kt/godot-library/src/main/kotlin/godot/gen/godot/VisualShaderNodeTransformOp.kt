@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Applies [operator] to two transform (4×4 matrices) inputs.
@@ -25,19 +26,27 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   /**
    * The type of the operation to be performed on the transforms. See [Operator] for options.
    */
-  public var `operator`: Operator
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
-      return VisualShaderNodeTransformOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var `operator`: Operator
+    @JvmName("operatorProperty")
+    get() = getOperator()
+    @JvmName("operatorProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+      setOperator(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMOP, scriptIndex)
+  }
+
+  public final fun setOperator(op: Operator): Unit {
+    TransferContext.writeArguments(LONG to op.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+  }
+
+  public final fun getOperator(): Operator {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
+    return VisualShaderNodeTransformOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(

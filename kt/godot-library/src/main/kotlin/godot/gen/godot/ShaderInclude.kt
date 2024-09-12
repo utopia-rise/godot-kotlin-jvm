@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a
@@ -29,19 +30,27 @@ public open class ShaderInclude : Resource() {
    * Returns the code of the shader include file. The returned text is what the user has written,
    * not the full generated code used internally.
    */
-  public var code: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var code: String
+    @JvmName("codeProperty")
+    get() = getCode()
+    @JvmName("codeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+      setCode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHADERINCLUDE, scriptIndex)
+  }
+
+  public final fun setCode(code: String): Unit {
+    TransferContext.writeArguments(STRING to code)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+  }
+
+  public final fun getCode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

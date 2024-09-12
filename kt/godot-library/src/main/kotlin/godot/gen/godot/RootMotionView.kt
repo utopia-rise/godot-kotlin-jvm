@@ -25,6 +25,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to
@@ -40,74 +41,59 @@ public open class RootMotionView : VisualInstance3D() {
   /**
    * Path to an [AnimationMixer] node to use as a basis for root motion.
    */
-  public var animationPath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var animationPath: NodePath
+    @JvmName("animationPathProperty")
+    get() = getAnimationPath()
+    @JvmName("animationPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
+      setAnimationPath(value)
     }
 
   /**
    * The grid's color.
    */
   @CoreTypeLocalCopy
-  public var color: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var color: Color
+    @JvmName("colorProperty")
+    get() = getColor()
+    @JvmName("colorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+      setColor(value)
     }
 
   /**
    * The grid's cell size in 3D units.
    */
-  public var cellSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var cellSize: Float
+    @JvmName("cellSizeProperty")
+    get() = getCellSize()
+    @JvmName("cellSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+      setCellSize(value)
     }
 
   /**
    * The grid's radius in 3D units. The grid's opacity will fade gradually as the distance from the
    * origin increases until this [radius] is reached.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
    * If `true`, the grid's points will all be on the same Y coordinate (*local* Y = 0). If `false`,
    * the points' original Y coordinate is preserved.
    */
-  public var zeroY: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var zeroY: Boolean
+    @JvmName("zeroYProperty")
+    get() = getZeroY()
+    @JvmName("zeroYProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
+      setZeroY(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -132,11 +118,66 @@ public open class RootMotionView : VisualInstance3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun colorMutate(block: Color.() -> Unit): Color = color.apply{
+  public final fun colorMutate(block: Color.() -> Unit): Color = color.apply{
       block(this)
       color = this
   }
 
+
+  public final fun setAnimationPath(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
+  }
+
+  public final fun getAnimationPath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+  }
+
+  public final fun setColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+  }
+
+  public final fun getColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setCellSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+  }
+
+  public final fun getCellSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRadius(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setZeroY(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
+  }
+
+  public final fun getZeroY(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
 
   public companion object
 

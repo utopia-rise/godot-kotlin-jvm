@@ -137,7 +137,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   }
 
   public open fun _openInExternalEditor(
-    script: Script,
+    script: Script?,
     line: Int,
     column: Int,
   ): GodotError {
@@ -155,7 +155,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _completeCode(
     code: String,
     path: String,
-    owner: Object,
+    owner: Object?,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_complete_code is not implemented for ScriptLanguageExtension")
   }
@@ -164,7 +164,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     code: String,
     symbol: String,
     path: String,
-    owner: Object,
+    owner: Object?,
   ): Dictionary<Any?, Any?> {
     throw NotImplementedError("_lookup_code is not implemented for ScriptLanguageExtension")
   }
@@ -251,7 +251,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
   public open fun _reloadAllScripts(): Unit {
   }
 
-  public open fun _reloadToolScript(script: Script, softReload: Boolean): Unit {
+  public open fun _reloadToolScript(script: Script?, softReload: Boolean): Unit {
   }
 
   public open fun _getRecognizedExtensions(): PackedStringArray {

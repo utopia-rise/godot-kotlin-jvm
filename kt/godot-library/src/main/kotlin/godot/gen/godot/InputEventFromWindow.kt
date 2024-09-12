@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * InputEventFromWindow represents events specifically received by windows. This includes mouse
@@ -26,19 +27,27 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   /**
    * The ID of a [Window] that received this event.
    */
-  public var windowId: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var windowId: Long
+    @JvmName("windowIdProperty")
+    get() = getWindowId()
+    @JvmName("windowIdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
+      setWindowId(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
+  }
+
+  public final fun setWindowId(id: Long): Unit {
+    TransferContext.writeArguments(LONG to id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
+  }
+
+  public final fun getWindowId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

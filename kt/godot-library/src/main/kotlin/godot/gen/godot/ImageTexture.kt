@@ -60,7 +60,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Returns the format of the texture, one of [Image.Format].
    */
-  public fun getFormat(): Image.Format {
+  public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
@@ -72,7 +72,7 @@ public open class ImageTexture : Texture2D() {
    * If you want to update the image, but don't need to change its parameters (format, size), use
    * [update] instead for better performance.
    */
-  public fun setImage(image: Image): Unit {
+  public final fun setImage(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
   }
@@ -85,7 +85,7 @@ public open class ImageTexture : Texture2D() {
    * Use this method over [setImage] if you need to update the texture frequently, which is faster
    * than allocating additional memory for a new texture each time.
    */
-  public fun update(image: Image): Unit {
+  public final fun update(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
@@ -93,7 +93,7 @@ public open class ImageTexture : Texture2D() {
   /**
    * Resizes the texture to the specified dimensions.
    */
-  public fun setSizeOverride(size: Vector2i): Unit {
+  public final fun setSizeOverride(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
   }
@@ -103,7 +103,7 @@ public open class ImageTexture : Texture2D() {
      * Creates a new [ImageTexture] and initializes it by allocating and setting the data from an
      * [Image].
      */
-    public fun createFromImage(image: Image): ImageTexture? {
+    public final fun createFromImage(image: Image?): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
       TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)

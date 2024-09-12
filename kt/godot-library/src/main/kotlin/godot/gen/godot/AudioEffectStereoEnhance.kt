@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
@@ -28,41 +29,65 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
    * whereas values less than 1.0 will decrease the panning intensity. A value of 0.0 will downmix
    * audio to mono.
    */
-  public var panPullout: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var panPullout: Float
+    @JvmName("panPulloutProperty")
+    get() = getPanPullout()
+    @JvmName("panPulloutProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
+      setPanPullout(value)
     }
 
-  public var timePulloutMs: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var timePulloutMs: Float
+    @JvmName("timePulloutMsProperty")
+    get() = getTimePullout()
+    @JvmName("timePulloutMsProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
+      setTimePullout(value)
     }
 
-  public var surround: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var surround: Float
+    @JvmName("surroundProperty")
+    get() = getSurround()
+    @JvmName("surroundProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
+      setSurround(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSTEREOENHANCE, scriptIndex)
+  }
+
+  public final fun setPanPullout(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
+  }
+
+  public final fun getPanPullout(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setTimePullout(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
+  }
+
+  public final fun getTimePullout(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSurround(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
+  }
+
+  public final fun getSurround(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

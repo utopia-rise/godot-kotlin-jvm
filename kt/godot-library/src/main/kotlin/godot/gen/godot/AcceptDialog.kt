@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -50,29 +51,23 @@ public open class AcceptDialog : Window() {
   /**
    * The text displayed by the OK button (see [getOkButton]).
    */
-  public var okButtonText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var okButtonText: String
+    @JvmName("okButtonTextProperty")
+    get() = getOkButtonText()
+    @JvmName("okButtonTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOkButtonTextPtr, NIL)
+      setOkButtonText(value)
     }
 
   /**
    * The text displayed by the dialog.
    */
-  public var dialogText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var dialogText: String
+    @JvmName("dialogTextProperty")
+    get() = getText()
+    @JvmName("dialogTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
@@ -85,43 +80,34 @@ public open class AcceptDialog : Window() {
    * hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to
    * disable hiding the dialog when pressing OK.
    */
-  public var dialogHideOnOk: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHideOnOkPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dialogHideOnOk: Boolean
+    @JvmName("dialogHideOnOkProperty")
+    get() = getHideOnOk()
+    @JvmName("dialogHideOnOkProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHideOnOkPtr, NIL)
+      setHideOnOk(value)
     }
 
   /**
    * If `true`, the dialog will be hidden when the escape key ([KEY_ESCAPE]) is pressed.
    */
-  public var dialogCloseOnEscape: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCloseOnEscapePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dialogCloseOnEscape: Boolean
+    @JvmName("dialogCloseOnEscapeProperty")
+    get() = getCloseOnEscape()
+    @JvmName("dialogCloseOnEscapeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCloseOnEscapePtr, NIL)
+      setCloseOnEscape(value)
     }
 
   /**
    * Sets autowrapping for the text in the dialog.
    */
-  public var dialogAutowrap: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasAutowrapPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dialogAutowrap: Boolean
+    @JvmName("dialogAutowrapProperty")
+    get() = hasAutowrap()
+    @JvmName("dialogAutowrapProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapPtr, NIL)
+      setAutowrap(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -133,7 +119,7 @@ public open class AcceptDialog : Window() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getOkButton(): Button? {
+  public final fun getOkButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
@@ -144,10 +130,32 @@ public open class AcceptDialog : Window() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getLabel(): Label? {
+  public final fun getLabel(): Label? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Label?)
+  }
+
+  public final fun setHideOnOk(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHideOnOkPtr, NIL)
+  }
+
+  public final fun getHideOnOk(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHideOnOkPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCloseOnEscape(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCloseOnEscapePtr, NIL)
+  }
+
+  public final fun getCloseOnEscape(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCloseOnEscapePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -157,7 +165,7 @@ public open class AcceptDialog : Window() {
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
   @JvmOverloads
-  public fun addButton(
+  public final fun addButton(
     text: String,
     right: Boolean = false,
     action: String = "",
@@ -172,7 +180,7 @@ public open class AcceptDialog : Window() {
    * button.
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
-  public fun addCancelButton(name: String): Button? {
+  public final fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
@@ -183,7 +191,7 @@ public open class AcceptDialog : Window() {
    * [Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button]
    * will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
    */
-  public fun removeButton(button: Button): Unit {
+  public final fun removeButton(button: Button?): Unit {
     TransferContext.writeArguments(OBJECT to button)
     TransferContext.callMethod(rawPtr, MethodBindings.removeButtonPtr, NIL)
   }
@@ -192,9 +200,42 @@ public open class AcceptDialog : Window() {
    * Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be
    * accepted.
    */
-  public fun registerTextEnter(lineEdit: LineEdit): Unit {
+  public final fun registerTextEnter(lineEdit: LineEdit?): Unit {
     TransferContext.writeArguments(OBJECT to lineEdit)
     TransferContext.callMethod(rawPtr, MethodBindings.registerTextEnterPtr, NIL)
+  }
+
+  public final fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public final fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setAutowrap(autowrap: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to autowrap)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapPtr, NIL)
+  }
+
+  public final fun hasAutowrap(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAutowrapPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setOkButtonText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOkButtonTextPtr, NIL)
+  }
+
+  public final fun getOkButtonText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

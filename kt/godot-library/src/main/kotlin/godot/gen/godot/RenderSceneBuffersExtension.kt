@@ -25,7 +25,7 @@ public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
   /**
    * Implement this in GDExtension to handle the (re)sizing of a viewport.
    */
-  public open fun _configure(config: RenderSceneBuffersConfiguration): Unit {
+  public open fun _configure(config: RenderSceneBuffersConfiguration?): Unit {
   }
 
   /**

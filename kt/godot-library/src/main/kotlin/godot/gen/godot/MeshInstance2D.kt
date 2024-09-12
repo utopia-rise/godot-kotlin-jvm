@@ -17,6 +17,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
@@ -33,34 +34,50 @@ public open class MeshInstance2D : Node2D() {
   /**
    * The [Mesh] that will be drawn by the [MeshInstance2D].
    */
-  public var mesh: Mesh?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
-    }
+  public final inline var mesh: Mesh?
+    @JvmName("meshProperty")
+    get() = getMesh()
+    @JvmName("meshProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+      setMesh(value)
     }
 
   /**
    * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
    * `TEXTURE` in CanvasItem shader.
    */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var texture: Texture2D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MESHINSTANCE2D, scriptIndex)
+  }
+
+  public final fun setMesh(mesh: Mesh?): Unit {
+    TransferContext.writeArguments(OBJECT to mesh)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+  }
+
+  public final fun getMesh(): Mesh? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+  }
+
+  public final fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
   }
 
   public companion object

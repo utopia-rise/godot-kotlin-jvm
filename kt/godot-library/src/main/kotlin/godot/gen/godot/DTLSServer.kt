@@ -181,7 +181,7 @@ public open class DTLSServer : RefCounted() {
   /**
    * Setup the DTLS server to use the given [serverOptions]. See [TLSOptions.server].
    */
-  public fun setup(serverOptions: TLSOptions): GodotError {
+  public final fun setup(serverOptions: TLSOptions?): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -194,7 +194,7 @@ public open class DTLSServer : RefCounted() {
    * [PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50&#37; of the new connections will be
    * invalid due to cookie exchange.
    */
-  public fun takeConnection(udpPeer: PacketPeerUDP): PacketPeerDTLS? {
+  public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?)

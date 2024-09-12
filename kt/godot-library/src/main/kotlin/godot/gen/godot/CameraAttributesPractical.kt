@@ -19,6 +19,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Controls camera-specific attributes such as auto-exposure, depth of field, and exposure override.
@@ -35,30 +36,24 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
    */
-  public var dofBlurFarEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dofBlurFarEnabled: Boolean
+    @JvmName("dofBlurFarEnabledProperty")
+    get() = isDofBlurFarEnabled()
+    @JvmName("dofBlurFarEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarEnabledPtr, NIL)
+      setDofBlurFarEnabled(value)
     }
 
   /**
    * Objects further from the [Camera3D] by this amount will be blurred by the depth of field
    * effect. Measured in meters.
    */
-  public var dofBlurFarDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dofBlurFarDistance: Float
+    @JvmName("dofBlurFarDistanceProperty")
+    get() = getDofBlurFarDistance()
+    @JvmName("dofBlurFarDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarDistancePtr, NIL)
+      setDofBlurFarDistance(value)
     }
 
   /**
@@ -67,15 +62,12 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * will scale from 0 at [dofBlurFarDistance] and will increase in a physically accurate way as
    * objects get further from the [Camera3D].
    */
-  public var dofBlurFarTransition: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dofBlurFarTransition: Float
+    @JvmName("dofBlurFarTransitionProperty")
+    get() = getDofBlurFarTransition()
+    @JvmName("dofBlurFarTransitionProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarTransitionPtr, NIL)
+      setDofBlurFarTransition(value)
     }
 
   /**
@@ -84,30 +76,24 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
    */
-  public var dofBlurNearEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dofBlurNearEnabled: Boolean
+    @JvmName("dofBlurNearEnabledProperty")
+    get() = isDofBlurNearEnabled()
+    @JvmName("dofBlurNearEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearEnabledPtr, NIL)
+      setDofBlurNearEnabled(value)
     }
 
   /**
    * Objects closer from the [Camera3D] by this amount will be blurred by the depth of field effect.
    * Measured in meters.
    */
-  public var dofBlurNearDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dofBlurNearDistance: Float
+    @JvmName("dofBlurNearDistanceProperty")
+    get() = getDofBlurNearDistance()
+    @JvmName("dofBlurNearDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearDistancePtr, NIL)
+      setDofBlurNearDistance(value)
     }
 
   /**
@@ -116,15 +102,12 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * scale from 0 at [dofBlurNearDistance] and will increase in a physically accurate way as objects
    * get closer to the [Camera3D].
    */
-  public var dofBlurNearTransition: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dofBlurNearTransition: Float
+    @JvmName("dofBlurNearTransitionProperty")
+    get() = getDofBlurNearTransition()
+    @JvmName("dofBlurNearTransitionProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearTransitionPtr, NIL)
+      setDofBlurNearTransition(value)
     }
 
   /**
@@ -132,15 +115,12 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * a multiplier. High values lead to an increased amount of blurriness, but can be much more
    * expensive to calculate. It is best to keep this as low as possible for a given art style.
    */
-  public var dofBlurAmount: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dofBlurAmount: Float
+    @JvmName("dofBlurAmountProperty")
+    get() = getDofBlurAmount()
+    @JvmName("dofBlurAmountProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurAmountPtr, NIL)
+      setDofBlurAmount(value)
     }
 
   /**
@@ -149,15 +129,12 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * auto-exposure from exposing above a certain brightness, resulting in a cut off point where the
    * scene will remain dark.
    */
-  public var autoExposureMinSensitivity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var autoExposureMinSensitivity: Float
+    @JvmName("autoExposureMinSensitivityProperty")
+    get() = getAutoExposureMinSensitivity()
+    @JvmName("autoExposureMinSensitivityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinSensitivityPtr, NIL)
+      setAutoExposureMinSensitivity(value)
     }
 
   /**
@@ -166,19 +143,115 @@ public open class CameraAttributesPractical : CameraAttributes() {
    * auto-exposure from exposing below a certain brightness, resulting in a cut off point where the
    * scene will remain bright.
    */
-  public var autoExposureMaxSensitivity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var autoExposureMaxSensitivity: Float
+    @JvmName("autoExposureMaxSensitivityProperty")
+    get() = getAutoExposureMaxSensitivity()
+    @JvmName("autoExposureMaxSensitivityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxSensitivityPtr, NIL)
+      setAutoExposureMaxSensitivity(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CAMERAATTRIBUTESPRACTICAL, scriptIndex)
+  }
+
+  public final fun setDofBlurFarEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarEnabledPtr, NIL)
+  }
+
+  public final fun isDofBlurFarEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDofBlurFarDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarDistancePtr, NIL)
+  }
+
+  public final fun getDofBlurFarDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDofBlurFarTransition(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarTransitionPtr, NIL)
+  }
+
+  public final fun getDofBlurFarTransition(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDofBlurNearEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearEnabledPtr, NIL)
+  }
+
+  public final fun isDofBlurNearEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDofBlurNearDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearDistancePtr, NIL)
+  }
+
+  public final fun getDofBlurNearDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDofBlurNearTransition(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearTransitionPtr, NIL)
+  }
+
+  public final fun getDofBlurNearTransition(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDofBlurAmount(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurAmountPtr, NIL)
+  }
+
+  public final fun getDofBlurAmount(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureMaxSensitivity(maxSensitivity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to maxSensitivity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxSensitivityPtr, NIL)
+  }
+
+  public final fun getAutoExposureMaxSensitivity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAutoExposureMinSensitivity(minSensitivity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to minSensitivity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinSensitivityPtr, NIL)
+  }
+
+  public final fun getAutoExposureMinSensitivity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

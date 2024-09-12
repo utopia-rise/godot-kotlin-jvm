@@ -36,6 +36,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
@@ -70,15 +71,12 @@ public open class GPUParticles2D : Node2D() {
    * **Tip:** If your [oneShot] emitter needs to immediately restart emitting particles once [signal
    * finished] signal is received, consider calling [restart] instead of setting [emitting].
    */
-  public var emitting: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var emitting: Boolean
+    @JvmName("emittingProperty")
+    get() = isEmitting()
+    @JvmName("emittingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
+      setEmitting(value)
     }
 
   /**
@@ -88,15 +86,12 @@ public open class GPUParticles2D : Node2D() {
    * **Note:** Changing this value will cause the particle system to restart. To avoid this, change
    * [amountRatio] instead.
    */
-  public var amount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var amount: Int
+    @JvmName("amountProperty")
+    get() = getAmount()
+    @JvmName("amountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
+      setAmount(value)
     }
 
   /**
@@ -110,15 +105,12 @@ public open class GPUParticles2D : Node2D() {
    * you don't intend to change the number of particles emitted while the particles are emitting, make
    * sure [amountRatio] is set to `1` and change [amount] to your liking instead.
    */
-  public var amountRatio: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var amountRatio: Float
+    @JvmName("amountRatioProperty")
+    get() = getAmountRatio()
+    @JvmName("amountRatioProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
+      setAmountRatio(value)
     }
 
   /**
@@ -128,29 +120,23 @@ public open class GPUParticles2D : Node2D() {
    * **Note:** When [subEmitter] is set, the target [GPUParticles2D] node will no longer emit
    * particles on its own.
    */
-  public var subEmitter: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var subEmitter: NodePath
+    @JvmName("subEmitterProperty")
+    get() = getSubEmitter()
+    @JvmName("subEmitterProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSubEmitterPtr, NIL)
+      setSubEmitter(value)
     }
 
   /**
    * [Material] for processing particles. Can be a [ParticleProcessMaterial] or a [ShaderMaterial].
    */
-  public var processMaterial: Material?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProcessMaterialPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Material?)
-    }
+  public final inline var processMaterial: Material?
+    @JvmName("processMaterialProperty")
+    get() = getProcessMaterial()
+    @JvmName("processMaterialProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProcessMaterialPtr, NIL)
+      setProcessMaterial(value)
     }
 
   /**
@@ -161,103 +147,82 @@ public open class GPUParticles2D : Node2D() {
    * [CanvasItemMaterial.particlesAnimVFrames], and [CanvasItemMaterial.particlesAnimLoop] to match the
    * flipbook texture.
    */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var texture: Texture2D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
    * The amount of time each particle will exist (in seconds). The effective emission rate is
    * `(amount * amount_ratio) / lifetime` particles per second.
    */
-  public var lifetime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var lifetime: Double
+    @JvmName("lifetimeProperty")
+    get() = getLifetime()
+    @JvmName("lifetimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
+      setLifetime(value)
     }
 
   /**
    * If `true`, only one emission cycle occurs. If set `true` during a cycle, emission will stop at
    * the cycle's end.
    */
-  public var oneShot: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var oneShot: Boolean
+    @JvmName("oneShotProperty")
+    get() = getOneShot()
+    @JvmName("oneShotProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+      setOneShot(value)
     }
 
   /**
    * Particle system starts as if it had already run for this many seconds.
    */
-  public var preprocess: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var preprocess: Double
+    @JvmName("preprocessProperty")
+    get() = getPreProcessTime()
+    @JvmName("preprocessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
+      setPreProcessTime(value)
     }
 
   /**
    * Particle system's running speed scaling ratio. A value of `0` can be used to pause the
    * particles.
    */
-  public var speedScale: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var speedScale: Double
+    @JvmName("speedScaleProperty")
+    get() = getSpeedScale()
+    @JvmName("speedScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+      setSpeedScale(value)
     }
 
   /**
    * How rapidly particles in an emission cycle are emitted. If greater than `0`, there will be a
    * gap in emissions before the next cycle begins.
    */
-  public var explosiveness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var explosiveness: Float
+    @JvmName("explosivenessProperty")
+    get() = getExplosivenessRatio()
+    @JvmName("explosivenessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
+      setExplosivenessRatio(value)
     }
 
   /**
    * Emission lifetime randomness ratio.
    */
-  public var randomness: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var randomness: Float
+    @JvmName("randomnessProperty")
+    get() = getRandomnessRatio()
+    @JvmName("randomnessProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
+      setRandomnessRatio(value)
     }
 
   /**
@@ -265,45 +230,36 @@ public open class GPUParticles2D : Node2D() {
    * make the particles render at 2 frames per second. Note this does not slow down the simulation of
    * the particle system itself.
    */
-  public var fixedFps: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var fixedFps: Int
+    @JvmName("fixedFpsProperty")
+    get() = getFixedFps()
+    @JvmName("fixedFpsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
+      setFixedFps(value)
     }
 
   /**
    * Enables particle interpolation, which makes the particle movement smoother when their
    * [fixedFps] is lower than the screen refresh rate.
    */
-  public var interpolate: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolatePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var interpolate: Boolean
+    @JvmName("interpolateProperty")
+    get() = getInterpolate()
+    @JvmName("interpolateProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolatePtr, NIL)
+      setInterpolate(value)
     }
 
   /**
    * If `true`, results in fractional delta calculation which has a smoother particles display
    * effect.
    */
-  public var fractDelta: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var fractDelta: Boolean
+    @JvmName("fractDeltaProperty")
+    get() = getFractionalDelta()
+    @JvmName("fractDeltaProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
+      setFractionalDelta(value)
     }
 
   /**
@@ -311,15 +267,12 @@ public open class GPUParticles2D : Node2D() {
    * **Note:** This only works when used with a [ParticleProcessMaterial]. It needs to be manually
    * implemented for custom process shaders.
    */
-  public var interpToEnd: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var interpToEnd: Float
+    @JvmName("interpToEndProperty")
+    get() = getInterpToEnd()
+    @JvmName("interpToEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
+      setInterpToEnd(value)
     }
 
   /**
@@ -330,15 +283,12 @@ public open class GPUParticles2D : Node2D() {
    * [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT].
    * **Note:** Particles always have a spherical collision shape.
    */
-  public var collisionBaseSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var collisionBaseSize: Float
+    @JvmName("collisionBaseSizeProperty")
+    get() = getCollisionBaseSize()
+    @JvmName("collisionBaseSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCollisionBaseSizePtr, NIL)
+      setCollisionBaseSize(value)
     }
 
   /**
@@ -348,15 +298,12 @@ public open class GPUParticles2D : Node2D() {
    * [Rect2] can be grown via code or with the **Particles → Generate Visibility Rect** editor tool.
    */
   @CoreTypeLocalCopy
-  public var visibilityRect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+  public final inline var visibilityRect: Rect2
+    @JvmName("visibilityRectProperty")
+    get() = getVisibilityRect()
+    @JvmName("visibilityRectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRectPtr, NIL)
+      setVisibilityRect(value)
     }
 
   /**
@@ -365,29 +312,23 @@ public open class GPUParticles2D : Node2D() {
    * is moved or rotated. If `false`, particles use global coordinates; they will not move or rotate
    * along the [GPUParticles2D] node (and its parents) when it is moved or rotated.
    */
-  public var localCoords: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var localCoords: Boolean
+    @JvmName("localCoordsProperty")
+    get() = getUseLocalCoordinates()
+    @JvmName("localCoordsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
+      setUseLocalCoordinates(value)
     }
 
   /**
    * Particle draw order. Uses [DrawOrder] values.
    */
-  public var drawOrder: DrawOrder
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
-      return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var drawOrder: DrawOrder
+    @JvmName("drawOrderProperty")
+    get() = getDrawOrder()
+    @JvmName("drawOrderProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
+      setDrawOrder(value)
     }
 
   /**
@@ -395,30 +336,24 @@ public open class GPUParticles2D : Node2D() {
    * **Note:** Unlike [GPUParticles3D], the number of trail sections and subdivisions is set with
    * the [trailSections] and [trailSectionSubdivisions] properties.
    */
-  public var trailEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isTrailEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var trailEnabled: Boolean
+    @JvmName("trailEnabledProperty")
+    get() = isTrailEnabled()
+    @JvmName("trailEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrailEnabledPtr, NIL)
+      setTrailEnabled(value)
     }
 
   /**
    * The amount of time the particle's trail should represent (in seconds). Only effective if
    * [trailEnabled] is `true`.
    */
-  public var trailLifetime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrailLifetimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var trailLifetime: Double
+    @JvmName("trailLifetimeProperty")
+    get() = getTrailLifetime()
+    @JvmName("trailLifetimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrailLifetimePtr, NIL)
+      setTrailLifetime(value)
     }
 
   /**
@@ -426,15 +361,12 @@ public open class GPUParticles2D : Node2D() {
    * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
    * [trailSectionSubdivisions]. Only effective if [trailEnabled] is `true`.
    */
-  public var trailSections: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrailSectionsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var trailSections: Int
+    @JvmName("trailSectionsProperty")
+    get() = getTrailSections()
+    @JvmName("trailSectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrailSectionsPtr, NIL)
+      setTrailSections(value)
     }
 
   /**
@@ -442,15 +374,12 @@ public open class GPUParticles2D : Node2D() {
    * smoother trail curves, at the cost of performance due to increased mesh complexity. See also
    * [trailSections]. Only effective if [trailEnabled] is `true`.
    */
-  public var trailSectionSubdivisions: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTrailSectionSubdivisionsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var trailSectionSubdivisions: Int
+    @JvmName("trailSectionSubdivisionsProperty")
+    get() = getTrailSectionSubdivisions()
+    @JvmName("trailSectionSubdivisionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTrailSectionSubdivisionsPtr, NIL)
+      setTrailSectionSubdivisions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -478,18 +407,216 @@ public open class GPUParticles2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
+  public final fun visibilityRectMutate(block: Rect2.() -> Unit): Rect2 = visibilityRect.apply{
       block(this)
       visibilityRect = this
   }
 
+
+  public final fun setEmitting(emitting: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to emitting)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
+  }
+
+  public final fun setAmount(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
+  }
+
+  public final fun setLifetime(secs: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to secs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
+  }
+
+  public final fun setOneShot(secs: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to secs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+  }
+
+  public final fun setPreProcessTime(secs: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to secs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
+  }
+
+  public final fun setExplosivenessRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
+  }
+
+  public final fun setRandomnessRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
+  }
+
+  public final fun setVisibilityRect(visibilityRect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to visibilityRect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRectPtr, NIL)
+  }
+
+  public final fun setUseLocalCoordinates(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
+  }
+
+  public final fun setFixedFps(fps: Int): Unit {
+    TransferContext.writeArguments(LONG to fps.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
+  }
+
+  public final fun setFractionalDelta(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
+  }
+
+  public final fun setInterpolate(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolatePtr, NIL)
+  }
+
+  public final fun setProcessMaterial(material: Material?): Unit {
+    TransferContext.writeArguments(OBJECT to material)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProcessMaterialPtr, NIL)
+  }
+
+  public final fun setSpeedScale(scale: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+  }
+
+  public final fun setCollisionBaseSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionBaseSizePtr, NIL)
+  }
+
+  public final fun setInterpToEnd(interp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to interp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
+  }
+
+  public final fun isEmitting(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getAmount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun getLifetime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun getOneShot(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getPreProcessTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun getExplosivenessRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getRandomnessRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getVisibilityRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public final fun getUseLocalCoordinates(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getFixedFps(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun getFractionalDelta(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getInterpolate(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolatePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getProcessMaterial(): Material? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProcessMaterialPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+  }
+
+  public final fun getSpeedScale(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun getCollisionBaseSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getInterpToEnd(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDrawOrder(order: DrawOrder): Unit {
+    TransferContext.writeArguments(LONG to order.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
+  }
+
+  public final fun getDrawOrder(): DrawOrder {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
+    return GPUParticles2D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
 
   /**
    * Returns a rectangle containing the positions of all existing particles.
    * **Note:** When using threaded rendering this method synchronizes the rendering thread. Calling
    * it often may have a negative impact on performance.
    */
-  public fun captureRect(): Rect2 {
+  public final fun captureRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.captureRectPtr, RECT2)
     return (TransferContext.readReturnValue(RECT2, false) as Rect2)
@@ -500,9 +627,20 @@ public open class GPUParticles2D : Node2D() {
    * from the viewport, wait for the [signal finished] signal before calling.
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
    */
-  public fun restart(): Unit {
+  public final fun restart(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
+  }
+
+  public final fun setSubEmitter(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSubEmitterPtr, NIL)
+  }
+
+  public final fun getSubEmitter(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   /**
@@ -511,7 +649,7 @@ public open class GPUParticles2D : Node2D() {
    * The default ParticleProcessMaterial will overwrite [color] and use the contents of [custom] as
    * `(rotation, age, animation, lifetime)`.
    */
-  public fun emitParticle(
+  public final fun emitParticle(
     xform: Transform2D,
     velocity: Vector2,
     color: Color,
@@ -522,12 +660,67 @@ public open class GPUParticles2D : Node2D() {
     TransferContext.callMethod(rawPtr, MethodBindings.emitParticlePtr, NIL)
   }
 
+  public final fun setTrailEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrailEnabledPtr, NIL)
+  }
+
+  public final fun setTrailLifetime(secs: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to secs)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrailLifetimePtr, NIL)
+  }
+
+  public final fun isTrailEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isTrailEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getTrailLifetime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrailLifetimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setTrailSections(sections: Int): Unit {
+    TransferContext.writeArguments(LONG to sections.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrailSectionsPtr, NIL)
+  }
+
+  public final fun getTrailSections(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrailSectionsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setTrailSectionSubdivisions(subdivisions: Int): Unit {
+    TransferContext.writeArguments(LONG to subdivisions.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTrailSectionSubdivisionsPtr, NIL)
+  }
+
+  public final fun getTrailSectionSubdivisions(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTrailSectionSubdivisionsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Sets this node's properties to match a given [CPUParticles2D] node.
    */
-  public fun convertFromParticles(particles: Node): Unit {
+  public final fun convertFromParticles(particles: Node?): Unit {
     TransferContext.writeArguments(OBJECT to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
+  }
+
+  public final fun setAmountRatio(ratio: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
+  }
+
+  public final fun getAmountRatio(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class DrawOrder(

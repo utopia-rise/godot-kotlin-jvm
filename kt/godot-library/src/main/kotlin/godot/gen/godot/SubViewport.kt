@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
@@ -39,15 +40,12 @@ public open class SubViewport : Viewport() {
    * is `true`, the viewport size cannot be changed manually.
    */
   @CoreTypeLocalCopy
-  public var size: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+  public final inline var size: Vector2i
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -55,58 +53,46 @@ public open class SubViewport : Viewport() {
    * disabled.
    */
   @CoreTypeLocalCopy
-  public var size2dOverride: Vector2i
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
-      return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
-    }
+  public final inline var size2dOverride: Vector2i
+    @JvmName("size2dOverrideProperty")
+    get() = getSize2dOverride()
+    @JvmName("size2dOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2I to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
+      setSize2dOverride(value)
     }
 
   /**
    * If `true`, the 2D size override affects stretch as well.
    */
-  public var size2dOverrideStretch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var size2dOverrideStretch: Boolean
+    @JvmName("size2dOverrideStretchProperty")
+    get() = isSize2dOverrideStretchEnabled()
+    @JvmName("size2dOverrideStretchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
+      setSize2dOverrideStretch(value)
     }
 
   /**
    * The clear mode when the sub-viewport is used as a render target.
    * **Note:** This property is intended for 2D usage.
    */
-  public var renderTargetClearMode: ClearMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
-      return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var renderTargetClearMode: ClearMode
+    @JvmName("renderTargetClearModeProperty")
+    get() = getClearMode()
+    @JvmName("renderTargetClearModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
+      setClearMode(value)
     }
 
   /**
    * The update mode when the sub-viewport is used as a render target.
    */
-  public var renderTargetUpdateMode: UpdateMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
-      return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var renderTargetUpdateMode: UpdateMode
+    @JvmName("renderTargetUpdateModeProperty")
+    get() = getUpdateMode()
+    @JvmName("renderTargetUpdateModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+      setUpdateMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -134,7 +120,7 @@ public open class SubViewport : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
+  public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply{
       block(this)
       size = this
   }
@@ -159,11 +145,67 @@ public open class SubViewport : Viewport() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i = size2dOverride.apply{
+  public final fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i =
+      size2dOverride.apply{
       block(this)
       size2dOverride = this
   }
 
+
+  public final fun setSize(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun getSize(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public final fun setSize2dOverride(size: Vector2i): Unit {
+    TransferContext.writeArguments(VECTOR2I to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
+  }
+
+  public final fun getSize2dOverride(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+  }
+
+  public final fun setSize2dOverrideStretch(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
+  }
+
+  public final fun isSize2dOverrideStretchEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setUpdateMode(mode: UpdateMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+  }
+
+  public final fun getUpdateMode(): UpdateMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setClearMode(mode: ClearMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
+  }
+
+  public final fun getClearMode(): ClearMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
+    return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class ClearMode(
     id: Long,

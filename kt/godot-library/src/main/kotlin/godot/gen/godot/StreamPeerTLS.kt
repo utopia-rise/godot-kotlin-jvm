@@ -39,7 +39,7 @@ public open class StreamPeerTLS : StreamPeer() {
    * Poll the connection to check for incoming bytes. Call this right before
    * [StreamPeer.getAvailableBytes] for it to work properly.
    */
-  public fun poll(): Unit {
+  public final fun poll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
@@ -47,7 +47,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
-  public fun acceptStream(stream: StreamPeer, serverOptions: TLSOptions): GodotError {
+  public final fun acceptStream(stream: StreamPeer?, serverOptions: TLSOptions?): GodotError {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -60,8 +60,8 @@ public open class StreamPeerTLS : StreamPeer() {
    * common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public fun connectToStream(
-    stream: StreamPeer,
+  public final fun connectToStream(
+    stream: StreamPeer?,
     commonName: String,
     clientOptions: TLSOptions? = null,
   ): GodotError {
@@ -73,7 +73,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Returns the status of the connection. See [Status] for values.
    */
-  public fun getStatus(): Status {
+  public final fun getStatus(): Status {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
     return StreamPeerTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
@@ -82,7 +82,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Returns the underlying [StreamPeer] connection, used in [acceptStream] or [connectToStream].
    */
-  public fun getStream(): StreamPeer? {
+  public final fun getStream(): StreamPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
@@ -91,7 +91,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public fun disconnectFromStream(): Unit {
+  public final fun disconnectFromStream(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromStreamPtr, NIL)
   }

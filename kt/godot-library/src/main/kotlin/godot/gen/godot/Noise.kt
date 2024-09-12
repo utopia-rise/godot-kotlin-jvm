@@ -45,7 +45,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns the 1D noise value at the given (x) coordinate.
    */
-  public fun getNoise1d(x: Float): Float {
+  public final fun getNoise1d(x: Float): Float {
     TransferContext.writeArguments(DOUBLE to x.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise1dPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -54,7 +54,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns the 2D noise value at the given position.
    */
-  public fun getNoise2d(x: Float, y: Float): Float {
+  public final fun getNoise2d(x: Float, y: Float): Float {
     TransferContext.writeArguments(DOUBLE to x.toDouble(), DOUBLE to y.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise2dPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -63,7 +63,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns the 2D noise value at the given position.
    */
-  public fun getNoise2dv(v: Vector2): Float {
+  public final fun getNoise2dv(v: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to v)
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise2dvPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -72,7 +72,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns the 3D noise value at the given position.
    */
-  public fun getNoise3d(
+  public final fun getNoise3d(
     x: Float,
     y: Float,
     z: Float,
@@ -85,7 +85,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns the 3D noise value at the given position.
    */
-  public fun getNoise3dv(v: Vector3): Float {
+  public final fun getNoise3dv(v: Vector3): Float {
     TransferContext.writeArguments(VECTOR3 to v)
     TransferContext.callMethod(rawPtr, MethodBindings.getNoise3dvPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -97,7 +97,7 @@ public open class Noise internal constructor() : Resource() {
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
-  public fun getImage(
+  public final fun getImage(
     width: Int,
     height: Int,
     invert: Boolean = false,
@@ -115,7 +115,7 @@ public open class Noise internal constructor() : Resource() {
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
-  public fun getSeamlessImage(
+  public final fun getSeamlessImage(
     width: Int,
     height: Int,
     invert: Boolean = false,
@@ -134,7 +134,7 @@ public open class Noise internal constructor() : Resource() {
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
-  public fun getImage3d(
+  public final fun getImage3d(
     width: Int,
     height: Int,
     depth: Int,
@@ -153,7 +153,7 @@ public open class Noise internal constructor() : Resource() {
    * generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
-  public fun getSeamlessImage3d(
+  public final fun getSeamlessImage3d(
     width: Int,
     height: Int,
     depth: Int,

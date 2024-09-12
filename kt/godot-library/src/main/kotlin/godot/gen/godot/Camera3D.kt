@@ -37,6 +37,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -51,15 +52,12 @@ public open class Camera3D : Node3D() {
   /**
    * The axis to lock during [fov]/[size] adjustments. Can be either [KEEP_WIDTH] or [KEEP_HEIGHT].
    */
-  public var keepAspect: KeepAspect
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getKeepAspectModePtr, LONG)
-      return Camera3D.KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var keepAspect: KeepAspect
+    @JvmName("keepAspectProperty")
+    get() = getKeepAspectMode()
+    @JvmName("keepAspectProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeepAspectModePtr, NIL)
+      setKeepAspectMode(value)
     }
 
   /**
@@ -76,85 +74,67 @@ public open class Camera3D : Node3D() {
    * [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global
    * illumination.
    */
-  public var cullMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var cullMask: Long
+    @JvmName("cullMaskProperty")
+    get() = getCullMask()
+    @JvmName("cullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+      setCullMask(value)
     }
 
   /**
    * The [Environment] to use for this camera.
    */
-  public var environment: Environment?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
-    }
+  public final inline var environment: Environment?
+    @JvmName("environmentProperty")
+    get() = getEnvironment()
+    @JvmName("environmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+      setEnvironment(value)
     }
 
   /**
    * The [CameraAttributes] to use for this camera.
    */
-  public var attributes: CameraAttributes?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
-    }
+  public final inline var attributes: CameraAttributes?
+    @JvmName("attributesProperty")
+    get() = getAttributes()
+    @JvmName("attributesProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAttributesPtr, NIL)
+      setAttributes(value)
     }
 
   /**
    * The [Compositor] to use for this camera.
    */
-  public var compositor: Compositor?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
-    }
+  public final inline var compositor: Compositor?
+    @JvmName("compositorProperty")
+    get() = getCompositor()
+    @JvmName("compositorProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+      setCompositor(value)
     }
 
   /**
    * The horizontal (X) offset of the camera viewport.
    */
-  public var hOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var hOffset: Float
+    @JvmName("hOffsetProperty")
+    get() = getHOffset()
+    @JvmName("hOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
+      setHOffset(value)
     }
 
   /**
    * The vertical (Y) offset of the camera viewport.
    */
-  public var vOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var vOffset: Float
+    @JvmName("vOffsetProperty")
+    get() = getVOffset()
+    @JvmName("vOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
+      setVOffset(value)
     }
 
   /**
@@ -162,30 +142,24 @@ public open class Camera3D : Node3D() {
    * [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in
    * particular `_process` methods. See [DopplerTracking] for possible values.
    */
-  public var dopplerTracking: DopplerTracking
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDopplerTrackingPtr, LONG)
-      return Camera3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var dopplerTracking: DopplerTracking
+    @JvmName("dopplerTrackingProperty")
+    get() = getDopplerTracking()
+    @JvmName("dopplerTrackingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDopplerTrackingPtr, NIL)
+      setDopplerTracking(value)
     }
 
   /**
    * The camera's projection mode. In [PROJECTION_PERSPECTIVE] mode, objects' Z distance from the
    * camera's local space scales their perceived size.
    */
-  public var projection: ProjectionType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getProjectionPtr, LONG)
-      return Camera3D.ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var projection: ProjectionType
+    @JvmName("projectionProperty")
+    get() = getProjection()
+    @JvmName("projectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setProjectionPtr, NIL)
+      setProjection(value)
     }
 
   /**
@@ -194,15 +168,12 @@ public open class Camera3D : Node3D() {
    * [Camera3D] nodes are present in the scene and only one is current, setting one camera's [current]
    * to `false` will cause the other camera to be made current.
    */
-  public var current: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var current: Boolean
+    @JvmName("currentProperty")
+    get() = isCurrent()
+    @JvmName("currentProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+      setCurrent(value)
     }
 
   /**
@@ -215,30 +186,24 @@ public open class Camera3D : Node3D() {
    * - ~107.51 degrees in a 16:9 viewport
    * - ~121.63 degrees in a 21:9 viewport
    */
-  public var fov: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var fov: Float
+    @JvmName("fovProperty")
+    get() = getFov()
+    @JvmName("fovProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+      setFov(value)
     }
 
   /**
    * The camera's size in meters measured as the diameter of the width or height, depending on
    * [keepAspect]. Only applicable in orthogonal and frustum modes.
    */
-  public var size: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var size: Float
+    @JvmName("sizeProperty")
+    get() = getSize()
+    @JvmName("sizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+      setSize(value)
     }
 
   /**
@@ -247,15 +212,12 @@ public open class Camera3D : Node3D() {
    * **Note:** Only effective if [projection] is [PROJECTION_FRUSTUM].
    */
   @CoreTypeLocalCopy
-  public var frustumOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFrustumOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var frustumOffset: Vector2
+    @JvmName("frustumOffsetProperty")
+    get() = getFrustumOffset()
+    @JvmName("frustumOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFrustumOffsetPtr, NIL)
+      setFrustumOffset(value)
     }
 
   /**
@@ -263,15 +225,12 @@ public open class Camera3D : Node3D() {
    * values allow the camera to see objects more up close to its origin, at the cost of lower precision
    * across the *entire* range. Values lower than the default can lead to increased Z-fighting.
    */
-  public var near: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var near: Float
+    @JvmName("nearProperty")
+    get() = getNear()
+    @JvmName("nearProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setNearPtr, NIL)
+      setNear(value)
     }
 
   /**
@@ -279,15 +238,12 @@ public open class Camera3D : Node3D() {
    * values allow the camera to see further away, while decreasing [far] can improve performance if it
    * results in objects being partially or fully culled.
    */
-  public var far: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var far: Float
+    @JvmName("farProperty")
+    get() = getFar()
+    @JvmName("farProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
+      setFar(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -314,7 +270,7 @@ public open class Camera3D : Node3D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
+  public final fun frustumOffsetMutate(block: Vector2.() -> Unit): Vector2 = frustumOffset.apply{
       block(this)
       frustumOffset = this
   }
@@ -325,7 +281,7 @@ public open class Camera3D : Node3D() {
    * [Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form
    * of (origin, normal) for object intersection or picking.
    */
-  public fun projectRayNormal(screenPoint: Vector2): Vector3 {
+  public final fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectRayNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -335,7 +291,7 @@ public open class Camera3D : Node3D() {
    * Returns a normal vector from the screen point location directed along the camera. Orthogonal
    * cameras are normalized. Perspective cameras account for perspective, screen width/height, etc.
    */
-  public fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
+  public final fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectLocalRayNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -346,7 +302,7 @@ public open class Camera3D : Node3D() {
    * [Viewport] rectangle by the inverse camera projection. This is useful for casting rays in the form
    * of (origin, normal) for object intersection or picking.
    */
-  public fun projectRayOrigin(screenPoint: Vector2): Vector3 {
+  public final fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectRayOriginPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -365,7 +321,7 @@ public open class Camera3D : Node3D() {
    * control.position = get_viewport().get_camera_3d().unproject_position(global_transform.origin)
    * [/codeblock]
    */
-  public fun unprojectPosition(worldPoint: Vector3): Vector2 {
+  public final fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.unprojectPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -378,7 +334,7 @@ public open class Camera3D : Node3D() {
    * this diagram[/url] for an overview of position query methods.
    * **Note:** A position which returns `false` may still be outside the camera's field of view.
    */
-  public fun isPositionBehind(worldPoint: Vector3): Boolean {
+  public final fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.isPositionBehindPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -388,7 +344,7 @@ public open class Camera3D : Node3D() {
    * Returns the 3D point in world space that maps to the given 2D coordinate in the [Viewport]
    * rectangle on a plane that is the given [zDepth] distance into the scene away from the camera.
    */
-  public fun projectPosition(screenPoint: Vector2, zDepth: Float): Vector3 {
+  public final fun projectPosition(screenPoint: Vector2, zDepth: Float): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.projectPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -399,7 +355,7 @@ public open class Camera3D : Node3D() {
    * [fov] (field of view) angle in degrees, and the [zNear] and [zFar] clip planes in world space
    * units.
    */
-  public fun setPerspective(
+  public final fun setPerspective(
     fov: Float,
     zNear: Float,
     zFar: Float,
@@ -413,7 +369,7 @@ public open class Camera3D : Node3D() {
    * [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often
    * use this projection, with values specified in pixels.)
    */
-  public fun setOrthogonal(
+  public final fun setOrthogonal(
     size: Float,
     zNear: Float,
     zFar: Float,
@@ -427,7 +383,7 @@ public open class Camera3D : Node3D() {
    * an [offset], and the [zNear] and [zFar] clip planes in world space units. See also
    * [frustumOffset].
    */
-  public fun setFrustum(
+  public final fun setFrustum(
     size: Float,
     offset: Vector2,
     zNear: Float,
@@ -441,7 +397,7 @@ public open class Camera3D : Node3D() {
    * Makes this camera the current camera for the [Viewport] (see class description). If the camera
    * node is outside the scene tree, it will attempt to become current once it's added.
    */
-  public fun makeCurrent(): Unit {
+  public final fun makeCurrent(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
@@ -451,9 +407,20 @@ public open class Camera3D : Node3D() {
    * to make the next camera current, if any.
    */
   @JvmOverloads
-  public fun clearCurrent(enableNext: Boolean = true): Unit {
+  public final fun clearCurrent(enableNext: Boolean = true): Unit {
     TransferContext.writeArguments(BOOL to enableNext)
     TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
+  }
+
+  public final fun setCurrent(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+  }
+
+  public final fun isCurrent(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   /**
@@ -461,7 +428,7 @@ public open class Camera3D : Node3D() {
    * offsets; and any other adjustments made to the position and orientation of the camera by
    * subclassed cameras such as [XRCamera3D].
    */
-  public fun getCameraTransform(): Transform3D {
+  public final fun getCameraTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
@@ -471,17 +438,171 @@ public open class Camera3D : Node3D() {
    * Returns the projection matrix that this camera uses to render to its associated viewport. The
    * camera must be part of the scene tree to function.
    */
-  public fun getCameraProjection(): Projection {
+  public final fun getCameraProjection(): Projection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraProjectionPtr, PROJECTION)
     return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
+  }
+
+  public final fun getFov(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getFrustumOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFrustumOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun getSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getFar(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getNear(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setFov(fov: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fov.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+  }
+
+  public final fun setFrustumOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFrustumOffsetPtr, NIL)
+  }
+
+  public final fun setSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+  }
+
+  public final fun setFar(far: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to far.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFarPtr, NIL)
+  }
+
+  public final fun setNear(near: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to near.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setNearPtr, NIL)
+  }
+
+  public final fun getProjection(): ProjectionType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getProjectionPtr, LONG)
+    return Camera3D.ProjectionType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setProjection(mode: ProjectionType): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setProjectionPtr, NIL)
+  }
+
+  public final fun setHOffset(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
+  }
+
+  public final fun getHOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setVOffset(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
+  }
+
+  public final fun getVOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCullMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+  }
+
+  public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setEnvironment(env: Environment?): Unit {
+    TransferContext.writeArguments(OBJECT to env)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+  }
+
+  public final fun getEnvironment(): Environment? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+  }
+
+  public final fun setAttributes(env: CameraAttributes?): Unit {
+    TransferContext.writeArguments(OBJECT to env)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAttributesPtr, NIL)
+  }
+
+  public final fun getAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAttributesPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+  }
+
+  public final fun setCompositor(compositor: Compositor?): Unit {
+    TransferContext.writeArguments(OBJECT to compositor)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+  }
+
+  public final fun getCompositor(): Compositor? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
+  }
+
+  public final fun setKeepAspectMode(mode: KeepAspect): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeepAspectModePtr, NIL)
+  }
+
+  public final fun getKeepAspectMode(): KeepAspect {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getKeepAspectModePtr, LONG)
+    return Camera3D.KeepAspect.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setDopplerTracking(mode: DopplerTracking): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDopplerTrackingPtr, NIL)
+  }
+
+  public final fun getDopplerTracking(): DopplerTracking {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDopplerTrackingPtr, LONG)
+    return Camera3D.DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the camera's frustum planes in world space units as an array of [Plane]s in the
    * following order: near, far, left, top, right, bottom. Not to be confused with [frustumOffset].
    */
-  public fun getFrustum(): VariantArray<Plane> {
+  public final fun getFrustum(): VariantArray<Plane> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrustumPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
@@ -493,7 +614,7 @@ public open class Camera3D : Node3D() {
    * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/camera3d_position_frustum.png]See
    * this diagram[/url] for an overview of position query methods.
    */
-  public fun isPositionInFrustum(worldPoint: Vector3): Boolean {
+  public final fun isPositionInFrustum(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.isPositionInFrustumPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -502,7 +623,7 @@ public open class Camera3D : Node3D() {
   /**
    * Returns the camera's RID from the [RenderingServer].
    */
-  public fun getCameraRid(): RID {
+  public final fun getCameraRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -512,7 +633,7 @@ public open class Camera3D : Node3D() {
    * Returns the RID of a pyramid shape encompassing the camera's view frustum, ignoring the
    * camera's near plane. The tip of the pyramid represents the position of the camera.
    */
-  public fun getPyramidShapeRid(): RID {
+  public final fun getPyramidShapeRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPyramidShapeRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -522,7 +643,7 @@ public open class Camera3D : Node3D() {
    * Based on [value], enables or disables the specified layer in the [cullMask], given a
    * [layerNumber] between 1 and 20.
    */
-  public fun setCullMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCullMaskValue(layerNumber: Int, `value`: Boolean): Unit {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskValuePtr, NIL)
   }
@@ -531,7 +652,7 @@ public open class Camera3D : Node3D() {
    * Returns whether or not the specified layer of the [cullMask] is enabled, given a [layerNumber]
    * between 1 and 20.
    */
-  public fun getCullMaskValue(layerNumber: Int): Boolean {
+  public final fun getCullMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskValuePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

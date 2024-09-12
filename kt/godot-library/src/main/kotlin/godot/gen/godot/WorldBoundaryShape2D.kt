@@ -21,6 +21,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an
@@ -35,15 +36,12 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
    */
   @CoreTypeLocalCopy
-  public var normal: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNormalPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var normal: Vector2
+    @JvmName("normalProperty")
+    get() = getNormal()
+    @JvmName("normalProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
+      setNormal(value)
     }
 
   /**
@@ -53,15 +51,12 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates
    * are represented by the [normal] property.
    */
-  public var distance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var distance: Float
+    @JvmName("distanceProperty")
+    get() = getDistance()
+    @JvmName("distanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDistancePtr, NIL)
+      setDistance(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -87,11 +82,33 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply{
+  public final fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply{
       block(this)
       normal = this
   }
 
+
+  public final fun setNormal(normal: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to normal)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
+  }
+
+  public final fun getNormal(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNormalPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDistancePtr, NIL)
+  }
+
+  public final fun getDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public companion object
 

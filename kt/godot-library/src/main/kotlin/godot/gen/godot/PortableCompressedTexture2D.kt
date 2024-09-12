@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -43,15 +44,12 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Allow overriding the texture size (for 2D only).
    */
   @CoreTypeLocalCopy
-  public var sizeOverride: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var sizeOverride: Vector2
+    @JvmName("sizeOverrideProperty")
+    get() = getSizeOverride()
+    @JvmName("sizeOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+      setSizeOverride(value)
     }
 
   /**
@@ -60,15 +58,12 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * This flag allows to keep the compressed data in memory if you intend it to persist after
    * loading.
    */
-  public var keepCompressedBuffer: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var keepCompressedBuffer: Boolean
+    @JvmName("keepCompressedBufferProperty")
+    get() = isKeepingCompressedBuffer()
+    @JvmName("keepCompressedBufferProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setKeepCompressedBufferPtr, NIL)
+      setKeepCompressedBuffer(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -93,7 +88,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
+  public final fun sizeOverrideMutate(block: Vector2.() -> Unit): Vector2 = sizeOverride.apply{
       block(this)
       sizeOverride = this
   }
@@ -107,8 +102,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
    * Lossy WebP compression quality.
    */
   @JvmOverloads
-  public fun createFromImage(
-    image: Image,
+  public final fun createFromImage(
+    image: Image?,
     compressionMode: CompressionMode,
     normalMap: Boolean = false,
     lossyQuality: Float = 0.8f,
@@ -120,7 +115,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Return the image format used (valid after initialized).
    */
-  public fun getFormat(): Image.Format {
+  public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
@@ -129,10 +124,32 @@ public open class PortableCompressedTexture2D : Texture2D() {
   /**
    * Return the compression mode used (valid after initialized).
    */
-  public fun getCompressionMode(): CompressionMode {
+  public final fun getCompressionMode(): CompressionMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompressionModePtr, LONG)
     return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setSizeOverride(size: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to size)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+  }
+
+  public final fun getSizeOverride(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setKeepCompressedBuffer(keep: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to keep)
+    TransferContext.callMethod(rawPtr, MethodBindings.setKeepCompressedBufferPtr, NIL)
+  }
+
+  public final fun isKeepingCompressedBuffer(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class CompressionMode(
@@ -161,7 +178,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
      * Overrides the flag globally for all textures of this type. This is used primarily by the
      * editor.
      */
-    public fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
+    public final fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
       TransferContext.writeArguments(BOOL to keep)
       TransferContext.callMethod(0, MethodBindings.setKeepAllCompressedBuffersPtr, NIL)
     }
@@ -169,7 +186,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     /**
      * Return whether the flag is overridden for all textures of this type.
      */
-    public fun isKeepingAllCompressedBuffers(): Boolean {
+    public final fun isKeepingAllCompressedBuffers(): Boolean {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)
       return (TransferContext.readReturnValue(BOOL, false) as Boolean)

@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
+import kotlin.jvm.JvmName
 
 /**
  * By changing various properties of this object, such as the start and target position, you can
@@ -38,101 +39,80 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   /**
    * The navigation map [RID] used in the path query.
    */
-  public var map: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline var map: RID
+    @JvmName("mapProperty")
+    get() = getMap()
+    @JvmName("mapProperty")
     set(`value`) {
-      TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
+      setMap(value)
     }
 
   /**
    * The pathfinding start position in global coordinates.
    */
   @CoreTypeLocalCopy
-  public var startPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var startPosition: Vector2
+    @JvmName("startPositionProperty")
+    get() = getStartPosition()
+    @JvmName("startPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+      setStartPosition(value)
     }
 
   /**
    * The pathfinding target position in global coordinates.
    */
   @CoreTypeLocalCopy
-  public var targetPosition: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var targetPosition: Vector2
+    @JvmName("targetPositionProperty")
+    get() = getTargetPosition()
+    @JvmName("targetPositionProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+      setTargetPosition(value)
     }
 
   /**
    * The navigation layers the query will use (as a bitmask).
    */
-  public var navigationLayers: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var navigationLayers: Long
+    @JvmName("navigationLayersProperty")
+    get() = getNavigationLayers()
+    @JvmName("navigationLayersProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+      setNavigationLayers(value)
     }
 
   /**
    * The pathfinding algorithm used in the path query.
    */
-  public var pathfindingAlgorithm: PathfindingAlgorithm
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
-      return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var pathfindingAlgorithm: PathfindingAlgorithm
+    @JvmName("pathfindingAlgorithmProperty")
+    get() = getPathfindingAlgorithm()
+    @JvmName("pathfindingAlgorithmProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+      setPathfindingAlgorithm(value)
     }
 
   /**
    * The path postprocessing applied to the raw path corridor found by the [pathfindingAlgorithm].
    */
-  public var pathPostprocessing: PathPostProcessing
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
-      return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var pathPostprocessing: PathPostProcessing
+    @JvmName("pathPostprocessingProperty")
+    get() = getPathPostprocessing()
+    @JvmName("pathPostprocessingProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
+      setPathPostprocessing(value)
     }
 
   /**
    * Additional information to include with the navigation path.
    */
-  public var metadataFlags: PathMetadataFlags
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
-      return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var metadataFlags: PathMetadataFlags
+    @JvmName("metadataFlagsProperty")
+    get() = getMetadataFlags()
+    @JvmName("metadataFlagsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.flag)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
+      setMetadataFlags(value)
     }
 
   /**
@@ -143,29 +123,23 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
    */
-  public var simplifyPath: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var simplifyPath: Boolean
+    @JvmName("simplifyPathProperty")
+    get() = getSimplifyPath()
+    @JvmName("simplifyPathProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+      setSimplifyPath(value)
     }
 
   /**
    * The path simplification amount in worlds units.
    */
-  public var simplifyEpsilon: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var simplifyEpsilon: Float
+    @JvmName("simplifyEpsilonProperty")
+    get() = getSimplifyEpsilon()
+    @JvmName("simplifyEpsilonProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+      setSimplifyEpsilon(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -190,7 +164,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
+  public final fun startPositionMutate(block: Vector2.() -> Unit): Vector2 = startPosition.apply{
       block(this)
       startPosition = this
   }
@@ -214,11 +188,110 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
+  public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply{
       block(this)
       targetPosition = this
   }
 
+
+  public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
+    TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+  }
+
+  public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
+    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
+    TransferContext.writeArguments(LONG to pathPostprocessing.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
+  }
+
+  public final fun getPathPostprocessing(): PathPostProcessing {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
+    return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMap(map: RID): Unit {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
+  }
+
+  public final fun getMap(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
+  }
+
+  public final fun setStartPosition(startPosition: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to startPosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+  }
+
+  public final fun getStartPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setTargetPosition(targetPosition: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to targetPosition)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+  }
+
+  public final fun getTargetPosition(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setNavigationLayers(navigationLayers: Long): Unit {
+    TransferContext.writeArguments(LONG to navigationLayers)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+  }
+
+  public final fun getNavigationLayers(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
+  }
+
+  public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
+    TransferContext.writeArguments(LONG to flags.flag)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
+  }
+
+  public final fun getMetadataFlags(): PathMetadataFlags {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
+    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setSimplifyPath(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+  }
+
+  public final fun getSimplifyPath(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSimplifyEpsilon(epsilon: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+  }
+
+  public final fun getSimplifyEpsilon(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
 
   public enum class PathfindingAlgorithm(
     id: Long,

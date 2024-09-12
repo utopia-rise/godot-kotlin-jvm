@@ -33,6 +33,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -116,15 +117,12 @@ public open class RigidBody2D : PhysicsBody2D() {
   /**
    * The body's mass.
    */
-  public var mass: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var mass: Float
+    @JvmName("massProperty")
+    get() = getMass()
+    @JvmName("massProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+      setMass(value)
     }
 
   /**
@@ -132,15 +130,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * If a material is assigned to this property, it will be used instead of any other physics
    * material, such as an inherited one.
    */
-  public var physicsMaterialOverride: PhysicsMaterial?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
-    }
+  public final inline var physicsMaterialOverride: PhysicsMaterial?
+    @JvmName("physicsMaterialOverrideProperty")
+    get() = getPhysicsMaterialOverride()
+    @JvmName("physicsMaterialOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+      setPhysicsMaterialOverride(value)
     }
 
   /**
@@ -148,29 +143,23 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Gravity** value in **Project > Project Settings > Physics > 2d** and/or any additional gravity
    * vector applied by [Area2D]s.
    */
-  public var gravityScale: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var gravityScale: Float
+    @JvmName("gravityScaleProperty")
+    get() = getGravityScale()
+    @JvmName("gravityScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+      setGravityScale(value)
     }
 
   /**
    * Defines the way the body's center of mass is set. See [CenterOfMassMode] for possible values.
    */
-  public var centerOfMassMode: CenterOfMassMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
-      return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var centerOfMassMode: CenterOfMassMode
+    @JvmName("centerOfMassModeProperty")
+    get() = getCenterOfMassMode()
+    @JvmName("centerOfMassModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
+      setCenterOfMassMode(value)
     }
 
   /**
@@ -182,15 +171,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * mass is automatically computed.
    */
   @CoreTypeLocalCopy
-  public var centerOfMass: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var centerOfMass: Vector2
+    @JvmName("centerOfMassProperty")
+    get() = getCenterOfMass()
+    @JvmName("centerOfMassProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+      setCenterOfMass(value)
     }
 
   /**
@@ -223,58 +209,46 @@ public open class RigidBody2D : PhysicsBody2D() {
    * }
    * ```
    */
-  public var inertia: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInertiaPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var inertia: Float
+    @JvmName("inertiaProperty")
+    get() = getInertia()
+    @JvmName("inertiaProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
+      setInertia(value)
     }
 
   /**
    * If `true`, the body will not move and will not calculate forces until woken up by another body
    * through, for example, a collision, or by using the [applyImpulse] or [applyForce] methods.
    */
-  public var sleeping: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var sleeping: Boolean
+    @JvmName("sleepingProperty")
+    get() = isSleeping()
+    @JvmName("sleepingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
+      setSleeping(value)
     }
 
   /**
    * If `true`, the body can enter sleep mode when there is no movement. See [sleeping].
    */
-  public var canSleep: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var canSleep: Boolean
+    @JvmName("canSleepProperty")
+    get() = isAbleToSleep()
+    @JvmName("canSleepProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+      setCanSleep(value)
     }
 
   /**
    * If `true`, the body cannot rotate. Gravity and forces only apply linear movement.
    */
-  public var lockRotation: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var lockRotation: Boolean
+    @JvmName("lockRotationProperty")
+    get() = isLockRotationEnabled()
+    @JvmName("lockRotationProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
+      setLockRotationEnabled(value)
     }
 
   /**
@@ -282,15 +256,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * See [freezeMode] to set the body's behavior when frozen.
    * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
-  public var freeze: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var freeze: Boolean
+    @JvmName("freezeProperty")
+    get() = isFreezeEnabled()
+    @JvmName("freezeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
+      setFreezeEnabled(value)
     }
 
   /**
@@ -298,15 +269,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [FreezeMode] for possible values.
    * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
-  public var freezeMode: FreezeMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
-      return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var freezeMode: FreezeMode
+    @JvmName("freezeModeProperty")
+    get() = getFreezeMode()
+    @JvmName("freezeModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
+      setFreezeMode(value)
     }
 
   /**
@@ -316,15 +284,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Setting this property will call the method [PhysicsServer2D.bodySetOmitForceIntegration]
    * internally.
    */
-  public var customIntegrator: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var customIntegrator: Boolean
+    @JvmName("customIntegratorProperty")
+    get() = isUsingCustomIntegrator()
+    @JvmName("customIntegratorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+      setUseCustomIntegrator(value)
     }
 
   /**
@@ -334,16 +299,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and
    * shapecasting methods are available. See [CCDMode] for details.
    */
-  public var continuousCd: CCDMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getContinuousCollisionDetectionModePtr,
-          LONG)
-      return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var continuousCd: CCDMode
+    @JvmName("continuousCdProperty")
+    get() = getContinuousCollisionDetectionMode()
+    @JvmName("continuousCdProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
+      setContinuousCollisionDetectionMode(value)
     }
 
   /**
@@ -351,15 +312,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
    * recorded, see [maxContactsReported].
    */
-  public var contactMonitor: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var contactMonitor: Boolean
+    @JvmName("contactMonitorProperty")
+    get() = isContactMonitorEnabled()
+    @JvmName("contactMonitorProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+      setContactMonitor(value)
     }
 
   /**
@@ -370,15 +328,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * parallel edges will result in two contacts (one at each end), and collisions between parallel
    * faces will result in four contacts (one at each corner).
    */
-  public var maxContactsReported: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var maxContactsReported: Int
+    @JvmName("maxContactsReportedProperty")
+    get() = getMaxContactsReported()
+    @JvmName("maxContactsReportedProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
+      setMaxContactsReported(value)
     }
 
   /**
@@ -387,29 +342,23 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [_integrateForces] as your process loop for precise control of the body state.
    */
   @CoreTypeLocalCopy
-  public var linearVelocity: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var linearVelocity: Vector2
+    @JvmName("linearVelocityProperty")
+    get() = getLinearVelocity()
+    @JvmName("linearVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+      setLinearVelocity(value)
     }
 
   /**
    * Defines how [linearDamp] is applied. See [DampMode] for possible values.
    */
-  public var linearDampMode: DampMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
-      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var linearDampMode: DampMode
+    @JvmName("linearDampModeProperty")
+    get() = getLinearDampMode()
+    @JvmName("linearDampModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+      setLinearDampMode(value)
     }
 
   /**
@@ -419,43 +368,34 @@ public open class RigidBody2D : PhysicsBody2D() {
    * body's damping value.
    * See [ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
-  public var linearDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var linearDamp: Float
+    @JvmName("linearDampProperty")
+    get() = getLinearDamp()
+    @JvmName("linearDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+      setLinearDamp(value)
     }
 
   /**
    * The body's rotational velocity in *radians* per second.
    */
-  public var angularVelocity: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var angularVelocity: Float
+    @JvmName("angularVelocityProperty")
+    get() = getAngularVelocity()
+    @JvmName("angularVelocityProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+      setAngularVelocity(value)
     }
 
   /**
    * Defines how [angularDamp] is applied. See [DampMode] for possible values.
    */
-  public var angularDampMode: DampMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
-      return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var angularDampMode: DampMode
+    @JvmName("angularDampModeProperty")
+    get() = getAngularDampMode()
+    @JvmName("angularDampModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+      setAngularDampMode(value)
     }
 
   /**
@@ -465,15 +405,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    * body's damping value.
    * See [ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
-  public var angularDamp: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var angularDamp: Float
+    @JvmName("angularDampProperty")
+    get() = getAngularDamp()
+    @JvmName("angularDampProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+      setAngularDamp(value)
     }
 
   /**
@@ -481,30 +418,24 @@ public open class RigidBody2D : PhysicsBody2D() {
    * See [addConstantForce] and [addConstantCentralForce].
    */
   @CoreTypeLocalCopy
-  public var constantForce: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var constantForce: Vector2
+    @JvmName("constantForceProperty")
+    get() = getConstantForce()
+    @JvmName("constantForceProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
+      setConstantForce(value)
     }
 
   /**
    * The body's total constant rotational forces applied during each physics update.
    * See [addConstantTorque].
    */
-  public var constantTorque: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var constantTorque: Float
+    @JvmName("constantTorqueProperty")
+    get() = getConstantTorque()
+    @JvmName("constantTorqueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
+      setConstantTorque(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -534,7 +465,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun centerOfMassMutate(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply{
+  public final fun centerOfMassMutate(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply{
       block(this)
       centerOfMass = this
   }
@@ -560,7 +491,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
+  public final fun linearVelocityMutate(block: Vector2.() -> Unit): Vector2 = linearVelocity.apply{
       block(this)
       linearVelocity = this
   }
@@ -585,7 +516,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantForceMutate(block: Vector2.() -> Unit): Vector2 = constantForce.apply{
+  public final fun constantForceMutate(block: Vector2.() -> Unit): Vector2 = constantForce.apply{
       block(this)
       constantForce = this
   }
@@ -597,7 +528,150 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [customIntegrator] property allows you to disable the standard force integration and do fully
    * custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState2D): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState2D?): Unit {
+  }
+
+  public final fun setMass(mass: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to mass.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+  }
+
+  public final fun getMass(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun getInertia(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setInertia(inertia: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to inertia.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
+  }
+
+  public final fun setCenterOfMassMode(mode: CenterOfMassMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
+  }
+
+  public final fun getCenterOfMassMode(): CenterOfMassMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
+    return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setCenterOfMass(centerOfMass: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to centerOfMass)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+  }
+
+  public final fun getCenterOfMass(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+    TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+  }
+
+  public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+  }
+
+  public final fun setGravityScale(gravityScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+  }
+
+  public final fun getGravityScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
+    TransferContext.writeArguments(LONG to linearDampMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+  }
+
+  public final fun getLinearDampMode(): DampMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
+    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
+    TransferContext.writeArguments(LONG to angularDampMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+  }
+
+  public final fun getAngularDampMode(): DampMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
+    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setLinearDamp(linearDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+  }
+
+  public final fun getLinearDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setAngularDamp(angularDamp: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+  }
+
+  public final fun getAngularDamp(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setLinearVelocity(linearVelocity: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to linearVelocity)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+  }
+
+  public final fun getLinearVelocity(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setAngularVelocity(angularVelocity: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angularVelocity.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+  }
+
+  public final fun getAngularVelocity(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMaxContactsReported(amount: Int): Unit {
+    TransferContext.writeArguments(LONG to amount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
+  }
+
+  public final fun getMaxContactsReported(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -605,17 +679,50 @@ public open class RigidBody2D : PhysicsBody2D() {
    * unless bodies are configured to monitor contacts (see [contactMonitor]).
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
-  public fun getContactCount(): Int {
+  public final fun getContactCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setUseCustomIntegrator(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+  }
+
+  public final fun isUsingCustomIntegrator(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setContactMonitor(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+  }
+
+  public final fun isContactMonitorEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setContinuousCollisionDetectionMode(mode: CCDMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
+  }
+
+  public final fun getContinuousCollisionDetectionMode(): CCDMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getContinuousCollisionDetectionModePtr, LONG)
+    return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the body's velocity on the given axis. The velocity in the given vector axis will be set
    * as the given vector length. This is useful for jumping behavior.
    */
-  public fun setAxisVelocity(axisVelocity: Vector2): Unit {
+  public final fun setAxisVelocity(axisVelocity: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to axisVelocity)
     TransferContext.callMethod(rawPtr, MethodBindings.setAxisVelocityPtr, NIL)
   }
@@ -628,7 +735,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
   @JvmOverloads
-  public fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
@@ -641,7 +748,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
   }
@@ -654,7 +761,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * **Note:** [inertia] is required for this to work. To have [inertia], an active
    * [CollisionShape2D] must be a child of the node, or you can manually set [inertia].
    */
-  public fun applyTorqueImpulse(torque: Float): Unit {
+  public final fun applyTorqueImpulse(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.applyTorqueImpulsePtr, NIL)
   }
@@ -664,7 +771,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * be applied every physics update.
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public fun applyCentralForce(force: Vector2): Unit {
+  public final fun applyCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr, MethodBindings.applyCentralForcePtr, NIL)
   }
@@ -675,7 +782,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.applyForcePtr, NIL)
   }
@@ -686,7 +793,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * **Note:** [inertia] is required for this to work. To have [inertia], an active
    * [CollisionShape2D] must be a child of the node, or you can manually set [inertia].
    */
-  public fun applyTorque(torque: Float): Unit {
+  public final fun applyTorque(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.applyTorquePtr, NIL)
   }
@@ -696,7 +803,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * until cleared with `constant_force = Vector2(0, 0)`.
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public fun addConstantCentralForce(force: Vector2): Unit {
+  public final fun addConstantCentralForce(force: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(rawPtr, MethodBindings.addConstantCentralForcePtr, NIL)
   }
@@ -707,7 +814,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.addConstantForcePtr, NIL)
   }
@@ -716,9 +823,86 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Adds a constant rotational force without affecting position that keeps being applied over time
    * until cleared with `constant_torque = 0`.
    */
-  public fun addConstantTorque(torque: Float): Unit {
+  public final fun addConstantTorque(torque: Float): Unit {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.addConstantTorquePtr, NIL)
+  }
+
+  public final fun setConstantForce(force: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to force)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
+  }
+
+  public final fun getConstantForce(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setConstantTorque(torque: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to torque.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
+  }
+
+  public final fun getConstantTorque(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSleeping(sleeping: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to sleeping)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
+  }
+
+  public final fun isSleeping(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCanSleep(ableToSleep: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ableToSleep)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+  }
+
+  public final fun isAbleToSleep(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setLockRotationEnabled(lockRotation: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to lockRotation)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
+  }
+
+  public final fun isLockRotationEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setFreezeEnabled(freezeMode: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to freezeMode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
+  }
+
+  public final fun isFreezeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setFreezeMode(freezeMode: FreezeMode): Unit {
+    TransferContext.writeArguments(LONG to freezeMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
+  }
+
+  public final fun getFreezeMode(): FreezeMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
+    return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -728,7 +912,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * of collisions is updated once per frame and before the physics step. Consider using signals
    * instead.
    */
-  public fun getCollidingBodies(): VariantArray<Node2D> {
+  public final fun getCollidingBodies(): VariantArray<Node2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollidingBodiesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node2D>)

@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [CenterContainer] is a container that keeps all of its child controls in its center at their
@@ -26,19 +27,27 @@ public open class CenterContainer : Container() {
   /**
    * If `true`, centers children relative to the [CenterContainer]'s top left corner.
    */
-  public var useTopLeft: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isUsingTopLeftPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var useTopLeft: Boolean
+    @JvmName("useTopLeftProperty")
+    get() = isUsingTopLeft()
+    @JvmName("useTopLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
+      setUseTopLeft(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CENTERCONTAINER, scriptIndex)
+  }
+
+  public final fun setUseTopLeft(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
+  }
+
+  public final fun isUsingTopLeft(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTopLeftPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A visual shader node able to perform different functions using vectors.
@@ -25,19 +26,27 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
    * The function to be performed. See [Function] for options.
    */
-  public var function: Function
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-      return VisualShaderNodeVectorFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var function: Function
+    @JvmName("functionProperty")
+    get() = getFunction()
+    @JvmName("functionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+      setFunction(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORFUNC, scriptIndex)
+  }
+
+  public final fun setFunction(func: Function): Unit {
+    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+  }
+
+  public final fun getFunction(): Function {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeVectorFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(

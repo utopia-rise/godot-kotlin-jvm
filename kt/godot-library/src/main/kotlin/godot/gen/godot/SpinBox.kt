@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
@@ -62,112 +63,168 @@ public open class SpinBox : Range() {
   /**
    * Changes the alignment of the underlying [LineEdit].
    */
-  public var alignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var alignment: HorizontalAlignment
+    @JvmName("alignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
    * If `true`, the [SpinBox] will be editable. Otherwise, it will be read only.
    */
-  public var editable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var editable: Boolean
+    @JvmName("editableProperty")
+    get() = isEditable()
+    @JvmName("editableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+      setEditable(value)
     }
 
   /**
    * Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is *changed* instead
    * of *submitted*. See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted].
    */
-  public var updateOnTextChanged: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var updateOnTextChanged: Boolean
+    @JvmName("updateOnTextChangedProperty")
+    get() = getUpdateOnTextChanged()
+    @JvmName("updateOnTextChangedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
+      setUpdateOnTextChanged(value)
     }
 
   /**
    * Adds the specified prefix string before the numerical value of the [SpinBox].
    */
-  public var prefix: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var prefix: String
+    @JvmName("prefixProperty")
+    get() = getPrefix()
+    @JvmName("prefixProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
+      setPrefix(value)
     }
 
   /**
    * Adds the specified suffix string after the numerical value of the [SpinBox].
    */
-  public var suffix: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var suffix: String
+    @JvmName("suffixProperty")
+    get() = getSuffix()
+    @JvmName("suffixProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+      setSuffix(value)
     }
 
   /**
    * If not `0`, [Range.value] will always be rounded to a multiple of [customArrowStep] when
    * interacting with the arrow buttons of the [SpinBox].
    */
-  public var customArrowStep: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var customArrowStep: Double
+    @JvmName("customArrowStepProperty")
+    get() = getCustomArrowStep()
+    @JvmName("customArrowStepProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
+      setCustomArrowStep(value)
     }
 
   /**
    * If `true`, the [SpinBox] will select the whole text when the [LineEdit] gains focus. Clicking
    * the up and down arrows won't trigger this behavior.
    */
-  public var selectAllOnFocus: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var selectAllOnFocus: Boolean
+    @JvmName("selectAllOnFocusProperty")
+    get() = isSelectAllOnFocus()
+    @JvmName("selectAllOnFocusProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+      setSelectAllOnFocus(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SPINBOX, scriptIndex)
   }
 
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setSuffix(suffix: String): Unit {
+    TransferContext.writeArguments(STRING to suffix)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+  }
+
+  public final fun getSuffix(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setPrefix(prefix: String): Unit {
+    TransferContext.writeArguments(STRING to prefix)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
+  }
+
+  public final fun getPrefix(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setEditable(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+  }
+
+  public final fun setCustomArrowStep(arrowStep: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to arrowStep)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
+  }
+
+  public final fun getCustomArrowStep(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun isEditable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setUpdateOnTextChanged(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
+  }
+
+  public final fun getUpdateOnTextChanged(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+  }
+
+  public final fun isSelectAllOnFocus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Applies the current value of this [SpinBox].
    */
-  public fun apply(): Unit {
+  public final fun apply(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.applyPtr, NIL)
   }
@@ -178,7 +235,7 @@ public open class SpinBox : Range() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getLineEdit(): LineEdit? {
+  public final fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)

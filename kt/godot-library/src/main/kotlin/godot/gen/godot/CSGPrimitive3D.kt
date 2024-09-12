@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Parent class for various CSG primitives. It contains code and functionality that is common
@@ -32,19 +33,27 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.
    */
-  public var flipFaces: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flipFaces: Boolean
+    @JvmName("flipFacesProperty")
+    get() = getFlipFaces()
+    @JvmName("flipFacesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+      setFlipFaces(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
+  }
+
+  public final fun setFlipFaces(flipFaces: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to flipFaces)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+  }
+
+  public final fun getFlipFaces(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

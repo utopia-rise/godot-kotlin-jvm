@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
@@ -37,81 +38,129 @@ public open class AudioStreamOggVorbis : AudioStream() {
   /**
    * Contains the raw Ogg data for this stream.
    */
-  public var packetSequence: OggPacketSequence?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPacketSequencePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as OggPacketSequence?)
-    }
+  public final inline var packetSequence: OggPacketSequence?
+    @JvmName("packetSequenceProperty")
+    get() = getPacketSequence()
+    @JvmName("packetSequenceProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPacketSequencePtr, NIL)
+      setPacketSequence(value)
     }
 
-  public var bpm: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var bpm: Double
+    @JvmName("bpmProperty")
+    get() = getBpm()
+    @JvmName("bpmProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+      setBpm(value)
     }
 
-  public var beatCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var beatCount: Int
+    @JvmName("beatCountProperty")
+    get() = getBeatCount()
+    @JvmName("beatCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+      setBeatCount(value)
     }
 
-  public var barBeats: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var barBeats: Int
+    @JvmName("barBeatsProperty")
+    get() = getBarBeats()
+    @JvmName("barBeatsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+      setBarBeats(value)
     }
 
   /**
    * If `true`, the audio will play again from the specified [loopOffset] once it is done playing.
    * Useful for ambient sounds and background music.
    */
-  public var loop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var loop: Boolean
+    @JvmName("loopProperty")
+    get() = hasLoop()
+    @JvmName("loopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+      setLoop(value)
     }
 
   /**
    * Time in seconds at which the stream starts after being looped.
    */
-  public var loopOffset: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var loopOffset: Double
+    @JvmName("loopOffsetProperty")
+    get() = getLoopOffset()
+    @JvmName("loopOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+      setLoopOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMOGGVORBIS, scriptIndex)
+  }
+
+  public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {
+    TransferContext.writeArguments(OBJECT to packetSequence)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPacketSequencePtr, NIL)
+  }
+
+  public final fun getPacketSequence(): OggPacketSequence? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPacketSequencePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as OggPacketSequence?)
+  }
+
+  public final fun setLoop(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+  }
+
+  public final fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setLoopOffset(seconds: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+  }
+
+  public final fun getLoopOffset(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setBpm(bpm: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to bpm)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+  }
+
+  public final fun getBpm(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setBeatCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+  }
+
+  public final fun getBeatCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBarBeats(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+  }
+
+  public final fun getBarBeats(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object {
@@ -119,7 +168,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
      * Creates a new AudioStreamOggVorbis instance from the given buffer. The buffer must contain
      * Ogg Vorbis data.
      */
-    public fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
+    public final fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
@@ -129,7 +178,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
      * Creates a new AudioStreamOggVorbis instance from the given file path. The file must be in Ogg
      * Vorbis format.
      */
-    public fun loadFromFile(path: String): AudioStreamOggVorbis? {
+    public final fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)

@@ -18,6 +18,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
@@ -58,19 +59,27 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   /**
    * The time remaining (in seconds).
    */
-  public var timeLeft: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var timeLeft: Double
+    @JvmName("timeLeftProperty")
+    get() = getTimeLeft()
+    @JvmName("timeLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
+      setTimeLeft(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SCENETREETIMER, scriptIndex)
+  }
+
+  public final fun setTimeLeft(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
+  }
+
+  public final fun getTimeLeft(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
   }
 
   public companion object

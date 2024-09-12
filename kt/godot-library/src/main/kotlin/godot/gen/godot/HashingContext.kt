@@ -86,7 +86,7 @@ public open class HashingContext : RefCounted() {
    * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of
    * an SHA-256).
    */
-  public fun start(type: HashType): GodotError {
+  public final fun start(type: HashType): GodotError {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -95,7 +95,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Updates the computation with the given [chunk] of data.
    */
-  public fun update(chunk: PackedByteArray): GodotError {
+  public final fun update(chunk: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -104,7 +104,7 @@ public open class HashingContext : RefCounted() {
   /**
    * Closes the current context, and return the computed hash.
    */
-  public fun finish(): PackedByteArray {
+  public final fun finish(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)

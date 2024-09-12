@@ -16,6 +16,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The FBXState handles the state data imported from FBX files.
@@ -26,19 +27,27 @@ public open class FBXState : GLTFState() {
    * If `true`, the import process used auxiliary nodes called geometry helper nodes. These nodes
    * help preserve the pivots and transformations of the original 3D model during import.
    */
-  public var allowGeometryHelperNodes: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var allowGeometryHelperNodes: Boolean
+    @JvmName("allowGeometryHelperNodesProperty")
+    get() = getAllowGeometryHelperNodes()
+    @JvmName("allowGeometryHelperNodesProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
+      setAllowGeometryHelperNodes(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_FBXSTATE, scriptIndex)
+  }
+
+  public final fun getAllowGeometryHelperNodes(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to allow)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }
 
   public companion object

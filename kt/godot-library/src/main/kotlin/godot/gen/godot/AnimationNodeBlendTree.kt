@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -46,15 +47,12 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * The global offset of all sub animation nodes.
    */
   @CoreTypeLocalCopy
-  public var graphOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var graphOffset: Vector2
+    @JvmName("graphOffsetProperty")
+    get() = getGraphOffset()
+    @JvmName("graphOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+      setGraphOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -79,7 +77,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
+  public final fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply{
       block(this)
       graphOffset = this
   }
@@ -90,9 +88,9 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * animation node later.
    */
   @JvmOverloads
-  public fun addNode(
+  public final fun addNode(
     name: StringName,
-    node: AnimationNode,
+    node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
   ): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
@@ -102,7 +100,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the sub animation node with the specified [name].
    */
-  public fun getNode(name: StringName): AnimationNode? {
+  public final fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
@@ -111,7 +109,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub animation node.
    */
-  public fun removeNode(name: StringName): Unit {
+  public final fun removeNode(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.removeNodePtr, NIL)
   }
@@ -119,7 +117,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Changes the name of a sub animation node.
    */
-  public fun renameNode(name: StringName, newName: StringName): Unit {
+  public final fun renameNode(name: StringName, newName: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(rawPtr, MethodBindings.renameNodePtr, NIL)
   }
@@ -127,7 +125,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns `true` if a sub animation node with specified [name] exists.
    */
-  public fun hasNode(name: StringName): Boolean {
+  public final fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasNodePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -137,7 +135,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
    * port specified by [inputIndex].
    */
-  public fun connectNode(
+  public final fun connectNode(
     inputNode: StringName,
     inputIndex: Int,
     outputNode: StringName,
@@ -149,7 +147,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Disconnects the animation node connected to the specified input.
    */
-  public fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
+  public final fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.disconnectNodePtr, NIL)
   }
@@ -157,7 +155,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Modifies the position of a sub animation node.
    */
-  public fun setNodePosition(name: StringName, position: Vector2): Unit {
+  public final fun setNodePosition(name: StringName, position: Vector2): Unit {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setNodePositionPtr, NIL)
   }
@@ -165,9 +163,20 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Returns the position of the sub animation node with the specified [name].
    */
-  public fun getNodePosition(name: StringName): Vector2 {
+  public final fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setGraphOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGraphOffsetPtr, NIL)
+  }
+
+  public final fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 

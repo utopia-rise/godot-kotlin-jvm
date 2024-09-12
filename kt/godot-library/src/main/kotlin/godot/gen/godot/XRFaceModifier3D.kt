@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
@@ -34,33 +35,49 @@ public open class XRFaceModifier3D : Node3D() {
   /**
    * The [XRFaceTracker] path.
    */
-  public var faceTracker: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var faceTracker: StringName
+    @JvmName("faceTrackerProperty")
+    get() = getFaceTracker()
+    @JvmName("faceTrackerProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFaceTrackerPtr, NIL)
+      setFaceTracker(value)
     }
 
   /**
    * The [NodePath] of the face [MeshInstance3D].
    */
-  public var target: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTargetPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var target: NodePath
+    @JvmName("targetProperty")
+    get() = getTarget()
+    @JvmName("targetProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
+      setTarget(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
+  }
+
+  public final fun setFaceTracker(trackerName: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to trackerName)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFaceTrackerPtr, NIL)
+  }
+
+  public final fun getFaceTracker(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public final fun setTarget(target: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to target)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
+  }
+
+  public final fun getTarget(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public companion object

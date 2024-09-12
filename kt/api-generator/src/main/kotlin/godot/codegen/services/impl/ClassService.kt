@@ -75,9 +75,8 @@ class ClassService(
             val hasValidAccessor = if (isSetter) property.hasValidSetterInClass else property.hasValidGetterInClass
             if (parentClassAndMethod != null && !hasValidAccessor) {
                 if (isSetter) {
-                    property.shouldUseSuperSetter = true
+                    property.setterMethod = parentClassAndMethod.second
                 } else {
-                    property.shouldUseSuperGetter = true
                     property.getterMethod = parentClassAndMethod.second
                 }
             }
@@ -102,7 +101,6 @@ class ClassService(
                             if (method.arguments.size == 1 && !method.arguments[0].isEnum() && method.arguments[0].type != GodotTypes.int) continue
 
                             property.getterMethod = method
-                            method.isGetterOrSetter = true
                         }
                         property.setter -> {
                             if (method.getTypeClassName().className != UNIT || method.arguments.size > 2 || method.internal.isVirtual) continue
@@ -112,16 +110,10 @@ class ClassService(
                             if (method.arguments.size == 2 && !method.arguments[0].isEnum() && method.arguments[0].type != GodotTypes.int) continue
 
                             property.setterMethod = method
-                            method.isGetterOrSetter = true
                         }
                     }
                 }
             }
         }
-    }
-
-    override fun doAncestorsHaveProperty(className: String, propertyName: String) {
-        val clazz = getClasses().first { it.name == className }
-        classGraphService.doAncestorsHaveProperty(clazz, clazz.properties.first { it.name == propertyName })
     }
 }

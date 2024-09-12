@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
@@ -27,47 +28,71 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
    * Defines which source should be used for the sampling. See [Source] for options.
    */
-  public var source: Source
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
-      return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var source: Source
+    @JvmName("sourceProperty")
+    get() = getSource()
+    @JvmName("sourceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+      setSource(value)
     }
 
   /**
    * The [Cubemap] texture to sample when using [SOURCE_TEXTURE] as [source].
    */
-  public var cubeMap: Cubemap?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Cubemap?)
-    }
+  public final inline var cubeMap: Cubemap?
+    @JvmName("cubeMapProperty")
+    get() = getCubeMap()
+    @JvmName("cubeMapProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
+      setCubeMap(value)
     }
 
   /**
    * Defines the type of data provided by the source texture. See [TextureType] for options.
    */
-  public var textureType: TextureType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-      return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textureType: TextureType
+    @JvmName("textureTypeProperty")
+    get() = getTextureType()
+    @JvmName("textureTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+      setTextureType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAP, scriptIndex)
+  }
+
+  public final fun setSource(`value`: Source): Unit {
+    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+  }
+
+  public final fun getSource(): Source {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setCubeMap(`value`: Cubemap?): Unit {
+    TransferContext.writeArguments(OBJECT to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
+  }
+
+  public final fun getCubeMap(): Cubemap? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Cubemap?)
+  }
+
+  public final fun setTextureType(`value`: TextureType): Unit {
+    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+  }
+
+  public final fun getTextureType(): TextureType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(

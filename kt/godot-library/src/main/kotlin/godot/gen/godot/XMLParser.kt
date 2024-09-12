@@ -74,7 +74,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Parses the next node in the file. This method returns an error code.
    */
-  public fun read(): GodotError {
+  public final fun read(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -83,7 +83,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns the type of the current node. Compare with [NodeType] constants.
    */
-  public fun getNodeType(): NodeType {
+  public final fun getNodeType(): NodeType {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeTypePtr, LONG)
     return XMLParser.NodeType.from(TransferContext.readReturnValue(LONG) as Long)
@@ -95,7 +95,7 @@ public open class XMLParser : RefCounted() {
    * **Note:** The content of a [NODE_CDATA] node and the comment string of a [NODE_COMMENT] node
    * are also considered names.
    */
-  public fun getNodeName(): String {
+  public final fun getNodeName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -105,7 +105,7 @@ public open class XMLParser : RefCounted() {
    * Returns the contents of a text node. This method will raise an error if the current parsed node
    * is of any other type.
    */
-  public fun getNodeData(): String {
+  public final fun getNodeData(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeDataPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -115,7 +115,7 @@ public open class XMLParser : RefCounted() {
    * Returns the byte offset of the currently parsed node since the beginning of the file or buffer.
    * This is usually equivalent to the number of characters before the read position.
    */
-  public fun getNodeOffset(): Long {
+  public final fun getNodeOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeOffsetPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -126,7 +126,7 @@ public open class XMLParser : RefCounted() {
    * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or
    * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
-  public fun getAttributeCount(): Int {
+  public final fun getAttributeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttributeCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -135,7 +135,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns the name of an attribute of the currently parsed element, specified by the [idx] index.
    */
-  public fun getAttributeName(idx: Int): String {
+  public final fun getAttributeName(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAttributeNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -145,7 +145,7 @@ public open class XMLParser : RefCounted() {
    * Returns the value of an attribute of the currently parsed element, specified by the [idx]
    * index.
    */
-  public fun getAttributeValue(idx: Int): String {
+  public final fun getAttributeValue(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAttributeValuePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -154,7 +154,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns `true` if the currently parsed element has an attribute with the [name].
    */
-  public fun hasAttribute(name: String): Boolean {
+  public final fun hasAttribute(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAttributePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -164,7 +164,7 @@ public open class XMLParser : RefCounted() {
    * Returns the value of an attribute of the currently parsed element, specified by its [name].
    * This method will raise an error if the element has no such attribute.
    */
-  public fun getNamedAttributeValue(name: String): String {
+  public final fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNamedAttributeValuePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -174,7 +174,7 @@ public open class XMLParser : RefCounted() {
    * Returns the value of an attribute of the currently parsed element, specified by its [name].
    * This method will return an empty string if the element has no such attribute.
    */
-  public fun getNamedAttributeValueSafe(name: String): String {
+  public final fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNamedAttributeValueSafePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -183,7 +183,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns `true` if the currently parsed element is empty, e.g. `<element />`.
    */
-  public fun isEmpty(): Boolean {
+  public final fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -192,7 +192,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns the current line in the parsed file, counting from 0.
    */
-  public fun getCurrentLine(): Int {
+  public final fun getCurrentLine(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLinePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -202,7 +202,7 @@ public open class XMLParser : RefCounted() {
    * Skips the current section. If the currently parsed node contains more inner nodes, they will be
    * ignored and the cursor will go to the closing of the current element.
    */
-  public fun skipSection(): Unit {
+  public final fun skipSection(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.skipSectionPtr, NIL)
   }
@@ -211,7 +211,7 @@ public open class XMLParser : RefCounted() {
    * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node
    * there. This method returns an error code.
    */
-  public fun seek(position: Long): GodotError {
+  public final fun seek(position: Long): GodotError {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -220,7 +220,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Opens an XML [file] for parsing. This method returns an error code.
    */
-  public fun `open`(`file`: String): GodotError {
+  public final fun `open`(`file`: String): GodotError {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -229,7 +229,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Opens an XML raw [buffer] for parsing. This method returns an error code.
    */
-  public fun openBuffer(buffer: PackedByteArray): GodotError {
+  public final fun openBuffer(buffer: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.openBufferPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

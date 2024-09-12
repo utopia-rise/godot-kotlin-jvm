@@ -37,7 +37,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the moving object's travel before collision.
    */
-  public fun getTravel(): Vector3 {
+  public final fun getTravel(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTravelPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -46,7 +46,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the moving object's remaining movement vector.
    */
-  public fun getRemainder(): Vector3 {
+  public final fun getRemainder(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemainderPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -56,7 +56,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * Returns the maximum fraction of the motion that can occur without a collision, between `0` and
    * `1`.
    */
-  public fun getCollisionSafeFraction(): Float {
+  public final fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -66,7 +66,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between
    * `0` and `1`.
    */
-  public fun getCollisionUnsafeFraction(): Float {
+  public final fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -75,7 +75,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   /**
    * Returns the number of detected collisions.
    */
-  public fun getCollisionCount(): Int {
+  public final fun getCollisionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -86,7 +86,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * collision by default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
+  public final fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -97,7 +97,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
+  public final fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -108,7 +108,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
+  public final fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
@@ -119,7 +119,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * index (the deepest collision by default), if a collision occurred. See [Object.getInstanceId].
    */
   @JvmOverloads
-  public fun getColliderId(collisionIndex: Int = 0): Long {
+  public final fun getColliderId(collisionIndex: Int = 0): Long {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -130,7 +130,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getColliderRid(collisionIndex: Int = 0): RID {
+  public final fun getColliderRid(collisionIndex: Int = 0): RID {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -141,7 +141,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * by default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getCollider(collisionIndex: Int = 0): Object? {
+  public final fun getCollider(collisionIndex: Int = 0): Object? {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Object?)
@@ -152,7 +152,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * default), if a collision occurred. See [CollisionObject3D].
    */
   @JvmOverloads
-  public fun getColliderShape(collisionIndex: Int = 0): Int {
+  public final fun getColliderShape(collisionIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -163,7 +163,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
+  public final fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLocalShapePtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -174,7 +174,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * collision by default), if a collision occurred.
    */
   @JvmOverloads
-  public fun getCollisionDepth(collisionIndex: Int = 0): Float {
+  public final fun getCollisionDepth(collisionIndex: Int = 0): Float {
     TransferContext.writeArguments(LONG to collisionIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

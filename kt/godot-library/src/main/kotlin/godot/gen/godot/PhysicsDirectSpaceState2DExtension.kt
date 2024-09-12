@@ -31,7 +31,7 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION, scriptIndex)
   }
 
-  public fun isBodyExcludedFromQuery(body: RID): Boolean {
+  public final fun isBodyExcludedFromQuery(body: RID): Boolean {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

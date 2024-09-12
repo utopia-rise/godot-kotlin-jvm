@@ -24,7 +24,7 @@ interface CastableTrait : TypedTrait {
 
     private fun getTypeClassName(className: ClassName?): ClassTypeNameWrapper {
         if (className == null) {
-            return (this as TypedTrait).getTypeClassName()
+            return getTypeClassName()
         }
         return ClassTypeNameWrapper(className)
     }

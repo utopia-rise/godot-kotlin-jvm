@@ -39,26 +39,23 @@ public open class InputEventAction : InputEvent() {
   /**
    * The action's name. Actions are accessed via this [String].
    */
-  public var action: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var action: StringName
+    @JvmName("actionProperty")
+    get() = getAction()
+    @JvmName("actionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+      setAction(value)
     }
 
   /**
    * If `true`, the action's state is pressed. If `false`, the action's state is released.
    */
-  public var pressed: Boolean
-    @JvmName("isPressed_prop")
-    get() = super.isPressed()
+  public final inline var pressed: Boolean
+    @JvmName("pressedProperty")
+    get() = isPressed()
+    @JvmName("pressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+      setPressed(value)
     }
 
   /**
@@ -66,15 +63,12 @@ public open class InputEventAction : InputEvent() {
    * `false`. The event strength allows faking analog joypad motion events, by specifying how strongly
    * the joypad axis is bent or pressed.
    */
-  public var strength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var strength: Float
+    @JvmName("strengthProperty")
+    get() = getStrength()
+    @JvmName("strengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+      setStrength(value)
     }
 
   /**
@@ -82,19 +76,54 @@ public open class InputEventAction : InputEvent() {
    * in the [InputMap]). If `-1`, a unique ID will be used and actions pressed with this ID will need
    * to be released with another [InputEventAction].
    */
-  public var eventIndex: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var eventIndex: Int
+    @JvmName("eventIndexProperty")
+    get() = getEventIndex()
+    @JvmName("eventIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
+      setEventIndex(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
+  }
+
+  public final fun setAction(action: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to action)
+    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+  }
+
+  public final fun getAction(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public final fun setPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+  }
+
+  public final fun setStrength(strength: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to strength.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+  }
+
+  public final fun getStrength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setEventIndex(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
+  }
+
+  public final fun getEventIndex(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

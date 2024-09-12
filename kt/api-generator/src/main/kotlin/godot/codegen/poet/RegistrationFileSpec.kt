@@ -11,13 +11,10 @@ class RegistrationFileSpec {
     val registerMethodsFunBuilder = FunSpec.builder("registerEngineTypeMethods")
     val registerTypesFunBuilder = FunSpec.builder("registerEngineTypes")
 
-    fun build(): FileSpec {
-        registrationFile.addFunction(
-            registerTypesFunBuilder.build()
-        ).addFunction(registerVariantMappingFunBuilder.build())
-
-        registrationFile.addFunction(registerMethodsFunBuilder.build())
-
-        return registrationFile.addFileComment(GENERATED_COMMENT).build()
-    }
+    fun build() = registrationFile
+        .addFunction(registerTypesFunBuilder.build())
+        .addFunction(registerVariantMappingFunBuilder.build())
+        .addFunction(registerMethodsFunBuilder.build())
+        .addFileComment(GENERATED_COMMENT)
+        .build()
 }

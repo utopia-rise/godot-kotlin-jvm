@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -46,15 +47,12 @@ public open class Line2D : Node2D() {
    * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
    * adjacent points in this array.
    */
-  public var points: PackedVector2Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
-    }
+  public final inline var points: PackedVector2Array
+    @JvmName("pointsProperty")
+    get() = getPoints()
+    @JvmName("pointsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+      setPoints(value)
     }
 
   /**
@@ -66,145 +64,115 @@ public open class Line2D : Node2D() {
    * samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail
    * that might change in a future version.
    */
-  public var closed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var closed: Boolean
+    @JvmName("closedProperty")
+    get() = isClosed()
+    @JvmName("closedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
+      setClosed(value)
     }
 
   /**
    * The polyline's width.
    */
-  public var width: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var width: Float
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * The polyline's width curve. The width of the polyline over its length will be equivalent to the
    * value of the width curve over its domain.
    */
-  public var widthCurve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+  public final inline var widthCurve: Curve?
+    @JvmName("widthCurveProperty")
+    get() = getCurve()
+    @JvmName("widthCurveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+      setCurve(value)
     }
 
   /**
    * The color of the polyline. Will not be used if a gradient is set.
    */
   @CoreTypeLocalCopy
-  public var defaultColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var defaultColor: Color
+    @JvmName("defaultColorProperty")
+    get() = getDefaultColor()
+    @JvmName("defaultColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultColorPtr, NIL)
+      setDefaultColor(value)
     }
 
   /**
    * The gradient is drawn through the whole line from start to finish. The [defaultColor] will not
    * be used if this property is set.
    */
-  public var gradient: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
-    }
+  public final inline var gradient: Gradient?
+    @JvmName("gradientProperty")
+    get() = getGradient()
+    @JvmName("gradientProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+      setGradient(value)
     }
 
   /**
    * The texture used for the polyline. Uses [textureMode] for drawing style.
    */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var texture: Texture2D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
    * The style to render the [texture] of the polyline. Use [LineTextureMode] constants.
    */
-  public var textureMode: LineTextureMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
-      return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textureMode: LineTextureMode
+    @JvmName("textureModeProperty")
+    get() = getTextureMode()
+    @JvmName("textureModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
+      setTextureMode(value)
     }
 
   /**
    * The style of the connections between segments of the polyline. Use [LineJointMode] constants.
    */
-  public var jointMode: LineJointMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getJointModePtr, LONG)
-      return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var jointMode: LineJointMode
+    @JvmName("jointModeProperty")
+    get() = getJointMode()
+    @JvmName("jointModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setJointModePtr, NIL)
+      setJointMode(value)
     }
 
   /**
    * The style of the beginning of the polyline, if [closed] is `false`. Use [LineCapMode]
    * constants.
    */
-  public var beginCapMode: LineCapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBeginCapModePtr, LONG)
-      return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var beginCapMode: LineCapMode
+    @JvmName("beginCapModeProperty")
+    get() = getBeginCapMode()
+    @JvmName("beginCapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBeginCapModePtr, NIL)
+      setBeginCapMode(value)
     }
 
   /**
    * The style of the end of the polyline, if [closed] is `false`. Use [LineCapMode] constants.
    */
-  public var endCapMode: LineCapMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEndCapModePtr, LONG)
-      return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var endCapMode: LineCapMode
+    @JvmName("endCapModeProperty")
+    get() = getEndCapMode()
+    @JvmName("endCapModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEndCapModePtr, NIL)
+      setEndCapMode(value)
     }
 
   /**
@@ -213,45 +181,36 @@ public open class Line2D : Node2D() {
    * prevent very long miters. Higher values of this property mean that the fallback to a bevel joint
    * will happen at sharper angles.
    */
-  public var sharpLimit: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var sharpLimit: Float
+    @JvmName("sharpLimitProperty")
+    get() = getSharpLimit()
+    @JvmName("sharpLimitProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSharpLimitPtr, NIL)
+      setSharpLimit(value)
     }
 
   /**
    * The smoothness used for rounded joints and caps. Higher values result in smoother corners, but
    * are more demanding to render and update.
    */
-  public var roundPrecision: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var roundPrecision: Int
+    @JvmName("roundPrecisionProperty")
+    get() = getRoundPrecision()
+    @JvmName("roundPrecisionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRoundPrecisionPtr, NIL)
+      setRoundPrecision(value)
     }
 
   /**
    * If `true`, the polyline's border will be anti-aliased.
    * **Note:** [Line2D] is not accelerated by batching when being anti-aliased.
    */
-  public var antialiased: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var antialiased: Boolean
+    @JvmName("antialiasedProperty")
+    get() = getAntialiased()
+    @JvmName("antialiasedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
+      setAntialiased(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -276,16 +235,27 @@ public open class Line2D : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
+  public final fun defaultColorMutate(block: Color.() -> Unit): Color = defaultColor.apply{
       block(this)
       defaultColor = this
   }
 
 
+  public final fun setPoints(points: PackedVector2Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+  }
+
+  public final fun getPoints(): PackedVector2Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+  }
+
   /**
    * Overwrites the position of the point at the given [index] with the supplied [position].
    */
-  public fun setPointPosition(index: Int, position: Vector2): Unit {
+  public final fun setPointPosition(index: Int, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
@@ -293,7 +263,7 @@ public open class Line2D : Node2D() {
   /**
    * Returns the position of the point at index [index].
    */
-  public fun getPointPosition(index: Int): Vector2 {
+  public final fun getPointPosition(index: Int): Vector2 {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -302,7 +272,7 @@ public open class Line2D : Node2D() {
   /**
    * Returns the number of points in the polyline.
    */
-  public fun getPointCount(): Int {
+  public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -316,7 +286,7 @@ public open class Line2D : Node2D() {
    * must not exceed the number of existing points in the polyline. See [getPointCount].
    */
   @JvmOverloads
-  public fun addPoint(position: Vector2, index: Int = -1): Unit {
+  public final fun addPoint(position: Vector2, index: Int = -1): Unit {
     TransferContext.writeArguments(VECTOR2 to position, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
@@ -324,7 +294,7 @@ public open class Line2D : Node2D() {
   /**
    * Removes the point at index [index] from the polyline.
    */
-  public fun removePoint(index: Int): Unit {
+  public final fun removePoint(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
@@ -332,9 +302,152 @@ public open class Line2D : Node2D() {
   /**
    * Removes all points from the polyline, making it empty.
    */
-  public fun clearPoints(): Unit {
+  public final fun clearPoints(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
+  }
+
+  public final fun setClosed(closed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to closed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
+  }
+
+  public final fun isClosed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setWidth(width: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to width.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public final fun getWidth(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+  }
+
+  public final fun getCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public final fun setDefaultColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultColorPtr, NIL)
+  }
+
+  public final fun getDefaultColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setGradient(color: Gradient?): Unit {
+    TransferContext.writeArguments(OBJECT to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+  }
+
+  public final fun getGradient(): Gradient? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+  }
+
+  public final fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setTextureMode(mode: LineTextureMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
+  }
+
+  public final fun getTextureMode(): LineTextureMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
+    return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setJointMode(mode: LineJointMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setJointModePtr, NIL)
+  }
+
+  public final fun getJointMode(): LineJointMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getJointModePtr, LONG)
+    return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBeginCapMode(mode: LineCapMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBeginCapModePtr, NIL)
+  }
+
+  public final fun getBeginCapMode(): LineCapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBeginCapModePtr, LONG)
+    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setEndCapMode(mode: LineCapMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEndCapModePtr, NIL)
+  }
+
+  public final fun getEndCapMode(): LineCapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEndCapModePtr, LONG)
+    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setSharpLimit(limit: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to limit.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSharpLimitPtr, NIL)
+  }
+
+  public final fun getSharpLimit(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRoundPrecision(precision: Int): Unit {
+    TransferContext.writeArguments(LONG to precision.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRoundPrecisionPtr, NIL)
+  }
+
+  public final fun getRoundPrecision(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setAntialiased(antialiased: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to antialiased)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
+  }
+
+  public final fun getAntialiased(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public enum class LineJointMode(

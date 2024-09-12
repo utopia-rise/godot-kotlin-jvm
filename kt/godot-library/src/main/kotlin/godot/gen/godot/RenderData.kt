@@ -30,7 +30,7 @@ public open class RenderData internal constructor() : Object() {
   /**
    * Returns the [RenderSceneBuffers] object managing the scene buffers for rendering this viewport.
    */
-  public fun getRenderSceneBuffers(): RenderSceneBuffers? {
+  public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RenderSceneBuffers?)
@@ -39,7 +39,7 @@ public open class RenderData internal constructor() : Object() {
   /**
    * Returns the [RenderSceneData] object managing this frames scene data.
    */
-  public fun getRenderSceneData(): RenderSceneData? {
+  public final fun getRenderSceneData(): RenderSceneData? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneDataPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as RenderSceneData?)
@@ -49,7 +49,7 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RID] of the environments object in the [RenderingServer] being used to render this
    * viewport.
    */
-  public fun getEnvironment(): RID {
+  public final fun getEnvironment(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -59,7 +59,7 @@ public open class RenderData internal constructor() : Object() {
    * Returns the [RID] of the camera attributes object in the [RenderingServer] being used to render
    * this viewport.
    */
-  public fun getCameraAttributes(): RID {
+  public final fun getCameraAttributes(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)

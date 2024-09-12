@@ -20,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `uniform vec2` in the shader language.
@@ -29,30 +30,24 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var defaultValueEnabled: Boolean
+    @JvmName("defaultValueEnabledProperty")
+    get() = isDefaultValueEnabled()
+    @JvmName("defaultValueEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+      setDefaultValueEnabled(value)
     }
 
   /**
    * A default value to be assigned within the shader.
    */
   @CoreTypeLocalCopy
-  public var defaultValue: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var defaultValue: Vector2
+    @JvmName("defaultValueProperty")
+    get() = getDefaultValue()
+    @JvmName("defaultValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+      setDefaultValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -77,11 +72,33 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun defaultValueMutate(block: Vector2.() -> Unit): Vector2 = defaultValue.apply{
+  public final fun defaultValueMutate(block: Vector2.() -> Unit): Vector2 = defaultValue.apply{
       block(this)
       defaultValue = this
   }
 
+
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+  }
+
+  public final fun isDefaultValueEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDefaultValue(`value`: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to value)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+  }
+
+  public final fun getDefaultValue(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

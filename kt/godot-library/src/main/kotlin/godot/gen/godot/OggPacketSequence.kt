@@ -22,6 +22,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A sequence of Ogg packets.
@@ -31,55 +32,79 @@ public open class OggPacketSequence : Resource() {
   /**
    * Contains the raw packets that make up this OggPacketSequence.
    */
-  public var packetData: VariantArray<VariantArray<Any?>>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPacketDataPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
-    }
+  public final inline var packetData: VariantArray<VariantArray<Any?>>
+    @JvmName("packetDataProperty")
+    get() = getPacketData()
+    @JvmName("packetDataProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
+      setPacketData(value)
     }
 
   /**
    * Contains the granule positions for each page in this packet sequence.
    */
-  public var granulePositions: PackedInt64Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPacketGranulePositionsPtr,
-          PACKED_INT_64_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
-    }
+  public final inline var granulePositions: PackedInt64Array
+    @JvmName("granulePositionsProperty")
+    get() = getPacketGranulePositions()
+    @JvmName("granulePositionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_64_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
+      setPacketGranulePositions(value)
     }
 
   /**
    * Holds sample rate information about this sequence. Must be set by another class that actually
    * understands the codec.
    */
-  public var samplingRate: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSamplingRatePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var samplingRate: Float
+    @JvmName("samplingRateProperty")
+    get() = getSamplingRate()
+    @JvmName("samplingRateProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
+      setSamplingRate(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OGGPACKETSEQUENCE, scriptIndex)
   }
 
+  public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {
+    TransferContext.writeArguments(ARRAY to packetData)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
+  }
+
+  public final fun getPacketData(): VariantArray<VariantArray<Any?>> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPacketDataPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
+  }
+
+  public final fun setPacketGranulePositions(granulePositions: PackedInt64Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_64_ARRAY to granulePositions)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
+  }
+
+  public final fun getPacketGranulePositions(): PackedInt64Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPacketGranulePositionsPtr,
+        PACKED_INT_64_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+  }
+
+  public final fun setSamplingRate(samplingRate: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to samplingRate.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
+  }
+
+  public final fun getSamplingRate(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSamplingRatePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * The length of this stream, in seconds.
    */
-  public fun getLength(): Float {
+  public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()

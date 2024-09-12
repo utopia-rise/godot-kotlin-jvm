@@ -21,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
@@ -38,15 +39,12 @@ public open class ButtonGroup : Resource() {
   /**
    * If `true`, it is possible to unpress all buttons in this [ButtonGroup].
    */
-  public var allowUnpress: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var allowUnpress: Boolean
+    @JvmName("allowUnpressProperty")
+    get() = isAllowUnpress()
+    @JvmName("allowUnpressProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+      setAllowUnpress(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -56,7 +54,7 @@ public open class ButtonGroup : Resource() {
   /**
    * Returns the current pressed button.
    */
-  public fun getPressedButton(): BaseButton? {
+  public final fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
@@ -66,10 +64,21 @@ public open class ButtonGroup : Resource() {
    * Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see
    * [BaseButton.buttonGroup]).
    */
-  public fun getButtons(): VariantArray<BaseButton> {
+  public final fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
+  }
+
+  public final fun setAllowUnpress(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+  }
+
+  public final fun isAllowUnpress(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

@@ -22,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -157,15 +158,12 @@ public open class UDPServer : RefCounted() {
    * exceeding that value will be automatically dropped. Setting this value to `0` effectively prevents
    * any new pending connection to be accepted (e.g. when all your players have connected).
    */
-  public var maxPendingConnections: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var maxPendingConnections: Int
+    @JvmName("maxPendingConnectionsProperty")
+    get() = getMaxPendingConnections()
+    @JvmName("maxPendingConnectionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+      setMaxPendingConnections(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -178,7 +176,7 @@ public open class UDPServer : RefCounted() {
    * [PacketPeerUDP.bind].
    */
   @JvmOverloads
-  public fun listen(port: Int, bindAddress: String = "*"): GodotError {
+  public final fun listen(port: Int, bindAddress: String = "*"): GodotError {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -191,7 +189,7 @@ public open class UDPServer : RefCounted() {
    * [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined
    * via [maxPendingConnections].
    */
-  public fun poll(): GodotError {
+  public final fun poll(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -200,7 +198,7 @@ public open class UDPServer : RefCounted() {
   /**
    * Returns `true` if a packet with a new address/port combination was received on the socket.
    */
-  public fun isConnectionAvailable(): Boolean {
+  public final fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -209,7 +207,7 @@ public open class UDPServer : RefCounted() {
   /**
    * Returns the local port this server is listening to.
    */
-  public fun getLocalPort(): Int {
+  public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -218,7 +216,7 @@ public open class UDPServer : RefCounted() {
   /**
    * Returns `true` if the socket is open and listening on a port.
    */
-  public fun isListening(): Boolean {
+  public final fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -229,7 +227,7 @@ public open class UDPServer : RefCounted() {
    * `null` if no new connection is available. See also [isConnectionAvailable],
    * [PacketPeerUDP.connectToHost].
    */
-  public fun takeConnection(): PacketPeerUDP? {
+  public final fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?)
@@ -239,9 +237,20 @@ public open class UDPServer : RefCounted() {
    * Stops the server, closing the UDP socket if open. Will close all connected [PacketPeerUDP]
    * accepted via [takeConnection] (remote peers will not be notified).
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+  }
+
+  public final fun setMaxPendingConnections(maxPendingConnections: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPendingConnections.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+  }
+
+  public final fun getMaxPendingConnections(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

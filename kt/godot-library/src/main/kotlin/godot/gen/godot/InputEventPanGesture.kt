@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Stores information about pan gestures. A pan gesture is performed when the user swipes the touch
@@ -32,15 +33,12 @@ public open class InputEventPanGesture : InputEventGesture() {
    * Panning amount since last pan event.
    */
   @CoreTypeLocalCopy
-  public var delta: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var delta: Vector2
+    @JvmName("deltaProperty")
+    get() = getDelta()
+    @JvmName("deltaProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
+      setDelta(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -65,11 +63,22 @@ public open class InputEventPanGesture : InputEventGesture() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun deltaMutate(block: Vector2.() -> Unit): Vector2 = delta.apply{
+  public final fun deltaMutate(block: Vector2.() -> Unit): Vector2 = delta.apply{
       block(this)
       delta = this
   }
 
+
+  public final fun setDelta(delta: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to delta)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
+  }
+
+  public final fun getDelta(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

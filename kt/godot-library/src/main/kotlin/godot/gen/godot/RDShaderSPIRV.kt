@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
@@ -33,150 +34,163 @@ public open class RDShaderSPIRV : Resource() {
   /**
    * The SPIR-V bytecode for the vertex shader stage.
    */
-  public var bytecodeVertex: PackedByteArray
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var bytecodeVertex: PackedByteArray
+    @JvmName("bytecodeVertexProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
+    @JvmName("bytecodeVertexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
     }
 
   /**
    * The SPIR-V bytecode for the fragment shader stage.
    */
-  public var bytecodeFragment: PackedByteArray
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var bytecodeFragment: PackedByteArray
+    @JvmName("bytecodeFragmentProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
+    @JvmName("bytecodeFragmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
     }
 
   /**
    * The SPIR-V bytecode for the tessellation control shader stage.
    */
-  public var bytecodeTesselationControl: PackedByteArray
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var bytecodeTesselationControl: PackedByteArray
+    @JvmName("bytecodeTesselationControlProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
+    @JvmName("bytecodeTesselationControlProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
     }
 
   /**
    * The SPIR-V bytecode for the tessellation evaluation shader stage.
    */
-  public var bytecodeTesselationEvaluation: PackedByteArray
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var bytecodeTesselationEvaluation: PackedByteArray
+    @JvmName("bytecodeTesselationEvaluationProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
+    @JvmName("bytecodeTesselationEvaluationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
     }
 
   /**
    * The SPIR-V bytecode for the compute shader stage.
    */
-  public var bytecodeCompute: PackedByteArray
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var bytecodeCompute: PackedByteArray
+    @JvmName("bytecodeComputeProperty")
+    get() = getStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
+    @JvmName("bytecodeComputeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+      setStageBytecode(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
     }
 
   /**
    * The compilation error message for the vertex shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorVertex: String
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var compileErrorVertex: String
+    @JvmName("compileErrorVertexProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX)
+    @JvmName("compileErrorVertexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_VERTEX, value)
     }
 
   /**
    * The compilation error message for the fragment shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorFragment: String
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var compileErrorFragment: String
+    @JvmName("compileErrorFragmentProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT)
+    @JvmName("compileErrorFragmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_FRAGMENT, value)
     }
 
   /**
    * The compilation error message for the tessellation control shader stage (set by the SPIR-V
    * compiler and Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorTesselationControl: String
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var compileErrorTesselationControl: String
+    @JvmName("compileErrorTesselationControlProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL)
+    @JvmName("compileErrorTesselationControlProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_CONTROL, value)
     }
 
   /**
    * The compilation error message for the tessellation evaluation shader stage (set by the SPIR-V
    * compiler and Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorTesselationEvaluation: String
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var compileErrorTesselationEvaluation: String
+    @JvmName("compileErrorTesselationEvaluationProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION)
+    @JvmName("compileErrorTesselationEvaluationProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_TESSELATION_EVALUATION, value)
     }
 
   /**
    * The compilation error message for the compute shader stage (set by the SPIR-V compiler and
    * Godot). If empty, shader compilation was successful.
    */
-  public var compileErrorCompute: String
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var compileErrorCompute: String
+    @JvmName("compileErrorComputeProperty")
+    get() = getStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE)
+    @JvmName("compileErrorComputeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+      setStageCompileError(RenderingDevice.ShaderStage.SHADER_STAGE_COMPUTE, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
+  }
+
+  /**
+   * Sets the SPIR-V [bytecode] for the given shader [stage]. Equivalent to setting one of
+   * [bytecodeCompute], [bytecodeFragment], [bytecodeTesselationControl],
+   * [bytecodeTesselationEvaluation], [bytecodeVertex].
+   */
+  public final fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
+      Unit {
+    TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+  }
+
+  /**
+   * Equivalent to getting one of [bytecodeCompute], [bytecodeFragment],
+   * [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
+   */
+  public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
+    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+  }
+
+  /**
+   * Sets the compilation error message for the given shader [stage] to [compileError]. Equivalent
+   * to setting one of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl],
+   * [compileErrorTesselationEvaluation], [compileErrorVertex].
+   */
+  public final fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
+      Unit {
+    TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+  }
+
+  /**
+   * Returns the compilation error message for the given shader [stage]. Equivalent to getting one
+   * of [compileErrorCompute], [compileErrorFragment], [compileErrorTesselationControl],
+   * [compileErrorTesselationEvaluation], [compileErrorVertex].
+   */
+  public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
+    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

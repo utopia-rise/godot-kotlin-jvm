@@ -50,7 +50,7 @@ public object CameraServer : Object() {
   /**
    * Returns the [CameraFeed] corresponding to the camera with the given [index].
    */
-  public fun getFeed(index: Int): CameraFeed? {
+  public final fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CameraFeed?)
@@ -59,7 +59,7 @@ public object CameraServer : Object() {
   /**
    * Returns the number of [CameraFeed]s registered.
    */
-  public fun getFeedCount(): Int {
+  public final fun getFeedCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -68,7 +68,7 @@ public object CameraServer : Object() {
   /**
    * Returns an array of [CameraFeed]s.
    */
-  public fun feeds(): VariantArray<CameraFeed> {
+  public final fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>)
@@ -77,7 +77,7 @@ public object CameraServer : Object() {
   /**
    * Adds the camera [feed] to the camera server.
    */
-  public fun addFeed(feed: CameraFeed): Unit {
+  public final fun addFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
   }
@@ -85,7 +85,7 @@ public object CameraServer : Object() {
   /**
    * Removes the specified camera [feed].
    */
-  public fun removeFeed(feed: CameraFeed): Unit {
+  public final fun removeFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
   }

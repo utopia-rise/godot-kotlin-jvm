@@ -17,6 +17,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
@@ -38,15 +39,12 @@ public open class ConfirmationDialog : AcceptDialog() {
   /**
    * The text displayed by the cancel button (see [getCancelButton]).
    */
-  public var cancelButtonText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var cancelButtonText: String
+    @JvmName("cancelButtonTextProperty")
+    get() = getCancelButtonText()
+    @JvmName("cancelButtonTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+      setCancelButtonText(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -58,10 +56,21 @@ public open class ConfirmationDialog : AcceptDialog() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
-  public fun getCancelButton(): Button? {
+  public final fun getCancelButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+  }
+
+  public final fun setCancelButtonText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+  }
+
+  public final fun getCancelButtonText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

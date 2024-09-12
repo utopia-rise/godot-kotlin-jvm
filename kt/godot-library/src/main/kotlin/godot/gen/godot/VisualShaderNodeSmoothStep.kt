@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translates to `smoothstep(edge0, edge1, x)` in the shader language.
@@ -27,19 +28,27 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: OpType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-      return VisualShaderNodeSmoothStep.OpType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var opType: OpType
+    @JvmName("opTypeProperty")
+    get() = getOpType()
+    @JvmName("opTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+      setOpType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESMOOTHSTEP, scriptIndex)
+  }
+
+  public final fun setOpType(opType: OpType): Unit {
+    TransferContext.writeArguments(LONG to opType.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+  }
+
+  public final fun getOpType(): OpType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeSmoothStep.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

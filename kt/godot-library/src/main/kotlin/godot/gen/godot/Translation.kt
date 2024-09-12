@@ -23,6 +23,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -35,15 +36,12 @@ public open class Translation : Resource() {
   /**
    * The locale of the translation.
    */
-  public var locale: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var locale: String
+    @JvmName("localeProperty")
+    get() = getLocale()
+    @JvmName("localeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+      setLocale(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -69,13 +67,24 @@ public open class Translation : Resource() {
     throw NotImplementedError("_get_message is not implemented for Translation")
   }
 
+  public final fun setLocale(locale: String): Unit {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+  }
+
+  public final fun getLocale(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Adds a message if nonexistent, followed by its translation.
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
    */
   @JvmOverloads
-  public fun addMessage(
+  public final fun addMessage(
     srcMessage: StringName,
     xlatedMessage: StringName,
     context: StringName = StringName(""),
@@ -90,7 +99,7 @@ public open class Translation : Resource() {
    * polysemic words.
    */
   @JvmOverloads
-  public fun addPluralMessage(
+  public final fun addPluralMessage(
     srcMessage: StringName,
     xlatedMessages: PackedStringArray,
     context: StringName = StringName(""),
@@ -103,7 +112,8 @@ public open class Translation : Resource() {
    * Returns a message's translation.
    */
   @JvmOverloads
-  public fun getMessage(srcMessage: StringName, context: StringName = StringName("")): StringName {
+  public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
+      StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -115,7 +125,7 @@ public open class Translation : Resource() {
    * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
-  public fun getPluralMessage(
+  public final fun getPluralMessage(
     srcMessage: StringName,
     srcPluralMessage: StringName,
     n: Int,
@@ -130,7 +140,8 @@ public open class Translation : Resource() {
    * Erases a message.
    */
   @JvmOverloads
-  public fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")): Unit {
+  public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
+      Unit {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.eraseMessagePtr, NIL)
   }
@@ -138,7 +149,7 @@ public open class Translation : Resource() {
   /**
    * Returns all the messages (keys).
    */
-  public fun getMessageList(): PackedStringArray {
+  public final fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
@@ -147,7 +158,7 @@ public open class Translation : Resource() {
   /**
    * Returns all the messages (translated text).
    */
-  public fun getTranslatedMessageList(): PackedStringArray {
+  public final fun getTranslatedMessageList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTranslatedMessageListPtr,
         PACKED_STRING_ARRAY)
@@ -157,7 +168,7 @@ public open class Translation : Resource() {
   /**
    * Returns the number of existing messages.
    */
-  public fun getMessageCount(): Int {
+  public final fun getMessageCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMessageCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()

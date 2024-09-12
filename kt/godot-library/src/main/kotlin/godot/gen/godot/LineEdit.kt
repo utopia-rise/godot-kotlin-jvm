@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -80,44 +81,35 @@ public open class LineEdit : Control() {
    * String value of the [LineEdit].
    * **Note:** Changing text using this property won't emit the [signal text_changed] signal.
    */
-  public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var text: String
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
    * Text shown when the [LineEdit] is empty. It is **not** the [LineEdit]'s default value (see
    * [text]).
    */
-  public var placeholderText: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPlaceholderPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var placeholderText: String
+    @JvmName("placeholderTextProperty")
+    get() = getPlaceholder()
+    @JvmName("placeholderTextProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPlaceholderPtr, NIL)
+      setPlaceholder(value)
     }
 
   /**
    * Text alignment as defined in the [HorizontalAlignment] enum.
    */
-  public var alignment: HorizontalAlignment
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-      return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var alignment: HorizontalAlignment
+    @JvmName("alignmentProperty")
+    get() = getHorizontalAlignment()
+    @JvmName("alignmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+      setHorizontalAlignment(value)
     }
 
   /**
@@ -150,315 +142,249 @@ public open class LineEdit : Control() {
    * // `text_change_rejected` is emitted with "bye" as parameter.
    * ```
    */
-  public var maxLength: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxLengthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var maxLength: Int
+    @JvmName("maxLengthProperty")
+    get() = getMaxLength()
+    @JvmName("maxLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxLengthPtr, NIL)
+      setMaxLength(value)
     }
 
   /**
    * If `false`, existing text cannot be modified and new text cannot be added.
    */
-  public var editable: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var editable: Boolean
+    @JvmName("editableProperty")
+    get() = isEditable()
+    @JvmName("editableProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+      setEditable(value)
     }
 
   /**
    * If `true`, the [LineEdit] width will increase to stay longer than the [text]. It will **not**
    * compress if the [text] is shortened.
    */
-  public var expandToTextLength: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isExpandToTextLengthEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var expandToTextLength: Boolean
+    @JvmName("expandToTextLengthProperty")
+    get() = isExpandToTextLengthEnabled()
+    @JvmName("expandToTextLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
+      setExpandToTextLengthEnabled(value)
     }
 
   /**
    * If `true`, the context menu will appear when right-clicked.
    */
-  public var contextMenuEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var contextMenuEnabled: Boolean
+    @JvmName("contextMenuEnabledProperty")
+    get() = isContextMenuEnabled()
+    @JvmName("contextMenuEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+      setContextMenuEnabled(value)
     }
 
   /**
    * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
    */
-  public var virtualKeyboardEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var virtualKeyboardEnabled: Boolean
+    @JvmName("virtualKeyboardEnabledProperty")
+    get() = isVirtualKeyboardEnabled()
+    @JvmName("virtualKeyboardEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
+      setVirtualKeyboardEnabled(value)
     }
 
   /**
    * Specifies the type of virtual keyboard to show.
    */
-  public var virtualKeyboardType: VirtualKeyboardType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
-      return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var virtualKeyboardType: VirtualKeyboardType
+    @JvmName("virtualKeyboardTypeProperty")
+    get() = getVirtualKeyboardType()
+    @JvmName("virtualKeyboardTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
+      setVirtualKeyboardType(value)
     }
 
   /**
    * If `true`, the [LineEdit] will show a clear button if [text] is not empty, which can be used to
    * clear the text quickly.
    */
-  public var clearButtonEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isClearButtonEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var clearButtonEnabled: Boolean
+    @JvmName("clearButtonEnabledProperty")
+    get() = isClearButtonEnabled()
+    @JvmName("clearButtonEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClearButtonEnabledPtr, NIL)
+      setClearButtonEnabled(value)
     }
 
   /**
    * If `false`, using shortcuts will be disabled.
    */
-  public var shortcutKeysEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var shortcutKeysEnabled: Boolean
+    @JvmName("shortcutKeysEnabledProperty")
+    get() = isShortcutKeysEnabled()
+    @JvmName("shortcutKeysEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+      setShortcutKeysEnabled(value)
     }
 
   /**
    * If `false`, using middle mouse button to paste clipboard will be disabled.
    * **Note:** This method is only implemented on Linux.
    */
-  public var middleMousePasteEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var middleMousePasteEnabled: Boolean
+    @JvmName("middleMousePasteEnabledProperty")
+    get() = isMiddleMousePasteEnabled()
+    @JvmName("middleMousePasteEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
+      setMiddleMousePasteEnabled(value)
     }
 
   /**
    * If `false`, it's impossible to select the text using mouse nor keyboard.
    */
-  public var selectingEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectingEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var selectingEnabled: Boolean
+    @JvmName("selectingEnabledProperty")
+    get() = isSelectingEnabled()
+    @JvmName("selectingEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectingEnabledPtr, NIL)
+      setSelectingEnabled(value)
     }
 
   /**
    * If `true`, the selected text will be deselected when focus is lost.
    */
-  public var deselectOnFocusLossEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var deselectOnFocusLossEnabled: Boolean
+    @JvmName("deselectOnFocusLossEnabledProperty")
+    get() = isDeselectOnFocusLossEnabled()
+    @JvmName("deselectOnFocusLossEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+      setDeselectOnFocusLossEnabled(value)
     }
 
   /**
    * If `true`, allow drag and drop of selected text.
    */
-  public var dragAndDropSelectionEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var dragAndDropSelectionEnabled: Boolean
+    @JvmName("dragAndDropSelectionEnabledProperty")
+    get() = isDragAndDropSelectionEnabled()
+    @JvmName("dragAndDropSelectionEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+      setDragAndDropSelectionEnabled(value)
     }
 
   /**
    * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or
    * always, if [clearButtonEnabled] is set to `false`.
    */
-  public var rightIcon: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRightIconPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var rightIcon: Texture2D?
+    @JvmName("rightIconProperty")
+    get() = getRightIcon()
+    @JvmName("rightIconProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRightIconPtr, NIL)
+      setRightIcon(value)
     }
 
   /**
    * If `true`, the [LineEdit] doesn't display decoration.
    */
-  public var flat: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flat: Boolean
+    @JvmName("flatProperty")
+    get() = isFlat()
+    @JvmName("flatProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+      setFlat(value)
     }
 
   /**
    * If `true`, control characters are displayed.
    */
-  public var drawControlChars: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var drawControlChars: Boolean
+    @JvmName("drawControlCharsProperty")
+    get() = getDrawControlChars()
+    @JvmName("drawControlCharsProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
+      setDrawControlChars(value)
     }
 
   /**
    * If `true`, the [LineEdit] will select the whole text when it gains focus.
    */
-  public var selectAllOnFocus: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var selectAllOnFocus: Boolean
+    @JvmName("selectAllOnFocusProperty")
+    get() = isSelectAllOnFocus()
+    @JvmName("selectAllOnFocusProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+      setSelectAllOnFocus(value)
     }
 
   /**
    * If `true`, makes the caret blink.
    */
-  public var caretBlink: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCaretBlinkEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var caretBlink: Boolean
+    @JvmName("caretBlinkProperty")
+    get() = isCaretBlinkEnabled()
+    @JvmName("caretBlinkProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
+      setCaretBlinkEnabled(value)
     }
 
   /**
    * The interval at which the caret blinks (in seconds).
    */
-  public var caretBlinkInterval: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCaretBlinkIntervalPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var caretBlinkInterval: Float
+    @JvmName("caretBlinkIntervalProperty")
+    get() = getCaretBlinkInterval()
+    @JvmName("caretBlinkIntervalProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
+      setCaretBlinkInterval(value)
     }
 
   /**
    * The caret's column position inside the [LineEdit]. When set, the text may scroll to accommodate
    * it.
    */
-  public var caretColumn: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCaretColumnPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var caretColumn: Int
+    @JvmName("caretColumnProperty")
+    get() = getCaretColumn()
+    @JvmName("caretColumnProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCaretColumnPtr, NIL)
+      setCaretColumn(value)
     }
 
   /**
    * If `true`, the [LineEdit] will always show the caret, even if focus is lost.
    */
-  public var caretForceDisplayed: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCaretForceDisplayedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var caretForceDisplayed: Boolean
+    @JvmName("caretForceDisplayedProperty")
+    get() = isCaretForceDisplayed()
+    @JvmName("caretForceDisplayedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCaretForceDisplayedPtr, NIL)
+      setCaretForceDisplayed(value)
     }
 
   /**
    * Allow moving caret, selecting and removing the individual composite character components.
    * **Note:** [kbd]Backspace[/kbd] is always removing individual composite character components.
    */
-  public var caretMidGrapheme: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCaretMidGraphemeEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var caretMidGrapheme: Boolean
+    @JvmName("caretMidGraphemeProperty")
+    get() = isCaretMidGraphemeEnabled()
+    @JvmName("caretMidGraphemeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
+      setCaretMidGraphemeEnabled(value)
     }
 
   /**
    * If `true`, every character is replaced with the secret character (see [secretCharacter]).
    */
-  public var secret: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var secret: Boolean
+    @JvmName("secretProperty")
+    get() = isSecret()
+    @JvmName("secretProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
+      setSecret(value)
     }
 
   /**
@@ -466,84 +392,78 @@ public open class LineEdit : Control() {
    * character. If it is longer than one character, only the first one will be used. If it is empty, a
    * space will be used instead.
    */
-  public var secretCharacter: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var secretCharacter: String
+    @JvmName("secretCharacterProperty")
+    get() = getSecretCharacter()
+    @JvmName("secretCharacterProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
+      setSecretCharacter(value)
     }
 
   /**
    * Base text writing direction.
    */
-  public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textDirection: Control.TextDirection
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
    * Language code used for line-breaking and text shaping algorithms. If left empty, current locale
    * is used instead.
    */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var language: String
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: TextServer.StructuredTextParser
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var structuredTextBidiOverride: TextServer.StructuredTextParser
+    @JvmName("structuredTextBidiOverrideProperty")
+    get() = getStructuredTextBidiOverride()
+    @JvmName("structuredTextBidiOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+      setStructuredTextBidiOverride(value)
     }
 
   /**
    * Set additional options for BiDi override.
    */
-  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-          ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+  public final inline var structuredTextBidiOverrideOptions: VariantArray<Any?>
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
+    get() = getStructuredTextBidiOverrideOptions()
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
-          NIL)
+      setStructuredTextBidiOverrideOptions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LINEEDIT, scriptIndex)
   }
 
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+  }
+
+  public final fun getHorizontalAlignment(): HorizontalAlignment {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Erases the [LineEdit]'s [text].
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -568,7 +488,7 @@ public open class LineEdit : Control() {
    * ```
    */
   @JvmOverloads
-  public fun select(from: Int = 0, to: Int = -1): Unit {
+  public final fun select(from: Int = 0, to: Int = -1): Unit {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
@@ -576,7 +496,7 @@ public open class LineEdit : Control() {
   /**
    * Selects the whole [String].
    */
-  public fun selectAll(): Unit {
+  public final fun selectAll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
   }
@@ -584,7 +504,7 @@ public open class LineEdit : Control() {
   /**
    * Clears the current selection.
    */
-  public fun deselect(): Unit {
+  public final fun deselect(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
@@ -592,7 +512,7 @@ public open class LineEdit : Control() {
   /**
    * Returns `true` if the user has selected text.
    */
-  public fun hasSelection(): Boolean {
+  public final fun hasSelection(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasSelectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -601,7 +521,7 @@ public open class LineEdit : Control() {
   /**
    * Returns the text inside the selection.
    */
-  public fun getSelectedText(): String {
+  public final fun getSelectedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -610,7 +530,7 @@ public open class LineEdit : Control() {
   /**
    * Returns the selection begin column.
    */
-  public fun getSelectionFromColumn(): Int {
+  public final fun getSelectionFromColumn(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectionFromColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -619,26 +539,181 @@ public open class LineEdit : Control() {
   /**
    * Returns the selection end column.
    */
-  public fun getSelectionToColumn(): Int {
+  public final fun getSelectionToColumn(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectionToColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public final fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun getDrawControlChars(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDrawControlChars(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
+  }
+
+  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public final fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+  }
+
+  public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to args)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+  }
+
+  public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+  }
+
+  public final fun setPlaceholder(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPlaceholderPtr, NIL)
+  }
+
+  public final fun getPlaceholder(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPlaceholderPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setCaretColumn(position: Int): Unit {
+    TransferContext.writeArguments(LONG to position.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCaretColumnPtr, NIL)
+  }
+
+  public final fun getCaretColumn(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCaretColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Returns the scroll offset due to [caretColumn], as a number of characters.
    */
-  public fun getScrollOffset(): Float {
+  public final fun getScrollOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setExpandToTextLengthEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
+  }
+
+  public final fun isExpandToTextLengthEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isExpandToTextLengthEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCaretBlinkEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
+  }
+
+  public final fun isCaretBlinkEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaretBlinkEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCaretMidGraphemeEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
+  }
+
+  public final fun isCaretMidGraphemeEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaretMidGraphemeEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCaretForceDisplayed(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCaretForceDisplayedPtr, NIL)
+  }
+
+  public final fun isCaretForceDisplayed(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCaretForceDisplayedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCaretBlinkInterval(interval: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to interval.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
+  }
+
+  public final fun getCaretBlinkInterval(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCaretBlinkIntervalPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMaxLength(chars: Int): Unit {
+    TransferContext.writeArguments(LONG to chars.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLengthPtr, NIL)
+  }
+
+  public final fun getMaxLength(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLengthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
    * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing
    * happens.
    */
-  public fun insertTextAtCaret(text: String): Unit {
+  public final fun insertTextAtCaret(text: String): Unit {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.insertTextAtCaretPtr, NIL)
   }
@@ -647,7 +722,7 @@ public open class LineEdit : Control() {
    * Deletes one character at the caret's current position (equivalent to pressing
    * [kbd]Delete[/kbd]).
    */
-  public fun deleteCharAtCaret(): Unit {
+  public final fun deleteCharAtCaret(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.deleteCharAtCaretPtr, NIL)
   }
@@ -656,15 +731,48 @@ public open class LineEdit : Control() {
    * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters
    * should be within the text's length.
    */
-  public fun deleteText(fromColumn: Int, toColumn: Int): Unit {
+  public final fun deleteText(fromColumn: Int, toColumn: Int): Unit {
     TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.deleteTextPtr, NIL)
+  }
+
+  public final fun setEditable(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+  }
+
+  public final fun isEditable(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSecret(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
+  }
+
+  public final fun isSecret(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSecretCharacter(character: String): Unit {
+    TransferContext.writeArguments(STRING to character)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
+  }
+
+  public final fun getSecretCharacter(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Executes a given action as defined in the [MenuItems] enum.
    */
-  public fun menuOption(option: Int): Unit {
+  public final fun menuOption(option: Int): Unit {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
   }
@@ -717,7 +825,7 @@ public open class LineEdit : Control() {
    * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
-  public fun getMenu(): PopupMenu? {
+  public final fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
@@ -727,9 +835,141 @@ public open class LineEdit : Control() {
    * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
    * performance (so the creation of the menu is avoided).
    */
-  public fun isMenuVisible(): Boolean {
+  public final fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setContextMenuEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+  }
+
+  public final fun isContextMenuEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setVirtualKeyboardEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
+  }
+
+  public final fun isVirtualKeyboardEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setVirtualKeyboardType(type: VirtualKeyboardType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
+  }
+
+  public final fun getVirtualKeyboardType(): VirtualKeyboardType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
+    return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setClearButtonEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClearButtonEnabledPtr, NIL)
+  }
+
+  public final fun isClearButtonEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isClearButtonEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setShortcutKeysEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+  }
+
+  public final fun isShortcutKeysEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setMiddleMousePasteEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
+  }
+
+  public final fun isMiddleMousePasteEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSelectingEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectingEnabledPtr, NIL)
+  }
+
+  public final fun isSelectingEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectingEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDeselectOnFocusLossEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+  }
+
+  public final fun isDeselectOnFocusLossEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDragAndDropSelectionEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+  }
+
+  public final fun isDragAndDropSelectionEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setRightIcon(icon: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to icon)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRightIconPtr, NIL)
+  }
+
+  public final fun getRightIcon(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRightIconPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun setFlat(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+  }
+
+  public final fun isFlat(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+  }
+
+  public final fun isSelectAllOnFocus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 

@@ -56,7 +56,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * cause a teleportation.
    */
   @JvmOverloads
-  public fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
+  public final fun travel(toNode: StringName, resetOnTeleport: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to toNode, BOOL to resetOnTeleport)
     TransferContext.callMethod(rawPtr, MethodBindings.travelPtr, NIL)
   }
@@ -66,7 +66,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * If [reset] is `true`, the animation is played from the beginning.
    */
   @JvmOverloads
-  public fun start(node: StringName, reset: Boolean = true): Unit {
+  public final fun start(node: StringName, reset: Boolean = true): Unit {
     TransferContext.writeArguments(STRING_NAME to node, BOOL to reset)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
   }
@@ -75,7 +75,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * If there is a next path by travel or auto advance, immediately transitions from the current
    * state to the next state.
    */
-  public fun next(): Unit {
+  public final fun next(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.nextPtr, NIL)
   }
@@ -83,7 +83,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Stops the currently playing animation.
    */
-  public fun stop(): Unit {
+  public final fun stop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
@@ -91,7 +91,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns `true` if an animation is playing.
    */
-  public fun isPlaying(): Boolean {
+  public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -102,7 +102,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * **Note:** When using a cross-fade, the current state changes to the next state immediately
    * after the cross-fade begins.
    */
-  public fun getCurrentNode(): StringName {
+  public final fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -111,7 +111,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the playback position within the current animation state.
    */
-  public fun getCurrentPlayPosition(): Float {
+  public final fun getCurrentPlayPosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPlayPositionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -124,7 +124,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    * priority depends on the nodes connected inside it. Also, if a transition does not reset, the
    * remaining length at that point will be returned.
    */
-  public fun getCurrentLength(): Float {
+  public final fun getCurrentLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -133,7 +133,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the starting state of currently fading animation.
    */
-  public fun getFadingFromNode(): StringName {
+  public final fun getFadingFromNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFadingFromNodePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
@@ -142,7 +142,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   /**
    * Returns the current travel path as computed internally by the A* algorithm.
    */
-  public fun getTravelPath(): VariantArray<StringName> {
+  public final fun getTravelPath(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTravelPathPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)

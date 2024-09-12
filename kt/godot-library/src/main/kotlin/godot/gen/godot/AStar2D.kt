@@ -61,7 +61,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the next available point ID with no point associated to it.
    */
-  public fun getAvailablePointId(): Long {
+  public final fun getAvailablePointId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePointIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -89,7 +89,7 @@ public open class AStar2D : RefCounted() {
    * to the given values.
    */
   @JvmOverloads
-  public fun addPoint(
+  public final fun addPoint(
     id: Long,
     position: Vector2,
     weightScale: Float = 1.0f,
@@ -101,7 +101,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the position of the point associated with the given [id].
    */
-  public fun getPointPosition(id: Long): Vector2 {
+  public final fun getPointPosition(id: Long): Vector2 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -110,7 +110,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Sets the [position] for the point with the given [id].
    */
-  public fun setPointPosition(id: Long, position: Vector2): Unit {
+  public final fun setPointPosition(id: Long, position: Vector2): Unit {
     TransferContext.writeArguments(LONG to id, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
@@ -118,7 +118,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
-  public fun getPointWeightScale(id: Long): Float {
+  public final fun getPointWeightScale(id: Long): Float {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -129,7 +129,7 @@ public open class AStar2D : RefCounted() {
    * the result of [_computeCost] when determining the overall cost of traveling across a segment from
    * a neighboring point to this point.
    */
-  public fun setPointWeightScale(id: Long, weightScale: Float): Unit {
+  public final fun setPointWeightScale(id: Long, weightScale: Float): Unit {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
   }
@@ -137,7 +137,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Removes the point associated with the given [id] from the points pool.
    */
-  public fun removePoint(id: Long): Unit {
+  public final fun removePoint(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
@@ -145,7 +145,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether a point associated with the given [id] exists.
    */
-  public fun hasPoint(id: Long): Boolean {
+  public final fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPointPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -181,7 +181,7 @@ public open class AStar2D : RefCounted() {
    * int[] neighbors = astar.GetPointConnections(1); // Returns [2, 3]
    * ```
    */
-  public fun getPointConnections(id: Long): PackedInt64Array {
+  public final fun getPointConnections(id: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointConnectionsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
@@ -190,7 +190,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns an array of all point IDs.
    */
-  public fun getPointIds(): PackedInt64Array {
+  public final fun getPointIds(): PackedInt64Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
@@ -201,7 +201,7 @@ public open class AStar2D : RefCounted() {
    * obstacle.
    */
   @JvmOverloads
-  public fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
+  public final fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPointDisabledPtr, NIL)
   }
@@ -209,7 +209,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns whether a point is disabled or not for pathfinding. By default, all points are enabled.
    */
-  public fun isPointDisabled(id: Long): Boolean {
+  public final fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.isPointDisabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -235,7 +235,7 @@ public open class AStar2D : RefCounted() {
    * ```
    */
   @JvmOverloads
-  public fun connectPoints(
+  public final fun connectPoints(
     id: Long,
     toId: Long,
     bidirectional: Boolean = true,
@@ -249,7 +249,7 @@ public open class AStar2D : RefCounted() {
    * [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
   @JvmOverloads
-  public fun disconnectPoints(
+  public final fun disconnectPoints(
     id: Long,
     toId: Long,
     bidirectional: Boolean = true,
@@ -263,7 +263,7 @@ public open class AStar2D : RefCounted() {
    * `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
   @JvmOverloads
-  public fun arePointsConnected(
+  public final fun arePointsConnected(
     id: Long,
     toId: Long,
     bidirectional: Boolean = true,
@@ -276,7 +276,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Returns the number of points currently in the points pool.
    */
-  public fun getPointCount(): Long {
+  public final fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -286,7 +286,7 @@ public open class AStar2D : RefCounted() {
    * Returns the capacity of the structure backing the points, useful in conjunction with
    * [reserveSpace].
    */
-  public fun getPointCapacity(): Long {
+  public final fun getPointCapacity(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCapacityPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -297,7 +297,7 @@ public open class AStar2D : RefCounted() {
    * of points at once, such as points on a grid. New capacity must be greater or equals to old
    * capacity.
    */
-  public fun reserveSpace(numNodes: Long): Unit {
+  public final fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
     TransferContext.callMethod(rawPtr, MethodBindings.reserveSpacePtr, NIL)
   }
@@ -305,7 +305,7 @@ public open class AStar2D : RefCounted() {
   /**
    * Clears all the points and segments.
    */
-  public fun clear(): Unit {
+  public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
@@ -317,7 +317,7 @@ public open class AStar2D : RefCounted() {
    * be returned, ensuring a deterministic result.
    */
   @JvmOverloads
-  public fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
+  public final fun getClosestPoint(toPosition: Vector2, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR2 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -347,7 +347,7 @@ public open class AStar2D : RefCounted() {
    * The result is in the segment that goes from `y = 0` to `y = 5`. It's the closest position in
    * the segment to the given point.
    */
-  public fun getClosestPositionInSegment(toPosition: Vector2): Vector2 {
+  public final fun getClosestPositionInSegment(toPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPositionInSegmentPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -362,7 +362,7 @@ public open class AStar2D : RefCounted() {
    * array and will print an error message.
    */
   @JvmOverloads
-  public fun getPointPath(
+  public final fun getPointPath(
     fromId: Long,
     toId: Long,
     allowPartialPath: Boolean = false,
@@ -412,7 +412,7 @@ public open class AStar2D : RefCounted() {
    * now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
    */
   @JvmOverloads
-  public fun getIdPath(
+  public final fun getIdPath(
     fromId: Long,
     toId: Long,
     allowPartialPath: Boolean = false,

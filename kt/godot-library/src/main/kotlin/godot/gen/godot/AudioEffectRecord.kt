@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
@@ -36,15 +37,12 @@ public open class AudioEffectRecord : AudioEffect() {
    * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
    * available formats.
    */
-  public var format: AudioStreamWAV.Format
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-      return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var format: AudioStreamWAV.Format
+    @JvmName("formatProperty")
+    get() = getFormat()
+    @JvmName("formatProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+      setFormat(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -55,7 +53,7 @@ public open class AudioEffectRecord : AudioEffect() {
    * If `true`, the sound will be recorded. Note that restarting the recording will remove the
    * previously recorded sample.
    */
-  public fun setRecordingActive(record: Boolean): Unit {
+  public final fun setRecordingActive(record: Boolean): Unit {
     TransferContext.writeArguments(BOOL to record)
     TransferContext.callMethod(rawPtr, MethodBindings.setRecordingActivePtr, NIL)
   }
@@ -63,16 +61,27 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Returns whether the recording is active or not.
    */
-  public fun isRecordingActive(): Boolean {
+  public final fun isRecordingActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecordingActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
+  public final fun setFormat(format: AudioStreamWAV.Format): Unit {
+    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+  }
+
+  public final fun getFormat(): AudioStreamWAV.Format {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return AudioStreamWAV.Format.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the recorded sample.
    */
-  public fun getRecording(): AudioStreamWAV? {
+  public final fun getRecording(): AudioStreamWAV? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRecordingPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamWAV?)

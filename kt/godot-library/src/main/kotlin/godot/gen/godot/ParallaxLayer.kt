@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set
@@ -33,15 +34,12 @@ public open class ParallaxLayer : Node2D() {
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    */
   @CoreTypeLocalCopy
-  public var motionScale: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var motionScale: Vector2
+    @JvmName("motionScaleProperty")
+    get() = getMotionScale()
+    @JvmName("motionScaleProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+      setMotionScale(value)
     }
 
   /**
@@ -49,15 +47,12 @@ public open class ParallaxLayer : Node2D() {
    * [ParallaxBackground.scrollOffset].
    */
   @CoreTypeLocalCopy
-  public var motionOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var motionOffset: Vector2
+    @JvmName("motionOffsetProperty")
+    get() = getMotionOffset()
+    @JvmName("motionOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
+      setMotionOffset(value)
     }
 
   /**
@@ -78,15 +73,12 @@ public open class ParallaxLayer : Node2D() {
    * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
    */
   @CoreTypeLocalCopy
-  public var motionMirroring: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var motionMirroring: Vector2
+    @JvmName("motionMirroringProperty")
+    get() = getMirroring()
+    @JvmName("motionMirroringProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
+      setMirroring(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -111,7 +103,7 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
+  public final fun motionScaleMutate(block: Vector2.() -> Unit): Vector2 = motionScale.apply{
       block(this)
       motionScale = this
   }
@@ -136,7 +128,7 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
+  public final fun motionOffsetMutate(block: Vector2.() -> Unit): Vector2 = motionOffset.apply{
       block(this)
       motionOffset = this
   }
@@ -174,11 +166,45 @@ public open class ParallaxLayer : Node2D() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun motionMirroringMutate(block: Vector2.() -> Unit): Vector2 = motionMirroring.apply{
+  public final fun motionMirroringMutate(block: Vector2.() -> Unit): Vector2 =
+      motionMirroring.apply{
       block(this)
       motionMirroring = this
   }
 
+
+  public final fun setMotionScale(scale: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to scale)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+  }
+
+  public final fun getMotionScale(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setMotionOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
+  }
+
+  public final fun getMotionOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setMirroring(mirror: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to mirror)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
+  }
+
+  public final fun getMirroring(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
 
   public companion object
 

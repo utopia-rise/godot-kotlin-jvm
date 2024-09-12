@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target
@@ -36,15 +37,12 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
    * Determines how the target node is enabled. Corresponds to [Node.ProcessMode]. When the node is
    * disabled, it always uses [Node.PROCESS_MODE_DISABLED].
    */
-  public var enableMode: EnableMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
-      return VisibleOnScreenEnabler3D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var enableMode: EnableMode
+    @JvmName("enableModeProperty")
+    get() = getEnableMode()
+    @JvmName("enableModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+      setEnableMode(value)
     }
 
   /**
@@ -53,19 +51,38 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
    * the scene tree) and every time the [VisibleOnScreenEnabler3D] enters the scene tree. If the path
    * is empty, no node will be affected. If the path is invalid, an error is also generated.
    */
-  public var enableNodePath: NodePath
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
-      return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
-    }
+  public final inline var enableNodePath: NodePath
+    @JvmName("enableNodePathProperty")
+    get() = getEnableNodePath()
+    @JvmName("enableNodePathProperty")
     set(`value`) {
-      TransferContext.writeArguments(NODE_PATH to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+      setEnableNodePath(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISIBLEONSCREENENABLER3D, scriptIndex)
+  }
+
+  public final fun setEnableMode(mode: EnableMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+  }
+
+  public final fun getEnableMode(): EnableMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
+    return VisibleOnScreenEnabler3D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setEnableNodePath(path: NodePath): Unit {
+    TransferContext.writeArguments(NODE_PATH to path)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+  }
+
+  public final fun getEnableNodePath(): NodePath {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
+    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
   }
 
   public enum class EnableMode(

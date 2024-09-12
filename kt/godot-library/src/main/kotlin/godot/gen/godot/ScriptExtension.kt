@@ -41,7 +41,7 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_get_global_name is not implemented for ScriptExtension")
   }
 
-  public open fun _inheritsScript(script: Script): Boolean {
+  public open fun _inheritsScript(script: Script?): Boolean {
     throw NotImplementedError("_inherits_script is not implemented for ScriptExtension")
   }
 
@@ -49,7 +49,7 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_get_instance_base_type is not implemented for ScriptExtension")
   }
 
-  public open fun _instanceHas(_object: Object): Boolean {
+  public open fun _instanceHas(_object: Object?): Boolean {
     throw NotImplementedError("_instance_has is not implemented for ScriptExtension")
   }
 

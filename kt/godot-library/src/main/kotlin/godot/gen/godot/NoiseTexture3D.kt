@@ -41,48 +41,45 @@ public open class NoiseTexture3D : Texture3D() {
   /**
    * Width of the generated texture (in pixels).
    */
-  public var width: Int
-    @JvmName("getWidth_prop")
-    get() = super.getWidth()
+  public final inline var width: Int
+    @JvmName("widthProperty")
+    get() = getWidth()
+    @JvmName("widthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+      setWidth(value)
     }
 
   /**
    * Height of the generated texture (in pixels).
    */
-  public var height: Int
-    @JvmName("getHeight_prop")
-    get() = super.getHeight()
+  public final inline var height: Int
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
    * Depth of the generated texture (in pixels).
    */
-  public var depth: Int
-    @JvmName("getDepth_prop")
-    get() = super.getDepth()
+  public final inline var depth: Int
+    @JvmName("depthProperty")
+    get() = getDepth()
+    @JvmName("depthProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+      setDepth(value)
     }
 
   /**
    * If `true`, inverts the noise texture. White becomes black, black becomes white.
    */
-  public var invert: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInvertPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var invert: Boolean
+    @JvmName("invertProperty")
+    get() = getInvert()
+    @JvmName("invertProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInvertPtr, NIL)
+      setInvert(value)
     }
 
   /**
@@ -94,15 +91,12 @@ public open class NoiseTexture3D : Texture3D() {
    * generation. If using a [width], [height] or [depth] lower than the default, you may need to
    * increase [seamlessBlendSkirt] to make seamless blending more effective.
    */
-  public var seamless: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var seamless: Boolean
+    @JvmName("seamlessProperty")
+    get() = getSeamless()
+    @JvmName("seamlessProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessPtr, NIL)
+      setSeamless(value)
     }
 
   /**
@@ -112,15 +106,12 @@ public open class NoiseTexture3D : Texture3D() {
    * **Note:** If using a [width], [height] or [depth] lower than the default, you may need to
    * increase [seamlessBlendSkirt] to make seamless blending more effective.
    */
-  public var seamlessBlendSkirt: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var seamlessBlendSkirt: Float
+    @JvmName("seamlessBlendSkirtProperty")
+    get() = getSeamlessBlendSkirt()
+    @JvmName("seamlessBlendSkirtProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
+      setSeamlessBlendSkirt(value)
     }
 
   /**
@@ -129,47 +120,119 @@ public open class NoiseTexture3D : Texture3D() {
    * Turning normalization off can affect the contrast and allows you to generate non repeating
    * tileable noise textures.
    */
-  public var normalize: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isNormalizedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var normalize: Boolean
+    @JvmName("normalizeProperty")
+    get() = isNormalized()
+    @JvmName("normalizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNormalizePtr, NIL)
+      setNormalize(value)
     }
 
   /**
    * A [Gradient] which is used to map the luminance of each pixel to a color value.
    */
-  public var colorRamp: Gradient?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
-    }
+  public final inline var colorRamp: Gradient?
+    @JvmName("colorRampProperty")
+    get() = getColorRamp()
+    @JvmName("colorRampProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
+      setColorRamp(value)
     }
 
   /**
    * The instance of the [Noise] object.
    */
-  public var noise: Noise?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getNoisePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Noise?)
-    }
+  public final inline var noise: Noise?
+    @JvmName("noiseProperty")
+    get() = getNoise()
+    @JvmName("noiseProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setNoisePtr, NIL)
+      setNoise(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_NOISETEXTURE3D, scriptIndex)
+  }
+
+  public final fun setWidth(width: Int): Unit {
+    TransferContext.writeArguments(LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+  }
+
+  public final fun setHeight(height: Int): Unit {
+    TransferContext.writeArguments(LONG to height.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun setDepth(depth: Int): Unit {
+    TransferContext.writeArguments(LONG to depth.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+  }
+
+  public final fun setInvert(invert: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to invert)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInvertPtr, NIL)
+  }
+
+  public final fun getInvert(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInvertPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSeamless(seamless: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to seamless)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessPtr, NIL)
+  }
+
+  public final fun getSeamless(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSeamlessBlendSkirt(seamlessBlendSkirt: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seamlessBlendSkirt.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
+  }
+
+  public final fun getSeamlessBlendSkirt(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setNormalize(normalize: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to normalize)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNormalizePtr, NIL)
+  }
+
+  public final fun isNormalized(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isNormalizedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setColorRamp(gradient: Gradient?): Unit {
+    TransferContext.writeArguments(OBJECT to gradient)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
+  }
+
+  public final fun getColorRamp(): Gradient? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+  }
+
+  public final fun setNoise(noise: Noise?): Unit {
+    TransferContext.writeArguments(OBJECT to noise)
+    TransferContext.callMethod(rawPtr, MethodBindings.setNoisePtr, NIL)
+  }
+
+  public final fun getNoise(): Noise? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getNoisePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Noise?)
   }
 
   public companion object

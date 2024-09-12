@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
@@ -27,19 +28,27 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
    * This property only exists to preserve data authored in earlier versions of Godot. It has
    * currently no function.
    */
-  public var description: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var description: String
+    @JvmName("descriptionProperty")
+    get() = getDescription()
+    @JvmName("descriptionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
+      setDescription(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
+  }
+
+  public final fun setDescription(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
+  }
+
+  public final fun getDescription(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public companion object

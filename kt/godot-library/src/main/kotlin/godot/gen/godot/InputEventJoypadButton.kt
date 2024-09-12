@@ -32,41 +32,62 @@ public open class InputEventJoypadButton : InputEvent() {
   /**
    * Button identifier. One of the [JoyButton] button constants.
    */
-  public var buttonIndex: JoyButton
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
-      return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var buttonIndex: JoyButton
+    @JvmName("buttonIndexProperty")
+    get() = getButtonIndex()
+    @JvmName("buttonIndexProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+      setButtonIndex(value)
     }
 
-  public var pressure: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var pressure: Float
+    @JvmName("pressureProperty")
+    get() = getPressure()
+    @JvmName("pressureProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+      setPressure(value)
     }
 
   /**
    * If `true`, the button's state is pressed. If `false`, the button's state is released.
    */
-  public var pressed: Boolean
-    @JvmName("isPressed_prop")
-    get() = super.isPressed()
+  public final inline var pressed: Boolean
+    @JvmName("pressedProperty")
+    get() = isPressed()
+    @JvmName("pressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+      setPressed(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON, scriptIndex)
+  }
+
+  public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
+    TransferContext.writeArguments(LONG to buttonIndex.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+  }
+
+  public final fun getButtonIndex(): JoyButton {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
+    return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPressure(pressure: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pressure.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+  }
+
+  public final fun getPressure(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setPressed(pressed: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to pressed)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
   public companion object

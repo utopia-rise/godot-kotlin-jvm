@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
@@ -29,34 +30,50 @@ public open class GrooveJoint2D : Joint2D() {
    * The groove's length. The groove is from the joint's origin towards [length] along the joint's
    * local Y axis.
    */
-  public var length: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var length: Float
+    @JvmName("lengthProperty")
+    get() = getLength()
+    @JvmName("lengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+      setLength(value)
     }
 
   /**
    * The body B's initial anchor position defined by the joint's origin and a local offset
    * [initialOffset] along the joint's Y axis (along the groove).
    */
-  public var initialOffset: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var initialOffset: Float
+    @JvmName("initialOffsetProperty")
+    get() = getInitialOffset()
+    @JvmName("initialOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+      setInitialOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GROOVEJOINT2D, scriptIndex)
+  }
+
+  public final fun setLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+  }
+
+  public final fun getLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setInitialOffset(offset: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+  }
+
+  public final fun getInitialOffset(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

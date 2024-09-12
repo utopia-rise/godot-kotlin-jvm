@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
@@ -36,15 +37,12 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   /**
    * The [SubViewport] to render on the composition layer.
    */
-  public var layerViewport: SubViewport?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
-    }
+  public final inline var layerViewport: SubViewport?
+    @JvmName("layerViewportProperty")
+    get() = getLayerViewport()
+    @JvmName("layerViewportProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+      setLayerViewport(value)
     }
 
   /**
@@ -52,30 +50,24 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * numbers.
    * **Note:** This will have no effect if a fallback mesh is being used.
    */
-  public var sortOrder: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var sortOrder: Int
+    @JvmName("sortOrderProperty")
+    get() = getSortOrder()
+    @JvmName("sortOrderProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+      setSortOrder(value)
     }
 
   /**
    * Enables the blending the layer using its alpha channel.
    * Can be combined with [Viewport.transparentBg] to give the layer a transparent background.
    */
-  public var alphaBlend: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var alphaBlend: Boolean
+    @JvmName("alphaBlendProperty")
+    get() = getAlphaBlend()
+    @JvmName("alphaBlendProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+      setAlphaBlend(value)
     }
 
   /**
@@ -86,26 +78,67 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * as everything rendered by Godot, allowing objects to appear to pass both behind or in front of the
    * composition layer.
    */
-  public var enableHolePunch: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var enableHolePunch: Boolean
+    @JvmName("enableHolePunchProperty")
+    get() = getEnableHolePunch()
+    @JvmName("enableHolePunchProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+      setEnableHolePunch(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYER, scriptIndex)
   }
 
+  public final fun setLayerViewport(viewport: SubViewport?): Unit {
+    TransferContext.writeArguments(OBJECT to viewport)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+  }
+
+  public final fun getLayerViewport(): SubViewport? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
+  }
+
+  public final fun setEnableHolePunch(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+  }
+
+  public final fun getEnableHolePunch(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSortOrder(order: Int): Unit {
+    TransferContext.writeArguments(LONG to order.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+  }
+
+  public final fun getSortOrder(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setAlphaBlend(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+  }
+
+  public final fun getAlphaBlend(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
   /**
    * Returns true if the OpenXR runtime natively supports this composition layer type.
    * **Note:** This will only return an accurate result after the OpenXR session has started.
    */
-  public fun isNativelySupported(): Boolean {
+  public final fun isNativelySupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNativelySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -116,7 +149,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * [direction] must be in global space.
    * Returns `Vector2(-1.0, -1.0)` if the ray doesn't intersect.
    */
-  public fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {
+  public final fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
     TransferContext.callMethod(rawPtr, MethodBindings.intersectsRayPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)

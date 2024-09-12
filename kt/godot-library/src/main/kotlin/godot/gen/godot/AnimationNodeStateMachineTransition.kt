@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
@@ -48,87 +49,69 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
    * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
-  public var xfadeTime: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var xfadeTime: Float
+    @JvmName("xfadeTimeProperty")
+    get() = getXfadeTime()
+    @JvmName("xfadeTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+      setXfadeTime(value)
     }
 
   /**
    * Ease curve for better control over cross-fade between this state and the next.
    */
-  public var xfadeCurve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+  public final inline var xfadeCurve: Curve?
+    @JvmName("xfadeCurveProperty")
+    get() = getXfadeCurve()
+    @JvmName("xfadeCurveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+      setXfadeCurve(value)
     }
 
   /**
    * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
    * is looping.
    */
-  public var breakLoopAtEnd: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var breakLoopAtEnd: Boolean
+    @JvmName("breakLoopAtEndProperty")
+    get() = isLoopBrokenAtEnd()
+    @JvmName("breakLoopAtEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+      setBreakLoopAtEnd(value)
     }
 
   /**
    * If `true`, the destination animation is played back from the beginning when switched.
    */
-  public var reset: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var reset: Boolean
+    @JvmName("resetProperty")
+    get() = isReset()
+    @JvmName("resetProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResetPtr, NIL)
+      setReset(value)
     }
 
   /**
    * Lower priority transitions are preferred when travelling through the tree via
    * [AnimationNodeStateMachinePlayback.travel] or [advanceMode] is set to [ADVANCE_MODE_AUTO].
    */
-  public var priority: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var priority: Int
+    @JvmName("priorityProperty")
+    get() = getPriority()
+    @JvmName("priorityProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+      setPriority(value)
     }
 
   /**
    * The transition type.
    */
-  public var switchMode: SwitchMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSwitchModePtr, LONG)
-      return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var switchMode: SwitchMode
+    @JvmName("switchModeProperty")
+    get() = getSwitchMode()
+    @JvmName("switchModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSwitchModePtr, NIL)
+      setSwitchMode(value)
     }
 
   /**
@@ -136,15 +119,12 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * [AnimationNodeStateMachinePlayback.travel], or traversed automatically if the [advanceCondition]
    * and [advanceExpression] checks are true (if assigned).
    */
-  public var advanceMode: AdvanceMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceModePtr, LONG)
-      return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var advanceMode: AdvanceMode
+    @JvmName("advanceModeProperty")
+    get() = getAdvanceMode()
+    @JvmName("advanceModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceModePtr, NIL)
+      setAdvanceMode(value)
     }
 
   /**
@@ -164,15 +144,12 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * (LinearVelocity.X == 0));
    * ```
    */
-  public var advanceCondition: StringName
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
-    }
+  public final inline var advanceCondition: StringName
+    @JvmName("advanceConditionProperty")
+    get() = getAdvanceCondition()
+    @JvmName("advanceConditionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING_NAME to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceConditionPtr, NIL)
+      setAdvanceCondition(value)
     }
 
   /**
@@ -180,19 +157,115 @@ public open class AnimationNodeStateMachineTransition : Resource() {
    * complex animation advance conditions for switching between states and gives much greater
    * flexibility for creating complex state machines by directly interfacing with the script code.
    */
-  public var advanceExpression: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var advanceExpression: String
+    @JvmName("advanceExpressionProperty")
+    get() = getAdvanceExpression()
+    @JvmName("advanceExpressionProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
+      setAdvanceExpression(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
+  }
+
+  public final fun setSwitchMode(mode: SwitchMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSwitchModePtr, NIL)
+  }
+
+  public final fun getSwitchMode(): SwitchMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSwitchModePtr, LONG)
+    return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAdvanceMode(mode: AdvanceMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceModePtr, NIL)
+  }
+
+  public final fun getAdvanceMode(): AdvanceMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceModePtr, LONG)
+    return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAdvanceCondition(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceConditionPtr, NIL)
+  }
+
+  public final fun getAdvanceCondition(): StringName {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
+    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+  }
+
+  public final fun setXfadeTime(secs: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to secs.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+  }
+
+  public final fun getXfadeTime(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setXfadeCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+  }
+
+  public final fun getXfadeCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+  }
+
+  public final fun isLoopBrokenAtEnd(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setReset(reset: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to reset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResetPtr, NIL)
+  }
+
+  public final fun isReset(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setPriority(priority: Int): Unit {
+    TransferContext.writeArguments(LONG to priority.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+  }
+
+  public final fun getPriority(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setAdvanceExpression(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
+  }
+
+  public final fun getAdvanceExpression(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   public enum class SwitchMode(

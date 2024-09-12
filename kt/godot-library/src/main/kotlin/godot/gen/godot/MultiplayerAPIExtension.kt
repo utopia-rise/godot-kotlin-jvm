@@ -115,7 +115,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
-  public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer): Unit {
+  public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
   }
 
   /**
@@ -144,7 +144,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    */
   public open fun _rpc(
     peer: Int,
-    _object: Object,
+    _object: Object?,
     method: StringName,
     args: VariantArray<Any?>,
   ): GodotError {
@@ -161,14 +161,14 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
-  public open fun _objectConfigurationAdd(_object: Object, configuration: Any?): GodotError {
+  public open fun _objectConfigurationAdd(_object: Object?, configuration: Any?): GodotError {
     throw NotImplementedError("_object_configuration_add is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
-  public open fun _objectConfigurationRemove(_object: Object, configuration: Any?): GodotError {
+  public open fun _objectConfigurationRemove(_object: Object?, configuration: Any?): GodotError {
     throw NotImplementedError("_object_configuration_remove is not implemented for MultiplayerAPIExtension")
   }
 

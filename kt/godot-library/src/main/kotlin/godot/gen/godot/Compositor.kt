@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The compositor resource stores attributes used to customize how a [Viewport] is rendered.
@@ -26,19 +27,27 @@ public open class Compositor : Resource() {
    * The custom [CompositorEffect]s that are applied during rendering of viewports using this
    * compositor.
    */
-  public var compositorEffects: VariantArray<CompositorEffect>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CompositorEffect>)
-    }
+  public final inline var compositorEffects: VariantArray<CompositorEffect>
+    @JvmName("compositorEffectsProperty")
+    get() = getCompositorEffects()
+    @JvmName("compositorEffectsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
+      setCompositorEffects(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_COMPOSITOR, scriptIndex)
+  }
+
+  public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
+    TransferContext.writeArguments(ARRAY to compositorEffects)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
+  }
+
+  public final fun getCompositorEffects(): VariantArray<CompositorEffect> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CompositorEffect>)
   }
 
   public companion object

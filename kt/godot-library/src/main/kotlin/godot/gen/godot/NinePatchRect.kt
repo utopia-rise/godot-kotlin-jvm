@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Also known as 9-slice panels, [NinePatchRect] produces clean panels of any size based on a small
@@ -42,29 +43,23 @@ public open class NinePatchRect : Control() {
   /**
    * The node's texture resource.
    */
-  public var texture: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var texture: Texture2D?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   /**
    * If `true`, draw the panel's center. Else, only draw the 9-slice's borders.
    */
-  public var drawCenter: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var drawCenter: Boolean
+    @JvmName("drawCenterProperty")
+    get() = isDrawCenterEnabled()
+    @JvmName("drawCenterProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+      setDrawCenter(value)
     }
 
   /**
@@ -73,15 +68,12 @@ public open class NinePatchRect : Control() {
    * If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeLocalCopy
-  public var regionRect: Rect2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-      return (TransferContext.readReturnValue(RECT2, false) as Rect2)
-    }
+  public final inline var regionRect: Rect2
+    @JvmName("regionRectProperty")
+    get() = getRegionRect()
+    @JvmName("regionRectProperty")
     set(`value`) {
-      TransferContext.writeArguments(RECT2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+      setRegionRect(value)
     }
 
   /**
@@ -89,15 +81,12 @@ public open class NinePatchRect : Control() {
    * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginLeft: Int
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var patchMarginLeft: Int
+    @JvmName("patchMarginLeftProperty")
+    get() = getPatchMargin(Side.SIDE_LEFT)
+    @JvmName("patchMarginLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+      setPatchMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -105,15 +94,12 @@ public open class NinePatchRect : Control() {
    * will have a height of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginTop: Int
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var patchMarginTop: Int
+    @JvmName("patchMarginTopProperty")
+    get() = getPatchMargin(Side.SIDE_TOP)
+    @JvmName("patchMarginTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+      setPatchMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -121,15 +107,12 @@ public open class NinePatchRect : Control() {
    * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
    * with non-uniform borders.
    */
-  public var patchMarginRight: Int
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var patchMarginRight: Int
+    @JvmName("patchMarginRightProperty")
+    get() = getPatchMargin(Side.SIDE_RIGHT)
+    @JvmName("patchMarginRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+      setPatchMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -137,45 +120,36 @@ public open class NinePatchRect : Control() {
    * side will have a height of 16 pixels. You can set all 4 margin values individually to create
    * panels with non-uniform borders.
    */
-  public var patchMarginBottom: Int
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var patchMarginBottom: Int
+    @JvmName("patchMarginBottomProperty")
+    get() = getPatchMargin(Side.SIDE_BOTTOM)
+    @JvmName("patchMarginBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+      setPatchMargin(Side.SIDE_BOTTOM, value)
     }
 
   /**
    * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
    * for possible values.
    */
-  public var axisStretchHorizontal: AxisStretchMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
-      return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var axisStretchHorizontal: AxisStretchMode
+    @JvmName("axisStretchHorizontalProperty")
+    get() = getHAxisStretchMode()
+    @JvmName("axisStretchHorizontalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
+      setHAxisStretchMode(value)
     }
 
   /**
    * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
    * possible values.
    */
-  public var axisStretchVertical: AxisStretchMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
-      return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var axisStretchVertical: AxisStretchMode
+    @JvmName("axisStretchVerticalProperty")
+    get() = getVAxisStretchMode()
+    @JvmName("axisStretchVerticalProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
+      setVAxisStretchMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -202,11 +176,83 @@ public open class NinePatchRect : Control() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
+  public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply{
       block(this)
       regionRect = this
   }
 
+
+  public final fun setTexture(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  /**
+   * Sets the size of the margin on the specified [Side] to [value] pixels.
+   */
+  public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+  }
+
+  /**
+   * Returns the size of the margin on the specified [Side].
+   */
+  public final fun getPatchMargin(margin: Side): Int {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setRegionRect(rect: Rect2): Unit {
+    TransferContext.writeArguments(RECT2 to rect)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+  }
+
+  public final fun getRegionRect(): Rect2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
+    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+  }
+
+  public final fun setDrawCenter(drawCenter: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to drawCenter)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+  }
+
+  public final fun isDrawCenterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
+  }
+
+  public final fun getHAxisStretchMode(): AxisStretchMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
+    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
+  }
+
+  public final fun getVAxisStretchMode(): AxisStretchMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
+    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
 
   public enum class AxisStretchMode(
     id: Long,

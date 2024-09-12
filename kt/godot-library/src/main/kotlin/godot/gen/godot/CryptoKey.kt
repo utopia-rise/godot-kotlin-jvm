@@ -40,7 +40,7 @@ public open class CryptoKey : Resource() {
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
-  public fun save(path: String, publicOnly: Boolean = false): GodotError {
+  public final fun save(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -51,7 +51,7 @@ public open class CryptoKey : Resource() {
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
-  public fun load(path: String, publicOnly: Boolean = false): GodotError {
+  public final fun load(path: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -60,7 +60,7 @@ public open class CryptoKey : Resource() {
   /**
    * Returns `true` if this CryptoKey only has the public part, and not the private one.
    */
-  public fun isPublicOnly(): Boolean {
+  public final fun isPublicOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPublicOnlyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -71,7 +71,7 @@ public open class CryptoKey : Resource() {
    * key will be included.
    */
   @JvmOverloads
-  public fun saveToString(publicOnly: Boolean = false): String {
+  public final fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -82,7 +82,7 @@ public open class CryptoKey : Resource() {
    * loaded.
    */
   @JvmOverloads
-  public fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
+  public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

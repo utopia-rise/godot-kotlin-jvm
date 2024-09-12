@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a
@@ -81,15 +82,12 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * The blend type.
    */
-  public var mixMode: MixMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMixModePtr, LONG)
-      return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var mixMode: MixMode
+    @JvmName("mixModeProperty")
+    get() = getMixMode()
+    @JvmName("mixModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setMixModePtr, NIL)
+      setMixMode(value)
     }
 
   /**
@@ -101,30 +99,24 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
    * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
    * will be 0.5 second.
    */
-  public var fadeinTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFadeinTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var fadeinTime: Double
+    @JvmName("fadeinTimeProperty")
+    get() = getFadeinTime()
+    @JvmName("fadeinTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFadeinTimePtr, NIL)
+      setFadeinTime(value)
     }
 
   /**
    * Determines how cross-fading between animations is eased. If empty, the transition will be
    * linear.
    */
-  public var fadeinCurve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFadeinCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+  public final inline var fadeinCurve: Curve?
+    @JvmName("fadeinCurveProperty")
+    get() = getFadeinCurve()
+    @JvmName("fadeinCurveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFadeinCurvePtr, NIL)
+      setFadeinCurve(value)
     }
 
   /**
@@ -136,45 +128,36 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
    * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
    * will be 0.5 second.
    */
-  public var fadeoutTime: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var fadeoutTime: Double
+    @JvmName("fadeoutTimeProperty")
+    get() = getFadeoutTime()
+    @JvmName("fadeoutTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutTimePtr, NIL)
+      setFadeoutTime(value)
     }
 
   /**
    * Determines how cross-fading between animations is eased. If empty, the transition will be
    * linear.
    */
-  public var fadeoutCurve: Curve?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutCurvePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
-    }
+  public final inline var fadeoutCurve: Curve?
+    @JvmName("fadeoutCurveProperty")
+    get() = getFadeoutCurve()
+    @JvmName("fadeoutCurveProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
+      setFadeoutCurve(value)
     }
 
   /**
    * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
    * is looping.
    */
-  public var breakLoopAtEnd: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var breakLoopAtEnd: Boolean
+    @JvmName("breakLoopAtEndProperty")
+    get() = isLoopBrokenAtEnd()
+    @JvmName("breakLoopAtEndProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+      setBreakLoopAtEnd(value)
     }
 
   /**
@@ -184,48 +167,138 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
    * but it does not disable the [autorestart] itself. So, the [ONE_SHOT_REQUEST_FIRE] request will
    * start auto restarting again.
    */
-  public var autorestart: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasAutorestartPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var autorestart: Boolean
+    @JvmName("autorestartProperty")
+    get() = hasAutorestart()
+    @JvmName("autorestartProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartPtr, NIL)
+      setAutorestart(value)
     }
 
   /**
    * The delay after which the automatic restart is triggered, in seconds.
    */
-  public var autorestartDelay: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var autorestartDelay: Double
+    @JvmName("autorestartDelayProperty")
+    get() = getAutorestartDelay()
+    @JvmName("autorestartDelayProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartDelayPtr, NIL)
+      setAutorestartDelay(value)
     }
 
   /**
    * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value
    * will be added to [autorestartDelay].
    */
-  public var autorestartRandomDelay: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var autorestartRandomDelay: Double
+    @JvmName("autorestartRandomDelayProperty")
+    get() = getAutorestartRandomDelay()
+    @JvmName("autorestartRandomDelayProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
+      setAutorestartRandomDelay(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONNODEONESHOT, scriptIndex)
+  }
+
+  public final fun setFadeinTime(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFadeinTimePtr, NIL)
+  }
+
+  public final fun getFadeinTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadeinTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setFadeinCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFadeinCurvePtr, NIL)
+  }
+
+  public final fun getFadeinCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadeinCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public final fun setFadeoutTime(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutTimePtr, NIL)
+  }
+
+  public final fun getFadeoutTime(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setFadeoutCurve(curve: Curve?): Unit {
+    TransferContext.writeArguments(OBJECT to curve)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
+  }
+
+  public final fun getFadeoutCurve(): Curve? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutCurvePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+  }
+
+  public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+  }
+
+  public final fun isLoopBrokenAtEnd(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAutorestart(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartPtr, NIL)
+  }
+
+  public final fun hasAutorestart(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasAutorestartPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAutorestartDelay(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartDelayPtr, NIL)
+  }
+
+  public final fun getAutorestartDelay(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setAutorestartRandomDelay(time: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to time)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
+  }
+
+  public final fun getAutorestartRandomDelay(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setMixMode(mode: MixMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setMixModePtr, NIL)
+  }
+
+  public final fun getMixMode(): MixMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMixModePtr, LONG)
+    return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OneShotRequest(

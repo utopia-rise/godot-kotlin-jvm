@@ -81,7 +81,7 @@ public open class Texture3D : Texture() {
   /**
    * Returns the current format being used by this texture. See [Image.Format] for details.
    */
-  public fun getFormat(): Image.Format {
+  public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
     return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
@@ -90,7 +90,7 @@ public open class Texture3D : Texture() {
   /**
    * Returns the [Texture3D]'s width in pixels. Width is typically represented by the X axis.
    */
-  public fun getWidth(): Int {
+  public final fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -99,7 +99,7 @@ public open class Texture3D : Texture() {
   /**
    * Returns the [Texture3D]'s height in pixels. Width is typically represented by the Y axis.
    */
-  public fun getHeight(): Int {
+  public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -109,7 +109,7 @@ public open class Texture3D : Texture() {
    * Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a
    * dimension not present in [Texture2D]).
    */
-  public fun getDepth(): Int {
+  public final fun getDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -118,7 +118,7 @@ public open class Texture3D : Texture() {
   /**
    * Returns `true` if the [Texture3D] has generated mipmaps.
    */
-  public fun hasMipmaps(): Boolean {
+  public final fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -128,7 +128,7 @@ public open class Texture3D : Texture() {
    * Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a *slice* of
    * the [Texture3D], with different slices mapping to different depth (Z axis) levels.
    */
-  public fun getData(): VariantArray<Image> {
+  public final fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
@@ -137,7 +137,7 @@ public open class Texture3D : Texture() {
   /**
    * Creates a placeholder version of this resource ([PlaceholderTexture3D]).
    */
-  public fun createPlaceholder(): Resource? {
+  public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Resource?)

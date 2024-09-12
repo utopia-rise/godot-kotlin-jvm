@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Returns an associated value of the [opType] type if the provided boolean value is `true` or
@@ -26,19 +27,27 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
   /**
    * A type of operands and returned value.
    */
-  public var opType: OpType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-      return VisualShaderNodeSwitch.OpType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var opType: OpType
+    @JvmName("opTypeProperty")
+    get() = getOpType()
+    @JvmName("opTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+      setOpType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH, scriptIndex)
+  }
+
+  public final fun setOpType(type: OpType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+  }
+
+  public final fun getOpType(): OpType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeSwitch.OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(

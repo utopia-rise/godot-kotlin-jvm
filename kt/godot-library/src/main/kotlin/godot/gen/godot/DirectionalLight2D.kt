@@ -32,12 +32,12 @@ public open class DirectionalLight2D : Light2D() {
    * The height of the light. Used with 2D normal mapping. Ranges from 0 (parallel to the plane) to
    * 1 (perpendicular to the plane).
    */
-  public var height: Float
-    @JvmName("getHeight_prop")
-    get() = super.getHeight()
-    @JvmName("setHeight_prop")
+  public final inline var height: Float
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      super.setHeight(value)
+      setHeight(value)
     }
 
   /**
@@ -47,19 +47,27 @@ public open class DirectionalLight2D : Light2D() {
    * which means that at higher zoom values, shadows will appear to fade out sooner when zooming onto a
    * given point.
    */
-  public var maxDistance: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var maxDistance: Float
+    @JvmName("maxDistanceProperty")
+    get() = getMaxDistance()
+    @JvmName("maxDistanceProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+      setMaxDistance(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_DIRECTIONALLIGHT2D, scriptIndex)
+  }
+
+  public final fun setMaxDistance(pixels: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to pixels.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+  }
+
+  public final fun getMaxDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

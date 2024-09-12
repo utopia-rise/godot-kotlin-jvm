@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [StyleBox] is an abstract base class for drawing stylized boxes for UI elements. It is used for
@@ -45,15 +46,12 @@ public open class StyleBox : Resource() {
    * available to the contents from the left.
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  public var contentMarginLeft: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var contentMarginLeft: Float
+    @JvmName("contentMarginLeftProperty")
+    get() = getContentMargin(Side.SIDE_LEFT)
+    @JvmName("contentMarginLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -61,15 +59,12 @@ public open class StyleBox : Resource() {
    * available to the contents from the top.
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  public var contentMarginTop: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var contentMarginTop: Float
+    @JvmName("contentMarginTopProperty")
+    get() = getContentMargin(Side.SIDE_TOP)
+    @JvmName("contentMarginTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -77,15 +72,12 @@ public open class StyleBox : Resource() {
    * available to the contents from the right.
    * Refer to [contentMarginBottom] for extra considerations.
    */
-  public var contentMarginRight: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var contentMarginRight: Float
+    @JvmName("contentMarginRightProperty")
+    get() = getContentMargin(Side.SIDE_RIGHT)
+    @JvmName("contentMarginRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -98,15 +90,12 @@ public open class StyleBox : Resource() {
    * [getMargin] should be used to fetch this value as consumer instead of reading these properties
    * directly. This is because it correctly respects negative values and the fallback mentioned above.
    */
-  public var contentMarginBottom: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var contentMarginBottom: Float
+    @JvmName("contentMarginBottomProperty")
+    get() = getContentMargin(Side.SIDE_BOTTOM)
+    @JvmName("contentMarginBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+      setContentMargin(Side.SIDE_BOTTOM, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -137,25 +126,42 @@ public open class StyleBox : Resource() {
   /**
    * Returns the minimum size that this stylebox can be shrunk to.
    */
-  public fun getMinimumSize(): Vector2 {
+  public final fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumSizePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
   }
 
   /**
+   * Sets the default value of the specified [Side] to [offset] pixels.
+   */
+  public final fun setContentMargin(margin: Side, offset: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+  }
+
+  /**
    * Sets the default margin to [offset] pixels for all sides.
    */
-  public fun setContentMarginAll(offset: Float): Unit {
+  public final fun setContentMarginAll(offset: Float): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginAllPtr, NIL)
+  }
+
+  /**
+   * Returns the default margin of the specified [Side].
+   */
+  public final fun getContentMargin(margin: Side): Float {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   /**
    * Returns the content margin offset for the specified [Side].
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
-  public fun getMargin(margin: Side): Float {
+  public final fun getMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -165,7 +171,7 @@ public open class StyleBox : Resource() {
    * Returns the "offset" of a stylebox. This helper function returns a value equivalent to
    * `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
-  public fun getOffset(): Vector2 {
+  public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
@@ -177,7 +183,7 @@ public open class StyleBox : Resource() {
    * [CanvasItem]-derived node, or directly from creating a canvas item in the [RenderingServer] with
    * [RenderingServer.canvasItemCreate].
    */
-  public fun draw(canvasItem: RID, rect: Rect2): Unit {
+  public final fun draw(canvasItem: RID, rect: Rect2): Unit {
     TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
   }
@@ -186,7 +192,7 @@ public open class StyleBox : Resource() {
    * Returns the [CanvasItem] that handles its [CanvasItem.NOTIFICATION_DRAW] or [CanvasItem.Draw]
    * callback at this moment.
    */
-  public fun getCurrentItemDrawn(): CanvasItem? {
+  public final fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as CanvasItem?)
@@ -195,7 +201,7 @@ public open class StyleBox : Resource() {
   /**
    * Test a position in a rectangle, return whether it passes the mask test.
    */
-  public fun testMask(point: Vector2, rect: Rect2): Boolean {
+  public final fun testMask(point: Vector2, rect: Rect2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.testMaskPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)

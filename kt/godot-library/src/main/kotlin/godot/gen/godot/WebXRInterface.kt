@@ -31,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
@@ -232,15 +233,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRSessionMode]WebXR's XRSessionMode[/url],
    * including: `"immersive-vr"`, `"immersive-ar"`, and `"inline"`.
    */
-  public var sessionMode: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var sessionMode: String
+    @JvmName("sessionModeProperty")
+    get() = getSessionMode()
+    @JvmName("sessionModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
+      setSessionMode(value)
     }
 
   /**
@@ -254,15 +252,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
    * tracking.
    */
-  public var requiredFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var requiredFeatures: String
+    @JvmName("requiredFeaturesProperty")
+    get() = getRequiredFeatures()
+    @JvmName("requiredFeaturesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
+      setRequiredFeatures(value)
     }
 
   /**
@@ -276,15 +271,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * XRReferenceSpaceType[/url], or include other features like `"hand-tracking"` to enable hand
    * tracking.
    */
-  public var optionalFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var optionalFeatures: String
+    @JvmName("optionalFeaturesProperty")
+    get() = getOptionalFeatures()
+    @JvmName("optionalFeaturesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
+      setOptionalFeatures(value)
     }
 
   /**
@@ -299,15 +291,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
    * listed in either [requiredFeatures] or [optionalFeatures].
    */
-  public var requestedReferenceSpaceTypes: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var requestedReferenceSpaceTypes: String
+    @JvmName("requestedReferenceSpaceTypesProperty")
+    get() = getRequestedReferenceSpaceTypes()
+    @JvmName("requestedReferenceSpaceTypesProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
+      setRequestedReferenceSpaceTypes(value)
     }
 
   /**
@@ -319,12 +308,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * XRReferenceSpaceType[/url]. If you want to use a particular reference space type, it must be
    * listed in either [requiredFeatures] or [optionalFeatures].
    */
-  public val referenceSpaceType: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline val referenceSpaceType: String
+    @JvmName("referenceSpaceTypeProperty")
+    get() = getReferenceSpaceType()
 
   /**
    * A comma-separated list of features that were successfully enabled by [XRInterface.initialize]
@@ -334,12 +320,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * **Note:** This may not be support by all web browsers, in which case it will be an empty
    * string.
    */
-  public val enabledFeatures: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline val enabledFeatures: String
+    @JvmName("enabledFeaturesProperty")
+    get() = getEnabledFeatures()
 
   /**
    * Indicates if the WebXR session's imagery is visible to the user.
@@ -347,12 +330,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRVisibilityState]WebXR's
    * XRVisibilityState[/url], including `"hidden"`, `"visible"`, and `"visible-blurred"`.
    */
-  public val visibilityState: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline val visibilityState: String
+    @JvmName("visibilityStateProperty")
+    get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
@@ -366,15 +346,71 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * This method returns nothing, instead it emits the [signal session_supported] signal with the
    * result.
    */
-  public fun isSessionSupported(sessionMode: String): Unit {
+  public final fun isSessionSupported(sessionMode: String): Unit {
     TransferContext.writeArguments(STRING to sessionMode)
     TransferContext.callMethod(rawPtr, MethodBindings.isSessionSupportedPtr, NIL)
+  }
+
+  public final fun setSessionMode(sessionMode: String): Unit {
+    TransferContext.writeArguments(STRING to sessionMode)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
+  }
+
+  public final fun getSessionMode(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setRequiredFeatures(requiredFeatures: String): Unit {
+    TransferContext.writeArguments(STRING to requiredFeatures)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
+  }
+
+  public final fun getRequiredFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setOptionalFeatures(optionalFeatures: String): Unit {
+    TransferContext.writeArguments(STRING to optionalFeatures)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
+  }
+
+  public final fun getOptionalFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun getReferenceSpaceType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun getEnabledFeatures(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setRequestedReferenceSpaceTypes(requestedReferenceSpaceTypes: String): Unit {
+    TransferContext.writeArguments(STRING to requestedReferenceSpaceTypes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
+  }
+
+  public final fun getRequestedReferenceSpaceTypes(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns `true` if there is an active input source with the given [inputSourceId].
    */
-  public fun isInputSourceActive(inputSourceId: Int): Boolean {
+  public final fun isInputSourceActive(inputSourceId: Int): Boolean {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputSourceActivePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -394,7 +430,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * - [signal squeeze]
    * - [signal squeezestart]
    */
-  public fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
+  public final fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTrackerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as XRControllerTracker?)
@@ -406,17 +442,23 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * [url=https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode]XRInputSource.targetRayMode[/url]
    * for more information.
    */
-  public fun getInputSourceTargetRayMode(inputSourceId: Int): TargetRayMode {
+  public final fun getInputSourceTargetRayMode(inputSourceId: Int): TargetRayMode {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTargetRayModePtr, LONG)
     return WebXRInterface.TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun getVisibilityState(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
   }
 
   /**
    * Returns the display refresh rate for the current HMD. Not supported on all HMDs and browsers.
    * It may not report an accurate value until after using [setDisplayRefreshRate].
    */
-  public fun getDisplayRefreshRate(): Float {
+  public final fun getDisplayRefreshRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -426,7 +468,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Sets the display refresh rate for the current HMD. Not supported on all HMDs and browsers. It
    * won't take effect right away until after [signal display_refresh_rate_changed] is emitted.
    */
-  public fun setDisplayRefreshRate(refreshRate: Float): Unit {
+  public final fun setDisplayRefreshRate(refreshRate: Float): Unit {
     TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
   }
@@ -435,7 +477,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * Returns display refresh rates supported by the current HMD. Only returned if this feature is
    * supported by the web browser and after the interface has been initialized.
    */
-  public fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
+  public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)

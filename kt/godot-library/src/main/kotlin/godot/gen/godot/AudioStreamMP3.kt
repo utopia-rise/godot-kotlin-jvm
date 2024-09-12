@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
@@ -53,80 +54,128 @@ public open class AudioStreamMP3 : AudioStream() {
    * }
    * ```
    */
-  public var `data`: PackedByteArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
-    }
+  public final inline var `data`: PackedByteArray
+    @JvmName("dataProperty")
+    get() = getData()
+    @JvmName("dataProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_BYTE_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+      setData(value)
     }
 
-  public var bpm: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var bpm: Double
+    @JvmName("bpmProperty")
+    get() = getBpm()
+    @JvmName("bpmProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+      setBpm(value)
     }
 
-  public var beatCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var beatCount: Int
+    @JvmName("beatCountProperty")
+    get() = getBeatCount()
+    @JvmName("beatCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+      setBeatCount(value)
     }
 
-  public var barBeats: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var barBeats: Int
+    @JvmName("barBeatsProperty")
+    get() = getBarBeats()
+    @JvmName("barBeatsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+      setBarBeats(value)
     }
 
   /**
    * If `true`, the stream will automatically loop when it reaches the end.
    */
-  public var loop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var loop: Boolean
+    @JvmName("loopProperty")
+    get() = hasLoop()
+    @JvmName("loopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+      setLoop(value)
     }
 
   /**
    * Time in seconds at which the stream starts after being looped.
    */
-  public var loopOffset: Double
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double)
-    }
+  public final inline var loopOffset: Double
+    @JvmName("loopOffsetProperty")
+    get() = getLoopOffset()
+    @JvmName("loopOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+      setLoopOffset(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMMP3, scriptIndex)
+  }
+
+  public final fun setData(`data`: PackedByteArray): Unit {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+  }
+
+  public final fun getData(): PackedByteArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+  }
+
+  public final fun setLoop(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+  }
+
+  public final fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setLoopOffset(seconds: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopOffsetPtr, NIL)
+  }
+
+  public final fun getLoopOffset(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setBpm(bpm: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to bpm)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBpmPtr, NIL)
+  }
+
+  public final fun getBpm(): Double {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  public final fun setBeatCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBeatCountPtr, NIL)
+  }
+
+  public final fun getBeatCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBarBeats(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBarBeatsPtr, NIL)
+  }
+
+  public final fun getBarBeats(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

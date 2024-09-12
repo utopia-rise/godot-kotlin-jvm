@@ -17,6 +17,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
@@ -28,121 +29,185 @@ public open class AudioEffectReverb : AudioEffect() {
    * Time between the original signal and the early reflections of the reverb signal, in
    * milliseconds.
    */
-  public var predelayMsec: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var predelayMsec: Float
+    @JvmName("predelayMsecProperty")
+    get() = getPredelayMsec()
+    @JvmName("predelayMsecProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
+      setPredelayMsec(value)
     }
 
   /**
    * Output percent of predelay. Value can range from 0 to 1.
    */
-  public var predelayFeedback: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var predelayFeedback: Float
+    @JvmName("predelayFeedbackProperty")
+    get() = getPredelayFeedback()
+    @JvmName("predelayFeedbackProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
+      setPredelayFeedback(value)
     }
 
   /**
    * Dimensions of simulated room. Bigger means more echoes. Value can range from 0 to 1.
    */
-  public var roomSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var roomSize: Float
+    @JvmName("roomSizeProperty")
+    get() = getRoomSize()
+    @JvmName("roomSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
+      setRoomSize(value)
     }
 
   /**
    * Defines how reflective the imaginary room's walls are. Value can range from 0 to 1.
    */
-  public var damping: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var damping: Float
+    @JvmName("dampingProperty")
+    get() = getDamping()
+    @JvmName("dampingProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+      setDamping(value)
     }
 
   /**
    * Widens or narrows the stereo image of the reverb tail. 1 means fully widens. Value can range
    * from 0 to 1.
    */
-  public var spread: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var spread: Float
+    @JvmName("spreadProperty")
+    get() = getSpread()
+    @JvmName("spreadProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
+      setSpread(value)
     }
 
   /**
    * High-pass filter passes signals with a frequency higher than a certain cutoff frequency and
    * attenuates signals with frequencies lower than the cutoff frequency. Value can range from 0 to 1.
    */
-  public var hipass: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var hipass: Float
+    @JvmName("hipassProperty")
+    get() = getHpf()
+    @JvmName("hipassProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
+      setHpf(value)
     }
 
   /**
    * Output percent of original sound. At 0, only modified sound is outputted. Value can range from
    * 0 to 1.
    */
-  public var dry: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var dry: Float
+    @JvmName("dryProperty")
+    get() = getDry()
+    @JvmName("dryProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+      setDry(value)
     }
 
   /**
    * Output percent of modified sound. At 0, only original sound is outputted. Value can range from
    * 0 to 1.
    */
-  public var wet: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var wet: Float
+    @JvmName("wetProperty")
+    get() = getWet()
+    @JvmName("wetProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
+      setWet(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTREVERB, scriptIndex)
+  }
+
+  public final fun setPredelayMsec(msec: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to msec.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
+  }
+
+  public final fun getPredelayMsec(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setPredelayFeedback(feedback: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to feedback.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
+  }
+
+  public final fun getPredelayFeedback(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRoomSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
+  }
+
+  public final fun getRoomSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDamping(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+  }
+
+  public final fun getDamping(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setSpread(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
+  }
+
+  public final fun getSpread(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDry(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+  }
+
+  public final fun getDry(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setWet(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
+  }
+
+  public final fun getWet(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHpf(amount: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to amount.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
+  }
+
+  public final fun getHpf(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public companion object

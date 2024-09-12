@@ -90,7 +90,7 @@ public object WorkerThreadPool : Object() {
    * cleaned up.
    */
   @JvmOverloads
-  public fun addTask(
+  public final fun addTask(
     action: Callable,
     highPriority: Boolean = false,
     description: String = "",
@@ -104,7 +104,7 @@ public object WorkerThreadPool : Object() {
    * Returns `true` if the task with the given ID is completed.
    * **Note:** You should only call this method between adding the task and awaiting its completion.
    */
-  public fun isTaskCompleted(taskId: Long): Boolean {
+  public final fun isTaskCompleted(taskId: Long): Boolean {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, MethodBindings.isTaskCompletedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -121,7 +121,7 @@ public object WorkerThreadPool : Object() {
    * matter when some tasks depend on others (in the current implementation, the tricky case is a task
    * trying to wait on an older one).
    */
-  public fun waitForTaskCompletion(taskId: Long): GodotError {
+  public final fun waitForTaskCompletion(taskId: Long): GodotError {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, MethodBindings.waitForTaskCompletionPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -142,7 +142,7 @@ public object WorkerThreadPool : Object() {
    * cleaned up.
    */
   @JvmOverloads
-  public fun addGroupTask(
+  public final fun addGroupTask(
     action: Callable,
     elements: Int,
     tasksNeeded: Int = -1,
@@ -159,7 +159,7 @@ public object WorkerThreadPool : Object() {
    * **Note:** You should only call this method between adding the group task and awaiting its
    * completion.
    */
-  public fun isGroupTaskCompleted(groupId: Long): Boolean {
+  public final fun isGroupTaskCompleted(groupId: Long): Boolean {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.isGroupTaskCompletedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -171,7 +171,7 @@ public object WorkerThreadPool : Object() {
    * **Note:** If a thread has started executing the [Callable] but is yet to finish, it won't be
    * counted.
    */
-  public fun getGroupProcessedElementCount(groupId: Long): Long {
+  public final fun getGroupProcessedElementCount(groupId: Long): Long {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupProcessedElementCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long)
@@ -180,7 +180,7 @@ public object WorkerThreadPool : Object() {
   /**
    * Pauses the thread that calls this method until the group task with the given ID is completed.
    */
-  public fun waitForGroupTaskCompletion(groupId: Long): Unit {
+  public final fun waitForGroupTaskCompletion(groupId: Long): Unit {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)
   }

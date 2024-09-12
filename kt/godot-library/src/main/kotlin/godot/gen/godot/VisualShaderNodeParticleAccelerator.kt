@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
@@ -26,19 +27,27 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   /**
    * Defines in what manner the particles will be accelerated.
    */
-  public var mode: Mode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-      return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var mode: Mode
+    @JvmName("modeProperty")
+    get() = getMode()
+    @JvmName("modeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+      setMode(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEACCELERATOR, scriptIndex)
+  }
+
+  public final fun setMode(mode: Mode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+  }
+
+  public final fun getMode(): Mode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Mode(

@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Comes with a built-in editor for texture's curves.
@@ -24,19 +25,27 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
   /**
    * The source texture.
    */
-  public var texture: CurveXYZTexture?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as CurveXYZTexture?)
-    }
+  public final inline var texture: CurveXYZTexture?
+    @JvmName("textureProperty")
+    get() = getTexture()
+    @JvmName("textureProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+      setTexture(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODECURVEXYZTEXTURE, scriptIndex)
+  }
+
+  public final fun setTexture(texture: CurveXYZTexture?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+  }
+
+  public final fun getTexture(): CurveXYZTexture? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CurveXYZTexture?)
   }
 
   public companion object

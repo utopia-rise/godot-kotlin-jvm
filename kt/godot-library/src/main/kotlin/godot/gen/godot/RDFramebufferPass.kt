@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
@@ -32,80 +33,119 @@ public open class RDFramebufferPass : RefCounted() {
    * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
    * ATTACHMENT_UNUSED to skip.
    */
-  public var colorAttachments: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+  public final inline var colorAttachments: PackedInt32Array
+    @JvmName("colorAttachmentsProperty")
+    get() = getColorAttachments()
+    @JvmName("colorAttachmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorAttachmentsPtr, NIL)
+      setColorAttachments(value)
     }
 
   /**
    * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
    * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
    */
-  public var inputAttachments: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+  public final inline var inputAttachments: PackedInt32Array
+    @JvmName("inputAttachmentsProperty")
+    get() = getInputAttachments()
+    @JvmName("inputAttachmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInputAttachmentsPtr, NIL)
+      setInputAttachments(value)
     }
 
   /**
    * If the color attachments are multisampled, non-multisampled resolve attachments can be
    * provided.
    */
-  public var resolveAttachments: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr,
-          PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+  public final inline var resolveAttachments: PackedInt32Array
+    @JvmName("resolveAttachmentsProperty")
+    get() = getResolveAttachments()
+    @JvmName("resolveAttachmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setResolveAttachmentsPtr, NIL)
+      setResolveAttachments(value)
     }
 
   /**
    * Attachments to preserve in this pass (otherwise they are erased).
    */
-  public var preserveAttachments: PackedInt32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr,
-          PACKED_INT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
-    }
+  public final inline var preserveAttachments: PackedInt32Array
+    @JvmName("preserveAttachmentsProperty")
+    get() = getPreserveAttachments()
+    @JvmName("preserveAttachmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setPreserveAttachmentsPtr, NIL)
+      setPreserveAttachments(value)
     }
 
   /**
    * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this
    * pass.
    */
-  public var depthAttachment: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var depthAttachment: Int
+    @JvmName("depthAttachmentProperty")
+    get() = getDepthAttachment()
+    @JvmName("depthAttachmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDepthAttachmentPtr, NIL)
+      setDepthAttachment(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_RDFRAMEBUFFERPASS, scriptIndex)
+  }
+
+  public final fun setColorAttachments(pMember: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorAttachmentsPtr, NIL)
+  }
+
+  public final fun getColorAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public final fun setInputAttachments(pMember: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputAttachmentsPtr, NIL)
+  }
+
+  public final fun getInputAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public final fun setResolveAttachments(pMember: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setResolveAttachmentsPtr, NIL)
+  }
+
+  public final fun getResolveAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public final fun setPreserveAttachments(pMember: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveAttachmentsPtr, NIL)
+  }
+
+  public final fun getPreserveAttachments(): PackedInt32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr,
+        PACKED_INT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+  }
+
+  public final fun setDepthAttachment(pMember: Int): Unit {
+    TransferContext.writeArguments(LONG to pMember.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDepthAttachmentPtr, NIL)
+  }
+
+  public final fun getDepthAttachment(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object {

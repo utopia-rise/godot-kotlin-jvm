@@ -16,6 +16,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
@@ -26,19 +27,27 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
   /**
    * The RID of the texture object created on the [RenderingDevice].
    */
-  public var textureRdRid: RID
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
-    }
+  public final inline var textureRdRid: RID
+    @JvmName("textureRdRidProperty")
+    get() = getTextureRdRid()
+    @JvmName("textureRdRidProperty")
     set(`value`) {
-      TransferContext.writeArguments(_RID to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+      setTextureRdRid(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTURELAYEREDRD, scriptIndex)
+  }
+
+  public final fun setTextureRdRid(textureRdRid: RID): Unit {
+    TransferContext.writeArguments(_RID to textureRdRid)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+  }
+
+  public final fun getTextureRdRid(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID, false) as RID)
   }
 
   public companion object

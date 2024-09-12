@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -42,19 +43,27 @@ public open class InputEvent internal constructor() : Resource() {
    * **Note:** [device] can be negative for special use cases that don't refer to devices physically
    * present on the system. See [DEVICE_ID_EMULATION].
    */
-  public var device: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var device: Int
+    @JvmName("deviceProperty")
+    get() = getDevice()
+    @JvmName("deviceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+      setDevice(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_INPUTEVENT, scriptIndex)
+  }
+
+  public final fun setDevice(device: Int): Unit {
+    TransferContext.writeArguments(LONG to device.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+  }
+
+  public final fun getDevice(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
@@ -63,7 +72,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
+  public final fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -81,7 +90,7 @@ public open class InputEvent internal constructor() : Resource() {
    * documentation for more information.
    */
   @JvmOverloads
-  public fun isActionPressed(
+  public final fun isActionPressed(
     action: StringName,
     allowEcho: Boolean = false,
     exactMatch: Boolean = false,
@@ -98,7 +107,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
+  public final fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -111,7 +120,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
+  public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -120,7 +129,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if this input event has been canceled.
    */
-  public fun isCanceled(): Boolean {
+  public final fun isCanceled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCanceledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -133,7 +142,7 @@ public open class InputEvent internal constructor() : Resource() {
    * keys is pressed. See [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input
    * examples[/url] in the documentation for more information.
    */
-  public fun isPressed(): Boolean {
+  public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -143,7 +152,7 @@ public open class InputEvent internal constructor() : Resource() {
    * Returns `true` if this input event is released. Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    */
-  public fun isReleased(): Boolean {
+  public final fun isReleased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isReleasedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -159,7 +168,7 @@ public open class InputEvent internal constructor() : Resource() {
    * works correctly on all configurations, do not assume the user has a specific key repeat
    * configuration in your project's behavior.
    */
-  public fun isEcho(): Boolean {
+  public final fun isEcho(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEchoPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -168,7 +177,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns a [String] representation of the event.
    */
-  public fun asText(): String {
+  public final fun asText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextPtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)
@@ -182,7 +191,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun isMatch(event: InputEvent, exactMatch: Boolean = true): Boolean {
+  public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -191,7 +200,7 @@ public open class InputEvent internal constructor() : Resource() {
   /**
    * Returns `true` if this input event's type is one that can be assigned to an input action.
    */
-  public fun isActionType(): Boolean {
+  public final fun isActionType(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActionTypePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -203,7 +212,7 @@ public open class InputEvent internal constructor() : Resource() {
    * The given input event's position, global position and speed will be copied. The resulting
    * `relative` is a sum of both events. Both events' modifiers have to be identical.
    */
-  public fun accumulate(withEvent: InputEvent): Boolean {
+  public final fun accumulate(withEvent: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
     TransferContext.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -216,7 +225,7 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventPanGesture].
    */
   @JvmOverloads
-  public fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
+  public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
     TransferContext.callMethod(rawPtr, MethodBindings.xformedByPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as InputEvent?)

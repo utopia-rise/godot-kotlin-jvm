@@ -49,7 +49,7 @@ public open class ENetConnection : RefCounted() {
    * connection.
    */
   @JvmOverloads
-  public fun createHostBound(
+  public final fun createHostBound(
     bindAddress: String,
     bindPort: Int,
     maxPeers: Int = 32,
@@ -72,7 +72,7 @@ public open class ENetConnection : RefCounted() {
    * connection.
    */
   @JvmOverloads
-  public fun createHost(
+  public final fun createHost(
     maxPeers: Int = 32,
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
@@ -86,7 +86,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Destroys the host and all resources associated with it.
    */
-  public fun destroy(): Unit {
+  public final fun destroy(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.destroyPtr, NIL)
   }
@@ -99,7 +99,7 @@ public open class ENetConnection : RefCounted() {
    * this method.
    */
   @JvmOverloads
-  public fun connectToHost(
+  public final fun connectToHost(
     address: String,
     port: Int,
     channels: Int = 0,
@@ -121,7 +121,7 @@ public open class ENetConnection : RefCounted() {
    * hosts).
    */
   @JvmOverloads
-  public fun service(timeout: Int = 0): VariantArray<Any?> {
+  public final fun service(timeout: Int = 0): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to timeout.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.servicePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
@@ -130,7 +130,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Sends any queued packets on the host specified to its designated peers.
    */
-  public fun flush(): Unit {
+  public final fun flush(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, NIL)
   }
@@ -139,7 +139,7 @@ public open class ENetConnection : RefCounted() {
    * Adjusts the bandwidth limits of a host.
    */
   @JvmOverloads
-  public fun bandwidthLimit(inBandwidth: Int = 0, outBandwidth: Int = 0): Unit {
+  public final fun bandwidthLimit(inBandwidth: Int = 0, outBandwidth: Int = 0): Unit {
     TransferContext.writeArguments(LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bandwidthLimitPtr, NIL)
   }
@@ -147,7 +147,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Limits the maximum allowed channels of future incoming connections.
    */
-  public fun channelLimit(limit: Int): Unit {
+  public final fun channelLimit(limit: Int): Unit {
     TransferContext.writeArguments(LONG to limit.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.channelLimitPtr, NIL)
   }
@@ -156,7 +156,7 @@ public open class ENetConnection : RefCounted() {
    * Queues a [packet] to be sent to all peers associated with the host over the specified
    * [channel]. See [ENetPacketPeer] `FLAG_*` constants for available packet flags.
    */
-  public fun broadcast(
+  public final fun broadcast(
     channel: Int,
     packet: PackedByteArray,
     flags: Int,
@@ -176,7 +176,7 @@ public open class ENetConnection : RefCounted() {
    * clients. Clients will fail to connect if the compression mode set on the client differs from the
    * one set on the server.
    */
-  public fun compress(mode: CompressionMode): Unit {
+  public final fun compress(mode: CompressionMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, NIL)
   }
@@ -186,7 +186,7 @@ public open class ENetConnection : RefCounted() {
    * servers. Call this right after [createHostBound] to have ENet expect peers to connect using DTLS.
    * See [TLSOptions.server].
    */
-  public fun dtlsServerSetup(serverOptions: TLSOptions): GodotError {
+  public final fun dtlsServerSetup(serverOptions: TLSOptions?): GodotError {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsServerSetupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -200,7 +200,8 @@ public open class ENetConnection : RefCounted() {
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): GodotError {
+  public final fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null):
+      GodotError {
     TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsClientSetupPtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -210,7 +211,7 @@ public open class ENetConnection : RefCounted() {
    * Configures the DTLS server to automatically drop new connections.
    * **Note:** This method is only relevant after calling [dtlsServerSetup].
    */
-  public fun refuseNewConnections(refuse: Boolean): Unit {
+  public final fun refuseNewConnections(refuse: Boolean): Unit {
     TransferContext.writeArguments(BOOL to refuse)
     TransferContext.callMethod(rawPtr, MethodBindings.refuseNewConnectionsPtr, NIL)
   }
@@ -218,7 +219,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Returns and resets host statistics. See [HostStatistic] for more info.
    */
-  public fun popStatistic(statistic: HostStatistic): Double {
+  public final fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.popStatisticPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
@@ -227,7 +228,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Returns the maximum number of channels allowed for connected peers.
    */
-  public fun getMaxChannels(): Int {
+  public final fun getMaxChannels(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxChannelsPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -236,7 +237,7 @@ public open class ENetConnection : RefCounted() {
   /**
    * Returns the local port to which this peer is bound.
    */
-  public fun getLocalPort(): Int {
+  public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -247,7 +248,7 @@ public open class ENetConnection : RefCounted() {
    * **Note:** This list might include some peers that are not fully connected or are still being
    * disconnected.
    */
-  public fun getPeers(): VariantArray<ENetPacketPeer> {
+  public final fun getPeers(): VariantArray<ENetPacketPeer> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<ENetPacketPeer>)
@@ -266,7 +267,7 @@ public open class ENetConnection : RefCounted() {
    * work for a client behind a Symmetric NAT due to the nature of the Symmetric NAT routing algorithm,
    * as their IP and Port cannot be known beforehand.
    */
-  public fun socketSend(
+  public final fun socketSend(
     destinationAddress: String,
     destinationPort: Int,
     packet: PackedByteArray,

@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Particle collision shapes can be used to make particles stop or bounce against them.
@@ -44,19 +45,27 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
    * Particle attraction can also be disabled on a per-process material basis by setting
    * [ParticleProcessMaterial.attractorInteractionEnabled] on the [GPUParticles3D] node.
    */
-  public var cullMask: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var cullMask: Long
+    @JvmName("cullMaskProperty")
+    get() = getCullMask()
+    @JvmName("cullMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+      setCullMask(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
+  }
+
+  public final fun setCullMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+  }
+
+  public final fun getCullMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

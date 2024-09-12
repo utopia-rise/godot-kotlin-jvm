@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Class representing a cylindrical [PrimitiveMesh]. This class can be used to create cones by
@@ -32,59 +33,47 @@ public open class CylinderMesh : PrimitiveMesh() {
    * Top radius of the cylinder. If set to `0.0`, the top faces will not be generated, resulting in
    * a conic shape. See also [capTop].
    */
-  public var topRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var topRadius: Float
+    @JvmName("topRadiusProperty")
+    get() = getTopRadius()
+    @JvmName("topRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
+      setTopRadius(value)
     }
 
   /**
    * Bottom radius of the cylinder. If set to `0.0`, the bottom faces will not be generated,
    * resulting in a conic shape. See also [capBottom].
    */
-  public var bottomRadius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bottomRadius: Float
+    @JvmName("bottomRadiusProperty")
+    get() = getBottomRadius()
+    @JvmName("bottomRadiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
+      setBottomRadius(value)
     }
 
   /**
    * Full height of the cylinder.
    */
-  public var height: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var height: Float
+    @JvmName("heightProperty")
+    get() = getHeight()
+    @JvmName("heightProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+      setHeight(value)
     }
 
   /**
    * Number of radial segments on the cylinder. Higher values result in a more detailed
    * cylinder/cone at the cost of performance.
    */
-  public var radialSegments: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var radialSegments: Int
+    @JvmName("radialSegmentsProperty")
+    get() = getRadialSegments()
+    @JvmName("radialSegmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+      setRadialSegments(value)
     }
 
   /**
@@ -94,15 +83,12 @@ public open class CylinderMesh : PrimitiveMesh() {
    * shaders or procedural mesh tools (at the cost of performance). When not altering the vertex data
    * using a shader or procedural mesh tool, [rings] should be kept to its default value.
    */
-  public var rings: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var rings: Int
+    @JvmName("ringsProperty")
+    get() = getRings()
+    @JvmName("ringsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+      setRings(value)
     }
 
   /**
@@ -110,15 +96,12 @@ public open class CylinderMesh : PrimitiveMesh() {
    * generation and rendering when the cap is never seen by the camera. See also [topRadius].
    * **Note:** If [topRadius] is `0.0`, cap generation is always skipped even if [capTop] is `true`.
    */
-  public var capTop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var capTop: Boolean
+    @JvmName("capTopProperty")
+    get() = isCapTop()
+    @JvmName("capTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+      setCapTop(value)
     }
 
   /**
@@ -127,19 +110,93 @@ public open class CylinderMesh : PrimitiveMesh() {
    * **Note:** If [bottomRadius] is `0.0`, cap generation is always skipped even if [capBottom] is
    * `true`.
    */
-  public var capBottom: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var capBottom: Boolean
+    @JvmName("capBottomProperty")
+    get() = isCapBottom()
+    @JvmName("capBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+      setCapBottom(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CYLINDERMESH, scriptIndex)
+  }
+
+  public final fun setTopRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
+  }
+
+  public final fun getTopRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setBottomRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
+  }
+
+  public final fun getBottomRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setHeight(height: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to height.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun getHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setRadialSegments(segments: Int): Unit {
+    TransferContext.writeArguments(LONG to segments.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+  }
+
+  public final fun getRadialSegments(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setRings(rings: Int): Unit {
+    TransferContext.writeArguments(LONG to rings.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+  }
+
+  public final fun getRings(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setCapTop(capTop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to capTop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+  }
+
+  public final fun isCapTop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setCapBottom(capBottom: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to capBottom)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+  }
+
+  public final fun isCapBottom(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object

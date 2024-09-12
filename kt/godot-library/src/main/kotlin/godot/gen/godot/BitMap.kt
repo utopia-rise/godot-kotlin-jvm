@@ -43,7 +43,7 @@ public open class BitMap : Resource() {
   /**
    * Creates a bitmap with the specified size, filled with `false`.
    */
-  public fun create(size: Vector2i): Unit {
+  public final fun create(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.createPtr, NIL)
   }
@@ -54,7 +54,7 @@ public open class BitMap : Resource() {
    * `true` in other case.
    */
   @JvmOverloads
-  public fun createFromImageAlpha(image: Image, threshold: Float = 0.1f): Unit {
+  public final fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f): Unit {
     TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromImageAlphaPtr, NIL)
   }
@@ -62,7 +62,7 @@ public open class BitMap : Resource() {
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
-  public fun setBitv(position: Vector2i, bit: Boolean): Unit {
+  public final fun setBitv(position: Vector2i, bit: Boolean): Unit {
     TransferContext.writeArguments(VECTOR2I to position, BOOL to bit)
     TransferContext.callMethod(rawPtr, MethodBindings.setBitvPtr, NIL)
   }
@@ -70,7 +70,7 @@ public open class BitMap : Resource() {
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
-  public fun setBit(
+  public final fun setBit(
     x: Int,
     y: Int,
     bit: Boolean,
@@ -82,7 +82,7 @@ public open class BitMap : Resource() {
   /**
    * Returns bitmap's value at the specified position.
    */
-  public fun getBitv(position: Vector2i): Boolean {
+  public final fun getBitv(position: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getBitvPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -91,7 +91,7 @@ public open class BitMap : Resource() {
   /**
    * Returns bitmap's value at the specified position.
    */
-  public fun getBit(x: Int, y: Int): Boolean {
+  public final fun getBit(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -100,7 +100,7 @@ public open class BitMap : Resource() {
   /**
    * Sets a rectangular portion of the bitmap to the specified value.
    */
-  public fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
+  public final fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
     TransferContext.writeArguments(RECT2I to rect, BOOL to bit)
     TransferContext.callMethod(rawPtr, MethodBindings.setBitRectPtr, NIL)
   }
@@ -108,7 +108,7 @@ public open class BitMap : Resource() {
   /**
    * Returns the number of bitmap elements that are set to `true`.
    */
-  public fun getTrueBitCount(): Int {
+  public final fun getTrueBitCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrueBitCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -117,7 +117,7 @@ public open class BitMap : Resource() {
   /**
    * Returns bitmap's dimensions.
    */
-  public fun getSize(): Vector2i {
+  public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
@@ -126,7 +126,7 @@ public open class BitMap : Resource() {
   /**
    * Resizes the image to [newSize].
    */
-  public fun resize(newSize: Vector2i): Unit {
+  public final fun resize(newSize: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to newSize)
     TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
   }
@@ -137,7 +137,7 @@ public open class BitMap : Resource() {
    * the area where the morphological operation is applied. Pixels located outside the [rect] are
    * unaffected by [growMask].
    */
-  public fun growMask(pixels: Int, rect: Rect2i): Unit {
+  public final fun growMask(pixels: Int, rect: Rect2i): Unit {
     TransferContext.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.growMaskPtr, NIL)
   }
@@ -147,7 +147,7 @@ public open class BitMap : Resource() {
    * [Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false`
    * bits into black.
    */
-  public fun convertToImage(): Image? {
+  public final fun convertToImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.convertToImagePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Image?)
@@ -165,7 +165,7 @@ public open class BitMap : Resource() {
    * [epsilon] corresponds to more points in the polygons.
    */
   @JvmOverloads
-  public fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
+  public final fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
       VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.opaqueToPolygonsPtr, ARRAY)

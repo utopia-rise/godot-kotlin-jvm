@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A constant 4D vector, which can be used as an input node.
@@ -28,15 +29,12 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
    * A 4D vector (represented as a [Quaternion]) constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Quaternion
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
-      return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
-    }
+  public final inline var constant: Quaternion
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(QUATERNION to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,11 +59,22 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
+  public final fun constantMutate(block: Quaternion.() -> Unit): Quaternion = constant.apply{
       block(this)
       constant = this
   }
 
+
+  public final fun setConstant(constant: Quaternion): Unit {
+    TransferContext.writeArguments(QUATERNION to constant)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public final fun getConstant(): Quaternion {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
+    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+  }
 
   public companion object
 

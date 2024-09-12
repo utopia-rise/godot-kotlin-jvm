@@ -22,782 +22,640 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class AudioStreamPlaylist : AudioStream() {
   /**
    * If `true`, the playlist will shuffle each time playback starts and each time it loops.
    */
-  public var shuffle: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var shuffle: Boolean
+    @JvmName("shuffleProperty")
+    get() = getShuffle()
+    @JvmName("shuffleProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
+      setShuffle(value)
     }
 
   /**
    * If `true`, the playlist will loop, otherwise the playlist will end when the last stream is
    * finished.
    */
-  public var loop: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var loop: Boolean
+    @JvmName("loopProperty")
+    get() = hasLoop()
+    @JvmName("loopProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+      setLoop(value)
     }
 
   /**
    * Fade time used when a stream ends, when going to the next one. Streams are expected to have an
    * extra bit of audio after the end to help with fading.
    */
-  public var fadeTime: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var fadeTime: Float
+    @JvmName("fadeTimeProperty")
+    get() = getFadeTime()
+    @JvmName("fadeTimeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
+      setFadeTime(value)
     }
 
   /**
    * Amount of streams in the playlist.
    */
-  public var streamCount: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var streamCount: Int
+    @JvmName("streamCountProperty")
+    get() = getStreamCount()
+    @JvmName("streamCountProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+      setStreamCount(value)
     }
 
-  public var stream0: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream0: AudioStream?
+    @JvmName("stream0Property")
+    get() = getListStream(0)
+    @JvmName("stream0Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(0, value)
     }
 
-  public var stream1: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream1: AudioStream?
+    @JvmName("stream1Property")
+    get() = getListStream(1)
+    @JvmName("stream1Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(1, value)
     }
 
-  public var stream2: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream2: AudioStream?
+    @JvmName("stream2Property")
+    get() = getListStream(2)
+    @JvmName("stream2Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(2, value)
     }
 
-  public var stream3: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream3: AudioStream?
+    @JvmName("stream3Property")
+    get() = getListStream(3)
+    @JvmName("stream3Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(3, value)
     }
 
-  public var stream4: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 4L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream4: AudioStream?
+    @JvmName("stream4Property")
+    get() = getListStream(4)
+    @JvmName("stream4Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 4L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(4, value)
     }
 
-  public var stream5: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 5L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream5: AudioStream?
+    @JvmName("stream5Property")
+    get() = getListStream(5)
+    @JvmName("stream5Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 5L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(5, value)
     }
 
-  public var stream6: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 6L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream6: AudioStream?
+    @JvmName("stream6Property")
+    get() = getListStream(6)
+    @JvmName("stream6Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 6L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(6, value)
     }
 
-  public var stream7: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 7L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream7: AudioStream?
+    @JvmName("stream7Property")
+    get() = getListStream(7)
+    @JvmName("stream7Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 7L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(7, value)
     }
 
-  public var stream8: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 8L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream8: AudioStream?
+    @JvmName("stream8Property")
+    get() = getListStream(8)
+    @JvmName("stream8Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 8L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(8, value)
     }
 
-  public var stream9: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 9L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream9: AudioStream?
+    @JvmName("stream9Property")
+    get() = getListStream(9)
+    @JvmName("stream9Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 9L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(9, value)
     }
 
-  public var stream10: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 10L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream10: AudioStream?
+    @JvmName("stream10Property")
+    get() = getListStream(10)
+    @JvmName("stream10Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 10L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(10, value)
     }
 
-  public var stream11: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 11L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream11: AudioStream?
+    @JvmName("stream11Property")
+    get() = getListStream(11)
+    @JvmName("stream11Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 11L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(11, value)
     }
 
-  public var stream12: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 12L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream12: AudioStream?
+    @JvmName("stream12Property")
+    get() = getListStream(12)
+    @JvmName("stream12Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 12L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(12, value)
     }
 
-  public var stream13: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 13L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream13: AudioStream?
+    @JvmName("stream13Property")
+    get() = getListStream(13)
+    @JvmName("stream13Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 13L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(13, value)
     }
 
-  public var stream14: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 14L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream14: AudioStream?
+    @JvmName("stream14Property")
+    get() = getListStream(14)
+    @JvmName("stream14Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 14L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(14, value)
     }
 
-  public var stream15: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 15L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream15: AudioStream?
+    @JvmName("stream15Property")
+    get() = getListStream(15)
+    @JvmName("stream15Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 15L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(15, value)
     }
 
-  public var stream16: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 16L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream16: AudioStream?
+    @JvmName("stream16Property")
+    get() = getListStream(16)
+    @JvmName("stream16Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 16L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(16, value)
     }
 
-  public var stream17: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 17L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream17: AudioStream?
+    @JvmName("stream17Property")
+    get() = getListStream(17)
+    @JvmName("stream17Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 17L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(17, value)
     }
 
-  public var stream18: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 18L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream18: AudioStream?
+    @JvmName("stream18Property")
+    get() = getListStream(18)
+    @JvmName("stream18Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 18L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(18, value)
     }
 
-  public var stream19: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 19L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream19: AudioStream?
+    @JvmName("stream19Property")
+    get() = getListStream(19)
+    @JvmName("stream19Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 19L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(19, value)
     }
 
-  public var stream20: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 20L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream20: AudioStream?
+    @JvmName("stream20Property")
+    get() = getListStream(20)
+    @JvmName("stream20Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 20L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(20, value)
     }
 
-  public var stream21: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 21L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream21: AudioStream?
+    @JvmName("stream21Property")
+    get() = getListStream(21)
+    @JvmName("stream21Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 21L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(21, value)
     }
 
-  public var stream22: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 22L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream22: AudioStream?
+    @JvmName("stream22Property")
+    get() = getListStream(22)
+    @JvmName("stream22Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 22L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(22, value)
     }
 
-  public var stream23: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 23L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream23: AudioStream?
+    @JvmName("stream23Property")
+    get() = getListStream(23)
+    @JvmName("stream23Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 23L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(23, value)
     }
 
-  public var stream24: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 24L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream24: AudioStream?
+    @JvmName("stream24Property")
+    get() = getListStream(24)
+    @JvmName("stream24Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 24L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(24, value)
     }
 
-  public var stream25: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 25L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream25: AudioStream?
+    @JvmName("stream25Property")
+    get() = getListStream(25)
+    @JvmName("stream25Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 25L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(25, value)
     }
 
-  public var stream26: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 26L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream26: AudioStream?
+    @JvmName("stream26Property")
+    get() = getListStream(26)
+    @JvmName("stream26Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 26L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(26, value)
     }
 
-  public var stream27: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 27L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream27: AudioStream?
+    @JvmName("stream27Property")
+    get() = getListStream(27)
+    @JvmName("stream27Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 27L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(27, value)
     }
 
-  public var stream28: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 28L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream28: AudioStream?
+    @JvmName("stream28Property")
+    get() = getListStream(28)
+    @JvmName("stream28Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 28L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(28, value)
     }
 
-  public var stream29: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 29L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream29: AudioStream?
+    @JvmName("stream29Property")
+    get() = getListStream(29)
+    @JvmName("stream29Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 29L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(29, value)
     }
 
-  public var stream30: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 30L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream30: AudioStream?
+    @JvmName("stream30Property")
+    get() = getListStream(30)
+    @JvmName("stream30Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 30L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(30, value)
     }
 
-  public var stream31: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 31L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream31: AudioStream?
+    @JvmName("stream31Property")
+    get() = getListStream(31)
+    @JvmName("stream31Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 31L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(31, value)
     }
 
-  public var stream32: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 32L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream32: AudioStream?
+    @JvmName("stream32Property")
+    get() = getListStream(32)
+    @JvmName("stream32Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 32L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(32, value)
     }
 
-  public var stream33: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 33L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream33: AudioStream?
+    @JvmName("stream33Property")
+    get() = getListStream(33)
+    @JvmName("stream33Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 33L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(33, value)
     }
 
-  public var stream34: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 34L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream34: AudioStream?
+    @JvmName("stream34Property")
+    get() = getListStream(34)
+    @JvmName("stream34Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 34L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(34, value)
     }
 
-  public var stream35: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 35L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream35: AudioStream?
+    @JvmName("stream35Property")
+    get() = getListStream(35)
+    @JvmName("stream35Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 35L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(35, value)
     }
 
-  public var stream36: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 36L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream36: AudioStream?
+    @JvmName("stream36Property")
+    get() = getListStream(36)
+    @JvmName("stream36Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 36L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(36, value)
     }
 
-  public var stream37: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 37L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream37: AudioStream?
+    @JvmName("stream37Property")
+    get() = getListStream(37)
+    @JvmName("stream37Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 37L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(37, value)
     }
 
-  public var stream38: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 38L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream38: AudioStream?
+    @JvmName("stream38Property")
+    get() = getListStream(38)
+    @JvmName("stream38Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 38L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(38, value)
     }
 
-  public var stream39: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 39L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream39: AudioStream?
+    @JvmName("stream39Property")
+    get() = getListStream(39)
+    @JvmName("stream39Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 39L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(39, value)
     }
 
-  public var stream40: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 40L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream40: AudioStream?
+    @JvmName("stream40Property")
+    get() = getListStream(40)
+    @JvmName("stream40Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 40L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(40, value)
     }
 
-  public var stream41: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 41L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream41: AudioStream?
+    @JvmName("stream41Property")
+    get() = getListStream(41)
+    @JvmName("stream41Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 41L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(41, value)
     }
 
-  public var stream42: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 42L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream42: AudioStream?
+    @JvmName("stream42Property")
+    get() = getListStream(42)
+    @JvmName("stream42Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 42L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(42, value)
     }
 
-  public var stream43: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 43L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream43: AudioStream?
+    @JvmName("stream43Property")
+    get() = getListStream(43)
+    @JvmName("stream43Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 43L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(43, value)
     }
 
-  public var stream44: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 44L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream44: AudioStream?
+    @JvmName("stream44Property")
+    get() = getListStream(44)
+    @JvmName("stream44Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 44L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(44, value)
     }
 
-  public var stream45: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 45L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream45: AudioStream?
+    @JvmName("stream45Property")
+    get() = getListStream(45)
+    @JvmName("stream45Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 45L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(45, value)
     }
 
-  public var stream46: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 46L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream46: AudioStream?
+    @JvmName("stream46Property")
+    get() = getListStream(46)
+    @JvmName("stream46Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 46L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(46, value)
     }
 
-  public var stream47: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 47L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream47: AudioStream?
+    @JvmName("stream47Property")
+    get() = getListStream(47)
+    @JvmName("stream47Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 47L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(47, value)
     }
 
-  public var stream48: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 48L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream48: AudioStream?
+    @JvmName("stream48Property")
+    get() = getListStream(48)
+    @JvmName("stream48Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 48L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(48, value)
     }
 
-  public var stream49: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 49L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream49: AudioStream?
+    @JvmName("stream49Property")
+    get() = getListStream(49)
+    @JvmName("stream49Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 49L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(49, value)
     }
 
-  public var stream50: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 50L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream50: AudioStream?
+    @JvmName("stream50Property")
+    get() = getListStream(50)
+    @JvmName("stream50Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 50L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(50, value)
     }
 
-  public var stream51: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 51L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream51: AudioStream?
+    @JvmName("stream51Property")
+    get() = getListStream(51)
+    @JvmName("stream51Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 51L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(51, value)
     }
 
-  public var stream52: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 52L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream52: AudioStream?
+    @JvmName("stream52Property")
+    get() = getListStream(52)
+    @JvmName("stream52Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 52L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(52, value)
     }
 
-  public var stream53: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 53L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream53: AudioStream?
+    @JvmName("stream53Property")
+    get() = getListStream(53)
+    @JvmName("stream53Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 53L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(53, value)
     }
 
-  public var stream54: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 54L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream54: AudioStream?
+    @JvmName("stream54Property")
+    get() = getListStream(54)
+    @JvmName("stream54Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 54L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(54, value)
     }
 
-  public var stream55: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 55L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream55: AudioStream?
+    @JvmName("stream55Property")
+    get() = getListStream(55)
+    @JvmName("stream55Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 55L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(55, value)
     }
 
-  public var stream56: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 56L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream56: AudioStream?
+    @JvmName("stream56Property")
+    get() = getListStream(56)
+    @JvmName("stream56Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 56L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(56, value)
     }
 
-  public var stream57: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 57L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream57: AudioStream?
+    @JvmName("stream57Property")
+    get() = getListStream(57)
+    @JvmName("stream57Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 57L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(57, value)
     }
 
-  public var stream58: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 58L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream58: AudioStream?
+    @JvmName("stream58Property")
+    get() = getListStream(58)
+    @JvmName("stream58Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 58L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(58, value)
     }
 
-  public var stream59: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 59L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream59: AudioStream?
+    @JvmName("stream59Property")
+    get() = getListStream(59)
+    @JvmName("stream59Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 59L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(59, value)
     }
 
-  public var stream60: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 60L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream60: AudioStream?
+    @JvmName("stream60Property")
+    get() = getListStream(60)
+    @JvmName("stream60Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 60L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(60, value)
     }
 
-  public var stream61: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 61L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream61: AudioStream?
+    @JvmName("stream61Property")
+    get() = getListStream(61)
+    @JvmName("stream61Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 61L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(61, value)
     }
 
-  public var stream62: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 62L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream62: AudioStream?
+    @JvmName("stream62Property")
+    get() = getListStream(62)
+    @JvmName("stream62Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 62L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(62, value)
     }
 
-  public var stream63: AudioStream?
-    get() {
-      TransferContext.writeArguments(LONG to 63L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
-    }
+  public final inline var stream63: AudioStream?
+    @JvmName("stream63Property")
+    get() = getListStream(63)
+    @JvmName("stream63Property")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 63L, OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+      setListStream(63, value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAMPLAYLIST, scriptIndex)
   }
 
+  public final fun setStreamCount(streamCount: Int): Unit {
+    TransferContext.writeArguments(LONG to streamCount.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+  }
+
+  public final fun getStreamCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
   /**
    * Returns the BPM of the playlist, which can vary depending on the clip being played.
    */
-  public fun getBpm(): Double {
+  public final fun getBpm(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+  }
+
+  /**
+   * Sets the stream at playback position index.
+   */
+  public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
+    TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
+    TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+  }
+
+  /**
+   * Returns the stream at playback position index.
+   */
+  public final fun getListStream(streamIndex: Int): AudioStream? {
+    TransferContext.writeArguments(LONG to streamIndex.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+  }
+
+  public final fun setShuffle(shuffle: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to shuffle)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
+  }
+
+  public final fun getShuffle(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setFadeTime(dec: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to dec.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
+  }
+
+  public final fun getFadeTime(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setLoop(loop: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to loop)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+  }
+
+  public final fun hasLoop(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
   }
 
   public companion object {

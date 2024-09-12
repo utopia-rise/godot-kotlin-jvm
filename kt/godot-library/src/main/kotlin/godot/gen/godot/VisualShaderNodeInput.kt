@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
@@ -34,26 +35,34 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or
    * "point_size" (`POINT_SIZE`).
    */
-  public var inputName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var inputName: String
+    @JvmName("inputNameProperty")
+    get() = getInputName()
+    @JvmName("inputNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+      setInputName(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
   }
 
+  public final fun setInputName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+  }
+
+  public final fun getInputName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
   /**
    * Returns a translated name of the current constant in the Godot Shader Language. E.g. `"ALBEDO"`
    * if the [inputName] equal to `"albedo"`.
    */
-  public fun getInputRealName(): String {
+  public final fun getInputRealName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputRealNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING, false) as String)

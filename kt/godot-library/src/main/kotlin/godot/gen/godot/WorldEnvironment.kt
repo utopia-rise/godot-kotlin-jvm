@@ -15,6 +15,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
@@ -31,47 +32,71 @@ public open class WorldEnvironment : Node() {
   /**
    * The [Environment] resource used by this [WorldEnvironment], defining the default properties.
    */
-  public var environment: Environment?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
-    }
+  public final inline var environment: Environment?
+    @JvmName("environmentProperty")
+    get() = getEnvironment()
+    @JvmName("environmentProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+      setEnvironment(value)
     }
 
   /**
    * The default [CameraAttributes] resource to use if none set on the [Camera3D].
    */
-  public var cameraAttributes: CameraAttributes?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
-    }
+  public final inline var cameraAttributes: CameraAttributes?
+    @JvmName("cameraAttributesProperty")
+    get() = getCameraAttributes()
+    @JvmName("cameraAttributesProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+      setCameraAttributes(value)
     }
 
   /**
    * The default [Compositor] resource to use if none set on the [Camera3D].
    */
-  public var compositor: Compositor?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
-    }
+  public final inline var compositor: Compositor?
+    @JvmName("compositorProperty")
+    get() = getCompositor()
+    @JvmName("compositorProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+      setCompositor(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
+  }
+
+  public final fun setEnvironment(env: Environment?): Unit {
+    TransferContext.writeArguments(OBJECT to env)
+    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+  }
+
+  public final fun getEnvironment(): Environment? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+  }
+
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+    TransferContext.writeArguments(OBJECT to cameraAttributes)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+  }
+
+  public final fun getCameraAttributes(): CameraAttributes? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+  }
+
+  public final fun setCompositor(compositor: Compositor?): Unit {
+    TransferContext.writeArguments(OBJECT to compositor)
+    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+  }
+
+  public final fun getCompositor(): Compositor? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
   }
 
   public companion object

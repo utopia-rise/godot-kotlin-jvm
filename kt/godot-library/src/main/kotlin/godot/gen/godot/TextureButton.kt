@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's
@@ -33,58 +34,46 @@ public open class TextureButton : BaseButton() {
    * Texture to display by default, when the node is **not** in the disabled, hover or pressed
    * state. This texture is still displayed in the focused state, with [textureFocused] drawn on top.
    */
-  public var textureNormal: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureNormal: Texture2D?
+    @JvmName("textureNormalProperty")
+    get() = getTextureNormal()
+    @JvmName("textureNormalProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+      setTextureNormal(value)
     }
 
   /**
    * Texture to display on mouse down over the node, if the node has keyboard focus and the player
    * presses the Enter key or if the player presses the [BaseButton.shortcut] key.
    */
-  public var texturePressed: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var texturePressed: Texture2D?
+    @JvmName("texturePressedProperty")
+    get() = getTexturePressed()
+    @JvmName("texturePressedProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+      setTexturePressed(value)
     }
 
   /**
    * Texture to display when the mouse hovers the node.
    */
-  public var textureHover: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureHoverPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureHover: Texture2D?
+    @JvmName("textureHoverProperty")
+    get() = getTextureHover()
+    @JvmName("textureHoverProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureHoverPtr, NIL)
+      setTextureHover(value)
     }
 
   /**
    * Texture to display when the node is disabled. See [BaseButton.disabled].
    */
-  public var textureDisabled: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureDisabledPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureDisabled: Texture2D?
+    @JvmName("textureDisabledProperty")
+    get() = getTextureDisabled()
+    @JvmName("textureDisabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureDisabledPtr, NIL)
+      setTextureDisabled(value)
     }
 
   /**
@@ -95,92 +84,184 @@ public open class TextureButton : BaseButton() {
    * that disabling the focus visual effect will harm keyboard/controller navigation usability, so this
    * is not recommended for accessibility reasons.
    */
-  public var textureFocused: Texture2D?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextureFocusedPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
-    }
+  public final inline var textureFocused: Texture2D?
+    @JvmName("textureFocusedProperty")
+    get() = getTextureFocused()
+    @JvmName("textureFocusedProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextureFocusedPtr, NIL)
+      setTextureFocused(value)
     }
 
   /**
    * Pure black and white [BitMap] image to use for click detection. On the mask, white pixels
    * represent the button's clickable area. Use it to create buttons with curved shapes.
    */
-  public var textureClickMask: BitMap?
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getClickMaskPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as BitMap?)
-    }
+  public final inline var textureClickMask: BitMap?
+    @JvmName("textureClickMaskProperty")
+    get() = getClickMask()
+    @JvmName("textureClickMaskProperty")
     set(`value`) {
-      TransferContext.writeArguments(OBJECT to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setClickMaskPtr, NIL)
+      setClickMask(value)
     }
 
   /**
    * If `true`, the size of the texture won't be considered for minimum size calculation, so the
    * [TextureButton] can be shrunk down past the texture size.
    */
-  public var ignoreTextureSize: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var ignoreTextureSize: Boolean
+    @JvmName("ignoreTextureSizeProperty")
+    get() = getIgnoreTextureSize()
+    @JvmName("ignoreTextureSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTextureSizePtr, NIL)
+      setIgnoreTextureSize(value)
     }
 
   /**
    * Controls the texture's behavior when you resize the node's bounding rectangle. See the
    * [StretchMode] constants for available options.
    */
-  public var stretchMode: StretchMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
-      return TextureButton.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var stretchMode: StretchMode
+    @JvmName("stretchModeProperty")
+    get() = getStretchMode()
+    @JvmName("stretchModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+      setStretchMode(value)
     }
 
   /**
    * If `true`, texture is flipped horizontally.
    */
-  public var flipH: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flipH: Boolean
+    @JvmName("flipHProperty")
+    get() = isFlippedH()
+    @JvmName("flipHProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+      setFlipH(value)
     }
 
   /**
    * If `true`, texture is flipped vertically.
    */
-  public var flipV: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var flipV: Boolean
+    @JvmName("flipVProperty")
+    get() = isFlippedV()
+    @JvmName("flipVProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+      setFlipV(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TEXTUREBUTTON, scriptIndex)
+  }
+
+  public final fun setTextureNormal(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+  }
+
+  public final fun setTexturePressed(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+  }
+
+  public final fun setTextureHover(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureHoverPtr, NIL)
+  }
+
+  public final fun setTextureDisabled(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureDisabledPtr, NIL)
+  }
+
+  public final fun setTextureFocused(texture: Texture2D?): Unit {
+    TransferContext.writeArguments(OBJECT to texture)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFocusedPtr, NIL)
+  }
+
+  public final fun setClickMask(mask: BitMap?): Unit {
+    TransferContext.writeArguments(OBJECT to mask)
+    TransferContext.callMethod(rawPtr, MethodBindings.setClickMaskPtr, NIL)
+  }
+
+  public final fun setIgnoreTextureSize(ignore: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to ignore)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTextureSizePtr, NIL)
+  }
+
+  public final fun setStretchMode(mode: StretchMode): Unit {
+    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+  }
+
+  public final fun setFlipH(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+  }
+
+  public final fun isFlippedH(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setFlipV(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+  }
+
+  public final fun isFlippedV(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getTextureNormal(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun getTexturePressed(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun getTextureHover(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureHoverPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun getTextureDisabled(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureDisabledPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun getTextureFocused(): Texture2D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFocusedPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+  }
+
+  public final fun getClickMask(): BitMap? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getClickMaskPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT, true) as BitMap?)
+  }
+
+  public final fun getIgnoreTextureSize(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun getStretchMode(): StretchMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
+    return TextureButton.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(

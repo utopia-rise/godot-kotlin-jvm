@@ -25,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This resource describes a color transition by defining a set of colored points and how to
@@ -37,15 +38,12 @@ public open class Gradient : Resource() {
    * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for
    * available modes.
    */
-  public var interpolationMode: InterpolationMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationModePtr, LONG)
-      return Gradient.InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var interpolationMode: InterpolationMode
+    @JvmName("interpolationModeProperty")
+    get() = getInterpolationMode()
+    @JvmName("interpolationModeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationModePtr, NIL)
+      setInterpolationMode(value)
     }
 
   /**
@@ -54,15 +52,12 @@ public open class Gradient : Resource() {
    * **Note:** This setting has no effect when [interpolationMode] is set to
    * [GRADIENT_INTERPOLATE_CONSTANT].
    */
-  public var interpolationColorSpace: ColorSpace
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationColorSpacePtr, LONG)
-      return Gradient.ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var interpolationColorSpace: ColorSpace
+    @JvmName("interpolationColorSpaceProperty")
+    get() = getInterpolationColorSpace()
+    @JvmName("interpolationColorSpaceProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationColorSpacePtr, NIL)
+      setInterpolationColorSpace(value)
     }
 
   /**
@@ -70,15 +65,12 @@ public open class Gradient : Resource() {
    * **Note:** Setting this property updates all offsets at once. To update any offset individually
    * use [setOffset].
    */
-  public var offsets: PackedFloat32Array
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getOffsetsPtr, PACKED_FLOAT_32_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
-    }
+  public final inline var offsets: PackedFloat32Array
+    @JvmName("offsetsProperty")
+    get() = getOffsets()
+    @JvmName("offsetsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setOffsetsPtr, NIL)
+      setOffsets(value)
     }
 
   /**
@@ -86,15 +78,12 @@ public open class Gradient : Resource() {
    * **Note:** Setting this property updates all colors at once. To update any color individually
    * use [setColor].
    */
-  public var colors: PackedColorArray
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getColorsPtr, PACKED_COLOR_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
-    }
+  public final inline var colors: PackedColorArray
+    @JvmName("colorsProperty")
+    get() = getColors()
+    @JvmName("colorsProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_COLOR_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setColorsPtr, NIL)
+      setColors(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -104,7 +93,7 @@ public open class Gradient : Resource() {
   /**
    * Adds the specified color to the gradient, with the specified offset.
    */
-  public fun addPoint(offset: Float, color: Color): Unit {
+  public final fun addPoint(offset: Float, color: Color): Unit {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
@@ -112,7 +101,7 @@ public open class Gradient : Resource() {
   /**
    * Removes the color at index [point].
    */
-  public fun removePoint(point: Int): Unit {
+  public final fun removePoint(point: Int): Unit {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
@@ -120,7 +109,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the offset for the gradient color at index [point].
    */
-  public fun setOffset(point: Int, offset: Float): Unit {
+  public final fun setOffset(point: Int, offset: Float): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -128,7 +117,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the offset of the gradient color at index [point].
    */
-  public fun getOffset(point: Int): Float {
+  public final fun getOffset(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -139,7 +128,7 @@ public open class Gradient : Resource() {
    * **Note:** This method mirrors all points around the middle of the gradient, which may produce
    * unexpected results when [interpolationMode] is set to [GRADIENT_INTERPOLATE_CONSTANT].
    */
-  public fun reverse(): Unit {
+  public final fun reverse(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.reversePtr, NIL)
   }
@@ -147,7 +136,7 @@ public open class Gradient : Resource() {
   /**
    * Sets the color of the gradient color at index [point].
    */
-  public fun setColor(point: Int, color: Color): Unit {
+  public final fun setColor(point: Int, color: Color): Unit {
     TransferContext.writeArguments(LONG to point.toLong(), COLOR to color)
     TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
@@ -155,7 +144,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the color of the gradient color at index [point].
    */
-  public fun getColor(point: Int): Color {
+  public final fun getColor(point: Int): Color {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -164,7 +153,7 @@ public open class Gradient : Resource() {
   /**
    * Returns the interpolated color specified by [offset].
    */
-  public fun sample(offset: Float): Color {
+  public final fun sample(offset: Float): Color {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplePtr, COLOR)
     return (TransferContext.readReturnValue(COLOR, false) as Color)
@@ -173,10 +162,54 @@ public open class Gradient : Resource() {
   /**
    * Returns the number of colors in the gradient.
    */
-  public fun getPointCount(): Int {
+  public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setOffsets(offsets: PackedFloat32Array): Unit {
+    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to offsets)
+    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetsPtr, NIL)
+  }
+
+  public final fun getOffsets(): PackedFloat32Array {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetsPtr, PACKED_FLOAT_32_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+  }
+
+  public final fun setColors(colors: PackedColorArray): Unit {
+    TransferContext.writeArguments(PACKED_COLOR_ARRAY to colors)
+    TransferContext.callMethod(rawPtr, MethodBindings.setColorsPtr, NIL)
+  }
+
+  public final fun getColors(): PackedColorArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getColorsPtr, PACKED_COLOR_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+  }
+
+  public final fun setInterpolationMode(interpolationMode: InterpolationMode): Unit {
+    TransferContext.writeArguments(LONG to interpolationMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationModePtr, NIL)
+  }
+
+  public final fun getInterpolationMode(): InterpolationMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationModePtr, LONG)
+    return Gradient.InterpolationMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setInterpolationColorSpace(interpolationColorSpace: ColorSpace): Unit {
+    TransferContext.writeArguments(LONG to interpolationColorSpace.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationColorSpacePtr, NIL)
+  }
+
+  public final fun getInterpolationColorSpace(): ColorSpace {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationColorSpacePtr, LONG)
+    return Gradient.ColorSpace.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class InterpolationMode(

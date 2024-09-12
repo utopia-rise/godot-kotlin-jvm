@@ -33,12 +33,12 @@ public open class ArrayOccluder3D : Occluder3D() {
    * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
    * created.
    */
-  public var vertices: PackedVector3Array
-    @JvmName("getVertices_prop")
-    get() = super.getVertices()
+  public final inline var vertices: PackedVector3Array
+    @JvmName("verticesProperty")
+    get() = getVertices()
+    @JvmName("verticesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+      setVertices(value)
     }
 
   /**
@@ -48,12 +48,12 @@ public open class ArrayOccluder3D : Occluder3D() {
    * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
    * created.
    */
-  public var indices: PackedInt32Array
-    @JvmName("getIndices_prop")
-    get() = super.getIndices()
+  public final inline var indices: PackedInt32Array
+    @JvmName("indicesProperty")
+    get() = getIndices()
+    @JvmName("indicesProperty")
     set(`value`) {
-      TransferContext.writeArguments(PACKED_INT_32_ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+      setIndices(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -64,9 +64,19 @@ public open class ArrayOccluder3D : Occluder3D() {
    * Sets [indices] and [vertices], while updating the final occluder only once after both values
    * are set.
    */
-  public fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
+  public final fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(rawPtr, MethodBindings.setArraysPtr, NIL)
+  }
+
+  public final fun setVertices(vertices: PackedVector3Array): Unit {
+    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+  }
+
+  public final fun setIndices(indices: PackedInt32Array): Unit {
+    TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
+    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
   }
 
   public companion object

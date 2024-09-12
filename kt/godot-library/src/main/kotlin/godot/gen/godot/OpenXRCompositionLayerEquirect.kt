@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
@@ -29,77 +30,117 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   /**
    * The radius of the sphere.
    */
-  public var radius: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var radius: Float
+    @JvmName("radiusProperty")
+    get() = getRadius()
+    @JvmName("radiusProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+      setRadius(value)
     }
 
   /**
    * The central horizontal angle of the sphere. Used to set the width.
    */
-  public var centralHorizontalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var centralHorizontalAngle: Float
+    @JvmName("centralHorizontalAngleProperty")
+    get() = getCentralHorizontalAngle()
+    @JvmName("centralHorizontalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+      setCentralHorizontalAngle(value)
     }
 
   /**
    * The upper vertical angle of the sphere. Used (together with [lowerVerticalAngle]) to set the
    * height.
    */
-  public var upperVerticalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var upperVerticalAngle: Float
+    @JvmName("upperVerticalAngleProperty")
+    get() = getUpperVerticalAngle()
+    @JvmName("upperVerticalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+      setUpperVerticalAngle(value)
     }
 
   /**
    * The lower vertical angle of the sphere. Used (together with [upperVerticalAngle]) to set the
    * height.
    */
-  public var lowerVerticalAngle: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var lowerVerticalAngle: Float
+    @JvmName("lowerVerticalAngleProperty")
+    get() = getLowerVerticalAngle()
+    @JvmName("lowerVerticalAngleProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+      setLowerVerticalAngle(value)
     }
 
   /**
    * The number of segments to use in the fallback mesh.
    */
-  public var fallbackSegments: Long
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long)
-    }
+  public final inline var fallbackSegments: Long
+    @JvmName("fallbackSegmentsProperty")
+    get() = getFallbackSegments()
+    @JvmName("fallbackSegmentsProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+      setFallbackSegments(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYEREQUIRECT, scriptIndex)
+  }
+
+  public final fun setRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+  }
+
+  public final fun getRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCentralHorizontalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+  }
+
+  public final fun getCentralHorizontalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setUpperVerticalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+  }
+
+  public final fun getUpperVerticalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setLowerVerticalAngle(angle: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to angle.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+  }
+
+  public final fun getLowerVerticalAngle(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setFallbackSegments(segments: Long): Unit {
+    TransferContext.writeArguments(LONG to segments)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+  }
+
+  public final fun getFallbackSegments(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long)
   }
 
   public companion object

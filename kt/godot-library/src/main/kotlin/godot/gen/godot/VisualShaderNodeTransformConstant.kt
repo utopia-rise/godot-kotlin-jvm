@@ -18,6 +18,7 @@ import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A constant [Transform3D], which can be used as an input node.
@@ -28,15 +29,12 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
    * A [Transform3D] constant which represents the state of this node.
    */
   @CoreTypeLocalCopy
-  public var constant: Transform3D
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
-    }
+  public final inline var constant: Transform3D
+    @JvmName("constantProperty")
+    get() = getConstant()
+    @JvmName("constantProperty")
     set(`value`) {
-      TransferContext.writeArguments(TRANSFORM3D to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+      setConstant(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,11 +59,22 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
    * ``````
    */
   @CoreTypeHelper
-  public open fun constantMutate(block: Transform3D.() -> Unit): Transform3D = constant.apply{
+  public final fun constantMutate(block: Transform3D.() -> Unit): Transform3D = constant.apply{
       block(this)
       constant = this
   }
 
+
+  public final fun setConstant(constant: Transform3D): Unit {
+    TransferContext.writeArguments(TRANSFORM3D to constant)
+    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+  }
+
+  public final fun getConstant(): Transform3D {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, TRANSFORM3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+  }
 
   public companion object
 

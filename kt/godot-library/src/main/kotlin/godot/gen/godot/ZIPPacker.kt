@@ -49,7 +49,7 @@ public open class ZIPPacker : RefCounted() {
    * This must be called before everything else.
    */
   @JvmOverloads
-  public fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
+  public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       GodotError {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
     TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
@@ -60,7 +60,7 @@ public open class ZIPPacker : RefCounted() {
    * Starts writing to a file within the archive. Only one file can be written at the same time.
    * Must be called after [open].
    */
-  public fun startFile(path: String): GodotError {
+  public final fun startFile(path: String): GodotError {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.startFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -70,7 +70,7 @@ public open class ZIPPacker : RefCounted() {
    * Write the given [data] to the file.
    * Needs to be called after [startFile].
    */
-  public fun writeFile(`data`: PackedByteArray): GodotError {
+  public final fun writeFile(`data`: PackedByteArray): GodotError {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.writeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -80,7 +80,7 @@ public open class ZIPPacker : RefCounted() {
    * Stops writing to a file within the archive.
    * It will fail if there is no open file.
    */
-  public fun closeFile(): GodotError {
+  public final fun closeFile(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closeFilePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
@@ -89,7 +89,7 @@ public open class ZIPPacker : RefCounted() {
   /**
    * Closes the underlying resources used by this instance.
    */
-  public fun close(): GodotError {
+  public final fun close(): GodotError {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
     return GodotError.from(TransferContext.readReturnValue(LONG) as Long)

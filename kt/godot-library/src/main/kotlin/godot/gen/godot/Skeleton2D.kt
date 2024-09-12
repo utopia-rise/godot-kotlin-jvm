@@ -50,7 +50,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the number of [Bone2D] nodes in the node hierarchy parented by Skeleton2D.
    */
-  public fun getBoneCount(): Int {
+  public final fun getBoneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
@@ -61,7 +61,7 @@ public open class Skeleton2D : Node2D() {
    * identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to
    * bottom, adding the children of each branch before moving to the next sibling.
    */
-  public fun getBone(idx: Int): Bone2D? {
+  public final fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as Bone2D?)
@@ -70,7 +70,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the [RID] of a Skeleton2D instance.
    */
-  public fun getSkeleton(): RID {
+  public final fun getSkeleton(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
     return (TransferContext.readReturnValue(_RID, false) as RID)
@@ -79,7 +79,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Sets the [SkeletonModificationStack2D] attached to this skeleton.
    */
-  public fun setModificationStack(modificationStack: SkeletonModificationStack2D): Unit {
+  public final fun setModificationStack(modificationStack: SkeletonModificationStack2D?): Unit {
     TransferContext.writeArguments(OBJECT to modificationStack)
     TransferContext.callMethod(rawPtr, MethodBindings.setModificationStackPtr, NIL)
   }
@@ -87,7 +87,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the [SkeletonModificationStack2D] attached to this skeleton, if one exists.
    */
-  public fun getModificationStack(): SkeletonModificationStack2D? {
+  public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
@@ -97,7 +97,7 @@ public open class Skeleton2D : Node2D() {
    * Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one
    * assigned.
    */
-  public fun executeModifications(delta: Float, executionMode: Int): Unit {
+  public final fun executeModifications(delta: Float, executionMode: Int): Unit {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.executeModificationsPtr, NIL)
   }
@@ -109,7 +109,7 @@ public open class Skeleton2D : Node2D() {
    * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at
    * [boneIdx]!
    */
-  public fun setBoneLocalPoseOverride(
+  public final fun setBoneLocalPoseOverride(
     boneIdx: Int,
     overridePose: Transform2D,
     strength: Float,
@@ -122,7 +122,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Returns the local pose override transform for [boneIdx].
    */
-  public fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
+  public final fun getBoneLocalPoseOverride(boneIdx: Int): Transform2D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneLocalPoseOverridePtr, TRANSFORM2D)
     return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)

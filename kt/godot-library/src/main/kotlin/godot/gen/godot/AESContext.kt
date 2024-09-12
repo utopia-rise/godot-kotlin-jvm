@@ -110,7 +110,7 @@ public open class AESContext : RefCounted() {
    * either [MODE_CBC_ENCRYPT] or [MODE_CBC_DECRYPT].
    */
   @JvmOverloads
-  public fun start(
+  public final fun start(
     mode: Mode,
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray(),
@@ -125,7 +125,7 @@ public open class AESContext : RefCounted() {
    * result of encrypting (or decrypting) the given [src]. See [start] for mode of operation.
    * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
-  public fun update(src: PackedByteArray): PackedByteArray {
+  public final fun update(src: PackedByteArray): PackedByteArray {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -137,7 +137,7 @@ public open class AESContext : RefCounted() {
    * **Note:** This function only makes sense when the context is started with [MODE_CBC_ENCRYPT] or
    * [MODE_CBC_DECRYPT].
    */
-  public fun getIvState(): PackedByteArray {
+  public final fun getIvState(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIvStatePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
@@ -146,7 +146,7 @@ public open class AESContext : RefCounted() {
   /**
    * Close this AES context so it can be started again. See [start].
    */
-  public fun finish(): Unit {
+  public final fun finish(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, NIL)
   }

@@ -27,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * By configuring various properties of this style box, you can achieve many common looks without
@@ -52,29 +53,23 @@ public open class StyleBoxFlat : StyleBox() {
    * The background color of the stylebox.
    */
   @CoreTypeLocalCopy
-  public var bgColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var bgColor: Color
+    @JvmName("bgColorProperty")
+    get() = getBgColor()
+    @JvmName("bgColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
+      setBgColor(value)
     }
 
   /**
    * Toggles drawing of the inner part of the stylebox.
    */
-  public var drawCenter: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var drawCenter: Boolean
+    @JvmName("drawCenterProperty")
+    get() = isDrawCenterEnabled()
+    @JvmName("drawCenterProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+      setDrawCenter(value)
     }
 
   /**
@@ -88,156 +83,123 @@ public open class StyleBoxFlat : StyleBox() {
    * margin does not increase the size of the clickable area for [Control]s.
    */
   @CoreTypeLocalCopy
-  public var skew: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var skew: Vector2
+    @JvmName("skewProperty")
+    get() = getSkew()
+    @JvmName("skewProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
+      setSkew(value)
     }
 
   /**
    * Border width for the left border.
    */
-  public var borderWidthLeft: Int
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var borderWidthLeft: Int
+    @JvmName("borderWidthLeftProperty")
+    get() = getBorderWidth(Side.SIDE_LEFT)
+    @JvmName("borderWidthLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+      setBorderWidth(Side.SIDE_LEFT, value)
     }
 
   /**
    * Border width for the top border.
    */
-  public var borderWidthTop: Int
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var borderWidthTop: Int
+    @JvmName("borderWidthTopProperty")
+    get() = getBorderWidth(Side.SIDE_TOP)
+    @JvmName("borderWidthTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+      setBorderWidth(Side.SIDE_TOP, value)
     }
 
   /**
    * Border width for the right border.
    */
-  public var borderWidthRight: Int
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var borderWidthRight: Int
+    @JvmName("borderWidthRightProperty")
+    get() = getBorderWidth(Side.SIDE_RIGHT)
+    @JvmName("borderWidthRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+      setBorderWidth(Side.SIDE_RIGHT, value)
     }
 
   /**
    * Border width for the bottom border.
    */
-  public var borderWidthBottom: Int
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var borderWidthBottom: Int
+    @JvmName("borderWidthBottomProperty")
+    get() = getBorderWidth(Side.SIDE_BOTTOM)
+    @JvmName("borderWidthBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+      setBorderWidth(Side.SIDE_BOTTOM, value)
     }
 
   /**
    * Sets the color of the border.
    */
   @CoreTypeLocalCopy
-  public var borderColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var borderColor: Color
+    @JvmName("borderColorProperty")
+    get() = getBorderColor()
+    @JvmName("borderColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+      setBorderColor(value)
     }
 
   /**
    * If `true`, the border will fade into the background color.
    */
-  public var borderBlend: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var borderBlend: Boolean
+    @JvmName("borderBlendProperty")
+    get() = getBorderBlend()
+    @JvmName("borderBlendProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
+      setBorderBlend(value)
     }
 
   /**
    * The top-left corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusTopLeft: Int
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var cornerRadiusTopLeft: Int
+    @JvmName("cornerRadiusTopLeftProperty")
+    get() = getCornerRadius(Corner.CORNER_TOP_LEFT)
+    @JvmName("cornerRadiusTopLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+      setCornerRadius(Corner.CORNER_TOP_LEFT, value)
     }
 
   /**
    * The top-right corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusTopRight: Int
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var cornerRadiusTopRight: Int
+    @JvmName("cornerRadiusTopRightProperty")
+    get() = getCornerRadius(Corner.CORNER_TOP_RIGHT)
+    @JvmName("cornerRadiusTopRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+      setCornerRadius(Corner.CORNER_TOP_RIGHT, value)
     }
 
   /**
    * The bottom-right corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusBottomRight: Int
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var cornerRadiusBottomRight: Int
+    @JvmName("cornerRadiusBottomRightProperty")
+    get() = getCornerRadius(Corner.CORNER_BOTTOM_RIGHT)
+    @JvmName("cornerRadiusBottomRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+      setCornerRadius(Corner.CORNER_BOTTOM_RIGHT, value)
     }
 
   /**
    * The bottom-left corner's radius. If `0`, the corner is not rounded.
    */
-  public var cornerRadiusBottomLeft: Int
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var cornerRadiusBottomLeft: Int
+    @JvmName("cornerRadiusBottomLeftProperty")
+    get() = getCornerRadius(Corner.CORNER_BOTTOM_LEFT)
+    @JvmName("cornerRadiusBottomLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+      setCornerRadius(Corner.CORNER_BOTTOM_LEFT, value)
     }
 
   /**
@@ -249,15 +211,12 @@ public open class StyleBoxFlat : StyleBox() {
    * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is
    * useful for some artistic effects.
    */
-  public var cornerDetail: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var cornerDetail: Int
+    @JvmName("cornerDetailProperty")
+    get() = getCornerDetail()
+    @JvmName("cornerDetailProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
+      setCornerDetail(value)
     }
 
   /**
@@ -267,15 +226,12 @@ public open class StyleBoxFlat : StyleBox() {
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginLeft: Float
-    get() {
-      TransferContext.writeArguments(LONG to 0L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var expandMarginLeft: Float
+    @JvmName("expandMarginLeftProperty")
+    get() = getExpandMargin(Side.SIDE_LEFT)
+    @JvmName("expandMarginLeftProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 0L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+      setExpandMargin(Side.SIDE_LEFT, value)
     }
 
   /**
@@ -285,15 +241,12 @@ public open class StyleBoxFlat : StyleBox() {
    * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
    * may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginTop: Float
-    get() {
-      TransferContext.writeArguments(LONG to 1L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var expandMarginTop: Float
+    @JvmName("expandMarginTopProperty")
+    get() = getExpandMargin(Side.SIDE_TOP)
+    @JvmName("expandMarginTopProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 1L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+      setExpandMargin(Side.SIDE_TOP, value)
     }
 
   /**
@@ -303,15 +256,12 @@ public open class StyleBoxFlat : StyleBox() {
    * of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the
    * user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginRight: Float
-    get() {
-      TransferContext.writeArguments(LONG to 2L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var expandMarginRight: Float
+    @JvmName("expandMarginRightProperty")
+    get() = getExpandMargin(Side.SIDE_RIGHT)
+    @JvmName("expandMarginRightProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 2L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+      setExpandMargin(Side.SIDE_RIGHT, value)
     }
 
   /**
@@ -321,59 +271,47 @@ public open class StyleBoxFlat : StyleBox() {
    * size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as
    * the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
-  public var expandMarginBottom: Float
-    get() {
-      TransferContext.writeArguments(LONG to 3L)
-      TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var expandMarginBottom: Float
+    @JvmName("expandMarginBottomProperty")
+    get() = getExpandMargin(Side.SIDE_BOTTOM)
+    @JvmName("expandMarginBottomProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to 3L, DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+      setExpandMargin(Side.SIDE_BOTTOM, value)
     }
 
   /**
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    */
   @CoreTypeLocalCopy
-  public var shadowColor: Color
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-      return (TransferContext.readReturnValue(COLOR, false) as Color)
-    }
+  public final inline var shadowColor: Color
+    @JvmName("shadowColorProperty")
+    get() = getShadowColor()
+    @JvmName("shadowColorProperty")
     set(`value`) {
-      TransferContext.writeArguments(COLOR to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+      setShadowColor(value)
     }
 
   /**
    * The shadow size in pixels.
    */
-  public var shadowSize: Int
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
-    }
+  public final inline var shadowSize: Int
+    @JvmName("shadowSizeProperty")
+    get() = getShadowSize()
+    @JvmName("shadowSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.toLong())
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+      setShadowSize(value)
     }
 
   /**
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    */
   @CoreTypeLocalCopy
-  public var shadowOffset: Vector2
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
-      return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
-    }
+  public final inline var shadowOffset: Vector2
+    @JvmName("shadowOffsetProperty")
+    get() = getShadowOffset()
+    @JvmName("shadowOffsetProperty")
     set(`value`) {
-      TransferContext.writeArguments(VECTOR2 to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+      setShadowOffset(value)
     }
 
   /**
@@ -383,15 +321,12 @@ public open class StyleBoxFlat : StyleBox() {
    * recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual
    * glitches.
    */
-  public var antiAliasing: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var antiAliasing: Boolean
+    @JvmName("antiAliasingProperty")
+    get() = isAntiAliased()
+    @JvmName("antiAliasingProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
+      setAntiAliased(value)
     }
 
   /**
@@ -401,15 +336,12 @@ public open class StyleBoxFlat : StyleBox() {
    * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on
    * small boxes with large-radius corners.
    */
-  public var antiAliasingSize: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var antiAliasingSize: Float
+    @JvmName("antiAliasingSizeProperty")
+    get() = getAaSize()
+    @JvmName("antiAliasingSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
+      setAaSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -434,7 +366,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
+  public final fun bgColorMutate(block: Color.() -> Unit): Color = bgColor.apply{
       block(this)
       bgColor = this
   }
@@ -465,7 +397,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
+  public final fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply{
       block(this)
       skew = this
   }
@@ -489,7 +421,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
+  public final fun borderColorMutate(block: Color.() -> Unit): Color = borderColor.apply{
       block(this)
       borderColor = this
   }
@@ -513,7 +445,7 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
+  public final fun shadowColorMutate(block: Color.() -> Unit): Color = shadowColor.apply{
       block(this)
       shadowColor = this
   }
@@ -537,16 +469,38 @@ public open class StyleBoxFlat : StyleBox() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
+  public final fun shadowOffsetMutate(block: Vector2.() -> Unit): Vector2 = shadowOffset.apply{
       block(this)
       shadowOffset = this
   }
 
 
+  public final fun setBgColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
+  }
+
+  public final fun getBgColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setBorderColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+  }
+
+  public final fun getBorderColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
   /**
    * Sets the border width to [width] pixels for all sides.
    */
-  public fun setBorderWidthAll(width: Int): Unit {
+  public final fun setBorderWidthAll(width: Int): Unit {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthAllPtr, NIL)
   }
@@ -554,26 +508,177 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Returns the smallest border width out of all four borders.
    */
-  public fun getBorderWidthMin(): Int {
+  public final fun getBorderWidthMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthMinPtr, LONG)
     return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   /**
+   * Sets the specified [Side]'s border width to [width] pixels.
+   */
+  public final fun setBorderWidth(margin: Side, width: Int): Unit {
+    TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+  }
+
+  /**
+   * Returns the specified [Side]'s border width.
+   */
+  public final fun getBorderWidth(margin: Side): Int {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setBorderBlend(blend: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to blend)
+    TransferContext.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
+  }
+
+  public final fun getBorderBlend(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
-  public fun setCornerRadiusAll(radius: Int): Unit {
+  public final fun setCornerRadiusAll(radius: Int): Unit {
     TransferContext.writeArguments(LONG to radius.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusAllPtr, NIL)
   }
 
   /**
+   * Sets the corner radius to [radius] pixels for the given [corner]. See [Corner] for possible
+   * values.
+   */
+  public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
+    TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+  }
+
+  /**
+   * Returns the given [corner]'s radius. See [Corner] for possible values.
+   */
+  public final fun getCornerRadius(corner: Corner): Int {
+    TransferContext.writeArguments(LONG to corner.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  /**
+   * Sets the expand margin to [size] pixels for the specified [Side].
+   */
+  public final fun setExpandMargin(margin: Side, size: Float): Unit {
+    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+  }
+
+  /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public fun setExpandMarginAll(size: Float): Unit {
+  public final fun setExpandMarginAll(size: Float): Unit {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
+  }
+
+  /**
+   * Returns the size of the specified [Side]'s expand margin.
+   */
+  public final fun getExpandMargin(margin: Side): Float {
+    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDrawCenter(drawCenter: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to drawCenter)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+  }
+
+  public final fun isDrawCenterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setSkew(skew: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to skew)
+    TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
+  }
+
+  public final fun getSkew(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setShadowColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+  }
+
+  public final fun getShadowColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR, false) as Color)
+  }
+
+  public final fun setShadowSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+  }
+
+  public final fun getShadowSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+  }
+
+  public final fun setShadowOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+  }
+
+  public final fun getShadowOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+  }
+
+  public final fun setAntiAliased(antiAliased: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to antiAliased)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
+  }
+
+  public final fun isAntiAliased(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setAaSize(size: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to size.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
+  }
+
+  public final fun getAaSize(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setCornerDetail(detail: Int): Unit {
+    TransferContext.writeArguments(LONG to detail.toLong())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
+  }
+
+  public final fun getCornerDetail(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
+    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
   }
 
   public companion object

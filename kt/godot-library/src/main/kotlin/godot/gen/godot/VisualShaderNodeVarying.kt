@@ -18,6 +18,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
@@ -28,33 +29,49 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   /**
    * Name of the variable. Must be unique.
    */
-  public var varyingName: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var varyingName: String
+    @JvmName("varyingNameProperty")
+    get() = getVaryingName()
+    @JvmName("varyingNameProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVaryingNamePtr, NIL)
+      setVaryingName(value)
     }
 
   /**
    * Type of the variable. Determines where the variable can be accessed.
    */
-  public var varyingType: VisualShader.VaryingType
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getVaryingTypePtr, LONG)
-      return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var varyingType: VisualShader.VaryingType
+    @JvmName("varyingTypeProperty")
+    get() = getVaryingType()
+    @JvmName("varyingTypeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
+      setVaryingType(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEVARYING, scriptIndex)
+  }
+
+  public final fun setVaryingName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVaryingNamePtr, NIL)
+  }
+
+  public final fun getVaryingName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
+    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
+  }
+
+  public final fun getVaryingType(): VisualShader.VaryingType {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getVaryingTypePtr, LONG)
+    return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

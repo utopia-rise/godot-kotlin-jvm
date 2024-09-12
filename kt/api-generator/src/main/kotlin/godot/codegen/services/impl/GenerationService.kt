@@ -36,8 +36,6 @@ import godot.codegen.models.enriched.EnrichedMethod
 import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.EnrichedSignal
 import godot.codegen.models.enriched.isSameSignature
-import godot.codegen.models.enriched.toGetterCallable
-import godot.codegen.models.enriched.toSetterCallable
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
@@ -46,7 +44,6 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
-import godot.codegen.workarounds.sanitizeApiType
 import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
@@ -74,7 +71,6 @@ class GenerationService(
     private val nativeStructureRepository: INativeStructureRepository
 ) : IGenerationService {
     private var nextEngineClassIndex = 0
-    private var nextEngineMethodIndex = 0
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
         val singletonTypeName = singletonClass.getTypeClassName()
@@ -165,7 +161,7 @@ class GenerationService(
         }
 
         for (signal in enrichedClass.signals) {
-            classTypeBuilder.addProperty(generateSignals(signal, name))
+            classTypeBuilder.addProperty(generateSignals(signal))
         }
 
         for (property in enrichedClass.properties) {
@@ -176,7 +172,7 @@ class GenerationService(
             }
         }
 
-        for (method in enrichedClass.methods.filter { !it.internal.isStatic }.filter { !it.isGetterOrSetter }) {
+        for (method in enrichedClass.methods.filter { !it.internal.isStatic }) {
             // TODO: Implement native structure when value class are here.
             var shouldGenerate = true
             for (argument in method.arguments) {
@@ -391,7 +387,7 @@ class GenerationService(
         }
     }
 
-    private fun generateSignals(signal: EnrichedSignal, containingClassName: String): PropertySpec {
+    private fun generateSignals(signal: EnrichedSignal): PropertySpec {
         val signalClass = signal.getTypeClassName()
         val arguments = signal.arguments
 
@@ -420,128 +416,43 @@ class GenerationService(
     }
 
     private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty): PropertySpec? {
-        if (!property.hasValidGetterInClass &&
-            !property.hasValidSetterInClass &&
-            !property.shouldUseSuperSetter &&
-            !property.shouldUseSuperGetter
-        ) return null
+        if (!property.hasValidGetterInClass && !property.hasValidSetterInClass) return null
 
-//        if (hasValidGetter && !validGetter.returnType.isEnum() && type != validGetter.returnType) {
-//            type = validGetter.returnType
-//        }
+        // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
+        val argumentIndex = if (property.isIndexed) 1 else 0
+        val propertyTypeName = (property.getterMethod ?: property.setterMethod!!.arguments[argumentIndex]).getCastedType()
 
-        // Sorry for this, CPUParticles has "scale" property overrides ancestor's "scale", but mismatches type
-//        if (clazz.newName == "CPUParticles" && newName == "scale") newName = "_scale"
-
-        val modifiers = mutableListOf<KModifier>()
-
-        if (classGraphService.doAncestorsHaveProperty(
-                enrichedClass,
-                property
-            )
-        ) {
-            modifiers.add(KModifier.OVERRIDE)
-        } else if (property.getterMethod?.internal?.isVirtual == true || property.setterMethod?.internal?.isVirtual == true) {
-            modifiers.add(KModifier.OPEN)
-        }
-
-        val propertyTypeName = property.getCastedType()
         val propertyType = propertyTypeName.typeName
-        val propertySpecBuilder = PropertySpec
-            .builder(
-                property.name,
-                propertyType,
-                modifiers
-            )
+        val propertySpecBuilder = PropertySpec.builder(property.name, propertyType).addModifiers(KModifier.FINAL)
 
-        fun generateSuperGetter(): FunSpec {
+        if (property.hasValidGetterInClass) {
             val methodName = property.getter
 
-            return FunSpec.getterBuilder()
-                .addStatement(
-                    "return super.$methodName()"
-                )
-                .addAnnotation(
-                    AnnotationSpec.builder(JvmName::class)
-                        .addMember("\"${methodName}_prop\"")
-                        .build()
-                )
-                .build()
-        }
-
-        fun generateSuperSetter(): FunSpec {
-            val methodName = property.setter
-
-            return FunSpec.setterBuilder()
-                .addParameter("value", property.getCastedType().typeName)
-                .addStatement(
-                    "super.$methodName(value)"
-                )
-                .addAnnotation(
-                    AnnotationSpec.builder(JvmName::class)
-                        .addMember("\"${methodName}_prop\"")
-                        .build()
-                )
-                .build()
-        }
-
-        if (property.hasValidSetterInClass) {
-            propertySpecBuilder.mutable()
-
-            val variantTypeToArgumentString = buildString {
-                append("%T·to·value")
-
-                if (property.isEnum()) {
-                    append(".id")
-                }
-
-                if (property.isBitField()) {
-                    append(".flag")
-                }
-
-                append(property.getToBufferCastingMethod())
-            }
-
-            val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}L, $variantTypeToArgumentString"
-            } else {
-                variantTypeToArgumentString
-            }
-            propertySpecBuilder.setter(
-                FunSpec.setterBuilder()
-                    .addParameter("value", propertyType)
-                    .generateJvmMethodCall(
-                        clazz = enrichedClass,
-                        callable = property.toSetterCallable(),
-                        callArgumentsAsString = argumentStringTemplate,
-                        isStatic = false
-                    )
-                    .build()
-            )
-        } else if (property.shouldUseSuperSetter) {
-            propertySpecBuilder.mutable().setter(
-                generateSuperSetter()
-            )
-        }
-
-        if (property.shouldUseSuperGetter) {
-            propertySpecBuilder.getter(
-                generateSuperGetter()
-            )
-        } else if (property.hasValidGetterInClass) {
-            val argumentStringTemplate = if (property.isIndexed) {
-                "%T to ${property.internal.index}L"
-            } else {
-                ""
-            }
             propertySpecBuilder.getter(
                 FunSpec.getterBuilder()
-                    .generateJvmMethodCall(
-                        clazz = enrichedClass,
-                        callable = property.toGetterCallable(),
-                        callArgumentsAsString = argumentStringTemplate,
-                        isStatic = false
+                    .addStatement(
+                        if (property.isIndexed) {
+                            val indexArgument = property.getterMethod!!.arguments[0]
+                            if (indexArgument.isEnum() || indexArgument.isBitField()) {
+                                val argumentValue = enumService.findEnumValue(
+                                    indexArgument.getBufferType(),
+                                    property.internal.index!!.toLong()
+                                ).name
+                                "return $methodName($argumentValue)"
+                            } else {
+                                "return $methodName(${property.internal.index})"
+                            }
+
+                        } else {
+                            "return $methodName()"
+                        }
                     )
+                    .addAnnotation(
+                        AnnotationSpec.builder(JvmName::class)
+                            .addMember("\"${property.name}Property\"")
+                            .build()
+                    )
+                    .addModifiers(KModifier.INLINE)
                     .build()
             )
         } else {
@@ -552,6 +463,43 @@ class GenerationService(
                         "throw",
                         UninitializedPropertyAccessException::class,
                         "Cannot access property ${property.name}: has no getter"
+                    )
+                    .build()
+            )
+        }
+
+        val getterAndSetterAreCompatible = property.getterMethod?.getCastedType() == property.setterMethod?.arguments?.get(argumentIndex)?.getCastedType()
+
+        // We don't generate the setter if its type doesn't match the getter.
+        if (property.hasValidSetterInClass && getterAndSetterAreCompatible) {
+            val methodName = property.setter
+
+            propertySpecBuilder.mutable().setter(
+                FunSpec.setterBuilder()
+                    .addParameter("value", property.getCastedType().typeName)
+                    .addStatement(
+                        if (property.isIndexed) {
+                            val indexArgument = property.setterMethod!!.arguments[0]
+                            if (indexArgument.isEnum() || indexArgument.isBitField()) {
+                                val argumentValue = enumService.findEnumValue(
+                                    indexArgument.getBufferType(),
+                                    property.internal.index!!.toLong()
+                                ).name
+                                "$methodName($argumentValue, value)"
+                            } else {
+                                "$methodName(${property.internal.index}, value)"
+                            }
+
+                        } else {
+                            "$methodName(value)"
+                        }
+
+                    )
+                    .addModifiers(KModifier.INLINE)
+                    .addAnnotation(
+                        AnnotationSpec.builder(JvmName::class)
+                            .addMember("\"${property.name}Property\"")
+                            .build()
                     )
                     .build()
             )
@@ -569,13 +517,8 @@ class GenerationService(
     private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
-        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate")
+        val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
 
-        if (classGraphService.doAncestorsHaveProperty(enrichedClass, property)) {
-            propertyFunSpec.addModifiers(KModifier.OVERRIDE)
-        } else {
-            propertyFunSpec.addModifiers(KModifier.OPEN)
-        }
 
         return propertyFunSpec
             .addParameter(
@@ -628,14 +571,16 @@ class GenerationService(
     private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean = false): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
-        if (classGraphService.doAncestorsHaveMethod(
-                enrichedClass,
-                method
-            )
-        ) {
+        // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
+        if (method.name == "toString") {
             modifiers.add(KModifier.OVERRIDE)
-        } else if (method.internal.isVirtual) {
+        }
+
+        // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
+        if (method.internal.isVirtual) {
             modifiers.add(KModifier.OPEN)
+        } else {
+            modifiers.add(KModifier.FINAL)
         }
 
         val generatedFunBuilder = FunSpec

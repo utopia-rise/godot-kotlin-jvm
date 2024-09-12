@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * This audio effect does not affect sound output, but can be used for real-time audio
@@ -33,26 +34,20 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
    * The length of the buffer to keep (in seconds). Higher values keep data around for longer, but
    * require more memory.
    */
-  public var bufferLength: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var bufferLength: Float
+    @JvmName("bufferLengthProperty")
+    get() = getBufferLength()
+    @JvmName("bufferLengthProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+      setBufferLength(value)
     }
 
-  public var tapBackPos: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var tapBackPos: Float
+    @JvmName("tapBackPosProperty")
+    get() = getTapBackPos()
+    @JvmName("tapBackPosProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
+      setTapBackPos(value)
     }
 
   /**
@@ -61,19 +56,49 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
    * latency. The effects of this higher latency are especially noticeable with sudden amplitude
    * changes.
    */
-  public var fftSize: FFTSize
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
-      return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var fftSize: FFTSize
+    @JvmName("fftSizeProperty")
+    get() = getFftSize()
+    @JvmName("fftSizeProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+      setFftSize(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER, scriptIndex)
+  }
+
+  public final fun setBufferLength(seconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+  }
+
+  public final fun getBufferLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setTapBackPos(seconds: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
+  }
+
+  public final fun getTapBackPos(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setFftSize(size: FFTSize): Unit {
+    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+  }
+
+  public final fun getFftSize(): FFTSize {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(

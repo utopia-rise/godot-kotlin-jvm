@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Translated to `uniform float` in the shader language.
@@ -31,90 +32,138 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
    * A hint applied to the uniform, which controls the values it can take when set through the
    * Inspector.
    */
-  public var hint: Hint
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
-      return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var hint: Hint
+    @JvmName("hintProperty")
+    get() = getHint()
+    @JvmName("hintProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+      setHint(value)
     }
 
   /**
    * Maximum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public var min: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var min: Float
+    @JvmName("minProperty")
+    get() = getMin()
+    @JvmName("minProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+      setMin(value)
     }
 
   /**
    * Minimum value for range hints. Used if [hint] is set to [HINT_RANGE] or [HINT_RANGE_STEP].
    */
-  public var max: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var max: Float
+    @JvmName("maxProperty")
+    get() = getMax()
+    @JvmName("maxProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+      setMax(value)
     }
 
   /**
    * Step (increment) value for the range hint with step. Used if [hint] is set to
    * [HINT_RANGE_STEP].
    */
-  public var step: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var step: Float
+    @JvmName("stepProperty")
+    get() = getStep()
+    @JvmName("stepProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+      setStep(value)
     }
 
   /**
    * Enables usage of the [defaultValue].
    */
-  public var defaultValueEnabled: Boolean
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
-    }
+  public final inline var defaultValueEnabled: Boolean
+    @JvmName("defaultValueEnabledProperty")
+    get() = isDefaultValueEnabled()
+    @JvmName("defaultValueEnabledProperty")
     set(`value`) {
-      TransferContext.writeArguments(BOOL to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+      setDefaultValueEnabled(value)
     }
 
   /**
    * A default value to be assigned within the shader.
    */
-  public var defaultValue: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var defaultValue: Float
+    @JvmName("defaultValueProperty")
+    get() = getDefaultValue()
+    @JvmName("defaultValueProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+      setDefaultValue(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATPARAMETER, scriptIndex)
+  }
+
+  public final fun setHint(hint: Hint): Unit {
+    TransferContext.writeArguments(LONG to hint.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+  }
+
+  public final fun getHint(): Hint {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMin(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+  }
+
+  public final fun getMin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMax(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+  }
+
+  public final fun getMax(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setStep(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+  }
+
+  public final fun getStep(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+  }
+
+  public final fun isDefaultValueEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+  }
+
+  public final fun setDefaultValue(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+  }
+
+  public final fun getDefaultValue(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
   }
 
   public enum class Hint(

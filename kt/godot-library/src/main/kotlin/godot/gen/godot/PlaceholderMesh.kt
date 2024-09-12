@@ -33,12 +33,12 @@ public open class PlaceholderMesh : Mesh() {
    * The smallest [AABB] enclosing this mesh in local space.
    */
   @CoreTypeLocalCopy
-  public var aabb: AABB
-    @JvmName("getAabb_prop")
-    get() = super.getAabb()
+  public final inline var aabb: AABB
+    @JvmName("aabbProperty")
+    get() = getAabb()
+    @JvmName("aabbProperty")
     set(`value`) {
-      TransferContext.writeArguments(godot.core.VariantType.AABB to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+      setAabb(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
@@ -63,11 +63,16 @@ public open class PlaceholderMesh : Mesh() {
    * ``````
    */
   @CoreTypeHelper
-  public open fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
+  public final fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply{
       block(this)
       aabb = this
   }
 
+
+  public final fun setAabb(aabb: AABB): Unit {
+    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+  }
 
   public companion object
 

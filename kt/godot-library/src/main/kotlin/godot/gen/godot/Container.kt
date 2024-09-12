@@ -69,7 +69,7 @@ public open class Container : Control() {
    * Queue resort of the contained children. This is called automatically anyway, but can be called
    * upon request.
    */
-  public fun queueSort(): Unit {
+  public final fun queueSort(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queueSortPtr, NIL)
   }
@@ -78,7 +78,7 @@ public open class Container : Control() {
    * Fit a child control in a given rect. This is mainly a helper for creating custom container
    * classes.
    */
-  public fun fitChildInRect(child: Control, rect: Rect2): Unit {
+  public final fun fitChildInRect(child: Control?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
   }

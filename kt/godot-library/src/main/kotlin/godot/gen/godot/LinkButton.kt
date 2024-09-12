@@ -21,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
@@ -32,29 +33,23 @@ public open class LinkButton : BaseButton() {
   /**
    * The button's text that will be displayed inside the button's area.
    */
-  public var text: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var text: String
+    @JvmName("textProperty")
+    get() = getText()
+    @JvmName("textProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+      setText(value)
     }
 
   /**
    * The underline mode to use for the text. See [LinkButton.UnderlineMode] for the available modes.
    */
-  public var underline: UnderlineMode
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUnderlineModePtr, LONG)
-      return LinkButton.UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var underline: UnderlineMode
+    @JvmName("underlineProperty")
+    get() = getUnderlineMode()
+    @JvmName("underlineProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUnderlineModePtr, NIL)
+      setUnderlineMode(value)
     }
 
   /**
@@ -77,78 +72,139 @@ public open class LinkButton : BaseButton() {
    * Uri = "C:\SomeImage.png"; // Opens the given image in the default viewing app.
    * ```
    */
-  public var uri: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getUriPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var uri: String
+    @JvmName("uriProperty")
+    get() = getUri()
+    @JvmName("uriProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setUriPtr, NIL)
+      setUri(value)
     }
 
   /**
    * Base text writing direction.
    */
-  public var textDirection: Control.TextDirection
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-      return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var textDirection: Control.TextDirection
+    @JvmName("textDirectionProperty")
+    get() = getTextDirection()
+    @JvmName("textDirectionProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+      setTextDirection(value)
     }
 
   /**
    * Language code used for line-breaking and text shaping algorithms, if left empty current locale
    * is used instead.
    */
-  public var language: String
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
-    }
+  public final inline var language: String
+    @JvmName("languageProperty")
+    get() = getLanguage()
+    @JvmName("languageProperty")
     set(`value`) {
-      TransferContext.writeArguments(STRING to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+      setLanguage(value)
     }
 
   /**
    * Set BiDi algorithm override for the structured text.
    */
-  public var structuredTextBidiOverride: TextServer.StructuredTextParser
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-      return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
-    }
+  public final inline var structuredTextBidiOverride: TextServer.StructuredTextParser
+    @JvmName("structuredTextBidiOverrideProperty")
+    get() = getStructuredTextBidiOverride()
+    @JvmName("structuredTextBidiOverrideProperty")
     set(`value`) {
-      TransferContext.writeArguments(LONG to value.id)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+      setStructuredTextBidiOverride(value)
     }
 
   /**
    * Set additional options for BiDi override.
    */
-  public var structuredTextBidiOverrideOptions: VariantArray<Any?>
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-          ARRAY)
-      return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
-    }
+  public final inline var structuredTextBidiOverrideOptions: VariantArray<Any?>
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
+    get() = getStructuredTextBidiOverrideOptions()
+    @JvmName("structuredTextBidiOverrideOptionsProperty")
     set(`value`) {
-      TransferContext.writeArguments(ARRAY to value)
-      TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr,
-          NIL)
+      setStructuredTextBidiOverrideOptions(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_LINKBUTTON, scriptIndex)
+  }
+
+  public final fun setText(text: String): Unit {
+    TransferContext.writeArguments(STRING to text)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+  }
+
+  public final fun getText(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+  }
+
+  public final fun getTextDirection(): Control.TextDirection {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setLanguage(language: String): Unit {
+    TransferContext.writeArguments(STRING to language)
+    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+  }
+
+  public final fun getLanguage(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setUri(uri: String): Unit {
+    TransferContext.writeArguments(STRING to uri)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUriPtr, NIL)
+  }
+
+  public final fun getUri(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUriPtr, STRING)
+    return (TransferContext.readReturnValue(STRING, false) as String)
+  }
+
+  public final fun setUnderlineMode(underlineMode: UnderlineMode): Unit {
+    TransferContext.writeArguments(LONG to underlineMode.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setUnderlineModePtr, NIL)
+  }
+
+  public final fun getUnderlineMode(): UnderlineMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getUnderlineModePtr, LONG)
+    return LinkButton.UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+  }
+
+  public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+    TransferContext.writeArguments(ARRAY to args)
+    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+  }
+
+  public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
+        ARRAY)
+    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
   }
 
   public enum class UnderlineMode(

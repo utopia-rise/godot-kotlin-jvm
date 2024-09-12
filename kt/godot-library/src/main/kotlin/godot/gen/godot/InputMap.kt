@@ -40,7 +40,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the [InputMap] has a registered action with the given name.
    */
-  public fun hasAction(action: StringName): Boolean {
+  public final fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.hasActionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -49,7 +49,7 @@ public object InputMap : Object() {
   /**
    * Returns an array of all actions in the [InputMap].
    */
-  public fun getActions(): VariantArray<StringName> {
+  public final fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
@@ -60,7 +60,7 @@ public object InputMap : Object() {
    * An [InputEvent] can then be added to this action with [actionAddEvent].
    */
   @JvmOverloads
-  public fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
+  public final fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
   }
@@ -68,7 +68,7 @@ public object InputMap : Object() {
   /**
    * Removes an action from the [InputMap].
    */
-  public fun eraseAction(action: StringName): Unit {
+  public final fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.eraseActionPtr, NIL)
   }
@@ -76,7 +76,7 @@ public object InputMap : Object() {
   /**
    * Sets a deadzone value for the action.
    */
-  public fun actionSetDeadzone(action: StringName, deadzone: Float): Unit {
+  public final fun actionSetDeadzone(action: StringName, deadzone: Float): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.actionSetDeadzonePtr, NIL)
   }
@@ -84,7 +84,7 @@ public object InputMap : Object() {
   /**
    * Returns a deadzone value for the action.
    */
-  public fun actionGetDeadzone(action: StringName): Float {
+  public final fun actionGetDeadzone(action: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
@@ -93,7 +93,7 @@ public object InputMap : Object() {
   /**
    * Adds an [InputEvent] to an action. This [InputEvent] will trigger the action.
    */
-  public fun actionAddEvent(action: StringName, event: InputEvent): Unit {
+  public final fun actionAddEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionAddEventPtr, NIL)
   }
@@ -101,7 +101,7 @@ public object InputMap : Object() {
   /**
    * Returns `true` if the action has the given [InputEvent] associated with it.
    */
-  public fun actionHasEvent(action: StringName, event: InputEvent): Boolean {
+  public final fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -110,7 +110,7 @@ public object InputMap : Object() {
   /**
    * Removes an [InputEvent] from an action.
    */
-  public fun actionEraseEvent(action: StringName, event: InputEvent): Unit {
+  public final fun actionEraseEvent(action: StringName, event: InputEvent?): Unit {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventPtr, NIL)
   }
@@ -118,7 +118,7 @@ public object InputMap : Object() {
   /**
    * Removes all events from an action.
    */
-  public fun actionEraseEvents(action: StringName): Unit {
+  public final fun actionEraseEvents(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventsPtr, NIL)
   }
@@ -129,7 +129,7 @@ public object InputMap : Object() {
    * return events for the editor action. If you want to access your project's input binds from the
    * editor, read the `input&#47;*` settings from [ProjectSettings].
    */
-  public fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
+  public final fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionGetEventsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<InputEvent>)
@@ -143,8 +143,8 @@ public object InputMap : Object() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
-  public fun eventIsAction(
-    event: InputEvent,
+  public final fun eventIsAction(
+    event: InputEvent?,
     action: StringName,
     exactMatch: Boolean = false,
   ): Boolean {
@@ -156,7 +156,7 @@ public object InputMap : Object() {
   /**
    * Clears all [InputEventAction] in the [InputMap] and load it anew from [ProjectSettings].
    */
-  public fun loadFromProjectSettings(): Unit {
+  public final fun loadFromProjectSettings(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }

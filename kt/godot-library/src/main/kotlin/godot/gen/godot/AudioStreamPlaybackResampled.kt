@@ -27,7 +27,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
     throw NotImplementedError("_get_stream_sampling_rate is not implemented for AudioStreamPlaybackResampled")
   }
 
-  public fun beginResample(): Unit {
+  public final fun beginResample(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.beginResamplePtr, NIL)
   }

@@ -49,8 +49,8 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * value.
    */
   @JvmOverloads
-  public fun playStream(
-    stream: AudioStream,
+  public final fun playStream(
+    stream: AudioStream?,
     fromOffset: Float = 0.0f,
     volumeDb: Float = 0.0f,
     pitchScale: Float = 1.0f,
@@ -66,7 +66,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * Change the stream volume (in db). The [stream] argument is an integer ID returned by
    * [playStream].
    */
-  public fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
+  public final fun setStreamVolume(stream: Long, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamVolumePtr, NIL)
   }
@@ -74,7 +74,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
   /**
    * Change the stream pitch scale. The [stream] argument is an integer ID returned by [playStream].
    */
-  public fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
+  public final fun setStreamPitchScale(stream: Long, pitchScale: Float): Unit {
     TransferContext.writeArguments(LONG to stream, DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setStreamPitchScalePtr, NIL)
   }
@@ -83,7 +83,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * Return true whether the stream associated with an integer ID is still playing. Check
    * [playStream] for information on when this ID becomes invalid.
    */
-  public fun isStreamPlaying(stream: Long): Boolean {
+  public final fun isStreamPlaying(stream: Long): Boolean {
     TransferContext.writeArguments(LONG to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.isStreamPlayingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL, false) as Boolean)
@@ -93,7 +93,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
    * Stop a stream. The [stream] argument is an integer ID returned by [playStream], which becomes
    * invalid after calling this function.
    */
-  public fun stopStream(stream: Long): Unit {
+  public final fun stopStream(stream: Long): Unit {
     TransferContext.writeArguments(LONG to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.stopStreamPtr, NIL)
   }

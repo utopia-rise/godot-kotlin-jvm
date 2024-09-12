@@ -18,6 +18,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Abstract base class for all 3D shapes, intended for use in physics.
@@ -33,15 +34,12 @@ public open class Shape3D internal constructor() : Resource() {
    * When set to `0`, the default value from [ProjectSettings.physics/3d/solver/defaultContactBias]
    * is used.
    */
-  public var customSolverBias: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var customSolverBias: Float
+    @JvmName("customSolverBiasProperty")
+    get() = getCustomSolverBias()
+    @JvmName("customSolverBiasProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+      setCustomSolverBias(value)
     }
 
   /**
@@ -51,25 +49,44 @@ public open class Shape3D internal constructor() : Resource() {
    * margin, so a higher value for margins is better for performance, at the cost of accuracy around
    * edges as it makes them less sharp.
    */
-  public var margin: Float
-    get() {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-      return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
-    }
+  public final inline var margin: Float
+    @JvmName("marginProperty")
+    get() = getMargin()
+    @JvmName("marginProperty")
     set(`value`) {
-      TransferContext.writeArguments(DOUBLE to value.toDouble())
-      TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+      setMargin(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SHAPE3D, scriptIndex)
   }
 
+  public final fun setCustomSolverBias(bias: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to bias.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+  }
+
+  public final fun getCustomSolverBias(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
+  public final fun setMargin(margin: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to margin.toDouble())
+    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+  }
+
+  public final fun getMargin(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+  }
+
   /**
    * Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D].
    */
-  public fun getDebugMesh(): ArrayMesh? {
+  public final fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
