@@ -85,7 +85,7 @@ public open class AspectRatioContainer : Container() {
   public final fun getRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {

@@ -139,7 +139,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getParticlesAnimation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setParticlesAnimHFrames(frames: Int): Unit {
@@ -150,7 +150,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getParticlesAnimHFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimVFrames(frames: Int): Unit {
@@ -161,7 +161,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getParticlesAnimVFrames(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimLoop(loop: Boolean): Unit {
@@ -172,7 +172,7 @@ public open class CanvasItemMaterial : Material() {
   public final fun getParticlesAnimLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class BlendMode(

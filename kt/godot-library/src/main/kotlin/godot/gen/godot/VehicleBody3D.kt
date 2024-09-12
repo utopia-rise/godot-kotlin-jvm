@@ -93,7 +93,7 @@ public open class VehicleBody3D : RigidBody3D() {
   public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
@@ -104,7 +104,7 @@ public open class VehicleBody3D : RigidBody3D() {
   public final fun getBrake(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
@@ -115,7 +115,7 @@ public open class VehicleBody3D : RigidBody3D() {
   public final fun getSteering(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

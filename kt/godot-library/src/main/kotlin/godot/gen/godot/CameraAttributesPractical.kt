@@ -163,7 +163,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun isDofBlurFarEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDofBlurFarDistance(distance: Float): Unit {
@@ -174,7 +174,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getDofBlurFarDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurFarTransition(distance: Float): Unit {
@@ -185,7 +185,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getDofBlurFarTransition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurNearEnabled(enabled: Boolean): Unit {
@@ -196,7 +196,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun isDofBlurNearEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDofBlurNearDistance(distance: Float): Unit {
@@ -207,7 +207,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getDofBlurNearDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurNearTransition(distance: Float): Unit {
@@ -218,7 +218,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getDofBlurNearTransition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurAmount(amount: Float): Unit {
@@ -229,7 +229,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getDofBlurAmount(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMaxSensitivity(maxSensitivity: Float): Unit {
@@ -240,7 +240,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getAutoExposureMaxSensitivity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMinSensitivity(minSensitivity: Float): Unit {
@@ -251,7 +251,7 @@ public open class CameraAttributesPractical : CameraAttributes() {
   public final fun getAutoExposureMinSensitivity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

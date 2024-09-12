@@ -82,7 +82,7 @@ public open class SkeletonModifier3D : Node3D() {
   public final fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun setActive(active: Boolean): Unit {
@@ -93,7 +93,7 @@ public open class SkeletonModifier3D : Node3D() {
   public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInfluence(influence: Float): Unit {
@@ -104,7 +104,7 @@ public open class SkeletonModifier3D : Node3D() {
   public final fun getInfluence(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInfluencePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

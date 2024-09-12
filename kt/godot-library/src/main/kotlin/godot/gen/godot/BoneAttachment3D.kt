@@ -81,7 +81,7 @@ public open class BoneAttachment3D : Node3D() {
   public final fun getBoneName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setBoneIdx(boneIdx: Int): Unit {
@@ -92,7 +92,7 @@ public open class BoneAttachment3D : Node3D() {
   public final fun getBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -113,7 +113,7 @@ public open class BoneAttachment3D : Node3D() {
   public final fun getOverridePose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class BoneAttachment3D : Node3D() {
   public final fun getUseExternalSkeleton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -151,7 +151,7 @@ public open class BoneAttachment3D : Node3D() {
   public final fun getExternalSkeleton(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public companion object

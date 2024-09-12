@@ -190,7 +190,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getRenderTarget(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setRenderTarget(renderTarget: RID): Unit {
@@ -201,7 +201,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getInternalSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInternalSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setInternalSize(internalSize: Vector2i): Unit {
@@ -212,7 +212,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getTargetSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setTargetSize(targetSize: Vector2i): Unit {
@@ -223,7 +223,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getViewCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setViewCount(viewCount: Long): Unit {
@@ -267,7 +267,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getFsrSharpness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFsrSharpness(fsrSharpness: Float): Unit {
@@ -278,7 +278,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final fun getTextureMipmapBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {

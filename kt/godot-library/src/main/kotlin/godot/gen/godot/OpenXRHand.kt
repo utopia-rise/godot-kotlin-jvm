@@ -113,7 +113,7 @@ public open class OpenXRHand : Node3D() {
   public final fun getHandSkeleton(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setMotionRange(motionRange: MotionRange): Unit {

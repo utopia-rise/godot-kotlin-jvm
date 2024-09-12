@@ -302,7 +302,7 @@ public open class GLTFNode : Resource() {
   public final fun getOriginalName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
@@ -313,7 +313,7 @@ public open class GLTFNode : Resource() {
   public final fun getParent(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParent(parent: Int): Unit {
@@ -324,7 +324,7 @@ public open class GLTFNode : Resource() {
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHeight(height: Int): Unit {
@@ -335,7 +335,7 @@ public open class GLTFNode : Resource() {
   public final fun getXform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setXform(xform: Transform3D): Unit {
@@ -346,7 +346,7 @@ public open class GLTFNode : Resource() {
   public final fun getMesh(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMesh(mesh: Int): Unit {
@@ -357,7 +357,7 @@ public open class GLTFNode : Resource() {
   public final fun getCamera(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCamera(camera: Int): Unit {
@@ -368,7 +368,7 @@ public open class GLTFNode : Resource() {
   public final fun getSkin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkin(skin: Int): Unit {
@@ -379,7 +379,7 @@ public open class GLTFNode : Resource() {
   public final fun getSkeleton(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkeleton(skeleton: Int): Unit {
@@ -390,7 +390,7 @@ public open class GLTFNode : Resource() {
   public final fun getPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setPosition(position: Vector3): Unit {
@@ -401,7 +401,7 @@ public open class GLTFNode : Resource() {
   public final fun getRotation(): Quaternion {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setRotation(rotation: Quaternion): Unit {
@@ -412,7 +412,7 @@ public open class GLTFNode : Resource() {
   public final fun getScale(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setScale(scale: Vector3): Unit {
@@ -423,7 +423,7 @@ public open class GLTFNode : Resource() {
   public final fun getChildren(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setChildren(children: PackedInt32Array): Unit {
@@ -434,7 +434,7 @@ public open class GLTFNode : Resource() {
   public final fun getLight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLight(light: Int): Unit {
@@ -452,7 +452,7 @@ public open class GLTFNode : Resource() {
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**

@@ -52,7 +52,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   public final fun getStreamCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -69,7 +69,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   public final fun getSyncStream(streamIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   /**
@@ -86,7 +86,7 @@ public open class AudioStreamSynchronized : AudioStream() {
   public final fun getSyncStreamVolume(streamIndex: Int): Float {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object {

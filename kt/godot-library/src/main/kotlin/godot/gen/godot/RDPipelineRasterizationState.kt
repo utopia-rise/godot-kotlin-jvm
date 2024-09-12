@@ -168,7 +168,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getEnableDepthClamp(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthClampPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDiscardPrimitives(pMember: Boolean): Unit {
@@ -179,7 +179,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getDiscardPrimitives(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscardPrimitivesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWireframe(pMember: Boolean): Unit {
@@ -190,7 +190,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getWireframe(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWireframePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
@@ -223,7 +223,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getDepthBiasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDepthBiasConstantFactor(pMember: Float): Unit {
@@ -234,7 +234,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getDepthBiasConstantFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasConstantFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthBiasClamp(pMember: Float): Unit {
@@ -245,7 +245,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getDepthBiasClamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasClampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthBiasSlopeFactor(pMember: Float): Unit {
@@ -256,7 +256,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getDepthBiasSlopeFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasSlopeFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLineWidth(pMember: Float): Unit {
@@ -267,7 +267,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getLineWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPatchControlPoints(pMember: Long): Unit {
@@ -278,7 +278,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   public final fun getPatchControlPoints(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPatchControlPointsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

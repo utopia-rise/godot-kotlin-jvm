@@ -113,7 +113,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
@@ -124,7 +124,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSides(sides: Int): Unit {
@@ -135,7 +135,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun getSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCone(cone: Boolean): Unit {
@@ -146,7 +146,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun isCone(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
@@ -157,7 +157,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
@@ -168,7 +168,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
   public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

@@ -133,7 +133,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public final fun getEnableSampleShading(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinSampleShading(pMember: Float): Unit {
@@ -144,7 +144,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public final fun getMinSampleShading(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableAlphaToCoverage(pMember: Boolean): Unit {
@@ -155,7 +155,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public final fun getEnableAlphaToCoverage(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableAlphaToOne(pMember: Boolean): Unit {
@@ -166,7 +166,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public final fun getEnableAlphaToOne(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSampleMasks(masks: VariantArray<Long>): Unit {
@@ -177,7 +177,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   public final fun getSampleMasks(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   public companion object

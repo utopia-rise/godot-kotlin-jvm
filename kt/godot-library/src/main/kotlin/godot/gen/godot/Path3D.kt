@@ -55,7 +55,7 @@ public open class Path3D : Node3D() {
   public final fun getCurve(): Curve3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve3D?)
   }
 
   public companion object

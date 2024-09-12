@@ -79,7 +79,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   public final fun getTimeLeft(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public companion object

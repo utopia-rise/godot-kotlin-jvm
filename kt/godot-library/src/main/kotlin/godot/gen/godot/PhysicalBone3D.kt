@@ -408,7 +408,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getJointOffset(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setJointRotation(euler: Vector3): Unit {
@@ -419,7 +419,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getJointRotation(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointRotationPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setBodyOffset(offset: Transform3D): Unit {
@@ -430,25 +430,25 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getBodyOffset(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getBoneId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMass(mass: Float): Unit {
@@ -459,7 +459,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getMass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFriction(friction: Float): Unit {
@@ -470,7 +470,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getFriction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBounce(bounce: Float): Unit {
@@ -481,7 +481,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getBounce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGravityScale(gravityScale: Float): Unit {
@@ -492,7 +492,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getGravityScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
@@ -525,7 +525,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getLinearDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
@@ -536,7 +536,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getAngularDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
@@ -547,7 +547,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
@@ -558,7 +558,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUseCustomIntegrator(enable: Boolean): Unit {
@@ -569,7 +569,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun isUsingCustomIntegrator(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCanSleep(ableToSleep: Boolean): Unit {
@@ -580,7 +580,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   public final fun isAbleToSleep(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class DampMode(

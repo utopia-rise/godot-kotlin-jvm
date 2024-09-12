@@ -172,7 +172,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
@@ -183,7 +183,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getAvoidanceEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -205,7 +205,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setRadius(radius: Float): Unit {
@@ -216,7 +216,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVelocity(velocity: Vector2): Unit {
@@ -227,7 +227,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setVertices(vertices: PackedVector2Array): Unit {
@@ -238,7 +238,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getVertices(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setAvoidanceLayers(layers: Long): Unit {
@@ -249,7 +249,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getAvoidanceLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -268,7 +268,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAffectNavigationMesh(enabled: Boolean): Unit {
@@ -279,7 +279,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getAffectNavigationMesh(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAffectNavigationMeshPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCarveNavigationMesh(enabled: Boolean): Unit {
@@ -290,7 +290,7 @@ public open class NavigationObstacle2D : Node2D() {
   public final fun getCarveNavigationMesh(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCarveNavigationMeshPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

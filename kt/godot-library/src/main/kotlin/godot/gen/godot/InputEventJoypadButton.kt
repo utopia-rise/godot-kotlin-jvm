@@ -82,7 +82,7 @@ public open class InputEventJoypadButton : InputEvent() {
   public final fun getPressure(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

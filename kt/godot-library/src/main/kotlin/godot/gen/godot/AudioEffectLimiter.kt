@@ -82,7 +82,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   public final fun getCeilingDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setThresholdDb(threshold: Float): Unit {
@@ -93,7 +93,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   public final fun getThresholdDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSoftClipDb(softClip: Float): Unit {
@@ -104,7 +104,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   public final fun getSoftClipDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSoftClipRatio(softClip: Float): Unit {
@@ -115,7 +115,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   public final fun getSoftClipRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

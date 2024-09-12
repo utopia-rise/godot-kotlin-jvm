@@ -128,7 +128,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public final fun getTitle(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
@@ -139,7 +139,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public final fun isTintColorEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
@@ -150,7 +150,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public final fun getTintColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAutoshrinkEnabled(enable: Boolean): Unit {
@@ -161,7 +161,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public final fun isAutoshrinkEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -190,7 +190,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   public final fun getAttachedNodes(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public companion object

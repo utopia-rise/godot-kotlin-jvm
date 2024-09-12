@@ -98,7 +98,7 @@ public open class ReferenceRect : Control() {
   public final fun getBorderColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBorderColor(color: Color): Unit {
@@ -109,7 +109,7 @@ public open class ReferenceRect : Control() {
   public final fun getBorderWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderWidth(width: Float): Unit {
@@ -120,7 +120,7 @@ public open class ReferenceRect : Control() {
   public final fun getEditorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEditorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorOnly(enabled: Boolean): Unit {

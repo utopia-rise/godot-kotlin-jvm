@@ -961,73 +961,73 @@ public open class CPUParticles2D : Node2D() {
   public final fun isEmitting(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getLifetimeRandomness(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSpeedScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
@@ -1049,7 +1049,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -1068,7 +1068,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getDirection(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSpread(spread: Float): Unit {
@@ -1079,7 +1079,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getSpread(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1096,7 +1096,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getParamMin(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1113,7 +1113,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getParamMax(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1130,7 +1130,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getParamCurve(`param`: Parameter): Curve? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setColor(color: Color): Unit {
@@ -1141,7 +1141,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColorRamp(ramp: Gradient?): Unit {
@@ -1152,7 +1152,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getColorRamp(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setColorInitialRamp(ramp: Gradient?): Unit {
@@ -1163,7 +1163,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getColorInitialRamp(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   /**
@@ -1180,7 +1180,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
@@ -1202,7 +1202,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionSphereRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRectExtents(extents: Vector2): Unit {
@@ -1213,7 +1213,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionRectExtents(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRectExtentsPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setEmissionPoints(array: PackedVector2Array): Unit {
@@ -1224,7 +1224,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionPoints(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setEmissionNormals(array: PackedVector2Array): Unit {
@@ -1235,7 +1235,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionNormals(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setEmissionColors(array: PackedColorArray): Unit {
@@ -1246,13 +1246,13 @@ public open class CPUParticles2D : Node2D() {
   public final fun getEmissionColors(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun getGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGravity(accelVec: Vector2): Unit {
@@ -1263,7 +1263,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getSplitScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSplitScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSplitScale(splitScale: Boolean): Unit {
@@ -1274,7 +1274,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getScaleCurveX(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveXPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveX(scaleCurve: Curve?): Unit {
@@ -1285,7 +1285,7 @@ public open class CPUParticles2D : Node2D() {
   public final fun getScaleCurveY(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveYPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveY(scaleCurve: Curve?): Unit {

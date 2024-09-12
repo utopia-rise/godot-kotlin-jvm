@@ -93,13 +93,13 @@ public open class CameraFeed : RefCounted() {
   public final fun getId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActive(active: Boolean): Unit {
@@ -113,7 +113,7 @@ public open class CameraFeed : RefCounted() {
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class CameraFeed : RefCounted() {
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setTransform(transform: Transform2D): Unit {

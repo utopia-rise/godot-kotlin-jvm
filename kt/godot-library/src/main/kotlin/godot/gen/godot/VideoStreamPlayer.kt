@@ -180,7 +180,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getStream(): VideoStream? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as VideoStream?)
+    return (TransferContext.readReturnValue(OBJECT) as VideoStream?)
   }
 
   /**
@@ -209,7 +209,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
@@ -220,7 +220,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun isPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
@@ -231,7 +231,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolume(volume: Float): Unit {
@@ -242,7 +242,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getVolume(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumeDb(db: Float): Unit {
@@ -253,7 +253,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getVolumeDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAudioTrack(track: Int): Unit {
@@ -264,7 +264,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getAudioTrack(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -273,7 +273,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getStreamName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -285,7 +285,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getStreamLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setStreamPosition(position: Double): Unit {
@@ -296,7 +296,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getStreamPosition(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutoplay(enabled: Boolean): Unit {
@@ -307,7 +307,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun hasAutoplay(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExpand(enable: Boolean): Unit {
@@ -318,7 +318,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun hasExpand(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBufferingMsec(msec: Int): Unit {
@@ -329,7 +329,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getBufferingMsec(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBus(bus: StringName): Unit {
@@ -340,7 +340,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getBus(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -349,7 +349,7 @@ public open class VideoStreamPlayer : Control() {
   public final fun getVideoTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object

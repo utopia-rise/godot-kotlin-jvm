@@ -92,7 +92,7 @@ public open class HeightMapShape3D : Shape3D() {
   public final fun getMapWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMapDepth(height: Int): Unit {
@@ -103,7 +103,7 @@ public open class HeightMapShape3D : Shape3D() {
   public final fun getMapDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMapData(`data`: PackedFloat32Array): Unit {
@@ -114,7 +114,7 @@ public open class HeightMapShape3D : Shape3D() {
   public final fun getMapData(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -123,7 +123,7 @@ public open class HeightMapShape3D : Shape3D() {
   public final fun getMinHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -132,7 +132,7 @@ public open class HeightMapShape3D : Shape3D() {
   public final fun getMaxHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**

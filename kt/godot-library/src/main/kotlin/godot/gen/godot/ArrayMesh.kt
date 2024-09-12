@@ -174,7 +174,7 @@ public open class ArrayMesh : Mesh() {
   public final fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -183,7 +183,7 @@ public open class ArrayMesh : Mesh() {
   public final fun getBlendShapeName(index: Int): StringName {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -295,7 +295,7 @@ public open class ArrayMesh : Mesh() {
   public final fun surfaceGetArrayLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArrayLenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -305,7 +305,7 @@ public open class ArrayMesh : Mesh() {
   public final fun surfaceGetArrayIndexLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArrayIndexLenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -333,7 +333,7 @@ public open class ArrayMesh : Mesh() {
   public final fun surfaceFindByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceFindByNamePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -350,7 +350,7 @@ public open class ArrayMesh : Mesh() {
   public final fun surfaceGetName(surfIdx: Int): String {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -378,7 +378,7 @@ public open class ArrayMesh : Mesh() {
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   public final fun setShadowMesh(mesh: ArrayMesh?): Unit {
@@ -389,7 +389,7 @@ public open class ArrayMesh : Mesh() {
   public final fun getShadowMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   public companion object

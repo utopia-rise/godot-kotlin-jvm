@@ -102,7 +102,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   public final fun getFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
@@ -134,7 +134,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   public final fun isDoubleClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDoubleClickPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

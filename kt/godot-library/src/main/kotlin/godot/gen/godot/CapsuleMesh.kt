@@ -82,7 +82,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
@@ -93,7 +93,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
@@ -104,7 +104,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
@@ -115,7 +115,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
   public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

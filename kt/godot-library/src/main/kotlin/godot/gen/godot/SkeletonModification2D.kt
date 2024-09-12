@@ -90,7 +90,7 @@ public open class SkeletonModification2D : Resource() {
   public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -100,7 +100,7 @@ public open class SkeletonModification2D : Resource() {
   public final fun getModificationStack(): SkeletonModificationStack2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SkeletonModificationStack2D?)
+    return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
   /**
@@ -119,7 +119,7 @@ public open class SkeletonModification2D : Resource() {
   public final fun getIsSetup(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExecutionMode(executionMode: Int): Unit {
@@ -130,7 +130,7 @@ public open class SkeletonModification2D : Resource() {
   public final fun getExecutionMode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -145,7 +145,7 @@ public open class SkeletonModification2D : Resource() {
   ): Float {
     TransferContext.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
     TransferContext.callMethod(rawPtr, MethodBindings.clampAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -164,7 +164,7 @@ public open class SkeletonModification2D : Resource() {
   public final fun getEditorDrawGizmo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

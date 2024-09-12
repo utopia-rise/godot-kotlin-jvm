@@ -1029,7 +1029,7 @@ public open class Control : CanvasItem() {
   public final fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1038,7 +1038,7 @@ public open class Control : CanvasItem() {
   public final fun getCombinedMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCombinedMinimumSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1110,7 +1110,7 @@ public open class Control : CanvasItem() {
   public final fun getAnchor(side: Side): Float {
     TransferContext.writeArguments(LONG to side.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getAnchorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1129,7 +1129,7 @@ public open class Control : CanvasItem() {
   public final fun getOffset(offset: Side): Float {
     TransferContext.writeArguments(LONG to offset.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1233,7 +1233,7 @@ public open class Control : CanvasItem() {
   public final fun getBegin(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBeginPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1242,49 +1242,49 @@ public open class Control : CanvasItem() {
   public final fun getEnd(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEndPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getRotation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRotationDegrees(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getPivotOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPivotOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getCustomMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomMinimumSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1293,13 +1293,13 @@ public open class Control : CanvasItem() {
   public final fun getParentAreaSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentAreaSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getGlobalPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1316,7 +1316,7 @@ public open class Control : CanvasItem() {
   public final fun getScreenPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1329,7 +1329,7 @@ public open class Control : CanvasItem() {
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -1343,7 +1343,7 @@ public open class Control : CanvasItem() {
   public final fun getGlobalRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setFocusMode(mode: FocusMode): Unit {
@@ -1363,7 +1363,7 @@ public open class Control : CanvasItem() {
   public final fun hasFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasFocusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1390,7 +1390,7 @@ public open class Control : CanvasItem() {
   public final fun findPrevValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.findPrevValidFocusPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   /**
@@ -1399,7 +1399,7 @@ public open class Control : CanvasItem() {
   public final fun findNextValidFocus(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.findNextValidFocusPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   /**
@@ -1410,7 +1410,7 @@ public open class Control : CanvasItem() {
   public final fun findValidFocusNeighbor(side: Side): Control? {
     TransferContext.writeArguments(LONG to side.id)
     TransferContext.callMethod(rawPtr, MethodBindings.findValidFocusNeighborPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setHSizeFlags(flags: SizeFlags): Unit {
@@ -1432,7 +1432,7 @@ public open class Control : CanvasItem() {
   public final fun getStretchRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStretchRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVSizeFlags(flags: SizeFlags): Unit {
@@ -1454,7 +1454,7 @@ public open class Control : CanvasItem() {
   public final fun getTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThemePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Theme?)
+    return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
   public final fun setThemeTypeVariation(themeType: StringName): Unit {
@@ -1465,7 +1465,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeTypeVariation(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeTypeVariationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -1663,7 +1663,7 @@ public open class Control : CanvasItem() {
       Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -1676,7 +1676,7 @@ public open class Control : CanvasItem() {
       StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeStyleboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
+    return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }
 
   /**
@@ -1688,7 +1688,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeFont(name: StringName, themeType: StringName = StringName("")): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   /**
@@ -1700,7 +1700,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeFontSize(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1739,7 +1739,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeColor(name: StringName, themeType: StringName = StringName("")): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1751,7 +1751,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeConstant(name: StringName, themeType: StringName = StringName("")): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeConstantPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1762,7 +1762,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeIconOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeIconOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1773,7 +1773,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeStyleboxOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeStyleboxOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1784,7 +1784,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeFontOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeFontOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1795,7 +1795,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeFontSizeOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeFontSizeOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1806,7 +1806,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeColorOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeColorOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1817,7 +1817,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeConstantOverride(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeConstantOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1829,7 +1829,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeIcon(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeIconPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1842,7 +1842,7 @@ public open class Control : CanvasItem() {
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeStyleboxPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1854,7 +1854,7 @@ public open class Control : CanvasItem() {
   public final fun hasThemeFont(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeFontPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1867,7 +1867,7 @@ public open class Control : CanvasItem() {
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeFontSizePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1880,7 +1880,7 @@ public open class Control : CanvasItem() {
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1893,7 +1893,7 @@ public open class Control : CanvasItem() {
       Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeConstantPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1904,7 +1904,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeDefaultBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeDefaultBaseScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1915,7 +1915,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeDefaultFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeDefaultFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   /**
@@ -1926,7 +1926,7 @@ public open class Control : CanvasItem() {
   public final fun getThemeDefaultFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeDefaultFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1935,7 +1935,7 @@ public open class Control : CanvasItem() {
   public final fun getParentControl(): Control? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentControlPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setHGrowDirection(direction: GrowDirection): Unit {
@@ -1968,7 +1968,7 @@ public open class Control : CanvasItem() {
   public final fun getTooltipText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTooltipTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1982,7 +1982,7 @@ public open class Control : CanvasItem() {
   public final fun getTooltip(atPosition: Vector2 = Vector2(0, 0)): String {
     TransferContext.writeArguments(VECTOR2 to atPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.getTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setDefaultCursorShape(shape: CursorShape): Unit {
@@ -2025,7 +2025,7 @@ public open class Control : CanvasItem() {
   public final fun getFocusNeighbor(side: Side): NodePath {
     TransferContext.writeArguments(LONG to side.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setFocusNext(next: NodePath): Unit {
@@ -2036,7 +2036,7 @@ public open class Control : CanvasItem() {
   public final fun getFocusNext(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusNextPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setFocusPrevious(previous: NodePath): Unit {
@@ -2047,7 +2047,7 @@ public open class Control : CanvasItem() {
   public final fun getFocusPrevious(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusPreviousPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -2080,7 +2080,7 @@ public open class Control : CanvasItem() {
   public final fun isForcePassScrollEvents(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isForcePassScrollEventsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setClipContents(enable: Boolean): Unit {
@@ -2091,7 +2091,7 @@ public open class Control : CanvasItem() {
   public final fun isClippingContents(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isClippingContentsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2180,7 +2180,7 @@ public open class Control : CanvasItem() {
   public final fun isDragSuccessful(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDragSuccessfulPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2201,7 +2201,7 @@ public open class Control : CanvasItem() {
   public final fun getShortcutContext(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShortcutContextPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -2231,7 +2231,7 @@ public open class Control : CanvasItem() {
   public final fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLayoutRtlPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoTranslate(enable: Boolean): Unit {
@@ -2242,7 +2242,7 @@ public open class Control : CanvasItem() {
   public final fun isAutoTranslating(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoTranslatingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLocalizeNumeralSystem(enable: Boolean): Unit {
@@ -2253,7 +2253,7 @@ public open class Control : CanvasItem() {
   public final fun isLocalizingNumeralSystem(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLocalizingNumeralSystemPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class FocusMode(

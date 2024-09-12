@@ -141,7 +141,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setNavigationPolygon(navigationPolygon: NavigationPolygon?): Unit {
@@ -152,7 +152,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getNavigationPolygon(): NavigationPolygon? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationPolygonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as NavigationPolygon?)
+    return (TransferContext.readReturnValue(OBJECT) as NavigationPolygon?)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
@@ -163,7 +163,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -182,7 +182,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setUseEdgeConnections(enabled: Boolean): Unit {
@@ -193,7 +193,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getUseEdgeConnections(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseEdgeConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
@@ -204,7 +204,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -223,7 +223,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -232,7 +232,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getRegionRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnterCost(enterCost: Float): Unit {
@@ -243,7 +243,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getEnterCost(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTravelCost(travelCost: Float): Unit {
@@ -254,7 +254,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun getTravelCost(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -273,7 +273,7 @@ public open class NavigationRegion2D : Node2D() {
   public final fun isBaking(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

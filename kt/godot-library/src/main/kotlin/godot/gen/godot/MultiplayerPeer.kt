@@ -99,7 +99,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getTransferChannel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTransferMode(mode: TransferMode): Unit {
@@ -132,7 +132,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getPacketPeer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketPeerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -142,7 +142,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getPacketChannel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -197,7 +197,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun getUniqueId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -206,7 +206,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun generateUniqueId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setRefuseNewConnections(enable: Boolean): Unit {
@@ -217,7 +217,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun isRefusingNewConnections(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -228,7 +228,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   public final fun isServerRelaySupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isServerRelaySupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class ConnectionStatus(

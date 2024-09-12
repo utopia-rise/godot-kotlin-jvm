@@ -275,7 +275,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -300,7 +300,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getTextureMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -325,7 +325,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getExpandMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionRect(region: Rect2): Unit {
@@ -336,7 +336,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getRegionRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setDrawCenter(enable: Boolean): Unit {
@@ -347,7 +347,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun isDrawCenterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModulate(color: Color): Unit {
@@ -358,7 +358,7 @@ public open class StyleBoxTexture : StyleBox() {
   public final fun getModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {

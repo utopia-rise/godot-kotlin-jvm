@@ -57,7 +57,7 @@ public open class Shortcut : Resource() {
   public final fun getEvents(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -66,7 +66,7 @@ public open class Shortcut : Resource() {
   public final fun hasValidEvent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -75,7 +75,7 @@ public open class Shortcut : Resource() {
   public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -84,7 +84,7 @@ public open class Shortcut : Resource() {
   public final fun getAsText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

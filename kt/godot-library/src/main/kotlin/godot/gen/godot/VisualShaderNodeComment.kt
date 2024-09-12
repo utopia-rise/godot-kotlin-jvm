@@ -48,7 +48,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
   public final fun getDescription(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

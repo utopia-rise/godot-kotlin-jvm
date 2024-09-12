@@ -200,7 +200,7 @@ public open class BaseButton : Control() {
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class BaseButton : Control() {
   public final fun isHovered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHoveredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setToggleMode(enabled: Boolean): Unit {
@@ -231,7 +231,7 @@ public open class BaseButton : Control() {
   public final fun isToggleMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isToggleModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutInTooltip(enabled: Boolean): Unit {
@@ -242,7 +242,7 @@ public open class BaseButton : Control() {
   public final fun isShortcutInTooltipEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
@@ -253,7 +253,7 @@ public open class BaseButton : Control() {
   public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActionMode(mode: ActionMode): Unit {
@@ -297,7 +297,7 @@ public open class BaseButton : Control() {
   public final fun isKeepPressedOutside(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutFeedback(enabled: Boolean): Unit {
@@ -308,7 +308,7 @@ public open class BaseButton : Control() {
   public final fun isShortcutFeedback(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShortcutFeedbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {
@@ -319,7 +319,7 @@ public open class BaseButton : Control() {
   public final fun getShortcut(): Shortcut? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
+    return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 
   public final fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
@@ -330,7 +330,7 @@ public open class BaseButton : Control() {
   public final fun getButtonGroup(): ButtonGroup? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonGroupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ButtonGroup?)
+    return (TransferContext.readReturnValue(OBJECT) as ButtonGroup?)
   }
 
   public enum class DrawMode(

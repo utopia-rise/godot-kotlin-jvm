@@ -173,7 +173,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getDisplayRefreshRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDisplayRefreshRate(refreshRate: Float): Unit {
@@ -184,7 +184,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getRenderTargetSizeMultiplier(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setRenderTargetSizeMultiplier(multiplier: Double): Unit {
@@ -201,13 +201,13 @@ public open class OpenXRInterface : XRInterface() {
   public final fun isFoveationSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFoveationLevel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFoveationLevel(foveationLevel: Int): Unit {
@@ -218,7 +218,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getFoveationDynamic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
@@ -232,7 +232,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun isActionSetActive(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -249,7 +249,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getActionSets(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -307,7 +307,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -327,7 +327,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -337,7 +337,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -347,7 +347,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
     TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -357,7 +357,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun isHandTrackingSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -367,7 +367,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun isHandInteractionSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -377,13 +377,13 @@ public open class OpenXRInterface : XRInterface() {
   public final fun isEyeGazeInteractionSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
@@ -394,7 +394,7 @@ public open class OpenXRInterface : XRInterface() {
   public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {

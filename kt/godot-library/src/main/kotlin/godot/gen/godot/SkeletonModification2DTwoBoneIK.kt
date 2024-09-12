@@ -99,7 +99,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getTargetNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setTargetMinimumDistance(minimumDistance: Float): Unit {
@@ -110,7 +110,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getTargetMinimumDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTargetMaximumDistance(maximumDistance: Float): Unit {
@@ -121,7 +121,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getTargetMaximumDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlipBendDirection(flipDirection: Boolean): Unit {
@@ -132,7 +132,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getFlipBendDirection(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -149,7 +149,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getJointOneBone2dNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -168,7 +168,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getJointOneBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -185,7 +185,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getJointTwoBone2dNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
   public final fun getJointTwoBoneIdx(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

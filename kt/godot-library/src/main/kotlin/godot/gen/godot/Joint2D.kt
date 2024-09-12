@@ -91,7 +91,7 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun getNodeA(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setNodeB(node: NodePath): Unit {
@@ -102,7 +102,7 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun getNodeB(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBias(bias: Float): Unit {
@@ -113,7 +113,7 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun getBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
@@ -124,7 +124,7 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun getExcludeNodesFromCollision(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

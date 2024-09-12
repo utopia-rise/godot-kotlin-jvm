@@ -72,7 +72,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVoiceDelayMs(voiceIdx: Int, delayMs: Float): Unit {
@@ -83,7 +83,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceDelayMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVoiceRateHz(voiceIdx: Int, rateHz: Float): Unit {
@@ -94,7 +94,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceRateHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceRateHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVoiceDepthMs(voiceIdx: Int, depthMs: Float): Unit {
@@ -105,7 +105,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceDepthMs(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceDepthMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVoiceLevelDb(voiceIdx: Int, levelDb: Float): Unit {
@@ -116,7 +116,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceLevelDb(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceLevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVoiceCutoffHz(voiceIdx: Int, cutoffHz: Float): Unit {
@@ -127,7 +127,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoiceCutoffHz(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoiceCutoffHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVoicePan(voiceIdx: Int, pan: Float): Unit {
@@ -138,7 +138,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getVoicePan(voiceIdx: Int): Float {
     TransferContext.writeArguments(LONG to voiceIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVoicePanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWet(amount: Float): Unit {
@@ -149,7 +149,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getWet(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDry(amount: Float): Unit {
@@ -160,7 +160,7 @@ public open class AudioEffectChorus : AudioEffect() {
   public final fun getDry(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

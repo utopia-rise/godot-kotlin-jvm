@@ -48,7 +48,7 @@ public open class Path2D : Node2D() {
   public final fun getCurve(): Curve2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve2D?)
   }
 
   public companion object

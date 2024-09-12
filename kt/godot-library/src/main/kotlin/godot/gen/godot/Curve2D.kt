@@ -68,7 +68,7 @@ public open class Curve2D : Resource() {
   public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPointCount(count: Int): Unit {
@@ -111,7 +111,7 @@ public open class Curve2D : Resource() {
   public final fun getPointPosition(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -131,7 +131,7 @@ public open class Curve2D : Resource() {
   public final fun getPointIn(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointInPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -151,7 +151,7 @@ public open class Curve2D : Resource() {
   public final fun getPointOut(idx: Int): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointOutPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -181,7 +181,7 @@ public open class Curve2D : Resource() {
   public final fun sample(idx: Int, t: Float): Vector2 {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class Curve2D : Resource() {
   public final fun samplef(fofs: Float): Vector2 {
     TransferContext.writeArguments(DOUBLE to fofs.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplefPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setBakeInterval(distance: Float): Unit {
@@ -202,7 +202,7 @@ public open class Curve2D : Resource() {
   public final fun getBakeInterval(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -212,7 +212,7 @@ public open class Curve2D : Resource() {
   public final fun getBakedLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakedLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class Curve2D : Resource() {
   public final fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector2 {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -248,7 +248,7 @@ public open class Curve2D : Resource() {
       Transform2D {
     TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
     TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedWithRotationPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -257,7 +257,7 @@ public open class Curve2D : Resource() {
   public final fun getBakedPoints(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -267,7 +267,7 @@ public open class Curve2D : Resource() {
   public final fun getClosestPoint(toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -277,7 +277,7 @@ public open class Curve2D : Resource() {
   public final fun getClosestOffset(toPoint: Vector2): Float {
     TransferContext.writeArguments(VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -296,7 +296,7 @@ public open class Curve2D : Resource() {
       PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.tessellatePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -312,7 +312,7 @@ public open class Curve2D : Resource() {
       PackedVector2Array {
     TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.tessellateEvenLengthPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public companion object

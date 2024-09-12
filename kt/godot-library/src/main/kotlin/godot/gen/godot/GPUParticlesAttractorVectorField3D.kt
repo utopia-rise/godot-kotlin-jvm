@@ -96,7 +96,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTexture(texture: Texture3D?): Unit {
@@ -107,7 +107,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   public final fun getTexture(): Texture3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public companion object

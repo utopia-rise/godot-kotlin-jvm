@@ -55,7 +55,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   public final fun getInputName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -65,7 +65,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   public final fun getInputRealName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputRealNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

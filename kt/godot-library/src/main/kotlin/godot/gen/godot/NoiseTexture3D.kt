@@ -177,7 +177,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun getInvert(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInvertPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSeamless(seamless: Boolean): Unit {
@@ -188,7 +188,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun getSeamless(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSeamlessBlendSkirt(seamlessBlendSkirt: Float): Unit {
@@ -199,7 +199,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun getSeamlessBlendSkirt(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalize(normalize: Boolean): Unit {
@@ -210,7 +210,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun isNormalized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColorRamp(gradient: Gradient?): Unit {
@@ -221,7 +221,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun getColorRamp(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setNoise(noise: Noise?): Unit {
@@ -232,7 +232,7 @@ public open class NoiseTexture3D : Texture3D() {
   public final fun getNoise(): Noise? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNoisePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Noise?)
+    return (TransferContext.readReturnValue(OBJECT) as Noise?)
   }
 
   public companion object

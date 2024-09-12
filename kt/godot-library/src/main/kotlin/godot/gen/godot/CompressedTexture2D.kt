@@ -62,7 +62,7 @@ public open class CompressedTexture2D : Texture2D() {
   public final fun getLoadPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

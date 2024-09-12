@@ -177,7 +177,7 @@ public open class FogMaterial : Material() {
   public final fun getDensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlbedo(albedo: Color): Unit {
@@ -188,7 +188,7 @@ public open class FogMaterial : Material() {
   public final fun getAlbedo(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEmission(emission: Color): Unit {
@@ -199,7 +199,7 @@ public open class FogMaterial : Material() {
   public final fun getEmission(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setHeightFalloff(heightFalloff: Float): Unit {
@@ -210,7 +210,7 @@ public open class FogMaterial : Material() {
   public final fun getHeightFalloff(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightFalloffPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeFade(edgeFade: Float): Unit {
@@ -221,7 +221,7 @@ public open class FogMaterial : Material() {
   public final fun getEdgeFade(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEdgeFadePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDensityTexture(densityTexture: Texture3D?): Unit {
@@ -232,7 +232,7 @@ public open class FogMaterial : Material() {
   public final fun getDensityTexture(): Texture3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDensityTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public companion object

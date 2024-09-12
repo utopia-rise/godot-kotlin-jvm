@@ -95,7 +95,7 @@ public open class AudioEffectPhaser : AudioEffect() {
   public final fun getRangeMinHz(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRangeMaxHz(hz: Float): Unit {
@@ -106,7 +106,7 @@ public open class AudioEffectPhaser : AudioEffect() {
   public final fun getRangeMaxHz(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRateHz(hz: Float): Unit {
@@ -117,7 +117,7 @@ public open class AudioEffectPhaser : AudioEffect() {
   public final fun getRateHz(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedback(fbk: Float): Unit {
@@ -128,7 +128,7 @@ public open class AudioEffectPhaser : AudioEffect() {
   public final fun getFeedback(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepth(depth: Float): Unit {
@@ -139,7 +139,7 @@ public open class AudioEffectPhaser : AudioEffect() {
   public final fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

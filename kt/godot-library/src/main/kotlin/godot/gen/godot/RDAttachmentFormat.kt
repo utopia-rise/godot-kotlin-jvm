@@ -90,7 +90,7 @@ public open class RDAttachmentFormat : RefCounted() {
   public final fun getUsageFlags(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

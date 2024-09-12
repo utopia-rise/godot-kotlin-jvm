@@ -162,7 +162,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getAperture(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAperturePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShutterSpeed(shutterSpeed: Float): Unit {
@@ -173,7 +173,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getShutterSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShutterSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFocalLength(focalLength: Float): Unit {
@@ -184,7 +184,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getFocalLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocalLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFocusDistance(focusDistance: Float): Unit {
@@ -195,7 +195,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getFocusDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFocusDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNear(near: Float): Unit {
@@ -206,7 +206,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getNear(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFar(far: Float): Unit {
@@ -217,7 +217,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getFar(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMaxExposureValue(exposureValueMax: Float): Unit {
@@ -238,7 +238,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getAutoExposureMaxExposureValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxExposureValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMinExposureValue(exposureValueMin: Float): Unit {
@@ -249,7 +249,7 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   public final fun getAutoExposureMinExposureValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinExposureValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

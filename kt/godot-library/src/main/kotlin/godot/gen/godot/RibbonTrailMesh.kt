@@ -113,7 +113,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSections(sections: Int): Unit {
@@ -124,7 +124,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getSections(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSectionLength(sectionLength: Float): Unit {
@@ -135,7 +135,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getSectionLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSectionSegments(sectionSegments: Int): Unit {
@@ -146,7 +146,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getSectionSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurve(curve: Curve?): Unit {
@@ -157,7 +157,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setShape(shape: Shape): Unit {

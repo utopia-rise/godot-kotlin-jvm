@@ -102,7 +102,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   public final fun getCullMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setStrength(strength: Float): Unit {
@@ -113,7 +113,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   public final fun getStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttenuation(attenuation: Float): Unit {
@@ -124,7 +124,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   public final fun getAttenuation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDirectionality(amount: Float): Unit {
@@ -135,7 +135,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   public final fun getDirectionality(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

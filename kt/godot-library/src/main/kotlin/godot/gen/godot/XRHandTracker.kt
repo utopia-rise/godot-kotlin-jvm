@@ -70,7 +70,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHandTrackingSource(source: HandTrackingSource): Unit {
@@ -116,7 +116,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointTransform(joint: HandJoint): Transform3D {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointRadius(joint: HandJoint): Float {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -150,7 +150,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointLinearVelocity(joint: HandJoint): Vector3 {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   public final fun getHandJointAngularVelocity(joint: HandJoint): Vector3 {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public enum class HandTrackingSource(

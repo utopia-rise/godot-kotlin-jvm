@@ -252,7 +252,7 @@ public open class CanvasLayer : Node() {
   public final fun getLayer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVisible(visible: Boolean): Unit {
@@ -263,7 +263,7 @@ public open class CanvasLayer : Node() {
   public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -292,7 +292,7 @@ public open class CanvasLayer : Node() {
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -302,7 +302,7 @@ public open class CanvasLayer : Node() {
   public final fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
@@ -313,7 +313,7 @@ public open class CanvasLayer : Node() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRotation(radians: Float): Unit {
@@ -324,7 +324,7 @@ public open class CanvasLayer : Node() {
   public final fun getRotation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setScale(scale: Vector2): Unit {
@@ -335,7 +335,7 @@ public open class CanvasLayer : Node() {
   public final fun getScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFollowViewport(enable: Boolean): Unit {
@@ -346,7 +346,7 @@ public open class CanvasLayer : Node() {
   public final fun isFollowingViewport(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowingViewportPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFollowViewportScale(scale: Float): Unit {
@@ -357,7 +357,7 @@ public open class CanvasLayer : Node() {
   public final fun getFollowViewportScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCustomViewport(viewport: Node?): Unit {
@@ -368,7 +368,7 @@ public open class CanvasLayer : Node() {
   public final fun getCustomViewport(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -377,7 +377,7 @@ public open class CanvasLayer : Node() {
   public final fun getCanvas(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

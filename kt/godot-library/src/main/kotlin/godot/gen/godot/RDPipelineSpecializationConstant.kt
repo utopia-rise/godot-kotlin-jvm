@@ -65,7 +65,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   public final fun getValue(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setConstantId(constantId: Long): Unit {
@@ -76,7 +76,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
   public final fun getConstantId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

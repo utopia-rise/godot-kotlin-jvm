@@ -98,7 +98,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun getLayerViewport(): SubViewport? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SubViewport?)
+    return (TransferContext.readReturnValue(OBJECT) as SubViewport?)
   }
 
   public final fun setEnableHolePunch(enable: Boolean): Unit {
@@ -109,7 +109,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun getEnableHolePunch(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortOrder(order: Int): Unit {
@@ -120,7 +120,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun getSortOrder(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAlphaBlend(enabled: Boolean): Unit {
@@ -131,7 +131,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun getAlphaBlend(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun isNativelySupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNativelySupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -152,7 +152,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   public final fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
     TransferContext.callMethod(rawPtr, MethodBindings.intersectsRayPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object

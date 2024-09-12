@@ -106,7 +106,7 @@ public open class CameraAttributes : Resource() {
   public final fun getExposureMultiplier(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExposureSensitivity(sensitivity: Float): Unit {
@@ -117,7 +117,7 @@ public open class CameraAttributes : Resource() {
   public final fun getExposureSensitivity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
@@ -128,7 +128,7 @@ public open class CameraAttributes : Resource() {
   public final fun isAutoExposureEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
@@ -139,7 +139,7 @@ public open class CameraAttributes : Resource() {
   public final fun getAutoExposureSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureScale(exposureGrey: Float): Unit {
@@ -150,7 +150,7 @@ public open class CameraAttributes : Resource() {
   public final fun getAutoExposureScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

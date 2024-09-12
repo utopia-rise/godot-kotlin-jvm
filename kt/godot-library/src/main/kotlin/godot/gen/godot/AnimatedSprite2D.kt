@@ -228,7 +228,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getSpriteFrames(): SpriteFrames? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SpriteFrames?)
+    return (TransferContext.readReturnValue(OBJECT) as SpriteFrames?)
   }
 
   public final fun setAnimation(name: StringName): Unit {
@@ -239,7 +239,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getAnimation(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAutoplay(name: String): Unit {
@@ -250,7 +250,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getAutoplay(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -260,7 +260,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -318,7 +318,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun isCentered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
@@ -329,7 +329,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFlipH(flipH: Boolean): Unit {
@@ -340,7 +340,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun isFlippedH(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(flipV: Boolean): Unit {
@@ -351,7 +351,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun isFlippedV(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFrame(frame: Int): Unit {
@@ -362,7 +362,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFrameProgress(progress: Float): Unit {
@@ -373,7 +373,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getFrameProgress(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -404,7 +404,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getSpeedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -416,7 +416,7 @@ public open class AnimatedSprite2D : Node2D() {
   public final fun getPlayingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

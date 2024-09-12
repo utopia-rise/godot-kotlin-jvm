@@ -97,7 +97,7 @@ public open class MeshTexture : Texture2D() {
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setImageSize(size: Vector2): Unit {
@@ -108,7 +108,7 @@ public open class MeshTexture : Texture2D() {
   public final fun getImageSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setBaseTexture(texture: Texture2D?): Unit {
@@ -119,7 +119,7 @@ public open class MeshTexture : Texture2D() {
   public final fun getBaseTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object

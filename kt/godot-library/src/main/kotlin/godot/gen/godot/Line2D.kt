@@ -249,7 +249,7 @@ public open class Line2D : Node2D() {
   public final fun getPoints(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -266,7 +266,7 @@ public open class Line2D : Node2D() {
   public final fun getPointPosition(index: Int): Vector2 {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -275,7 +275,7 @@ public open class Line2D : Node2D() {
   public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -315,7 +315,7 @@ public open class Line2D : Node2D() {
   public final fun isClosed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWidth(width: Float): Unit {
@@ -326,7 +326,7 @@ public open class Line2D : Node2D() {
   public final fun getWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCurve(curve: Curve?): Unit {
@@ -337,7 +337,7 @@ public open class Line2D : Node2D() {
   public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setDefaultColor(color: Color): Unit {
@@ -348,7 +348,7 @@ public open class Line2D : Node2D() {
   public final fun getDefaultColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGradient(color: Gradient?): Unit {
@@ -359,7 +359,7 @@ public open class Line2D : Node2D() {
   public final fun getGradient(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
@@ -370,7 +370,7 @@ public open class Line2D : Node2D() {
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureMode(mode: LineTextureMode): Unit {
@@ -425,7 +425,7 @@ public open class Line2D : Node2D() {
   public final fun getSharpLimit(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRoundPrecision(precision: Int): Unit {
@@ -436,7 +436,7 @@ public open class Line2D : Node2D() {
   public final fun getRoundPrecision(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAntialiased(antialiased: Boolean): Unit {
@@ -447,7 +447,7 @@ public open class Line2D : Node2D() {
   public final fun getAntialiased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class LineJointMode(

@@ -60,7 +60,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   public final fun getVaryingName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setVaryingType(type: VisualShader.VaryingType): Unit {

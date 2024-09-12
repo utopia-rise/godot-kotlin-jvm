@@ -61,7 +61,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Int): Unit {
@@ -72,7 +72,7 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
   public final fun getDefaultValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

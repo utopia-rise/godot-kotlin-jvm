@@ -181,7 +181,7 @@ public open class OptionButton : Button() {
   public final fun getItemText(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -190,7 +190,7 @@ public open class OptionButton : Button() {
   public final fun getItemIcon(idx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -199,7 +199,7 @@ public open class OptionButton : Button() {
   public final fun getItemId(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -208,7 +208,7 @@ public open class OptionButton : Button() {
   public final fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -218,7 +218,7 @@ public open class OptionButton : Button() {
   public final fun getItemMetadata(idx: Int): Any? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMetadataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -227,7 +227,7 @@ public open class OptionButton : Button() {
   public final fun getItemTooltip(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -236,7 +236,7 @@ public open class OptionButton : Button() {
   public final fun isItemDisabled(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -245,7 +245,7 @@ public open class OptionButton : Button() {
   public final fun isItemSeparator(idx: Int): Boolean {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemSeparatorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -280,7 +280,7 @@ public open class OptionButton : Button() {
   public final fun getSelected(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -289,7 +289,7 @@ public open class OptionButton : Button() {
   public final fun getSelectedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -298,7 +298,7 @@ public open class OptionButton : Button() {
   public final fun getSelectedMetadata(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedMetadataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class OptionButton : Button() {
   public final fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
+    return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
 
   /**
@@ -337,7 +337,7 @@ public open class OptionButton : Button() {
   public final fun getItemCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -347,7 +347,7 @@ public open class OptionButton : Button() {
   public final fun hasSelectableItems(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasSelectableItemsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -359,7 +359,7 @@ public open class OptionButton : Button() {
   public final fun getSelectableItem(fromLast: Boolean = false): Int {
     TransferContext.writeArguments(BOOL to fromLast)
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectableItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFitToLongestItem(fit: Boolean): Unit {
@@ -370,7 +370,7 @@ public open class OptionButton : Button() {
   public final fun isFitToLongestItem(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFitToLongestItemPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowReselect(allow: Boolean): Unit {
@@ -381,7 +381,7 @@ public open class OptionButton : Button() {
   public final fun getAllowReselect(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

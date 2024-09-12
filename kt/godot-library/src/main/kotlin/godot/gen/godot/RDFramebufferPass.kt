@@ -100,7 +100,7 @@ public open class RDFramebufferPass : RefCounted() {
   public final fun getColorAttachments(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setInputAttachments(pMember: PackedInt32Array): Unit {
@@ -111,7 +111,7 @@ public open class RDFramebufferPass : RefCounted() {
   public final fun getInputAttachments(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setResolveAttachments(pMember: PackedInt32Array): Unit {
@@ -122,7 +122,7 @@ public open class RDFramebufferPass : RefCounted() {
   public final fun getResolveAttachments(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setPreserveAttachments(pMember: PackedInt32Array): Unit {
@@ -134,7 +134,7 @@ public open class RDFramebufferPass : RefCounted() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setDepthAttachment(pMember: Int): Unit {
@@ -145,7 +145,7 @@ public open class RDFramebufferPass : RefCounted() {
   public final fun getDepthAttachment(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object {

@@ -95,19 +95,19 @@ public open class World3D : Resource() {
   public final fun getSpace(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpacePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getScenario(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScenarioPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {
@@ -118,7 +118,7 @@ public open class World3D : Resource() {
   public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+    return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setFallbackEnvironment(env: Environment?): Unit {
@@ -129,7 +129,7 @@ public open class World3D : Resource() {
   public final fun getFallbackEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackEnvironmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+    return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setCameraAttributes(attributes: CameraAttributes?): Unit {
@@ -140,13 +140,13 @@ public open class World3D : Resource() {
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun getDirectSpaceState(): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectSpaceStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
   }
 
   public companion object

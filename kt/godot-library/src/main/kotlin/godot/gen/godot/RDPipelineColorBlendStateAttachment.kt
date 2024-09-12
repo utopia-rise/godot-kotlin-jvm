@@ -235,7 +235,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   public final fun getEnableBlend(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableBlendPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
@@ -312,7 +312,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   public final fun getWriteR(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteRPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteG(pMember: Boolean): Unit {
@@ -323,7 +323,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   public final fun getWriteG(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteGPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteB(pMember: Boolean): Unit {
@@ -334,7 +334,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   public final fun getWriteB(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteBPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteA(pMember: Boolean): Unit {
@@ -345,7 +345,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   public final fun getWriteA(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteAPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

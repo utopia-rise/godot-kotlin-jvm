@@ -92,7 +92,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setLayers(layers: Int): Unit {

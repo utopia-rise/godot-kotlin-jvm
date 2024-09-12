@@ -122,7 +122,7 @@ public open class AcceptDialog : Window() {
   public final fun getOkButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+    return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class AcceptDialog : Window() {
   public final fun getLabel(): Label? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLabelPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Label?)
+    return (TransferContext.readReturnValue(OBJECT) as Label?)
   }
 
   public final fun setHideOnOk(enabled: Boolean): Unit {
@@ -144,7 +144,7 @@ public open class AcceptDialog : Window() {
   public final fun getHideOnOk(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHideOnOkPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCloseOnEscape(enabled: Boolean): Unit {
@@ -155,7 +155,7 @@ public open class AcceptDialog : Window() {
   public final fun getCloseOnEscape(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCloseOnEscapePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -172,7 +172,7 @@ public open class AcceptDialog : Window() {
   ): Button? {
     TransferContext.writeArguments(STRING to text, BOOL to right, STRING to action)
     TransferContext.callMethod(rawPtr, MethodBindings.addButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+    return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   /**
@@ -183,7 +183,7 @@ public open class AcceptDialog : Window() {
   public final fun addCancelButton(name: String): Button? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addCancelButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+    return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   /**
@@ -213,7 +213,7 @@ public open class AcceptDialog : Window() {
   public final fun getText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setAutowrap(autowrap: Boolean): Unit {
@@ -224,7 +224,7 @@ public open class AcceptDialog : Window() {
   public final fun hasAutowrap(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutowrapPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOkButtonText(text: String): Unit {
@@ -235,7 +235,7 @@ public open class AcceptDialog : Window() {
   public final fun getOkButtonText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOkButtonTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

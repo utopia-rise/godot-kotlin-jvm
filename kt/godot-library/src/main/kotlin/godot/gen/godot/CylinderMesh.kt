@@ -130,7 +130,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun getTopRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBottomRadius(radius: Float): Unit {
@@ -141,7 +141,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun getBottomRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
@@ -152,7 +152,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
@@ -163,7 +163,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun getRadialSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
@@ -174,7 +174,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCapTop(capTop: Boolean): Unit {
@@ -185,7 +185,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun isCapTop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCapBottom(capBottom: Boolean): Unit {
@@ -196,7 +196,7 @@ public open class CylinderMesh : PrimitiveMesh() {
   public final fun isCapBottom(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

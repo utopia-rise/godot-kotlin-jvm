@@ -247,7 +247,7 @@ public open class GridMap : Node3D() {
   public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
@@ -258,7 +258,7 @@ public open class GridMap : Node3D() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -277,7 +277,7 @@ public open class GridMap : Node3D() {
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -296,7 +296,7 @@ public open class GridMap : Node3D() {
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionPriority(priority: Float): Unit {
@@ -307,7 +307,7 @@ public open class GridMap : Node3D() {
   public final fun getCollisionPriority(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPhysicsMaterial(material: PhysicsMaterial?): Unit {
@@ -318,7 +318,7 @@ public open class GridMap : Node3D() {
   public final fun getPhysicsMaterial(): PhysicsMaterial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   public final fun setBakeNavigation(bakeNavigation: Boolean): Unit {
@@ -329,7 +329,7 @@ public open class GridMap : Node3D() {
   public final fun isBakingNavigation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -351,7 +351,7 @@ public open class GridMap : Node3D() {
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setMeshLibrary(meshLibrary: MeshLibrary?): Unit {
@@ -362,7 +362,7 @@ public open class GridMap : Node3D() {
   public final fun getMeshLibrary(): MeshLibrary? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshLibraryPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MeshLibrary?)
+    return (TransferContext.readReturnValue(OBJECT) as MeshLibrary?)
   }
 
   public final fun setCellSize(size: Vector3): Unit {
@@ -373,7 +373,7 @@ public open class GridMap : Node3D() {
   public final fun getCellSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCellScale(scale: Float): Unit {
@@ -384,7 +384,7 @@ public open class GridMap : Node3D() {
   public final fun getCellScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOctantSize(size: Int): Unit {
@@ -395,7 +395,7 @@ public open class GridMap : Node3D() {
   public final fun getOctantSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOctantSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -421,7 +421,7 @@ public open class GridMap : Node3D() {
   public final fun getCellItem(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -431,7 +431,7 @@ public open class GridMap : Node3D() {
   public final fun getCellItemOrientation(position: Vector3i): Int {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemOrientationPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -440,7 +440,7 @@ public open class GridMap : Node3D() {
   public final fun getCellItemBasis(position: Vector3i): Basis {
     TransferContext.writeArguments(VECTOR3I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellItemBasisPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
   /**
@@ -450,7 +450,7 @@ public open class GridMap : Node3D() {
   public final fun getBasisWithOrthogonalIndex(index: Int): Basis {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBasisWithOrthogonalIndexPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
   /**
@@ -462,7 +462,7 @@ public open class GridMap : Node3D() {
   public final fun getOrthogonalIndexFromBasis(basis: Basis): Int {
     TransferContext.writeArguments(BASIS to basis)
     TransferContext.callMethod(rawPtr, MethodBindings.getOrthogonalIndexFromBasisPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -473,7 +473,7 @@ public open class GridMap : Node3D() {
   public final fun localToMap(localPosition: Vector3): Vector3i {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.localToMapPtr, VECTOR3I)
-    return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
+    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   /**
@@ -483,7 +483,7 @@ public open class GridMap : Node3D() {
   public final fun mapToLocal(mapPosition: Vector3i): Vector3 {
     TransferContext.writeArguments(VECTOR3I to mapPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.mapToLocalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -502,7 +502,7 @@ public open class GridMap : Node3D() {
   public final fun getCenterX(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterXPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCenterY(enable: Boolean): Unit {
@@ -513,7 +513,7 @@ public open class GridMap : Node3D() {
   public final fun getCenterY(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterYPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCenterZ(enable: Boolean): Unit {
@@ -524,7 +524,7 @@ public open class GridMap : Node3D() {
   public final fun getCenterZ(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterZPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -541,7 +541,7 @@ public open class GridMap : Node3D() {
   public final fun getUsedCells(): VariantArray<Vector3i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
   }
 
   /**
@@ -550,7 +550,7 @@ public open class GridMap : Node3D() {
   public final fun getUsedCellsByItem(item: Int): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to item.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsByItemPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
   }
 
   /**
@@ -560,7 +560,7 @@ public open class GridMap : Node3D() {
   public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -570,7 +570,7 @@ public open class GridMap : Node3D() {
   public final fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -579,7 +579,7 @@ public open class GridMap : Node3D() {
   public final fun getBakeMeshInstance(idx: Int): RID {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMeshInstancePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**

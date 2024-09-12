@@ -191,7 +191,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
@@ -202,7 +202,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBidirectional(bidirectional: Boolean): Unit {
@@ -213,7 +213,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun isBidirectional(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBidirectionalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
@@ -224,7 +224,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -243,7 +243,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStartPosition(position: Vector2): Unit {
@@ -254,7 +254,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getStartPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setEndPosition(position: Vector2): Unit {
@@ -265,7 +265,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getEndPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEndPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -282,7 +282,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getGlobalStartPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -299,7 +299,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getGlobalEndPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalEndPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setEnterCost(enterCost: Float): Unit {
@@ -310,7 +310,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getEnterCost(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTravelCost(travelCost: Float): Unit {
@@ -321,7 +321,7 @@ public open class NavigationLink2D : Node2D() {
   public final fun getTravelCost(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

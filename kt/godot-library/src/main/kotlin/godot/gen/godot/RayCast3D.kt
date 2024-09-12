@@ -232,7 +232,7 @@ public open class RayCast3D : Node3D() {
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTargetPosition(localPoint: Vector3): Unit {
@@ -243,7 +243,7 @@ public open class RayCast3D : Node3D() {
   public final fun getTargetPosition(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -253,7 +253,7 @@ public open class RayCast3D : Node3D() {
   public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -274,7 +274,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
+    return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -284,7 +284,7 @@ public open class RayCast3D : Node3D() {
   public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -310,7 +310,7 @@ public open class RayCast3D : Node3D() {
   public final fun getColliderShape(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -323,7 +323,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollisionPoint(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -335,7 +335,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollisionNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -345,7 +345,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollisionFaceIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionFaceIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -398,7 +398,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -417,7 +417,7 @@ public open class RayCast3D : Node3D() {
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExcludeParentBody(mask: Boolean): Unit {
@@ -428,7 +428,7 @@ public open class RayCast3D : Node3D() {
   public final fun getExcludeParentBody(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
@@ -439,7 +439,7 @@ public open class RayCast3D : Node3D() {
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
@@ -450,7 +450,7 @@ public open class RayCast3D : Node3D() {
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitFromInside(enable: Boolean): Unit {
@@ -461,7 +461,7 @@ public open class RayCast3D : Node3D() {
   public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitBackFaces(enable: Boolean): Unit {
@@ -472,7 +472,7 @@ public open class RayCast3D : Node3D() {
   public final fun isHitBackFacesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugShapeCustomColor(debugShapeCustomColor: Color): Unit {
@@ -483,7 +483,7 @@ public open class RayCast3D : Node3D() {
   public final fun getDebugShapeCustomColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugShapeCustomColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setDebugShapeThickness(debugShapeThickness: Int): Unit {
@@ -494,7 +494,7 @@ public open class RayCast3D : Node3D() {
   public final fun getDebugShapeThickness(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugShapeThicknessPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

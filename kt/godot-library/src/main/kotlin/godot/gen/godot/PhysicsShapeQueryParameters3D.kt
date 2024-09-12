@@ -240,7 +240,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getShape(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   public final fun setShapeRid(shape: RID): Unit {
@@ -251,7 +251,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getShapeRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapeRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
@@ -262,7 +262,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setMotion(motion: Vector3): Unit {
@@ -273,7 +273,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getMotion(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setMargin(margin: Float): Unit {
@@ -284,7 +284,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
@@ -295,7 +295,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
@@ -306,7 +306,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
@@ -317,7 +317,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
@@ -328,7 +328,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

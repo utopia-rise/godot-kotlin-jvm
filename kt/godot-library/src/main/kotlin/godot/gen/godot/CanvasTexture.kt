@@ -165,7 +165,7 @@ public open class CanvasTexture : Texture2D() {
   public final fun getDiffuseTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setNormalTexture(texture: Texture2D?): Unit {
@@ -176,7 +176,7 @@ public open class CanvasTexture : Texture2D() {
   public final fun getNormalTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNormalTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSpecularTexture(texture: Texture2D?): Unit {
@@ -187,7 +187,7 @@ public open class CanvasTexture : Texture2D() {
   public final fun getSpecularTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSpecularColor(color: Color): Unit {
@@ -198,7 +198,7 @@ public open class CanvasTexture : Texture2D() {
   public final fun getSpecularColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSpecularShininess(shininess: Float): Unit {
@@ -209,7 +209,7 @@ public open class CanvasTexture : Texture2D() {
   public final fun getSpecularShininess(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularShininessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {

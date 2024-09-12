@@ -106,7 +106,7 @@ public open class CanvasGroup : Node2D() {
   public final fun getFitMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearMargin(clearMargin: Float): Unit {
@@ -117,7 +117,7 @@ public open class CanvasGroup : Node2D() {
   public final fun getClearMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
@@ -128,7 +128,7 @@ public open class CanvasGroup : Node2D() {
   public final fun isUsingMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

@@ -57,7 +57,7 @@ public open class XRFaceTracker : XRTracker() {
   public final fun getBlendShape(blendShape: BlendShapeEntry): Float {
     TransferContext.writeArguments(LONG to blendShape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -71,7 +71,7 @@ public open class XRFaceTracker : XRTracker() {
   public final fun getBlendShapes(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendShapes(weights: PackedFloat32Array): Unit {

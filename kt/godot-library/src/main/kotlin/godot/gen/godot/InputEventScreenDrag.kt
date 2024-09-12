@@ -323,7 +323,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTilt(tilt: Vector2): Unit {
@@ -334,7 +334,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getTilt(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPressure(pressure: Float): Unit {
@@ -345,7 +345,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getPressure(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPenInverted(penInverted: Boolean): Unit {
@@ -356,7 +356,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getPenInverted(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPosition(position: Vector2): Unit {
@@ -367,7 +367,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRelative(relative: Vector2): Unit {
@@ -378,7 +378,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getRelative(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenRelative(relative: Vector2): Unit {
@@ -389,7 +389,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getScreenRelative(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setVelocity(velocity: Vector2): Unit {
@@ -400,7 +400,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenVelocity(velocity: Vector2): Unit {
@@ -411,7 +411,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   public final fun getScreenVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object

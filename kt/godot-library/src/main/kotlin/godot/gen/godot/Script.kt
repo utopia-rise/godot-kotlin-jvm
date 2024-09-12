@@ -65,7 +65,7 @@ public open class Script internal constructor() : Resource() {
   public final fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -74,7 +74,7 @@ public open class Script internal constructor() : Resource() {
   public final fun instanceHas(baseObject: Object?): Boolean {
     TransferContext.writeArguments(OBJECT to baseObject)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceHasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -87,13 +87,13 @@ public open class Script internal constructor() : Resource() {
   public final fun hasSourceCode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasSourceCodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSourceCode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSourceCodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setSourceCode(source: String): Unit {
@@ -117,7 +117,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getBaseScript(): Script? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseScriptPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Script?)
+    return (TransferContext.readReturnValue(OBJECT) as Script?)
   }
 
   /**
@@ -126,7 +126,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getInstanceBaseType(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -153,7 +153,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getGlobalName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -162,7 +162,7 @@ public open class Script internal constructor() : Resource() {
   public final fun hasScriptSignal(signalName: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to signalName)
     TransferContext.callMethod(rawPtr, MethodBindings.hasScriptSignalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptPropertyListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -180,7 +180,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptMethodListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -189,7 +189,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptSignalListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getScriptConstantMap(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptConstantMapPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -207,7 +207,7 @@ public open class Script internal constructor() : Resource() {
   public final fun getPropertyDefaultValue(`property`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to property)
     TransferContext.callMethod(rawPtr, MethodBindings.getPropertyDefaultValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -216,7 +216,7 @@ public open class Script internal constructor() : Resource() {
   public final fun isTool(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isToolPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -226,7 +226,7 @@ public open class Script internal constructor() : Resource() {
   public final fun isAbstract(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

@@ -112,7 +112,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOuterRadius(radius: Float): Unit {
@@ -123,7 +123,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getOuterRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSides(sides: Int): Unit {
@@ -134,7 +134,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRingSides(sides: Int): Unit {
@@ -145,7 +145,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getRingSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaterial(material: Material?): Unit {
@@ -156,7 +156,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
@@ -167,7 +167,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
   public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

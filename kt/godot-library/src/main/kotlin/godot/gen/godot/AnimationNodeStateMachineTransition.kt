@@ -199,7 +199,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getAdvanceCondition(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setXfadeTime(secs: Float): Unit {
@@ -210,7 +210,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getXfadeTime(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setXfadeCurve(curve: Curve?): Unit {
@@ -221,7 +221,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getXfadeCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
@@ -232,7 +232,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun isLoopBrokenAtEnd(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setReset(reset: Boolean): Unit {
@@ -243,7 +243,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun isReset(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPriority(priority: Int): Unit {
@@ -254,7 +254,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAdvanceExpression(text: String): Unit {
@@ -265,7 +265,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   public final fun getAdvanceExpression(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public enum class SwitchMode(

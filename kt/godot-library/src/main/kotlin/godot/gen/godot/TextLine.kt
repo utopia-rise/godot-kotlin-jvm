@@ -189,7 +189,7 @@ public open class TextLine : RefCounted() {
   public final fun getPreserveInvalid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreserveInvalidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPreserveControl(enabled: Boolean): Unit {
@@ -200,7 +200,7 @@ public open class TextLine : RefCounted() {
   public final fun getPreserveControl(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreserveControlPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -226,7 +226,7 @@ public open class TextLine : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(STRING to text, OBJECT to font, LONG to fontSize.toLong(), STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, MethodBindings.addStringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -243,7 +243,7 @@ public open class TextLine : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length.toLong(), DOUBLE to baseline.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.addObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -258,7 +258,7 @@ public open class TextLine : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.resizeObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWidth(width: Float): Unit {
@@ -269,7 +269,7 @@ public open class TextLine : RefCounted() {
   public final fun getWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -321,7 +321,7 @@ public open class TextLine : RefCounted() {
   public final fun getEllipsisChar(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -330,7 +330,7 @@ public open class TextLine : RefCounted() {
   public final fun getObjects(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -339,7 +339,7 @@ public open class TextLine : RefCounted() {
   public final fun getObjectRect(key: Any?): Rect2 {
     TransferContext.writeArguments(ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -348,7 +348,7 @@ public open class TextLine : RefCounted() {
   public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -357,7 +357,7 @@ public open class TextLine : RefCounted() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -367,7 +367,7 @@ public open class TextLine : RefCounted() {
   public final fun getLineAscent(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineAscentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -377,7 +377,7 @@ public open class TextLine : RefCounted() {
   public final fun getLineDescent(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineDescentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -386,7 +386,7 @@ public open class TextLine : RefCounted() {
   public final fun getLineWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -395,7 +395,7 @@ public open class TextLine : RefCounted() {
   public final fun getLineUnderlinePosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlinePositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -404,7 +404,7 @@ public open class TextLine : RefCounted() {
   public final fun getLineUnderlineThickness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineUnderlineThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -443,7 +443,7 @@ public open class TextLine : RefCounted() {
   public final fun hitTest(coords: Float): Int {
     TransferContext.writeArguments(DOUBLE to coords.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.hitTestPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

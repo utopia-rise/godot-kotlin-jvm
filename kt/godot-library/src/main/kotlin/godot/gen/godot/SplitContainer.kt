@@ -92,7 +92,7 @@ public open class SplitContainer : Container() {
   public final fun getSplitOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -112,7 +112,7 @@ public open class SplitContainer : Container() {
   public final fun isCollapsed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
@@ -134,7 +134,7 @@ public open class SplitContainer : Container() {
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class DraggerVisibility(

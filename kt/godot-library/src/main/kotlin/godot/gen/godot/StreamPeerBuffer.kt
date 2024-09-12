@@ -60,7 +60,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   public final fun getSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -69,7 +69,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   public final fun getPosition(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -88,7 +88,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   public final fun getDataArray(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataArrayPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   public final fun duplicate(): StreamPeerBuffer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeerBuffer?)
+    return (TransferContext.readReturnValue(OBJECT) as StreamPeerBuffer?)
   }
 
   public companion object

@@ -168,7 +168,7 @@ public open class RDShaderSPIRV : Resource() {
   public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -190,7 +190,7 @@ public open class RDShaderSPIRV : Resource() {
   public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

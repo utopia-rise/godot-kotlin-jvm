@@ -88,7 +88,7 @@ public open class FlowContainer : Container() {
   public final fun getLineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
@@ -121,7 +121,7 @@ public open class FlowContainer : Container() {
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setReverseFill(reverseFill: Boolean): Unit {
@@ -132,7 +132,7 @@ public open class FlowContainer : Container() {
   public final fun isReverseFill(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AlignmentMode(

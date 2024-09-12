@@ -47,7 +47,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
   public final fun getConstant(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

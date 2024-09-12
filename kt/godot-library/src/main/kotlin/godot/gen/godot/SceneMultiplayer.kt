@@ -192,7 +192,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun getRootPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthenticatingPeersPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -259,7 +259,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun getAuthCallback(): Callable {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthCallbackPtr, CALLABLE)
-    return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
+    return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   public final fun setAuthTimeout(timeout: Double): Unit {
@@ -270,7 +270,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun getAuthTimeout(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthTimeoutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setRefuseNewConnections(refuse: Boolean): Unit {
@@ -281,7 +281,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun isRefusingNewConnections(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowObjectDecoding(enable: Boolean): Unit {
@@ -292,7 +292,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun isObjectDecodingAllowed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isObjectDecodingAllowedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setServerRelayEnabled(enabled: Boolean): Unit {
@@ -303,7 +303,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun isServerRelayEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isServerRelayEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -325,7 +325,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun getMaxSyncPacketSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxSyncPacketSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxSyncPacketSize(size: Int): Unit {
@@ -336,7 +336,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
   public final fun getMaxDeltaPacketSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxDeltaPacketSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxDeltaPacketSize(size: Int): Unit {

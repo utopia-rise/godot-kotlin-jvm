@@ -458,7 +458,7 @@ public open class Camera2D : Node2D() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAnchorMode(anchorMode: AnchorMode): Unit {
@@ -480,7 +480,7 @@ public open class Camera2D : Node2D() {
   public final fun isIgnoringRotation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringRotationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setProcessCallback(mode: Camera2DProcessCallback): Unit {
@@ -502,7 +502,7 @@ public open class Camera2D : Node2D() {
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -519,7 +519,7 @@ public open class Camera2D : Node2D() {
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -538,7 +538,7 @@ public open class Camera2D : Node2D() {
   public final fun getLimit(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getLimitPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLimitSmoothingEnabled(limitSmoothingEnabled: Boolean): Unit {
@@ -549,7 +549,7 @@ public open class Camera2D : Node2D() {
   public final fun isLimitSmoothingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLimitSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragVerticalEnabled(enabled: Boolean): Unit {
@@ -560,7 +560,7 @@ public open class Camera2D : Node2D() {
   public final fun isDragVerticalEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDragVerticalEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragHorizontalEnabled(enabled: Boolean): Unit {
@@ -571,7 +571,7 @@ public open class Camera2D : Node2D() {
   public final fun isDragHorizontalEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDragHorizontalEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragVerticalOffset(offset: Float): Unit {
@@ -582,7 +582,7 @@ public open class Camera2D : Node2D() {
   public final fun getDragVerticalOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDragVerticalOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDragHorizontalOffset(offset: Float): Unit {
@@ -593,7 +593,7 @@ public open class Camera2D : Node2D() {
   public final fun getDragHorizontalOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDragHorizontalOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -612,7 +612,7 @@ public open class Camera2D : Node2D() {
   public final fun getDragMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -624,7 +624,7 @@ public open class Camera2D : Node2D() {
   public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -634,7 +634,7 @@ public open class Camera2D : Node2D() {
   public final fun getScreenCenterPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenCenterPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setZoom(zoom: Vector2): Unit {
@@ -645,7 +645,7 @@ public open class Camera2D : Node2D() {
   public final fun getZoom(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCustomViewport(viewport: Node?): Unit {
@@ -656,7 +656,7 @@ public open class Camera2D : Node2D() {
   public final fun getCustomViewport(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   public final fun setPositionSmoothingSpeed(positionSmoothingSpeed: Float): Unit {
@@ -667,7 +667,7 @@ public open class Camera2D : Node2D() {
   public final fun getPositionSmoothingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionSmoothingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPositionSmoothingEnabled(positionSmoothingSpeed: Boolean): Unit {
@@ -678,7 +678,7 @@ public open class Camera2D : Node2D() {
   public final fun isPositionSmoothingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPositionSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRotationSmoothingEnabled(enabled: Boolean): Unit {
@@ -689,7 +689,7 @@ public open class Camera2D : Node2D() {
   public final fun isRotationSmoothingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRotationSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRotationSmoothingSpeed(speed: Float): Unit {
@@ -700,7 +700,7 @@ public open class Camera2D : Node2D() {
   public final fun getRotationSmoothingSpeed(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRotationSmoothingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -736,7 +736,7 @@ public open class Camera2D : Node2D() {
   public final fun isScreenDrawingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isScreenDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLimitDrawingEnabled(limitDrawingEnabled: Boolean): Unit {
@@ -747,7 +747,7 @@ public open class Camera2D : Node2D() {
   public final fun isLimitDrawingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLimitDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMarginDrawingEnabled(marginDrawingEnabled: Boolean): Unit {
@@ -758,7 +758,7 @@ public open class Camera2D : Node2D() {
   public final fun isMarginDrawingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMarginDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AnchorMode(

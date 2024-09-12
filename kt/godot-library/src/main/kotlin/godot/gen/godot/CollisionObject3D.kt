@@ -197,7 +197,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
@@ -208,7 +208,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -227,7 +227,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -246,7 +246,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionPriority(priority: Float): Unit {
@@ -257,7 +257,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCollisionPriority(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPriorityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
@@ -279,7 +279,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun isRayPickable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRayPickablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCaptureInputOnDrag(enable: Boolean): Unit {
@@ -290,7 +290,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getCaptureInputOnDrag(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCaptureInputOnDragPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -299,7 +299,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -309,7 +309,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun createShapeOwner(owner: Object?): Long {
     TransferContext.writeArguments(OBJECT to owner)
     TransferContext.callMethod(rawPtr, MethodBindings.createShapeOwnerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -327,7 +327,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun getShapeOwners(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapeOwnersPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -344,7 +344,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeOwnerGetTransform(ownerId: Long): Transform3D {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerGetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -353,7 +353,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeOwnerGetOwner(ownerId: Long): Object? {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerGetOwnerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
+    return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -370,7 +370,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun isShapeOwnerDisabled(ownerId: Long): Boolean {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.isShapeOwnerDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -387,7 +387,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeOwnerGetShapeCount(ownerId: Long): Int {
     TransferContext.writeArguments(LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerGetShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -396,7 +396,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeOwnerGetShape(ownerId: Long, shapeId: Int): Shape3D? {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerGetShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   /**
@@ -405,7 +405,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeOwnerGetShapeIndex(ownerId: Long, shapeId: Int): Int {
     TransferContext.writeArguments(LONG to ownerId, LONG to shapeId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shapeOwnerGetShapeIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -430,7 +430,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
   public final fun shapeFindOwner(shapeIndex: Int): Long {
     TransferContext.writeArguments(LONG to shapeIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shapeFindOwnerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class DisableMode(

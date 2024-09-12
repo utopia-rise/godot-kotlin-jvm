@@ -69,7 +69,7 @@ public open class Shape3D internal constructor() : Resource() {
   public final fun getCustomSolverBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMargin(margin: Float): Unit {
@@ -80,7 +80,7 @@ public open class Shape3D internal constructor() : Resource() {
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -89,7 +89,7 @@ public open class Shape3D internal constructor() : Resource() {
   public final fun getDebugMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   public companion object

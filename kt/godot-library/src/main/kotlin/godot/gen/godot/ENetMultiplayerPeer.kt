@@ -136,7 +136,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   public final fun getHost(): ENetConnection? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ENetConnection?)
+    return (TransferContext.readReturnValue(OBJECT) as ENetConnection?)
   }
 
   /**
@@ -145,7 +145,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeer(id: Int): ENetPacketPeer? {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ENetPacketPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 
   public companion object

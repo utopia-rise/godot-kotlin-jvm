@@ -47,7 +47,7 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
   public final fun getConstant(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

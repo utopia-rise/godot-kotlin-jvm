@@ -171,7 +171,7 @@ public open class TileMap : Node2D() {
   public final fun getNavigationMap(layer: Int): RID {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class TileMap : Node2D() {
   public final fun getTileset(): TileSet? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTilesetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TileSet?)
+    return (TransferContext.readReturnValue(OBJECT) as TileSet?)
   }
 
   public final fun setRenderingQuadrantSize(size: Int): Unit {
@@ -202,7 +202,7 @@ public open class TileMap : Node2D() {
   public final fun getRenderingQuadrantSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderingQuadrantSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -211,7 +211,7 @@ public open class TileMap : Node2D() {
   public final fun getLayersCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -255,7 +255,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerName(layer: Int): String {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -275,7 +275,7 @@ public open class TileMap : Node2D() {
   public final fun isLayerEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLayerEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -294,7 +294,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerModulate(layer: Int): Color {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class TileMap : Node2D() {
   public final fun isLayerYSortEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLayerYSortEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -339,7 +339,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerYSortOrigin(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerYSortOriginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -358,7 +358,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerZIndex(layer: Int): Int {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerZIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -376,7 +376,7 @@ public open class TileMap : Node2D() {
   public final fun isLayerNavigationEnabled(layer: Int): Boolean {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLayerNavigationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -406,7 +406,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerNavigationMap(layer: Int): RID {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setCollisionAnimatable(enabled: Boolean): Unit {
@@ -417,7 +417,7 @@ public open class TileMap : Node2D() {
   public final fun isCollisionAnimatable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollisionAnimatablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionVisibilityMode(collisionVisibilityMode: VisibilityMode): Unit {
@@ -493,7 +493,7 @@ public open class TileMap : Node2D() {
   ): Int {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSourceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -511,7 +511,7 @@ public open class TileMap : Node2D() {
   ): Vector2i {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAtlasCoordsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -528,7 +528,7 @@ public open class TileMap : Node2D() {
   ): Int {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAlternativeTilePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -554,7 +554,7 @@ public open class TileMap : Node2D() {
   ): TileData? {
     TransferContext.writeArguments(LONG to layer.toLong(), VECTOR2I to coords, BOOL to useProxies)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellTileDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TileData?)
+    return (TransferContext.readReturnValue(OBJECT) as TileData?)
   }
 
   /**
@@ -564,7 +564,7 @@ public open class TileMap : Node2D() {
   public final fun getCoordsForBodyRid(body: RID): Vector2i {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.getCoordsForBodyRidPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -574,7 +574,7 @@ public open class TileMap : Node2D() {
   public final fun getLayerForBodyRid(body: RID): Int {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerForBodyRidPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -584,7 +584,7 @@ public open class TileMap : Node2D() {
   public final fun getPattern(layer: Int, coordsArray: VariantArray<Vector2i>): TileMapPattern? {
     TransferContext.writeArguments(LONG to layer.toLong(), ARRAY to coordsArray)
     TransferContext.callMethod(rawPtr, MethodBindings.getPatternPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TileMapPattern?)
+    return (TransferContext.readReturnValue(OBJECT) as TileMapPattern?)
   }
 
   /**
@@ -600,7 +600,7 @@ public open class TileMap : Node2D() {
   ): Vector2i {
     TransferContext.writeArguments(VECTOR2I to positionInTilemap, VECTOR2I to coordsInPattern, OBJECT to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.mapPatternPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -722,7 +722,7 @@ public open class TileMap : Node2D() {
   public final fun getSurroundingCells(coords: Vector2i): VariantArray<Vector2i> {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getSurroundingCellsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -734,7 +734,7 @@ public open class TileMap : Node2D() {
   public final fun getUsedCells(layer: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -757,7 +757,7 @@ public open class TileMap : Node2D() {
   ): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to layer.toLong(), LONG to sourceId.toLong(), VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsByIdPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -766,7 +766,7 @@ public open class TileMap : Node2D() {
   public final fun getUsedRect(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -778,7 +778,7 @@ public open class TileMap : Node2D() {
   public final fun mapToLocal(mapPosition: Vector2i): Vector2 {
     TransferContext.writeArguments(VECTOR2I to mapPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.mapToLocalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -789,7 +789,7 @@ public open class TileMap : Node2D() {
   public final fun localToMap(localPosition: Vector2): Vector2i {
     TransferContext.writeArguments(VECTOR2 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.localToMapPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -799,7 +799,7 @@ public open class TileMap : Node2D() {
   public final fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getNeighborCellPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public enum class VisibilityMode(

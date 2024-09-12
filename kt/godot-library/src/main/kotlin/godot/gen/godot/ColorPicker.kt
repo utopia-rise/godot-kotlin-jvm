@@ -211,7 +211,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getPickColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setDeferredMode(mode: Boolean): Unit {
@@ -222,7 +222,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun isDeferredMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDeferredModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColorMode(colorMode: ColorModeType): Unit {
@@ -244,7 +244,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCanAddSwatches(enabled: Boolean): Unit {
@@ -255,7 +255,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun areSwatchesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areSwatchesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPresetsVisible(visible: Boolean): Unit {
@@ -266,7 +266,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun arePresetsVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.arePresetsVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModesVisible(visible: Boolean): Unit {
@@ -277,7 +277,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun areModesVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areModesVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSamplerVisible(visible: Boolean): Unit {
@@ -288,7 +288,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun isSamplerVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSamplerVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSlidersVisible(visible: Boolean): Unit {
@@ -299,7 +299,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun areSlidersVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areSlidersVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHexVisible(visible: Boolean): Unit {
@@ -310,7 +310,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun isHexVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHexVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -337,7 +337,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPresetsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   /**
@@ -365,7 +365,7 @@ public open class ColorPicker : VBoxContainer() {
   public final fun getRecentPresets(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRecentPresetsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setPickerShape(shape: PickerShapeType): Unit {

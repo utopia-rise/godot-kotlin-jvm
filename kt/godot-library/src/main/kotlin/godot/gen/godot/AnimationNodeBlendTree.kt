@@ -103,7 +103,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
+    return (TransferContext.readReturnValue(OBJECT) as AnimationNode?)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasNodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -166,7 +166,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGraphOffset(offset: Vector2): Unit {
@@ -177,7 +177,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun getGraphOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object {

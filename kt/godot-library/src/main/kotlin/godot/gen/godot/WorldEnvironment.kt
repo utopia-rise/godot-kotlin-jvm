@@ -74,7 +74,7 @@ public open class WorldEnvironment : Node() {
   public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+    return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
@@ -85,7 +85,7 @@ public open class WorldEnvironment : Node() {
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun setCompositor(compositor: Compositor?): Unit {
@@ -96,7 +96,7 @@ public open class WorldEnvironment : Node() {
   public final fun getCompositor(): Compositor? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
+    return (TransferContext.readReturnValue(OBJECT) as Compositor?)
   }
 
   public companion object

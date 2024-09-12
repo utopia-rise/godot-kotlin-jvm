@@ -136,7 +136,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getBlendPointPosition(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointPositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -153,7 +153,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getBlendPointNode(point: Int): AnimationRootNode? {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AnimationRootNode?)
+    return (TransferContext.readReturnValue(OBJECT) as AnimationRootNode?)
   }
 
   /**
@@ -170,7 +170,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getBlendPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMinSpace(minSpace: Float): Unit {
@@ -181,7 +181,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getMinSpace(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinSpacePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxSpace(maxSpace: Float): Unit {
@@ -192,7 +192,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getMaxSpace(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpacePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSnap(snap: Float): Unit {
@@ -203,7 +203,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getSnap(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSnapPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setValueLabel(text: String): Unit {
@@ -214,7 +214,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun getValueLabel(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getValueLabelPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
@@ -236,7 +236,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   public final fun isUsingSync(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingSyncPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class BlendMode(

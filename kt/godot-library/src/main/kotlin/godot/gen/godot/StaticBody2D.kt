@@ -117,13 +117,13 @@ public open class StaticBody2D : PhysicsBody2D() {
   public final fun getConstantLinearVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getConstantAngularVelocity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
@@ -134,7 +134,7 @@ public open class StaticBody2D : PhysicsBody2D() {
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   public companion object

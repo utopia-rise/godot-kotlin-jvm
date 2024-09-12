@@ -72,7 +72,7 @@ public open class RDUniform : RefCounted() {
   public final fun getBinding(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -98,7 +98,7 @@ public open class RDUniform : RefCounted() {
   public final fun getIds(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public companion object

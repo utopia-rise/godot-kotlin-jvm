@@ -62,7 +62,7 @@ public open class BoxContainer : Container() {
   public final fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
     TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Control?)
+    return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
@@ -84,7 +84,7 @@ public open class BoxContainer : Container() {
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AlignmentMode(

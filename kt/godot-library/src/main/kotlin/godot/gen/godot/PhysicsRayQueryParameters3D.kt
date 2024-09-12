@@ -194,7 +194,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun getFrom(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTo(to: Vector3): Unit {
@@ -205,7 +205,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun getTo(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
@@ -216,7 +216,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
@@ -227,7 +227,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
@@ -238,7 +238,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
@@ -249,7 +249,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitFromInside(enable: Boolean): Unit {
@@ -260,7 +260,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitBackFaces(enable: Boolean): Unit {
@@ -271,7 +271,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   public final fun isHitBackFacesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitBackFacesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {
@@ -292,7 +292,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     ): PhysicsRayQueryParameters3D? {
       TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, LONG to collisionMask, ARRAY to exclude)
       TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsRayQueryParameters3D?)
+      return (TransferContext.readReturnValue(OBJECT) as PhysicsRayQueryParameters3D?)
     }
   }
 

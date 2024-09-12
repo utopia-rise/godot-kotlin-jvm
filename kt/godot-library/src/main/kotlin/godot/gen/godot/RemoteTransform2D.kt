@@ -95,7 +95,7 @@ public open class RemoteTransform2D : Node2D() {
   public final fun getRemoteNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemoteNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class RemoteTransform2D : Node2D() {
   public final fun getUseGlobalCoordinates(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdatePosition(updateRemotePosition: Boolean): Unit {
@@ -126,7 +126,7 @@ public open class RemoteTransform2D : Node2D() {
   public final fun getUpdatePosition(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdatePositionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateRotation(updateRemoteRotation: Boolean): Unit {
@@ -137,7 +137,7 @@ public open class RemoteTransform2D : Node2D() {
   public final fun getUpdateRotation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdateRotationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateScale(updateRemoteScale: Boolean): Unit {
@@ -148,7 +148,7 @@ public open class RemoteTransform2D : Node2D() {
   public final fun getUpdateScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdateScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

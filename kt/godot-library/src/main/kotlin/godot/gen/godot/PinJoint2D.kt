@@ -107,7 +107,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun getSoftness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSoftnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitLower(angularLimitLower: Float): Unit {
@@ -118,7 +118,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun getAngularLimitLower(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitUpper(angularLimitUpper: Float): Unit {
@@ -129,7 +129,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun getAngularLimitUpper(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorTargetVelocity(motorTargetVelocity: Float): Unit {
@@ -140,7 +140,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun getMotorTargetVelocity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorEnabled(enabled: Boolean): Unit {
@@ -151,7 +151,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun isMotorEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMotorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAngularLimitEnabled(enabled: Boolean): Unit {
@@ -162,7 +162,7 @@ public open class PinJoint2D : Joint2D() {
   public final fun isAngularLimitEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

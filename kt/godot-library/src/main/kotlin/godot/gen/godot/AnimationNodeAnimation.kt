@@ -129,7 +129,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun getAnimation(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setPlayMode(mode: PlayMode): Unit {
@@ -151,7 +151,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun isUsingCustomTimeline(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomTimelinePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTimelineLength(timelineLength: Double): Unit {
@@ -162,7 +162,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun getTimelineLength(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimelineLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setStretchTimeScale(stretchTimeScale: Boolean): Unit {
@@ -173,7 +173,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun isStretchingTimeScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStretchingTimeScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStartOffset(startOffset: Double): Unit {
@@ -184,7 +184,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun getStartOffset(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStartOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setLoopMode(loopMode: Animation.LoopMode): Unit {

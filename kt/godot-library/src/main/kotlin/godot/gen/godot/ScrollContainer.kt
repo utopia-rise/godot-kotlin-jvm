@@ -169,7 +169,7 @@ public open class ScrollContainer : Container() {
   public final fun getHScroll(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHScrollPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVScroll(`value`: Int): Unit {
@@ -180,7 +180,7 @@ public open class ScrollContainer : Container() {
   public final fun getVScroll(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHorizontalCustomStep(`value`: Float): Unit {
@@ -191,7 +191,7 @@ public open class ScrollContainer : Container() {
   public final fun getHorizontalCustomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalCustomStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVerticalCustomStep(`value`: Float): Unit {
@@ -202,7 +202,7 @@ public open class ScrollContainer : Container() {
   public final fun getVerticalCustomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticalCustomStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHorizontalScrollMode(enable: ScrollMode): Unit {
@@ -235,7 +235,7 @@ public open class ScrollContainer : Container() {
   public final fun getDeadzone(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeadzonePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFollowFocus(enabled: Boolean): Unit {
@@ -246,7 +246,7 @@ public open class ScrollContainer : Container() {
   public final fun isFollowingFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowingFocusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -257,7 +257,7 @@ public open class ScrollContainer : Container() {
   public final fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHScrollBarPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as HScrollBar?)
+    return (TransferContext.readReturnValue(OBJECT) as HScrollBar?)
   }
 
   /**
@@ -268,7 +268,7 @@ public open class ScrollContainer : Container() {
   public final fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as VScrollBar?)
+    return (TransferContext.readReturnValue(OBJECT) as VScrollBar?)
   }
 
   /**

@@ -152,7 +152,7 @@ public open class CompositorEffect : Resource() {
   public final fun getEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
@@ -174,7 +174,7 @@ public open class CompositorEffect : Resource() {
   public final fun getAccessResolvedColor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAccessResolvedDepth(enable: Boolean): Unit {
@@ -185,7 +185,7 @@ public open class CompositorEffect : Resource() {
   public final fun getAccessResolvedDepth(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsMotionVectors(enable: Boolean): Unit {
@@ -196,7 +196,7 @@ public open class CompositorEffect : Resource() {
   public final fun getNeedsMotionVectors(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsNormalRoughness(enable: Boolean): Unit {
@@ -207,7 +207,7 @@ public open class CompositorEffect : Resource() {
   public final fun getNeedsNormalRoughness(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsSeparateSpecular(enable: Boolean): Unit {
@@ -218,7 +218,7 @@ public open class CompositorEffect : Resource() {
   public final fun getNeedsSeparateSpecular(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class EffectCallbackType(

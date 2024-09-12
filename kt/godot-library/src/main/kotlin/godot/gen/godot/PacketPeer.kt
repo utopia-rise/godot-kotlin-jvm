@@ -67,7 +67,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   public final fun getVar(allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -88,7 +88,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   public final fun getPacket(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -115,13 +115,13 @@ public open class PacketPeer internal constructor() : RefCounted() {
   public final fun getAvailablePacketCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePacketCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getEncodeBufferMaxSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setEncodeBufferMaxSize(maxSize: Int): Unit {

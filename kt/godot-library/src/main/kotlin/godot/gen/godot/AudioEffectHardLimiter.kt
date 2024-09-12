@@ -75,7 +75,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   public final fun getCeilingDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPreGainDb(pPreGain: Float): Unit {
@@ -86,7 +86,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   public final fun getPreGainDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRelease(pRelease: Float): Unit {
@@ -97,7 +97,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   public final fun getRelease(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

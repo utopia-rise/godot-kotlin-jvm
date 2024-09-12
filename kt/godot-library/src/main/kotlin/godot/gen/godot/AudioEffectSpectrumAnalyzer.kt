@@ -76,7 +76,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public final fun getBufferLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTapBackPos(seconds: Float): Unit {
@@ -87,7 +87,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
   public final fun getTapBackPos(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {

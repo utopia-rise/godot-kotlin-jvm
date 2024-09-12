@@ -201,43 +201,43 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getTotalGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalGravityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getTotalLinearDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getTotalAngularDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getCenterOfMass(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getCenterOfMassLocal(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassLocalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getInverseMass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInverseMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInverseInertia(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInverseInertiaPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearVelocity(velocity: Vector2): Unit {
@@ -248,7 +248,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getLinearVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAngularVelocity(velocity: Float): Unit {
@@ -259,7 +259,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getAngularVelocity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransform(transform: Transform2D): Unit {
@@ -270,7 +270,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -280,7 +280,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityAtLocalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -401,7 +401,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getConstantForce(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -420,7 +420,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getConstantTorque(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSleepState(enabled: Boolean): Unit {
@@ -431,7 +431,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun isSleeping(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -442,7 +442,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -451,7 +451,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactLocalPosition(contactIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -460,7 +460,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactLocalNormal(contactIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalNormalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -469,7 +469,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactLocalShape(contactIdx: Int): Int {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -478,7 +478,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactLocalVelocityAtPosition(contactIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalVelocityAtPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -487,7 +487,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactCollider(contactIdx: Int): RID {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -496,7 +496,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactColliderPosition(contactIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -505,7 +505,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactColliderId(contactIdx: Int): Long {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -515,7 +515,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactColliderObject(contactIdx: Int): Object? {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderObjectPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
+    return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -524,7 +524,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactColliderShape(contactIdx: Int): Int {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -534,7 +534,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderVelocityAtPositionPtr,
         VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -543,13 +543,13 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getContactImpulse(contactIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactImpulsePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -567,7 +567,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   public final fun getSpaceState(): PhysicsDirectSpaceState2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpaceStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState2D?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState2D?)
   }
 
   public companion object

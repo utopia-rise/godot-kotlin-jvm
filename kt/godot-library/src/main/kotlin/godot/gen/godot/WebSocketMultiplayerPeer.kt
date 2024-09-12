@@ -147,7 +147,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeer(peerId: Int): WebSocketPeer? {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as WebSocketPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as WebSocketPeer?)
   }
 
   /**
@@ -156,7 +156,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeerAddress(id: Int): String {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -165,13 +165,13 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeerPort(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getSupportedProtocols(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportedProtocolsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setSupportedProtocols(protocols: PackedStringArray): Unit {
@@ -182,7 +182,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getHandshakeHeaders(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeHeadersPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setHandshakeHeaders(protocols: PackedStringArray): Unit {
@@ -193,7 +193,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getInboundBufferSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInboundBufferSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInboundBufferSize(bufferSize: Int): Unit {
@@ -204,7 +204,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getOutboundBufferSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutboundBufferSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutboundBufferSize(bufferSize: Int): Unit {
@@ -215,7 +215,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getHandshakeTimeout(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHandshakeTimeoutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHandshakeTimeout(timeout: Float): Unit {
@@ -231,7 +231,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   public final fun getMaxQueuedPackets(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxQueuedPacketsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

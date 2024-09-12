@@ -359,7 +359,7 @@ public open class Parallax2D : Node2D() {
   public final fun getScrollScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeatSize(repeatSize: Vector2): Unit {
@@ -370,7 +370,7 @@ public open class Parallax2D : Node2D() {
   public final fun getRepeatSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeatTimes(repeatTimes: Int): Unit {
@@ -381,7 +381,7 @@ public open class Parallax2D : Node2D() {
   public final fun getRepeatTimes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRepeatTimesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAutoscroll(autoscroll: Vector2): Unit {
@@ -392,7 +392,7 @@ public open class Parallax2D : Node2D() {
   public final fun getAutoscroll(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoscrollPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollOffset(offset: Vector2): Unit {
@@ -403,7 +403,7 @@ public open class Parallax2D : Node2D() {
   public final fun getScrollOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenOffset(offset: Vector2): Unit {
@@ -414,7 +414,7 @@ public open class Parallax2D : Node2D() {
   public final fun getScreenOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitBegin(offset: Vector2): Unit {
@@ -425,7 +425,7 @@ public open class Parallax2D : Node2D() {
   public final fun getLimitBegin(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitEnd(offset: Vector2): Unit {
@@ -436,7 +436,7 @@ public open class Parallax2D : Node2D() {
   public final fun getLimitEnd(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFollowViewport(follow: Boolean): Unit {
@@ -447,7 +447,7 @@ public open class Parallax2D : Node2D() {
   public final fun getFollowViewport(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIgnoreCameraScroll(ignore: Boolean): Unit {
@@ -458,7 +458,7 @@ public open class Parallax2D : Node2D() {
   public final fun isIgnoreCameraScroll(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraScrollPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

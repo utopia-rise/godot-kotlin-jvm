@@ -129,7 +129,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRatio(ratio: Float): Unit {
@@ -140,7 +140,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGain(gain: Float): Unit {
@@ -151,7 +151,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getGain(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttackUs(attackUs: Float): Unit {
@@ -162,7 +162,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getAttackUs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttackUsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setReleaseMs(releaseMs: Float): Unit {
@@ -173,7 +173,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getReleaseMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReleaseMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMix(mix: Float): Unit {
@@ -184,7 +184,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getMix(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSidechain(sidechain: StringName): Unit {
@@ -195,7 +195,7 @@ public open class AudioEffectCompressor : AudioEffect() {
   public final fun getSidechain(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSidechainPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public companion object

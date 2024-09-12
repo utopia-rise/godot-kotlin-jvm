@@ -127,7 +127,7 @@ public open class StyleBoxLine : StyleBox() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setThickness(thickness: Int): Unit {
@@ -138,7 +138,7 @@ public open class StyleBoxLine : StyleBox() {
   public final fun getThickness(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setGrowBegin(offset: Float): Unit {
@@ -149,7 +149,7 @@ public open class StyleBoxLine : StyleBox() {
   public final fun getGrowBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGrowEnd(offset: Float): Unit {
@@ -160,7 +160,7 @@ public open class StyleBoxLine : StyleBox() {
   public final fun getGrowEnd(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
@@ -171,7 +171,7 @@ public open class StyleBoxLine : StyleBox() {
   public final fun isVertical(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

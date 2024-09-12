@@ -123,7 +123,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
   public final fun getBakeMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -142,7 +142,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
@@ -153,7 +153,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
   public final fun getBakeSimplificationDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOccluder(occluder: Occluder3D?): Unit {
@@ -164,7 +164,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
   public final fun getOccluder(): Occluder3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Occluder3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Occluder3D?)
   }
 
   public companion object

@@ -1989,7 +1989,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getDirection(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setInheritVelocityRatio(ratio: Double): Unit {
@@ -2000,7 +2000,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getInheritVelocityRatio(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInheritVelocityRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setSpread(degrees: Float): Unit {
@@ -2011,7 +2011,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSpread(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlatness(amount: Float): Unit {
@@ -2022,7 +2022,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getFlatness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlatnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -2043,7 +2043,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getParam(`param`: Parameter): Vector2 {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -2060,7 +2060,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getParamMin(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -2077,7 +2077,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getParamMax(`param`: Parameter): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -2094,7 +2094,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getParamTexture(`param`: Parameter): Texture2D? {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setColor(color: Color): Unit {
@@ -2105,7 +2105,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColorRamp(ramp: Texture2D?): Unit {
@@ -2116,7 +2116,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getColorRamp(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setAlphaCurve(curve: Texture2D?): Unit {
@@ -2127,7 +2127,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getAlphaCurve(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionCurve(curve: Texture2D?): Unit {
@@ -2138,7 +2138,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionCurve(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setColorInitialRamp(ramp: Texture2D?): Unit {
@@ -2149,7 +2149,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getColorInitialRamp(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setVelocityLimitCurve(curve: Texture2D?): Unit {
@@ -2160,7 +2160,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getVelocityLimitCurve(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityLimitCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -2177,7 +2177,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVelocityPivot(pivot: Vector3): Unit {
@@ -2188,7 +2188,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getVelocityPivot(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPivotPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
@@ -2210,7 +2210,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionSphereRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionBoxExtents(extents: Vector3): Unit {
@@ -2221,7 +2221,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionBoxExtents(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionPointTexture(texture: Texture2D?): Unit {
@@ -2232,7 +2232,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionPointTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionNormalTexture(texture: Texture2D?): Unit {
@@ -2243,7 +2243,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionNormalTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionNormalTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionColorTexture(texture: Texture2D?): Unit {
@@ -2254,7 +2254,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionColorTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionColorTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionPointCount(pointCount: Int): Unit {
@@ -2265,7 +2265,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setEmissionRingAxis(axis: Vector3): Unit {
@@ -2276,7 +2276,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionRingAxis(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionRingHeight(height: Float): Unit {
@@ -2287,7 +2287,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionRingHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingRadius(radius: Float): Unit {
@@ -2298,7 +2298,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionRingRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
@@ -2309,7 +2309,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionRingInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionShapeOffset(emissionShapeOffset: Vector3): Unit {
@@ -2320,7 +2320,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionShapeOffset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionShapeOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionShapeScale(emissionShapeScale: Vector3): Unit {
@@ -2331,13 +2331,13 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getEmissionShapeScale(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEmissionShapeScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getTurbulenceEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTurbulenceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTurbulenceEnabled(turbulenceEnabled: Boolean): Unit {
@@ -2348,7 +2348,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getTurbulenceNoiseStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTurbulenceNoiseStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTurbulenceNoiseStrength(turbulenceNoiseStrength: Float): Unit {
@@ -2359,7 +2359,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getTurbulenceNoiseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTurbulenceNoiseScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTurbulenceNoiseScale(turbulenceNoiseScale: Float): Unit {
@@ -2370,7 +2370,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getTurbulenceNoiseSpeedRandom(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTurbulenceNoiseSpeedRandomPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTurbulenceNoiseSpeedRandom(turbulenceNoiseSpeedRandom: Float): Unit {
@@ -2381,7 +2381,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getTurbulenceNoiseSpeed(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTurbulenceNoiseSpeedPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTurbulenceNoiseSpeed(turbulenceNoiseSpeed: Vector3): Unit {
@@ -2392,7 +2392,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGravity(accelVec: Vector3): Unit {
@@ -2408,7 +2408,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getLifetimeRandomness(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getSubEmitterMode(): SubEmitterMode {
@@ -2425,7 +2425,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSubEmitterFrequency(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterFrequencyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setSubEmitterFrequency(hz: Double): Unit {
@@ -2436,7 +2436,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSubEmitterAmountAtEnd(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterAmountAtEndPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubEmitterAmountAtEnd(amount: Int): Unit {
@@ -2447,7 +2447,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSubEmitterAmountAtCollision(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterAmountAtCollisionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubEmitterAmountAtCollision(amount: Int): Unit {
@@ -2458,7 +2458,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getSubEmitterKeepVelocity(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterKeepVelocityPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSubEmitterKeepVelocity(enable: Boolean): Unit {
@@ -2474,7 +2474,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun isAttractorInteractionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAttractorInteractionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionMode(mode: CollisionMode): Unit {
@@ -2496,7 +2496,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun isCollisionUsingScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollisionUsingScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollisionFriction(friction: Float): Unit {
@@ -2507,7 +2507,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getCollisionFriction(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionFrictionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCollisionBounce(bounce: Float): Unit {
@@ -2518,7 +2518,7 @@ public open class ParticleProcessMaterial : Material() {
   public final fun getCollisionBounce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionBouncePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Parameter(

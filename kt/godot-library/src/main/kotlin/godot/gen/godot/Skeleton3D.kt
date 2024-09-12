@@ -148,7 +148,7 @@ public open class Skeleton3D : Node3D() {
   public final fun addBone(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addBonePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -158,7 +158,7 @@ public open class Skeleton3D : Node3D() {
   public final fun findBone(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findBonePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -167,7 +167,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneName(boneIdx: Int): String {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -185,7 +185,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getConcatenatedBoneNames(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConcatenatedBoneNamesPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -196,7 +196,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneParent(boneIdx: Int): Int {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneParentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -215,7 +215,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getVersion(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -246,7 +246,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneChildren(boneIdx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneChildrenPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -257,7 +257,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getParentlessBones(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentlessBonesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -266,7 +266,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneRest(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneRestPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -283,13 +283,13 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneGlobalRest(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneGlobalRestPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun createSkinFromRestTransforms(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createSkinFromRestTransformsPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
+    return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
   /**
@@ -298,7 +298,7 @@ public open class Skeleton3D : Node3D() {
   public final fun registerSkin(skin: Skin?): SkinReference? {
     TransferContext.writeArguments(OBJECT to skin)
     TransferContext.callMethod(rawPtr, MethodBindings.registerSkinPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
+    return (TransferContext.readReturnValue(OBJECT) as SkinReference?)
   }
 
   /**
@@ -326,7 +326,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBonePose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePosePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -371,7 +371,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBonePosePosition(boneIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePosePositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -381,7 +381,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBonePoseRotation(boneIdx: Int): Quaternion {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePoseRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION, false) as Quaternion)
+    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
 
   /**
@@ -390,7 +390,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBonePoseScale(boneIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBonePoseScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -415,7 +415,7 @@ public open class Skeleton3D : Node3D() {
   public final fun isBoneEnabled(boneIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBoneEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -437,7 +437,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneGlobalPose(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneGlobalPosePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -475,7 +475,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getMotionScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShowRestOnly(enabled: Boolean): Unit {
@@ -486,7 +486,7 @@ public open class Skeleton3D : Node3D() {
   public final fun isShowRestOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowRestOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModifierCallbackModeProcess(mode: ModifierCallbackModeProcess): Unit {
@@ -533,7 +533,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneGlobalPoseOverride(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneGlobalPoseOverridePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -544,7 +544,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getBoneGlobalPoseNoOverride(boneIdx: Int): Transform3D {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneGlobalPoseNoOverridePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setAnimatePhysicalBones(enabled: Boolean): Unit {
@@ -555,7 +555,7 @@ public open class Skeleton3D : Node3D() {
   public final fun getAnimatePhysicalBones(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnimatePhysicalBonesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

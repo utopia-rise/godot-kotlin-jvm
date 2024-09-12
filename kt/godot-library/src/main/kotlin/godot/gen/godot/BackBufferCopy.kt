@@ -93,7 +93,7 @@ public open class BackBufferCopy : Node2D() {
   public final fun getRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setCopyMode(copyMode: CopyMode): Unit {

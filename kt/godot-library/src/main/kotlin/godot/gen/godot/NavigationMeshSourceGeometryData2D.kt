@@ -71,7 +71,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   public final fun hasData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -89,7 +89,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   public final fun getTraversableOutlines(): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   /**
@@ -107,7 +107,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   public final fun getObstructionOutlines(): VariantArray<PackedVector2Array> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
   public final fun getProjectedObstructions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object

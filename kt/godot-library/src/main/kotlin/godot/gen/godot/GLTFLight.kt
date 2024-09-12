@@ -151,7 +151,7 @@ public open class GLTFLight : Resource() {
   public final fun toNode(): Light3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Light3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Light3D?)
   }
 
   /**
@@ -160,13 +160,13 @@ public open class GLTFLight : Resource() {
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColor(color: Color): Unit {
@@ -177,7 +177,7 @@ public open class GLTFLight : Resource() {
   public final fun getIntensity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setIntensity(intensity: Float): Unit {
@@ -188,7 +188,7 @@ public open class GLTFLight : Resource() {
   public final fun getLightType(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLightType(lightType: String): Unit {
@@ -199,7 +199,7 @@ public open class GLTFLight : Resource() {
   public final fun getRange(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRange(range: Float): Unit {
@@ -210,7 +210,7 @@ public open class GLTFLight : Resource() {
   public final fun getInnerConeAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInnerConeAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInnerConeAngle(innerConeAngle: Float): Unit {
@@ -221,7 +221,7 @@ public open class GLTFLight : Resource() {
   public final fun getOuterConeAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOuterConeAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOuterConeAngle(outerConeAngle: Float): Unit {
@@ -232,7 +232,7 @@ public open class GLTFLight : Resource() {
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
@@ -247,7 +247,7 @@ public open class GLTFLight : Resource() {
     public final fun fromNode(lightNode: Light3D?): GLTFLight? {
       TransferContext.writeArguments(OBJECT to lightNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFLight?)
     }
 
     /**
@@ -256,7 +256,7 @@ public open class GLTFLight : Resource() {
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFLight? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFLight?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFLight?)
     }
   }
 

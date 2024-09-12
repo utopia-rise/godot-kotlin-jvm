@@ -49,7 +49,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
   public final fun getMultimesh(): MultiMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 
   public companion object

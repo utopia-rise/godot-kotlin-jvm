@@ -181,7 +181,7 @@ public open class ParallaxLayer : Node2D() {
   public final fun getMotionScale(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotionOffset(offset: Vector2): Unit {
@@ -192,7 +192,7 @@ public open class ParallaxLayer : Node2D() {
   public final fun getMotionOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMirroring(mirror: Vector2): Unit {
@@ -203,7 +203,7 @@ public open class ParallaxLayer : Node2D() {
   public final fun getMirroring(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object

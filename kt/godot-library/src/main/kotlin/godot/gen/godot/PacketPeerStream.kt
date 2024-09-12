@@ -68,7 +68,7 @@ public open class PacketPeerStream : PacketPeer() {
   public final fun getStreamPeer(): StreamPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
 
   public final fun setInputBufferMaxSize(maxSizeBytes: Int): Unit {
@@ -84,13 +84,13 @@ public open class PacketPeerStream : PacketPeer() {
   public final fun getInputBufferMaxSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputBufferMaxSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getOutputBufferMaxSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputBufferMaxSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

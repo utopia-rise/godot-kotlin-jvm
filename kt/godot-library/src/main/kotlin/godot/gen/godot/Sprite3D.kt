@@ -194,7 +194,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setRegionEnabled(enabled: Boolean): Unit {
@@ -205,7 +205,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun isRegionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRegionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRegionRect(rect: Rect2): Unit {
@@ -216,7 +216,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getRegionRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setFrame(frame: Int): Unit {
@@ -227,7 +227,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFrameCoords(coords: Vector2i): Unit {
@@ -238,7 +238,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getFrameCoords(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameCoordsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setVframes(vframes: Int): Unit {
@@ -249,7 +249,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getVframes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVframesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHframes(hframes: Int): Unit {
@@ -260,7 +260,7 @@ public open class Sprite3D : SpriteBase3D() {
   public final fun getHframes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHframesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

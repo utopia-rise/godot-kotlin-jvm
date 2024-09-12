@@ -74,7 +74,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getClipCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInitialClip(clipIndex: Int): Unit {
@@ -85,7 +85,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getInitialClip(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInitialClipPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -102,7 +102,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipName(clipIndex: Int): StringName {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getClipNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -119,7 +119,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipStream(clipIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getClipStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   /**
@@ -154,7 +154,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getClipAutoAdvanceNextClip(clipIndex: Int): Int {
     TransferContext.writeArguments(LONG to clipIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getClipAutoAdvanceNextClipPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -194,7 +194,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun hasTransition(fromClip: Int, toClip: Int): Boolean {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasTransitionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -212,7 +212,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionList(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -248,7 +248,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFadeBeats(fromClip: Int, toClip: Int): Float {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionFadeBeatsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -257,7 +257,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun isTransitionUsingFillerClip(fromClip: Int, toClip: Int): Boolean {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isTransitionUsingFillerClipPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -266,7 +266,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun getTransitionFillerClip(fromClip: Int, toClip: Int): Int {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionFillerClipPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -275,7 +275,7 @@ public open class AudioStreamInteractive : AudioStream() {
   public final fun isTransitionHoldingPrevious(fromClip: Int, toClip: Int): Boolean {
     TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isTransitionHoldingPreviousPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class TransitionFromTime(

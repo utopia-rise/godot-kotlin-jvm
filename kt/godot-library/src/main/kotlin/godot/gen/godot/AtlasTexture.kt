@@ -147,7 +147,7 @@ public open class AtlasTexture : Texture2D() {
   public final fun getAtlas(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAtlasPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setRegion(region: Rect2): Unit {
@@ -158,7 +158,7 @@ public open class AtlasTexture : Texture2D() {
   public final fun getRegion(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setMargin(margin: Rect2): Unit {
@@ -169,7 +169,7 @@ public open class AtlasTexture : Texture2D() {
   public final fun getMargin(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setFilterClip(enable: Boolean): Unit {
@@ -180,7 +180,7 @@ public open class AtlasTexture : Texture2D() {
   public final fun hasFilterClip(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasFilterClipPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

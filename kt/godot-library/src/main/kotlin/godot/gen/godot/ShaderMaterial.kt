@@ -56,7 +56,7 @@ public open class ShaderMaterial : Material() {
   public final fun getShader(): Shader? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shader?)
+    return (TransferContext.readReturnValue(OBJECT) as Shader?)
   }
 
   /**
@@ -80,7 +80,7 @@ public open class ShaderMaterial : Material() {
   public final fun getShaderParameter(`param`: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to param)
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public companion object

@@ -251,7 +251,7 @@ public open class SceneTree : MainLoop() {
   public final fun getRoot(): Window? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Window?)
+    return (TransferContext.readReturnValue(OBJECT) as Window?)
   }
 
   /**
@@ -260,13 +260,13 @@ public open class SceneTree : MainLoop() {
   public final fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasGroupPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isAutoAcceptQuit(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoAcceptQuit(enabled: Boolean): Unit {
@@ -277,7 +277,7 @@ public open class SceneTree : MainLoop() {
   public final fun isQuitOnGoBack(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isQuitOnGoBackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setQuitOnGoBack(enabled: Boolean): Unit {
@@ -293,7 +293,7 @@ public open class SceneTree : MainLoop() {
   public final fun isDebuggingCollisionsHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugPathsHint(enable: Boolean): Unit {
@@ -304,7 +304,7 @@ public open class SceneTree : MainLoop() {
   public final fun isDebuggingPathsHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugNavigationHint(enable: Boolean): Unit {
@@ -315,7 +315,7 @@ public open class SceneTree : MainLoop() {
   public final fun isDebuggingNavigationHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditedSceneRoot(scene: Node?): Unit {
@@ -326,7 +326,7 @@ public open class SceneTree : MainLoop() {
   public final fun getEditedSceneRoot(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   public final fun setPause(enable: Boolean): Unit {
@@ -337,7 +337,7 @@ public open class SceneTree : MainLoop() {
   public final fun isPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -381,7 +381,7 @@ public open class SceneTree : MainLoop() {
   ): SceneTreeTimer? {
     TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
     TransferContext.callMethod(rawPtr, MethodBindings.createTimerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SceneTreeTimer?)
+    return (TransferContext.readReturnValue(OBJECT) as SceneTreeTimer?)
   }
 
   /**
@@ -394,7 +394,7 @@ public open class SceneTree : MainLoop() {
   public final fun createTween(): Tween? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createTweenPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Tween?)
+    return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -403,7 +403,7 @@ public open class SceneTree : MainLoop() {
   public final fun getProcessedTweens(): VariantArray<Tween> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessedTweensPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Tween>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Tween>)
   }
 
   /**
@@ -412,7 +412,7 @@ public open class SceneTree : MainLoop() {
   public final fun getNodeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -422,7 +422,7 @@ public open class SceneTree : MainLoop() {
   public final fun getFrame(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -447,7 +447,7 @@ public open class SceneTree : MainLoop() {
   public final fun isPhysicsInterpolationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -573,7 +573,7 @@ public open class SceneTree : MainLoop() {
   public final fun getNodesInGroup(group: StringName): VariantArray<Node> {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodesInGroupPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node>)
   }
 
   /**
@@ -583,7 +583,7 @@ public open class SceneTree : MainLoop() {
   public final fun getFirstNodeInGroup(group: StringName): Node? {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, MethodBindings.getFirstNodeInGroupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -592,7 +592,7 @@ public open class SceneTree : MainLoop() {
   public final fun getNodeCountInGroup(group: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to group)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountInGroupPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurrentScene(childNode: Node?): Unit {
@@ -603,7 +603,7 @@ public open class SceneTree : MainLoop() {
   public final fun getCurrentScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -683,7 +683,7 @@ public open class SceneTree : MainLoop() {
   public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
     TransferContext.writeArguments(NODE_PATH to forPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
+    return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
   }
 
   public final fun setMultiplayerPollEnabled(enabled: Boolean): Unit {
@@ -694,7 +694,7 @@ public open class SceneTree : MainLoop() {
   public final fun isMultiplayerPollEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class GroupCallFlags(

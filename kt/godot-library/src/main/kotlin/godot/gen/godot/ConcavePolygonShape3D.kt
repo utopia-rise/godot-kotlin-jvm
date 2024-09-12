@@ -82,7 +82,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
@@ -93,7 +93,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
   public final fun isBackfaceCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

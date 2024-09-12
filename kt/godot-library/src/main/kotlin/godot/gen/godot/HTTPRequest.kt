@@ -384,7 +384,7 @@ public open class HTTPRequest : Node() {
   public final fun isUsingThreads(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAcceptGzip(enable: Boolean): Unit {
@@ -395,7 +395,7 @@ public open class HTTPRequest : Node() {
   public final fun isAcceptingGzip(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBodySizeLimit(bytes: Int): Unit {
@@ -406,7 +406,7 @@ public open class HTTPRequest : Node() {
   public final fun getBodySizeLimit(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxRedirects(amount: Int): Unit {
@@ -417,7 +417,7 @@ public open class HTTPRequest : Node() {
   public final fun getMaxRedirects(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDownloadFile(path: String): Unit {
@@ -428,7 +428,7 @@ public open class HTTPRequest : Node() {
   public final fun getDownloadFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -437,7 +437,7 @@ public open class HTTPRequest : Node() {
   public final fun getDownloadedBytes(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDownloadedBytesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -448,7 +448,7 @@ public open class HTTPRequest : Node() {
   public final fun getBodySize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBodySizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTimeout(timeout: Double): Unit {
@@ -459,7 +459,7 @@ public open class HTTPRequest : Node() {
   public final fun getTimeout(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDownloadChunkSize(chunkSize: Int): Unit {
@@ -470,7 +470,7 @@ public open class HTTPRequest : Node() {
   public final fun getDownloadChunkSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**

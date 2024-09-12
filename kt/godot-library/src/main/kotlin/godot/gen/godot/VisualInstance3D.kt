@@ -113,7 +113,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getBase(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBasePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -124,7 +124,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getInstance(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setLayerMask(mask: Long): Unit {
@@ -135,7 +135,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getLayerMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -154,7 +154,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortingOffset(offset: Float): Unit {
@@ -165,7 +165,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getSortingOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSortingOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSortingUseAabbCenter(enabled: Boolean): Unit {
@@ -176,7 +176,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun isSortingUseAabbCenter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSortingUseAabbCenterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -185,7 +185,7 @@ public open class VisualInstance3D : Node3D() {
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   public companion object

@@ -136,7 +136,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun isInputSetAsAutoAdvance(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -154,7 +154,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun isInputLoopBrokenAtEnd(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun isInputReset(input: Int): Boolean {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setXfadeTime(time: Double): Unit {
@@ -182,7 +182,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun getXfadeTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setXfadeCurve(curve: Curve?): Unit {
@@ -193,7 +193,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun getXfadeCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setAllowTransitionToSelf(enable: Boolean): Unit {
@@ -204,7 +204,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   public final fun isAllowTransitionToSelf(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

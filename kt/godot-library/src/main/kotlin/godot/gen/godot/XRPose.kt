@@ -200,7 +200,7 @@ public open class XRPose : RefCounted() {
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setName(name: StringName): Unit {
@@ -211,7 +211,7 @@ public open class XRPose : RefCounted() {
   public final fun getName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
@@ -222,7 +222,7 @@ public open class XRPose : RefCounted() {
   public final fun getTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -232,7 +232,7 @@ public open class XRPose : RefCounted() {
   public final fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setLinearVelocity(velocity: Vector3): Unit {
@@ -243,7 +243,7 @@ public open class XRPose : RefCounted() {
   public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(velocity: Vector3): Unit {
@@ -254,7 +254,7 @@ public open class XRPose : RefCounted() {
   public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {

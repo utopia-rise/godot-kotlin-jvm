@@ -116,7 +116,7 @@ public open class RDShaderSource : RefCounted() {
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {

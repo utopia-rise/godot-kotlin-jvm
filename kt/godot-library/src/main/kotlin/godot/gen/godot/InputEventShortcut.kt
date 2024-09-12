@@ -48,7 +48,7 @@ public open class InputEventShortcut : InputEvent() {
   public final fun getShortcut(): Shortcut? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shortcut?)
+    return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 
   public companion object
