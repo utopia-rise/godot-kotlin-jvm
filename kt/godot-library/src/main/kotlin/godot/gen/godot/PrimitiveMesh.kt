@@ -145,7 +145,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   /**
@@ -168,7 +168,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getMeshArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
@@ -179,7 +179,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {
@@ -190,7 +190,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getFlipFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAddUv2(addUv2: Boolean): Unit {
@@ -201,7 +201,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getAddUv2(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUv2Padding(uv2Padding: Float): Unit {
@@ -212,7 +212,7 @@ public open class PrimitiveMesh : Mesh() {
   public final fun getUv2Padding(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**

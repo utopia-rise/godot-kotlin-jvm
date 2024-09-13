@@ -123,7 +123,7 @@ public open class PackedScene : Resource() {
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
     TransferContext.writeArguments(LONG to editState.id)
     TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -132,7 +132,7 @@ public open class PackedScene : Resource() {
   public final fun canInstantiate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class PackedScene : Resource() {
   public final fun getState(): SceneState? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SceneState?)
+    return (TransferContext.readReturnValue(OBJECT) as SceneState?)
   }
 
   public enum class GenEditState(

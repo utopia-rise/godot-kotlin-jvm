@@ -82,7 +82,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   public final fun getVertices(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -102,7 +102,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   public final fun getIndices(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   public final fun hasData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -225,7 +225,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
   public final fun getProjectedObstructions(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object

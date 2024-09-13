@@ -106,7 +106,7 @@ public open class ImageTexture : Texture2D() {
     public final fun createFromImage(image: Image?): ImageTexture? {
       TransferContext.writeArguments(OBJECT to image)
       TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as ImageTexture?)
+      return (TransferContext.readReturnValue(OBJECT) as ImageTexture?)
     }
   }
 

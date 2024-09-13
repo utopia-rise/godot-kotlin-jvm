@@ -68,7 +68,7 @@ public open class GLTFSkeleton : Resource() {
   public final fun getJoints(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setJoints(joints: PackedInt32Array): Unit {
@@ -79,7 +79,7 @@ public open class GLTFSkeleton : Resource() {
   public final fun getRoots(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setRoots(roots: PackedInt32Array): Unit {
@@ -90,13 +90,13 @@ public open class GLTFSkeleton : Resource() {
   public final fun getGodotSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGodotSkeletonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Skeleton3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun getUniqueNames(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniqueNamesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   public final fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
@@ -112,7 +112,7 @@ public open class GLTFSkeleton : Resource() {
   public final fun getGodotBoneNode(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGodotBoneNodePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -128,13 +128,13 @@ public open class GLTFSkeleton : Resource() {
   public final fun getBoneAttachmentCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getBoneAttachment(idx: Int): BoneAttachment3D? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBoneAttachmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as BoneAttachment3D?)
+    return (TransferContext.readReturnValue(OBJECT) as BoneAttachment3D?)
   }
 
   public companion object

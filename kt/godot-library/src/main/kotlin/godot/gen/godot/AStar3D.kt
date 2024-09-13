@@ -109,7 +109,7 @@ public open class AStar3D : RefCounted() {
   public final fun getAvailablePointId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePointIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -150,7 +150,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointPosition(id: Long): Vector3 {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointWeightScale(id: Long): Float {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -194,7 +194,7 @@ public open class AStar3D : RefCounted() {
   public final fun hasPoint(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -229,7 +229,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointConnections(id: Long): PackedInt64Array {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointConnectionsPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -238,7 +238,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointIds(): PackedInt64Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -257,7 +257,7 @@ public open class AStar3D : RefCounted() {
   public final fun isPointDisabled(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.isPointDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -315,7 +315,7 @@ public open class AStar3D : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, MethodBindings.arePointsConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -324,7 +324,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -334,7 +334,7 @@ public open class AStar3D : RefCounted() {
   public final fun getPointCapacity(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCapacityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -365,7 +365,7 @@ public open class AStar3D : RefCounted() {
   public final fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
     TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -395,7 +395,7 @@ public open class AStar3D : RefCounted() {
   public final fun getClosestPositionInSegment(toPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPositionInSegmentPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -414,7 +414,7 @@ public open class AStar3D : RefCounted() {
   ): PackedVector3Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -463,7 +463,7 @@ public open class AStar3D : RefCounted() {
   ): PackedInt64Array {
     TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public companion object

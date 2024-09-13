@@ -160,7 +160,7 @@ public open class SubViewport : Viewport() {
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverride(size: Vector2i): Unit {
@@ -171,7 +171,7 @@ public open class SubViewport : Viewport() {
   public final fun getSize2dOverride(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverrideStretch(enable: Boolean): Unit {
@@ -182,7 +182,7 @@ public open class SubViewport : Viewport() {
   public final fun isSize2dOverrideStretchEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {

@@ -218,7 +218,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   public final fun getOpenxrApi(): OpenXRAPIExtension? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOpenxrApiPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRAPIExtension?)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRAPIExtension?)
   }
 
   /**

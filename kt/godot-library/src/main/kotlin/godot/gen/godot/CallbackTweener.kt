@@ -41,7 +41,7 @@ public open class CallbackTweener : Tweener() {
   public final fun setDelay(delay: Double): CallbackTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CallbackTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as CallbackTweener?)
   }
 
   public companion object

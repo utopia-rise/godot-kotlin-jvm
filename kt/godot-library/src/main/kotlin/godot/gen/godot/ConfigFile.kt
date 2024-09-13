@@ -11,7 +11,7 @@ import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -163,7 +163,7 @@ public open class ConfigFile : RefCounted() {
   ): Any? {
     TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
     TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -172,7 +172,7 @@ public open class ConfigFile : RefCounted() {
   public final fun hasSection(section: String): Boolean {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -181,7 +181,7 @@ public open class ConfigFile : RefCounted() {
   public final fun hasSectionKey(section: String, key: String): Boolean {
     TransferContext.writeArguments(STRING to section, STRING to key)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSectionKeyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -190,7 +190,7 @@ public open class ConfigFile : RefCounted() {
   public final fun getSections(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -200,7 +200,7 @@ public open class ConfigFile : RefCounted() {
   public final fun getSectionKeys(section: String): PackedStringArray {
     TransferContext.writeArguments(STRING to section)
     TransferContext.callMethod(rawPtr, MethodBindings.getSectionKeysPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -260,7 +260,7 @@ public open class ConfigFile : RefCounted() {
   public final fun encodeToText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.encodeToTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**

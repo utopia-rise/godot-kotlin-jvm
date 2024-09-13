@@ -277,19 +277,19 @@ public open class XRInterfaceExtension : XRInterface() {
   public final fun getColorTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getDepthTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun getVelocityTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -320,7 +320,7 @@ public open class XRInterfaceExtension : XRInterface() {
   public final fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

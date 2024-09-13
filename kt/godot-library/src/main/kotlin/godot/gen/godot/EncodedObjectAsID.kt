@@ -51,7 +51,7 @@ public open class EncodedObjectAsID : RefCounted() {
   public final fun getObjectId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

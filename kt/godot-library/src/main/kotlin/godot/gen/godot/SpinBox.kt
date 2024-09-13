@@ -163,7 +163,7 @@ public open class SpinBox : Range() {
   public final fun getSuffix(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setPrefix(prefix: String): Unit {
@@ -174,7 +174,7 @@ public open class SpinBox : Range() {
   public final fun getPrefix(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setEditable(enabled: Boolean): Unit {
@@ -190,13 +190,13 @@ public open class SpinBox : Range() {
   public final fun getCustomArrowStep(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun isEditable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateOnTextChanged(enabled: Boolean): Unit {
@@ -207,7 +207,7 @@ public open class SpinBox : Range() {
   public final fun getUpdateOnTextChanged(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
@@ -218,7 +218,7 @@ public open class SpinBox : Range() {
   public final fun isSelectAllOnFocus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -238,7 +238,7 @@ public open class SpinBox : Range() {
   public final fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
+    return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
   }
 
   public companion object

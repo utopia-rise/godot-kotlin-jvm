@@ -47,7 +47,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getInputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputsPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -66,7 +66,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getOutputs(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputsPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isValidPortNamePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getInputPortCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -114,7 +114,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun hasInputPort(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasInputPortPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -151,7 +151,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getOutputPortCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -160,7 +160,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun hasOutputPort(id: Int): Boolean {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasOutputPortPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -209,7 +209,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getFreeInputPortId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFreeInputPortIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -218,7 +218,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   public final fun getFreeOutputPortId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFreeOutputPortIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

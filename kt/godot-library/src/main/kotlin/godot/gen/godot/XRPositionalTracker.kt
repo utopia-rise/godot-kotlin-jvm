@@ -10,7 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -113,7 +113,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getTrackerProfile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTrackerProfile(profile: String): Unit {
@@ -138,7 +138,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun hasPose(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -147,7 +147,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getPose(name: StringName): XRPose? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as XRPose?)
+    return (TransferContext.readReturnValue(OBJECT) as XRPose?)
   }
 
   /**
@@ -182,7 +182,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**

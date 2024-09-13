@@ -71,7 +71,7 @@ public open class Shader : Resource() {
   public final fun getCode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -99,7 +99,7 @@ public open class Shader : Resource() {
   public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -113,7 +113,7 @@ public open class Shader : Resource() {
   public final fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
     TransferContext.writeArguments(BOOL to getGroups)
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderUniformListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class Mode(

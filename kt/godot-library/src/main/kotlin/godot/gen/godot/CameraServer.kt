@@ -53,7 +53,7 @@ public object CameraServer : Object() {
   public final fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CameraFeed?)
+    return (TransferContext.readReturnValue(OBJECT) as CameraFeed?)
   }
 
   /**
@@ -62,7 +62,7 @@ public object CameraServer : Object() {
   public final fun getFeedCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -71,7 +71,7 @@ public object CameraServer : Object() {
   public final fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<CameraFeed>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
   }
 
   /**

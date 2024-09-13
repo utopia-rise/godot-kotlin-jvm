@@ -129,7 +129,7 @@ public open class StyleBox : Resource() {
   public final fun getMinimumSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -154,7 +154,7 @@ public open class StyleBox : Resource() {
   public final fun getContentMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -164,7 +164,7 @@ public open class StyleBox : Resource() {
   public final fun getMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -174,7 +174,7 @@ public open class StyleBox : Resource() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -195,7 +195,7 @@ public open class StyleBox : Resource() {
   public final fun getCurrentItemDrawn(): CanvasItem? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CanvasItem?)
+    return (TransferContext.readReturnValue(OBJECT) as CanvasItem?)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class StyleBox : Resource() {
   public final fun testMask(point: Vector2, rect: Rect2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.testMaskPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

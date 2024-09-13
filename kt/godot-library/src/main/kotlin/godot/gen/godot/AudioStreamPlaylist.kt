@@ -596,7 +596,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun getStreamCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -605,7 +605,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun getBpm(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -622,7 +622,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun getListStream(streamIndex: Int): AudioStream? {
     TransferContext.writeArguments(LONG to streamIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   public final fun setShuffle(shuffle: Boolean): Unit {
@@ -633,7 +633,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun getShuffle(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFadeTime(dec: Float): Unit {
@@ -644,7 +644,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun getFadeTime(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLoop(loop: Boolean): Unit {
@@ -655,7 +655,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {

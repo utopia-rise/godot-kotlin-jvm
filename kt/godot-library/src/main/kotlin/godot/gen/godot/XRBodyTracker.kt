@@ -65,7 +65,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   public final fun getHasTrackingData(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBodyFlags(flags: BodyFlags): Unit {
@@ -111,7 +111,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   public final fun getJointTransform(joint: Joint): Transform3D {
     TransferContext.writeArguments(LONG to joint.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public sealed interface BodyFlags {

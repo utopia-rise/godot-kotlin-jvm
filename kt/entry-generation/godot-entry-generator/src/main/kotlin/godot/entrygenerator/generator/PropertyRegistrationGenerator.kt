@@ -14,6 +14,8 @@ import godot.entrygenerator.model.ExportAnnotation
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredProperty
 import godot.entrygenerator.model.TypeKind
+import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotApiPackage
 
 object PropertyRegistrationGenerator {
     fun generate(
@@ -30,6 +32,7 @@ object PropertyRegistrationGenerator {
                         className,
                         registerClassControlFlow,
                     )
+
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*Set\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS &&
                         registeredProperty.annotations.hasAnnotation<EnumAnnotation>() -> registerEnumFlag(
@@ -37,12 +40,14 @@ object PropertyRegistrationGenerator {
                         className,
                         registerClassControlFlow,
                     )
+
                     registeredProperty.type.fqName.matches(Regex("^kotlin\\.collections\\..*\$")) &&
                         registeredProperty.type.arguments().firstOrNull()?.kind == TypeKind.ENUM_CLASS -> registerEnumList(
                         registeredProperty,
                         className,
                         registerClassControlFlow,
                     )
+
                     else -> registerProperty(registeredProperty, className, registerClassControlFlow)
                 }
             }
@@ -61,7 +66,7 @@ object PropertyRegistrationGenerator {
 
         registerClassControlFlow
             .addStatement(
-                "property(%L,·%T,·%T,·%S,·%T,·%S,·%L)",
+                "property(%L,·%T,·%T,·%S,·%T,·%S,·%L.flag)",
                 getPropertyReference(registeredProperty, className),
                 registeredProperty.type.toKtVariantType(),
                 registeredProperty.type.toGodotVariantType(),
@@ -71,7 +76,7 @@ object PropertyRegistrationGenerator {
                     .provide(registeredProperty)
                     .getHintString()
                     .replace("?", ""),
-                shouldBeVisibleInEditor(registeredProperty),
+                getPropertyUsage(registeredProperty),
             )
     }
 
@@ -82,9 +87,9 @@ object PropertyRegistrationGenerator {
     ) {
         registerClassControlFlow
             .addStatement(
-                "enumListProperty(%L,·%L,·%S)",
+                "enumListProperty(%L,·%L.flag,·%S)",
                 getPropertyReference(registeredProperty, className),
-                shouldBeVisibleInEditor(registeredProperty),
+                getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -99,9 +104,9 @@ object PropertyRegistrationGenerator {
     ) {
         registerClassControlFlow
             .addStatement(
-                "enumFlagProperty(%L,·%L,·%S)",
+                "enumFlagProperty(%L,·%L.flag,·%S)",
                 getPropertyReference(registeredProperty, className),
-                shouldBeVisibleInEditor(registeredProperty),
+                getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -116,9 +121,9 @@ object PropertyRegistrationGenerator {
     ) {
         registerClassControlFlow
             .addStatement(
-                "enumProperty(%L,·%L,·%S)",
+                "enumProperty(%L,·%L.flag,·%S)",
                 getPropertyReference(registeredProperty, className),
-                shouldBeVisibleInEditor(registeredProperty),
+                getPropertyUsage(registeredProperty),
                 PropertyHintStringGeneratorProvider
                     .provide(registeredProperty)
                     .getHintString()
@@ -132,9 +137,17 @@ object PropertyRegistrationGenerator {
             .reference()
     }
 
-    private fun shouldBeVisibleInEditor(registeredProperty: RegisteredProperty): Boolean {
-        return registeredProperty
-            .annotations
-            .hasAnnotation<ExportAnnotation>()
+    private fun getPropertyUsage(registeredProperty: RegisteredProperty): ClassName {
+        return if (registeredProperty.annotations.hasAnnotation<ExportAnnotation>()) {
+            ClassName(
+                "$godotApiPackage.${GodotTypes.propertyUsage}",
+                "PROPERTY_USAGE_DEFAULT"
+            )
+        } else {
+            ClassName(
+                "$godotApiPackage.${GodotTypes.propertyUsage}",
+                "PROPERTY_USAGE_NONE"
+            )
+        }
     }
 }

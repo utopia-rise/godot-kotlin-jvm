@@ -87,7 +87,7 @@ public open class DirectionalLight3D : Light3D() {
   public final fun isBlendSplitsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSkyMode(mode: SkyMode): Unit {

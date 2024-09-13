@@ -119,7 +119,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun getMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMax(`value`: Int): Unit {
@@ -130,7 +130,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun getMax(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStep(`value`: Int): Unit {
@@ -141,7 +141,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun getStep(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
@@ -152,7 +152,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Int): Unit {
@@ -163,7 +163,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   public final fun getDefaultValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class Hint(

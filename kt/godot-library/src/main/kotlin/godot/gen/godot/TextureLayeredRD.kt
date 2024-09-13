@@ -47,7 +47,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
   public final fun getTextureRdRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

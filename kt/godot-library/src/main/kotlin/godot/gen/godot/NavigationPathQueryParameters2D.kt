@@ -224,7 +224,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setStartPosition(startPosition: Vector2): Unit {
@@ -235,7 +235,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getStartPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTargetPosition(targetPosition: Vector2): Unit {
@@ -246,7 +246,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
@@ -257,7 +257,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getNavigationLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
@@ -279,7 +279,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getSimplifyPath(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSimplifyEpsilon(epsilon: Float): Unit {
@@ -290,7 +290,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   public final fun getSimplifyEpsilon(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class PathfindingAlgorithm(

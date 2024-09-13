@@ -109,7 +109,7 @@ public open class TextureLayered : Texture() {
   public final fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -118,7 +118,7 @@ public open class TextureLayered : Texture() {
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -127,7 +127,7 @@ public open class TextureLayered : Texture() {
   public final fun getLayers(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -136,7 +136,7 @@ public open class TextureLayered : Texture() {
   public final fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -145,7 +145,7 @@ public open class TextureLayered : Texture() {
   public final fun getLayerData(layer: Int): Image? {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   public enum class LayeredType(

@@ -145,7 +145,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCanvasInstanceId(canvasInstanceId: Long): Unit {
@@ -156,7 +156,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun getCanvasInstanceId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCanvasInstanceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
@@ -167,7 +167,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
@@ -178,7 +178,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
@@ -189,7 +189,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
@@ -200,7 +200,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

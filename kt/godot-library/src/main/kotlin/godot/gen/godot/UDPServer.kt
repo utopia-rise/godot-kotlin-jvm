@@ -201,7 +201,7 @@ public open class UDPServer : RefCounted() {
   public final fun isConnectionAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -210,7 +210,7 @@ public open class UDPServer : RefCounted() {
   public final fun getLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -219,7 +219,7 @@ public open class UDPServer : RefCounted() {
   public final fun isListening(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -230,7 +230,7 @@ public open class UDPServer : RefCounted() {
   public final fun takeConnection(): PacketPeerUDP? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerUDP?)
+    return (TransferContext.readReturnValue(OBJECT) as PacketPeerUDP?)
   }
 
   /**
@@ -250,7 +250,7 @@ public open class UDPServer : RefCounted() {
   public final fun getMaxPendingConnections(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

@@ -7,18 +7,20 @@ import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.MapIterator
 import godot.util.VoidPtr
+import godot.util.isNullable
+import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
 class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
-    internal var keyVariantType = VariantType.NIL
-    internal var valueVariantType = VariantType.NIL
+    internal var keyVariantConverter: VariantConverter = VariantType.NIL
+    internal var valueVariantConverter: VariantConverter = VariantType.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
-        keyVariantType = VariantType.ANY
-        valueVariantType = VariantType.ANY
+        keyVariantConverter = VariantCaster.ANY
+        valueVariantConverter = VariantCaster.ANY
         _handle = handle
         MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
@@ -27,18 +29,21 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
     @PublishedApi
     internal constructor(keyClass: KClass<*>, valueClass: KClass<*>) {
+        val keyVariantConverter = variantMapper[keyClass]
+        val valueVariantConverter  = variantMapper[valueClass]
 
-        val keyVariantType = variantMapper[keyClass]
-        checkNotNull(keyVariantType) {
-            "Can't create a Dictionary with generic key ${keyClass}."
-        }
-        val valueVariantType = variantMapper[valueClass]
-        checkNotNull(valueVariantType) {
-            "Can't create a Dictionary with generic value ${valueClass}."
-        }
+        if (GodotJvmBuildConfig.DEBUG) {
+            checkNotNull(keyVariantConverter) {
+                "Can't create a Dictionary with generic key ${keyClass}."
+            }
 
-        this.keyVariantType = keyVariantType
-        this.valueVariantType = valueVariantType
+            checkNotNull(valueVariantConverter) {
+                "Can't create a Dictionary with generic key ${valueClass}."
+            }
+        }
+        
+        this.keyVariantConverter = keyVariantConverter!!
+        this.valueVariantConverter = valueVariantConverter!!
         _handle = Bridge.engine_call_constructor()
         MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
@@ -48,7 +53,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     override val size: Int
         get() {
             Bridge.engine_call_size(_handle)
-            return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+            return TransferContext.readReturnValue(VariantCaster.INT) as Int
         }
 
     override val keys: MutableSet<K>
@@ -148,8 +153,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      * Create a shallow copy of the Dictionary
      */
     constructor(other: Dictionary<K, V>) {
-        keyVariantType = other.keyVariantType
-        valueVariantType = other.valueVariantType
+        keyVariantConverter = other.keyVariantConverter
+        valueVariantConverter = other.valueVariantConverter
         _handle = other._handle
         MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
     }
@@ -183,8 +188,8 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         Bridge.engine_call_duplicate(_handle)
         @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.DICTIONARY) as Dictionary<K, V>).also {
-            it.keyVariantType = keyVariantType
-            it.valueVariantType = valueVariantType
+            it.keyVariantConverter = keyVariantConverter
+            it.valueVariantConverter = valueVariantConverter
         }
     }
 
@@ -192,15 +197,15 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      * Erase a dictionary key/value pair by key. Doesn't return a Boolean like the GDScript version because the GDNative function doesn't return anything
      */
     fun erase(key: K) {
-        TransferContext.writeArguments(keyVariantType to key)
+        TransferContext.writeArguments(keyVariantConverter to key)
         Bridge.engine_call_erase(_handle)
     }
 
     fun findKey(value: V): K {
-        TransferContext.writeArguments(valueVariantType to value)
+        TransferContext.writeArguments(valueVariantConverter to value)
         Bridge.engine_call_find_key(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(keyVariantType, false) as K
+        return TransferContext.readReturnValue(keyVariantConverter) as K
     }
 
     /**
@@ -208,10 +213,10 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      * If the key does not exist, the method returns the value of the optional default argument, or null if it is omitted.
      */
     fun get(key: K, default: V?): V? {
-        TransferContext.writeArguments(keyVariantType to key, valueVariantType to default)
+        TransferContext.writeArguments(keyVariantConverter to key, valueVariantConverter to default)
         Bridge.engine_call_get(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(valueVariantType, true) as V
+        return TransferContext.readReturnValue(valueVariantConverter) as V?
     }
 
     /**
@@ -219,7 +224,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      * Note: This is equivalent to using the in operator as follows:
      */
     fun has(key: K): Boolean {
-        TransferContext.writeArguments(keyVariantType to key)
+        TransferContext.writeArguments(keyVariantConverter to key)
         Bridge.engine_call_has(_handle)
         return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
@@ -240,7 +245,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     fun hash(): Int {
         Bridge.engine_call_hash(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -248,7 +253,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     fun isReadOnly(): Boolean {
         Bridge.engine_call_is_read_only(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL, false) as Boolean
+        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
     }
 
     /**
@@ -266,7 +271,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         Bridge.engine_call_keys(_handle)
         @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<K>).also {
-            it.variantType = keyVariantType
+            it.variantConverter = keyVariantConverter
         }
     }
 
@@ -304,17 +309,17 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         Bridge.engine_call_values(_handle)
         @Suppress("UNCHECKED_CAST")
         return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<V>).also {
-            it.variantType = valueVariantType
+            it.variantConverter = valueVariantConverter
         }
     }
 
 
     //UTILITIES
     override operator fun get(key: K): V {
-        TransferContext.writeArguments(keyVariantType to key)
+        TransferContext.writeArguments(keyVariantConverter to key)
         Bridge.engine_call_operator_get(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(valueVariantType, true) as V
+        return TransferContext.readReturnValue(valueVariantConverter) as V
     }
 
     @CoreTypeHelper
@@ -326,7 +331,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     }
 
     operator fun set(key: K, value: V) {
-        TransferContext.writeArguments(keyVariantType to key, valueVariantType to value)
+        TransferContext.writeArguments(keyVariantConverter to key, valueVariantConverter to value)
         Bridge.engine_call_operator_set(_handle)
     }
 
@@ -375,8 +380,20 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
 
     companion object {
-        inline operator fun <reified K, reified V> invoke() = Dictionary<K, V>(K::class, V::class)
+        inline operator fun <reified K, reified V> invoke(): Dictionary<K, V> {
+            
+            // The nullable check can't be inside the regular constructor because of Java
+            if (GodotJvmBuildConfig.DEBUG) {
+                if(isNullable<K>() && K::class in notNullableVariantSet){
+                    error("Can't create a Dictionary with generic key ${K::class} as nullable.")
+                }
 
+                if(isNullable<V>() && V::class in notNullableVariantSet){
+                    error("Can't create a Dictionary with generic value ${V::class} as nullable.")
+                }
+            }
+            return Dictionary<K, V>(K::class, V::class)
+        }
     }
 }
 

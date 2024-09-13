@@ -323,7 +323,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -334,7 +334,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
     TransferContext.writeArguments(DOUBLE to ndThreshold.toDouble(), LONG to targetIndexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.generateLodPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -419,7 +419,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   /**
@@ -430,7 +430,7 @@ public open class SurfaceTool : RefCounted() {
   public final fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.commitToArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class CustomFormat(

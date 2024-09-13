@@ -524,7 +524,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setOutlineModulate(modulate: Color): Unit {
@@ -535,7 +535,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getOutlineModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setText(text: String): Unit {
@@ -546,7 +546,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setTextDirection(direction: TextServer.Direction): Unit {
@@ -568,7 +568,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
@@ -591,7 +591,7 @@ public open class Label3D : GeometryInstance3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
         ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setUppercase(enable: Boolean): Unit {
@@ -602,7 +602,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun isUppercase(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
@@ -613,7 +613,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineRenderPriority(priority: Int): Unit {
@@ -624,7 +624,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getOutlineRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFont(font: Font?): Unit {
@@ -635,7 +635,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFontSize(size: Int): Unit {
@@ -646,7 +646,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineSize(outlineSize: Int): Unit {
@@ -657,7 +657,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getOutlineSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLineSpacing(lineSpacing: Float): Unit {
@@ -668,7 +668,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getLineSpacing(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
@@ -701,7 +701,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getWidth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPixelSize(pixelSize: Float): Unit {
@@ -712,7 +712,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getPixelSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOffset(offset: Vector2): Unit {
@@ -723,7 +723,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -740,7 +740,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
@@ -773,7 +773,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getAlphaScissorThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
@@ -784,7 +784,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getAlphaHashScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
@@ -806,7 +806,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun getAlphaAntialiasingEdge(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
@@ -827,7 +827,7 @@ public open class Label3D : GeometryInstance3D() {
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class DrawFlags(

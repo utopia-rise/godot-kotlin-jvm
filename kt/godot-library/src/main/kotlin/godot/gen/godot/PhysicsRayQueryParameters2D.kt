@@ -182,7 +182,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun getFrom(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTo(to: Vector2): Unit {
@@ -193,7 +193,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun getTo(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
@@ -204,7 +204,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
@@ -215,7 +215,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun getExclude(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
@@ -226,7 +226,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun isCollideWithBodiesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
@@ -237,7 +237,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun isCollideWithAreasEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitFromInside(enable: Boolean): Unit {
@@ -248,7 +248,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
   public final fun isHitFromInsideEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {
@@ -270,7 +270,7 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
     ): PhysicsRayQueryParameters2D? {
       TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to, LONG to collisionMask, ARRAY to exclude)
       TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as PhysicsRayQueryParameters2D?)
+      return (TransferContext.readReturnValue(OBJECT) as PhysicsRayQueryParameters2D?)
     }
   }
 

@@ -43,7 +43,7 @@ public open class XRAnchor3D : XRNode3D() {
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -52,7 +52,7 @@ public open class XRAnchor3D : XRNode3D() {
   public final fun getPlane(): Plane {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
-    return (TransferContext.readReturnValue(PLANE, false) as Plane)
+    return (TransferContext.readReturnValue(PLANE) as Plane)
   }
 
   public companion object

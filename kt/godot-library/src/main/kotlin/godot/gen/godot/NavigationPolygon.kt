@@ -275,7 +275,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getVertices(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -292,7 +292,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getPolygonCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -301,7 +301,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getPolygon(idx: Int): PackedInt32Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -321,7 +321,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as NavigationMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
   }
 
   /**
@@ -348,7 +348,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getOutlineCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -367,7 +367,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getOutline(idx: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOutlinePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -404,7 +404,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getCellSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderSize(borderSize: Float): Unit {
@@ -415,7 +415,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getBorderSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
@@ -437,7 +437,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getParsedCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -456,7 +456,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getParsedCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSourceGeometryMode(geometryMode: SourceGeometryMode): Unit {
@@ -478,7 +478,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getSourceGeometryGroupName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAgentRadius(agentRadius: Float): Unit {
@@ -489,7 +489,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getAgentRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBakingRect(rect: Rect2): Unit {
@@ -500,7 +500,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getBakingRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setBakingRectOffset(rectOffset: Vector2): Unit {
@@ -511,7 +511,7 @@ public open class NavigationPolygon : Resource() {
   public final fun getBakingRectOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**

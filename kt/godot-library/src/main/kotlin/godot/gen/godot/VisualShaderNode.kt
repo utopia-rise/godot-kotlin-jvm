@@ -9,7 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -73,7 +73,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public final fun getDefaultInputPort(type: PortType): Int {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutputPortForPreview(port: Int): Unit {
@@ -84,7 +84,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public final fun getOutputPortForPreview(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortForPreviewPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -106,7 +106,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public final fun getInputPortDefaultValue(port: Int): Any? {
     TransferContext.writeArguments(LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortDefaultValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public final fun getDefaultInputValues(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultInputValuesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setFrame(frame: Int): Unit {
@@ -152,7 +152,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
   public final fun getFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class PortType(

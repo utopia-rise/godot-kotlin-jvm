@@ -103,7 +103,7 @@ public open class GLTFCamera : Resource() {
   public final fun toNode(): Camera3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Camera3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
 
   /**
@@ -112,13 +112,13 @@ public open class GLTFCamera : Resource() {
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getPerspective(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPerspective(perspective: Boolean): Unit {
@@ -129,7 +129,7 @@ public open class GLTFCamera : Resource() {
   public final fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFov(fov: Float): Unit {
@@ -140,7 +140,7 @@ public open class GLTFCamera : Resource() {
   public final fun getSizeMag(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSizeMag(sizeMag: Float): Unit {
@@ -151,7 +151,7 @@ public open class GLTFCamera : Resource() {
   public final fun getDepthFar(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthFar(zdepthFar: Float): Unit {
@@ -162,7 +162,7 @@ public open class GLTFCamera : Resource() {
   public final fun getDepthNear(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthNear(zdepthNear: Float): Unit {
@@ -177,7 +177,7 @@ public open class GLTFCamera : Resource() {
     public final fun fromNode(cameraNode: Camera3D?): GLTFCamera? {
       TransferContext.writeArguments(OBJECT to cameraNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
     }
 
     /**
@@ -186,7 +186,7 @@ public open class GLTFCamera : Resource() {
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFCamera?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
     }
   }
 

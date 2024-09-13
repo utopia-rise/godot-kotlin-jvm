@@ -55,7 +55,7 @@ public open class TileMapPattern : Resource() {
   public final fun hasCell(coords: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCellPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -72,7 +72,7 @@ public open class TileMapPattern : Resource() {
   public final fun getCellSourceId(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellSourceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -81,7 +81,7 @@ public open class TileMapPattern : Resource() {
   public final fun getCellAtlasCoords(coords: Vector2i): Vector2i {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAtlasCoordsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class TileMapPattern : Resource() {
   public final fun getCellAlternativeTile(coords: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.getCellAlternativeTilePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -99,7 +99,7 @@ public open class TileMapPattern : Resource() {
   public final fun getUsedCells(): VariantArray<Vector2i> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUsedCellsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -108,7 +108,7 @@ public open class TileMapPattern : Resource() {
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -125,7 +125,7 @@ public open class TileMapPattern : Resource() {
   public final fun isEmpty(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

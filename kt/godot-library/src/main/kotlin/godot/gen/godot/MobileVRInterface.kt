@@ -197,7 +197,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getEyeHeight(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEyeHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setIod(iod: Double): Unit {
@@ -208,7 +208,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getIod(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIodPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDisplayWidth(displayWidth: Double): Unit {
@@ -219,7 +219,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getDisplayWidth(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDisplayToLens(displayToLens: Double): Unit {
@@ -230,7 +230,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getDisplayToLens(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayToLensPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setOffsetRect(offsetRect: Rect2): Unit {
@@ -241,7 +241,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getOffsetRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setOversample(oversample: Double): Unit {
@@ -252,7 +252,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getOversample(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOversamplePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setK1(k: Double): Unit {
@@ -263,7 +263,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getK1(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getK1Ptr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setK2(k: Double): Unit {
@@ -274,13 +274,13 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getK2(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getK2Ptr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
@@ -291,7 +291,7 @@ public open class MobileVRInterface : XRInterface() {
   public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {

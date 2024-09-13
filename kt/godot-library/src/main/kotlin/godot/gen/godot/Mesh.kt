@@ -194,7 +194,7 @@ public open class Mesh : Resource() {
   public final fun getLightmapSizeHint(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class Mesh : Resource() {
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -214,7 +214,7 @@ public open class Mesh : Resource() {
   public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class Mesh : Resource() {
   public final fun getSurfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -234,7 +234,7 @@ public open class Mesh : Resource() {
   public final fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -243,7 +243,7 @@ public open class Mesh : Resource() {
   public final fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetBlendShapeArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
   /**
@@ -268,7 +268,7 @@ public open class Mesh : Resource() {
   public final fun surfaceGetMaterial(surfIdx: Int): Material? {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   /**
@@ -277,7 +277,7 @@ public open class Mesh : Resource() {
   public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
@@ -286,7 +286,7 @@ public open class Mesh : Resource() {
   public final fun createTrimeshShape(): ConcavePolygonShape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createTrimeshShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ConcavePolygonShape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
   }
 
   /**
@@ -301,7 +301,7 @@ public open class Mesh : Resource() {
       ConvexPolygonShape3D? {
     TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
     TransferContext.callMethod(rawPtr, MethodBindings.createConvexShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ConvexPolygonShape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as ConvexPolygonShape3D?)
   }
 
   /**
@@ -312,7 +312,7 @@ public open class Mesh : Resource() {
   public final fun createOutline(margin: Float): Mesh? {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.createOutlinePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   /**
@@ -322,7 +322,7 @@ public open class Mesh : Resource() {
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class PrimitiveType(

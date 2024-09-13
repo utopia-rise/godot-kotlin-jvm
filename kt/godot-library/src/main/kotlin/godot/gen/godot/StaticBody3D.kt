@@ -141,13 +141,13 @@ public open class StaticBody3D : PhysicsBody3D() {
   public final fun getConstantLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getConstantAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
@@ -158,7 +158,7 @@ public open class StaticBody3D : PhysicsBody3D() {
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsMaterial?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   public companion object

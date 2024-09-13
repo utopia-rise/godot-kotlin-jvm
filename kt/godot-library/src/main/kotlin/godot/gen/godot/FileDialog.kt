@@ -226,7 +226,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getFilters(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFiltersPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -235,7 +235,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getOptionName(option: Int): String {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -244,7 +244,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getOptionValues(option: Int): PackedStringArray {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionValuesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -253,7 +253,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getOptionDefault(option: Int): Int {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionDefaultPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -288,7 +288,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getOptionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -313,25 +313,25 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getSelectedOptions(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSelectedOptionsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getCurrentDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getCurrentFile(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getCurrentPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setCurrentDir(dir: String): Unit {
@@ -357,7 +357,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun isModeOverridingTitle(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isModeOverridingTitlePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFileMode(mode: FileMode): Unit {
@@ -381,7 +381,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as VBoxContainer?)
+    return (TransferContext.readReturnValue(OBJECT) as VBoxContainer?)
   }
 
   /**
@@ -392,7 +392,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as LineEdit?)
+    return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
   }
 
   public final fun setAccess(access: Access): Unit {
@@ -414,7 +414,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getRootSubfolder(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootSubfolderPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setShowHiddenFiles(show: Boolean): Unit {
@@ -425,7 +425,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun isShowingHiddenFiles(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingHiddenFilesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseNativeDialog(native: Boolean): Unit {
@@ -436,7 +436,7 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getUseNativeDialog(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseNativeDialogPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

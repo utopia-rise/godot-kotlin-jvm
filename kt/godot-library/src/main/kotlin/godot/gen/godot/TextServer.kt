@@ -19,7 +19,7 @@ import godot.core.Rect2
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -83,7 +83,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -92,7 +92,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -101,7 +101,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun getFeatures(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeaturesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -112,7 +112,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun loadSupportData(filename: String): Boolean {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.loadSupportDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -121,7 +121,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun getSupportDataFilename(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportDataFilenamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -130,7 +130,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun getSupportDataInfo(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportDataInfoPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun saveSupportData(filename: String): Boolean {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.saveSupportDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -149,7 +149,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun isLocaleRightToLeft(locale: String): Boolean {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.isLocaleRightToLeftPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -158,7 +158,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun nameToTag(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.nameToTagPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -167,7 +167,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun tagToName(tag: Long): String {
     TransferContext.writeArguments(LONG to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.tagToNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -176,7 +176,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun has(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.hasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -194,7 +194,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun createFont(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createFontPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun createFontLinkedVariation(fontRid: RID): RID {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.createFontLinkedVariationPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -229,7 +229,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetFaceIndex(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFaceIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -238,7 +238,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetFaceCount(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -275,7 +275,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetName(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -285,7 +285,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOtNameStringsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -302,7 +302,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetStyleName(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetStyleNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -323,7 +323,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetWeight(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetWeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -344,7 +344,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetStretch(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetStretchPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -380,7 +380,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetDisableEmbeddedBitmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -397,7 +397,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetGenerateMipmaps(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGenerateMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -427,7 +427,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsMultichannelSignedDistanceFieldPtr,
         BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -446,7 +446,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetMsdfPixelRange(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetMsdfPixelRangePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -463,7 +463,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetMsdfSize(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetMsdfSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -481,7 +481,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetFixedSize(fontRid: RID): Long {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetFixedSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -516,7 +516,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontIsAllowSystemFallback(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsAllowSystemFallbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -534,7 +534,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontIsForceAutohinter(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsForceAutohinterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -587,7 +587,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetEmbolden(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetEmboldenPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -610,7 +610,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSpacingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -627,7 +627,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetBaselineOffset(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetBaselineOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -647,7 +647,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetTransform(fontRid: RID): Transform2D {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -667,7 +667,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetVariationCoordinatesPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -686,7 +686,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetOversampling(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOversamplingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -696,7 +696,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSizeCacheListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -733,7 +733,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetAscent(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetAscentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -754,7 +754,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetDescent(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetDescentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -775,7 +775,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetUnderlinePosition(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetUnderlinePositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -796,7 +796,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetUnderlineThickness(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetUnderlineThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -817,7 +817,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetScale(fontRid: RID, size: Long): Double {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -826,7 +826,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetTextureCount(fontRid: RID, size: Vector2i): Long {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTextureCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -876,7 +876,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Image? {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTextureImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -902,7 +902,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): PackedInt32Array {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to textureIndex)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetTextureOffsetsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -911,7 +911,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -949,7 +949,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphAdvancePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -976,7 +976,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1002,7 +1002,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1028,7 +1028,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Rect2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphUvRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -1054,7 +1054,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Long {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphTextureIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1082,7 +1082,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): RID {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphTextureRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1097,7 +1097,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size, LONG to glyph)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphTextureSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1114,7 +1114,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to font, LONG to size, LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphContoursPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1123,7 +1123,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
     TransferContext.writeArguments(_RID to fontRid, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetKerningListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector2i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   /**
@@ -1169,7 +1169,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Vector2 {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, VECTOR2I to glyphPair)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetKerningPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1184,7 +1184,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to char, LONG to variationSelector)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlyphIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1198,7 +1198,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to size, LONG to glyphIndex)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetCharFromGlyphIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1207,7 +1207,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontHasChar(fontRid: RID, char: Long): Boolean {
     TransferContext.writeArguments(_RID to fontRid, LONG to char)
     TransferContext.callMethod(rawPtr, MethodBindings.fontHasCharPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1216,7 +1216,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetSupportedChars(fontRid: RID): String {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetSupportedCharsPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1293,7 +1293,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsLanguageSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1314,7 +1314,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetLanguageSupportOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1332,7 +1332,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetLanguageSupportOverridesPtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -1341,7 +1341,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontIsScriptSupported(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.fontIsScriptSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1362,7 +1362,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
     TransferContext.writeArguments(_RID to fontRid, STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScriptSupportOverridePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1380,7 +1380,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetScriptSupportOverridesPtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -1399,7 +1399,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetOpentypeFeatureOverridesPtr,
         DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1408,7 +1408,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSupportedFeatureListPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1417,7 +1417,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(rawPtr, MethodBindings.fontSupportedVariationListPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1426,7 +1426,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontGetGlobalOversampling(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fontGetGlobalOversamplingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -1445,7 +1445,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun getHexCodeBoxSize(size: Long, index: Long): Vector2 {
     TransferContext.writeArguments(LONG to size, LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.getHexCodeBoxSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1475,7 +1475,7 @@ public open class TextServer internal constructor() : RefCounted() {
       orientation: Orientation = TextServer.Orientation.ORIENTATION_HORIZONTAL): RID {
     TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(rawPtr, MethodBindings.createShapedTextPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1543,7 +1543,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetCustomPunctuation(shaped: RID): String {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomPunctuationPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1560,7 +1560,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetCustomEllipsis(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCustomEllipsisPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1601,7 +1601,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetPreserveInvalid(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetPreserveInvalidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1618,7 +1618,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetPreserveControl(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetPreserveControlPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1639,7 +1639,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to spacing.id)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetSpacingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1657,7 +1657,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, STRING to text, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures, STRING to language, ANY to meta)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextAddStringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1675,7 +1675,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextAddObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1691,7 +1691,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextResizeObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1700,7 +1700,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedGetSpanCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedGetSpanCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1709,7 +1709,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedGetSpanMeta(shaped: RID, index: Long): Any? {
     TransferContext.writeArguments(_RID to shaped, LONG to index)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedGetSpanMetaPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -1738,7 +1738,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): RID {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to length)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSubstrPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1747,7 +1747,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetParent(shaped: RID): RID {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetParentPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1761,7 +1761,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Double {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to justificationFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextFitToWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -1770,7 +1770,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
     TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextTabAlignPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -1781,7 +1781,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextShape(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextShapePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1790,7 +1790,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextIsReady(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextIsReadyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1799,7 +1799,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextHasVisibleChars(shaped: RID): Boolean {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHasVisibleCharsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1808,7 +1808,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGlyphsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1817,7 +1817,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextSortLogical(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextSortLogicalPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1826,7 +1826,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetGlyphCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGlyphCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1835,7 +1835,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetRange(shaped: RID): Vector2i {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetRangePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1852,7 +1852,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, PACKED_FLOAT_32_ARRAY to width, LONG to start, BOOL to once, LONG to breakFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetLineBreaksAdvPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1868,7 +1868,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to width, LONG to start, LONG to breakFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetLineBreaksPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1884,7 +1884,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, LONG to graphemeFlags.flag, LONG to skipGraphemeFlags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetWordBreaksPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1893,7 +1893,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetTrimPos(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetTrimPosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1902,7 +1902,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetEllipsisPos(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisPosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1911,7 +1911,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetEllipsisGlyphs(shaped: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisGlyphsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1920,7 +1920,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetEllipsisGlyphCount(shaped: RID): Long {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetEllipsisGlyphCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1942,7 +1942,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetObjects(shaped: RID): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -1951,7 +1951,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2 {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -1960,7 +1960,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectRangePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1969,7 +1969,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long {
     TransferContext.writeArguments(_RID to shaped, ANY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetObjectGlyphPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1978,7 +1978,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetSize(shaped: RID): Vector2 {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1990,7 +1990,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetAscent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetAscentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -2002,7 +2002,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetDescent(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetDescentPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -2011,7 +2011,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetWidth(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -2020,7 +2020,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetUnderlinePosition(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetUnderlinePositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -2029,7 +2029,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetUnderlineThickness(shaped: RID): Double {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetUnderlineThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -2039,7 +2039,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetCarets(shaped: RID, position: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to shaped, LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCaretsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -2053,7 +2053,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped, LONG to start, LONG to end)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetSelectionPtr,
         PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -2062,7 +2062,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextHitTestGrapheme(shaped: RID, coords: Double): Long {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHitTestGraphemePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2072,7 +2072,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextHitTestPosition(shaped: RID, coords: Double): Long {
     TransferContext.writeArguments(_RID to shaped, DOUBLE to coords)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextHitTestPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2081,7 +2081,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetGraphemeBoundsPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -2090,7 +2090,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextNextGraphemePosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2099,7 +2099,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextPrevGraphemePosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2109,7 +2109,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(_RID to shaped)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextGetCharacterBreaksPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -2118,7 +2118,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextNextCharacterPosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2127,7 +2127,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextPrevCharacterPosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2136,7 +2136,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
     TransferContext.writeArguments(_RID to shaped, LONG to pos)
     TransferContext.callMethod(rawPtr, MethodBindings.shapedTextClosestCharacterPosPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2198,7 +2198,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun formatNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.formatNumberPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2208,7 +2208,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun parseNumber(number: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to number, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.parseNumberPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2218,7 +2218,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun percentSign(language: String = ""): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.percentSignPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2243,7 +2243,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): PackedInt32Array {
     TransferContext.writeArguments(STRING to string, STRING to language, LONG to charsPerLine)
     TransferContext.callMethod(rawPtr, MethodBindings.stringGetWordBreaksPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -2260,7 +2260,7 @@ public open class TextServer internal constructor() : RefCounted() {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringGetCharacterBreaksPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -2274,7 +2274,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun isConfusable(string: String, dict: PackedStringArray): Long {
     TransferContext.writeArguments(STRING to string, PACKED_STRING_ARRAY to dict)
     TransferContext.callMethod(rawPtr, MethodBindings.isConfusablePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2285,7 +2285,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun spoofCheck(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.spoofCheckPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2295,7 +2295,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun stripDiacritics(string: String): String {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.stripDiacriticsPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2312,7 +2312,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun isValidIdentifier(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.isValidIdentifierPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2322,7 +2322,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun isValidLetter(unicode: Long): Boolean {
     TransferContext.writeArguments(LONG to unicode)
     TransferContext.callMethod(rawPtr, MethodBindings.isValidLetterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2335,7 +2335,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun stringToUpper(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToUpperPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2348,7 +2348,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun stringToLower(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToLowerPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2361,7 +2361,7 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun stringToTitle(string: String, language: String = ""): String {
     TransferContext.writeArguments(STRING to string, STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.stringToTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2375,7 +2375,7 @@ public open class TextServer internal constructor() : RefCounted() {
   ): VariantArray<Vector3i> {
     TransferContext.writeArguments(LONG to parserType.id, ARRAY to args, STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.parseStructuredTextPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Vector3i>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
   }
 
   public enum class FontAntialiasing(

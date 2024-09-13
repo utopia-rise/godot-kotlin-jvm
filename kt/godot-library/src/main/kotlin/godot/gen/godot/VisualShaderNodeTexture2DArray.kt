@@ -46,7 +46,7 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   public final fun getTextureArray(): Texture2DArray? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2DArray?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2DArray?)
   }
 
   public companion object

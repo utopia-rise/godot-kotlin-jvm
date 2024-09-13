@@ -12,7 +12,7 @@ import godot.core.NodePath
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -181,7 +181,7 @@ public open class AnimationNode : Resource() {
   public final fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addInputPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class AnimationNode : Resource() {
   public final fun setInputName(input: Int, name: String): Boolean {
     TransferContext.writeArguments(LONG to input.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -207,7 +207,7 @@ public open class AnimationNode : Resource() {
   public final fun getInputName(input: Int): String {
     TransferContext.writeArguments(LONG to input.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -217,7 +217,7 @@ public open class AnimationNode : Resource() {
   public final fun getInputCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -226,7 +226,7 @@ public open class AnimationNode : Resource() {
   public final fun findInput(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInputPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -243,7 +243,7 @@ public open class AnimationNode : Resource() {
   public final fun isPathFiltered(path: NodePath): Boolean {
     TransferContext.writeArguments(NODE_PATH to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isPathFilteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterEnabled(enable: Boolean): Unit {
@@ -254,7 +254,7 @@ public open class AnimationNode : Resource() {
   public final fun isFilterEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFilterEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -296,7 +296,7 @@ public open class AnimationNode : Resource() {
   ): Double {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.blendNodePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -318,7 +318,7 @@ public open class AnimationNode : Resource() {
   ): Double {
     TransferContext.writeArguments(LONG to inputIndex.toLong(), DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.blendInputPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -337,7 +337,7 @@ public open class AnimationNode : Resource() {
   public final fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public enum class FilterAction(

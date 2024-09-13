@@ -38,7 +38,7 @@ public object JavaClassWrapper : Object() {
   public final fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as JavaClass?)
+    return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
   }
 
   internal object MethodBindings {

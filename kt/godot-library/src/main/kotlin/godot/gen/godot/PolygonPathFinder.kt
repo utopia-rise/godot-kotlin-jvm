@@ -43,25 +43,25 @@ public open class PolygonPathFinder : Resource() {
   public final fun findPath(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, MethodBindings.findPathPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getIntersections(from: Vector2, to: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to from, VECTOR2 to to)
     TransferContext.callMethod(rawPtr, MethodBindings.getIntersectionsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun getClosestPoint(point: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun isPointInside(point: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to point)
     TransferContext.callMethod(rawPtr, MethodBindings.isPointInsidePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPointPenalty(idx: Int, penalty: Float): Unit {
@@ -72,13 +72,13 @@ public open class PolygonPathFinder : Resource() {
   public final fun getPointPenalty(idx: Int): Float {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointPenaltyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getBounds(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   public companion object

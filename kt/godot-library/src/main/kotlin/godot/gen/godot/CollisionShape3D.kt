@@ -69,7 +69,7 @@ public open class CollisionShape3D : Node3D() {
   public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   public final fun setDisabled(enable: Boolean): Unit {
@@ -80,7 +80,7 @@ public open class CollisionShape3D : Node3D() {
   public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

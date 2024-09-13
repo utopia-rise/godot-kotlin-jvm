@@ -32,7 +32,6 @@ data class KtClass<T : KtObject>(
         val parameters = arrayOfNulls<Any>(2)
         TransferContext.readArguments(
             arrayOf(VariantType.LONG, VariantType.BOOL),
-            arrayOf(false, false),
             parameters
         )
 

@@ -56,7 +56,7 @@ class NodePath : NativeCoreType {
      * Get the node name indicated by idx (0 to get_name_count)
      */
     fun getName(idx: Int): String {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantCaster.INT to idx)
         Bridge.engine_call_getName(_handle)
         return TransferContext.readReturnValue(VariantType.STRING) as String
     }
@@ -66,14 +66,14 @@ class NodePath : NativeCoreType {
      */
     fun getNameCount(): Int {
         Bridge.engine_call_getNameCount(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
      * Get the resource name indicated by idx (0 to get_subname_count)
      */
     fun getSubname(idx: Int): String {
-        TransferContext.writeArguments(VariantType.JVM_INT to idx)
+        TransferContext.writeArguments(VariantCaster.INT to idx)
         Bridge.engine_call_getSubname(_handle)
         return TransferContext.readReturnValue(VariantType.STRING) as String
     }
@@ -83,7 +83,7 @@ class NodePath : NativeCoreType {
      */
     fun getSubnameCount(): Int {
         Bridge.engine_call_getSubnameCount(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**
@@ -99,7 +99,7 @@ class NodePath : NativeCoreType {
      */
     fun hash(): Int {
         Bridge.engine_call_hash(_handle)
-        return TransferContext.readReturnValue(VariantType.JVM_INT) as Int
+        return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
 
     /**

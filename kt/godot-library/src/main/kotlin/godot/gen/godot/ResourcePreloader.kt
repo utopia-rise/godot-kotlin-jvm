@@ -67,7 +67,7 @@ public open class ResourcePreloader : Node() {
   public final fun hasResource(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasResourcePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class ResourcePreloader : Node() {
   public final fun getResource(name: StringName): Resource? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getResourcePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class ResourcePreloader : Node() {
   public final fun getResourceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResourceListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public companion object

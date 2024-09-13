@@ -94,7 +94,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -105,7 +105,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun getCurrentNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNodePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -114,7 +114,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun getCurrentPlayPosition(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentPlayPositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -127,7 +127,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun getCurrentLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -136,7 +136,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun getFadingFromNode(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFadingFromNodePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -145,7 +145,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun getTravelPath(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTravelPathPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public companion object

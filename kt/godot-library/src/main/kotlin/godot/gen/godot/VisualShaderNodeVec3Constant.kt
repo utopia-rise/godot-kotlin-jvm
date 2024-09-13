@@ -73,7 +73,7 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
   public final fun getConstant(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public companion object

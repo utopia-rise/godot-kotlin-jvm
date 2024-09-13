@@ -70,15 +70,17 @@ class Invocation : Node3D() {
 	@RegisterProperty
 	var enumListMutable = mutableListOf(TestEnum.ENUM_1, TestEnum.ENUM_2)
 
-	@Export
-	@RegisterProperty
-	var nullableLong: Long? = null
+    // Can't export nullable coretypes
+	//@Export
+	//@RegisterProperty
+	//var nullableLong: Long? = null
 
 	private var hasInitializedLateInits = false
 
-	@Export
-	@RegisterProperty
-	var lateinitString: String? = null
+    // Can't export nullable coretypes
+	//@Export
+    //@RegisterProperty
+    //var lateinitString: String? = null
 
 	@RegisterProperty
 	lateinit var registerObject: OtherScript
@@ -369,8 +371,6 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	fun initNullables() {
-		nullableLong = 1
-		lateinitString = "works"
 		registerObject = OtherScript()
 		registerObjectNullable = OtherScript()
 		hasInitializedLateInits = true
@@ -752,16 +752,6 @@ class Invocation : Node3D() {
 	@RegisterFunction
 	fun isSentXrSameInstanceAsJvmSingleton(arvrServer: XRServer) =
 		XRServer.getInstanceId() == arvrServer.getInstanceId()
-
-	@RegisterFunction
-	fun nullableStringIsNull(nullableString: String?) = nullableString == null
-
-	@RegisterFunction
-	fun nullableReturnType(shouldReturnNull: Boolean): String? = if (shouldReturnNull) {
-		null
-	} else {
-		"not null"
-	}
 
 	@RegisterFunction
 	fun createVariantArrayOfUserType() = variantArrayOf<OtherScript>()

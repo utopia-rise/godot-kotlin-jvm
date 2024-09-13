@@ -9,7 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotError
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -104,7 +104,7 @@ public open class JSON : Resource() {
   public final fun getData(): Any? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setData(`data`: Any?): Unit {
@@ -118,7 +118,7 @@ public open class JSON : Resource() {
   public final fun getParsedText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class JSON : Resource() {
   public final fun getErrorLine(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorLinePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -138,7 +138,7 @@ public open class JSON : Resource() {
   public final fun getErrorMessage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorMessagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object {
@@ -200,7 +200,7 @@ public open class JSON : Resource() {
     ): String {
       TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
       TransferContext.callMethod(0, MethodBindings.stringifyPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
+      return (TransferContext.readReturnValue(STRING) as String)
     }
 
     /**
@@ -210,7 +210,7 @@ public open class JSON : Resource() {
     public final fun parseString(jsonString: String): Any? {
       TransferContext.writeArguments(STRING to jsonString)
       TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
-      return (TransferContext.readReturnValue(ANY, true) as Any?)
+      return (TransferContext.readReturnValue(ANY) as Any?)
     }
   }
 

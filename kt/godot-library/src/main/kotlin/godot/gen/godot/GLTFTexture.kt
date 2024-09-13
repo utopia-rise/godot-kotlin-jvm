@@ -51,7 +51,7 @@ public open class GLTFTexture : Resource() {
   public final fun getSrcImage(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSrcImage(srcImage: Int): Unit {
@@ -62,7 +62,7 @@ public open class GLTFTexture : Resource() {
   public final fun getSampler(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSampler(sampler: Int): Unit {

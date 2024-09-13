@@ -214,7 +214,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getChannel(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMessage(message: MIDIMessage): Unit {
@@ -236,7 +236,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getPitch(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVelocity(velocity: Int): Unit {
@@ -247,7 +247,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getVelocity(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInstrument(instrument: Int): Unit {
@@ -258,7 +258,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getInstrument(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPressure(pressure: Int): Unit {
@@ -269,7 +269,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getPressure(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setControllerNumber(controllerNumber: Int): Unit {
@@ -280,7 +280,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getControllerNumber(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setControllerValue(controllerValue: Int): Unit {
@@ -291,7 +291,7 @@ public open class InputEventMIDI : InputEvent() {
   public final fun getControllerValue(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

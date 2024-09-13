@@ -108,13 +108,13 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun getJoint(): Joint2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getJointPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Joint2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Joint2D?)
   }
 
   public final fun getAutoConfigureJoint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoConfigureJoint(autoConfigureJoint: Boolean): Unit {
@@ -130,7 +130,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun getSimulatePhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBone2dNodepath(nodepath: NodePath): Unit {
@@ -151,7 +151,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun getBone2dNodepath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBone2dIndex(boneIndex: Int): Unit {
@@ -162,7 +162,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun getBone2dIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFollowBoneWhenSimulating(followBone: Boolean): Unit {
@@ -173,7 +173,7 @@ public open class PhysicalBone2D : RigidBody2D() {
   public final fun getFollowBoneWhenSimulating(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

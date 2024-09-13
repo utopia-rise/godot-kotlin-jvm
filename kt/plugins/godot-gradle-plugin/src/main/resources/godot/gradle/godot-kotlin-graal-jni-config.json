@@ -759,7 +759,6 @@
     "name":"godot.core.KtProperty",
     "methods":[
       {"name":"getKtPropertyInfo","parameterTypes":[] },
-      {"name":"isRef","parameterTypes":[] },
       {"name":"callGet","parameterTypes":["godot.core.KtObject"] },
       {"name":"callSet","parameterTypes":["godot.core.KtObject"] }
     ]
@@ -772,7 +771,7 @@
       {"name":"getHintString","parameterTypes":[] },
       {"name":"getName","parameterTypes":[] },
       {"name":"getType","parameterTypes":[] },
-      {"name":"getVisibleInEditor","parameterTypes":[] }
+      {"name":"getUsage","parameterTypes":[] }
     ]
   },
   {

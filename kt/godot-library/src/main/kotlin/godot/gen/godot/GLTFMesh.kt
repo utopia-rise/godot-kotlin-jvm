@@ -11,7 +11,7 @@ import godot.core.PackedFloat32Array
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -84,7 +84,7 @@ public open class GLTFMesh : Resource() {
   public final fun getOriginalName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
@@ -95,7 +95,7 @@ public open class GLTFMesh : Resource() {
   public final fun getMesh(): ImporterMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {
@@ -106,7 +106,7 @@ public open class GLTFMesh : Resource() {
   public final fun getBlendWeights(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendWeightsPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
@@ -117,7 +117,7 @@ public open class GLTFMesh : Resource() {
   public final fun getInstanceMaterials(): VariantArray<Material> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceMaterialsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Material>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
   public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
@@ -135,7 +135,7 @@ public open class GLTFMesh : Resource() {
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
     TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**

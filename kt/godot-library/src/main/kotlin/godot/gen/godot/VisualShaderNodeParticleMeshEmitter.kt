@@ -73,7 +73,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseAllSurfaces(enabled: Boolean): Unit {
@@ -84,7 +84,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public final fun isUseAllSurfaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSurfaceIndex(surfaceIndex: Int): Unit {
@@ -95,7 +95,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   public final fun getSurfaceIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

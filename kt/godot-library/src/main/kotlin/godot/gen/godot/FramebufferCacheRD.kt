@@ -45,7 +45,7 @@ public open class FramebufferCacheRD : Object() {
     ): RID {
       TransferContext.writeArguments(ARRAY to textures, ARRAY to passes, LONG to views)
       TransferContext.callMethod(0, MethodBindings.getCacheMultipassPtr, _RID)
-      return (TransferContext.readReturnValue(_RID, false) as RID)
+      return (TransferContext.readReturnValue(_RID) as RID)
     }
   }
 

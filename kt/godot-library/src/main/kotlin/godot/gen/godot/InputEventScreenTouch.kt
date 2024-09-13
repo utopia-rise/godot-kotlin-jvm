@@ -124,7 +124,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public final fun getIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPosition(position: Vector2): Unit {
@@ -135,7 +135,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public final fun getPosition(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
@@ -156,7 +156,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   public final fun isDoubleTap(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

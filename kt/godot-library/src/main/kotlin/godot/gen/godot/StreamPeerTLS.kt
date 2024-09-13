@@ -85,7 +85,7 @@ public open class StreamPeerTLS : StreamPeer() {
   public final fun getStream(): StreamPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
 
   /**

@@ -71,7 +71,7 @@ public open class MenuButton : Button() {
   public final fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
+    return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
 
   /**
@@ -91,7 +91,7 @@ public open class MenuButton : Button() {
   public final fun isSwitchOnHover(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class MenuButton : Button() {
   public final fun getItemCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

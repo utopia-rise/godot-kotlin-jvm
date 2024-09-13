@@ -27,7 +27,7 @@ import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BASIS
 import godot.core.VariantType.BOOL
@@ -199,7 +199,7 @@ public object RenderingServer : Object() {
   public final fun texture2dCreate(image: Image?): RID {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -214,7 +214,7 @@ public object RenderingServer : Object() {
       layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayeredCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -230,7 +230,7 @@ public object RenderingServer : Object() {
   ): RID {
     TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to mipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.texture3dCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -239,7 +239,7 @@ public object RenderingServer : Object() {
   public final fun textureProxyCreate(base: RID): RID {
     TransferContext.writeArguments(_RID to base)
     TransferContext.callMethod(rawPtr, MethodBindings.textureProxyCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -290,7 +290,7 @@ public object RenderingServer : Object() {
   public final fun texture2dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dPlaceholderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -303,7 +303,7 @@ public object RenderingServer : Object() {
   public final fun texture2dLayeredPlaceholderCreate(layeredType: TextureLayeredType): RID {
     TransferContext.writeArguments(LONG to layeredType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayeredPlaceholderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -317,7 +317,7 @@ public object RenderingServer : Object() {
   public final fun texture3dPlaceholderCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.texture3dPlaceholderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -332,7 +332,7 @@ public object RenderingServer : Object() {
   public final fun texture2dGet(texture: RID): Image? {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dGetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -341,7 +341,7 @@ public object RenderingServer : Object() {
   public final fun texture2dLayerGet(texture: RID, layer: Int): Image? {
     TransferContext.writeArguments(_RID to texture, LONG to layer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.texture2dLayerGetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -350,7 +350,7 @@ public object RenderingServer : Object() {
   public final fun texture3dGet(texture: RID): VariantArray<Image> {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.texture3dGetPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
   /**
@@ -379,7 +379,7 @@ public object RenderingServer : Object() {
   public final fun textureGetPath(texture: RID): String {
     TransferContext.writeArguments(_RID to texture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureGetPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -405,7 +405,7 @@ public object RenderingServer : Object() {
       RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY): RID {
     TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.textureRdCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -415,7 +415,7 @@ public object RenderingServer : Object() {
   public final fun textureGetRdTexture(texture: RID, srgb: Boolean = false): RID {
     TransferContext.writeArguments(_RID to texture, BOOL to srgb)
     TransferContext.callMethod(rawPtr, MethodBindings.textureGetRdTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -428,7 +428,7 @@ public object RenderingServer : Object() {
   public final fun textureGetNativeHandle(texture: RID, srgb: Boolean = false): Long {
     TransferContext.writeArguments(_RID to texture, BOOL to srgb)
     TransferContext.callMethod(rawPtr, MethodBindings.textureGetNativeHandlePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -441,7 +441,7 @@ public object RenderingServer : Object() {
   public final fun shaderCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.shaderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -467,7 +467,7 @@ public object RenderingServer : Object() {
   public final fun shaderGetCode(shader: RID): String {
     TransferContext.writeArguments(_RID to shader)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderGetCodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -476,7 +476,7 @@ public object RenderingServer : Object() {
   public final fun getShaderParameterList(shader: RID): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(_RID to shader)
     TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -486,7 +486,7 @@ public object RenderingServer : Object() {
   public final fun shaderGetParameterDefault(shader: RID, name: StringName): Any? {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.shaderGetParameterDefaultPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -516,7 +516,7 @@ public object RenderingServer : Object() {
   ): RID {
     TransferContext.writeArguments(_RID to shader, STRING_NAME to name, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shaderGetDefaultTextureParameterPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -529,7 +529,7 @@ public object RenderingServer : Object() {
   public final fun materialCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.materialCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -558,7 +558,7 @@ public object RenderingServer : Object() {
   public final fun materialGetParam(material: RID, parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to material, STRING_NAME to parameter)
     TransferContext.callMethod(rawPtr, MethodBindings.materialGetParamPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -582,7 +582,7 @@ public object RenderingServer : Object() {
       blendShapeCount: Int = 0): RID {
     TransferContext.writeArguments(ARRAY to surfaces, LONG to blendShapeCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshCreateFromSurfacesPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -597,7 +597,7 @@ public object RenderingServer : Object() {
   public final fun meshCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.meshCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -610,7 +610,7 @@ public object RenderingServer : Object() {
   ): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong(), LONG to arrayIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -621,7 +621,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetFormatVertexStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatVertexStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -634,7 +634,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatNormalTangentStridePtr,
         LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -644,7 +644,7 @@ public object RenderingServer : Object() {
       Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatAttributeStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -653,7 +653,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetFormatSkinStride(format: ArrayFormat, vertexCount: Int): Long {
     TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetFormatSkinStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun meshAddSurface(mesh: RID, surface: Dictionary<Any?, Any?>): Unit {
@@ -680,7 +680,7 @@ public object RenderingServer : Object() {
   public final fun meshGetBlendShapeCount(mesh: RID): Int {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetBlendShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -718,13 +718,13 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetMaterial(mesh: RID, surface: Int): RID {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetMaterialPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun meshGetSurface(mesh: RID, surface: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetSurfacePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -733,7 +733,7 @@ public object RenderingServer : Object() {
   public final fun meshSurfaceGetArrays(mesh: RID, surface: Int): VariantArray<Any?> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -743,7 +743,7 @@ public object RenderingServer : Object() {
       VariantArray<VariantArray<Any?>> {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.meshSurfaceGetBlendShapeArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<VariantArray<Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
   /**
@@ -752,7 +752,7 @@ public object RenderingServer : Object() {
   public final fun meshGetSurfaceCount(mesh: RID): Int {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetSurfaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -770,7 +770,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetCustomAabbPtr,
         godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -828,7 +828,7 @@ public object RenderingServer : Object() {
   public final fun multimeshCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmOverloads
@@ -849,7 +849,7 @@ public object RenderingServer : Object() {
   public final fun multimeshGetInstanceCount(multimesh: RID): Int {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetInstanceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -917,7 +917,7 @@ public object RenderingServer : Object() {
   public final fun multimeshGetMesh(multimesh: RID): RID {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetMeshPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -928,7 +928,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetAabbPtr,
         godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -946,7 +946,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetCustomAabbPtr,
         godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -955,7 +955,7 @@ public object RenderingServer : Object() {
   public final fun multimeshInstanceGetTransform(multimesh: RID, index: Int): Transform3D {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -966,7 +966,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetTransform2dPtr,
         TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -975,7 +975,7 @@ public object RenderingServer : Object() {
   public final fun multimeshInstanceGetColor(multimesh: RID, index: Int): Color {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -984,7 +984,7 @@ public object RenderingServer : Object() {
   public final fun multimeshInstanceGetCustomData(multimesh: RID, index: Int): Color {
     TransferContext.writeArguments(_RID to multimesh, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshInstanceGetCustomDataPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1002,7 +1002,7 @@ public object RenderingServer : Object() {
   public final fun multimeshGetVisibleInstances(multimesh: RID): Int {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetVisibleInstancesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1041,7 +1041,7 @@ public object RenderingServer : Object() {
   public final fun multimeshGetBuffer(multimesh: RID): PackedFloat32Array {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetBufferPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -1053,7 +1053,7 @@ public object RenderingServer : Object() {
   public final fun skeletonCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.skeletonCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   @JvmOverloads
@@ -1072,7 +1072,7 @@ public object RenderingServer : Object() {
   public final fun skeletonGetBoneCount(skeleton: RID): Int {
     TransferContext.writeArguments(_RID to skeleton)
     TransferContext.callMethod(rawPtr, MethodBindings.skeletonGetBoneCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1093,7 +1093,7 @@ public object RenderingServer : Object() {
   public final fun skeletonBoneGetTransform(skeleton: RID, bone: Int): Transform3D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneGetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -1114,7 +1114,7 @@ public object RenderingServer : Object() {
   public final fun skeletonBoneGetTransform2d(skeleton: RID, bone: Int): Transform2D {
     TransferContext.writeArguments(_RID to skeleton, LONG to bone.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.skeletonBoneGetTransform2dPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun skeletonSetBaseTransform2d(skeleton: RID, baseTransform: Transform2D): Unit {
@@ -1134,7 +1134,7 @@ public object RenderingServer : Object() {
   public final fun directionalLightCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.directionalLightCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1149,7 +1149,7 @@ public object RenderingServer : Object() {
   public final fun omniLightCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.omniLightCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1163,7 +1163,7 @@ public object RenderingServer : Object() {
   public final fun spotLightCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.spotLightCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1355,7 +1355,7 @@ public object RenderingServer : Object() {
   public final fun reflectionProbeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.reflectionProbeCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1506,7 +1506,7 @@ public object RenderingServer : Object() {
   public final fun decalCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.decalCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1634,7 +1634,7 @@ public object RenderingServer : Object() {
   public final fun voxelGiCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun voxelGiAllocateData(
@@ -1654,37 +1654,37 @@ public object RenderingServer : Object() {
   public final fun voxelGiGetOctreeSize(voxelGi: RID): Vector3i {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeSizePtr, VECTOR3I)
-    return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
+    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   public final fun voxelGiGetOctreeCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetOctreeCellsPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun voxelGiGetDataCells(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDataCellsPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun voxelGiGetDistanceField(voxelGi: RID): PackedByteArray {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetDistanceFieldPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun voxelGiGetLevelCounts(voxelGi: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetLevelCountsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun voxelGiGetToCellXform(voxelGi: RID): Transform3D {
     TransferContext.writeArguments(_RID to voxelGi)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiGetToCellXformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -1774,7 +1774,7 @@ public object RenderingServer : Object() {
   public final fun lightmapCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1816,28 +1816,28 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCapturePointsPtr,
         PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun lightmapGetProbeCaptureSh(lightmap: RID): PackedColorArray {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureShPtr,
         PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun lightmapGetProbeCaptureTetrahedra(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureTetrahedraPtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun lightmapGetProbeCaptureBspTree(lightmap: RID): PackedInt32Array {
     TransferContext.writeArguments(_RID to lightmap)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapGetProbeCaptureBspTreePtr,
         PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1873,7 +1873,7 @@ public object RenderingServer : Object() {
   public final fun particlesCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.particlesCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1900,7 +1900,7 @@ public object RenderingServer : Object() {
   public final fun particlesGetEmitting(particles: RID): Boolean {
     TransferContext.writeArguments(_RID to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesGetEmittingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2076,7 +2076,7 @@ public object RenderingServer : Object() {
   public final fun particlesIsInactive(particles: RID): Boolean {
     TransferContext.writeArguments(_RID to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesIsInactivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2155,7 +2155,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesGetCurrentAabbPtr,
         godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   /**
@@ -2175,7 +2175,7 @@ public object RenderingServer : Object() {
   public final fun particlesCollisionCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.particlesCollisionCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2296,7 +2296,7 @@ public object RenderingServer : Object() {
   public final fun fogVolumeCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.fogVolumeCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2341,7 +2341,7 @@ public object RenderingServer : Object() {
   public final fun visibilityNotifierCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun visibilityNotifierSetAabb(notifier: RID, aabb: AABB): Unit {
@@ -2369,7 +2369,7 @@ public object RenderingServer : Object() {
   public final fun occluderCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.occluderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2395,7 +2395,7 @@ public object RenderingServer : Object() {
   public final fun cameraCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cameraCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2501,7 +2501,7 @@ public object RenderingServer : Object() {
   public final fun viewportCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.viewportCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2684,7 +2684,7 @@ public object RenderingServer : Object() {
   public final fun viewportGetRenderTarget(viewport: RID): RID {
     TransferContext.writeArguments(_RID to viewport)
     TransferContext.callMethod(rawPtr, MethodBindings.viewportGetRenderTargetPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -2693,7 +2693,7 @@ public object RenderingServer : Object() {
   public final fun viewportGetTexture(viewport: RID): RID {
     TransferContext.writeArguments(_RID to viewport)
     TransferContext.callMethod(rawPtr, MethodBindings.viewportGetTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3016,7 +3016,7 @@ public object RenderingServer : Object() {
   ): Int {
     TransferContext.writeArguments(_RID to viewport, LONG to type.id, LONG to info.id)
     TransferContext.callMethod(rawPtr, MethodBindings.viewportGetRenderInfoPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -3050,7 +3050,7 @@ public object RenderingServer : Object() {
   public final fun viewportGetMeasuredRenderTimeCpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
     TransferContext.callMethod(rawPtr, MethodBindings.viewportGetMeasuredRenderTimeCpuPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -3070,7 +3070,7 @@ public object RenderingServer : Object() {
   public final fun viewportGetMeasuredRenderTimeGpu(viewport: RID): Double {
     TransferContext.writeArguments(_RID to viewport)
     TransferContext.callMethod(rawPtr, MethodBindings.viewportGetMeasuredRenderTimeGpuPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -3113,7 +3113,7 @@ public object RenderingServer : Object() {
   public final fun skyCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.skyCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3163,7 +3163,7 @@ public object RenderingServer : Object() {
   ): Image? {
     TransferContext.writeArguments(_RID to sky, DOUBLE to energy.toDouble(), BOOL to bakeIrradiance, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.skyBakePanoramaPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -3175,7 +3175,7 @@ public object RenderingServer : Object() {
   public final fun compositorEffectCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.compositorEffectCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3220,7 +3220,7 @@ public object RenderingServer : Object() {
   public final fun compositorCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.compositorCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3243,7 +3243,7 @@ public object RenderingServer : Object() {
   public final fun environmentCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.environmentCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3603,7 +3603,7 @@ public object RenderingServer : Object() {
   ): Image? {
     TransferContext.writeArguments(_RID to environment, BOOL to bakeIrradiance, VECTOR2I to size)
     TransferContext.callMethod(rawPtr, MethodBindings.environmentBakePanoramaPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -3652,7 +3652,7 @@ public object RenderingServer : Object() {
   public final fun cameraAttributesCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cameraAttributesCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3744,7 +3744,7 @@ public object RenderingServer : Object() {
   public final fun scenarioCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.scenarioCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3792,7 +3792,7 @@ public object RenderingServer : Object() {
   public final fun instanceCreate2(base: RID, scenario: RID): RID {
     TransferContext.writeArguments(_RID to base, _RID to scenario)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceCreate2Ptr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -3808,7 +3808,7 @@ public object RenderingServer : Object() {
   public final fun instanceCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.instanceCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -4066,7 +4066,7 @@ public object RenderingServer : Object() {
   public final fun instanceGeometryGetShaderParameter(instance: RID, parameter: StringName): Any? {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometryGetShaderParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -4078,7 +4078,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to instance, STRING_NAME to parameter)
     TransferContext.callMethod(rawPtr,
         MethodBindings.instanceGeometryGetShaderParameterDefaultValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -4092,7 +4092,7 @@ public object RenderingServer : Object() {
     TransferContext.writeArguments(_RID to instance)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceGeometryGetShaderParameterListPtr,
         ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -4108,7 +4108,7 @@ public object RenderingServer : Object() {
   public final fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
     TransferContext.writeArguments(godot.core.VariantType.AABB to aabb, _RID to scenario)
     TransferContext.callMethod(rawPtr, MethodBindings.instancesCullAabbPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -4128,7 +4128,7 @@ public object RenderingServer : Object() {
   ): PackedInt64Array {
     TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, _RID to scenario)
     TransferContext.callMethod(rawPtr, MethodBindings.instancesCullRayPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -4145,7 +4145,7 @@ public object RenderingServer : Object() {
       PackedInt64Array {
     TransferContext.writeArguments(ARRAY to convex, _RID to scenario)
     TransferContext.callMethod(rawPtr, MethodBindings.instancesCullConvexPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY, false) as PackedInt64Array)
+    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -4160,7 +4160,7 @@ public object RenderingServer : Object() {
   ): VariantArray<Image> {
     TransferContext.writeArguments(_RID to base, ARRAY to materialOverrides, VECTOR2I to imageSize)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeRenderUv2Ptr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
   /**
@@ -4173,7 +4173,7 @@ public object RenderingServer : Object() {
   public final fun canvasCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -4226,7 +4226,7 @@ public object RenderingServer : Object() {
   public final fun canvasTextureCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasTextureCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -4287,7 +4287,7 @@ public object RenderingServer : Object() {
   public final fun canvasItemCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasItemCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -4865,7 +4865,7 @@ public object RenderingServer : Object() {
   public final fun debugCanvasItemGetRect(item: RID): Rect2 {
     TransferContext.writeArguments(_RID to item)
     TransferContext.callMethod(rawPtr, MethodBindings.debugCanvasItemGetRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -4878,7 +4878,7 @@ public object RenderingServer : Object() {
   public final fun canvasLightCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasLightCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5085,7 +5085,7 @@ public object RenderingServer : Object() {
   public final fun canvasLightOccluderCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasLightOccluderCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5175,7 +5175,7 @@ public object RenderingServer : Object() {
   public final fun canvasOccluderPolygonCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canvasOccluderPolygonCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5240,7 +5240,7 @@ public object RenderingServer : Object() {
   public final fun globalShaderParameterGetList(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterGetListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -5271,7 +5271,7 @@ public object RenderingServer : Object() {
   public final fun globalShaderParameterGet(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.globalShaderParameterGetPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -5313,7 +5313,7 @@ public object RenderingServer : Object() {
   public final fun hasChanged(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasChangedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -5336,7 +5336,7 @@ public object RenderingServer : Object() {
   public final fun getRenderingInfo(info: RenderingInfo): Long {
     TransferContext.writeArguments(LONG to info.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderingInfoPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -5349,7 +5349,7 @@ public object RenderingServer : Object() {
   public final fun getVideoAdapterName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -5359,7 +5359,7 @@ public object RenderingServer : Object() {
   public final fun getVideoAdapterVendor(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterVendorPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -5386,7 +5386,7 @@ public object RenderingServer : Object() {
   public final fun getVideoAdapterApiVersion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterApiVersionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -5400,7 +5400,7 @@ public object RenderingServer : Object() {
   ): RID {
     TransferContext.writeArguments(LONG to latitudes.toLong(), LONG to longitudes.toLong(), DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.makeSphereMeshPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5410,7 +5410,7 @@ public object RenderingServer : Object() {
   public final fun getTestCube(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTestCubePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5427,7 +5427,7 @@ public object RenderingServer : Object() {
   public final fun getTestTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTestTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5444,7 +5444,7 @@ public object RenderingServer : Object() {
   public final fun getWhiteTexture(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWhiteTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -5471,7 +5471,7 @@ public object RenderingServer : Object() {
   public final fun getDefaultClearColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultClearColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -5490,7 +5490,7 @@ public object RenderingServer : Object() {
   public final fun hasOsFeature(feature: String): Boolean {
     TransferContext.writeArguments(STRING to feature)
     TransferContext.callMethod(rawPtr, MethodBindings.hasOsFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -5505,7 +5505,7 @@ public object RenderingServer : Object() {
   public final fun isRenderLoopEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRenderLoopEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRenderLoopEnabled(enabled: Boolean): Unit {
@@ -5521,7 +5521,7 @@ public object RenderingServer : Object() {
   public final fun getFrameSetupTimeCpu(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrameSetupTimeCpuPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -5550,7 +5550,7 @@ public object RenderingServer : Object() {
   public final fun getRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderingDevicePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RenderingDevice?)
+    return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
 
   /**
@@ -5562,7 +5562,7 @@ public object RenderingServer : Object() {
   public final fun createLocalRenderingDevice(): RenderingDevice? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createLocalRenderingDevicePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RenderingDevice?)
+    return (TransferContext.readReturnValue(OBJECT) as RenderingDevice?)
   }
 
   /**
@@ -5571,7 +5571,7 @@ public object RenderingServer : Object() {
   public final fun isOnRenderThread(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnRenderThreadPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -5591,7 +5591,7 @@ public object RenderingServer : Object() {
   public final fun hasFeature(feature: Features): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class TextureLayeredType(

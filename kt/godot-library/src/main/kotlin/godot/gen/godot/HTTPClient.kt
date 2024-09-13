@@ -132,7 +132,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getConnection(): StreamPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StreamPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
   }
 
   /**
@@ -215,7 +215,7 @@ public open class HTTPClient : RefCounted() {
   public final fun hasResponse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasResponsePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class HTTPClient : RefCounted() {
   public final fun isResponseChunked(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isResponseChunkedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -233,7 +233,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getResponseCode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseCodePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -242,7 +242,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getResponseHeaders(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -260,7 +260,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getResponseHeadersAsDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseHeadersAsDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -272,7 +272,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getResponseBodyLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getResponseBodyLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -281,7 +281,7 @@ public open class HTTPClient : RefCounted() {
   public final fun readResponseBodyChunk(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readResponseBodyChunkPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setReadChunkSize(bytes: Int): Unit {
@@ -292,7 +292,7 @@ public open class HTTPClient : RefCounted() {
   public final fun getReadChunkSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReadChunkSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBlockingMode(enabled: Boolean): Unit {
@@ -303,7 +303,7 @@ public open class HTTPClient : RefCounted() {
   public final fun isBlockingModeEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isBlockingModeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -384,7 +384,7 @@ public open class HTTPClient : RefCounted() {
   public final fun queryStringFromDict(fields: Dictionary<Any?, Any?>): String {
     TransferContext.writeArguments(DICTIONARY to fields)
     TransferContext.callMethod(rawPtr, MethodBindings.queryStringFromDictPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public enum class Method(

@@ -117,7 +117,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getNode(name: StringName): AnimationNode? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNode?)
+    return (TransferContext.readReturnValue(OBJECT) as AnimationNode?)
   }
 
   /**
@@ -142,7 +142,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun hasNode(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasNodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -151,7 +151,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getNodeName(node: AnimationNode?): StringName {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -168,7 +168,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getNodePosition(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -177,7 +177,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun hasTransition(from: StringName, to: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to from, STRING_NAME to to)
     TransferContext.callMethod(rawPtr, MethodBindings.hasTransitionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -198,7 +198,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getTransition(idx: Int): AnimationNodeStateMachineTransition? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AnimationNodeStateMachineTransition?)
+    return (TransferContext.readReturnValue(OBJECT) as AnimationNodeStateMachineTransition?)
   }
 
   /**
@@ -207,7 +207,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getTransitionFrom(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionFromPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -216,7 +216,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getTransitionTo(idx: Int): StringName {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionToPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -225,7 +225,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getTransitionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransitionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -258,7 +258,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun getGraphOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setStateMachineType(stateMachineType: StateMachineType): Unit {
@@ -280,7 +280,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun isAllowTransitionToSelf(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setResetEnds(enable: Boolean): Unit {
@@ -291,7 +291,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   public final fun areEndsReset(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.areEndsResetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class StateMachineType(

@@ -15,7 +15,7 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
     JNI_METHOD(GET_CLASS_NAME)
     JNI_METHOD(GET_HINT)
     JNI_METHOD(GET_HINT_STRING)
-    JNI_METHOD(GET_VISIBLE_IN_EDITOR)
+    JNI_METHOD(GET_USAGE)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_TYPE, "getType", "()I")
@@ -23,7 +23,7 @@ JVM_INSTANCE_WRAPPER(KtPropertyInfo, "godot.core.KtPropertyInfo") {
         INIT_JNI_METHOD(GET_CLASS_NAME, "getClassName", "()Ljava/lang/String;")
         INIT_JNI_METHOD(GET_HINT, "getHint", "()I")
         INIT_JNI_METHOD(GET_HINT_STRING, "getHintString", "()Ljava/lang/String;")
-        INIT_JNI_METHOD(GET_VISIBLE_IN_EDITOR, "getVisibleInEditor", "()Z")
+        INIT_JNI_METHOD(GET_USAGE, "getUsage", "()J")
     )
     // clang-format on
 
@@ -36,7 +36,7 @@ public:
     StringName class_name;
     PropertyHint hint;
     String hint_string;
-    bool visible_in_editor;
+    PropertyUsageFlags usage;
 
     PropertyInfo toPropertyInfo() const;
 
@@ -54,14 +54,12 @@ JVM_INSTANCE_WRAPPER(KtProperty, "godot.core.KtProperty") {
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_KT_PROPERTY_INFO, "getKtPropertyInfo", "()Lgodot/core/KtPropertyInfo;")
-        INIT_JNI_METHOD(IS_REF, "isRef", "()Z")
         INIT_JNI_METHOD(CALL_GET, "callGet", "(Lgodot/core/KtObject;)V")
         INIT_JNI_METHOD(CALL_SET, "callSet", "(Lgodot/core/KtObject;)V")
     )
     // clang-format on
 
     KtPropertyInfo* propertyInfo;
-    bool is_ref;
 
 public:
     explicit KtProperty(jni::Env& p_env, jni::JObject p_wrapped);

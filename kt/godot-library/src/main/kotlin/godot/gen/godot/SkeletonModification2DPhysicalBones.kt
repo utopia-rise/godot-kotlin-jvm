@@ -54,7 +54,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   public final fun getPhysicalBoneChainLength(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -73,7 +73,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   public final fun getPhysicalBoneNode(jointIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to jointIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**

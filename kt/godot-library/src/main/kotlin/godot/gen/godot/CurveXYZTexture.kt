@@ -90,7 +90,7 @@ public open class CurveXYZTexture : Texture2D() {
   public final fun getCurveX(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveY(curve: Curve?): Unit {
@@ -101,7 +101,7 @@ public open class CurveXYZTexture : Texture2D() {
   public final fun getCurveY(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveZ(curve: Curve?): Unit {
@@ -112,7 +112,7 @@ public open class CurveXYZTexture : Texture2D() {
   public final fun getCurveZ(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public companion object

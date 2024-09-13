@@ -67,7 +67,7 @@ public open class OpenXRInteractionProfile : Resource() {
   public final fun getInteractionProfilePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class OpenXRInteractionProfile : Resource() {
   public final fun getBindingCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -85,7 +85,7 @@ public open class OpenXRInteractionProfile : Resource() {
   public final fun getBinding(index: Int): OpenXRIPBinding? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as OpenXRIPBinding?)
+    return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBinding?)
   }
 
   public final fun setBindings(bindings: VariantArray<Any?>): Unit {
@@ -96,7 +96,7 @@ public open class OpenXRInteractionProfile : Resource() {
   public final fun getBindings(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object

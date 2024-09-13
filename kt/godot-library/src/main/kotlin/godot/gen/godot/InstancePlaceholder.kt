@@ -51,7 +51,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to withOrder)
     TransferContext.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -66,7 +66,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
       Node? {
     TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
     TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -76,7 +76,7 @@ public open class InstancePlaceholder internal constructor() : Node() {
   public final fun getInstancePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

@@ -73,7 +73,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
   public final fun getQuadSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getQuadSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object

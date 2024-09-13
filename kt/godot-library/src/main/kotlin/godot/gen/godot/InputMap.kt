@@ -43,7 +43,7 @@ public object InputMap : Object() {
   public final fun hasAction(action: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.hasActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -52,7 +52,7 @@ public object InputMap : Object() {
   public final fun getActions(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -87,7 +87,7 @@ public object InputMap : Object() {
   public final fun actionGetDeadzone(action: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -104,7 +104,7 @@ public object InputMap : Object() {
   public final fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -132,7 +132,7 @@ public object InputMap : Object() {
   public final fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionGetEventsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<InputEvent>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<InputEvent>)
   }
 
   /**
@@ -150,7 +150,7 @@ public object InputMap : Object() {
   ): Boolean {
     TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.eventIsActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

@@ -85,7 +85,7 @@ public open class BitMap : Resource() {
   public final fun getBitv(position: Vector2i): Boolean {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getBitvPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -94,7 +94,7 @@ public open class BitMap : Resource() {
   public final fun getBit(x: Int, y: Int): Boolean {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBitPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -111,7 +111,7 @@ public open class BitMap : Resource() {
   public final fun getTrueBitCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTrueBitCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -120,7 +120,7 @@ public open class BitMap : Resource() {
   public final fun getSize(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -150,7 +150,7 @@ public open class BitMap : Resource() {
   public final fun convertToImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.convertToImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -169,7 +169,7 @@ public open class BitMap : Resource() {
       VariantArray<PackedVector2Array> {
     TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.opaqueToPolygonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PackedVector2Array>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   public companion object

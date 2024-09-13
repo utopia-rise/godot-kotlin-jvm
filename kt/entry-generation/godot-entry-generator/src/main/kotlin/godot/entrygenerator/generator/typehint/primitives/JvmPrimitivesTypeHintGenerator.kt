@@ -11,28 +11,28 @@ import godot.entrygenerator.model.PlaceHolderTextHintAnnotation
 import godot.entrygenerator.model.RangeHintAnnotation
 import godot.entrygenerator.model.RegisteredProperty
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.godotCorePackage
+import godot.tools.common.constants.godotApiPackage
 
 class JvmPrimitivesTypeHintGenerator(
     private val registeredProperty: RegisteredProperty
 ) : PropertyTypeHintGenerator(registeredProperty) {
     override fun getPropertyTypeHint(): ClassName {
         return when (propertyHintAnnotation) {
-            is RangeHintAnnotation<*> -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "RANGE")
-            is ExpEasingHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "EXP_EASING")
+            is RangeHintAnnotation<*> -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_RANGE")
+            is ExpEasingHintAnnotation -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_EXP_EASING")
             is FileHintAnnotation -> if (propertyHintAnnotation.global) {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "GLOBAL_FILE")
+                ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_GLOBAL_FILE")
             } else {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "FILE")
+                ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_FILE")
             }
             is DirHintAnnotation -> if (propertyHintAnnotation.global) {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "GLOBAL_DIR")
+                ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_GLOBAL_DIR")
             } else {
-                ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "DIR")
+                ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_DIR")
             }
-            is MultilineTextHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "MULTILINE_TEXT")
-            is PlaceHolderTextHintAnnotation -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "PLACE_HOLDER_TEXT")
-            null -> ClassName("$godotCorePackage.${GodotTypes.propertyHint}", "NONE")
+            is MultilineTextHintAnnotation -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_MULTILINE_TEXT")
+            is PlaceHolderTextHintAnnotation -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_PLACE_HOLDER_TEXT")
+            null -> ClassName("$godotApiPackage.${GodotTypes.propertyHint}", "PROPERTY_HINT_NONE")
 
             else -> throw WrongAnnotationUsageException(registeredProperty, propertyHintAnnotation)
         }

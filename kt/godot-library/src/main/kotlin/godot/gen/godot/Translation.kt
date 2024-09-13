@@ -75,7 +75,7 @@ public open class Translation : Resource() {
   public final fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -116,7 +116,7 @@ public open class Translation : Resource() {
       StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class Translation : Resource() {
   ): StringName {
     TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
     TransferContext.callMethod(rawPtr, MethodBindings.getPluralMessagePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -152,7 +152,7 @@ public open class Translation : Resource() {
   public final fun getMessageList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -162,7 +162,7 @@ public open class Translation : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTranslatedMessageListPtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class Translation : Resource() {
   public final fun getMessageCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMessageCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

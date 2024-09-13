@@ -110,7 +110,7 @@ public open class ColorPickerButton : Button() {
   public final fun getPickColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -121,7 +121,7 @@ public open class ColorPickerButton : Button() {
   public final fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ColorPicker?)
+    return (TransferContext.readReturnValue(OBJECT) as ColorPicker?)
   }
 
   /**
@@ -133,7 +133,7 @@ public open class ColorPickerButton : Button() {
   public final fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PopupPanel?)
+    return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
@@ -144,7 +144,7 @@ public open class ColorPickerButton : Button() {
   public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

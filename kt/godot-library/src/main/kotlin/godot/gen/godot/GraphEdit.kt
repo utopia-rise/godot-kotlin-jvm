@@ -601,7 +601,7 @@ public open class GraphEdit : Control() {
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isNodeConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -642,7 +642,7 @@ public open class GraphEdit : Control() {
   public final fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -662,7 +662,7 @@ public open class GraphEdit : Control() {
       Dictionary<Any?, Any?> {
     TransferContext.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -674,7 +674,7 @@ public open class GraphEdit : Control() {
       VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -701,7 +701,7 @@ public open class GraphEdit : Control() {
   public final fun getScrollOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollOffset(offset: Vector2): Unit {
@@ -777,7 +777,7 @@ public open class GraphEdit : Control() {
   public final fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isValidConnectionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -786,7 +786,7 @@ public open class GraphEdit : Control() {
   public final fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
     TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -811,7 +811,7 @@ public open class GraphEdit : Control() {
   public final fun getElementFrame(element: StringName): GraphFrame? {
     TransferContext.writeArguments(STRING_NAME to element)
     TransferContext.callMethod(rawPtr, MethodBindings.getElementFramePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as GraphFrame?)
+    return (TransferContext.readReturnValue(OBJECT) as GraphFrame?)
   }
 
   /**
@@ -820,7 +820,7 @@ public open class GraphEdit : Control() {
   public final fun getAttachedNodesOfFrame(frame: StringName): VariantArray<StringName> {
     TransferContext.writeArguments(STRING_NAME to frame)
     TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesOfFramePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public final fun setPanningScheme(scheme: PanningScheme): Unit {
@@ -842,7 +842,7 @@ public open class GraphEdit : Control() {
   public final fun getZoom(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomMin(zoomMin: Float): Unit {
@@ -853,7 +853,7 @@ public open class GraphEdit : Control() {
   public final fun getZoomMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomMax(zoomMax: Float): Unit {
@@ -864,7 +864,7 @@ public open class GraphEdit : Control() {
   public final fun getZoomMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomStep(zoomStep: Float): Unit {
@@ -875,7 +875,7 @@ public open class GraphEdit : Control() {
   public final fun getZoomStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZoomStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShowGrid(enable: Boolean): Unit {
@@ -886,7 +886,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingGrid(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGridPattern(pattern: GridPattern): Unit {
@@ -908,7 +908,7 @@ public open class GraphEdit : Control() {
   public final fun isSnappingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSnappingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSnappingDistance(pixels: Int): Unit {
@@ -919,7 +919,7 @@ public open class GraphEdit : Control() {
   public final fun getSnappingDistance(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSnappingDistancePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setConnectionLinesCurvature(curvature: Float): Unit {
@@ -930,7 +930,7 @@ public open class GraphEdit : Control() {
   public final fun getConnectionLinesCurvature(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setConnectionLinesThickness(pixels: Float): Unit {
@@ -941,7 +941,7 @@ public open class GraphEdit : Control() {
   public final fun getConnectionLinesThickness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setConnectionLinesAntialiased(pixels: Boolean): Unit {
@@ -952,7 +952,7 @@ public open class GraphEdit : Control() {
   public final fun isConnectionLinesAntialiased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinimapSize(size: Vector2): Unit {
@@ -963,7 +963,7 @@ public open class GraphEdit : Control() {
   public final fun getMinimapSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimapSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMinimapOpacity(opacity: Float): Unit {
@@ -974,7 +974,7 @@ public open class GraphEdit : Control() {
   public final fun getMinimapOpacity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMinimapEnabled(enable: Boolean): Unit {
@@ -985,7 +985,7 @@ public open class GraphEdit : Control() {
   public final fun isMinimapEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMinimapEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowMenu(hidden: Boolean): Unit {
@@ -996,7 +996,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingMenuPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowZoomLabel(enable: Boolean): Unit {
@@ -1007,7 +1007,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingZoomLabel(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowGridButtons(hidden: Boolean): Unit {
@@ -1018,7 +1018,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingGridButtons(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridButtonsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowZoomButtons(hidden: Boolean): Unit {
@@ -1029,7 +1029,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingZoomButtons(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowMinimapButton(hidden: Boolean): Unit {
@@ -1040,7 +1040,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingMinimapButton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowArrangeButton(hidden: Boolean): Unit {
@@ -1051,7 +1051,7 @@ public open class GraphEdit : Control() {
   public final fun isShowingArrangeButton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRightDisconnects(enable: Boolean): Unit {
@@ -1062,7 +1062,7 @@ public open class GraphEdit : Control() {
   public final fun isRightDisconnectsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1075,7 +1075,7 @@ public open class GraphEdit : Control() {
   public final fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
+    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   /**

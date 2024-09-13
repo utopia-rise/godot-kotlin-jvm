@@ -1,5 +1,6 @@
 package godot.core.callable
 
+import godot.core.VariantConverter
 import godot.core.VariantType
 import godot.core.memory.TransferContext
 import godot.global.GD
@@ -17,8 +18,8 @@ internal open class ParametersReader {
         paramsArray.fill(null)
     }
 
-    internal inline fun withParameters(types: Array<VariantType>, isNullables: Array<Boolean>, code: () -> Unit) {
-        TransferContext.readArguments(types, isNullables, paramsArray)
+    internal inline fun withParameters(types: Array<VariantConverter>, code: () -> Unit) {
+        TransferContext.readArguments(types, paramsArray)
         try {
             code()
         } catch (t: Throwable) {
@@ -28,17 +29,16 @@ internal open class ParametersReader {
     }
 
     internal inline fun <R> withParametersReturn(
-        types: Array<VariantType>,
-        isNullables: Array<Boolean>,
-        variantType: VariantType,
+        types: Array<VariantConverter>,
+        variantConverter: VariantConverter,
         code: () -> R
     ): Any? {
-        TransferContext.readArguments(types, isNullables, paramsArray)
+        TransferContext.readArguments(types, paramsArray)
 
         var ret: Any? = Unit
         try {
             ret = code()
-            TransferContext.writeReturnValue(ret, variantType)
+            TransferContext.writeReturnValue(ret, variantConverter)
         } catch (t: Throwable) {
             GD.printErr("Error calling a JVM method from Godot:", t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantType.NIL)

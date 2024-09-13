@@ -210,7 +210,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   public final fun getUnicode(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUnicodePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setLocation(location: KeyLocation): Unit {
@@ -273,7 +273,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   public final fun asTextKeycode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextKeycodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -282,7 +282,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   public final fun asTextPhysicalKeycode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextPhysicalKeycodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -291,7 +291,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   public final fun asTextKeyLabel(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextKeyLabelPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -301,7 +301,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   public final fun asTextLocation(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextLocationPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

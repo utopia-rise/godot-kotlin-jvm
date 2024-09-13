@@ -148,7 +148,7 @@ public open class GraphFrame : GraphElement() {
   public final fun getTitle(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -159,7 +159,7 @@ public open class GraphFrame : GraphElement() {
   public final fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
+    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   public final fun setAutoshrinkEnabled(shrink: Boolean): Unit {
@@ -170,7 +170,7 @@ public open class GraphFrame : GraphElement() {
   public final fun isAutoshrinkEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
@@ -181,7 +181,7 @@ public open class GraphFrame : GraphElement() {
   public final fun getAutoshrinkMargin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDragMargin(dragMargin: Int): Unit {
@@ -192,7 +192,7 @@ public open class GraphFrame : GraphElement() {
   public final fun getDragMargin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
@@ -203,7 +203,7 @@ public open class GraphFrame : GraphElement() {
   public final fun isTintColorEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
@@ -214,7 +214,7 @@ public open class GraphFrame : GraphElement() {
   public final fun getTintColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public companion object

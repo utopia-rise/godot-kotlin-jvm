@@ -99,7 +99,7 @@ public open class GraphNode : GraphElement() {
   public final fun getTitle(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class GraphNode : GraphElement() {
   public final fun getTitlebarHbox(): HBoxContainer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as HBoxContainer?)
+    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   /**
@@ -172,7 +172,7 @@ public open class GraphNode : GraphElement() {
   public final fun isSlotEnabledLeft(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledLeftPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -199,7 +199,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotTypeLeft(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeLeftPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -216,7 +216,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotColorLeft(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorLeftPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -234,7 +234,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotCustomIconLeft(slotIndex: Int): Texture2D? {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconLeftPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -243,7 +243,7 @@ public open class GraphNode : GraphElement() {
   public final fun isSlotEnabledRight(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledRightPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -270,7 +270,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotTypeRight(slotIndex: Int): Int {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeRightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -287,7 +287,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotColorRight(slotIndex: Int): Color {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorRightPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -305,7 +305,7 @@ public open class GraphNode : GraphElement() {
   public final fun getSlotCustomIconRight(slotIndex: Int): Texture2D? {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconRightPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -314,7 +314,7 @@ public open class GraphNode : GraphElement() {
   public final fun isSlotDrawStylebox(slotIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to slotIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isSlotDrawStyleboxPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -333,7 +333,7 @@ public open class GraphNode : GraphElement() {
   public final fun isIgnoringValidConnectionType(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -342,7 +342,7 @@ public open class GraphNode : GraphElement() {
   public final fun getInputPortCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -351,7 +351,7 @@ public open class GraphNode : GraphElement() {
   public final fun getInputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -360,7 +360,7 @@ public open class GraphNode : GraphElement() {
   public final fun getInputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -369,7 +369,7 @@ public open class GraphNode : GraphElement() {
   public final fun getInputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -378,7 +378,7 @@ public open class GraphNode : GraphElement() {
   public final fun getInputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputPortSlotPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -387,7 +387,7 @@ public open class GraphNode : GraphElement() {
   public final fun getOutputPortCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -396,7 +396,7 @@ public open class GraphNode : GraphElement() {
   public final fun getOutputPortPosition(portIdx: Int): Vector2 {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -405,7 +405,7 @@ public open class GraphNode : GraphElement() {
   public final fun getOutputPortType(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -414,7 +414,7 @@ public open class GraphNode : GraphElement() {
   public final fun getOutputPortColor(portIdx: Int): Color {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -423,7 +423,7 @@ public open class GraphNode : GraphElement() {
   public final fun getOutputPortSlot(portIdx: Int): Int {
     TransferContext.writeArguments(LONG to portIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortSlotPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

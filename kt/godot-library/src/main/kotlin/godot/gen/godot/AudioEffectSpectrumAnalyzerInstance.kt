@@ -47,7 +47,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   ): Vector2 {
     TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public enum class MagnitudeMode(

@@ -124,7 +124,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun hasPeer(peerId: Int): Boolean {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.hasPeerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -136,7 +136,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeer(peerId: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to peerId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -146,7 +146,7 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public final fun getPeers(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public companion object

@@ -111,7 +111,7 @@ public open class VisualShader : Shader() {
   public final fun getNode(type: Type, id: Int): VisualShaderNode? {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as VisualShaderNode?)
+    return (TransferContext.readReturnValue(OBJECT) as VisualShaderNode?)
   }
 
   /**
@@ -132,7 +132,7 @@ public open class VisualShader : Shader() {
   public final fun getNodePosition(type: Type, id: Int): Vector2 {
     TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getNodePositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class VisualShader : Shader() {
   public final fun getNodeList(type: Type): PackedInt32Array {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -150,7 +150,7 @@ public open class VisualShader : Shader() {
   public final fun getValidNodeId(type: Type): Int {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getValidNodeIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -185,7 +185,7 @@ public open class VisualShader : Shader() {
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isNodeConnectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -200,7 +200,7 @@ public open class VisualShader : Shader() {
   ): Boolean {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.canConnectNodesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -253,7 +253,7 @@ public open class VisualShader : Shader() {
   public final fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getNodeConnectionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   public final fun setGraphOffset(offset: Vector2): Unit {
@@ -264,7 +264,7 @@ public open class VisualShader : Shader() {
   public final fun getGraphOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -314,7 +314,7 @@ public open class VisualShader : Shader() {
   public final fun hasVarying(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasVaryingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Type(

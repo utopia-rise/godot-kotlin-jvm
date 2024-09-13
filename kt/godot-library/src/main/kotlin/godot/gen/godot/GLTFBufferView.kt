@@ -120,13 +120,13 @@ public open class GLTFBufferView : Resource() {
   public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getBuffer(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBuffer(buffer: Int): Unit {
@@ -137,7 +137,7 @@ public open class GLTFBufferView : Resource() {
   public final fun getByteOffset(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteOffset(byteOffset: Int): Unit {
@@ -148,7 +148,7 @@ public open class GLTFBufferView : Resource() {
   public final fun getByteLength(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteLength(byteLength: Int): Unit {
@@ -159,7 +159,7 @@ public open class GLTFBufferView : Resource() {
   public final fun getByteStride(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteStride(byteStride: Int): Unit {
@@ -170,7 +170,7 @@ public open class GLTFBufferView : Resource() {
   public final fun getIndices(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndices(indices: Boolean): Unit {
@@ -181,7 +181,7 @@ public open class GLTFBufferView : Resource() {
   public final fun getVertexAttributes(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVertexAttributes(isAttributes: Boolean): Unit {

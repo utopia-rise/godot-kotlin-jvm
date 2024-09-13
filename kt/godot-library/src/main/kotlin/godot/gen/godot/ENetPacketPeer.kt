@@ -167,7 +167,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getRemoteAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemoteAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -176,7 +176,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getRemotePort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemotePortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -185,7 +185,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getStatisticPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -203,7 +203,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun getChannels(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getChannelsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -213,7 +213,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class PeerState(

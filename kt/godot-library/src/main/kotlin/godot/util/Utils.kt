@@ -11,7 +11,7 @@ typealias NaturalT = Int
 
 typealias VoidPtr = Long
 
-const val nullptr: VoidPtr = -1L
+const val nullptr: VoidPtr = 0L
 val nullObjectID = ObjectID(-1L)
 
 fun String.camelToSnakeCase(): String {

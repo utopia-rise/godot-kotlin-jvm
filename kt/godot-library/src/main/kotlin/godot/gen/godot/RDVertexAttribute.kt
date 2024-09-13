@@ -75,7 +75,7 @@ public open class RDVertexAttribute : RefCounted() {
   public final fun getLocation(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocationPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setOffset(pMember: Long): Unit {
@@ -86,7 +86,7 @@ public open class RDVertexAttribute : RefCounted() {
   public final fun getOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
@@ -108,7 +108,7 @@ public open class RDVertexAttribute : RefCounted() {
   public final fun getStride(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {

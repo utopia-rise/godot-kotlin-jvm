@@ -63,7 +63,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun getDevice(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -75,7 +75,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -97,7 +97,7 @@ public open class InputEvent internal constructor() : Resource() {
   ): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -110,7 +110,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionReleasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -123,7 +123,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -132,7 +132,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isCanceled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCanceledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -145,7 +145,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isReleased(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isReleasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -171,7 +171,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isEcho(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEchoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -180,7 +180,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun asText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.asTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -194,7 +194,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -203,7 +203,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun isActionType(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -215,7 +215,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun accumulate(withEvent: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to withEvent)
     TransferContext.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -228,7 +228,7 @@ public open class InputEvent internal constructor() : Resource() {
   public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
     TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
     TransferContext.callMethod(rawPtr, MethodBindings.xformedByPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as InputEvent?)
+    return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
   }
 
   public companion object {

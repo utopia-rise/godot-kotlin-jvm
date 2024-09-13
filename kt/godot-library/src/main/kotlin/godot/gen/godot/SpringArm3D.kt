@@ -100,7 +100,7 @@ public open class SpringArm3D : Node3D() {
   public final fun getHitLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHitLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLength(length: Float): Unit {
@@ -111,7 +111,7 @@ public open class SpringArm3D : Node3D() {
   public final fun getLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
@@ -122,7 +122,7 @@ public open class SpringArm3D : Node3D() {
   public final fun getShape(): Shape3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   /**
@@ -141,7 +141,7 @@ public open class SpringArm3D : Node3D() {
   public final fun removeExcludedObject(RID: RID): Boolean {
     TransferContext.writeArguments(_RID to RID)
     TransferContext.callMethod(rawPtr, MethodBindings.removeExcludedObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -160,7 +160,7 @@ public open class SpringArm3D : Node3D() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMargin(margin: Float): Unit {
@@ -171,7 +171,7 @@ public open class SpringArm3D : Node3D() {
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

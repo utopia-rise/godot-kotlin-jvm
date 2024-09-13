@@ -121,7 +121,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getStream(index: Int): AudioStream? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioStream?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
   /**
@@ -139,7 +139,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getStreamProbabilityWeight(index: Int): Float {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamProbabilityWeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStreamsCount(count: Int): Unit {
@@ -150,7 +150,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getStreamsCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStreamsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRandomPitch(scale: Float): Unit {
@@ -161,7 +161,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getRandomPitch(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRandomPitchPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRandomVolumeOffsetDb(dbOffset: Float): Unit {
@@ -172,7 +172,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   public final fun getRandomVolumeOffsetDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRandomVolumeOffsetDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPlaybackMode(mode: PlaybackMode): Unit {

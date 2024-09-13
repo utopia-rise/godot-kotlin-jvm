@@ -12,7 +12,7 @@ import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -103,13 +103,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public final fun hasMultiplayerPeer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMultiplayerPeerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getMultiplayerPeer(): MultiplayerPeer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerPeer?)
+    return (TransferContext.readReturnValue(OBJECT) as MultiplayerPeer?)
   }
 
   public final fun setMultiplayerPeer(peer: MultiplayerPeer?): Unit {
@@ -123,7 +123,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public final fun getUniqueId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -133,7 +133,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public final fun isServer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isServerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -144,7 +144,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public final fun getRemoteSenderId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRemoteSenderIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -216,7 +216,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   public final fun getPeers(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public enum class RPCMode(
@@ -268,7 +268,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     public final fun getDefaultInterface(): StringName {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+      return (TransferContext.readReturnValue(STRING_NAME) as StringName)
     }
 
     /**
@@ -277,7 +277,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     public final fun createDefaultInterface(): MultiplayerAPI? {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as MultiplayerAPI?)
+      return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
     }
   }
 

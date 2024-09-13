@@ -20,7 +20,7 @@ import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -119,7 +119,7 @@ public object DisplayServer : Object() {
   public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -133,7 +133,7 @@ public object DisplayServer : Object() {
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -187,7 +187,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSubmenuItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -221,7 +221,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -255,7 +255,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -290,7 +290,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -326,7 +326,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -363,7 +363,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddRadioCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -402,7 +402,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconRadioCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -443,7 +443,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddMultistateItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -464,7 +464,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuAddSeparator(menuRoot: String, index: Int = -1): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSeparatorPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -475,7 +475,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTextPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -486,7 +486,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTagPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -496,7 +496,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -507,7 +507,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -519,7 +519,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemRadioCheckablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -529,7 +529,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCallbackPtr, CALLABLE)
-    return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
+    return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   /**
@@ -539,7 +539,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemKeyCallbackPtr, CALLABLE)
-    return (TransferContext.readReturnValue(CALLABLE, false) as Callable)
+    return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
   /**
@@ -550,7 +550,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemTag(menuRoot: String, idx: Int): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTagPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -560,7 +560,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -571,7 +571,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemSubmenuPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -594,7 +594,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuIsItemDisabled(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -605,7 +605,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -615,7 +615,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -625,7 +625,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemState(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemStatePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -635,7 +635,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemMaxStates(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemMaxStatesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -645,7 +645,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -655,7 +655,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndentationLevelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -907,7 +907,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetItemCount(menuRoot: String): Int {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -944,7 +944,7 @@ public object DisplayServer : Object() {
   public final fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -956,7 +956,7 @@ public object DisplayServer : Object() {
   public final fun ttsIsSpeaking(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsSpeakingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -968,7 +968,7 @@ public object DisplayServer : Object() {
   public final fun ttsIsPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -990,7 +990,7 @@ public object DisplayServer : Object() {
   public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1003,7 +1003,7 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesForLanguagePtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -1096,7 +1096,7 @@ public object DisplayServer : Object() {
   public final fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModeSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1106,7 +1106,7 @@ public object DisplayServer : Object() {
   public final fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1116,7 +1116,7 @@ public object DisplayServer : Object() {
   public final fun getAccentColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1127,7 +1127,7 @@ public object DisplayServer : Object() {
   public final fun getBaseColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1174,7 +1174,7 @@ public object DisplayServer : Object() {
   public final fun mouseGetPosition(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1202,7 +1202,7 @@ public object DisplayServer : Object() {
   public final fun clipboardGet(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1213,7 +1213,7 @@ public object DisplayServer : Object() {
   public final fun clipboardGetImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -1222,7 +1222,7 @@ public object DisplayServer : Object() {
   public final fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1231,7 +1231,7 @@ public object DisplayServer : Object() {
   public final fun clipboardHasImage(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1260,7 +1260,7 @@ public object DisplayServer : Object() {
   public final fun clipboardGetPrimary(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPrimaryPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1273,7 +1273,7 @@ public object DisplayServer : Object() {
   public final fun getDisplayCutouts(): VariantArray<Rect2> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Rect2>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Rect2>)
   }
 
   /**
@@ -1283,7 +1283,7 @@ public object DisplayServer : Object() {
   public final fun getDisplaySafeArea(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1292,7 +1292,7 @@ public object DisplayServer : Object() {
   public final fun getScreenCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1301,7 +1301,7 @@ public object DisplayServer : Object() {
   public final fun getPrimaryScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1311,7 +1311,7 @@ public object DisplayServer : Object() {
   public final fun getKeyboardFocusScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1320,7 +1320,7 @@ public object DisplayServer : Object() {
   public final fun getScreenFromRect(rect: Rect2): Int {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenFromRectPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1342,7 +1342,7 @@ public object DisplayServer : Object() {
   public final fun screenGetPosition(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1352,7 +1352,7 @@ public object DisplayServer : Object() {
   public final fun screenGetSize(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1363,7 +1363,7 @@ public object DisplayServer : Object() {
   public final fun screenGetUsableRect(screen: Int = -1): Rect2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetUsableRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1387,7 +1387,7 @@ public object DisplayServer : Object() {
   public final fun screenGetDpi(screen: Int = -1): Int {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetDpiPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1403,7 +1403,7 @@ public object DisplayServer : Object() {
   public final fun screenGetScale(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1413,7 +1413,7 @@ public object DisplayServer : Object() {
   public final fun isTouchscreenAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1425,7 +1425,7 @@ public object DisplayServer : Object() {
   public final fun screenGetMaxScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1445,7 +1445,7 @@ public object DisplayServer : Object() {
   public final fun screenGetRefreshRate(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1457,7 +1457,7 @@ public object DisplayServer : Object() {
   public final fun screenGetPixel(position: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPixelPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1470,7 +1470,7 @@ public object DisplayServer : Object() {
   public final fun screenGetImage(screen: Int = -1): Image? {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -1511,7 +1511,7 @@ public object DisplayServer : Object() {
   public final fun screenIsKeptOn(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenIsKeptOnPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1521,7 +1521,7 @@ public object DisplayServer : Object() {
   public final fun getWindowList(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1541,7 +1541,7 @@ public object DisplayServer : Object() {
   public final fun getWindowAtScreenPosition(position: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowAtScreenPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1552,7 +1552,7 @@ public object DisplayServer : Object() {
   public final fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetNativeHandlePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1561,7 +1561,7 @@ public object DisplayServer : Object() {
   public final fun windowGetActivePopup(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetActivePopupPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1580,7 +1580,7 @@ public object DisplayServer : Object() {
   public final fun windowGetPopupSafeRect(window: Int): Rect2i {
     TransferContext.writeArguments(LONG to window.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPopupSafeRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I, false) as Rect2i)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1604,7 +1604,7 @@ public object DisplayServer : Object() {
   public final fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1655,7 +1655,7 @@ public object DisplayServer : Object() {
   public final fun windowGetCurrentScreen(windowId: Int = 0): Int {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetCurrentScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1675,7 +1675,7 @@ public object DisplayServer : Object() {
   public final fun windowGetPosition(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1686,7 +1686,7 @@ public object DisplayServer : Object() {
   public final fun windowGetPositionWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionWithDecorationsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1720,7 +1720,7 @@ public object DisplayServer : Object() {
   public final fun windowGetSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1803,7 +1803,7 @@ public object DisplayServer : Object() {
   public final fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetAttachedInstanceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1813,7 +1813,7 @@ public object DisplayServer : Object() {
   public final fun windowGetMaxSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMaxSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1837,7 +1837,7 @@ public object DisplayServer : Object() {
   public final fun windowGetMinSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMinSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1864,7 +1864,7 @@ public object DisplayServer : Object() {
   public final fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizeWithDecorationsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1910,7 +1910,7 @@ public object DisplayServer : Object() {
   public final fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1932,7 +1932,7 @@ public object DisplayServer : Object() {
   public final fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSafeTitleMarginsPtr, VECTOR3I)
-    return (TransferContext.readReturnValue(VECTOR3I, false) as Vector3i)
+    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   /**
@@ -1963,7 +1963,7 @@ public object DisplayServer : Object() {
   public final fun windowIsFocused(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsFocusedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1975,7 +1975,7 @@ public object DisplayServer : Object() {
   public final fun windowCanDraw(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowCanDrawPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2056,7 +2056,7 @@ public object DisplayServer : Object() {
   public final fun windowIsMaximizeAllowed(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsMaximizeAllowedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2066,7 +2066,7 @@ public object DisplayServer : Object() {
   public final fun windowMaximizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2076,7 +2076,7 @@ public object DisplayServer : Object() {
   public final fun windowMinimizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2088,7 +2088,7 @@ public object DisplayServer : Object() {
   public final fun imeGetSelection(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -2099,7 +2099,7 @@ public object DisplayServer : Object() {
   public final fun imeGetText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2142,7 +2142,7 @@ public object DisplayServer : Object() {
   public final fun virtualKeyboardGetHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2191,7 +2191,7 @@ public object DisplayServer : Object() {
   public final fun getSwapCancelOk(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwapCancelOkPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2312,7 +2312,7 @@ public object DisplayServer : Object() {
   public final fun keyboardGetLayoutCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2322,7 +2322,7 @@ public object DisplayServer : Object() {
   public final fun keyboardGetCurrentLayout(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2341,7 +2341,7 @@ public object DisplayServer : Object() {
   public final fun keyboardGetLayoutLanguage(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2351,7 +2351,7 @@ public object DisplayServer : Object() {
   public final fun keyboardGetLayoutName(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2430,7 +2430,7 @@ public object DisplayServer : Object() {
   ): Int {
     TransferContext.writeArguments(OBJECT to icon, STRING to tooltip, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.createStatusIndicatorPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2485,7 +2485,7 @@ public object DisplayServer : Object() {
   public final fun statusIndicatorGetRect(id: Int): Rect2 {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -2503,7 +2503,7 @@ public object DisplayServer : Object() {
   public final fun tabletGetDriverCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2513,7 +2513,7 @@ public object DisplayServer : Object() {
   public final fun tabletGetDriverName(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2523,7 +2523,7 @@ public object DisplayServer : Object() {
   public final fun tabletGetCurrentDriver(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2547,7 +2547,7 @@ public object DisplayServer : Object() {
   public final fun isWindowTransparencyAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2576,7 +2576,7 @@ public object DisplayServer : Object() {
   public final fun hasAdditionalOutputs(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Feature(

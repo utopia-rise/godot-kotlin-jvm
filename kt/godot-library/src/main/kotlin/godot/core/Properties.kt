@@ -1,31 +1,36 @@
 package godot.core
 
+import godot.PropertyHint
+import godot.PropertyUsageFlags
 import godot.core.memory.TransferContext
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
-    val _type: VariantType,
+    val _type: VariantConverter,
     val name: String,
     val className: String,
     val _hint: PropertyHint,
     val hintString: String,
-    val visibleInEditor: Boolean,
+    val usage: Long = if (_type === VariantCaster.ANY) {
+        PropertyUsageFlags.PROPERTY_USAGE_NIL_IS_VARIANT.flag
+    } else {
+        PropertyUsageFlags.PROPERTY_USAGE_NONE.flag
+    }
 ) {
     val type: Int
-        get() = _type.ordinal
+        get() = _type.id
 
     val hint: Int
-        get() = _hint.ordinal
+        get() = _hint.id.toInt()
 }
 
 open class KtProperty<T : KtObject, P : Any?>(
     val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
-    protected val variantType: VariantType,
-    val isRef: Boolean
+    protected val variantConverter: VariantConverter,
 ) {
     open fun callGet(instance: T) {
-        TransferContext.writeReturnValue(kProperty.get(instance), variantType)
+        TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
     }
 
     open fun callSet(instance: T) {
@@ -35,7 +40,7 @@ open class KtProperty<T : KtObject, P : Any?>(
 
     protected fun <P> extractSetterArgument(): P {
         //TODO: manage nullable argument of enum setter (only for objects)
-        val arg = TransferContext.readSingleArgument(variantType)
+        val arg = TransferContext.readSingleArgument(variantConverter)
         @Suppress("UNCHECKED_CAST")
         return arg as P
     }
@@ -49,11 +54,10 @@ class KtEnumProperty<T : KtObject, P : Any>(
 ) : KtProperty<T, P>(
     ktPropertyInfo,
     kProperty,
-    VariantType.JVM_INT,
-    false
+    VariantCaster.INT
 ) {
     override fun callGet(instance: T) {
-        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.JVM_INT)
+        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantCaster.INT)
     }
 
     override fun callSet(instance: T) {
@@ -70,8 +74,7 @@ class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
 ) : KtProperty<T, L>(
     ktPropertyInfo,
     kProperty,
-    VariantType.ARRAY,
-    false
+    VariantType.ARRAY
 ) {
     override fun callGet(instance: T) {
         TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.ARRAY)

@@ -13,7 +13,9 @@ const val godotRegistrationPackage = "godot.registration"
 const val godotSignalsPackage = "godot.signals"
 const val godotEntryBasePackage = "godot.entry"
 
+const val variantConverterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantConverter}"
 const val variantTypePackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantType}"
+const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantCaster}"
 
 const val kotlinPackage = "kotlin"
 const val kotlinCollectionsPackage = "$kotlinPackage.collections"

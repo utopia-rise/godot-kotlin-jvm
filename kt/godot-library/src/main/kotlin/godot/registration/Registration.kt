@@ -1,5 +1,7 @@
 package godot.registration
 
+import godot.PropertyHint
+import godot.PropertyUsageFlags
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
@@ -28,8 +30,9 @@ import godot.core.KtProperty
 import godot.core.KtPropertyInfo
 import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
-import godot.core.PropertyHint
 import godot.core.TypeManager
+import godot.core.VariantCaster
+import godot.core.VariantConverter
 import godot.core.VariantType
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
@@ -57,7 +60,7 @@ import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty
 
 data class KtFunctionArgument(
-    val type: VariantType,
+    val type: VariantConverter,
     val className: String,
     val name: String = "" //empty for return type
 ) {
@@ -65,9 +68,8 @@ data class KtFunctionArgument(
         type,
         name,
         className,
-        PropertyHint.NONE,
+        PropertyHint.PROPERTY_HINT_NONE,
         "", //always empty. Only used for properties
-        true, //always true. Only used for properties
     )
 }
 
@@ -101,13 +103,12 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P : Any?> property(
         kProperty: KMutableProperty1<T, P>,
-        variantType: VariantType,
-        type: VariantType,
+        variantType: VariantConverter,
+        type: VariantConverter,
         className: String,
-        hint: PropertyHint = PropertyHint.NONE,
+        hint: PropertyHint = PropertyHint.PROPERTY_HINT_NONE,
         hintString: String = "",
-        visibleInEditor: Boolean = true,
-        isRef: Boolean = false
+        usage: Long
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
         require(!properties.contains(propertyName)) {
@@ -120,17 +121,16 @@ class ClassBuilderDsl<T : KtObject>(
                 className,
                 hint,
                 hintString,
-                visibleInEditor,
+                usage
             ),
             kProperty,
-            variantType,
-            isRef
+            variantType
         )
     }
 
     inline fun <reified P : Enum<P>> enumProperty(
         kProperty: KMutableProperty1<T, P>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -143,9 +143,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.ENUM,
+                PropertyHint.PROPERTY_HINT_ENUM,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enum: P? -> enum?.ordinal ?: 1 },
@@ -155,7 +155,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         kProperty: KMutableProperty1<T, L>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -168,9 +168,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.ARRAY,
                 propertyName,
                 "Int",
-                PropertyHint.ENUM,
+                PropertyHint.PROPERTY_HINT_ENUM,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enumList: Collection<P>? ->
@@ -190,17 +190,18 @@ class ClassBuilderDsl<T : KtObject>(
     @Suppress("UNCHECKED_CAST")
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, MutableSet<P>>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) = enumFlagProperty(
         kProperty as KMutableProperty1<T, Set<P>>,
-        visibleInEditor,
-        hintString
-    )
+        usage,
+        hintString,
+
+        )
 
     inline fun <reified P : Enum<P>> enumFlagProperty(
         kProperty: KMutableProperty1<T, Set<P>>,
-        visibleInEditor: Boolean,
+        usage: Long,
         hintString: String
     ) {
         val propertyName = kProperty.name.camelToSnakeCase()
@@ -213,9 +214,9 @@ class ClassBuilderDsl<T : KtObject>(
                 VariantType.LONG,
                 propertyName,
                 "Int",
-                PropertyHint.FLAGS,
+                PropertyHint.PROPERTY_HINT_FLAGS,
                 hintString,
-                visibleInEditor,
+                usage,
             ),
             kProperty,
             { enumSet ->
@@ -265,7 +266,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <R : Any?> function(
         func: KFunction1<T, R>,
-        variantType: VariantType,
+        variantType: VariantConverter,
         returnType: KtFunctionArgument,
         rpcConfig: KtRpcConfig
     ) {
@@ -274,14 +275,7 @@ class ClassBuilderDsl<T : KtObject>(
                 KtFunctionInfo(
                     name = func.name.camelToSnakeCase(),
                     _arguments = listOf(),
-                    returnVal = KtPropertyInfo(
-                        _type = returnType.type,
-                        name = "",
-                        className = returnType.className,
-                        _hint = PropertyHint.NONE,
-                        hintString = "",
-                        visibleInEditor = true, // always true. Only used for properties
-                    ),
+                    returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
                 ),
                 func,
@@ -292,8 +286,8 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, R : Any?> function(
         func: KFunction2<T, P0, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
         p0: KtFunctionArgument,
         returnType: KtFunctionArgument,
         rpcConfig: KtRpcConfig
@@ -317,9 +311,9 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, R : Any?> function(
         func: KFunction3<T, P0, P1, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         returnType: KtFunctionArgument,
@@ -346,10 +340,10 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, R : Any?> function(
         func: KFunction4<T, P0, P1, P2, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -379,11 +373,11 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, R : Any?> function(
         func: KFunction5<T, P0, P1, P2, P3, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -416,12 +410,12 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, R : Any?> function(
         func: KFunction6<T, P0, P1, P2, P3, P4, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -457,13 +451,13 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, R : Any?> function(
         func: KFunction7<T, P0, P1, P2, P3, P4, P5, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -502,14 +496,14 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, R : Any?> function(
         func: KFunction8<T, P0, P1, P2, P3, P4, P5, P6, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -551,15 +545,15 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, R : Any?> function(
         func: KFunction9<T, P0, P1, P2, P3, P4, P5, P6, P7, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -604,16 +598,16 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, R : Any?> function(
         func: KFunction10<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -661,17 +655,17 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R : Any?> function(
         func: KFunction11<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -722,18 +716,18 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R : Any?> function(
         func: KFunction12<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -787,19 +781,19 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R : Any?> function(
         func: KFunction13<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
-        p11Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -856,20 +850,20 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R : Any?> function(
         func: KFunction14<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
-        p11Type: Pair<VariantType, Boolean>,
-        p12Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -929,21 +923,21 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R : Any?> function(
         func: KFunction15<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
-        p11Type: Pair<VariantType, Boolean>,
-        p12Type: Pair<VariantType, Boolean>,
-        p13Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -1006,22 +1000,22 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R : Any?> function(
         func: KFunction16<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
-        p11Type: Pair<VariantType, Boolean>,
-        p12Type: Pair<VariantType, Boolean>,
-        p13Type: Pair<VariantType, Boolean>,
-        p14Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
+        p14Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,
@@ -1087,23 +1081,23 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R : Any?> function(
         func: KFunction17<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, R>,
-        variantType: VariantType,
-        p0Type: Pair<VariantType, Boolean>,
-        p1Type: Pair<VariantType, Boolean>,
-        p2Type: Pair<VariantType, Boolean>,
-        p3Type: Pair<VariantType, Boolean>,
-        p4Type: Pair<VariantType, Boolean>,
-        p5Type: Pair<VariantType, Boolean>,
-        p6Type: Pair<VariantType, Boolean>,
-        p7Type: Pair<VariantType, Boolean>,
-        p8Type: Pair<VariantType, Boolean>,
-        p9Type: Pair<VariantType, Boolean>,
-        p10Type: Pair<VariantType, Boolean>,
-        p11Type: Pair<VariantType, Boolean>,
-        p12Type: Pair<VariantType, Boolean>,
-        p13Type: Pair<VariantType, Boolean>,
-        p14Type: Pair<VariantType, Boolean>,
-        p15Type: Pair<VariantType, Boolean>,
+        variantType: VariantConverter,
+        p0Type: VariantConverter,
+        p1Type: VariantConverter,
+        p2Type: VariantConverter,
+        p3Type: VariantConverter,
+        p4Type: VariantConverter,
+        p5Type: VariantConverter,
+        p6Type: VariantConverter,
+        p7Type: VariantConverter,
+        p8Type: VariantConverter,
+        p9Type: VariantConverter,
+        p10Type: VariantConverter,
+        p11Type: VariantConverter,
+        p12Type: VariantConverter,
+        p13Type: VariantConverter,
+        p14Type: VariantConverter,
+        p15Type: VariantConverter,
         p0: KtFunctionArgument,
         p1: KtFunctionArgument,
         p2: KtFunctionArgument,

@@ -48,7 +48,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
   public final fun isMode2d(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

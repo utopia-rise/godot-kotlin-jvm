@@ -6,13 +6,13 @@ import godot.signals.Signal
 @PublishedApi
 internal val variantMapper = mutableMapOf(
     Unit::class to VariantType.NIL,
-    Any::class to VariantType.ANY,
-    java.lang.Object::class to VariantType.ANY,
+    Any::class to VariantCaster.ANY,
+    java.lang.Object::class to VariantCaster.ANY,
     Boolean::class to VariantType.BOOL,
-    Int::class to VariantType.JVM_INT,
+    Int::class to VariantCaster.INT,
     Long::class to VariantType.LONG,
-    Float::class to VariantType.JVM_FLOAT,
-    Byte::class to VariantType.JVM_BYTE,
+    Float::class to VariantCaster.FLOAT,
+    Byte::class to VariantCaster.BYTE,
     Double::class to VariantType.DOUBLE,
     String::class to VariantType.STRING,
     AABB::class to VariantType.AABB,
@@ -49,3 +49,49 @@ internal val variantMapper = mutableMapOf(
     PackedVector2Array::class to VariantType.PACKED_VECTOR2_ARRAY,
     PackedVector3Array::class to VariantType.PACKED_VECTOR3_ARRAY
 )
+
+@PublishedApi
+internal val notNullableVariantSet = hashSetOf(
+    Boolean::class,
+    Int::class,
+    Long::class,
+    Float::class,
+    Byte::class,
+    Double::class,
+    String::class,
+    AABB::class,
+    Basis::class,
+    Color::class,
+    StringName::class,
+    Dictionary::class,
+    VariantArray::class,
+    Plane::class,
+    NodePath::class,
+    Quaternion::class,
+    Rect2::class,
+    Rect2i::class,
+    RID::class,
+    Transform3D::class,
+    Transform2D::class,
+    Vector2::class,
+    Vector2i::class,
+    Vector3::class,
+    Vector3i::class,
+    Vector4::class,
+    Vector4i::class,
+    Projection::class,
+    NativeCallable::class,
+    KtCallable::class,
+    Signal::class,
+    PackedByteArray::class,
+    PackedColorArray::class,
+    PackedInt32Array::class,
+    PackedInt64Array::class,
+    PackedFloat32Array::class,
+    PackedFloat64Array::class,
+    PackedStringArray::class,
+    PackedVector2Array::class,
+    PackedVector3Array::class
+)
+
+

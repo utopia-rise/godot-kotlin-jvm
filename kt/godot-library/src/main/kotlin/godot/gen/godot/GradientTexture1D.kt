@@ -76,7 +76,7 @@ public open class GradientTexture1D : Texture2D() {
   public final fun getGradient(): Gradient? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Gradient?)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setWidth(width: Int): Unit {
@@ -92,7 +92,7 @@ public open class GradientTexture1D : Texture2D() {
   public final fun isUsingHdr(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

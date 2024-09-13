@@ -108,7 +108,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun isValidGateway(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isValidGatewayPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -117,7 +117,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -134,7 +134,7 @@ public open class UPNPDevice : RefCounted() {
   ): Int {
     TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -145,7 +145,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDescriptionUrl(url: String): Unit {
@@ -156,7 +156,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getDescriptionUrl(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionUrlPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setServiceType(type: String): Unit {
@@ -167,7 +167,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getServiceType(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getServiceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdControlUrl(url: String): Unit {
@@ -178,7 +178,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getIgdControlUrl(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIgdControlUrlPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdServiceType(type: String): Unit {
@@ -189,7 +189,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getIgdServiceType(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIgdServiceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdOurAddr(addr: String): Unit {
@@ -200,7 +200,7 @@ public open class UPNPDevice : RefCounted() {
   public final fun getIgdOurAddr(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIgdOurAddrPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdStatus(status: IGDStatus): Unit {

@@ -136,7 +136,7 @@ public open class VideoStreamPlayback : Resource() {
   ): Int {
     TransferContext.writeArguments(LONG to numFrames.toLong(), PACKED_FLOAT_32_ARRAY to buffer, LONG to offset.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.mixAudioPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

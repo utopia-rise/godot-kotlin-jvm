@@ -119,7 +119,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun getMin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMax(`value`: Float): Unit {
@@ -130,7 +130,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun getMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStep(`value`: Float): Unit {
@@ -141,7 +141,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun getStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
@@ -152,7 +152,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun isDefaultValueEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Float): Unit {
@@ -163,7 +163,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   public final fun getDefaultValue(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Hint(

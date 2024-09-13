@@ -159,7 +159,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getProgress(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHOffset(hOffset: Float): Unit {
@@ -170,7 +170,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getHOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVOffset(vOffset: Float): Unit {
@@ -181,7 +181,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getVOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setProgressRatio(ratio: Float): Unit {
@@ -192,7 +192,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getProgressRatio(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRotationMode(rotationMode: RotationMode): Unit {
@@ -214,7 +214,7 @@ public open class PathFollow3D : Node3D() {
   public final fun getCubicInterpolation(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseModelFront(enabled: Boolean): Unit {
@@ -225,7 +225,7 @@ public open class PathFollow3D : Node3D() {
   public final fun isUsingModelFront(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingModelFrontPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
@@ -236,7 +236,7 @@ public open class PathFollow3D : Node3D() {
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTiltEnabled(enabled: Boolean): Unit {
@@ -247,7 +247,7 @@ public open class PathFollow3D : Node3D() {
   public final fun isTiltEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTiltEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class RotationMode(
@@ -295,7 +295,7 @@ public open class PathFollow3D : Node3D() {
         Transform3D {
       TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
       TransferContext.callMethod(0, MethodBindings.correctPosturePtr, TRANSFORM3D)
-      return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+      return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
     }
   }
 

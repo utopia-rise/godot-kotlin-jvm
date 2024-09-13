@@ -151,7 +151,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
@@ -173,7 +173,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getTexture(): Texture3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public final fun setThickness(thickness: Float): Unit {
@@ -184,7 +184,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getThickness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBakeMask(mask: Long): Unit {
@@ -195,7 +195,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getBakeMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -214,7 +214,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Resolution(

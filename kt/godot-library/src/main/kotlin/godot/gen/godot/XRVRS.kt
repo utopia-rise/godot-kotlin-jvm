@@ -62,7 +62,7 @@ public open class XRVRS : Object() {
   public final fun getVrsMinRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
@@ -73,7 +73,7 @@ public open class XRVRS : Object() {
   public final fun getVrsStrength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {
@@ -90,7 +90,7 @@ public open class XRVRS : Object() {
   public final fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
     TransferContext.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
     TransferContext.callMethod(rawPtr, MethodBindings.makeVrsTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

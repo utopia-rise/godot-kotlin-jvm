@@ -47,7 +47,7 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
   public final fun getTexture(): Texture3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public companion object

@@ -23,8 +23,6 @@ properties = [
 	enum_list,
 	vector_list,
 	enum_list_mutable,
-	nullable_long,
-	lateinit_string,
 	register_object,
 	register_object_nullable,
 	register_object_nullable_pre_init,

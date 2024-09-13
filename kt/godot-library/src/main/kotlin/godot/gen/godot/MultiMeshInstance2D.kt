@@ -65,7 +65,7 @@ public open class MultiMeshInstance2D : Node2D() {
   public final fun getMultimesh(): MultiMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MultiMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
@@ -76,7 +76,7 @@ public open class MultiMeshInstance2D : Node2D() {
   public final fun getTexture(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object

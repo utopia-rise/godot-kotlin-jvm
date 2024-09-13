@@ -59,7 +59,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   ): KinematicCollision2D? {
     TransferContext.writeArguments(VECTOR2 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, MethodBindings.moveAndCollidePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision2D?)
+    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision2D?)
   }
 
   /**
@@ -85,7 +85,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM2D to from, VECTOR2 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision)
     TransferContext.callMethod(rawPtr, MethodBindings.testMovePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public final fun getGravity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -104,7 +104,7 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody2D>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody2D>)
   }
 
   /**

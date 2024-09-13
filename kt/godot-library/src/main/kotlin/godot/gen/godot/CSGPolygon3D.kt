@@ -241,7 +241,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY, false) as PackedVector2Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setMode(mode: Mode): Unit {
@@ -263,7 +263,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getDepth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpinDegrees(degrees: Float): Unit {
@@ -274,7 +274,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getSpinDegrees(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpinDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpinSides(spinSides: Int): Unit {
@@ -285,7 +285,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getSpinSides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpinSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPathNode(path: NodePath): Unit {
@@ -296,7 +296,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathNode(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setPathIntervalType(intervalType: PathIntervalType): Unit {
@@ -318,7 +318,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathInterval(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathSimplifyAngle(degrees: Float): Unit {
@@ -329,7 +329,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathSimplifyAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathSimplifyAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathRotation(pathRotation: PathRotation): Unit {
@@ -351,7 +351,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun isPathLocal(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathLocalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathContinuousU(enable: Boolean): Unit {
@@ -362,7 +362,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun isPathContinuousU(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathContinuousUPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathUDistance(distance: Float): Unit {
@@ -373,7 +373,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getPathUDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathUDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathJoined(enable: Boolean): Unit {
@@ -384,7 +384,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun isPathJoined(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPathJoinedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
@@ -395,7 +395,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getMaterial(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
@@ -406,7 +406,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   public final fun getSmoothFaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Mode(

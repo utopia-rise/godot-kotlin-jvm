@@ -151,7 +151,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   public final fun getSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSubdivideWidth(subdivide: Int): Unit {
@@ -162,7 +162,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   public final fun getSubdivideWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(subdivide: Int): Unit {
@@ -173,7 +173,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   public final fun getSubdivideDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCenterOffset(offset: Vector3): Unit {
@@ -184,7 +184,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   public final fun getCenterOffset(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setOrientation(orientation: Orientation): Unit {

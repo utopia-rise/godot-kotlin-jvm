@@ -82,7 +82,7 @@ public open class TorusMesh : PrimitiveMesh() {
   public final fun getInnerRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInnerRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOuterRadius(radius: Float): Unit {
@@ -93,7 +93,7 @@ public open class TorusMesh : PrimitiveMesh() {
   public final fun getOuterRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOuterRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRings(rings: Int): Unit {
@@ -104,7 +104,7 @@ public open class TorusMesh : PrimitiveMesh() {
   public final fun getRings(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRingSegments(rings: Int): Unit {
@@ -115,7 +115,7 @@ public open class TorusMesh : PrimitiveMesh() {
   public final fun getRingSegments(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRingSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

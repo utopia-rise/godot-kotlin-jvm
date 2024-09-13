@@ -83,7 +83,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getMesh(): Mesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Mesh?)
+    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setSkeletonPath(skeletonPath: NodePath): Unit {
@@ -94,7 +94,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getSkeletonPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setSkin(skin: Skin?): Unit {
@@ -105,7 +105,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getSkin(): Skin? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Skin?)
+    return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getSkinReference(): SkinReference? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkinReferencePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SkinReference?)
+    return (TransferContext.readReturnValue(OBJECT) as SkinReference?)
   }
 
   /**
@@ -125,7 +125,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getSurfaceOverrideMaterialCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceOverrideMaterialCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -150,7 +150,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getSurfaceOverrideMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceOverrideMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   /**
@@ -163,7 +163,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getActiveMaterial(surface: Int): Material? {
     TransferContext.writeArguments(LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getActiveMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   /**
@@ -207,7 +207,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getBlendShapeCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -217,7 +217,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun findBlendShapeByName(name: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findBlendShapeByNamePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun getBlendShapeValue(blendShapeIdx: Int): Float {
     TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -259,7 +259,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
   public final fun bakeMeshFromCurrentBlendShapeMix(existing: ArrayMesh? = null): ArrayMesh? {
     TransferContext.writeArguments(OBJECT to existing)
     TransferContext.callMethod(rawPtr, MethodBindings.bakeMeshFromCurrentBlendShapeMixPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ArrayMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   public companion object

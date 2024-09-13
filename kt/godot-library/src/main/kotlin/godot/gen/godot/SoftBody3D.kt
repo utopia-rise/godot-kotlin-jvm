@@ -190,7 +190,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getPhysicsRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
@@ -201,7 +201,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getCollisionMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionLayer(collisionLayer: Long): Unit {
@@ -212,7 +212,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getCollisionLayer(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -231,7 +231,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -250,7 +250,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getCollisionLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setParentCollisionIgnore(parentCollisionIgnore: NodePath): Unit {
@@ -261,7 +261,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getParentCollisionIgnore(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getParentCollisionIgnorePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
@@ -281,7 +281,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
   }
 
   /**
@@ -308,7 +308,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getSimulationPrecision(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSimulationPrecisionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTotalMass(mass: Float): Unit {
@@ -319,7 +319,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getTotalMass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearStiffness(linearStiffness: Float): Unit {
@@ -330,7 +330,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getLinearStiffness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearStiffnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressureCoefficient(pressureCoefficient: Float): Unit {
@@ -341,7 +341,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getPressureCoefficient(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressureCoefficientPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingCoefficient(dampingCoefficient: Float): Unit {
@@ -352,7 +352,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getDampingCoefficient(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingCoefficientPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDragCoefficient(dragCoefficient: Float): Unit {
@@ -363,7 +363,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getDragCoefficient(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDragCoefficientPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -372,7 +372,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun getPointTransform(pointIndex: Int): Vector3 {
     TransferContext.writeArguments(LONG to pointIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getPointTransformPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -395,7 +395,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun isPointPinned(pointIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to pointIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isPointPinnedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRayPickable(rayPickable: Boolean): Unit {
@@ -406,7 +406,7 @@ public open class SoftBody3D : MeshInstance3D() {
   public final fun isRayPickable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRayPickablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class DisableMode(

@@ -359,7 +359,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getSessionMode(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setRequiredFeatures(requiredFeatures: String): Unit {
@@ -370,7 +370,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getRequiredFeatures(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOptionalFeatures(optionalFeatures: String): Unit {
@@ -381,19 +381,19 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getOptionalFeatures(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getReferenceSpaceType(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun getEnabledFeatures(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setRequestedReferenceSpaceTypes(requestedReferenceSpaceTypes: String): Unit {
@@ -404,7 +404,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getRequestedReferenceSpaceTypes(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -413,7 +413,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun isInputSourceActive(inputSourceId: Int): Boolean {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInputSourceActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -433,7 +433,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
     TransferContext.writeArguments(LONG to inputSourceId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTrackerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as XRControllerTracker?)
+    return (TransferContext.readReturnValue(OBJECT) as XRControllerTracker?)
   }
 
   /**
@@ -451,7 +451,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getVisibilityState(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -461,7 +461,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getDisplayRefreshRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -480,7 +480,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class TargetRayMode(

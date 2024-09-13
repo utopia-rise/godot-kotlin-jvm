@@ -165,7 +165,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
     TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CollisionShape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as CollisionShape3D?)
   }
 
   /**
@@ -175,7 +175,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun toResource(cacheShapes: Boolean = false): Shape3D? {
     TransferContext.writeArguments(BOOL to cacheShapes)
     TransferContext.callMethod(rawPtr, MethodBindings.toResourcePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
   }
 
   /**
@@ -185,13 +185,13 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getShapeType(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapeTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setShapeType(shapeType: String): Unit {
@@ -202,7 +202,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSize(size: Vector3): Unit {
@@ -213,7 +213,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadius(radius: Float): Unit {
@@ -224,7 +224,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
@@ -235,7 +235,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getIsTrigger(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIsTriggerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIsTrigger(isTrigger: Boolean): Unit {
@@ -246,7 +246,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getMeshIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMeshIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMeshIndex(meshIndex: Int): Unit {
@@ -257,7 +257,7 @@ public open class GLTFPhysicsShape : Resource() {
   public final fun getImporterMesh(): ImporterMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImporterMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as ImporterMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
   public final fun setImporterMesh(importerMesh: ImporterMesh?): Unit {
@@ -272,7 +272,7 @@ public open class GLTFPhysicsShape : Resource() {
     public final fun fromNode(shapeNode: CollisionShape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeNode)
       TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
 
     /**
@@ -281,7 +281,7 @@ public open class GLTFPhysicsShape : Resource() {
     public final fun fromResource(shapeResource: Shape3D?): GLTFPhysicsShape? {
       TransferContext.writeArguments(OBJECT to shapeResource)
       TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
 
     /**
@@ -290,7 +290,7 @@ public open class GLTFPhysicsShape : Resource() {
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
       TransferContext.writeArguments(DICTIONARY to dictionary)
       TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as GLTFPhysicsShape?)
+      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
   }
 

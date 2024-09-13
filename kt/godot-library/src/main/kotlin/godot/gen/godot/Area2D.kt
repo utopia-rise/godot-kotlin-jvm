@@ -386,7 +386,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun isGravityAPoint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGravityPointUnitDistance(distanceScale: Float): Unit {
@@ -397,7 +397,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getGravityPointUnitDistance(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGravityPointCenter(center: Vector2): Unit {
@@ -408,7 +408,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getGravityPointCenter(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGravityDirection(direction: Vector2): Unit {
@@ -419,7 +419,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getGravityDirection(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGravity(gravity: Float): Unit {
@@ -430,7 +430,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getGravity(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
@@ -463,7 +463,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getLinearDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
@@ -474,7 +474,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getAngularDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPriority(priority: Int): Unit {
@@ -485,7 +485,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMonitoring(enable: Boolean): Unit {
@@ -496,7 +496,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun isMonitoring(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMonitorable(enable: Boolean): Unit {
@@ -507,7 +507,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun isMonitorable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -521,7 +521,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getOverlappingBodies(): VariantArray<Node2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingBodiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Node2D>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node2D>)
   }
 
   /**
@@ -535,7 +535,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getOverlappingAreas(): VariantArray<Area2D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingAreasPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Area2D>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Area2D>)
   }
 
   /**
@@ -549,7 +549,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun hasOverlappingBodies(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingBodiesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -563,7 +563,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun hasOverlappingAreas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingAreasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -578,7 +578,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun overlapsBody(body: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to body)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -590,7 +590,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun overlapsArea(area: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to area)
     TransferContext.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAudioBusName(name: StringName): Unit {
@@ -601,7 +601,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun getAudioBusName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAudioBusOverride(enable: Boolean): Unit {
@@ -612,7 +612,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun isOverridingAudioBus(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class SpaceOverride(

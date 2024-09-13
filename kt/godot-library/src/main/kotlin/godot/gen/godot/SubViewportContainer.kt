@@ -80,7 +80,7 @@ public open class SubViewportContainer : Container() {
   public final fun isStretchEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStretchShrink(amount: Int): Unit {
@@ -91,7 +91,7 @@ public open class SubViewportContainer : Container() {
   public final fun getStretchShrink(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

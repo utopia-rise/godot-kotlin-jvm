@@ -317,7 +317,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setTransform(transform: Transform2D): Unit {
@@ -328,7 +328,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getRange(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRangePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I, false) as Vector2i)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setRange(range: Vector2i): Unit {
@@ -339,7 +339,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getElapsedTime(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getElapsedTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setElapsedTime(time: Double): Unit {
@@ -350,7 +350,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun isVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVisibility(visibility: Boolean): Unit {
@@ -361,7 +361,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun isOutline(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOutlinePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOutline(outline: Boolean): Unit {
@@ -372,7 +372,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
@@ -383,7 +383,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColor(color: Color): Unit {
@@ -394,7 +394,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getEnvironment(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setEnvironment(environment: Dictionary<Any?, Any?>): Unit {
@@ -405,7 +405,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getGlyphIndex(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlyphIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setGlyphIndex(glyphIndex: Long): Unit {
@@ -416,7 +416,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getRelativeIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRelativeIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRelativeIndex(relativeIndex: Int): Unit {
@@ -427,7 +427,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getGlyphCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlyphCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setGlyphCount(glyphCount: Int): Unit {
@@ -438,7 +438,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getGlyphFlags(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlyphFlagsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setGlyphFlags(glyphFlags: Int): Unit {
@@ -449,7 +449,7 @@ public open class CharFXTransform : RefCounted() {
   public final fun getFont(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setFont(font: RID): Unit {

@@ -52,7 +52,7 @@ public open class AudioStreamPolyphonic : AudioStream() {
   public final fun getPolyphony(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

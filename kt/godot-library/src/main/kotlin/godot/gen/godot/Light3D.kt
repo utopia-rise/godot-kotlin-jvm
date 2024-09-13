@@ -438,7 +438,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun isEditorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -455,7 +455,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShadow(enabled: Boolean): Unit {
@@ -466,7 +466,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun hasShadow(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasShadowPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNegative(enabled: Boolean): Unit {
@@ -477,7 +477,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun isNegative(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNegativePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMask(cullMask: Long): Unit {
@@ -488,7 +488,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getCullMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableDistanceFade(enable: Boolean): Unit {
@@ -499,7 +499,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun isDistanceFadeEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDistanceFadeBegin(distance: Float): Unit {
@@ -510,7 +510,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getDistanceFadeBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeShadow(distance: Float): Unit {
@@ -521,7 +521,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getDistanceFadeShadow(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeLength(distance: Float): Unit {
@@ -532,7 +532,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getDistanceFadeLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setColor(color: Color): Unit {
@@ -543,7 +543,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowReverseCullFace(enable: Boolean): Unit {
@@ -554,7 +554,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getShadowReverseCullFace(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeMode(bakeMode: BakeMode): Unit {
@@ -576,7 +576,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getProjector(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTemperature(temperature: Float): Unit {
@@ -587,7 +587,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getTemperature(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTemperaturePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -598,7 +598,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   public final fun getCorrelatedColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCorrelatedColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public enum class Param(

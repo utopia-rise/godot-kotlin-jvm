@@ -71,7 +71,7 @@ public open class ZIPReader : RefCounted() {
   public final fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -82,7 +82,7 @@ public open class ZIPReader : RefCounted() {
   public final fun readFile(path: String, caseSensitive: Boolean = true): PackedByteArray {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
     TransferContext.callMethod(rawPtr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -93,7 +93,7 @@ public open class ZIPReader : RefCounted() {
   public final fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
     TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
     TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

@@ -235,7 +235,7 @@ public open class SystemFont : Font() {
   public final fun getDisableEmbeddedBitmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
@@ -246,7 +246,7 @@ public open class SystemFont : Font() {
   public final fun getGenerateMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
@@ -257,7 +257,7 @@ public open class SystemFont : Font() {
   public final fun isAllowSystemFallback(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
@@ -268,7 +268,7 @@ public open class SystemFont : Font() {
   public final fun isForceAutohinter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
@@ -302,7 +302,7 @@ public open class SystemFont : Font() {
   public final fun isMultichannelSignedDistanceField(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
@@ -313,7 +313,7 @@ public open class SystemFont : Font() {
   public final fun getMsdfPixelRange(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMsdfSize(msdfSize: Int): Unit {
@@ -324,7 +324,7 @@ public open class SystemFont : Font() {
   public final fun getMsdfSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOversampling(oversampling: Float): Unit {
@@ -335,13 +335,13 @@ public open class SystemFont : Font() {
   public final fun getOversampling(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFontNames(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setFontNames(names: PackedStringArray): Unit {
@@ -352,7 +352,7 @@ public open class SystemFont : Font() {
   public final fun getFontItalic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFontItalic(italic: Boolean): Unit {

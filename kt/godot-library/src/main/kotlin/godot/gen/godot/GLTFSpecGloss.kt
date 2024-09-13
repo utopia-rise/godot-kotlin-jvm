@@ -142,7 +142,7 @@ public open class GLTFSpecGloss : Resource() {
   public final fun getDiffuseImg(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseImgPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   public final fun setDiffuseImg(diffuseImg: Image?): Unit {
@@ -153,7 +153,7 @@ public open class GLTFSpecGloss : Resource() {
   public final fun getDiffuseFactor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseFactorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setDiffuseFactor(diffuseFactor: Color): Unit {
@@ -164,7 +164,7 @@ public open class GLTFSpecGloss : Resource() {
   public final fun getGlossFactor(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlossFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlossFactor(glossFactor: Float): Unit {
@@ -175,7 +175,7 @@ public open class GLTFSpecGloss : Resource() {
   public final fun getSpecularFactor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecularFactorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSpecularFactor(specularFactor: Color): Unit {
@@ -186,7 +186,7 @@ public open class GLTFSpecGloss : Resource() {
   public final fun getSpecGlossImg(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpecGlossImgPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Image?)
+    return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
   public final fun setSpecGlossImg(specGlossImg: Image?): Unit {

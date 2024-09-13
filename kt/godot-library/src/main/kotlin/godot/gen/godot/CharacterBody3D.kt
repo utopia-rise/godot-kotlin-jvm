@@ -316,7 +316,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun moveAndSlide(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.moveAndSlidePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -336,7 +336,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSafeMargin(margin: Float): Unit {
@@ -347,13 +347,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getSafeMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSafeMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun isFloorStopOnSlopeEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFloorStopOnSlopeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorStopOnSlopeEnabled(enabled: Boolean): Unit {
@@ -369,7 +369,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isFloorConstantSpeedEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFloorConstantSpeedEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorBlockOnWallEnabled(enabled: Boolean): Unit {
@@ -380,7 +380,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isFloorBlockOnWallEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFloorBlockOnWallEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSlideOnCeilingEnabled(enabled: Boolean): Unit {
@@ -391,7 +391,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isSlideOnCeilingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSlideOnCeilingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPlatformFloorLayers(excludeLayer: Long): Unit {
@@ -402,7 +402,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getPlatformFloorLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlatformFloorLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformWallLayers(excludeLayer: Long): Unit {
@@ -413,13 +413,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getPlatformWallLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlatformWallLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSlides(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxSlidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxSlides(maxSlides: Int): Unit {
@@ -430,7 +430,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getFloorMaxAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFloorMaxAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorMaxAngle(radians: Float): Unit {
@@ -441,7 +441,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getFloorSnapLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFloorSnapLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorSnapLength(floorSnapLength: Float): Unit {
@@ -452,7 +452,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getWallMinSlideAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWallMinSlideAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWallMinSlideAngle(radians: Float): Unit {
@@ -463,7 +463,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getUpDirection(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpDirectionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUpDirection(upDirection: Vector3): Unit {
@@ -501,7 +501,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnFloor(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnFloorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -512,7 +512,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnFloorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnFloorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -523,7 +523,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnCeiling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnCeilingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -534,7 +534,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnCeilingOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnCeilingOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -545,7 +545,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnWall(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnWallPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -556,7 +556,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun isOnWallOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOnWallOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -567,7 +567,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getFloorNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFloorNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -578,7 +578,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getWallNormal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWallNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -589,7 +589,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getLastMotion(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastMotionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -598,7 +598,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getPositionDelta(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPositionDeltaPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -609,7 +609,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getRealVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRealVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -621,7 +621,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Float {
     TransferContext.writeArguments(VECTOR3 to upDirection)
     TransferContext.callMethod(rawPtr, MethodBindings.getFloorAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -631,7 +631,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getPlatformVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlatformVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -641,7 +641,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getPlatformAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlatformAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -651,7 +651,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getSlideCollisionCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSlideCollisionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -663,7 +663,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getSlideCollision(slideIdx: Int): KinematicCollision3D? {
     TransferContext.writeArguments(LONG to slideIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getSlideCollisionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
+    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   /**
@@ -673,7 +673,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   public final fun getLastSlideCollision(): KinematicCollision3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastSlideCollisionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
+    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   public enum class MotionMode(

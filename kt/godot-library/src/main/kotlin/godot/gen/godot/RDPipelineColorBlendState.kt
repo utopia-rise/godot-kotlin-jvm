@@ -112,7 +112,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public final fun getEnableLogicOp(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableLogicOpPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
@@ -134,7 +134,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public final fun getBlendConstant(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBlendConstantPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>):
@@ -146,8 +146,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   public final fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttachmentsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY,
-        false) as VariantArray<RDPipelineColorBlendStateAttachment>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
   }
 
   public companion object

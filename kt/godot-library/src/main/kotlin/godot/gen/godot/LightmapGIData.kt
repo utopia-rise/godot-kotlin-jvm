@@ -75,7 +75,7 @@ public open class LightmapGIData : Resource() {
   public final fun getLightmapTextures(): VariantArray<TextureLayered> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightmapTexturesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<TextureLayered>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
   /**
@@ -98,7 +98,7 @@ public open class LightmapGIData : Resource() {
   public final fun isUsingSphericalHarmonics(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -120,7 +120,7 @@ public open class LightmapGIData : Resource() {
   public final fun getUserCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUserCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -129,7 +129,7 @@ public open class LightmapGIData : Resource() {
   public final fun getUserPath(userIdx: Int): NodePath {
     TransferContext.writeArguments(LONG to userIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getUserPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -148,7 +148,7 @@ public open class LightmapGIData : Resource() {
   public final fun getLightTexture(): TextureLayered? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLightTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TextureLayered?)
+    return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 
   public companion object

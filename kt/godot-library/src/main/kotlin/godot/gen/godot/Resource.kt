@@ -159,7 +159,7 @@ public open class Resource : RefCounted() {
   public final fun getPath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setName(name: String): Unit {
@@ -170,7 +170,7 @@ public open class Resource : RefCounted() {
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -181,7 +181,7 @@ public open class Resource : RefCounted() {
   public final fun getRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public final fun setLocalToScene(enable: Boolean): Unit {
@@ -192,7 +192,7 @@ public open class Resource : RefCounted() {
   public final fun isLocalToScene(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -203,7 +203,7 @@ public open class Resource : RefCounted() {
   public final fun getLocalScene(): Node? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class Resource : RefCounted() {
   public final fun getSceneUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -264,7 +264,7 @@ public open class Resource : RefCounted() {
   public final fun duplicate(subresources: Boolean = false): Resource? {
     TransferContext.writeArguments(BOOL to subresources)
     TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   public companion object {
@@ -276,7 +276,7 @@ public open class Resource : RefCounted() {
     public final fun generateSceneUniqueId(): String {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
+      return (TransferContext.readReturnValue(STRING) as String)
     }
   }
 

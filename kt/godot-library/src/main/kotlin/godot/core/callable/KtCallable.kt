@@ -2,25 +2,24 @@
 
 package godot.core.callable
 
-import godot.core.VariantType
 import godot.core.Callable
+import godot.core.VariantConverter
 import godot.util.VoidPtr
 
 abstract class KtCallable<R : Any?>(
-    internal val variantType: VariantType,
-    vararg parameterTypes: Pair<VariantType, Boolean>
+    internal val variantConverter: VariantConverter,
+    vararg parameterTypes: VariantConverter
 ) : Callable {
-    private val types: Array<VariantType> = parameterTypes.map { it.first }.toTypedArray()
-    private val isNullables: Array<Boolean> = parameterTypes.map { it.second }.toTypedArray()
+    private val types: Array<VariantConverter> = parameterTypes.toList().toTypedArray()
 
     val returnVariantType: Int
-        get() = variantType.ordinal
+        get() = variantConverter.id
 
-    fun invokeNoReturn(): Unit = withParameters(types, isNullables) {
+    fun invokeNoReturn(): Unit = withParameters(types) {
         invokeKt()
     }
 
-    fun invokeWithReturn(): Any? = withParametersReturn(types, isNullables, variantType) {
+    fun invokeWithReturn(): Any? = withParametersReturn(types, variantConverter) {
         invokeKt()
     }
 
@@ -28,7 +27,7 @@ abstract class KtCallable<R : Any?>(
 
     internal companion object : ParametersReader()
 
-    internal fun wrapInCustomCallable(): VoidPtr = Bridge.wrap_in_custom_callable(this, variantType.ordinal, hashCode())
+    internal fun wrapInCustomCallable(): VoidPtr = Bridge.wrap_in_custom_callable(this, variantConverter.id, hashCode())
 
     @Suppress("FunctionName")
     private object Bridge {

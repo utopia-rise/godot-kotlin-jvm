@@ -123,7 +123,7 @@ public open class PrismMesh : PrimitiveMesh() {
   public final fun getLeftToRight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSize(size: Vector3): Unit {
@@ -134,7 +134,7 @@ public open class PrismMesh : PrimitiveMesh() {
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSubdivideWidth(segments: Int): Unit {
@@ -145,7 +145,7 @@ public open class PrismMesh : PrimitiveMesh() {
   public final fun getSubdivideWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideHeight(segments: Int): Unit {
@@ -156,7 +156,7 @@ public open class PrismMesh : PrimitiveMesh() {
   public final fun getSubdivideHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(segments: Int): Unit {
@@ -167,7 +167,7 @@ public open class PrismMesh : PrimitiveMesh() {
   public final fun getSubdivideDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

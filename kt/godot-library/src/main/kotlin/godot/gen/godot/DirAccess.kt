@@ -144,7 +144,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getNext(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -154,7 +154,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun currentIsDir(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.currentIsDirPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -180,7 +180,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getFiles(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -191,7 +191,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getDirectories(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDirectoriesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -201,7 +201,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getCurrentDrive(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDrivePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -227,7 +227,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getCurrentDir(includeDrive: Boolean = true): String {
     TransferContext.writeArguments(BOOL to includeDrive)
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -261,7 +261,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun fileExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -271,7 +271,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun dirExists(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.dirExistsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -281,7 +281,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getSpaceLeft(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpaceLeftPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -336,7 +336,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun isLink(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isLinkPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -346,7 +346,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun readLink(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.readLinkPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -369,7 +369,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getIncludeNavigational(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIncludeNavigationalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIncludeHidden(enable: Boolean): Unit {
@@ -380,7 +380,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun getIncludeHidden(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIncludeHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -391,7 +391,7 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isCaseSensitivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {
@@ -406,7 +406,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun `open`(path: String): DirAccess? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as DirAccess?)
+      return (TransferContext.readReturnValue(OBJECT) as DirAccess?)
     }
 
     /**
@@ -426,7 +426,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun getFilesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getFilesAtPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 
     /**
@@ -437,7 +437,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun getDirectoriesAt(path: String): PackedStringArray {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.getDirectoriesAtPtr, PACKED_STRING_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+      return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
     }
 
     /**
@@ -449,7 +449,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun getDriveCount(): Int {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getDriveCountPtr, LONG)
-      return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+      return (TransferContext.readReturnValue(LONG) as Long).toInt()
     }
 
     /**
@@ -462,7 +462,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun getDriveName(idx: Int): String {
       TransferContext.writeArguments(LONG to idx.toLong())
       TransferContext.callMethod(0, MethodBindings.getDriveNamePtr, STRING)
-      return (TransferContext.readReturnValue(STRING, false) as String)
+      return (TransferContext.readReturnValue(STRING) as String)
     }
 
     /**
@@ -489,7 +489,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     public final fun dirExistsAbsolute(path: String): Boolean {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.dirExistsAbsolutePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+      return (TransferContext.readReturnValue(BOOL) as Boolean)
     }
 
     /**

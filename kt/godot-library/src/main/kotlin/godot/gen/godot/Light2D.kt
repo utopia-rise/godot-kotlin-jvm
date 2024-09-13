@@ -267,7 +267,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun isEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorOnly(editorOnly: Boolean): Unit {
@@ -278,7 +278,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun isEditorOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColor(color: Color): Unit {
@@ -289,7 +289,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnergy(energy: Float): Unit {
@@ -300,7 +300,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getEnergy(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZRangeMin(z: Int): Unit {
@@ -311,7 +311,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getZRangeMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setZRangeMax(z: Int): Unit {
@@ -322,7 +322,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getZRangeMax(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLayerRangeMin(layer: Int): Unit {
@@ -333,7 +333,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getLayerRangeMin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLayerRangeMax(layer: Int): Unit {
@@ -344,7 +344,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getLayerRangeMax(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setItemCullMask(itemCullMask: Int): Unit {
@@ -355,7 +355,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getItemCullMask(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setItemShadowCullMask(itemShadowCullMask: Int): Unit {
@@ -366,7 +366,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getItemShadowCullMask(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShadowEnabled(enabled: Boolean): Unit {
@@ -377,7 +377,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun isShadowEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShadowSmooth(smooth: Float): Unit {
@@ -388,7 +388,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getShadowSmooth(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShadowFilter(filter: ShadowFilter): Unit {
@@ -410,7 +410,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getShadowColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
@@ -440,7 +440,7 @@ public open class Light2D internal constructor() : Node2D() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class ShadowFilter(

@@ -12,7 +12,7 @@ import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -335,7 +335,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getIndentSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIndentSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setIndentUsingSpaces(useSpaces: Boolean): Unit {
@@ -346,7 +346,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isIndentUsingSpaces(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIndentUsingSpacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoIndentEnabled(enable: Boolean): Unit {
@@ -357,7 +357,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isAutoIndentEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoIndentEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoIndentPrefixes(prefixes: VariantArray<String>): Unit {
@@ -368,7 +368,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getAutoIndentPrefixes(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoIndentPrefixesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   /**
@@ -415,7 +415,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isAutoBraceCompletionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAutoBraceCompletionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHighlightMatchingBracesEnabled(enable: Boolean): Unit {
@@ -426,7 +426,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isHighlightMatchingBracesEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isHighlightMatchingBracesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -446,7 +446,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getAutoBraceCompletionPairs(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoBraceCompletionPairsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -455,7 +455,7 @@ public open class CodeEdit : TextEdit() {
   public final fun hasAutoBraceCompletionOpenKey(openKey: String): Boolean {
     TransferContext.writeArguments(STRING to openKey)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutoBraceCompletionOpenKeyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -464,7 +464,7 @@ public open class CodeEdit : TextEdit() {
   public final fun hasAutoBraceCompletionCloseKey(closeKey: String): Boolean {
     TransferContext.writeArguments(STRING to closeKey)
     TransferContext.callMethod(rawPtr, MethodBindings.hasAutoBraceCompletionCloseKeyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -473,7 +473,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getAutoBraceCompletionCloseKey(openKey: String): String {
     TransferContext.writeArguments(STRING to openKey)
     TransferContext.callMethod(rawPtr, MethodBindings.getAutoBraceCompletionCloseKeyPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setDrawBreakpointsGutter(enable: Boolean): Unit {
@@ -484,7 +484,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isDrawingBreakpointsGutter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawingBreakpointsGutterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDrawBookmarksGutter(enable: Boolean): Unit {
@@ -495,7 +495,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isDrawingBookmarksGutter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawingBookmarksGutterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDrawExecutingLinesGutter(enable: Boolean): Unit {
@@ -506,7 +506,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isDrawingExecutingLinesGutter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawingExecutingLinesGutterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -523,7 +523,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineBreakpointed(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineBreakpointedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -540,7 +540,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getBreakpointedLines(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBreakpointedLinesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -557,7 +557,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineBookmarked(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineBookmarkedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -574,7 +574,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getBookmarkedLines(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBookmarkedLinesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -591,7 +591,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineExecuting(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineExecutingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -608,7 +608,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getExecutingLines(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExecutingLinesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY, false) as PackedInt32Array)
+    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setDrawLineNumbers(enable: Boolean): Unit {
@@ -619,7 +619,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isDrawLineNumbersEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawLineNumbersEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLineNumbersZeroPadded(enable: Boolean): Unit {
@@ -630,7 +630,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineNumbersZeroPadded(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLineNumbersZeroPaddedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDrawFoldGutter(enable: Boolean): Unit {
@@ -641,7 +641,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isDrawingFoldGutter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDrawingFoldGutterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLineFoldingEnabled(enabled: Boolean): Unit {
@@ -652,7 +652,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineFoldingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isLineFoldingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -662,7 +662,7 @@ public open class CodeEdit : TextEdit() {
   public final fun canFoldLine(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.canFoldLinePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -719,7 +719,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineFolded(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineFoldedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -728,7 +728,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getFoldedLines(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFoldedLinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   /**
@@ -751,7 +751,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeRegionStartTag(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeRegionStartTagPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -760,7 +760,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeRegionEndTag(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeRegionEndTagPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -778,7 +778,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineCodeRegionStart(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineCodeRegionStartPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -787,7 +787,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isLineCodeRegionEnd(line: Int): Boolean {
     TransferContext.writeArguments(LONG to line.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isLineCodeRegionEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -820,7 +820,7 @@ public open class CodeEdit : TextEdit() {
   public final fun hasStringDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, MethodBindings.hasStringDelimiterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStringDelimiters(stringDelimiters: VariantArray<String>): Unit {
@@ -839,7 +839,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getStringDelimiters(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStringDelimitersPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   /**
@@ -850,7 +850,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isInString(line: Int, column: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInStringPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -883,7 +883,7 @@ public open class CodeEdit : TextEdit() {
   public final fun hasCommentDelimiter(startKey: String): Boolean {
     TransferContext.writeArguments(STRING to startKey)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCommentDelimiterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCommentDelimiters(commentDelimiters: VariantArray<String>): Unit {
@@ -902,7 +902,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCommentDelimiters(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCommentDelimitersPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   /**
@@ -913,7 +913,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isInComment(line: Int, column: Int = -1): Int {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isInCommentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -922,7 +922,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getDelimiterStartKey(delimiterIndex: Int): String {
     TransferContext.writeArguments(LONG to delimiterIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDelimiterStartKeyPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -931,7 +931,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getDelimiterEndKey(delimiterIndex: Int): String {
     TransferContext.writeArguments(LONG to delimiterIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDelimiterEndKeyPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -941,7 +941,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getDelimiterStartPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDelimiterStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -951,7 +951,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getDelimiterEndPosition(line: Int, column: Int): Vector2 {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDelimiterEndPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -976,7 +976,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getTextForCodeCompletion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextForCodeCompletionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1027,7 +1027,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeCompletionOptions(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeCompletionOptionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Dictionary<Any?, Any?>>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1042,7 +1042,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeCompletionOption(index: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeCompletionOptionPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1051,7 +1051,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeCompletionSelectedIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeCompletionSelectedIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1088,7 +1088,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isCodeCompletionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCodeCompletionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCodeCompletionPrefixes(prefixes: VariantArray<String>): Unit {
@@ -1099,7 +1099,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getCodeCompletionPrefixes(): VariantArray<String> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCodeCompletionPrefixesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<String>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   public final fun setLineLengthGuidelines(guidelineColumns: VariantArray<Long>): Unit {
@@ -1110,7 +1110,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getLineLengthGuidelines(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLineLengthGuidelinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   public final fun setSymbolLookupOnClickEnabled(enable: Boolean): Unit {
@@ -1121,7 +1121,7 @@ public open class CodeEdit : TextEdit() {
   public final fun isSymbolLookupOnClickEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSymbolLookupOnClickEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1130,7 +1130,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getTextForSymbolLookup(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextForSymbolLookupPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1139,7 +1139,7 @@ public open class CodeEdit : TextEdit() {
   public final fun getTextWithCursorChar(line: Int, column: Int): String {
     TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTextWithCursorCharPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**

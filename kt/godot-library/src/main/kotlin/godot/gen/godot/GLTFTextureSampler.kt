@@ -77,7 +77,7 @@ public open class GLTFTextureSampler : Resource() {
   public final fun getMagFilter(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMagFilter(filterMode: Int): Unit {
@@ -88,7 +88,7 @@ public open class GLTFTextureSampler : Resource() {
   public final fun getMinFilter(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMinFilter(filterMode: Int): Unit {
@@ -99,7 +99,7 @@ public open class GLTFTextureSampler : Resource() {
   public final fun getWrapS(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapS(wrapMode: Int): Unit {
@@ -110,7 +110,7 @@ public open class GLTFTextureSampler : Resource() {
   public final fun getWrapT(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapT(wrapMode: Int): Unit {

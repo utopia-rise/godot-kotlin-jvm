@@ -290,7 +290,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getLodBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseAnisotropy(pMember: Boolean): Unit {
@@ -301,7 +301,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getUseAnisotropy(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAnisotropyMax(pMember: Float): Unit {
@@ -312,7 +312,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getAnisotropyMax(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableCompare(pMember: Boolean): Unit {
@@ -323,7 +323,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getEnableCompare(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
@@ -345,7 +345,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getMinLod(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxLod(pMember: Float): Unit {
@@ -356,7 +356,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getMaxLod(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
@@ -378,7 +378,7 @@ public open class RDSamplerState : RefCounted() {
   public final fun getUnnormalizedUvw(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

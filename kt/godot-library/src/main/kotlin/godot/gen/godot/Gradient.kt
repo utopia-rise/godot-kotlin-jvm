@@ -120,7 +120,7 @@ public open class Gradient : Resource() {
   public final fun getOffset(point: Int): Float {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -147,7 +147,7 @@ public open class Gradient : Resource() {
   public final fun getColor(point: Int): Color {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -156,7 +156,7 @@ public open class Gradient : Resource() {
   public final fun sample(offset: Float): Color {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.samplePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -165,7 +165,7 @@ public open class Gradient : Resource() {
   public final fun getPointCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOffsets(offsets: PackedFloat32Array): Unit {
@@ -176,7 +176,7 @@ public open class Gradient : Resource() {
   public final fun getOffsets(): PackedFloat32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetsPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY, false) as PackedFloat32Array)
+    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setColors(colors: PackedColorArray): Unit {
@@ -187,7 +187,7 @@ public open class Gradient : Resource() {
   public final fun getColors(): PackedColorArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY, false) as PackedColorArray)
+    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setInterpolationMode(interpolationMode: InterpolationMode): Unit {

@@ -109,7 +109,7 @@ public open class MenuBar : Control() {
   public final fun isSwitchOnHover(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSwitchOnHoverPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -128,7 +128,7 @@ public open class MenuBar : Control() {
   public final fun isPreferGlobalMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPreferGlobalMenuPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -137,7 +137,7 @@ public open class MenuBar : Control() {
   public final fun isNativeMenu(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isNativeMenuPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -146,7 +146,7 @@ public open class MenuBar : Control() {
   public final fun getMenuCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
@@ -168,7 +168,7 @@ public open class MenuBar : Control() {
   public final fun getLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setFlat(enabled: Boolean): Unit {
@@ -179,7 +179,7 @@ public open class MenuBar : Control() {
   public final fun isFlat(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStartIndex(enabled: Int): Unit {
@@ -190,7 +190,7 @@ public open class MenuBar : Control() {
   public final fun getStartIndex(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStartIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -207,7 +207,7 @@ public open class MenuBar : Control() {
   public final fun getMenuTitle(menu: Int): String {
     TransferContext.writeArguments(LONG to menu.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -224,7 +224,7 @@ public open class MenuBar : Control() {
   public final fun getMenuTooltip(menu: Int): String {
     TransferContext.writeArguments(LONG to menu.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -241,7 +241,7 @@ public open class MenuBar : Control() {
   public final fun isMenuDisabled(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isMenuDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -258,7 +258,7 @@ public open class MenuBar : Control() {
   public final fun isMenuHidden(menu: Int): Boolean {
     TransferContext.writeArguments(LONG to menu.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isMenuHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -267,7 +267,7 @@ public open class MenuBar : Control() {
   public final fun getMenuPopup(menu: Int): PopupMenu? {
     TransferContext.writeArguments(LONG to menu.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getMenuPopupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PopupMenu?)
+    return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
   }
 
   public companion object

@@ -243,55 +243,55 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getTotalGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getTotalLinearDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getTotalAngularDamp(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTotalAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getCenterOfMass(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getCenterOfMassLocal(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassLocalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getPrincipalInertiaAxes(): Basis {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrincipalInertiaAxesPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
   public final fun getInverseMass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInverseMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInverseInertia(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInverseInertiaPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getInverseInertiaTensor(): Basis {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInverseInertiaTensorPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS, false) as Basis)
+    return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
   public final fun setLinearVelocity(velocity: Vector3): Unit {
@@ -302,7 +302,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getLinearVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(velocity: Vector3): Unit {
@@ -313,7 +313,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getAngularVelocity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
@@ -324,7 +324,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -334,7 +334,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getVelocityAtLocalPosition(localPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(rawPtr, MethodBindings.getVelocityAtLocalPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -456,7 +456,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getConstantForce(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -475,7 +475,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getConstantTorque(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSleepState(enabled: Boolean): Unit {
@@ -486,7 +486,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun isSleeping(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -497,7 +497,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -506,7 +506,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactLocalPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -515,7 +515,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactLocalNormal(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -524,7 +524,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactImpulse(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactImpulsePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -533,7 +533,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactLocalShape(contactIdx: Int): Int {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -542,7 +542,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactLocalVelocityAtPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactLocalVelocityAtPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -551,7 +551,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactCollider(contactIdx: Int): RID {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -560,7 +560,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactColliderPosition(contactIdx: Int): Vector3 {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -569,7 +569,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactColliderId(contactIdx: Int): Long {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -578,7 +578,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactColliderObject(contactIdx: Int): Object? {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderObjectPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Object?)
+    return (TransferContext.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -587,7 +587,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getContactColliderShape(contactIdx: Int): Int {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -597,13 +597,13 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getContactColliderVelocityAtPositionPtr,
         VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getStep(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -621,7 +621,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   public final fun getSpaceState(): PhysicsDirectSpaceState3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpaceStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PhysicsDirectSpaceState3D?)
+    return (TransferContext.readReturnValue(OBJECT) as PhysicsDirectSpaceState3D?)
   }
 
   public companion object

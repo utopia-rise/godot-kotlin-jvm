@@ -138,7 +138,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public final fun getSizeOverride(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setKeepCompressedBuffer(keep: Boolean): Unit {
@@ -149,7 +149,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   public final fun isKeepingCompressedBuffer(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class CompressionMode(
@@ -189,7 +189,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     public final fun isKeepingAllCompressedBuffers(): Boolean {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+      return (TransferContext.readReturnValue(BOOL) as Boolean)
     }
   }
 

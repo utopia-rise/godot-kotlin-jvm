@@ -104,7 +104,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getName(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -114,13 +114,13 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getCapabilities(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCapabilitiesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun isPrimary(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPrimaryPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPrimary(primary: Boolean): Unit {
@@ -134,7 +134,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun isInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -156,7 +156,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun initialize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.initializePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -176,7 +176,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getSystemInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY, false) as Dictionary<Any?, Any?>)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -196,7 +196,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getRenderTargetSize(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -206,7 +206,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getViewCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -238,7 +238,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun supportsPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.supportsPlayAreaModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPlayAreaMode(): PlayAreaMode {
@@ -257,7 +257,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setPlayAreaModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -269,13 +269,13 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getPlayArea(): PackedVector3Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY, false) as PackedVector3Array)
+    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun getAnchorDetectionIsEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAnchorDetectionIsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAnchorDetectionIsEnabled(enable: Boolean): Unit {
@@ -290,7 +290,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getCameraFeedId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -299,7 +299,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun isPassthroughSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPassthroughSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -308,7 +308,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun isPassthroughEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPassthroughEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -319,7 +319,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun startPassthrough(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.startPassthroughPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -339,7 +339,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
     TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
     TransferContext.callMethod(rawPtr, MethodBindings.getTransformForViewPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -353,7 +353,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   ): Projection {
     TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectionForViewPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
+    return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
@@ -363,7 +363,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun getSupportedEnvironmentBlendModes(): VariantArray<Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSupportedEnvironmentBlendModesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Any?>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -389,7 +389,7 @@ public open class XRInterface internal constructor() : RefCounted() {
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentBlendModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getEnvironmentBlendMode(): EnvironmentBlendMode {

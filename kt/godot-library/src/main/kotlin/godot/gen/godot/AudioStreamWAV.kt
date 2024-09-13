@@ -137,7 +137,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getData(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setFormat(format: Format): Unit {
@@ -170,7 +170,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getLoopBegin(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopBeginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLoopEnd(loopEnd: Int): Unit {
@@ -181,7 +181,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getLoopEnd(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopEndPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMixRate(mixRate: Int): Unit {
@@ -192,7 +192,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun getMixRate(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStereo(stereo: Boolean): Unit {
@@ -203,7 +203,7 @@ public open class AudioStreamWAV : AudioStream() {
   public final fun isStereo(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStereoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

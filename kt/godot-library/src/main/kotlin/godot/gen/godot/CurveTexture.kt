@@ -80,7 +80,7 @@ public open class CurveTexture : Texture2D() {
   public final fun getCurve(): Curve? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Curve?)
+    return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setTextureMode(textureMode: TextureMode): Unit {

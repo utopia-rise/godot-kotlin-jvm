@@ -76,7 +76,7 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
         override val packedArrayVariantType = VariantType.PACKED_INT_32_ARRAY
-        override val elementVariantType = VariantType.JVM_INT
+        override val elementVariantType = VariantCaster.INT
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

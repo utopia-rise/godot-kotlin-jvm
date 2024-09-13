@@ -110,7 +110,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   public final fun getPreGain(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setKeepHfHz(keepHfHz: Float): Unit {
@@ -121,7 +121,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   public final fun getKeepHfHz(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDrive(drive: Float): Unit {
@@ -132,7 +132,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   public final fun getDrive(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPostGain(postGain: Float): Unit {
@@ -143,7 +143,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   public final fun getPostGain(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Mode(

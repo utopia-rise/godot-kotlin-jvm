@@ -185,7 +185,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getDry(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Active(amount: Boolean): Unit {
@@ -196,7 +196,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun isTap1Active(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTap1ActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap1DelayMs(amount: Float): Unit {
@@ -207,7 +207,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap1DelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1LevelDb(amount: Float): Unit {
@@ -218,7 +218,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap1LevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Pan(amount: Float): Unit {
@@ -229,7 +229,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap1Pan(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap1PanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Active(amount: Boolean): Unit {
@@ -240,7 +240,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun isTap2Active(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTap2ActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap2DelayMs(amount: Float): Unit {
@@ -251,7 +251,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap2DelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2LevelDb(amount: Float): Unit {
@@ -262,7 +262,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap2LevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Pan(amount: Float): Unit {
@@ -273,7 +273,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getTap2Pan(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTap2PanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackActive(amount: Boolean): Unit {
@@ -284,7 +284,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun isFeedbackActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFeedbackActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFeedbackDelayMs(amount: Float): Unit {
@@ -295,7 +295,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getFeedbackDelayMs(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLevelDb(amount: Float): Unit {
@@ -306,7 +306,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getFeedbackLevelDb(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLowpass(amount: Float): Unit {
@@ -317,7 +317,7 @@ public open class AudioEffectDelay : AudioEffect() {
   public final fun getFeedbackLowpass(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

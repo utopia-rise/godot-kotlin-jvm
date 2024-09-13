@@ -62,7 +62,7 @@ public object AudioServer : Object() {
   public final fun getBusCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBusCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -104,7 +104,7 @@ public object AudioServer : Object() {
   public final fun getBusName(busIdx: Int): String {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -114,7 +114,7 @@ public object AudioServer : Object() {
   public final fun getBusIndex(busName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to busName)
     TransferContext.callMethod(rawPtr, MethodBindings.getBusIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -123,7 +123,7 @@ public object AudioServer : Object() {
   public final fun getBusChannels(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusChannelsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -140,7 +140,7 @@ public object AudioServer : Object() {
   public final fun getBusVolumeDb(busIdx: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusVolumeDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -157,7 +157,7 @@ public object AudioServer : Object() {
   public final fun getBusSend(busIdx: Int): StringName {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusSendPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -174,7 +174,7 @@ public object AudioServer : Object() {
   public final fun isBusSolo(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusSoloPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -191,7 +191,7 @@ public object AudioServer : Object() {
   public final fun isBusMute(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusMutePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -208,7 +208,7 @@ public object AudioServer : Object() {
   public final fun isBusBypassingEffects(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusBypassingEffectsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -238,7 +238,7 @@ public object AudioServer : Object() {
   public final fun getBusEffectCount(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusEffectCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -247,7 +247,7 @@ public object AudioServer : Object() {
   public final fun getBusEffect(busIdx: Int, effectIdx: Int): AudioEffect? {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusEffectPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioEffect?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioEffect?)
   }
 
   /**
@@ -262,7 +262,7 @@ public object AudioServer : Object() {
   ): AudioEffectInstance? {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong(), LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusEffectInstancePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioEffectInstance?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioEffectInstance?)
   }
 
   /**
@@ -295,7 +295,7 @@ public object AudioServer : Object() {
   public final fun isBusEffectEnabled(busIdx: Int, effectIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusEffectEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -304,7 +304,7 @@ public object AudioServer : Object() {
   public final fun getBusPeakVolumeLeftDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPeakVolumeLeftDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -313,7 +313,7 @@ public object AudioServer : Object() {
   public final fun getBusPeakVolumeRightDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPeakVolumeRightDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPlaybackSpeedScale(scale: Float): Unit {
@@ -324,7 +324,7 @@ public object AudioServer : Object() {
   public final fun getPlaybackSpeedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -359,7 +359,7 @@ public object AudioServer : Object() {
   public final fun getMixRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -368,13 +368,13 @@ public object AudioServer : Object() {
   public final fun getOutputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputDeviceListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun getOutputDevice(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputDevicePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setOutputDevice(name: String): Unit {
@@ -388,7 +388,7 @@ public object AudioServer : Object() {
   public final fun getTimeToNextMix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeToNextMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -397,7 +397,7 @@ public object AudioServer : Object() {
   public final fun getTimeSinceLastMix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeSinceLastMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -409,7 +409,7 @@ public object AudioServer : Object() {
   public final fun getOutputLatency(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputLatencyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -421,13 +421,13 @@ public object AudioServer : Object() {
   public final fun getInputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputDeviceListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun getInputDevice(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputDevicePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setInputDevice(name: String): Unit {
@@ -449,7 +449,7 @@ public object AudioServer : Object() {
   public final fun generateBusLayout(): AudioBusLayout? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateBusLayoutPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as AudioBusLayout?)
+    return (TransferContext.readReturnValue(OBJECT) as AudioBusLayout?)
   }
 
   /**
@@ -472,7 +472,7 @@ public object AudioServer : Object() {
   public final fun isStreamRegisteredAsSample(stream: AudioStream?): Boolean {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.isStreamRegisteredAsSamplePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**

@@ -59,7 +59,7 @@ public open class ConfirmationDialog : AcceptDialog() {
   public final fun getCancelButton(): Button? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Button?)
+    return (TransferContext.readReturnValue(OBJECT) as Button?)
   }
 
   public final fun setCancelButtonText(text: String): Unit {
@@ -70,7 +70,7 @@ public open class ConfirmationDialog : AcceptDialog() {
   public final fun getCancelButtonText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

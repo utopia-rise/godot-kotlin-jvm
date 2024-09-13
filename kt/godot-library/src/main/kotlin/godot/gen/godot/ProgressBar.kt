@@ -83,7 +83,7 @@ public open class ProgressBar : Range() {
   public final fun getFillMode(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShowPercentage(visible: Boolean): Unit {
@@ -94,7 +94,7 @@ public open class ProgressBar : Range() {
   public final fun isPercentageShown(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndeterminate(indeterminate: Boolean): Unit {
@@ -105,7 +105,7 @@ public open class ProgressBar : Range() {
   public final fun isIndeterminate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
@@ -116,7 +116,7 @@ public open class ProgressBar : Range() {
   public final fun isEditorPreviewIndeterminateEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class FillMode(

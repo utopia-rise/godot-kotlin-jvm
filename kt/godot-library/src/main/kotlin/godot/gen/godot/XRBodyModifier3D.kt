@@ -76,7 +76,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   public final fun getBodyTracker(): StringName {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBodyUpdate(bodyUpdate: BodyUpdate): Unit {

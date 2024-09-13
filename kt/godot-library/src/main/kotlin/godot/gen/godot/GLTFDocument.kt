@@ -97,7 +97,7 @@ public open class GLTFDocument : Resource() {
   public final fun getImageFormat(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLossyQuality(lossyQuality: Float): Unit {
@@ -108,7 +108,7 @@ public open class GLTFDocument : Resource() {
   public final fun getLossyQuality(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
@@ -184,7 +184,7 @@ public open class GLTFDocument : Resource() {
   ): Node? {
     TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
     TransferContext.callMethod(rawPtr, MethodBindings.generateScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node?)
+    return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -193,7 +193,7 @@ public open class GLTFDocument : Resource() {
   public final fun generateBuffer(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
     TransferContext.callMethod(rawPtr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**

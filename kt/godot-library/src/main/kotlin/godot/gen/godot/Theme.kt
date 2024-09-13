@@ -11,7 +11,7 @@ import godot.core.Color
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
 import godot.core.VariantType.DOUBLE
@@ -117,7 +117,7 @@ public open class Theme : Resource() {
   public final fun getIcon(name: StringName, themeType: StringName): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -127,7 +127,7 @@ public open class Theme : Resource() {
   public final fun hasIcon(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasIconPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -160,7 +160,7 @@ public open class Theme : Resource() {
   public final fun getIconList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getIconListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -170,7 +170,7 @@ public open class Theme : Resource() {
   public final fun getIconTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getIconTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -194,7 +194,7 @@ public open class Theme : Resource() {
   public final fun getStylebox(name: StringName, themeType: StringName): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as StyleBox?)
+    return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }
 
   /**
@@ -204,7 +204,7 @@ public open class Theme : Resource() {
   public final fun hasStylebox(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasStyleboxPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -237,7 +237,7 @@ public open class Theme : Resource() {
   public final fun getStyleboxList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -247,7 +247,7 @@ public open class Theme : Resource() {
   public final fun getStyleboxTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStyleboxTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -273,7 +273,7 @@ public open class Theme : Resource() {
   public final fun getFont(name: StringName, themeType: StringName): Font? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   /**
@@ -284,7 +284,7 @@ public open class Theme : Resource() {
   public final fun hasFont(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFontPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -317,7 +317,7 @@ public open class Theme : Resource() {
   public final fun getFontList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -327,7 +327,7 @@ public open class Theme : Resource() {
   public final fun getFontTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -353,7 +353,7 @@ public open class Theme : Resource() {
   public final fun getFontSize(name: StringName, themeType: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -364,7 +364,7 @@ public open class Theme : Resource() {
   public final fun hasFontSize(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFontSizePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -397,7 +397,7 @@ public open class Theme : Resource() {
   public final fun getFontSizeList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -407,7 +407,7 @@ public open class Theme : Resource() {
   public final fun getFontSizeTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFontSizeTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -431,7 +431,7 @@ public open class Theme : Resource() {
   public final fun getColor(name: StringName, themeType: StringName): Color {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -441,7 +441,7 @@ public open class Theme : Resource() {
   public final fun hasColor(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -474,7 +474,7 @@ public open class Theme : Resource() {
   public final fun getColorList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getColorListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -484,7 +484,7 @@ public open class Theme : Resource() {
   public final fun getColorTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getColorTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -507,7 +507,7 @@ public open class Theme : Resource() {
   public final fun getConstant(name: StringName, themeType: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -517,7 +517,7 @@ public open class Theme : Resource() {
   public final fun hasConstant(name: StringName, themeType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasConstantPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -550,7 +550,7 @@ public open class Theme : Resource() {
   public final fun getConstantList(themeType: String): PackedStringArray {
     TransferContext.writeArguments(STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -560,7 +560,7 @@ public open class Theme : Resource() {
   public final fun getConstantTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setDefaultBaseScale(baseScale: Float): Unit {
@@ -571,7 +571,7 @@ public open class Theme : Resource() {
   public final fun getDefaultBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultBaseScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -581,7 +581,7 @@ public open class Theme : Resource() {
   public final fun hasDefaultBaseScale(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultBaseScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultFont(font: Font?): Unit {
@@ -592,7 +592,7 @@ public open class Theme : Resource() {
   public final fun getDefaultFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Font?)
+    return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
   /**
@@ -602,7 +602,7 @@ public open class Theme : Resource() {
   public final fun hasDefaultFont(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultFontPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultFontSize(fontSize: Int): Unit {
@@ -613,7 +613,7 @@ public open class Theme : Resource() {
   public final fun getDefaultFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -623,7 +623,7 @@ public open class Theme : Resource() {
   public final fun hasDefaultFontSize(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasDefaultFontSizePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -657,7 +657,7 @@ public open class Theme : Resource() {
   ): Any? {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeItemPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -673,7 +673,7 @@ public open class Theme : Resource() {
   ): Boolean {
     TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.hasThemeItemPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -718,7 +718,7 @@ public open class Theme : Resource() {
   public final fun getThemeItemList(dataType: DataType, themeType: String): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeItemListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -730,7 +730,7 @@ public open class Theme : Resource() {
   public final fun getThemeItemTypeList(dataType: DataType): PackedStringArray {
     TransferContext.writeArguments(LONG to dataType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getThemeItemTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -754,7 +754,7 @@ public open class Theme : Resource() {
   public final fun isTypeVariation(themeType: StringName, baseType: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to themeType, STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, MethodBindings.isTypeVariationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -772,7 +772,7 @@ public open class Theme : Resource() {
   public final fun getTypeVariationBase(themeType: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeVariationBasePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME, false) as StringName)
+    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -781,7 +781,7 @@ public open class Theme : Resource() {
   public final fun getTypeVariationList(baseType: StringName): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to baseType)
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeVariationListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -811,7 +811,7 @@ public open class Theme : Resource() {
   public final fun getTypeList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTypeListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY, false) as PackedStringArray)
+    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**

@@ -131,7 +131,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   ): KinematicCollision3D? {
     TransferContext.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.moveAndCollidePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as KinematicCollision3D?)
+    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   /**
@@ -159,7 +159,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   ): Boolean {
     TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.testMovePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -169,7 +169,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -186,7 +186,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   public final fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -195,7 +195,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<PhysicsBody3D>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
   }
 
   /**

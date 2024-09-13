@@ -66,7 +66,7 @@ public open class RDShaderFile : Resource() {
   public final fun getSpirv(version: StringName = StringName("")): RDShaderSPIRV? {
     TransferContext.writeArguments(STRING_NAME to version)
     TransferContext.callMethod(rawPtr, MethodBindings.getSpirvPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as RDShaderSPIRV?)
+    return (TransferContext.readReturnValue(OBJECT) as RDShaderSPIRV?)
   }
 
   /**
@@ -75,7 +75,7 @@ public open class RDShaderFile : Resource() {
   public final fun getVersionList(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<StringName>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public final fun setBaseError(error: String): Unit {
@@ -86,7 +86,7 @@ public open class RDShaderFile : Resource() {
   public final fun getBaseError(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseErrorPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

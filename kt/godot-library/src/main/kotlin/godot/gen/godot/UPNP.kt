@@ -151,7 +151,7 @@ public open class UPNP : RefCounted() {
   public final fun getDeviceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeviceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -160,7 +160,7 @@ public open class UPNP : RefCounted() {
   public final fun getDevice(index: Int): UPNPDevice? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
+    return (TransferContext.readReturnValue(OBJECT) as UPNPDevice?)
   }
 
   /**
@@ -202,7 +202,7 @@ public open class UPNP : RefCounted() {
   public final fun getGateway(): UPNPDevice? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGatewayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as UPNPDevice?)
+    return (TransferContext.readReturnValue(OBJECT) as UPNPDevice?)
   }
 
   /**
@@ -220,7 +220,7 @@ public open class UPNP : RefCounted() {
   ): Int {
     TransferContext.writeArguments(LONG to timeout.toLong(), LONG to ttl.toLong(), STRING to deviceFilter)
     TransferContext.callMethod(rawPtr, MethodBindings.discoverPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -230,7 +230,7 @@ public open class UPNP : RefCounted() {
   public final fun queryExternalAddress(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -268,7 +268,7 @@ public open class UPNP : RefCounted() {
   ): Int {
     TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -282,7 +282,7 @@ public open class UPNP : RefCounted() {
   public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
     TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDiscoverMulticastIf(mIf: String): Unit {
@@ -293,7 +293,7 @@ public open class UPNP : RefCounted() {
   public final fun getDiscoverMulticastIf(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setDiscoverLocalPort(port: Int): Unit {
@@ -304,7 +304,7 @@ public open class UPNP : RefCounted() {
   public final fun getDiscoverLocalPort(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDiscoverIpv6(ipv6: Boolean): Unit {
@@ -315,7 +315,7 @@ public open class UPNP : RefCounted() {
   public final fun isDiscoverIpv6(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class UPNPResult(

@@ -284,7 +284,7 @@ public open class Camera3D : Node3D() {
   public final fun projectRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectRayNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -294,7 +294,7 @@ public open class Camera3D : Node3D() {
   public final fun projectLocalRayNormal(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectLocalRayNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -305,7 +305,7 @@ public open class Camera3D : Node3D() {
   public final fun projectRayOrigin(screenPoint: Vector2): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.projectRayOriginPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -324,7 +324,7 @@ public open class Camera3D : Node3D() {
   public final fun unprojectPosition(worldPoint: Vector3): Vector2 {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.unprojectPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -337,7 +337,7 @@ public open class Camera3D : Node3D() {
   public final fun isPositionBehind(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.isPositionBehindPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -347,7 +347,7 @@ public open class Camera3D : Node3D() {
   public final fun projectPosition(screenPoint: Vector2, zDepth: Float): Vector3 {
     TransferContext.writeArguments(VECTOR2 to screenPoint, DOUBLE to zDepth.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.projectPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -420,7 +420,7 @@ public open class Camera3D : Node3D() {
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -431,7 +431,7 @@ public open class Camera3D : Node3D() {
   public final fun getCameraTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -441,37 +441,37 @@ public open class Camera3D : Node3D() {
   public final fun getCameraProjection(): Projection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraProjectionPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
+    return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
   public final fun getFov(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFrustumOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrustumOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFar(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFarPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getNear(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNearPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFov(fov: Float): Unit {
@@ -518,7 +518,7 @@ public open class Camera3D : Node3D() {
   public final fun getHOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVOffset(offset: Float): Unit {
@@ -529,7 +529,7 @@ public open class Camera3D : Node3D() {
   public final fun getVOffset(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCullMask(mask: Long): Unit {
@@ -540,7 +540,7 @@ public open class Camera3D : Node3D() {
   public final fun getCullMask(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {
@@ -551,7 +551,7 @@ public open class Camera3D : Node3D() {
   public final fun getEnvironment(): Environment? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Environment?)
+    return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setAttributes(env: CameraAttributes?): Unit {
@@ -562,7 +562,7 @@ public open class Camera3D : Node3D() {
   public final fun getAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun setCompositor(compositor: Compositor?): Unit {
@@ -573,7 +573,7 @@ public open class Camera3D : Node3D() {
   public final fun getCompositor(): Compositor? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Compositor?)
+    return (TransferContext.readReturnValue(OBJECT) as Compositor?)
   }
 
   public final fun setKeepAspectMode(mode: KeepAspect): Unit {
@@ -605,7 +605,7 @@ public open class Camera3D : Node3D() {
   public final fun getFrustum(): VariantArray<Plane> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrustumPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Plane>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
   }
 
   /**
@@ -617,7 +617,7 @@ public open class Camera3D : Node3D() {
   public final fun isPositionInFrustum(worldPoint: Vector3): Boolean {
     TransferContext.writeArguments(VECTOR3 to worldPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.isPositionInFrustumPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -626,7 +626,7 @@ public open class Camera3D : Node3D() {
   public final fun getCameraRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -636,7 +636,7 @@ public open class Camera3D : Node3D() {
   public final fun getPyramidShapeRid(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPyramidShapeRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -655,7 +655,7 @@ public open class Camera3D : Node3D() {
   public final fun getCullMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class ProjectionType(

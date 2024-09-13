@@ -46,7 +46,7 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
   public final fun getConstant(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

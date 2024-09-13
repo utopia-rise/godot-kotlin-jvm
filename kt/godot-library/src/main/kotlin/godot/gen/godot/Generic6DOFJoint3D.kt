@@ -42,7 +42,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getParamX(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamXPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParamY(`param`: Param, `value`: Float): Unit {
@@ -53,7 +53,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getParamY(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamYPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParamZ(`param`: Param, `value`: Float): Unit {
@@ -64,7 +64,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getParamZ(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getParamZPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlagX(flag: Flag, `value`: Boolean): Unit {
@@ -75,7 +75,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getFlagX(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagXPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlagY(flag: Flag, `value`: Boolean): Unit {
@@ -86,7 +86,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getFlagY(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagYPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlagZ(flag: Flag, `value`: Boolean): Unit {
@@ -97,7 +97,7 @@ public open class Generic6DOFJoint3D : Joint3D() {
   public final fun getFlagZ(flag: Flag): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getFlagZPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Param(

@@ -352,7 +352,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun isCentered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
@@ -363,7 +363,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getOffset(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFlipH(flipH: Boolean): Unit {
@@ -374,7 +374,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun isFlippedH(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(flipV: Boolean): Unit {
@@ -385,7 +385,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun isFlippedV(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModulate(modulate: Color): Unit {
@@ -396,7 +396,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getModulate(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
@@ -407,7 +407,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getRenderPriority(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPixelSize(pixelSize: Float): Unit {
@@ -418,7 +418,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getPixelSize(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAxis(axis: Vector3.Axis): Unit {
@@ -447,7 +447,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
     TransferContext.writeArguments(LONG to flag.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
@@ -469,7 +469,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getAlphaScissorThreshold(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
@@ -480,7 +480,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getAlphaHashScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
@@ -502,7 +502,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getAlphaAntialiasingEdge(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
@@ -533,7 +533,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun getItemRect(): Rect2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2, false) as Rect2)
+    return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -543,7 +543,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   public final fun generateTriangleMesh(): TriangleMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as TriangleMesh?)
+    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class DrawFlags(

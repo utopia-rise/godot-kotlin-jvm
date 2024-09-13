@@ -133,7 +133,7 @@ public open class WebRTCPeerConnection : RefCounted() {
       WebRTCDataChannel? {
     TransferContext.writeArguments(STRING to label, DICTIONARY to options)
     TransferContext.callMethod(rawPtr, MethodBindings.createDataChannelPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as WebRTCDataChannel?)
+    return (TransferContext.readReturnValue(OBJECT) as WebRTCDataChannel?)
   }
 
   /**

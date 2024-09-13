@@ -120,7 +120,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun getData(): PackedByteArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY, false) as PackedByteArray)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setLoop(enable: Boolean): Unit {
@@ -131,7 +131,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoopOffset(seconds: Double): Unit {
@@ -142,7 +142,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun getLoopOffset(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBpm(bpm: Double): Unit {
@@ -153,7 +153,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun getBpm(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBeatCount(count: Int): Unit {
@@ -164,7 +164,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun getBeatCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBarBeats(count: Int): Unit {
@@ -175,7 +175,7 @@ public open class AudioStreamMP3 : AudioStream() {
   public final fun getBarBeats(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object

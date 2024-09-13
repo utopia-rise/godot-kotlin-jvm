@@ -12,7 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantType.ANY
+import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.DOUBLE
 import godot.core.VariantType.LONG
@@ -296,7 +296,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getMaterialOverride(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setMaterialOverlay(material: Material?): Unit {
@@ -307,7 +307,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getMaterialOverlay(): Material? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverlayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Material?)
+    return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
@@ -329,7 +329,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getLodBias(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransparency(transparency: Float): Unit {
@@ -340,7 +340,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getTransparency(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEndMargin(distance: Float): Unit {
@@ -351,7 +351,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getVisibilityRangeEndMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEnd(distance: Float): Unit {
@@ -362,7 +362,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getVisibilityRangeEnd(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBeginMargin(distance: Float): Unit {
@@ -373,7 +373,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getVisibilityRangeBeginMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBegin(distance: Float): Unit {
@@ -384,7 +384,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getVisibilityRangeBegin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
@@ -421,7 +421,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getInstanceShaderParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceShaderParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY, true) as Any?)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   public final fun setExtraCullMargin(margin: Float): Unit {
@@ -432,7 +432,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getExtraCullMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLightmapScale(scale: LightmapScale): Unit {
@@ -465,7 +465,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun isIgnoringOcclusionCulling(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
@@ -476,7 +476,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB, false) as AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
   }
 
   public enum class ShadowCastingSetting(

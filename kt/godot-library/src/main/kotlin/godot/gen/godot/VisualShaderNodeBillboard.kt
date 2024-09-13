@@ -72,7 +72,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   public final fun isKeepScaleEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class BillboardType(

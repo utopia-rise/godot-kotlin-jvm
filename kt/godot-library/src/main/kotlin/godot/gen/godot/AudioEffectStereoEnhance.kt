@@ -65,7 +65,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public final fun getPanPullout(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTimePullout(amount: Float): Unit {
@@ -76,7 +76,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public final fun getTimePullout(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSurround(amount: Float): Unit {
@@ -87,7 +87,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   public final fun getSurround(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

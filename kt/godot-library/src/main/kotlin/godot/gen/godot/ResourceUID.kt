@@ -45,7 +45,7 @@ public object ResourceUID : Object() {
   public final fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -54,7 +54,7 @@ public object ResourceUID : Object() {
   public final fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
     TransferContext.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -65,7 +65,7 @@ public object ResourceUID : Object() {
   public final fun createId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -74,7 +74,7 @@ public object ResourceUID : Object() {
   public final fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -104,7 +104,7 @@ public object ResourceUID : Object() {
   public final fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**

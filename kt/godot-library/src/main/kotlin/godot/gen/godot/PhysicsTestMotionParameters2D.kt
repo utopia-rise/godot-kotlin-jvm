@@ -181,7 +181,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun getFrom(): Transform2D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFromPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D, false) as Transform2D)
+    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setFrom(from: Transform2D): Unit {
@@ -192,7 +192,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun getMotion(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMotionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2, false) as Vector2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotion(motion: Vector2): Unit {
@@ -203,7 +203,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun getMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMargin(margin: Float): Unit {
@@ -214,7 +214,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun isCollideSeparationRayEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isCollideSeparationRayEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideSeparationRayEnabled(enabled: Boolean): Unit {
@@ -225,7 +225,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun getExcludeBodies(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeBodiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<RID>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setExcludeBodies(excludeList: VariantArray<RID>): Unit {
@@ -236,7 +236,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun getExcludeObjects(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExcludeObjectsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Long>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   public final fun setExcludeObjects(excludeList: VariantArray<Long>): Unit {
@@ -247,7 +247,7 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
   public final fun isRecoveryAsCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRecoveryAsCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRecoveryAsCollisionEnabled(enabled: Boolean): Unit {

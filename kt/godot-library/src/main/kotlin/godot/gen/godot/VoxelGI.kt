@@ -144,7 +144,7 @@ public open class VoxelGI : VisualInstance3D() {
   public final fun getProbeData(): VoxelGIData? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as VoxelGIData?)
+    return (TransferContext.readReturnValue(OBJECT) as VoxelGIData?)
   }
 
   public final fun setSubdiv(subdiv: Subdiv): Unit {
@@ -166,7 +166,7 @@ public open class VoxelGI : VisualInstance3D() {
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
@@ -177,7 +177,7 @@ public open class VoxelGI : VisualInstance3D() {
   public final fun getCameraAttributes(): CameraAttributes? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as CameraAttributes?)
+    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   /**

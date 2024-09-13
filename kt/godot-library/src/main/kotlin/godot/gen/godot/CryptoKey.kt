@@ -63,7 +63,7 @@ public open class CryptoKey : Resource() {
   public final fun isPublicOnly(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPublicOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -74,7 +74,7 @@ public open class CryptoKey : Resource() {
   public final fun saveToString(publicOnly: Boolean = false): String {
     TransferContext.writeArguments(BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**

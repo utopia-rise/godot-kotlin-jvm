@@ -51,7 +51,7 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
   public final fun getExpression(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public companion object

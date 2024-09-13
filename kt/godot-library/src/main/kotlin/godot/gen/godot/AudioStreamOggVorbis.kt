@@ -105,7 +105,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun getPacketSequence(): OggPacketSequence? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPacketSequencePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as OggPacketSequence?)
+    return (TransferContext.readReturnValue(OBJECT) as OggPacketSequence?)
   }
 
   public final fun setLoop(enable: Boolean): Unit {
@@ -116,7 +116,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun hasLoop(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoopOffset(seconds: Double): Unit {
@@ -127,7 +127,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun getLoopOffset(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoopOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBpm(bpm: Double): Unit {
@@ -138,7 +138,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun getBpm(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setBeatCount(count: Int): Unit {
@@ -149,7 +149,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun getBeatCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBeatCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBarBeats(count: Int): Unit {
@@ -160,7 +160,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
   public final fun getBarBeats(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBarBeatsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object {
@@ -171,7 +171,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     public final fun loadFromBuffer(buffer: PackedByteArray): AudioStreamOggVorbis? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamOggVorbis?)
     }
 
     /**
@@ -181,7 +181,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     public final fun loadFromFile(path: String): AudioStreamOggVorbis? {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT, true) as AudioStreamOggVorbis?)
+      return (TransferContext.readReturnValue(OBJECT) as AudioStreamOggVorbis?)
     }
   }
 

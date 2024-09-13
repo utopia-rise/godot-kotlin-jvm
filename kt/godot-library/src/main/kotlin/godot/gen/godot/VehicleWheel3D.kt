@@ -227,7 +227,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionRestLength(length: Float): Unit {
@@ -238,7 +238,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSuspensionRestLength(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionTravel(length: Float): Unit {
@@ -249,7 +249,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSuspensionTravel(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionStiffness(length: Float): Unit {
@@ -260,7 +260,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSuspensionStiffness(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionMaxForce(length: Float): Unit {
@@ -271,7 +271,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSuspensionMaxForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingCompression(length: Float): Unit {
@@ -282,7 +282,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getDampingCompression(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingCompressionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingRelaxation(length: Float): Unit {
@@ -293,7 +293,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getDampingRelaxation(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseAsTraction(enable: Boolean): Unit {
@@ -304,7 +304,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun isUsedAsTraction(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsTractionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseAsSteering(enable: Boolean): Unit {
@@ -315,7 +315,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun isUsedAsSteering(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsSteeringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFrictionSlip(length: Float): Unit {
@@ -326,7 +326,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getFrictionSlip(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFrictionSlipPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -335,7 +335,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun isInContact(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInContactPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -347,7 +347,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getContactBody(): Node3D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getContactBodyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Node3D?)
+    return (TransferContext.readReturnValue(OBJECT) as Node3D?)
   }
 
   public final fun setRollInfluence(rollInfluence: Float): Unit {
@@ -358,7 +358,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getRollInfluence(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRollInfluencePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -369,7 +369,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSkidinfo(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSkidinfoPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -378,7 +378,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getRpm(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {
@@ -389,7 +389,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getEngineForce(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
@@ -400,7 +400,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getBrake(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
@@ -411,7 +411,7 @@ public open class VehicleWheel3D : Node3D() {
   public final fun getSteering(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object

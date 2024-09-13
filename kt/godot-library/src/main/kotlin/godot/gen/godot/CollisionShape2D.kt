@@ -134,7 +134,7 @@ public open class CollisionShape2D : Node2D() {
   public final fun getShape(): Shape2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
@@ -145,7 +145,7 @@ public open class CollisionShape2D : Node2D() {
   public final fun isDisabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollision(enabled: Boolean): Unit {
@@ -156,7 +156,7 @@ public open class CollisionShape2D : Node2D() {
   public final fun isOneWayCollisionEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollisionMargin(margin: Float): Unit {
@@ -167,7 +167,7 @@ public open class CollisionShape2D : Node2D() {
   public final fun getOneWayCollisionMargin(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDebugColor(color: Color): Unit {
@@ -178,7 +178,7 @@ public open class CollisionShape2D : Node2D() {
   public final fun getDebugColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR, false) as Color)
+    return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
   public companion object

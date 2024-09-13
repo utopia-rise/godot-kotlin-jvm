@@ -41,7 +41,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getCamTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D, false) as Transform3D)
+    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -51,7 +51,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getCamProjection(): Projection {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCamProjectionPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
+    return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
@@ -60,7 +60,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getViewCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -70,7 +70,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getViewEyeOffset(view: Long): Vector3 {
     TransferContext.writeArguments(LONG to view)
     TransferContext.callMethod(rawPtr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -81,7 +81,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getViewProjection(view: Long): Projection {
     TransferContext.writeArguments(LONG to view)
     TransferContext.callMethod(rawPtr, MethodBindings.getViewProjectionPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION, false) as Projection)
+    return (TransferContext.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
@@ -90,7 +90,7 @@ public open class RenderSceneData internal constructor() : Object() {
   public final fun getUniformBuffer(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniformBufferPtr, _RID)
-    return (TransferContext.readReturnValue(_RID, false) as RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
   }
 
   public companion object

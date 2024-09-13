@@ -129,7 +129,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun getSize(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3, false) as Vector3)
+    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
@@ -162,7 +162,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   public final fun isFollowCameraEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Resolution(

@@ -45,7 +45,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getInstance(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -56,7 +56,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getSystemId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -67,7 +67,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getSession(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSessionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -84,7 +84,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   ): Boolean {
     TransferContext.writeArguments(LONG to result, STRING to format, ARRAY to args)
     TransferContext.callMethod(rawPtr, MethodBindings.xrResultPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -96,7 +96,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getInstanceProcAddr(name: String): Long {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getInstanceProcAddrPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -106,7 +106,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getErrorString(result: Long): String {
     TransferContext.writeArguments(LONG to result)
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -115,7 +115,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getSwapchainFormatName(swapchainFormat: Long): String {
     TransferContext.writeArguments(LONG to swapchainFormat)
     TransferContext.callMethod(rawPtr, MethodBindings.getSwapchainFormatNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -124,7 +124,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun isInitialized(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -135,7 +135,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -146,7 +146,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getPlaySpace(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaySpacePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,7 +155,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getPredictedDisplayTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPredictedDisplayTimePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -164,7 +164,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getNextFrameTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNextFrameTimePtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -173,7 +173,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun canRender(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.canRenderPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -182,7 +182,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   public final fun getHandTracker(handIndex: Int): Long {
     TransferContext.writeArguments(LONG to handIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -258,7 +258,7 @@ public open class OpenXRAPIExtension : RefCounted() {
     public final fun openxrIsEnabled(checkRunInEditor: Boolean): Boolean {
       TransferContext.writeArguments(BOOL to checkRunInEditor)
       TransferContext.callMethod(0, MethodBindings.openxrIsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+      return (TransferContext.readReturnValue(BOOL) as Boolean)
     }
   }
 

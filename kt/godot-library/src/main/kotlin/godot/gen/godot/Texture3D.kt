@@ -93,7 +93,7 @@ public open class Texture3D : Texture() {
   public final fun getWidth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -102,7 +102,7 @@ public open class Texture3D : Texture() {
   public final fun getHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -112,7 +112,7 @@ public open class Texture3D : Texture() {
   public final fun getDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -121,7 +121,7 @@ public open class Texture3D : Texture() {
   public final fun hasMipmaps(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -131,7 +131,7 @@ public open class Texture3D : Texture() {
   public final fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<Image>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Image>)
   }
 
   /**
@@ -140,7 +140,7 @@ public open class Texture3D : Texture() {
   public final fun createPlaceholder(): Resource? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Resource?)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
   public companion object

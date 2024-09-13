@@ -163,7 +163,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getTextureNormal(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTexturePressed(texture: Texture2D?): Unit {
@@ -174,7 +174,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getTexturePressed(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Texture2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setBitmask(bitmask: BitMap?): Unit {
@@ -185,7 +185,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getBitmask(): BitMap? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBitmaskPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as BitMap?)
+    return (TransferContext.readReturnValue(OBJECT) as BitMap?)
   }
 
   public final fun setShape(shape: Shape2D?): Unit {
@@ -196,7 +196,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getShape(): Shape2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Shape2D?)
+    return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setShapeCentered(bool: Boolean): Unit {
@@ -207,7 +207,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun isShapeCentered(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShapeCenteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShapeVisible(bool: Boolean): Unit {
@@ -218,7 +218,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun isShapeVisible(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isShapeVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAction(action: String): Unit {
@@ -229,7 +229,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun getAction(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING, false) as String)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setVisibilityMode(mode: VisibilityMode): Unit {
@@ -251,7 +251,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun isPassbyPressEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -260,7 +260,7 @@ public open class TouchScreenButton : Node2D() {
   public final fun isPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class VisibilityMode(

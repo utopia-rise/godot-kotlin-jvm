@@ -57,7 +57,7 @@ public open class ButtonGroup : Resource() {
   public final fun getPressedButton(): BaseButton? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as BaseButton?)
+    return (TransferContext.readReturnValue(OBJECT) as BaseButton?)
   }
 
   /**
@@ -67,7 +67,7 @@ public open class ButtonGroup : Resource() {
   public final fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY, false) as VariantArray<BaseButton>)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
 
   public final fun setAllowUnpress(enabled: Boolean): Unit {
@@ -78,7 +78,7 @@ public open class ButtonGroup : Resource() {
   public final fun isAllowUnpress(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object

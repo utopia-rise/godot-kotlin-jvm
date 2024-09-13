@@ -146,7 +146,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getWidth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeight(pMember: Long): Unit {
@@ -157,7 +157,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getHeight(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(pMember: Long): Unit {
@@ -168,7 +168,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getDepth(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setArrayLayers(pMember: Long): Unit {
@@ -179,7 +179,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getArrayLayers(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getArrayLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setMipmaps(pMember: Long): Unit {
@@ -190,7 +190,7 @@ public open class RDTextureFormat : RefCounted() {
   public final fun getMipmaps(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMipmapsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureType(pMember: RenderingDevice.TextureType): Unit {

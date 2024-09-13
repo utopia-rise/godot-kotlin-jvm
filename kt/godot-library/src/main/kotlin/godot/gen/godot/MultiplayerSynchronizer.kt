@@ -147,7 +147,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getRootPath(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH, false) as NodePath)
+    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setReplicationInterval(milliseconds: Double): Unit {
@@ -158,7 +158,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getReplicationInterval(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDeltaInterval(milliseconds: Double): Unit {
@@ -169,7 +169,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getDeltaInterval(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double)
+    return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setReplicationConfig(config: SceneReplicationConfig?): Unit {
@@ -180,7 +180,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getReplicationConfig(): SceneReplicationConfig? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReplicationConfigPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as SceneReplicationConfig?)
+    return (TransferContext.readReturnValue(OBJECT) as SceneReplicationConfig?)
   }
 
   public final fun setVisibilityUpdateMode(mode: VisibilityUpdateMode): Unit {
@@ -212,7 +212,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun isVisibilityPublic(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isVisibilityPublicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -247,7 +247,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun getVisibilityFor(peer: Int): Boolean {
     TransferContext.writeArguments(LONG to peer.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityForPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL, false) as Boolean)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class VisibilityUpdateMode(

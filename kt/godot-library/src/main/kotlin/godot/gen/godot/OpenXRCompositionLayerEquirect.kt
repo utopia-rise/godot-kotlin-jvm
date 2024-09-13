@@ -96,7 +96,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   public final fun getRadius(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCentralHorizontalAngle(angle: Float): Unit {
@@ -107,7 +107,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   public final fun getCentralHorizontalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUpperVerticalAngle(angle: Float): Unit {
@@ -118,7 +118,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   public final fun getUpperVerticalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLowerVerticalAngle(angle: Float): Unit {
@@ -129,7 +129,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   public final fun getLowerVerticalAngle(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE, false) as Double).toFloat()
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackSegments(segments: Long): Unit {
@@ -140,7 +140,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   public final fun getFallbackSegments(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG, false) as Long)
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

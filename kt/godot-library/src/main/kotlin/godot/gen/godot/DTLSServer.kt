@@ -197,7 +197,7 @@ public open class DTLSServer : RefCounted() {
   public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
     TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as PacketPeerDTLS?)
+    return (TransferContext.readReturnValue(OBJECT) as PacketPeerDTLS?)
   }
 
   public companion object

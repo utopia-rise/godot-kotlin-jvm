@@ -39,7 +39,7 @@ public open class MethodTweener : Tweener() {
   public final fun setDelay(delay: Double): MethodTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
     TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   /**
@@ -49,7 +49,7 @@ public open class MethodTweener : Tweener() {
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener? {
     TransferContext.writeArguments(LONG to trans.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   /**
@@ -59,7 +59,7 @@ public open class MethodTweener : Tweener() {
   public final fun setEase(ease: Tween.EaseType): MethodTweener? {
     TransferContext.writeArguments(LONG to ease.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as MethodTweener?)
+    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   public companion object

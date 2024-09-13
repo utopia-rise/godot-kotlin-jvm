@@ -81,7 +81,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   public final fun getCubeMap(): Cubemap? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT, true) as Cubemap?)
+    return (TransferContext.readReturnValue(OBJECT) as Cubemap?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
