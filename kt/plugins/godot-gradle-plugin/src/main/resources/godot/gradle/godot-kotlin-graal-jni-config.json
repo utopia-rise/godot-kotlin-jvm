@@ -78,10 +78,11 @@
     "methods":[
       { "name" : "syncMemory","parameterTypes" : ["long[]"] },
       { "name" : "cleanUp","parameterTypes" : [] },
-      { "name" : "removeScriptInstance", "parameterTypes" : ["long"] },
+      { "name" : "deleteObject", "parameterTypes" : ["long"] },
+      { "name" : "removeScript", "parameterTypes" : ["long", "int"] },
       { "name" : "checkInstance", "parameterTypes" : ["long", "long"] },
       { "name" : "releaseBinding", "parameterTypes" : ["long"] },
-      { "name" : "unrefNativeCoreType", "parameterTypes" : ["long", "int"] },
+      { "name" : "unrefNativeCoreTypes", "parameterTypes" : ["long[]", "int[]"] },
       { "name" : "querySync", "parameterTypes" : [] },
       { "name" : "createNativeObject", "parameterTypes" : ["int", "godot.core.KtObject", "int"] },
       { "name" : "getSingleton", "parameterTypes" : ["int"] },

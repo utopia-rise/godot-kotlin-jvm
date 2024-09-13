@@ -3,8 +3,6 @@
 #include "gd_kotlin.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 
-static SpinLock spin;
-
 GDExtensionInstanceBindingCallbacks KotlinBindingManager::_instance_binding_callbacks = {
   &_instance_binding_create_callback,
   &_instance_binding_free_callback,

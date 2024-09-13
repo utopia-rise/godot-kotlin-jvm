@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
@@ -16,7 +17,7 @@ abstract class KtConstructor<T : KtObject>(
 
     abstract operator fun invoke(): T
 
-    fun construct(rawPtr: VoidPtr, instanceId: Long) = KtObject.instantiateWith(rawPtr, instanceId) {
+    fun construct(rawPtr: VoidPtr, instanceId: Long) = MemoryManager.createScript(rawPtr, instanceId) {
         TransferContext.readArguments(parameterTypes, parameterNullables, paramsArray)
         val instance = invoke()
         resetParamsArray()

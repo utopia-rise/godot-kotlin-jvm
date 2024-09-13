@@ -12,9 +12,9 @@ fun foo() {
 ```
 
 !!! warning
-Be mindful that this operation happens when Godot has already been partially closed. 
-The SceneTree is no longer present and a part of the Godot API has been unregistered.
-The order of execution is not guaranteed. Make sure that those callbacks don't depend on each other.
+    Be mindful that this operation happens when Godot has already been partially closed.
+    The SceneTree is no longer present and a part of the Godot API has been unregistered.
+    The order of execution is not guaranteed. Make sure that those callbacks don't depend on each other.
 
 
 Sometimes you need to store some Godot objects or references in a Kotlin singleton.
@@ -23,10 +23,11 @@ This issue is fixed by using the delegate `godotStatic` on singleton properties.
 They automatically handle `Object` and `Reference`. You can also freely set a new value and the previous one will be immediatly freed.
 
 !!! warning
-Only use it on a singleton, otherwise all the properties of all instances are going to be kept alive until the end of the JVM.
+    Only use it on a singleton, otherwise all the properties of all instances are going to be kept alive until the end of the JVM.
 
 ```kotlin
 object GodotStatic {
     var ref = (ResourceLoader.load("res://Spatial.tscn") as PackedScene?).asStatic()
     var myScene = Node().asStatic()
 }
+```

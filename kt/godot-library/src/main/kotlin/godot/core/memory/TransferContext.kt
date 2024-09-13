@@ -6,7 +6,7 @@ import godot.core.ObjectID
 import godot.core.VariantType
 import godot.tools.common.constants.Constraints
 import godot.util.VoidPtr
-import godot.util.threadLocalLazy
+import godot.util.threadLocal
 import kotlincompile.definitions.GodotJvmBuildConfig
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -24,7 +24,7 @@ internal object TransferContext {
             return (LongStringQueue.stringMaxSize + 12).coerceAtLeast(68) * Constraints.MAX_FUNCTION_ARG_COUNT + 4
         }
 
-    private val buffer by threadLocalLazy<ByteBuffer> {
+    private val buffer by threadLocal<ByteBuffer> {
         val buf = ByteBuffer.allocateDirect(bufferSize)
         buf.order(ByteOrder.LITTLE_ENDIAN)
         buf
@@ -86,7 +86,7 @@ internal object TransferContext {
     fun initializeKtObject(obj: KtObject) {
         buffer.rewind()
         obj.rawPtr = buffer.long
-        obj.id = ObjectID(buffer.long)
+        obj.objectID = ObjectID(buffer.long)
     }
 
     private external fun icall(ptr: VoidPtr, methodPtr: VoidPtr, expectedReturnType: Int)

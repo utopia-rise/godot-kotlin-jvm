@@ -32,6 +32,10 @@ namespace jni {
         return static_cast<JValue>(static_cast<jlong>(l)).value;
     }
 
+    static inline jvalue to_jni_arg(uint32_t uint32) {
+        return static_cast<JValue>(static_cast<jint>(uint32)).value;
+    }
+
     static inline jvalue to_jni_arg(uint64_t uint64) {
         return static_cast<JValue>(static_cast<jlong>(uint64)).value;
     }

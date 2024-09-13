@@ -44,10 +44,10 @@ they expose a set of Kotlin properties and methods to the C++ so they can be use
 
 In C++ Godot, an object made out of two components: a *base type* and an *optional script*. We mirror the Godot's object structure in the JVM
 with the wrappers and script instances. One major difference is that in C++, the script instance is simply a member of the base script and
-emulate inheritance this way. In Kotlin, for technical reasons, we don't have another choice than doing true inheritance.
-A script instance always inherits a wrapper type. The consequences are that for a given C++ object, we can have 2 different JVM objects, each with their own lifecycle.
+emulate inheritance this way. In Kotlin, for technical reasons, we don't have any other choice than doing true inheritance.
+A script instance always inherits a wrapper type, for the sake of user convenience. Because of this, a C++ object can have up to 2 JVM instances each with their own lifecycle.
 The wrapper is bound to the Godot instance and the script instance is bound to its script.
-A Godot object can freely add, remove and switch script during its lifetime.
+A Godot object can freely add, remove and switch script during its lifetime. The manager must be able to switch between those 2 JVM instance when necessary.
 
 To manage this, we created a singleton named `MemoryManager`, providing the following functionalities:
 
@@ -57,23 +57,32 @@ To manage this, we created a singleton named `MemoryManager`, providing the foll
 
 ![Memory Manager](../../assets/img/memory_manager.png)
 
-It's using a container simply named `GodotBinding`, holding a reference to both wrapper and script instance (when they exist).
-This is this type of object that is used as an `instance binding` back in C++.
-This means that as long as the C++ object is alive, the JVM instances will also stay alive.
+We make use of the instance binding system in Godot. Each native object holds a list of bindings to different languages.
+Those bindings come with a set of callbacks that can be used to notify the language runtime what happens to the object.
+We use those bindings to manage the life of the JVM instances. As long as a Godot object or script is alive, its JVM counterparts will also remain.
 
-### Refcounted management
+### Refcounted base type
 
-`Refcounted` objects are a bit harder to manage as they don't rely on manual management but reference counting.
-Kotlin instances all contribute to increase that counter, so the native object won't die as long as the JVM needs it.
-It's a vicious cycle because throught the binding C++ is also holding a reference to the Kotlin instance, it means they are both keeping each other alive.
-If kept that way, both will never be able to be freed even if unused.
+`Refcounted` objects are a bit harder to manage as they don't rely on manual management but reference counting. We can't manage their life the same way as regular objects.
+Kotlin bindings all contribute to increase that counter, so a `Refcounted` instance won't die as long as the JVM needs it.
+Unlike regular object, a JVM wrapper for a `Refcounted` can die before its native object. When the JVM GC runs on those wrappers, the manager is going to decrease the counter as well.
+It behaves mostly like the equivalent C++ Ref<> container in Godot, the difference being that the counter is decremented in a delay manner(because of GC)
 
-The solution to problem is to transform the instance binding into a *weak reference* when the C++ side no longer use it.
+### Refcounted scripts
+
+Scripts inheriting `Refcounted` are yet another challenge when managing memory, we need to keep those alive as long as the native script instance exist. 
+For that purpose, we directly store a JNI reference to the Kotlin script on the C++ side.
+It's a vicious cycle because. The C++ instance prevents the GC of the Kotlin script, but as long as this script is alive, the counter can't be decremented. 
+It means they are both keeping each other alive. If kept that way, both will never be able to be freed even if unused.
+
+The solution to problem is to transform the JNI reference into a *weak reference* when the C++ side no longer use it.
+We know it's the case when the counter reaches 1 (because then the JVM is the only that didn't decrement it).
 That way, the Godot binding will be able to be freed by the garbage collector. When this happens, the `MemoryManager` will then decrement
 the counter of the C++ `RefCounted` and free it.
 
-### Triangular references
+### Cyclical references
 
-`GodotBinding`, `Wrapper` and `Script Instance` all holds references to each other, linking their lifetimes to each other.
-It's made this way because the binding is the object referenced by the C++ to keep everything alive.
-Conversely, any usage of the wrapper or script instance have to keep the native C++ object alive as well.
+`Wrapper` and `Script Instance` all holds references to each other, linking their lifetimes to each other.
+Even if the manager can freely switch between wrapper and script instance when necessary, this is not the case for regular user code.
+Someone can hold a reference to a wrapper when another part of the code is going to set a script on the native object, creating a script instance in the process.
+In such case, we need to make sure that this wrapper reference can also keep the script alive.
