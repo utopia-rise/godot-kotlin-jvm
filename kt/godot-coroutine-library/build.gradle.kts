@@ -2,6 +2,7 @@ import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
+    id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
     alias(libs.plugins.kotlinPreProcessors)
@@ -29,6 +30,17 @@ dependencies {
     compileOnly(project(":godot-library"))
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
+}
+
+tasks {
+    compileKotlin {
+        dependsOn(":godot-library:generateAPI")
+    }
+
+    // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
+    withType<Jar> {
+        dependsOn(":godot-library:generateAPI")
+    }
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"

@@ -4,12 +4,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlin.coroutines.EmptyCoroutineContext
 
 object GodotCoroutine {
-    private val scope = CoroutineScope(EmptyCoroutineContext)
+    private val scope = CoroutineScope(Dispatchers.Default)
 
-    operator fun invoke( block: suspend CoroutineScope.() -> Unit) {
-        scope.launch(Dispatchers.Unconfined, CoroutineStart.DEFAULT, block)
+    operator fun invoke(block: suspend CoroutineScope.() -> Unit) {
+        scope.launch(start = CoroutineStart.UNDISPATCHED, block = block)
     }
 }

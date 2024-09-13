@@ -19,6 +19,7 @@ import godot.codegen.services.IClassGraphService
 import godot.codegen.services.IClassService
 import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
+import godot.codegen.services.impl.AwaitGenerationService
 import godot.codegen.services.impl.ClassGraphService
 import godot.codegen.services.impl.ClassService
 import godot.codegen.services.impl.EnumService
@@ -97,4 +98,8 @@ fun File.generateApiFrom(jsonSource: File) {
 
     KtCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
     SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
+}
+
+fun File.generateCoroutine() {
+    AwaitGenerationService.generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
 }
