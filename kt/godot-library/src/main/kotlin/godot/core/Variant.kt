@@ -364,7 +364,10 @@ enum class VariantType(override val id: Int) : VariantConverter {
     },
     _RID(23) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = RID(buffer.long)
-        override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) = toGodotNativeCoreType<RID>(buffer, any)
+        override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {
+            require(any is RID)
+            buffer.putLong(any.id)
+        }
     },
     OBJECT(24) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = buffer.obj

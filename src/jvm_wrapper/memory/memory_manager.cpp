@@ -44,9 +44,6 @@ void MemoryManager::unref_native_core_types(JNIEnv* p_raw_env, jobject p_instanc
 
         Variant::Type variant_type {static_cast<Variant::Type>(var_type)};
         switch (variant_type) {
-            case Variant::RID:
-                memdelete(reinterpret_cast<RID*>(p_raw_ptr));
-                break;
             case Variant::CALLABLE:
                 memdelete(reinterpret_cast<Callable*>(p_raw_ptr));
                 break;
@@ -227,3 +224,4 @@ void MemoryManager::direct_object_deletion(jni::Env& p_env, Object* p_obj) {
 }
 
 MemoryManager::~MemoryManager() = default;
+

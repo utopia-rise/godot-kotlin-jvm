@@ -130,7 +130,7 @@ namespace ktvariant {
         &Variant::operator StringName>;
         to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE < Variant::NODE_PATH, NodePath,
         &Variant::operator NodePath>;
-        to_kt_array[Variant::RID] = to_kvariant_fromNATIVECORETYPE < Variant::RID, RID, &Variant::operator ::RID>;
+        to_kt_array[Variant::RID] = to_kvariant_fromCORETYPE<Variant::RID, RID>;
         to_kt_array[Variant::PACKED_BYTE_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_BYTE_ARRAY,
         PackedByteArray, &Variant::operator PackedByteArray>;
         to_kt_array[Variant::PACKED_INT32_ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::PACKED_INT32_ARRAY,
@@ -260,7 +260,7 @@ namespace ktvariant {
         to_gd_array[Variant::ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<Array>;
         to_gd_array[Variant::STRING_NAME] = from_kvariant_tokVariantNativeCoreTypeValue<StringName>;
         to_gd_array[Variant::NODE_PATH] = from_kvariant_tokVariantNativeCoreTypeValue<NodePath>;
-        to_gd_array[Variant::RID] = from_kvariant_tokVariantNativeCoreTypeValue<RID>;
+        to_gd_array[Variant::RID] = from_kvariant_to_kVariantCoreTypeValue<RID>;
         to_gd_array[Variant::PACKED_BYTE_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedByteArray>;
         to_gd_array[Variant::PACKED_INT32_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedInt32Array>;
         to_gd_array[Variant::PACKED_INT64_ARRAY] = from_kvariant_tokVariantNativeCoreTypeValue<PackedInt64Array>;
