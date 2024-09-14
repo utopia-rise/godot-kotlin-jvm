@@ -15,10 +15,10 @@
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1")
 button = NodePath("CanvasLayer/Button")
-resource_test = SubResource("NavigationMesh_prd4u")
+resource_test = SubResource("NavigationMesh_1ex3u")
 jvm_id = 319061373
-nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_tuyoa")])
-nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_bh4po"), null])
+nav_meshes = Array[NavigationMesh]([SubResource("NavigationMesh_q3pqa")])
+nullable_array = Array[NavigationMesh]([SubResource("NavigationMesh_hn8kg"), null])
 nav_meshes_dictionary = {
 "AwesomeNavmesh": SubResource("NavigationMesh_87cay")
 }
