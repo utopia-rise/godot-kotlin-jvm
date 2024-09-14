@@ -13,7 +13,7 @@ import godot.coroutines.GodotCoroutine
 import godot.coroutines.await
 
 @RegisterClass
-class CoroutineTest: Object() {
+class CoroutineTest : Object() {
 
     @RegisterSignal
     val signalWithoutParameter by signal()
@@ -22,17 +22,19 @@ class CoroutineTest: Object() {
     val signalWithParameters by signal<Int, String>("int", "string")
 
     @RegisterProperty
-    var int: Int = 0
+    var step: Int = 0
 
     @RegisterFunction
-    fun startCoroutineWithoutParameter() = GodotCoroutine{
+    fun startCoroutineWithoutParameter() = GodotCoroutine {
+        step = 1
         signalWithoutParameter.await()
-        int = 1
+        step = 2
     }
 
     @RegisterFunction
-    fun startCoroutineWithParameters() = GodotCoroutine{
+    fun startCoroutineWithParameters() = GodotCoroutine {
+        step = 3
         signalWithParameters.await()
-        int = 2
+        step = 4
     }
 }
