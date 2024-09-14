@@ -70,6 +70,7 @@ nav:
     - Signals: user-guide/signals.md
     - Functions: user-guide/functions.md
     - Exporting: user-guide/exporting.md
+    - Coroutines: user-guide/coroutines.md
     - Debugging: user-guide/debugging.md
     - Consuming libraries: user-guide/consuming-libraries.md
     - Versioning: user-guide/versioning.md
