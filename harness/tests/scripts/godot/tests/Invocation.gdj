@@ -166,7 +166,5 @@ functions = [
 	set_vector3_in_packed_array,
 	resize_vector3_packed_array,
 	is_sent_xr_same_instance_as_jvm_singleton,
-	nullable_string_is_null,
-	nullable_return_type,
 	create_variant_array_of_user_type
 ]
