@@ -1,12 +1,15 @@
 package godot.codegen.services.impl
 
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.LIST
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
@@ -29,7 +32,6 @@ object AwaitGenerationService : IAwaitGenerationService {
         }.toList()
 
         for (argCount in 0..maxArgumentCount) {
-
             val parameters = allParameters.take(argCount)
 
             val baseReceiver = ClassName(godotCorePackage, signal + argCount)
@@ -37,6 +39,14 @@ object AwaitGenerationService : IAwaitGenerationService {
                 baseReceiver.parameterizedBy(parameters)
             } else {
                 baseReceiver
+            }
+
+            val returnType = when (argCount) {
+                1 -> parameters[0]
+                2 -> ClassName("kotlin", "Pair").parameterizedBy(parameters)
+                3 -> ClassName("kotlin", "Triple").parameterizedBy(parameters)
+                in 4 .. maxArgumentCount -> LIST.parameterizedBy(ANY.copy(nullable = true))
+                else -> UNIT
             }
 
             awaitFile.addFunction(
@@ -48,7 +58,8 @@ object AwaitGenerationService : IAwaitGenerationService {
                             addTypeVariables(parameters)
                         }
                     }
-                    .generateBody(argCount)
+                    .generateBody(argCount, returnType)
+                    .returns(returnType)
                     .build()
             )
         }
@@ -63,7 +74,8 @@ object AwaitGenerationService : IAwaitGenerationService {
     }
 
 
-    private fun FunSpec.Builder.generateBody(argCount: Int): FunSpec.Builder {
+    private fun FunSpec.Builder.generateBody(argCount: Int, returnType: TypeName): FunSpec.Builder {
+        // Build `p0, p1, ..., px`
         val lambdaParameters = buildString {
             for (i in 0 until argCount) {
                 if (i != 0) {
@@ -73,12 +85,21 @@ object AwaitGenerationService : IAwaitGenerationService {
             }
         }
 
+        // Build what is inserted into the `resume()` method : `Unit`, `po`, `Pair(p0, P1)`, `Triple(p0, p1, p2)`, `listOf(p0, p1, p2, p3), etc..`
+        val resumeParameters = when (argCount) {
+            0 -> "Unit"
+            1 -> lambdaParameters
+            2 -> "Pair($lambdaParameters)"
+            3 -> "Triple($lambdaParameters)"
+            in 4 .. Int.MAX_VALUE -> "listOf($lambdaParameters)"
+            else -> ""
+        }
+
         return this
-            .addStatement("%M { cont: %T<%T> ->", suspendCancellableCoroutine, cancellableContinuationClass, UNIT)
-            .addStatement("    %M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) { $lambdaParameters ->", connect, GODOT_OBJECT)
-            .addStatement("        cont.%M(%T)", resume, UNIT)
-            .addStatement("    }")
-            .addStatement("}")
-            .returns(UNIT)
+            .beginControlFlow("return %M { cont: %T<%T> ->", suspendCancellableCoroutine, cancellableContinuationClass, returnType)
+            .beginControlFlow("%M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) { $lambdaParameters ->", connect, GODOT_OBJECT)
+            .addStatement("cont.%M($resumeParameters)", resume)
+            .endControlFlow()
+            .endControlFlow()
     }
 }

@@ -12,12 +12,14 @@ supertypes = [
 ]
 signals = [
     signal_without_parameter,
-	signal_with_parameters
+	signal_with_parameters,
+	signal_with_many_parameters
 ]
 properties = [
-    int
+    step
 ]
 functions = [
     start_coroutine_without_parameter,
-	start_coroutine_with_parameters
+	start_coroutine_with_parameters,
+	start_coroutine_with_many_parameters
 ]
