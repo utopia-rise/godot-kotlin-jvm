@@ -394,12 +394,6 @@ class Invocation : Node3D() {
 
 	@RegisterFunction
 	override fun _ready() {
-        GodotCoroutine{
-            println("Before")
-            noParam.await()
-            println("After")
-        }
-
 		val formerName = name
 		println("Name is: $name")
 		setName("TestName")
