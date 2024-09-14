@@ -12,7 +12,7 @@
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_b12lh"]
 
-[node name="Spatial" type="Node3D"]
+[node name="Spatial" type="Node3D" node_paths=PackedStringArray("button")]
 script = ExtResource("1")
 button = NodePath("CanvasLayer/Button")
 resource_test = SubResource("NavigationMesh_1ex3u")
