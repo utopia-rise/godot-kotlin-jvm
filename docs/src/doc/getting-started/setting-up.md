@@ -6,6 +6,17 @@ or [manually](#setting-up-manually).
 
 The recommended solution is using the custom IntelliJ IDEA plugin.
 
+## Setting-up using the Godot editor.
+
+You can simply create a regular new Godot project. 
+Once done, you can go to `Project/Tools/Kotlin/JVM/Generate JVM Project`.
+![Godot menu](../assets/img/editor-plugin/generation_menu.png)
+
+The following choice will appear:
+![Project dialog](../assets/img/editor-plugin/generation_choice.png)
+
+After this action, all required files should be generated, and you can safely build the project using the `Build` button at the top-right of the editor window.
+
 ## Setting-up using IntelliJ IDEA project wizard
 
 The easiest way to setup a new project is via IntelliJ's project wizard (the user needs to install our IntelliJ IDEA [plugin](./requirements.md#intellij-idea-plugin)).
