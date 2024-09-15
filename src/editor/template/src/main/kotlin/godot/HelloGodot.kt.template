@@ -4,7 +4,7 @@ import godot.annotation.Export
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.Vector2
+import godot.global.GD
 
 @RegisterClass
 class HelloWorld : Node() {

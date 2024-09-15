@@ -19,6 +19,7 @@ def generate_header_from_files(directory, header_file):
     """Generate a C++ header file with Base64 encoded file contents from a directory and subdirectories."""
     file_names = []
     file_contents = []
+    file_is_binary = []
 
     with open(header_file, 'w') as header:
         header.write(f'// Auto-generated templates from {directory} directory \n\n')
@@ -44,6 +45,7 @@ def generate_header_from_files(directory, header_file):
 
                 file_names.append(name_var_name)
                 file_contents.append(file_var_name)
+                file_is_binary.append('true' if '.jar' in file_name else 'false')
 
                 # Write the file name constant
                 header.write(f'constexpr const char* {name_var_name} = R"({final_file_name})";\n')
@@ -57,6 +59,10 @@ def generate_header_from_files(directory, header_file):
 
         # Generate arrays for file names and contents
         header.write(f'constexpr const int number_of_files = {len(file_names)};\n')
+
+        header.write('constexpr const bool file_is_binary[] = {')
+        header.write(', '.join(file_is_binary))
+        header.write('};\n')
 
         header.write('constexpr const char* file_names[] = {')
         header.write(', '.join(file_names))

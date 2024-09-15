@@ -14,10 +14,6 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
     core_bind::Marshalls* marshall = memnew(core_bind::Marshalls);
 
     for (int i = 0; i < number_of_files; ++i) {
-        String file_content = marshall->base64_to_utf8(file_contents[i])
-                                .replace(VERSION_TEMPLATE, GODOT_KOTLIN_VERSION)
-                                .replace(PROJECT_NAME_TEMPLATE, GLOBAL_GET("application/config/name"));
-
         String file_location = String(file_names[i]);
         String directory_path = file_location.get_base_dir();
 
@@ -29,7 +25,13 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
         Ref<FileAccess> file = FileAccess::open(file_location, FileAccess::WRITE, &err);
         if (err != OK) {
             LOG_WARNING("Cannot save template file '" + file_location + "'.");
+        } else if (file_is_binary[i]) {
+            PackedByteArray file_content = marshall->base64_to_raw(file_contents[i]);
+            file->store_buffer(file_content);
         } else {
+            String file_content = marshall->base64_to_utf8(file_contents[i])
+                                    .replace(VERSION_TEMPLATE, GODOT_KOTLIN_VERSION)
+                                    .replace(PROJECT_NAME_TEMPLATE, GLOBAL_GET("application/config/name"));
             file->store_string(file_content);
         }
     }

@@ -28,9 +28,6 @@ public:
     bool build_project_blocking();
     void build_project_non_blocking();
 
-    bool can_build_project();
-    bool is_build_finished();
-
     bool last_build_successful() const;
 };
 

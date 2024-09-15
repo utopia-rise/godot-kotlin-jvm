@@ -42,6 +42,7 @@ Error BuildManager::build_project() {
 bool BuildManager::build_project_blocking() {
     JVM_ERR_FAIL_COND_V_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), false, missing_gradle_project);
 
+    build_log.clear();
     Error result = build_project();
 
     // When in blocking mode, only make the window appears when it fails
@@ -63,11 +64,8 @@ void BuildManager::build_project_non_blocking() {
     if (taskId != WorkerThreadPool::INVALID_TASK_ID) { return; }
     JVM_ERR_FAIL_COND_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), missing_gradle_project);
 
+    build_log.clear();
     taskId = WorkerThreadPool::get_singleton()->add_native_task(build_task, nullptr);
-}
-
-bool BuildManager::can_build_project() {
-    return taskId == WorkerThreadPool::INVALID_TASK_ID;
 }
 
 bool BuildManager::last_build_successful() const {
