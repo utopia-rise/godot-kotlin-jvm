@@ -4,12 +4,13 @@
 #include "build_manager.h"
 
 #include "../godot_kotlin_jvm_editor.h"
-#include "editor/constant.h"
+#include "editor/strings.h"
+#include "logging.h"
 
 #include <core/config/project_settings.h>
 #include <editor/editor_node.h>
 
-Mutex build_mutex{};
+Mutex build_mutex {};
 
 Error BuildManager::build_project() {
     if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
@@ -39,14 +40,12 @@ Error BuildManager::build_project() {
 }
 
 bool BuildManager::build_project_blocking() {
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) { return true; }
+    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), false, missing_gradle_project);
 
     Error result = build_project();
 
     // When in blocking mode, only make the window appears when it fails
-    if(!last_build_successful()) {
-        GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log);
-    }
+    if (!last_build_successful()) { GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log); }
 
     return result == Error::OK && last_build_successful();
 }
@@ -62,7 +61,7 @@ void BuildManager::build_task(void* p_userdata) {
 
 void BuildManager::build_project_non_blocking() {
     if (taskId != WorkerThreadPool::INVALID_TASK_ID) { return; }
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) { return; }
+    JVM_ERR_FAIL_COND_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), missing_gradle_project);
 
     taskId = WorkerThreadPool::get_singleton()->add_native_task(build_task, nullptr);
 }

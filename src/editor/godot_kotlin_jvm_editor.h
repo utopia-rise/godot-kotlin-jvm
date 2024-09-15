@@ -1,4 +1,3 @@
-
 #ifdef TOOLS_ENABLED
 
 #ifndef GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
@@ -13,9 +12,15 @@ class GodotKotlinJvmEditor : public EditorPlugin {
     GDCLASS(GodotKotlinJvmEditor, EditorPlugin)
     friend class BuildManager;
 
+    enum KOTLIN_JVM_MENU_OPTIONS{
+        GENERATE_PROJECT,
+        ABOUT
+    };
+
     PopupMenu* about_pop_menu;
     AboutDialog* about_dialog;
     BuildDialog* build_dialog;
+    AcceptDialog* project_dialog;
     Button* tool_bar_build_button;
 
     GodotKotlinJvmEditor();
@@ -23,6 +28,7 @@ class GodotKotlinJvmEditor : public EditorPlugin {
 
     void on_build_project_pressed();
     void on_menu_option_pressed(int option_id);
+    void on_generate_project(bool erase_existing);
 
 protected:
     bool build() override;

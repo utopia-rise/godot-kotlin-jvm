@@ -1,0 +1,20 @@
+package godot
+
+import godot.annotation.Export
+import godot.annotation.RegisterClass
+import godot.annotation.RegisterFunction
+import godot.annotation.RegisterProperty
+import godot.core.Vector2
+
+@RegisterClass
+class HelloWorld : Node() {
+
+    @Export
+    @RegisterProperty
+    var helloString =  "Godot"
+
+    @RegisterFunction
+    override fun _ready() {
+        GD.print("Hello $helloString !")
+    }
+}

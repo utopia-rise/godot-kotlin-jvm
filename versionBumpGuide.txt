@@ -1,4 +1,5 @@
 When updating this project version, here the list of strings to changes:
+- src/version.h: godot_kotlin_version.
 - kt/gradle/libs.versions.toml: godotKotlinJvm, kotlin and godot variables.
 - docs/src/index.md: kotlin version in "Supported kotlin version" block.
 - docs/src/user-guide/versioning.md: Full version, Module Version and Supported Godot Version fields.

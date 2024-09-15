@@ -3,8 +3,8 @@
 
 #include "about_dialog.h"
 
-#include "editor/constant.h"
 #include "editor/godot_kotlin_jvm_editor.h"
+#include "editor/strings.h"
 
 #include <editor/editor_interface.h>
 #include <editor/themes/editor_scale.h>
