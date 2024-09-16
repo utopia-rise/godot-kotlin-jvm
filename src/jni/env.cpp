@@ -10,7 +10,7 @@ namespace jni {
 
     void Env::push_local_frame(int capacity) {
         auto result = env->PushLocalFrame(capacity);
-        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to push local frame!");
+        JVM_ERR_FAIL_COND_MSG(result != JNI_OK, "Failed to push local frame!");
     }
 
     void Env::pop_local_frame() {
@@ -24,7 +24,8 @@ namespace jni {
     //Support fully qualified class names with "a/b/c" and "a.b.c" format
     JClass Env::find_class(const char* name) {
         jclass cls = env->FindClass(String(name).replace(".", "/").utf8());
-        JVM_CRASH_COND_MSG(cls == nullptr, vformat("Class not found: %s", name));
+        JVM_DEV_ASSERT(cls, "Class not found: %s", name);
+        check_exceptions();
         return JClass(cls);
     }
 
@@ -96,7 +97,7 @@ namespace jni {
             if (exception.is_empty()) {
                 exception = "An exception has occurred!";
             }
-            HANDLE_JVM_EXCEPTIONS(true, exception);
+            JVM_ERR_FAIL_MSG(exception);
         }
     }
 

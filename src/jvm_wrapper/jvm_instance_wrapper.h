@@ -9,7 +9,7 @@
     inline constexpr char NAME##QualifiedName[] = FQNAME; \
     class NAME : public JvmInstanceWrapper<NAME, NAME##QualifiedName>
 
-#define JVM_CLASS(NAME) \
+#define JVM_CLASS(NAME)                                         \
     friend class JvmInstanceWrapper<NAME, NAME##QualifiedName>; \
     static inline constexpr const char* fq_name = NAME##QualifiedName;
 
@@ -20,7 +20,6 @@
 #define JNI_FLOAT_METHOD(var_name) inline static jni::FloatMethodID var_name;
 #define JNI_DOUBLE_METHOD(var_name) inline static jni::DoubleMethodID var_name;
 #define JNI_OBJECT_METHOD(var_name) inline static jni::ObjectMethodID var_name;
-
 
 #define INIT_JNI_METHOD(var_name, name, signature) var_name.methodId = clazz.get_method_id(p_env, name, signature);
 
@@ -57,7 +56,7 @@ private:
 template<class Derived, const char* FqName>
 class JvmInstanceWrapper {
 protected:
-    bool is_weak;
+    bool is_weak = false;
     jni::JObject wrapped;
 
     explicit JvmInstanceWrapper(jni::Env& p_env, jni::JObject p_wrapped);
@@ -76,7 +75,7 @@ public:
 };
 
 template<class Derived, const char* FqName>
-JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::Env& p_env, jni::JObject p_wrapped) : is_weak(false) {
+JvmInstanceWrapper<Derived, FqName>::JvmInstanceWrapper(jni::Env& p_env, jni::JObject p_wrapped) {
     // When created, it's a strong reference by default
     wrapped = p_wrapped.new_global_ref<jni::JObject>(p_env);
     p_wrapped.delete_local_ref(p_env);

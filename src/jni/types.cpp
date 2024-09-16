@@ -67,21 +67,21 @@ namespace jni {
 
     MethodID JClass::get_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetMethodID((jclass) obj, name, signature);
-        JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature));
+        JVM_DEV_ASSERT(id, "Method not found: %s with signature: %s", name, signature);
         env.check_exceptions();
         return id;
     }
 
     MethodID JClass::get_static_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticMethodID((jclass) obj, name, signature);
-        JVM_CRASH_COND_MSG(id == nullptr, vformat("Method not found: %s with signature: %s", name, signature));
+        JVM_DEV_ASSERT(id, "Method not found: %s with signature: %s", name, signature);
         env.check_exceptions();
         return id;
     }
 
     FieldID JClass::get_static_field_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticFieldID((jclass) obj, name, signature);
-        JVM_CRASH_COND_MSG(id == nullptr, vformat("Field not found: %s with signature: %s", name, signature));
+        JVM_DEV_ASSERT(id, "Field not found: %s with signature: %s", name, signature);
         env.check_exceptions();
         return id;
     }
@@ -97,7 +97,7 @@ namespace jni {
 
     JObject JClass::new_instance(Env& env, MethodID ctor, jvalue* args) {
         auto ret = env.env->NewObjectA((jclass) obj, ctor, args);
-        JVM_CRASH_COND_MSG(ret == nullptr, "Failed to instantiated object!");
+        JVM_DEV_ASSERT(ret, "Failed to instantiated object!");
         env.check_exceptions();
         return JObject(ret);
     }
@@ -116,7 +116,7 @@ namespace jni {
 
     JObjectArray JClass::new_object_array(Env& env, int size, JObject initial) {
         auto ret = env.env->NewObjectArray(size, (jclass) obj, initial.obj);
-        JVM_CRASH_COND_MSG(ret == nullptr, "Failed to instantiated object array!");
+        JVM_DEV_ASSERT(ret, "Failed to instantiated object array!");
         return JObjectArray(ret);
     }
 

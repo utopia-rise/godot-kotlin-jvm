@@ -14,7 +14,7 @@ static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* ios_jdk_version {"21"};
 
 void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
-    LOG_INFO("Beginning Godot-Jvm specific exports.");
+    JVM_LOG("Beginning Godot-Jvm specific exports.");
 
     // Add mandatory jars to pck
     Vector<String> files_to_add;
@@ -46,20 +46,20 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 if (is_arm64 || is_universal) {
                     String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
-                        LOG_ERROR_WITH_ALERT(vformat("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path));
+                        JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
                 if (is_x64 || is_universal) {
                     String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
-                        LOG_ERROR_WITH_ALERT(vformat("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path));
+                        JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
 
                 if (!is_arm64 && !is_x64 && !is_universal) {
-                    LOG_ERROR_WITH_ALERT("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
+                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
                 }
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
@@ -87,24 +87,23 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                     }
                 }
                 if (!is_arm64 && !is_x64) {
-                    LOG_ERROR_WITH_ALERT("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
+                    JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are supported by Godot Kotlin/JVM!");
                 }
                 if(jre_dir.is_empty() || target_dir.is_empty()) {
-                    LOG_ERROR_WITH_ALERT("Could not find a jre directory for the current export configuration");
+                    JVM_ERR_FAIL_MSG("Could not find a jre directory for the current export configuration");
                 }
 
                 // copy the jre to res
                 Error error;
                 Ref<DirAccess> dir_access {DirAccess::open(jre_dir, &error)};
                 if (error != OK) {
-                    LOG_ERROR_WITH_ALERT(vformat("Cannot open directory %s", jre_dir));
+                    JVM_ERR_FAIL_MSG("Cannot open directory %s", jre_dir);
                 }
                 if (dir_access->copy_dir(jre_dir, target_dir) != OK) {
-                    LOG_ERROR_WITH_ALERT(vformat("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink for the platform you want to export.", jre_dir)
-                    );
+                    JVM_ERR_FAIL_MSG("Cannot copy %s folder to export folder, please make sure you created a JRE directory at the root of your project using jlink for the platform you want to export.", jre_dir);
                 }
             } else {
-                LOG_ERROR_WITH_ALERT("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only supported desktop targets are linux, macos and windows");
+                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only supported desktop targets are linux, macos and windows");
             }
         }
 
@@ -117,7 +116,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             } else if (is_macos_export) {
                 files_to_add.push_back(String(BUILD_DIRECTORY) + MACOS_GRAAL_NATIVE_IMAGE_FILE);
             } else {
-                LOG_ERROR_WITH_ALERT("Export target platform is not supported for graalvm export");
+                JVM_ERR_FAIL_MSG("Export target platform is not supported for graalvm export");
             }
         }
 
@@ -149,18 +148,18 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
           ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE))
         );
     } else {
-        LOG_ERROR_WITH_ALERT("Godot Kotlin/JVM doesn't handle this platform");
+        JVM_ERR_FAIL_MSG("Godot Kotlin/JVM doesn't handle this platform");
     }
 
     for (const String& file_to_add : files_to_add) {
         if (!FileAccess::exists(file_to_add)) {
-            LOG_ERROR_WITH_ALERT(vformat("File can't be found, it won't be exported: %s", file_to_add));
+            JVM_ERR_FAIL_MSG("File can't be found, it won't be exported: %s", file_to_add);
         }
         add_file(file_to_add, FileAccess::get_file_as_bytes(file_to_add), false);
-        LOG_INFO(vformat("Exporting %s", file_to_add));
+        JVM_LOG("Exporting %s", file_to_add);
     }
 
-    LOG_INFO("Finished Godot-Jvm specific exports.");
+    JVM_LOG("Finished Godot-Jvm specific exports.");
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {

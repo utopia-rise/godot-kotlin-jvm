@@ -27,8 +27,8 @@ KtClass::~KtClass() {
 KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_arg_count, Object* p_owner) {
     JVM_DEV_ASSERT(
       p_arg_count <= MAX_CONSTRUCTOR_SIZE,
-      vformat("Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE)
-    );
+      "Cannot call constructor with %s, max arg count is %s", p_arg_count, MAX_CONSTRUCTOR_SIZE
+      );
 
     KtConstructor* constructor {constructors[p_arg_count]};
 
@@ -36,12 +36,12 @@ KtObject* KtClass::create_instance(jni::Env& env, const Variant** p_args, int p_
     JVM_ERR_FAIL_COND_V_MSG(
       constructor == nullptr,
       nullptr,
-      vformat("Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name)
+      "Cannot find constructor with %s parameters for class %s", p_arg_count, registered_class_name
     );
 #endif
 
     KtObject* jvm_instance {constructor->create_instance(env, p_args, p_owner)};
-    LOG_DEV_VERBOSE(vformat("Instantiated a Jvm script: %s", registered_class_name));
+    JVM_DEV_VERBOSE("Instantiated a Jvm script: %s", registered_class_name);
 
     return jvm_instance;
 }
@@ -90,9 +90,7 @@ void KtClass::fetch_registered_supertypes(jni::Env& env) {
     for (int i = 0; i < classesArray.length(env); i++) {
         StringName parent_name = StringName(env.from_jstring(jni::JString(classesArray.get(env, i))));
         registered_supertypes.append(parent_name);
-#ifdef DEBUG_ENABLED
-        LOG_VERBOSE(vformat("%s user type is parent of %s.", parent_name, registered_class_name));
-#endif
+        JVM_DEV_VERBOSE("%s user type is parent of %s.", parent_name, registered_class_name);
     }
     classesArray.delete_local_ref(env);
 }
@@ -103,9 +101,7 @@ void KtClass::fetch_methods(jni::Env& env) {
         jni::JObject object = functionsArray.get(env, i);
         auto* ktFunction {new KtFunction(env, object)};
         methods[ktFunction->get_name()] = ktFunction;
-#ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched method %s for class %s", ktFunction->get_name(), registered_class_name));
-#endif
+        JVM_DEV_VERBOSE("Fetched method %s for class %s", ktFunction->get_name(), registered_class_name);
     }
     functionsArray.delete_local_ref(env);
 }
@@ -115,9 +111,7 @@ void KtClass::fetch_properties(jni::Env& env) {
     for (int i = 0; i < propertiesArray.length(env); i++) {
         auto* ktProperty {new KtProperty(env, propertiesArray.get(env, i))};
         properties[ktProperty->get_name()] = ktProperty;
-#ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched property %s for class %s", ktProperty->get_name(), registered_class_name));
-#endif
+        JVM_DEV_VERBOSE("Fetched property %s for class %s", ktProperty->get_name(), registered_class_name);
     }
     propertiesArray.delete_local_ref(env);
 }
@@ -127,9 +121,7 @@ void KtClass::fetch_signals(jni::Env& env) {
     for (int i = 0; i < signal_info_array.length(env); i++) {
         auto* kt_signal_info {new KtSignalInfo(env, signal_info_array.get(env, i))};
         signal_infos[kt_signal_info->name] = kt_signal_info;
-#ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Fetched signal %s for class %s", kt_signal_info->name, registered_class_name));
-#endif
+        JVM_DEV_VERBOSE("Fetched signal %s for class %s", kt_signal_info->name, registered_class_name);
     }
     signal_info_array.delete_local_ref(env);
 }
@@ -141,9 +133,7 @@ void KtClass::fetch_constructors(jni::Env& env) {
         KtConstructor* kt_constructor {nullptr};
         if (constructor.obj != nullptr) {
             kt_constructor = new KtConstructor(env, constructor);
-#ifdef DEV_ENABLED
-            LOG_VERBOSE(vformat("Fetched constructor with %s parameters for class %s", i, registered_class_name));
-#endif
+            JVM_DEV_VERBOSE("Fetched constructor with %s parameters for class %s", i, registered_class_name);
         }
         constructors[i] = kt_constructor;
     }

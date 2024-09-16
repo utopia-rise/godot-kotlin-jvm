@@ -43,7 +43,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
     return &JNI_CreateJavaVM;
 #else
     // Sanity check in case we mess up preprocessors
-    JVM_CRASH_NOW_MSG("Current configuration doesn't provide a way to create a JVM!");
+    JVM_DEV_ASSERT(false, "Current configuration doesn't provide a way to create a JVM!");
 #endif
 }
 
@@ -60,12 +60,12 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
     for (auto i = 0; i < static_cast<int>(nOptions); i++) {
         args.options[i].optionString = jvm_options.options[i].ptrw();
-        LOG_DEV_VERBOSE(vformat("JVM argument %s: %s", i, args.options[i].optionString));
+        JVM_DEV_VERBOSE("JVM argument %s: %s", i, args.options[i].optionString);
     }
 
     std::locale global;
 
-    LOG_VERBOSE("Starting JVM ...");
+    JVM_VERBOSE("Starting JVM ...");
     JNIEnv* jni_env {nullptr};
 
     CreateJavaVM func {get_create_jvm_function(lib_handle)};
@@ -82,12 +82,12 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     JVM_ERR_FAIL_COND_V_MSG(result != JNI_OK, false, "Failed to create a new vm!");
 
 #elif defined PROVIDED_JVM
-    LOG_VERBOSE("Retrieving existing JVM ...");
+    JVM_VERBOSE("Retrieving existing JVM ...");
     jni::Env env {get_jni_env()};
     java_vm = env.get_jvm();
 #else
     // Sanity check in case we mess up preprocessors
-    JVM_CRASH_COND_MSG(java_vm == nullptr, "Current configuration doesn't allow to create or fetch a JVM.");
+    JVM_DEV_ASSERT(java_vm, "Current configuration doesn't allow to create or fetch a JVM.");
 #endif
 
     jni::Jvm::initialize(java_vm, user_configuration.vm_type, jvm_options.version);
@@ -159,7 +159,7 @@ void JvmManager::destroy_jni_classes() {
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    LOG_VERBOSE("Shutting down JVM ...");
+    JVM_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
 }

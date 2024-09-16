@@ -84,9 +84,9 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
     JVM_ERR_FAIL_COND_V_MSG(
       !is_valid(),
       nullptr,
-      vformat("Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path())
+      "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path()
     );
-    LOG_DEV_VERBOSE(vformat("Try to create %s instance.", kotlin_class->registered_class_name));
+    JVM_DEV_VERBOSE("Try to create %s instance.", kotlin_class->registered_class_name);
 #endif
 
     jni::Env env = jni::Jvm::current_env();
@@ -235,9 +235,9 @@ void JvmScript::update_script() {
         const String& property_name {exported_property.name};
 
         if(exported_property.type != Variant::OBJECT) {
-            LOG_DEV_VERBOSE(vformat("Get default value for %s property from %s:",exported_property.name, kotlin_class->registered_class_name));
+            JVM_DEV_VERBOSE("Get default value for %s property from %s:", exported_property.name, kotlin_class->registered_class_name);
             kotlin_script_instance->get_or_default(property_name, default_value);
-            LOG_DEV_VERBOSE(vformat("    %s",default_value.stringify()));
+            JVM_DEV_VERBOSE("    %s", default_value.stringify());
         }
         exported_members_default_value_cache[property_name] = default_value;
     }

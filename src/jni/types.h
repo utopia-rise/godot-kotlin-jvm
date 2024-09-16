@@ -247,15 +247,10 @@ namespace jni {
 
     class JClass : public JObject {
     public:
-        explicit JClass(jclass cls) : JObject(cls) {}
+        JClass() = default;
+        JClass(jclass clazz): JObject(clazz){};
 
-        explicit JClass(jobject cls) : JObject(cls) {}
-
-        JClass(const JClass&) = default;
-
-        JClass& operator=(const JClass&) = default;
-
-        JClass() : JClass((jclass) nullptr) {}
+        explicit JClass(JObject jObject): JObject(jObject){};
 
         JObject new_instance(Env& env, MethodID ctor, jvalue* args = {});
 

@@ -57,8 +57,7 @@ public:
 
 template<class Derived, const char* FqName>
 Derived* JvmSingletonWrapper<Derived, FqName>::create_instance(jni::Env& p_env) {
-    LOG_ERROR("Can't create a new instance of a this class. Returning the singleton instead");
-    return _instance;
+    JVM_ERR_FAIL_V_MSG(_instance, "Can't create a new instance of a this class. Returning the singleton instead");
 }
 
 template<class Derived, const char* FqName>
