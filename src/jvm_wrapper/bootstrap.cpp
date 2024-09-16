@@ -50,7 +50,7 @@ void Bootstrap::init(jni::Env& p_env, const String& p_project_path, const String
     jni::JObject project_path = p_env.new_string(p_project_path.utf8().get_data());
     jni::JObject jar_file {p_env.new_string(p_jar_file.utf8().get_data())};
     jvalue args[3] = {jni::to_jni_arg(project_path), jni::to_jni_arg(jar_file), jni::to_jni_arg(p_class_loader)};
-    wrapped.call_void_method(p_env, INIT, args);
+    wrapped.call_object_method(p_env, INIT, args);
 }
 
 void Bootstrap::finish(jni::Env& p_env) {

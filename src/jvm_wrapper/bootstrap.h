@@ -7,8 +7,8 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
     JVM_CLASS(Bootstrap)
 
     // clang-format off
-    JNI_METHOD(INIT)
-    JNI_METHOD(FINISH)
+    JNI_OBJECT_METHOD(INIT)
+    JNI_VOID_METHOD(FINISH)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(INIT, "init", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")

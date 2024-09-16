@@ -1,5 +1,7 @@
 #include "class_loader.h"
 
+#include "jni/methods.h"
+
 #ifdef __ANDROID__
 #include <sys/stat.h>
 #endif
@@ -19,13 +21,13 @@ ClassLoader::~ClassLoader() {
 #ifndef __ANDROID__
 jni::JObject to_java_url(jni::Env& env, const String& bootstrapJar) {
     jni::JClass cls {env.find_class("java/io/File")};
-    jni::MethodId ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
+    jni::MethodID ctor {cls.get_constructor_method_id(env, "(Ljava/lang/String;)V")};
     jni::JObject path {env.new_string(bootstrapJar.utf8().get_data())};
     jvalue args[1] = {jni::to_jni_arg(path)};
     jni::JObject file {cls.new_instance(env, ctor, args)};
     assert(!file.is_null());
 
-    jni::MethodId to_url_method {cls.get_method_id(env, "toURL", "()Ljava/net/URL;")};
+    jni::ObjectMethodID to_url_method {cls.get_method_id(env, "toURL", "()Ljava/net/URL;")};
     jni::JObject url {file.call_object_method(env, to_url_method)};
     assert(!url.is_null());
 
@@ -39,7 +41,7 @@ ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_
     chmod(full_jar_path.utf8().get_data(), S_IRUSR | S_IRGRP | S_IROTH);
 
     jni::JClass class_loader_cls {env.find_class("dalvik/system/DexClassLoader")};
-    jni::MethodId ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
+    jni::MethodID ctor {class_loader_cls.get_constructor_method_id(env, "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/ClassLoader;)V")
     };
     jni::JObject jar_path {env.new_string(full_jar_path.utf8().get_data())};
     jvalue args[4] = {
@@ -53,7 +55,7 @@ ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_
     jni::JClass url_cls = env.find_class("java/net/URL");
     jni::JObjectArray urls = url_cls.new_object_array(env, 1, {url});
     jni::JClass class_loader_cls = env.find_class("java/net/URLClassLoader");
-    jni::MethodId ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;Ljava/lang/ClassLoader;)V");
+    jni::MethodID ctor = class_loader_cls.get_constructor_method_id(env, "([Ljava/net/URL;Ljava/lang/ClassLoader;)V");
     jvalue args[2] = {jni::to_jni_arg(urls), jni::to_jni_arg(p_parent_loader)};
 #endif
     jni::JObject class_loader = class_loader_cls.new_instance(env, ctor, args);
@@ -62,11 +64,11 @@ ClassLoader* ClassLoader::create_instance(jni::Env& env, const String& full_jar_
 }
 
 jni::JClass ClassLoader::load_class(jni::Env& env, const char* name) {
-    static jmethodID loadClassMethodId;
+    static jni::ObjectMethodID loadClassMethodId;
 
-    if (loadClassMethodId == nullptr) {
+    if (loadClassMethodId.methodId == nullptr) {
         auto cls = env.find_class("java/lang/ClassLoader");
-        loadClassMethodId = cls.get_method_id(env, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
+        loadClassMethodId.methodId = cls.get_method_id(env, "loadClass", "(Ljava/lang/String;)Ljava/lang/Class;");
     }
     jvalue args[1] = {static_cast<jni::JValue>(env.new_string(name)).value};
     jni::JObject ret = wrapped.call_object_method(env, loadClassMethodId, args);
@@ -75,11 +77,11 @@ jni::JClass ClassLoader::load_class(jni::Env& env, const char* name) {
 
 void ClassLoader::set_as_context_loader(jni::Env& env) {
     jni::JClass cls {env.find_class("java/lang/Thread")};
-    jni::MethodId current_thread_method {cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;")};
-    jni::JObject thread {cls.call_static_object_method(env, current_thread_method)};
+    jni::ObjectMethodID current_thread_method {cls.get_static_method_id(env, "currentThread", "()Ljava/lang/Thread;")};
+    jni::JObject thread {cls.call_static_object_method(env, current_thread_method.methodId)};
     assert(!thread.is_null());
 
-    _jmethodID* setContextClassLoaderMethod {cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V")};
+    jni::VoidMethodID setContextClassLoaderMethod {cls.get_method_id(env, "setContextClassLoader", "(Ljava/lang/ClassLoader;)V")};
     jvalue args[1] = {jni::to_jni_arg(wrapped)};
 
     thread.call_void_method(env, setContextClassLoaderMethod, args);

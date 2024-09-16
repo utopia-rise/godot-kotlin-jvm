@@ -1,6 +1,7 @@
 #ifndef GODOT_JVM_JVM_INSTANCE_WRAPPER_H
 #define GODOT_JVM_JVM_INSTANCE_WRAPPER_H
 
+#include "jni/methods.h"
 #include "jni/wrapper.h"
 #include "lifecycle/class_loader.h"
 
@@ -12,9 +13,16 @@
     friend class JvmInstanceWrapper<NAME, NAME##QualifiedName>; \
     static inline constexpr const char* fq_name = NAME##QualifiedName;
 
-#define JNI_METHOD(var_name) inline static jni::MethodId var_name {nullptr};
+#define JNI_VOID_METHOD(var_name) inline static jni::VoidMethodID var_name;
+#define JNI_BOOLEAN_METHOD(var_name) inline static jni::BooleanMethodID var_name;
+#define JNI_INT_METHOD(var_name) inline static jni::IntMethodID var_name;
+#define JNI_LONG_METHOD(var_name) inline static jni::LongMethodID var_name;
+#define JNI_FLOAT_METHOD(var_name) inline static jni::FloatMethodID var_name;
+#define JNI_DOUBLE_METHOD(var_name) inline static jni::DoubleMethodID var_name;
+#define JNI_OBJECT_METHOD(var_name) inline static jni::ObjectMethodID var_name;
 
-#define INIT_JNI_METHOD(var_name, name, signature) var_name = clazz.get_method_id(p_env, name, signature);
+
+#define INIT_JNI_METHOD(var_name, name, signature) var_name.methodId = clazz.get_method_id(p_env, name, signature);
 
 #define INIT_NATIVE_METHOD(string_name, signature, function) \
     methods.push_back({const_cast<char*>(string_name), const_cast<char*>(signature), (void*) function});
@@ -82,7 +90,7 @@ Derived* JvmInstanceWrapper<Derived, FqName>::create_instance(jni::Env& p_env, C
     } else {
         cls = p_env.find_class(FqName);
     }
-    jni::MethodId ctor = cls.get_constructor_method_id(p_env, "()V");
+    jni::MethodID ctor = cls.get_constructor_method_id(p_env, "()V");
     jni::JObject instance = cls.new_instance(p_env, ctor);
     return new Derived(p_env, instance);
 }

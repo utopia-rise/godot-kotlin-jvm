@@ -11,7 +11,7 @@ JVM_INSTANCE_WRAPPER(KtObject, "godot.core.KtObject") {
     JVM_CLASS(KtObject)
 
     // clang-format off
-    JNI_METHOD(ON_DESTROY)
+    JNI_VOID_METHOD(ON_DESTROY)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(ON_DESTROY, "_onDestroy", "()V")

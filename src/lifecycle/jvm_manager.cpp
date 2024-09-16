@@ -4,6 +4,7 @@
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bridge/kt_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
@@ -15,14 +16,14 @@
 #include "jvm_wrapper/bridge/packed_string_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
+#include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/memory_manager.h"
-#include "kotlin_callable_custom.h"
-#include "jvm_wrapper/bridge/kt_callable_bridge.h"
-#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 
 #include <jni.h>
+
 #include <locale>
 
 #ifdef __ANDROID__

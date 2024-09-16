@@ -1,5 +1,6 @@
 #include "kt_callable_bridge.h"
-#include "kotlin_callable_custom.h"
+
+#include "jvm_wrapper/kotlin_callable_custom.h"
 
 using namespace bridges;
 

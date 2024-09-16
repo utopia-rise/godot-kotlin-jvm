@@ -184,7 +184,7 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 
 void MemoryManager::clean_up(jni::Env& p_env) {
     LOG_VERBOSE("Cleaning JVM Memory...")
-    wrapped.call_boolean_method(p_env, CLEAN_UP);
+    wrapped.call_void_method(p_env, CLEAN_UP);
     LOG_VERBOSE("JVM Memory cleaned!")
 }
 

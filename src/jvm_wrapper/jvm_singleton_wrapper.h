@@ -80,7 +80,7 @@ bool JvmSingletonWrapper<Derived, FqName>::initialize(jni::Env& p_env, ClassLoad
     } else {
         singleton_cls = p_env.find_class(FqName);
     }
-    jni::FieldId singleton_instance_field =
+    jni::FieldID singleton_instance_field =
       singleton_cls.get_static_field_id(p_env, "INSTANCE", vformat("L%s;", FqName).replace(".", "/").utf8().ptr());
     jni::JObject singleton_instance = singleton_cls.get_static_object_field(p_env, singleton_instance_field);
 

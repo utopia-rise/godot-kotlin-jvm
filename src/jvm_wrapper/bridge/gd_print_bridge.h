@@ -9,7 +9,7 @@ namespace bridges {
         SINGLETON_CLASS(GDPrintBridge)
 
         // clang-format off
-        JNI_METHOD(PRINT_STACKTRACE)
+        JNI_OBJECT_METHOD(PRINT_STACKTRACE)
 
         INIT_JNI_BINDINGS(
             INIT_JNI_METHOD(PRINT_STACKTRACE, "getStacktrace", "()Ljava/lang/String;")

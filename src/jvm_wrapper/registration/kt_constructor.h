@@ -8,8 +8,8 @@ JVM_INSTANCE_WRAPPER(KtConstructor, "godot.core.KtConstructor") {
     JVM_CLASS(KtConstructor)
 
     // clang-format off
-    JNI_METHOD(GET_PARAMETER_COUNT)
-    JNI_METHOD(CONSTRUCT)
+    JNI_INT_METHOD(GET_PARAMETER_COUNT)
+    JNI_OBJECT_METHOD(CONSTRUCT)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_PARAMETER_COUNT, "getParameterCount", "()I")

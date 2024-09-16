@@ -8,7 +8,7 @@
 JVM_SINGLETON_WRAPPER(TransferContext, "godot.core.memory.TransferContext") {
     SINGLETON_CLASS(TransferContext)
 
-    JNI_METHOD(GET_BUFFER)
+    JNI_OBJECT_METHOD(GET_BUFFER)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_BUFFER, "getBuffer", "()Ljava/nio/ByteBuffer;")
