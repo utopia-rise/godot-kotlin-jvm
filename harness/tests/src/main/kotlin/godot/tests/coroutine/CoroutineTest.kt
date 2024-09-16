@@ -20,7 +20,7 @@ class CoroutineTest : Object() {
     val signalWithoutParameter by signal()
 
     @RegisterSignal
-    val signalWithParameters by signal<Int, String>("int", "string")
+    val signalWithOneParameter by signal<Int>("int")
 
     @RegisterSignal
     val signalWithManyParameters by signal<Int, Float, Vector2, String>("int", "float", "vector2", "string")
@@ -36,16 +36,15 @@ class CoroutineTest : Object() {
     }
 
     @RegisterFunction
-    fun startCoroutineWithParameters() = GodotCoroutine {
+    fun startCoroutineWithOneParameter() = GodotCoroutine {
         step = 3
-        val (int, string) = signalWithParameters.await()
-        step = int
+        step = signalWithOneParameter.await()
     }
 
     @RegisterFunction
     fun startCoroutineWithManyParameters() = GodotCoroutine {
         step = 5
-        val list = signalWithManyParameters.await()
-        step = list[0] as Int
+        val (int, _, _, _) = signalWithManyParameters.await()
+        step = int
     }
 }

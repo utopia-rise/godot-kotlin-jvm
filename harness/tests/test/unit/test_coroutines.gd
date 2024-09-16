@@ -13,10 +13,10 @@ func test_coroutine_await():
     await get_tree().create_timer(1).timeout
     assert_eq(test_script.step, 2, "Property should be 2 after coroutine ran and signal triggered.")
 
-    test_script.start_coroutine_with_parameters()
+    test_script.start_coroutine_with_one_parameter()
     assert_eq(test_script.step, 3, "Property should be 3 after coroutine started but waiting.")
 
-    test_script.signal_with_parameters.emit(4, "test")
+    test_script.signal_with_one_parameter.emit(4)
     await get_tree().create_timer(1).timeout
     assert_eq(test_script.step, 4, "Property should be 4 after coroutine ran.")
 

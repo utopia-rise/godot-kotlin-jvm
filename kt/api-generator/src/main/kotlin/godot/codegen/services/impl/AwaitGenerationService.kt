@@ -1,15 +1,15 @@
 package godot.codegen.services.impl
 
-import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.LIST
 import com.squareup.kotlinpoet.MemberName
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
+import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeName
+import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
@@ -28,7 +28,7 @@ object AwaitGenerationService : IAwaitGenerationService {
         val awaitFile = FileSpec.builder(godotCoroutinePackage, "Await")
 
         val allParameters = Array(maxArgumentCount) { index ->
-            TypeVariableName("P$index").copy(reified = true)
+            TypeVariableName("P$index")
         }.toList()
 
         for (argCount in 0..maxArgumentCount) {
@@ -41,12 +41,38 @@ object AwaitGenerationService : IAwaitGenerationService {
                 baseReceiver
             }
 
-            val returnType = when (argCount) {
+            val returnType: TypeName = when (argCount) {
+                0 -> UNIT
                 1 -> parameters[0]
-                2 -> ClassName("kotlin", "Pair").parameterizedBy(parameters)
-                3 -> ClassName("kotlin", "Triple").parameterizedBy(parameters)
-                in 4 .. maxArgumentCount -> LIST.parameterizedBy(ANY.copy(nullable = true))
-                else -> UNIT
+                else -> ClassName(godotCoroutinePackage, "SignalArguments$argCount").parameterizedBy(parameters)
+            }
+
+            // Create a tuple for the signal arguments
+            if (argCount >= 2) {
+                awaitFile.addType(
+                    TypeSpec.classBuilder("SignalArguments$argCount")
+                        .addModifiers(KModifier.DATA)
+                        .primaryConstructor(
+                            FunSpec
+                                .constructorBuilder()
+                                .apply {
+                                    parameters.forEachIndexed { index, parameter ->
+                                        addParameter("p$index", parameter)
+                                    }
+                                }
+                                .build()
+                        )
+                        .addProperties(
+                            parameters.mapIndexed { index, parameter ->
+                                PropertySpec
+                                    .builder("p$index", parameter)
+                                    .initializer("p$index")
+                                    .build()
+                            }
+                        )
+                        .addTypeVariables(parameters)
+                        .build()
+                )
             }
 
             awaitFile.addFunction(
@@ -55,7 +81,7 @@ object AwaitGenerationService : IAwaitGenerationService {
                     .receiver(receiver)
                     .apply {
                         if (argCount != 0) {
-                            addTypeVariables(parameters)
+                            addTypeVariables(parameters.map { it.copy(reified = true) })
                         }
                     }
                     .generateBody(argCount, returnType)
@@ -70,6 +96,7 @@ object AwaitGenerationService : IAwaitGenerationService {
                     .addMember("\"PackageDirectoryMismatch\", \"unused\"")
                     .build()
             )
+            .indent("    ")
             .build()
     }
 
@@ -89,15 +116,14 @@ object AwaitGenerationService : IAwaitGenerationService {
         val resumeParameters = when (argCount) {
             0 -> "Unit"
             1 -> lambdaParameters
-            2 -> "Pair($lambdaParameters)"
-            3 -> "Triple($lambdaParameters)"
-            in 4 .. Int.MAX_VALUE -> "listOf($lambdaParameters)"
-            else -> ""
+            else -> "SignalArguments$argCount($lambdaParameters)"
         }
 
         return this
-            .beginControlFlow("return %M { cont: %T<%T> ->", suspendCancellableCoroutine, cancellableContinuationClass, returnType)
-            .beginControlFlow("%M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) { $lambdaParameters ->", connect, GODOT_OBJECT)
+            .beginControlFlow("return %M", suspendCancellableCoroutine)
+            .addStatement("cont: %T<%T> ->", cancellableContinuationClass, returnType)
+            .beginControlFlow("%M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt())", connect, GODOT_OBJECT)
+            .addStatement("$lambdaParameters ->")
             .addStatement("cont.%M($resumeParameters)", resume)
             .endControlFlow()
             .endControlFlow()
