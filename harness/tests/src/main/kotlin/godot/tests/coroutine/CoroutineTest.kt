@@ -12,6 +12,7 @@ import godot.core.Vector2
 import godot.core.signal
 import godot.coroutines.GodotCoroutine
 import godot.coroutines.await
+import kotlinx.coroutines.CoroutineStart
 
 @RegisterClass
 class CoroutineTest : Object() {
@@ -46,5 +47,12 @@ class CoroutineTest : Object() {
         step = 5
         val (int, _, _, _) = signalWithManyParameters.await()
         step = int
+    }
+
+    @RegisterFunction
+    fun startCoroutineUndispatched() = GodotCoroutine(start = CoroutineStart.UNDISPATCHED) {
+        step = 7
+        signalWithoutParameter.await()
+        step = 8
     }
 }
