@@ -1,10 +1,8 @@
 # Setting-up
 
 This page illustrates how to set-up a project with Godot/Kotlin JVM. Currently, there are
-two ways to create a new project: [using a custom IntelliJ IDEA plugin](#setting-up-using-intellij-idea-project-wizard)
+three ways to create a new project: [directly from the Godot editor](#setting-up-using-the-godot-editor),  [using a custom IntelliJ IDEA plugin](#setting-up-using-intellij-idea-project-wizard)
 or [manually](#setting-up-manually).
-
-The recommended solution is using the custom IntelliJ IDEA plugin.
 
 ## Setting-up using the Godot editor.
 
@@ -16,10 +14,11 @@ The following choice will appear:
 ![Project dialog](../assets/img/editor-plugin/generation_choice.png)
 
 After this action, all required files should be generated, and you can safely build the project using the `Build` button at the top-right of the editor window.
-
+![Build button](../assets/img/editor-plugin/build_button.png)
 ## Setting-up using IntelliJ IDEA project wizard
 
-The easiest way to setup a new project is via IntelliJ's project wizard (the user needs to install our IntelliJ IDEA [plugin](./requirements.md#intellij-idea-plugin)).
+This is the recommended solution as it creates the entire project in one action and import it in your IDE.
+It's done via IntelliJ's project wizard (the user needs to install our IntelliJ IDEA [plugin](./requirements.md#intellij-idea-plugin)).
 
 ### Installing IntelliJ IDEA's plugin
 
