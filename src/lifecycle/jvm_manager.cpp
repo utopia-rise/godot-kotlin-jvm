@@ -19,8 +19,10 @@
 #include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
+#include "jvm_wrapper/jvm_singleton_wrapper.h"
 #include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/memory_manager.h"
+#include "jvm_wrapper/bridge/jvm_stack_trace.h"
 
 #include <jni.h>
 
@@ -107,11 +109,12 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtClass::initialize_jni_binding(p_env, class_loader);
     KtCallable::initialize_jni_binding(p_env, class_loader);
 
-    return TransferContext::initialize(p_env, class_loader)
+    bool ret = TransferContext::initialize(p_env, class_loader)
         && TypeManager::initialize(p_env, class_loader)
         && LongStringQueue::initialize(p_env, class_loader)
         && MemoryManager::initialize(p_env, class_loader)
         && bridges::GDPrintBridge::initialize(p_env, class_loader)
+        && bridges::JvmStackTrace::initialize(p_env, class_loader)
         && bridges::CallableBridge::initialize(p_env, class_loader)
         && bridges::KtCallableBridge::initialize(p_env, class_loader)
         && bridges::DictionaryBridge::initialize(p_env, class_loader)
@@ -128,9 +131,15 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
+
+    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
+
+    return ret;
 }
 
 void JvmManager::destroy_jni_classes() {
+    jni::Env::set_exception_handler(nullptr);
+
     // Singleton
     TransferContext::destroy();
     TypeManager::destroy();

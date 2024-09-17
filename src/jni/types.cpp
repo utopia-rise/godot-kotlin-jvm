@@ -68,27 +68,27 @@ namespace jni {
     MethodID JClass::get_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetMethodID((jclass) obj, name, signature);
         JVM_DEV_ASSERT(id, "Method not found: %s with signature: %s", name, signature);
-        env.check_exceptions();
+        env.handle_exception();
         return id;
     }
 
     MethodID JClass::get_static_method_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticMethodID((jclass) obj, name, signature);
         JVM_DEV_ASSERT(id, "Method not found: %s with signature: %s", name, signature);
-        env.check_exceptions();
+        env.handle_exception();
         return id;
     }
 
     FieldID JClass::get_static_field_id(Env& env, const char* name, const char* signature) {
         auto id = env.env->GetStaticFieldID((jclass) obj, name, signature);
         JVM_DEV_ASSERT(id, "Field not found: %s with signature: %s", name, signature);
-        env.check_exceptions();
+        env.handle_exception();
         return id;
     }
 
     void JClass::register_natives(Env& env, Vector<JNativeMethod> methods) {
         env.env->RegisterNatives((jclass) obj, methods.ptr(), methods.size());
-        env.check_exceptions();
+        env.handle_exception();
     }
 
     MethodID JClass::get_constructor_method_id(Env& env, const char* signature) {
@@ -98,19 +98,19 @@ namespace jni {
     JObject JClass::new_instance(Env& env, MethodID ctor, jvalue* args) {
         auto ret = env.env->NewObjectA((jclass) obj, ctor, args);
         JVM_DEV_ASSERT(ret, "Failed to instantiated object!");
-        env.check_exceptions();
+        env.handle_exception();
         return JObject(ret);
     }
 
     JObject JClass::call_static_object_method(Env& env, MethodID method, jvalue* args) {
         auto ret = env.env->CallStaticObjectMethodA((jclass) obj, method, args);
-        env.check_exceptions();
+        env.handle_exception();
         return JObject(ret);
     }
 
     JObject JClass::get_static_object_field(Env& env, FieldID field) {
         auto value = env.env->GetStaticObjectField((jclass) obj, field);
-        env.check_exceptions();
+        env.handle_exception();
         return JObject(value);
     }
 

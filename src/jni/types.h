@@ -90,10 +90,10 @@ namespace jni {
     };
 
 #ifdef DEV_ENABLED
-#define CHECK_EXCEPTION_TEMPLATE p_env.check_exceptions()
+#define CHECK_EXCEPTION_TEMPLATE p_env.handle_exception()
 #else
 #define CHECK_EXCEPTION_TEMPLATE                                 \
-    if constexpr (CHECK_EXCEPTION) { p_env.check_exceptions(); } \
+    if constexpr (CHECK_EXCEPTION) { p_env.handle_exception(); } \
     (void) 0
 #endif
 
@@ -271,6 +271,14 @@ namespace jni {
         JObject get_static_object_field(Env& env, FieldID field);
 
         bool is_assignable_from(Env& env, JClass p_other) const;
+    };
+
+    class JThrowable : public JObject {
+    public:
+        JThrowable() = default;
+        JThrowable(jthrowable throwable) : JObject(throwable) {};
+
+        explicit JThrowable(JObject jObject) : JObject(jObject) {};
     };
 
 }// namespace jni

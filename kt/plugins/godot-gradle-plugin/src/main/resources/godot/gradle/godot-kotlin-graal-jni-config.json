@@ -90,12 +90,19 @@
     ]
   },
   {
+    "name":"godot.core.JvmStackTrace",
+    "fields":[{"name":"INSTANCE"}],
+    "methods":[
+      { "name" : "getExceptionStackTrace","parameterTypes" : ["java.lang.Throwable"] },
+      { "name" : "getCurrentStacktrace","parameterTypes" : [] }
+    ]
+  },
+  {
     "name" : "godot.global.GDPrint$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "getStacktrace", "parameterTypes" : [] },
       { "name" : "print", "parameterTypes" : [] },
       { "name" : "printRich", "parameterTypes" : [] },
       { "name" : "printVerbose", "parameterTypes" : [] },

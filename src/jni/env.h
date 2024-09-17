@@ -10,6 +10,7 @@ namespace jni {
 
     class JObject;
     class JClass;
+    class JThrowable;
     class JArray;
     class JObjectArray;
     class JByteArray;
@@ -20,11 +21,28 @@ namespace jni {
     class JString;
 
     class Env {
+        friend class JObject;
+        friend class JClass;
+        friend class JThrowable;
+        friend class JArray;
+        friend class JObjectArray;
+        friend class JByteArray;
+        friend class JIntArray;
+        friend class JLongArray;
+        friend class JFloatArray;
+        friend class JDoubleArray;
+
+        JNIEnv* env;
+
+        static inline void(*exception_handler)(Env, JThrowable) = nullptr;
+
     public:
         explicit Env(JNIEnv*);
 
         Env(const Env&) = default;
         Env& operator=(const Env&) = default;
+
+        static void set_exception_handler(void(*p_exception_handler)(Env, JThrowable));
 
         JavaVM* get_jvm();
 
@@ -37,10 +55,11 @@ namespace jni {
         String from_jstring(JString str);
 
         bool exception_check();
-        String exception_describe();
+        void exception_describe();
         void exception_clear();
+        JThrowable exception_occurred();
 
-        void check_exceptions();
+        void handle_exception();
 
         void* get_direct_buffer_address(const jni::JObject& buffer);
         int get_direct_buffer_capacity(const jni::JObject& buffer);
@@ -48,19 +67,6 @@ namespace jni {
         bool is_same_object(const jni::JObject& obj_1, const jni::JObject& obj_2);
 
         bool is_valid();
-
-    private:
-        JNIEnv* env;
-
-        friend class JObject;
-        friend class JClass;
-        friend class JArray;
-        friend class JObjectArray;
-        friend class JByteArray;
-        friend class JIntArray;
-        friend class JLongArray;
-        friend class JFloatArray;
-        friend class JDoubleArray;
     };
 }// namespace jni
 

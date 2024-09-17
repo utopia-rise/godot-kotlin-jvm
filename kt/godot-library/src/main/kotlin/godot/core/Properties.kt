@@ -3,6 +3,7 @@ package godot.core
 import godot.PropertyHint
 import godot.PropertyUsageFlags
 import godot.core.memory.TransferContext
+import godot.global.GD
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
@@ -30,12 +31,21 @@ open class KtProperty<T : KtObject, P : Any?>(
     protected val variantConverter: VariantConverter,
 ) {
     open fun callGet(instance: T) {
-        TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
+        try {
+            TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM getter from Godot:", t.stackTraceToString())
+            TransferContext.writeReturnValue(null, VariantType.NIL)
+        }
     }
 
     open fun callSet(instance: T) {
         val arg = extractSetterArgument<P>()
-        kProperty.set(instance, arg)
+        try {
+            kProperty.set(instance, arg)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM setter from Godot:", t.stackTraceToString())
+        }
     }
 
     protected fun <P> extractSetterArgument(): P {
