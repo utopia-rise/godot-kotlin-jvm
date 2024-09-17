@@ -21,9 +21,11 @@ import godot.core.Signal7
 import godot.core.Signal8
 import godot.core.Signal9
 import godot.core.connect
+import kotlin.Suppress
+import kotlin.Unit
+import kotlin.coroutines.resume
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
 
 public suspend inline fun Signal0.await(): Unit = suspendCancellableCoroutine {
     cont: CancellableContinuation<Unit> ->
@@ -257,8 +259,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.await():
         SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
         suspendCancellableCoroutine {
-    cont:
-            CancellableContinuation<SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> ->
+    cont: CancellableContinuation<SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> ->
     connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
         p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11 ->
         cont.resume(SignalArguments12(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11))
@@ -286,8 +287,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.await():
         SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
         suspendCancellableCoroutine {
-    cont:
-            CancellableContinuation<SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> ->
+    cont: CancellableContinuation<SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> ->
     connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
         p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12 ->
         cont.resume(SignalArguments13(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12))
@@ -316,8 +316,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         reified P13> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.await():
         SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
         suspendCancellableCoroutine {
-    cont:
-            CancellableContinuation<SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> ->
+    cont: CancellableContinuation<SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> ->
     connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
         p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13 ->
         cont.resume(SignalArguments14(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13))
@@ -349,12 +348,10 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.await():
         SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
         suspendCancellableCoroutine {
-    cont:
-            CancellableContinuation<SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> ->
+    cont: CancellableContinuation<SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> ->
     connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
         p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14 ->
-        cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
-                p14))
+        cont.resume(SignalArguments15(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14))
     }
 }
 
@@ -384,11 +381,9 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
         Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.await():
         SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
         suspendCancellableCoroutine {
-    cont:
-            CancellableContinuation<SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> ->
+    cont: CancellableContinuation<SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> ->
     connect(Object.ConnectFlags.CONNECT_ONE_SHOT.id.toInt()) {
         p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15 ->
-        cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13,
-                p14, p15))
+        cont.resume(SignalArguments16(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15))
     }
 }

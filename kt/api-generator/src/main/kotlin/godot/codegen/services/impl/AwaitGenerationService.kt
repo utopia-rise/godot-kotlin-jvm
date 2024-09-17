@@ -17,11 +17,13 @@ import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotKotlinJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
+import godot.tools.common.constants.kotlinCoroutinePackage
+import godot.tools.common.constants.kotlinxCoroutinePackage
 
-private val cancellableContinuationClass = ClassName("kotlinx.coroutines", "CancellableContinuation")
-private val suspendCancellableCoroutine = MemberName("kotlinx.coroutines", "suspendCancellableCoroutine")
+private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
+private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
 private val connect = MemberName(godotCorePackage, "connect")
-private val resume = MemberName("kotlin.coroutines", "resume")
+private val resume = MemberName(kotlinCoroutinePackage, "resume")
 
 object AwaitGenerationService : IAwaitGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
@@ -92,7 +94,7 @@ object AwaitGenerationService : IAwaitGenerationService {
 
         return awaitFile
             .addAnnotation(
-                AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
+                AnnotationSpec.builder(Suppress::class)
                     .addMember("\"PackageDirectoryMismatch\", \"unused\"")
                     .build()
             )
@@ -106,13 +108,13 @@ object AwaitGenerationService : IAwaitGenerationService {
         val lambdaParameters = buildString {
             for (i in 0 until argCount) {
                 if (i != 0) {
-                    append(", ")
+                    append(",·")
                 }
                 append("p$i")
             }
         }
 
-        // Build what is inserted into the `resume()` method : `Unit`, `po`, `Pair(p0, P1)`, `Triple(p0, p1, p2)`, `listOf(p0, p1, p2, p3), etc..`
+        // Build what is inserted into the `resume()` method : `Unit`, `po`, `SignalArgumentsX(p0, p1, p2, ...).`
         val resumeParameters = when (argCount) {
             0 -> "Unit"
             1 -> lambdaParameters
@@ -120,10 +122,10 @@ object AwaitGenerationService : IAwaitGenerationService {
         }
 
         return this
-            .beginControlFlow("return %M", suspendCancellableCoroutine)
-            .addStatement("cont: %T<%T> ->", cancellableContinuationClass, returnType)
+            .beginControlFlow("return·%M", suspendCancellableCoroutine)
+            .addStatement("cont:·%T<%T>·->", cancellableContinuationClass, returnType)
             .beginControlFlow("%M(%T.ConnectFlags.CONNECT_ONE_SHOT.id.toInt())", connect, GODOT_OBJECT)
-            .addStatement("$lambdaParameters ->")
+            .addStatement("$lambdaParameters·->")
             .addStatement("cont.%M($resumeParameters)", resume)
             .endControlFlow()
             .endControlFlow()
