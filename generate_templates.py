@@ -76,7 +76,11 @@ def generate_header_from_files(directory, header_file):
 
     print(f"{header_file} generated successfully.")
 
-# Example usage
-directory = 'template'  # Change this to your relative directory
-header_file = 'project/templates.h'    # Output header file name
-generate_header_from_files(directory, header_file)
+def generate():
+    # Example usage
+    directory = 'template'  # Change this to your relative directory
+    header_file = 'src/editor/project/templates.h'  # Output header file name
+    generate_header_from_files(directory, header_file)
+
+if __name__ == "__main__":
+    generate()
