@@ -1,7 +1,0 @@
-.godot/
-/android/
-.gradle
-.kotlin
-.idea
-build
-jre

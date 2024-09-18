@@ -8,7 +8,7 @@ java_home = os.environ["JAVA_HOME"]
 module_env = env.Clone()
 
 # Generate templates when building the engine.
-generate_templates.generate_header_from_files("src/editor/template", "src/editor/project/templates.h")
+generate_templates.generate_header_from_files("kt/plugins/godot-intellij-plugin/src/main/resources/template", "src/editor/project/templates.h")
 
 # For header includes
 module_env.Append(CPPPATH=["src/"])

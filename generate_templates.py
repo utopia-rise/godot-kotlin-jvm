@@ -29,17 +29,19 @@ def generate_header_from_files(directory, header_file):
 
         for root, _, files in os.walk(directory):
             for file_name in files:
+                # Only process files with .template or .godot_template extensions
+                if not(file_name.endswith('.template')) and not(file_name.endswith('.godot_template')):
+                    continue
+
                 # Compute relative path
                 relative_path = os.path.relpath(os.path.join(root, file_name), directory)
-
-
                 encoded_content = encode_file_to_base64(os.path.join(root, file_name))
 
                 # Split the encoded content into chunks
                 chunks = split_string_into_chunks(encoded_content, MAX_CHUNK_SIZE)
 
                 # Create the variable names
-                final_file_name = relative_path.replace('.template', '').replace('\\', '/')
+                final_file_name = relative_path.replace('.template', '').replace('.godot_template', '').replace('\\', '/')
                 var_name = final_file_name.replace('.', '_').replace('-', '_').replace('/', '_').replace('__', '_')
                 name_var_name = f"{var_name}_file_name"
                 file_var_name = f"{var_name}_file_content"
@@ -79,11 +81,7 @@ def generate_header_from_files(directory, header_file):
 
     print(f"{header_file} generated successfully.")
 
-def generate():
-    # Example usage
-    directory = 'template'  # Change this to your relative directory
-    header_file = 'src/editor/project/templates.h'  # Output header file name
-    generate_header_from_files(directory, header_file)
-
 if __name__ == "__main__":
-    generate()
+    directory = "kt/plugins/godot-intellij-plugin/src/main/resources/template"  # Change this to your relative directory
+    header_file = "src/editor/project/templates.h"  # Output header file name
+    generate_header_from_files(directory, header_file)
