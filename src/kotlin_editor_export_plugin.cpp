@@ -14,7 +14,7 @@ static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* ios_jdk_version {"21"};
 
 void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
-    JVM_LOG("Beginning Godot-Jvm specific exports.");
+    JVM_LOG_INFO("Beginning Godot-Jvm specific exports.");
 
     // Add mandatory jars to pck
     Vector<String> files_to_add;
@@ -156,10 +156,10 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             JVM_ERR_FAIL_MSG("File can't be found, it won't be exported: %s", file_to_add);
         }
         add_file(file_to_add, FileAccess::get_file_as_bytes(file_to_add), false);
-        JVM_LOG("Exporting %s", file_to_add);
+        JVM_LOG_INFO("Exporting %s", file_to_add);
     }
 
-    JVM_LOG("Finished Godot-Jvm specific exports.");
+    JVM_LOG_INFO("Finished Godot-Jvm specific exports.");
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {

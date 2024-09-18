@@ -29,7 +29,7 @@ void TypeManager::register_engine_types(jni::Env& p_env, jni::JObjectArray& p_en
         engine_type_names.insert(i, class_name);
         java_engine_types_constructors[class_name] = i;
 #ifdef DEV_ENABLED
-        JVM_VERBOSE("Registered %s engine type with index %s.", class_name, i);
+        JVM_LOG_VERBOSE("Registered %s engine type with index %s.", class_name, i);
 #endif
         type.delete_local_ref(p_env);
     }

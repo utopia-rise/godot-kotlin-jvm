@@ -25,7 +25,7 @@ void JvmOptions::add_jmx_option(uint16_t p_port) {
     options.push_back("-Dcom.sun.management.jmxremote.local.only=false");
     options.push_back("-Dcom.sun.management.jmxremote.authenticate=false");
     options.push_back("-Dcom.sun.management.jmxremote.ssl=false");
-    JVM_VERBOSE("Started JMX on port: %s", jvm_jmx_port);
+    JVM_LOG_VERBOSE("Started JMX on port: %s", jvm_jmx_port);
 }
 
 void JvmOptions::add_custom_options(const String& custom_options) {

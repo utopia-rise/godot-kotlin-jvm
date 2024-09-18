@@ -183,9 +183,9 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 }
 
 void MemoryManager::clean_up(jni::Env& p_env) {
-    JVM_VERBOSE("Cleaning JVM Memory...");
+    JVM_LOG_VERBOSE("Cleaning JVM Memory...");
     wrapped.call_void_method(p_env, CLEAN_UP);
-    JVM_VERBOSE("JVM Memory cleaned!");
+    JVM_LOG_VERBOSE("JVM Memory cleaned!");
 }
 
 void MemoryManager::queue_dead_object(Object* obj) {

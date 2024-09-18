@@ -67,7 +67,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
     std::locale global;
 
-    JVM_VERBOSE("Starting JVM ...");
+    JVM_LOG_VERBOSE("Starting JVM ...");
     JNIEnv* jni_env {nullptr};
 
     CreateJavaVM func {get_create_jvm_function(lib_handle)};
@@ -84,7 +84,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     JVM_ERR_FAIL_COND_V_MSG(result != JNI_OK, false, "Failed to create a new vm!");
 
 #elif defined PROVIDED_JVM
-    JVM_VERBOSE("Retrieving existing JVM ...");
+    JVM_LOG_VERBOSE("Retrieving existing JVM ...");
     jni::Env env {get_jni_env()};
     java_vm = env.get_jvm();
 #else
@@ -168,7 +168,7 @@ void JvmManager::destroy_jni_classes() {
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    JVM_VERBOSE("Shutting down JVM ...");
+    JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
 }

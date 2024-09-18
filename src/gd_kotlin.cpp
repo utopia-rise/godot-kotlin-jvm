@@ -36,14 +36,14 @@ void GDKotlin::fetch_user_configuration() {
 
         // The function is going to mutate the provided configuration with the valid values found in the file.
         // If some of the values parsed in the file are invalid, it will return true;
-        JVM_VERBOSE("Parsing JSON configuration file...");
+        JVM_LOG_VERBOSE("Parsing JSON configuration file...");
         invalid_file_content = JvmUserConfiguration::parse_configuration_json(content, user_configuration);
         if (invalid_file_content) {
-            JVM_WARNING("Configuration file is malformed. One or several settings might not be applied.");
+            JVM_LOG_WARNING("Configuration file is malformed. One or several settings might not be applied.");
         }
     } else {
         // No need for a warning, it's most likely the first time the project is run.
-        JVM_LOG("No JVM user_configuration file found. Default settings for your platform will be used.");
+        JVM_LOG_INFO("No JVM user_configuration file found. Default settings for your platform will be used.");
     }
 
 #ifdef TOOLS_ENABLED
@@ -52,15 +52,15 @@ void GDKotlin::fetch_user_configuration() {
     if (invalid_file_content || !configuration_file_exist) {
         Ref<FileAccess> file_access = FileAccess::open(JVM_CONFIGURATION_PATH, FileAccess::WRITE);
         String json = JvmUserConfiguration::export_configuration_to_json(user_configuration);
-        JVM_LOG("Writing a new configuration file to disk at %s", JVM_CONFIGURATION_PATH);
+        JVM_LOG_INFO("Writing a new configuration file to disk at %s", JVM_CONFIGURATION_PATH);
         file_access->store_string(json);
     }
 #endif
 
     HashMap<String, Variant> cmd_argument_map;
-    JVM_VERBOSE("Parsing commandline arguments...");
+    JVM_LOG_VERBOSE("Parsing commandline arguments...");
     JvmUserConfiguration::parse_command_line(OS::get_singleton()->get_cmdline_args(), cmd_argument_map);
-    JVM_VERBOSE("Creating final JVM Configuration...");
+    JVM_LOG_VERBOSE("Creating final JVM Configuration...");
     JvmUserConfiguration::merge_with_command_line(user_configuration, cmd_argument_map);
     JvmUserConfiguration::sanitize_and_log_configuration(user_configuration);
 }
@@ -83,7 +83,7 @@ void GDKotlin::set_jvm_options() {
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
-        JVM_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not "
+        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not "
                     "launch properly");
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
@@ -103,7 +103,7 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 
 #ifndef __ANDROID__
     if (!FileAccess::exists(file_user_path) || FileAccess::get_md5(file_user_path) != FileAccess::get_md5(file_res_path)) {
-        JVM_VERBOSE("%s file has changed. Copying it from res:// to user://.", file_name);
+        JVM_LOG_VERBOSE("%s file has changed. Copying it from res:// to user://.", file_name);
 #else
     // as per suggestion of https://developer.android.com/about/versions/14/behavior-changes-14#safer-dynamic-code-loading, we first delete existing files and then copy them again
     // if we don't do this, subsequent app starts where the files already exist, error out
@@ -144,7 +144,7 @@ bool GDKotlin::load_bootstrap() {
 #endif
 
     JVM_ERR_FAIL_COND_V_MSG(!FileAccess::exists(bootstrap_jar), false, error_text);
-    JVM_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
+    JVM_LOG_VERBOSE("Loading bootstrap jar: %s", bootstrap_jar);
 
     bootstrap_class_loader = ClassLoader::create_instance(env, bootstrap_jar, jni::JObject(nullptr));
     bootstrap_class_loader->set_as_context_loader(env);
@@ -181,7 +181,7 @@ bool GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
-        JVM_VERBOSE("Loading usercode file at: %s", user_code_path);
+        JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
         // TODO: Rework this part when cpp reloading done, can't check what's happening in the Kotlin code from here.
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
@@ -264,7 +264,7 @@ bool GDKotlin::load_dynamic_lib() {
 #ifdef TOOLS_ENABLED
             else if (String environment_jvm = get_path_to_environment_jvm();
                      !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
-                JVM_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                JVM_LOG_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
                                     "documentation if you don't know how to do that");
                 path_to_jvm_lib = environment_jvm;
             } else {

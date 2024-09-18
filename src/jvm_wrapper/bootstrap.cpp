@@ -24,7 +24,7 @@ void Bootstrap::load_classes(JNIEnv* p_env, jobject p_this, jobjectArray p_class
 
 void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray p_classes_names, jobjectArray p_singleton_names) {
 #ifdef DEV_ENABLED
-    JVM_VERBOSE("Starting to register managed engine types...");
+    JVM_LOG_VERBOSE("Starting to register managed engine types...");
 #endif
     jni::Env env(p_env);
 
@@ -39,7 +39,7 @@ void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray
     engine_types.delete_local_ref(env);
     singleton_names.delete_local_ref(env);
 #ifdef DEV_ENABLED
-    JVM_VERBOSE("Done registering managed engine types...");
+    JVM_LOG_VERBOSE("Done registering managed engine types...");
 #endif
 }
 

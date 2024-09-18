@@ -26,7 +26,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.vm_type = jni::JvmType::ART;
         } else {
             is_invalid = true;
-            JVM_WARNING("Wrong JVM type in configuration file: %s. It will be ignored", value);;
+            JVM_LOG_WARNING("Wrong JVM type in configuration file: %s. It will be ignored", value);;
         }
         json_dict.erase(VM_TYPE_JSON_IDENTIFIER);
     }
@@ -39,7 +39,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.use_debug = false;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid Use Debug value in configuration file: %s. It will be ignored", boolean);
+            JVM_LOG_WARNING("Invalid Use Debug value in configuration file: %s. It will be ignored", boolean);
         }
         json_dict.erase(USE_DEBUG_JSON_IDENTIFIER);
     }
@@ -50,7 +50,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.jvm_debug_port = port;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid JVM port value in configuration file: %s. It will be ignored", port);
+            JVM_LOG_WARNING("Invalid JVM port value in configuration file: %s. It will be ignored", port);
         }
         json_dict.erase(DEBUG_PORT_JSON_IDENTIFIER);
     }
@@ -61,7 +61,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.jvm_debug_address = address;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid JVM address value in configuration file: %s. It will be ignored", address);
+            JVM_LOG_WARNING("Invalid JVM address value in configuration file: %s. It will be ignored", address);
         }
         json_dict.erase(DEBUG_ADDRESS_JSON_IDENTIFIER);
     }
@@ -74,7 +74,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.wait_for_debugger = false;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid Waiting for Debugger value in configuration file: %s. It will be ignored", boolean);
+            JVM_LOG_WARNING("Invalid Waiting for Debugger value in configuration file: %s. It will be ignored", boolean);
         }
         json_dict.erase(WAIT_FOR_DEBUGGER_JSON_IDENTIFIER);
     }
@@ -85,7 +85,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.jvm_jmx_port = port;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid JMX port value in configuration file: %s. It will be ignored", port);
+            JVM_LOG_WARNING("Invalid JMX port value in configuration file: %s. It will be ignored", port);
         }
         json_dict.erase(JMX_PORT_JSON_IDENTIFIER);
     }
@@ -96,7 +96,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.max_string_size = size;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
+            JVM_LOG_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
         }
         json_dict.erase(MAX_STRING_SIZE_JSON_IDENTIFIER);
     }
@@ -109,7 +109,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
             json_config.disable_gc = false;
         } else {
             is_invalid = true;
-            JVM_WARNING("Invalid Disable GC value in configuration file: %s. It will be ignored", boolean);
+            JVM_LOG_WARNING("Invalid Disable GC value in configuration file: %s. It will be ignored", boolean);
         }
         json_dict.erase(DISABLE_GC_JSON_IDENTIFIER);
     }
@@ -123,13 +123,13 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         String version {json_dict[VERSION_JSON_IDENTIFIER]};
         JVM_DEV_VERBOSE("Value for json argument: %s -> %s", VERSION_JSON_IDENTIFIER, version);
         if (version != JSON_ARGUMENT_VERSION) {
-            JVM_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A "
+            JVM_LOG_WARNING("Your existing jvm json configuration file was made for an older version of this binding. A "
                         "new will one will be created. Your previous settings should remain if compatible.");
             is_invalid = true;
         }
         json_dict.erase(VERSION_JSON_IDENTIFIER);
     } else {
-        JVM_WARNING("No version found in the configuration file");
+        JVM_LOG_WARNING("No version found in the configuration file");
         is_invalid = true;
     }
 
@@ -138,7 +138,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
         for (int i = 0; i < keys.size(); i++) {
             String key = keys[i];
             String value = json_dict[key];
-            JVM_WARNING("Invalid json configuration argument name: %s", key);
+            JVM_LOG_WARNING("Invalid json configuration argument name: %s", key);
         }
         is_invalid = true;
     }
@@ -232,7 +232,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             } else if (value == ART_STRING) {
                 configuration_map[VM_TYPE_CMD_IDENTIFIER] = jni::JvmType::ART;
             } else {
-                JVM_WARNING("Wrong JVM type in command line arguments: %s. It will be ignored", value);;
+                JVM_LOG_WARNING("Wrong JVM type in command line arguments: %s. It will be ignored", value);;
             }
         } else if (identifier == USE_DEBUG_CMD_IDENTIFIER) {
             configuration_map[USE_DEBUG_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
@@ -242,13 +242,13 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             if (port >= 0 && port <= 65535) {
                 configuration_map[DEBUG_PORT_CMD_IDENTIFIER] = port;
             } else {
-                JVM_WARNING("Invalid JVM port value in command line arguments: %s. It will be ignored", port);
+                JVM_LOG_WARNING("Invalid JVM port value in command line arguments: %s. It will be ignored", port);
             }
         } else if (identifier == DEBUG_ADDRESS_CMD_IDENTIFIER) {
             if (value.is_valid_ip_address()) {
                 configuration_map[DEBUG_ADDRESS_CMD_IDENTIFIER] = value;
             } else {
-                JVM_WARNING("Invalid JVM address value command line arguments: %s. It will be ignored", value);;
+                JVM_LOG_WARNING("Invalid JVM address value command line arguments: %s. It will be ignored", value);;
             }
         } else if (identifier == WAIT_FOR_DEBUGGER_CMD_IDENTIFIER) {
             configuration_map[WAIT_FOR_DEBUGGER_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
@@ -258,7 +258,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             if (port >= 0 && port <= 65535) {
                 configuration_map[JMX_PORT_CMD_IDENTIFIER] = port;
             } else {
-                JVM_WARNING("Invalid JMX port value command line arguments: %s. It will be ignored", port);
+                JVM_LOG_WARNING("Invalid JMX port value command line arguments: %s. It will be ignored", port);
             }
         } else if (identifier == MAX_STRING_SIZE_CMD_IDENTIFIER) {
             int64_t size = -1;
@@ -266,7 +266,7 @@ void JvmUserConfiguration::parse_command_line(const List<String>& args, HashMap<
             if (value.is_valid_int() && size >= -1) {
                 configuration_map[MAX_STRING_SIZE_CMD_IDENTIFIER] = size;
             } else {
-                JVM_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
+                JVM_LOG_WARNING("Invalid Maximum String Size value in configuration file: %s. It will be ignored", size);
             }
         } else if (identifier == DISABLE_GC_CMD_IDENTIFIER) {
             configuration_map[DISABLE_GC_CMD_IDENTIFIER] = get_cmd_bool_or_default(value, TRUE_STRING);
@@ -304,7 +304,7 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
 
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
     if (config.max_string_size != -1) {
-        JVM_WARNING(
+        JVM_LOG_WARNING(
           "The max string size was changed to %s which can modify the size of the shared buffer. "
           "Be aware that it might impact performance and memory usage.",
           config.max_string_size
@@ -312,48 +312,48 @@ void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& 
     }
 
     if (config.disable_leak_warning_on_close) {
-        JVM_WARNING("You won't be notified if your Kotlin code got instances leaking");
+        JVM_LOG_WARNING("You won't be notified if your Kotlin code got instances leaking");
     }
 
     if (!config.jvm_args.is_empty()) {
-        JVM_WARNING("Custom JVM arguments are provided, be sure they are valid: %s", config.jvm_args);
+        JVM_LOG_WARNING("Custom JVM arguments are provided, be sure they are valid: %s", config.jvm_args);
     }
 
 #ifdef __ANDROID__
     if (config.vm_type == jni::JvmType::NONE) {
         config.vm_type = jni::JvmType::ART;
-        JVM_LOG("You are running on Android. VM automatically set to ART");
+        JVM_LOG_INFO("You are running on Android. VM automatically set to ART");
     } else if (config.vm_type != jni::JvmType::ART) {
         config.vm_type = jni::JvmType::ART;
-        JVM_WARNING("You are running on Android. Switching VM to ART");
+        JVM_LOG_WARNING("You are running on Android. Switching VM to ART");
     }
 #elif IOS_ENABLED
     if (config.vm_type == jni::JvmType::NONE) {
         config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
-        JVM_LOG("You are running on iOS. VM automatically set to Graal native_image");
+        JVM_LOG_INFO("You are running on iOS. VM automatically set to Graal native_image");
     } else if (config.vm_type != jni::JvmType::GRAAL_NATIVE_IMAGE) {
         config.vm_type = jni::JvmType::GRAAL_NATIVE_IMAGE;
-        JVM_WARNING("You are running on iOS. Switching VM to Graal native_image");
+        JVM_LOG_WARNING("You are running on iOS. Switching VM to Graal native_image");
     }
 #else
     if (config.vm_type == jni::JvmType::NONE) {
         config.vm_type = jni::JvmType::JVM;
-        JVM_LOG("You are running on desktop. VM automatically set to JVM");
+        JVM_LOG_INFO("You are running on desktop. VM automatically set to JVM");
     } else if (config.vm_type == jni::JvmType::ART) {
         config.vm_type = jni::JvmType::JVM;
-        JVM_WARNING("You can't run ART on desktop. Switching VM to JVM");
+        JVM_LOG_WARNING("You can't run ART on desktop. Switching VM to JVM");
     }
 #endif
     else {
         switch (config.vm_type) {
             case jni::JvmType::JVM:
-                JVM_LOG("VM set to %s", JVM_STRING);
+                JVM_LOG_INFO("VM set to %s", JVM_STRING);
                 break;
             case jni::JvmType::GRAAL_NATIVE_IMAGE:
-                JVM_LOG("VM set to %s", GRAAL_NATIVE_IMAGE_STRING);
+                JVM_LOG_INFO("VM set to %s", GRAAL_NATIVE_IMAGE_STRING);
                 break;
             case jni::JvmType::ART:
-                JVM_LOG("VM set to %s", ART_STRING);
+                JVM_LOG_INFO("VM set to %s", ART_STRING);
                 break;
             case jni::JvmType::NONE:
                 // Should never happen.

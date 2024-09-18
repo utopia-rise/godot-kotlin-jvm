@@ -54,7 +54,7 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_script(const String& p_path) {
             named_scripts_map[script_name] = script;
             named_scripts.push_back(script);
 #ifdef DEBUG_ENABLED
-            JVM_WARNING("Loaded an unregistered JVM Script named %s", script_name);
+            JVM_LOG_WARNING("Loaded an unregistered JVM Script named %s", script_name);
 #endif
         }
     } else if constexpr (std::is_base_of<PathScript, SCRIPT>()) {
@@ -67,7 +67,7 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_script(const String& p_path) {
             }
 #ifdef DEBUG_ENABLED
             else {
-                JVM_WARNING("Loaded an unregistered JVM Script with path %s", p_path);
+                JVM_LOG_WARNING("Loaded an unregistered JVM Script with path %s", p_path);
             }
 #endif
             path_scripts_map[p_path] = script;
