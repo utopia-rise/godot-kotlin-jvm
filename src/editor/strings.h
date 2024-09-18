@@ -1,3 +1,5 @@
+#ifdef TOOLS_ENABLED
+
 #ifndef GODOT_JVM_STRINGS_H
 #define GODOT_JVM_STRINGS_H
 
@@ -10,10 +12,10 @@ constexpr const char* start_build = "Building JVM project...";
 constexpr const char* VERSION_TEMPLATE = "GODOT_KOTLIN_JVM_VERSION";
 constexpr const char* PROJECT_NAME_TEMPLATE = "PROJECT_NAME";
 
-constexpr const char* generate_project =
-  "This will generate the files necessary to build a JVM project.\n"
-  "This includes Gradle files, a new gitignore, and a basic Kotlin script.\n"
-  "What do you want to do ?";
+constexpr const char* generate_project = "This will generate the files necessary to build a JVM project.\n"
+                                         "This includes Gradle files, a new gitignore, and a basic Kotlin script.\n"
+                                         "What do you want to do ?";
+
 constexpr const char* generate_all = "Generate all files";
 constexpr const char* generate_missing = "Only generate missing files";
 constexpr const char* generate_nothing = "Don't generate anything";
@@ -31,3 +33,6 @@ constexpr const char* about_text =
   "[url=https://github.com/utopia-rise/godot-kotlin-jvm/issues]issue tracker[/url]";
 
 #endif// GODOT_JVM_STRINGS_H
+
+#endif// TOOLS_ENABLED
+

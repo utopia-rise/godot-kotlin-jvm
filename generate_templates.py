@@ -22,6 +22,7 @@ def generate_header_from_files(directory, header_file):
     file_is_binary = []
 
     with open(header_file, 'w') as header:
+        header.write(f'#ifdef TOOLS_ENABLED \n\n')
         header.write(f'// Auto-generated templates from {directory} directory \n\n')
         header.write("#ifndef FILE_CONTENTS_H\n")
         header.write("#define FILE_CONTENTS_H\n\n")
@@ -72,7 +73,9 @@ def generate_header_from_files(directory, header_file):
         header.write(', '.join(file_contents))
         header.write('};\n\n')
 
-        header.write("#endif // FILE_CONTENTS_H\n")
+        header.write("#endif // FILE_CONTENTS_H\n\n")
+
+        header.write("#endif// TOOLS_ENABLED\n")
 
     print(f"{header_file} generated successfully.")
 

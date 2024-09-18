@@ -1,3 +1,5 @@
+#ifdef TOOLS_ENABLED 
+
 // Auto-generated templates from src/editor/template directory 
 
 #ifndef FILE_CONTENTS_H
@@ -39,3 +41,5 @@ constexpr const char* file_names[] = {_gitignore_file_name, build_gradle_kts_fil
 constexpr const char* file_contents[] = {_gitignore_file_content, build_gradle_kts_file_content, gradle_properties_file_content, gradlew_bat_file_content, gradlew_file_content, settings_gradle_kts_file_content, gradle_gdignore_file_content, gradle_wrapper_gradle_wrapper_jar_file_content, gradle_wrapper_gradle_wrapper_properties_file_content, src_main_kotlin_godot_HelloGodot_kt_file_content};
 
 #endif // FILE_CONTENTS_H
+
+#endif// TOOLS_ENABLED
