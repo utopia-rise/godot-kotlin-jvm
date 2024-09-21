@@ -100,7 +100,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
    * as small as possible while covering the parts of the scene you need.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

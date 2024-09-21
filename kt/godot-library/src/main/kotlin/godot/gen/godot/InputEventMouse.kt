@@ -80,7 +80,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
    * local coordinate system of the [Control].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -107,7 +107,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
    * [Control] is in using the coordinate system of the [CanvasLayer].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -13,6 +13,7 @@ import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
+import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -25,8 +26,7 @@ import godot.core.VariantType.PACKED_VECTOR3_ARRAY
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -920,7 +920,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * Grow the box if particles suddenly appear/disappear when the node enters/exits the screen. The
    * [AABB] can be grown via code or with the **Particles → Generate AABB** editor tool.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -944,7 +944,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -969,7 +969,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -994,7 +994,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Unit vector specifying the particles' emission direction.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1018,7 +1018,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   /**
    * Gravity applied to every particle.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1046,7 +1046,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [color] will have no visible effect.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

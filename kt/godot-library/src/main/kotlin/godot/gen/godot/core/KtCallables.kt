@@ -1,10 +1,8 @@
 @file:Suppress("PackageDirectoryMismatch", "UNCHECKED_CAST")
 
-package godot.core.callable
+package godot.core
 
-import godot.core.VariantConverter
 import godot.core.VariantType.NIL
-import godot.core.variantMapper
 import kotlin.Any
 import kotlin.Suppress
 

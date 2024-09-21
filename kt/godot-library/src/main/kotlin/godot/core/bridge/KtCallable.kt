@@ -1,6 +1,6 @@
-@file:Suppress("UNCHECKED_CAST")
+@file:Suppress("UNCHECKED_CAST", "PackageDirectoryMismatch")
 
-package godot.core.callable
+package godot.core
 
 import godot.core.Callable
 import godot.core.VariantConverter
@@ -31,6 +31,7 @@ abstract class KtCallable<R : Any?>(
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun wrap_in_custom_callable(instance: KtCallable<*>,variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun wrap_in_custom_callable(instance: KtCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
     }
 }
+

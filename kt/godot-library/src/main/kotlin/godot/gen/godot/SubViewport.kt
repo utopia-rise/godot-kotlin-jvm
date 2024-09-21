@@ -105,7 +105,7 @@ public open class SubViewport : Viewport() {
    * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
    * is `true`, the viewport size cannot be changed manually.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -130,7 +130,7 @@ public open class SubViewport : Viewport() {
    * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is
    * disabled.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

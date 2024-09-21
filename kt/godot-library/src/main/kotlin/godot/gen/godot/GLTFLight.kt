@@ -124,7 +124,7 @@ public open class GLTFLight : Resource() {
   /**
    * The [Color] of the light. Defaults to white. A black color causes the light to have no effect.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

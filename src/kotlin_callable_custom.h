@@ -5,7 +5,7 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "core/variant/callable.h"
 
-JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.callable.KtCallable") {
+JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.KtCallable") {
     JVM_CLASS(KtCallable)
     // clang-format off
 

@@ -1,8 +1,5 @@
 package godot.core
 
-import godot.core.callable.KtCallable
-import godot.signals.Signal
-
 @PublishedApi
 internal val variantMapper = mutableMapOf(
     Unit::class to VariantType.NIL,

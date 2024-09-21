@@ -215,7 +215,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the top. Blends with [skyHorizonColor].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -239,7 +239,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the sky at the horizon. Blends with [skyTopColor].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -265,7 +265,7 @@ public open class ProceduralSkyMaterial : Material() {
    * or opacity independently of the sky energy, which is useful for day/night or weather transitions.
    * Only effective if a texture is defined in [skyCover].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -289,7 +289,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the bottom. Blends with [groundHorizonColor].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -314,7 +314,7 @@ public open class ProceduralSkyMaterial : Material() {
   /**
    * Color of the ground at the horizon. Blends with [groundBottomColor].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -206,7 +206,7 @@ public open class GLTFNode : Resource() {
    * The transform of the GLTF node relative to its parent. This property is usually unused since
    * the position, rotation, and scale properties are preferred.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -230,7 +230,7 @@ public open class GLTFNode : Resource() {
   /**
    * The position of the GLTF node relative to its parent.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -254,7 +254,7 @@ public open class GLTFNode : Resource() {
   /**
    * The rotation of the GLTF node relative to its parent.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -278,7 +278,7 @@ public open class GLTFNode : Resource() {
   /**
    * The scale of the GLTF node relative to its parent.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

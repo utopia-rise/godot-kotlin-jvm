@@ -126,7 +126,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for numbers.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -150,7 +150,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets the color for symbols.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -174,7 +174,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
   /**
    * Sets color for functions. A function is a non-keyword string followed by a '('.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -199,7 +199,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * Sets color for member variables. A member variable is non-keyword, non-function string
    * proceeded with a '.'.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

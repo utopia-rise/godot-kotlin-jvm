@@ -7,8 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.signals.Signal2
-import godot.signals.signal
+import godot.core.Signal2
+import godot.core.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int

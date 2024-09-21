@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Color
 import godot.core.NodePath
+import godot.core.Signal0
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -25,8 +26,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -426,7 +426,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * **Note:** [visibilityAabb] is overridden by [GeometryInstance3D.customAabb] if that property is
    * set to a non-default value.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -409,7 +409,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * The light's color. An *overbright* color can be used to achieve a result equivalent to
    * increasing the light's [lightEnergy].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

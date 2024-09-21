@@ -146,7 +146,7 @@ public open class LabelSettings : Resource() {
   /**
    * Color of the text.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -170,7 +170,7 @@ public open class LabelSettings : Resource() {
   /**
    * The color of the outline.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -194,7 +194,7 @@ public open class LabelSettings : Resource() {
   /**
    * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -218,7 +218,7 @@ public open class LabelSettings : Resource() {
   /**
    * Offset of the shadow effect, in pixels.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

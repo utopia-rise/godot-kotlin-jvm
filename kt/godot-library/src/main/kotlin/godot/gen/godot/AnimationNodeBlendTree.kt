@@ -9,6 +9,7 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
+import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -19,8 +20,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -62,7 +62,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * The global offset of all sub animation nodes.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

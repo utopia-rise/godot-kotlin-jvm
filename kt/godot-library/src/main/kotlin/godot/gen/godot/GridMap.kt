@@ -11,6 +11,8 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.RID
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -26,9 +28,7 @@ import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -218,7 +218,7 @@ public open class GridMap : Node3D() {
    * The dimensions of the grid's cells.
    * This does not affect the size of the meshes. See [cellScale].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

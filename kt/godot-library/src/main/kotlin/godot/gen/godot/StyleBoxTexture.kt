@@ -222,7 +222,7 @@ public open class StyleBoxTexture : StyleBox() {
    * This is equivalent to first wrapping the texture in an [AtlasTexture] with the same region.
    * If empty (`Rect2(0, 0, 0, 0)`), the whole texture will be used.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -246,7 +246,7 @@ public open class StyleBoxTexture : StyleBox() {
   /**
    * Modulates the color of the texture when this style box is drawn.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

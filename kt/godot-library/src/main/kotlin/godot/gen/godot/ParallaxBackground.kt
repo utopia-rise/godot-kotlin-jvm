@@ -116,7 +116,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
    * can be used to manually manage scrolling when no camera is present.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -140,7 +140,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base position offset for all [ParallaxLayer] children.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -165,7 +165,7 @@ public open class ParallaxBackground : CanvasLayer() {
   /**
    * The base motion scale for all [ParallaxLayer] children.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -191,7 +191,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
    * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -217,7 +217,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
    * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -11,6 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
+import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantType.BOOL
@@ -26,8 +27,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -184,7 +184,7 @@ public open class TileData : Object() {
   /**
    * Offsets the position of where the tile is drawn.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -208,7 +208,7 @@ public open class TileData : Object() {
   /**
    * Color modulation of the tile.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

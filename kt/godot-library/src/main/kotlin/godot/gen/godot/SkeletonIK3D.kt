@@ -201,7 +201,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
    * instead and this property is ignored.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -228,7 +228,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
    * magnet position.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

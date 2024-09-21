@@ -14,6 +14,8 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.RID
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -26,9 +28,7 @@ import godot.core.VariantType.VECTOR3
 import godot.core.VariantType._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -504,7 +504,7 @@ public open class NavigationAgent3D : Node() {
    * If set, a new navigation path from the current agent position to the [targetPosition] is
    * requested from the NavigationServer.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -531,7 +531,7 @@ public open class NavigationAgent3D : Node() {
    * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
    * simulation velocity.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -555,7 +555,7 @@ public open class NavigationAgent3D : Node() {
   /**
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

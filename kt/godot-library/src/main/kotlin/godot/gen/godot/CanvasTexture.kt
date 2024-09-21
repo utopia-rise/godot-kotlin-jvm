@@ -136,7 +136,7 @@ public open class CanvasTexture : Texture2D() {
    * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
    * [CanvasTexture].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

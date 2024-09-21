@@ -177,7 +177,7 @@ public open class Parallax2D : Node2D() {
    * scrolls faster, making objects appear closer. Less than `1` scrolls slower, making objects appear
    * further, and a value of `0` stops the objects completely.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -203,7 +203,7 @@ public open class Parallax2D : Node2D() {
    * overridden.
    * **Note:** Values will loop if [repeatSize] is set higher than `0`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -230,7 +230,7 @@ public open class Parallax2D : Node2D() {
    * the values are larger than the screen size. If an axis is set to `0`, the [Texture2D] will not be
    * repeated.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -254,7 +254,7 @@ public open class Parallax2D : Node2D() {
   /**
    * Velocity at which the offset scrolls automatically, in pixels per second.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -279,7 +279,7 @@ public open class Parallax2D : Node2D() {
    * Top-left limits for scrolling to begin. If the camera is outside of this limit, the
    * [Parallax2D] stops scrolling. Must be lower than [limitEnd] minus the viewport size to work.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -305,7 +305,7 @@ public open class Parallax2D : Node2D() {
    * [Parallax2D] will stop scrolling. Must be higher than [limitBegin] and the viewport size combined
    * to work.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -330,7 +330,7 @@ public open class Parallax2D : Node2D() {
    * Offset used to scroll this [Parallax2D]. This value is updated automatically unless
    * [ignoreCameraScroll] is `true`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

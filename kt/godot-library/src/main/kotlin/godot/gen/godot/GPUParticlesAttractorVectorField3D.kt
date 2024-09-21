@@ -67,7 +67,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   /**
    * The size of the vector field box in 3D units.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

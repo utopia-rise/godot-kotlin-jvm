@@ -1,10 +1,6 @@
-package godot.signals
+package godot.core
 
 import godot.Object
-import godot.core.Callable
-import godot.core.CoreType
-import godot.core.StringName
-import godot.core.asStringName
 import godot.global.GD
 import godot.util.camelToSnakeCase
 

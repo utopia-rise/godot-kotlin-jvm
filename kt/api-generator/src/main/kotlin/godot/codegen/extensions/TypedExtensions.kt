@@ -42,7 +42,6 @@ import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
 import godot.tools.common.constants.VARIANT_TYPE__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.signalPackage
 import godot.tools.common.constants.variantTypePackage
 import java.util.*
 
@@ -61,10 +60,10 @@ fun TypedTrait.isTypedArray() = type?.startsWith(GodotTypes.typedArray) ?: false
 fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
     val typeNameWrapper = when {
         type.isNullOrEmpty() -> ClassTypeNameWrapper(UNIT)
-        type == "Signal0" -> ClassTypeNameWrapper(ClassName(signalPackage, type!!))
+        type == "Signal0" -> ClassTypeNameWrapper(ClassName(godotCorePackage, type!!))
         type!!.startsWith("Signal") -> {
             this as EnrichedSignal
-            val className = ClassName(signalPackage, type)
+            val className = ClassName(godotCorePackage, type)
             ClassTypeNameWrapper(className).parameterizedBy(
                 *arguments
                     .map {

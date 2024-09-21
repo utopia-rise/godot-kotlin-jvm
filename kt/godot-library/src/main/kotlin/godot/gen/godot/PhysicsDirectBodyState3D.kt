@@ -170,7 +170,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's rotational velocity in *radians* per second.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -195,7 +195,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's linear velocity in units per second.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -219,7 +219,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The body's transformation matrix.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

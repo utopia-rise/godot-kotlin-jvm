@@ -396,7 +396,7 @@ public open class Camera2D : Node2D() {
    * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
    * [limitRight].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -429,7 +429,7 @@ public open class Camera2D : Node2D() {
    * DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be
    * enabled in the inspector.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

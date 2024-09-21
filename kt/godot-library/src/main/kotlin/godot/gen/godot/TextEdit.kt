@@ -12,6 +12,8 @@ import godot.core.Color
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2i
+import godot.core.Signal0
+import godot.core.Signal2
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
@@ -32,9 +34,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal2
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean

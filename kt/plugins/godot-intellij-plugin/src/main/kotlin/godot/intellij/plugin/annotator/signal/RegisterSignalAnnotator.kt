@@ -13,7 +13,7 @@ import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.RegisterSignalInitializerQuickFix
 import godot.intellij.plugin.quickfix.RegisterSignalMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.signalPackage
+import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
@@ -50,7 +50,7 @@ class RegisterSignalAnnotator : Annotator {
 
     private fun checkRegisteredType(ktProperty: KtProperty, holder: AnnotationHolder) {
         val type = ktProperty.type() ?: return
-        if (!type.getKotlinTypeFqName(false).startsWith("$signalPackage.${GodotKotlinJvmTypes.signal}")) {
+        if (!type.getKotlinTypeFqName(false).startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.signal.wrongType"),
                 errorLocation = getInitializerProblemLocation(ktProperty),

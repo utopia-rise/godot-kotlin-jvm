@@ -214,7 +214,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * The Light2D's [Color].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -238,7 +238,7 @@ public open class Light2D internal constructor() : Node2D() {
   /**
    * [Color] of shadows cast by the Light2D.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

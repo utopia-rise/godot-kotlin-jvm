@@ -25,7 +25,9 @@ properties = [
 	exported_string,
 	exported_byte,
 	exported_button,
-	signal_emitted
+	signal_emitted,
+	variant_array,
+	dictionary
 ]
 functions = [
     greeting,

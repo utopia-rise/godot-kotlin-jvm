@@ -158,7 +158,7 @@ public open class GLTFPhysicsBody : Resource() {
    * The linear velocity of the physics body, in meters per second. This is only used when the body
    * type is "rigid" or "vehicle".
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -183,7 +183,7 @@ public open class GLTFPhysicsBody : Resource() {
    * The angular velocity of the physics body, in radians per second. This is only used when the
    * body type is "rigid" or "vehicle".
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -209,7 +209,7 @@ public open class GLTFPhysicsBody : Resource() {
    * The center of mass of the body, in meters. This is in local space relative to the body. By
    * default, the center of the mass is the body's origin.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -237,7 +237,7 @@ public open class GLTFPhysicsBody : Resource() {
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -264,7 +264,7 @@ public open class GLTFPhysicsBody : Resource() {
    * principle axes relative to the object's local axes. This is only used when the body type is
    * "rigid" or "vehicle" and [inertiaDiagonal] is set to a non-zero value.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -292,7 +292,7 @@ public open class GLTFPhysicsBody : Resource() {
    * When converted to a Godot [RigidBody3D] node, if this value is zero, then the inertia will be
    * calculated automatically.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

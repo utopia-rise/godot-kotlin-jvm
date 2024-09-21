@@ -16,8 +16,7 @@ signals = [
 ]
 properties = [
     exported_normal_core_type,
-	normal_core_type,
-	normal_non_null_core_type
+	normal_core_type
 ]
 functions = [
     

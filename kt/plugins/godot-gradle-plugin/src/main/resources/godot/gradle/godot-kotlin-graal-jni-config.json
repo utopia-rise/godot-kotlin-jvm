@@ -168,7 +168,7 @@
       { "name" : "engine_call_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_constructor_object_string_name", "parameterTypes" : [] },
-      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.callable.KtCallable", "int", "int"] },
+      { "name" : "engine_call_constructor_kt_custom_callable", "parameterTypes" : ["godot.core.KtCallable", "int", "int"] },
       { "name" : "engine_call_copy_constructor", "parameterTypes" : [] },
 
       { "name" : "engine_call_bind", "parameterTypes" : ["long"] },
@@ -192,12 +192,12 @@
     ]
   },
   {
-    "name" : "godot.core.callable.KtCallable$Bridge",
+    "name" : "godot.core.KtCallable$Bridge",
     "fields" : [
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.callable.KtCallable", "int", "int"] }
+      { "name" : "wrap_in_custom_callable", "parameterTypes" : ["godot.core.KtCallable", "int", "int"] }
     ]
   },
   {
@@ -714,7 +714,7 @@
     ]
   },
   {
-    "name":"godot.core.callable.KtCallable",
+    "name":"godot.core.KtCallable",
     "methods":[
       {"name":"getParameterCount","parameterTypes":[] },
       {"name":"invokeNoReturn","parameterTypes":[] },

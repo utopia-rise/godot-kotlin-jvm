@@ -33,7 +33,6 @@ import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM2D
 import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM3D
 import godot.tools.common.constants.VARIANT_TYPE__RID
 import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotCallablePackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import godot.tools.common.constants.variantTypePackage
@@ -47,9 +46,11 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
         fqName == Long::class.qualifiedName -> VARIANT_TYPE_LONG
+
     fqName == Float::class.qualifiedName -> VARIANT_CASTER_FLOAT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> VARIANT_TYPE_DOUBLE
+
     fqName == String::class.qualifiedName -> VARIANT_TYPE_STRING
     fqName == Boolean::class.qualifiedName -> VARIANT_TYPE_BOOL
     fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_TYPE_ARRAY
@@ -68,11 +69,12 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_TYPE_PACKED_COLOR_ARRAY
-    fqName.startsWith("$godotCallablePackage.${GodotTypes.ktCallable}") -> VARIANT_TYPE_PACKED_CALLABLE
+    fqName.startsWith("$godotCorePackage.${GodotTypes.ktCallable}") -> VARIANT_TYPE_PACKED_CALLABLE
     isCoreType() -> ClassName(
         variantTypePackage,
         fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())
     )
+
     fqName == Any::class.qualifiedName -> VARIANT_TYPE_ANY
     else -> VARIANT_TYPE_OBJECT
 }
@@ -138,6 +140,7 @@ fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Byte::class.qualifiedName,
     Short::class.qualifiedName,
     String::class.qualifiedName -> true
+
     else -> false
 }
 
@@ -150,9 +153,11 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     Byte::class.qualifiedName,
     Short::class.qualifiedName,
     Enum::class.qualifiedName -> 2
+
     Float::class.qualifiedName,
     "$godotUtilPackage.${GodotKotlinJvmTypes.realT}",
     Double::class.qualifiedName -> 3
+
     String::class.qualifiedName -> 4
     "$godotCorePackage.${GodotTypes.vector2}" -> 5
     "$godotCorePackage.${GodotTypes.vector2i}" -> 6
@@ -202,9 +207,11 @@ fun Type.getAsGodotClassName(): String = when {
         fqName == Byte::class.qualifiedName ||
         fqName == Short::class.qualifiedName ||
         fqName == Enum::class.qualifiedName -> "int"
+
     fqName == Float::class.qualifiedName ||
         fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> "float"
+
     fqName == String::class.qualifiedName -> "String"
     fqName.startsWith(godotCorePackage) -> fqName.substringAfterLast(".")
     else -> registeredName() ?: fqName.substringAfterLast(".")

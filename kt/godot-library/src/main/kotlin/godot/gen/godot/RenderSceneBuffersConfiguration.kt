@@ -142,7 +142,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   /**
    * The size of the 3D render buffer used for rendering.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -166,7 +166,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   /**
    * The target (upscale) size if scaling is used.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

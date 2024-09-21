@@ -425,7 +425,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The text drawing offset (in pixels).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -449,7 +449,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * Text [Color] of the [Label3D].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -473,7 +473,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * The tint of text outline.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

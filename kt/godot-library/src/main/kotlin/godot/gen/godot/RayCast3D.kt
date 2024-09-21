@@ -174,7 +174,7 @@ public open class RayCast3D : Node3D() {
   /**
    * The ray's destination point, relative to the RayCast's `position`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -202,7 +202,7 @@ public open class RayCast3D : Node3D() {
    * If set to `Color(0.0, 0.0, 0.0)` (by default), the color set in
    * [ProjectSettings.debug/shapes/collision/shapeColor] is used.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

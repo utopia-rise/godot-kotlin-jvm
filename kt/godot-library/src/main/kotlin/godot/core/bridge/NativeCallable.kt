@@ -4,7 +4,6 @@
 package godot.core
 
 import godot.Object
-import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

@@ -2,7 +2,6 @@
 package godot.core
 
 import godot.Object
-import godot.core.callable.KtCallable
 
 interface Callable: CoreType {
     fun call(vararg args: Any?): Any?

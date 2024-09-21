@@ -183,7 +183,7 @@ public open class PhysicalSkyMaterial : Material() {
    * planets. For example, setting this to a red [Color] results in a Mars-looking atmosphere with a
    * corresponding blue sunset.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -209,7 +209,7 @@ public open class PhysicalSkyMaterial : Material() {
    * scattering[/url] effect. While not physically accurate, this allows for the creation of
    * alien-looking planets.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -233,7 +233,7 @@ public open class PhysicalSkyMaterial : Material() {
   /**
    * Modulates the [Color] on the bottom half of the sky to represent the ground.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

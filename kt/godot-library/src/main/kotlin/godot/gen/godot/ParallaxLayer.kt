@@ -88,7 +88,7 @@ public open class ParallaxLayer : Node2D() {
   /**
    * Multiplies the ParallaxLayer's motion. If an axis is set to `0`, it will not scroll.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -113,7 +113,7 @@ public open class ParallaxLayer : Node2D() {
    * The ParallaxLayer's offset relative to the parent ParallaxBackground's
    * [ParallaxBackground.scrollOffset].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -151,7 +151,7 @@ public open class ParallaxLayer : Node2D() {
    * [CanvasLayer.offset] property in the parent [ParallaxBackground].
    * **Note:** Despite the name, the layer will not be mirrored, it will only be repeated.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

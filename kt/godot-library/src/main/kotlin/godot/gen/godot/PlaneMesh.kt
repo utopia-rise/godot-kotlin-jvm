@@ -98,7 +98,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Size of the generated plane.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -122,7 +122,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   /**
    * Offset of the generated plane. Useful for particles.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

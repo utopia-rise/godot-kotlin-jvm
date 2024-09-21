@@ -105,7 +105,7 @@ public open class CollisionShape2D : Node2D() {
    * `Color(0, 0, 0, 1)` value documented here is a placeholder, and not the actual default debug
    * color.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

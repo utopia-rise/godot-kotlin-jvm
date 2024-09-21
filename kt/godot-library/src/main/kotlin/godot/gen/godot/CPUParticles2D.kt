@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
+import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR
@@ -24,8 +25,7 @@ import godot.core.VariantType.PACKED_VECTOR2_ARRAY
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -804,7 +804,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * The rectangle's extents if [emissionShape] is set to [EMISSION_SHAPE_RECTANGLE].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -829,7 +829,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Unit vector specifying the particles' emission direction.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -853,7 +853,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Gravity applied to every particle.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -877,7 +877,7 @@ public open class CPUParticles2D : Node2D() {
   /**
    * Each particle's initial color. If [texture] is defined, it will be multiplied by this color.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

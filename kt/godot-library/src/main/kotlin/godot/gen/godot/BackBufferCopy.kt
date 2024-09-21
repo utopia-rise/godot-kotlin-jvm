@@ -64,7 +64,7 @@ public open class BackBufferCopy : Node2D() {
   /**
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

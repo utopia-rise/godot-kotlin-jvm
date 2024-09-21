@@ -10,6 +10,8 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.core.Signal1
+import godot.core.Signal4
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -23,9 +25,7 @@ import godot.core.VariantType.STRING_NAME
 import godot.core.VariantType.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.signals.Signal1
-import godot.signals.Signal4
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -320,7 +320,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -345,7 +345,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * The area's gravity vector (not normalized).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -57,7 +57,7 @@ public open class SegmentShape2D : Shape2D() {
   /**
    * The segment's first point position.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -81,7 +81,7 @@ public open class SegmentShape2D : Shape2D() {
   /**
    * The segment's second point position.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

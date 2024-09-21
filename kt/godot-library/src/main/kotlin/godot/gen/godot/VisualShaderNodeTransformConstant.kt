@@ -44,7 +44,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
   /**
    * A [Transform3D] constant which represents the state of this node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

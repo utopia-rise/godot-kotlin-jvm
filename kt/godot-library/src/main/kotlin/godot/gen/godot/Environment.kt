@@ -1267,7 +1267,7 @@ public open class Environment : Resource() {
    * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
    * background mode.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1291,7 +1291,7 @@ public open class Environment : Resource() {
   /**
    * The rotation to use for sky rendering.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1316,7 +1316,7 @@ public open class Environment : Resource() {
    * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
    * `1.0` (exclusive).
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1341,7 +1341,7 @@ public open class Environment : Resource() {
   /**
    * The fog's color.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1366,7 +1366,7 @@ public open class Environment : Resource() {
    * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
    * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1394,7 +1394,7 @@ public open class Environment : Resource() {
    * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
    * shadows.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

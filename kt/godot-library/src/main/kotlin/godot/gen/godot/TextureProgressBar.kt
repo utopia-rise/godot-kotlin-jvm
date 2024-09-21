@@ -242,7 +242,7 @@ public open class TextureProgressBar : Range() {
    * Offsets [textureProgress] if [fillMode] is [FILL_CLOCKWISE], [FILL_COUNTER_CLOCKWISE], or
    * [FILL_CLOCKWISE_AND_COUNTER_CLOCKWISE].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -268,7 +268,7 @@ public open class TextureProgressBar : Range() {
    * The offset of [textureProgress]. Useful for [textureOver] and [textureUnder] with fancy
    * borders, to avoid transparent margins in your progress texture.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -293,7 +293,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's [textureUnder] texture.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -318,7 +318,7 @@ public open class TextureProgressBar : Range() {
    * Multiplies the color of the bar's [textureOver] texture. The effect is similar to
    * [CanvasItem.modulate], except it only affects this specific texture instead of the entire node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -342,7 +342,7 @@ public open class TextureProgressBar : Range() {
   /**
    * Multiplies the color of the bar's [textureProgress] texture.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

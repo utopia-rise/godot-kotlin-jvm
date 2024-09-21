@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.NodePath
 import godot.core.Quaternion
+import godot.core.Signal0
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -28,8 +29,7 @@ import godot.core.VariantType.TRANSFORM3D
 import godot.core.VariantType.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -296,7 +296,7 @@ public open class Node3D : Node() {
   /**
    * Local space [Transform3D] of this node, with respect to the parent node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -320,7 +320,7 @@ public open class Node3D : Node() {
   /**
    * World3D space (global) [Transform3D] of this node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -346,7 +346,7 @@ public open class Node3D : Node() {
    * Local position or translation of this node relative to the parent. This is equivalent to
    * `transform.origin`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -378,7 +378,7 @@ public open class Node3D : Node() {
    * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
    * script, use [rotationDegrees].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -402,7 +402,7 @@ public open class Node3D : Node() {
   /**
    * Helper property to access [rotation] in degrees instead of radians.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -428,7 +428,7 @@ public open class Node3D : Node() {
    * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
    * rotations.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -452,7 +452,7 @@ public open class Node3D : Node() {
   /**
    * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -481,7 +481,7 @@ public open class Node3D : Node() {
    * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
    * are not visually affected by [scale].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -505,7 +505,7 @@ public open class Node3D : Node() {
   /**
    * Global position of this node. This is equivalent to `global_transform.origin`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -529,7 +529,7 @@ public open class Node3D : Node() {
   /**
    * Global basis of this node. This is equivalent to `global_transform.basis`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -559,7 +559,7 @@ public open class Node3D : Node() {
    * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
    * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -583,7 +583,7 @@ public open class Node3D : Node() {
   /**
    * Helper property to access [globalRotation] in degrees instead of radians.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -1,9 +1,7 @@
 package godot.core
 
 import godot.Object
-import godot.core.callable.KtCallable
 import godot.core.memory.MemoryManager
-import godot.signals.Signal
 import godot.util.nullptr
 import godot.util.toRealT
 import java.nio.ByteBuffer

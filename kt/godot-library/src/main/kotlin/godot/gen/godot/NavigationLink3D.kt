@@ -137,7 +137,7 @@ public open class NavigationLink3D : Node3D() {
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -164,7 +164,7 @@ public open class NavigationLink3D : Node3D() {
    * The distance the link will search is controlled by
    * [NavigationServer3D.mapSetLinkConnectionRadius].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

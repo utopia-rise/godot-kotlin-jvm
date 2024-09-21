@@ -13,6 +13,8 @@ import godot.core.Color
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
+import godot.core.Signal0
+import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -30,9 +32,7 @@ import godot.core.VariantType.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.Signal1
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -587,7 +587,7 @@ public open class Window : Viewport() {
    * **Note:** This property only works if [initialPosition] is set to
    * [WINDOW_INITIAL_POSITION_ABSOLUTE].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -611,7 +611,7 @@ public open class Window : Viewport() {
   /**
    * The window's size in pixels.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -637,7 +637,7 @@ public open class Window : Viewport() {
    * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
    * is enabled and if its size is bigger.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -662,7 +662,7 @@ public open class Window : Viewport() {
    * If non-zero, the [Window] can't be resized to be bigger than this size.
    * **Note:** This property will be ignored if the value is lower than [minSize].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -687,7 +687,7 @@ public open class Window : Viewport() {
    * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
    * content will be scaled when the window is resized to a different size.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

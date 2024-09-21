@@ -201,7 +201,7 @@ public open class FontVariation : Font() {
    * For example, to simulate italic typeface by slanting, apply the following transform
    * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

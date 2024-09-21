@@ -22,6 +22,7 @@ import godot.core.PackedVector3Array
 import godot.core.Plane
 import godot.core.RID
 import godot.core.Rect2
+import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform2D
 import godot.core.Transform3D
@@ -60,8 +61,7 @@ import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.signals.Signal0
-import godot.signals.signal
+import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean

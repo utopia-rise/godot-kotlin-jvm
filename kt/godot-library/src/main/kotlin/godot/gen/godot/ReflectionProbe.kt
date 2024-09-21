@@ -254,7 +254,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * **Note:** To better fit areas that are not aligned to the grid, you can rotate the
    * [ReflectionProbe] node.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -280,7 +280,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * can be set to a non-zero value to ensure a reflection fits a rectangle-shaped room, while reducing
    * the number of objects that "get in the way" of the reflection.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -305,7 +305,7 @@ public open class ReflectionProbe : VisualInstance3D() {
    * The custom ambient color to use within the [ReflectionProbe]'s box defined by its [size]. Only
    * effective if [ambientMode] is [AMBIENT_COLOR].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

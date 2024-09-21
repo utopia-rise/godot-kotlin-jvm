@@ -116,7 +116,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   /**
    * The position being queried for, in global coordinates.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

@@ -4,11 +4,6 @@ import godot.Button;
 import godot.Node;
 import godot.annotation.*;
 import godot.core.*;
-import godot.signals.Signal;
-import godot.signals.Signal2;
-import godot.signals.SignalProvider;
-import kotlin.Unit;
-import kotlin.jvm.functions.Function2;
 import org.jetbrains.annotations.NotNull;
 
 @RegisterClass

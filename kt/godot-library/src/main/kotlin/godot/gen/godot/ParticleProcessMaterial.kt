@@ -1373,7 +1373,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The offset for the [emissionShape], in local space.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1398,7 +1398,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The scale of the [emissionShape], in local space.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1425,7 +1425,7 @@ public open class ParticleProcessMaterial : Material() {
    * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
    * in both directions. The size is twice the area of the extents.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1450,7 +1450,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1473,7 +1473,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1497,7 +1497,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * A pivot point used to calculate radial and orbital velocity of particles.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1521,7 +1521,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Unit vector specifying the particles' emission direction.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1543,7 +1543,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1566,7 +1566,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1589,7 +1589,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1612,7 +1612,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1634,7 +1634,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1658,7 +1658,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Gravity applied to every particle.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1680,7 +1680,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1702,7 +1702,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1724,7 +1724,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1747,7 +1747,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1769,7 +1769,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1791,7 +1791,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1821,7 +1821,7 @@ public open class ParticleProcessMaterial : Material() {
    * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    * Otherwise, [color] will have no visible effect.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1843,7 +1843,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1865,7 +1865,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1887,7 +1887,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1913,7 +1913,7 @@ public open class ParticleProcessMaterial : Material() {
    * move in over time.
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1936,7 +1936,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -1959,7 +1959,7 @@ public open class ParticleProcessMaterial : Material() {
 
 
   /**
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

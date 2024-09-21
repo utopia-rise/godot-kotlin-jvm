@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.konan.target.HostManager
-import java.io.OutputStream
 
 plugins {
     // no need to apply kotlin jvm plugin. Our plugin already applies the correct version for you
@@ -14,6 +13,7 @@ repositories {
 godot {
     registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
     isRegistrationFileHierarchyEnabled.set(true)
+    enableGodotCoroutines.set(true)
 
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)

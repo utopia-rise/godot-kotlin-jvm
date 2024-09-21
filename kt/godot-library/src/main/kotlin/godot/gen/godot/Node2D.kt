@@ -187,7 +187,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Position, relative to the node's parent.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -214,7 +214,7 @@ public open class Node2D : CanvasItem() {
    * the way scale is represented with transformation matrices in Godot, negative scales on the X axis
    * will be changed to negative scales on the Y axis and a rotation of 180 degrees when decomposed.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -238,7 +238,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Local [Transform2D].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -262,7 +262,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global position.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -286,7 +286,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global scale.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -310,7 +310,7 @@ public open class Node2D : CanvasItem() {
   /**
    * Global [Transform2D].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

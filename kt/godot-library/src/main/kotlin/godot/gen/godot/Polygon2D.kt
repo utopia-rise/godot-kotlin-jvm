@@ -236,7 +236,7 @@ public open class Polygon2D : Node2D() {
    * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
    * also be the default color for vertices not set in [vertexColors].
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -260,7 +260,7 @@ public open class Polygon2D : Node2D() {
   /**
    * The offset applied to each vertex.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -285,7 +285,7 @@ public open class Polygon2D : Node2D() {
    * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
    * top-left corner) will be placed at the polygon's position.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -310,7 +310,7 @@ public open class Polygon2D : Node2D() {
    * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
    * smaller, and vice versa.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

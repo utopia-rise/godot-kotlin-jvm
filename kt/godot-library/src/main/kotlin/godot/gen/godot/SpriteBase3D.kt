@@ -291,7 +291,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   /**
    * The texture's drawing offset.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).
@@ -323,7 +323,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * [BaseMaterial3D.vertexColorUseAsAlbedo] must be `true`. For a [ShaderMaterial], `ALBEDO *=
    * COLOR.rgb;` must be inserted in the shader's `fragment()` function.
    *
-   * This is a helper function to make dealing with local copies easier. 
+   * This is a helper function to make dealing with local copies easier.
    *
    * For more information, see our
    * [documentation](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types).

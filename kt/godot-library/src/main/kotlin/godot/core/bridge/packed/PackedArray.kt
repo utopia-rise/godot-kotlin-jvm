@@ -2,9 +2,6 @@
 
 package godot.core
 
-import godot.core.NativeCoreType
-import godot.core.PackedByteArray
-import godot.core.VariantType
 import godot.core.memory.TransferContext
 import godot.util.IndexedIterator
 import godot.util.VoidPtr
