@@ -34,7 +34,7 @@ open class KtProperty<T : KtObject, P : Any?>(
         try {
             TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
         } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM getter from Godot:", t.stackTraceToString())
+            GD.printErr("Error calling JVM getter ${kProperty.name} of script $instance from Godot\n:", t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantType.NIL)
         }
     }
@@ -44,7 +44,7 @@ open class KtProperty<T : KtObject, P : Any?>(
         try {
             kProperty.set(instance, arg)
         } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM setter from Godot:", t.stackTraceToString())
+            GD.printErr("Error calling JVM setter ${kProperty.name} of script $instance from Godot:\n", t.stackTraceToString())
         }
     }
 

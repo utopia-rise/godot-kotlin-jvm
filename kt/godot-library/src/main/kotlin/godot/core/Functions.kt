@@ -2,6 +2,8 @@
 
 package godot.core
 
+import godot.core.memory.TransferContext
+import godot.global.GD
 import godot.util.camelToSnakeCase
 
 data class KtFunctionInfo(
@@ -31,11 +33,23 @@ abstract class KtFunction<T : KtObject, R : Any?>(
     val registrationName = functionInfo.name.camelToSnakeCase()
 
     fun invoke(instance: T): Unit = withParameters(types) {
-        invokeKt(instance)
+        try {
+            invokeKt(instance)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n", t.stackTraceToString())
+        }
     }
 
-    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types, variantConverter) {
-        invokeKt(instance)
+    fun invokeWithReturn(instance: T): Any? = withParametersReturn(types) {
+        var ret: Any? = Unit
+        try {
+            ret = invokeKt(instance)
+            TransferContext.writeReturnValue(ret, variantConverter)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n", t.stackTraceToString())
+            TransferContext.writeReturnValue(null, VariantType.NIL)
+        }
+        ret
     }
 
     internal companion object : ParametersReader()

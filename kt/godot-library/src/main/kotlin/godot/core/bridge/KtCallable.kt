@@ -2,8 +2,8 @@
 
 package godot.core
 
-import godot.core.Callable
-import godot.core.VariantConverter
+import godot.core.memory.TransferContext
+import godot.global.GD
 import godot.util.VoidPtr
 
 abstract class KtCallable<R : Any?>(
@@ -16,11 +16,23 @@ abstract class KtCallable<R : Any?>(
         get() = variantConverter.id
 
     fun invokeNoReturn(): Unit = withParameters(types) {
-        invokeKt()
+        try {
+            invokeKt()
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM custom Callable from Godot:\n", t.stackTraceToString())
+        }
     }
 
-    fun invokeWithReturn(): Any? = withParametersReturn(types, variantConverter) {
-        invokeKt()
+    fun invokeWithReturn(): Any? = withParametersReturn(types) {
+        var ret: Any? = Unit
+        try {
+            ret = invokeKt()
+            TransferContext.writeReturnValue(ret, variantConverter)
+        } catch (t: Throwable) {
+            GD.printErr("Error calling a JVM custom Callable from Godot:\n", t.stackTraceToString())
+            TransferContext.writeReturnValue(null, VariantType.NIL)
+        }
+        ret
     }
 
     internal abstract fun invokeKt(): R
