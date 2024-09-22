@@ -4,6 +4,7 @@
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bridge/kt_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_byte_array_bridge.h"
@@ -15,14 +16,16 @@
 #include "jvm_wrapper/bridge/packed_string_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector2_array_bridge.h"
 #include "jvm_wrapper/bridge/packed_vector3_array_bridge.h"
+#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
+#include "jvm_wrapper/jvm_singleton_wrapper.h"
+#include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/memory_manager.h"
-#include "kotlin_callable_custom.h"
-#include "jvm_wrapper/bridge/kt_callable_bridge.h"
-#include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
+#include "jvm_wrapper/bridge/jvm_stack_trace.h"
 
 #include <jni.h>
+
 #include <locale>
 
 #ifdef __ANDROID__
@@ -42,7 +45,7 @@ CreateJavaVM get_create_jvm_function(void* lib_handle) {
     return &JNI_CreateJavaVM;
 #else
     // Sanity check in case we mess up preprocessors
-    JVM_CRASH_NOW_MSG("Current configuration doesn't provide a way to create a JVM!");
+    JVM_DEV_ASSERT(false, "Current configuration doesn't provide a way to create a JVM!");
 #endif
 }
 
@@ -59,12 +62,12 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
 
     for (auto i = 0; i < static_cast<int>(nOptions); i++) {
         args.options[i].optionString = jvm_options.options[i].ptrw();
-        LOG_DEV_VERBOSE(vformat("JVM argument %s: %s", i, args.options[i].optionString));
+        JVM_DEV_VERBOSE("JVM argument %s: %s", i, args.options[i].optionString);
     }
 
     std::locale global;
 
-    LOG_VERBOSE("Starting JVM ...");
+    JVM_LOG_VERBOSE("Starting JVM ...");
     JNIEnv* jni_env {nullptr};
 
     CreateJavaVM func {get_create_jvm_function(lib_handle)};
@@ -81,12 +84,12 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     JVM_ERR_FAIL_COND_V_MSG(result != JNI_OK, false, "Failed to create a new vm!");
 
 #elif defined PROVIDED_JVM
-    LOG_VERBOSE("Retrieving existing JVM ...");
+    JVM_LOG_VERBOSE("Retrieving existing JVM ...");
     jni::Env env {get_jni_env()};
     java_vm = env.get_jvm();
 #else
     // Sanity check in case we mess up preprocessors
-    JVM_CRASH_COND_MSG(java_vm == nullptr, "Current configuration doesn't allow to create or fetch a JVM.");
+    JVM_DEV_ASSERT(java_vm, "Current configuration doesn't allow to create or fetch a JVM.");
 #endif
 
     jni::Jvm::initialize(java_vm, user_configuration.vm_type, jvm_options.version);
@@ -106,11 +109,12 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtClass::initialize_jni_binding(p_env, class_loader);
     KtCallable::initialize_jni_binding(p_env, class_loader);
 
-    return TransferContext::initialize(p_env, class_loader)
+    bool ret = TransferContext::initialize(p_env, class_loader)
         && TypeManager::initialize(p_env, class_loader)
         && LongStringQueue::initialize(p_env, class_loader)
         && MemoryManager::initialize(p_env, class_loader)
         && bridges::GDPrintBridge::initialize(p_env, class_loader)
+        && bridges::JvmStackTrace::initialize(p_env, class_loader)
         && bridges::CallableBridge::initialize(p_env, class_loader)
         && bridges::KtCallableBridge::initialize(p_env, class_loader)
         && bridges::DictionaryBridge::initialize(p_env, class_loader)
@@ -127,9 +131,15 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
         && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
         && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
+
+    jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
+
+    return ret;
 }
 
 void JvmManager::destroy_jni_classes() {
+    jni::Env::set_exception_handler(nullptr);
+
     // Singleton
     TransferContext::destroy();
     TypeManager::destroy();
@@ -158,7 +168,7 @@ void JvmManager::destroy_jni_classes() {
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
-    LOG_VERBOSE("Shutting down JVM ...");
+    JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
 }

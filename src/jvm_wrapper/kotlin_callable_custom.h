@@ -1,7 +1,6 @@
 #ifndef GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 #define GODOT_JVM_KOTLIN_CALLABLE_CUSTOM_H
 
-
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "core/variant/callable.h"
 
@@ -9,10 +8,10 @@ JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.KtCallable") {
     JVM_CLASS(KtCallable)
     // clang-format off
 
-    JNI_METHOD(INVOKE_NO_RETURN)
-    JNI_METHOD(INVOKE_WITH_RETURN)
-    JNI_METHOD(GET_RETURN_VARIANT_TYPE)
-    JNI_METHOD(HASH_CODE)
+    JNI_VOID_METHOD(INVOKE_NO_RETURN)
+    JNI_OBJECT_METHOD(INVOKE_WITH_RETURN)
+    JNI_INT_METHOD(GET_RETURN_VARIANT_TYPE)
+    JNI_INT_METHOD(HASH_CODE)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(INVOKE_NO_RETURN, "invokeNoReturn", "()V")

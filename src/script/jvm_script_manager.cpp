@@ -22,7 +22,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     path_scripts_map.clear();
 #endif
 
-    LOG_DEV("Loading JVM Scripts...");
+    JVM_DEV_LOG("Loading JVM Scripts...");
 
     // Named Script
     for (KtClass* kotlin_class : classes) {
@@ -39,13 +39,13 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
             named_script_cache.erase(script_name);
 
-            LOG_DEV_VERBOSE(vformat("JVM Script updated: %s", script_name));
+            JVM_DEV_VERBOSE("JVM Script updated: %s", script_name);
         } else {
 #endif
             named_script.instantiate();
             named_script->kotlin_class = kotlin_class;
 
-            LOG_DEV_VERBOSE(vformat("JVM Script created: %s", script_name));
+            JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
 #ifdef TOOLS_ENABLED
         }
 #endif
@@ -66,7 +66,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         Ref<NamedScript> script {keyValue.value};
         StringName name {keyValue.key};
         if (script->kotlin_class) {
-            LOG_DEV_VERBOSE(vformat("JVM Script deleted: %s", script->kotlin_class->registered_class_name));
+            JVM_DEV_VERBOSE("JVM Script deleted: %s", script->kotlin_class->registered_class_name);
             delete script->kotlin_class;
             script->kotlin_class = nullptr;
         }

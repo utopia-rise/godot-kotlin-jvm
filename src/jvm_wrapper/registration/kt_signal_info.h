@@ -9,8 +9,8 @@ JVM_INSTANCE_WRAPPER(KtSignalInfo, "godot.core.KtSignalInfo") {
     JVM_CLASS(KtSignalInfo)
 
     // clang-format off
-    JNI_METHOD(GET_NAME)
-    JNI_METHOD(GET_ARGUMENTS)
+    JNI_OBJECT_METHOD(GET_NAME)
+    JNI_OBJECT_METHOD(GET_ARGUMENTS)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(GET_NAME, "getName", "()Ljava/lang/String;")

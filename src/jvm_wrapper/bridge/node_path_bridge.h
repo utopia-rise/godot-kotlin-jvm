@@ -8,7 +8,6 @@ namespace bridges {
     JVM_SINGLETON_WRAPPER(NodePathBridge, "godot.core.NodePath$Bridge") {
         SINGLETON_CLASS(NodePathBridge)
 
-
         // clang-format off
         INIT_JNI_BINDINGS(
             INIT_NATIVE_METHOD("engine_call_constructor", "()J", NodePathBridge::engine_call_constructor)

@@ -29,7 +29,7 @@ void TypeManager::register_engine_types(jni::Env& p_env, jni::JObjectArray& p_en
         engine_type_names.insert(i, class_name);
         java_engine_types_constructors[class_name] = i;
 #ifdef DEV_ENABLED
-        LOG_VERBOSE(vformat("Registered %s engine type with index %s.", class_name, i));
+        JVM_LOG_VERBOSE("Registered %s engine type with index %s.", class_name, i);
 #endif
         type.delete_local_ref(p_env);
     }
@@ -51,15 +51,8 @@ uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance
 
     MethodBind* bind {ClassDB::get_method(class_name, method_name)};
 
-    if(!bind){
-        LOG_ERROR(vformat("Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name));
-        return 0;
-    }
-
-    if(bind->get_hash() != hash){
-        LOG_ERROR(vformat("Hash mismatch for Method %s from Class %s. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name));
-        return 0;
-    }
+    JVM_ERR_FAIL_COND_V_MSG(!bind, 0, "Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name);
+    JVM_ERR_FAIL_COND_V_MSG(bind->get_hash() != hash, 0, "Hash mismatch for Method %s from Class %s. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name);
 
     return reinterpret_cast<uintptr_t>(bind);
 

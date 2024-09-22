@@ -53,11 +53,4 @@ void GDPrintBridge::push_warning(JNIEnv* p_raw_env, jobject p_instance) {
     WARN_PRINT(args[0].operator String());
 }
 
-String GDPrintBridge::get_jvm_stacktrace(jni::Env& p_env) {
-    jni::JString str {wrapped.call_object_method(p_env, PRINT_STACKTRACE)};
-    String ret {p_env.from_jstring(str)};
-    str.delete_local_ref(p_env);
-    return ret;
-}
-
 GDPrintBridge::~GDPrintBridge() = default;

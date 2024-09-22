@@ -6,8 +6,8 @@
 JVM_SINGLETON_WRAPPER(LongStringQueue, "godot.core.LongStringQueue") {
     SINGLETON_CLASS(LongStringQueue)
     // clang-format off
-    JNI_METHOD(QUEUE_STRING)
-    JNI_METHOD(SET_STRING_MAX_SIZE)
+    JNI_VOID_METHOD(QUEUE_STRING)
+    JNI_VOID_METHOD(SET_STRING_MAX_SIZE)
 
     INIT_JNI_BINDINGS(
         INIT_JNI_METHOD(QUEUE_STRING, "queueString", "(Ljava/lang/String;)V")

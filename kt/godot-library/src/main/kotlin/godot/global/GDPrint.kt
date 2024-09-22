@@ -75,8 +75,6 @@ internal interface GDPrint {
     fun printStacktrace() = print(Thread.currentThread().stackTrace.joinToString("\n"))
 
     private object Bridge {
-        fun getStacktrace() = Thread.currentThread().stackTrace.joinToString("\n")
-
         external fun print()
         external fun printRich()
         external fun printVerbose()

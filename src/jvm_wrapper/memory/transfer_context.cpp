@@ -16,7 +16,7 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
 
     if (unlikely(!shared_buffer.is_init())) {
         jni::JObject buffer = wrapped.call_object_method(p_env, GET_BUFFER);
-        JVM_CRASH_COND_MSG(buffer.is_null(), "Buffer is null");
+        JVM_DEV_ASSERT(!buffer.is_null(), "Buffer is null");
         auto* address {static_cast<uint8_t*>(p_env.get_direct_buffer_address(buffer))};
 #ifdef DEBUG_ENABLED
         shared_buffer = SharedBuffer {address, 0, p_env.get_direct_buffer_capacity(buffer)};
@@ -77,7 +77,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
 
     MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
-    JVM_DEV_ASSERT(args_size <= MAX_FUNCTION_ARG_COUNT, vformat("Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size));
+    JVM_DEV_ASSERT(args_size <= MAX_FUNCTION_ARG_COUNT, "Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size);
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
 
@@ -113,6 +113,6 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_CRASH_COND_MSG(r_error.error != Callable::CallError::CALL_OK, vformat("Call to method %s failed.", method_bind->get_name()));
+    JVM_ERR_FAIL_COND_MSG(r_error.error != Callable::CallError::CALL_OK, "Call to method %s failed.", method_bind->get_name());
 #endif
 }

@@ -30,13 +30,13 @@ namespace jni {
 #else
         jint result = _instance->vm->AttachCurrentThreadAsDaemon((void**) &r_env, nullptr);
 #endif
-        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to attach vm to current thread!");
+        JVM_DEV_ASSERT(result == JNI_OK, "Failed to attach vm to current thread!");
         env = new Env(r_env);
     }
 
     void Jvm::detach() {
         jint result = _instance->vm->DetachCurrentThread();
-        JVM_CRASH_COND_MSG(result != JNI_OK, "Failed to detach vm to current thread!");
+        JVM_DEV_ASSERT(result == JNI_OK, "Failed to detach vm to current thread!");
         delete env;
         env = nullptr;
     }
@@ -45,7 +45,7 @@ namespace jni {
         if (unlikely(!env)) {
             JNIEnv* r_env;
             jint result = _instance->vm->GetEnv((void**) &r_env, _instance->version);
-            JVM_CRASH_COND_MSG(result == JNI_EDETACHED, "Current thread is not attached!");
+            JVM_DEV_ASSERT(result != JNI_EDETACHED, "Current thread is not attached!");
             env = new Env(r_env);
         }
         return *env;

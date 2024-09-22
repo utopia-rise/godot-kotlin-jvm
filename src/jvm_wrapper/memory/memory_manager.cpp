@@ -110,7 +110,7 @@ void MemoryManager::create_native_object(JNIEnv* p_raw_env, jobject p_instance, 
     auto raw_ptr = reinterpret_cast<uintptr_t>(ptr);
 
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_MSG(!ptr, vformat("Failed to instantiate class %s", class_name));
+    JVM_ERR_FAIL_COND_MSG(!ptr, "Failed to instantiate class %s", class_name);
 #endif
 
     jni::Env env {p_raw_env};
@@ -183,9 +183,9 @@ void MemoryManager::sync_memory(jni::Env& p_env) {
 }
 
 void MemoryManager::clean_up(jni::Env& p_env) {
-    LOG_VERBOSE("Cleaning JVM Memory...")
-    wrapped.call_boolean_method(p_env, CLEAN_UP);
-    LOG_VERBOSE("JVM Memory cleaned!")
+    JVM_LOG_VERBOSE("Cleaning JVM Memory...");
+    wrapped.call_void_method(p_env, CLEAN_UP);
+    JVM_LOG_VERBOSE("JVM Memory cleaned!");
 }
 
 void MemoryManager::queue_dead_object(Object* obj) {

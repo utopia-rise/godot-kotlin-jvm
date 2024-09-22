@@ -52,7 +52,7 @@ PropertyInfo KtProperty::get_member_info() {
 
 void KtProperty::call_get(jni::Env& p_env, KtObject* instance, Variant& r_ret) {
     jvalue call_args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method(p_env, CALL_GET, call_args);
+    wrapped.call_void_method<false>(p_env, CALL_GET, call_args);
     TransferContext::get_instance().read_return_value(p_env, r_ret);
 }
 
@@ -60,5 +60,5 @@ void KtProperty::call_set(jni::Env& p_env, KtObject* instance, const Variant& p_
     const Variant* arg[1] = {&p_value};
     TransferContext::get_instance().write_args(p_env, arg, 1);
     jvalue args[1] = {jni::to_jni_arg(instance->get_wrapped())};
-    wrapped.call_void_method(p_env, CALL_SET, args);
+    wrapped.call_void_method<false>(p_env, CALL_SET, args);
 }
