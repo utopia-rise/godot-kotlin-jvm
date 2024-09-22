@@ -9,6 +9,7 @@ import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantParser
+import godot.tools.common.extensions.convertToSnakeCase
 import godot.util.LRUCache
 import godot.util.VoidPtr
 import java.util.concurrent.ConcurrentHashMap
@@ -87,6 +88,18 @@ internal object MemoryManager {
             stringNameCache.getOrPut(key) {
                 // Cache miss, so create and return new instance.
                 StringName(key)
+            }
+        }
+    }
+
+    /**
+     * Take a CamelCase String and return a snakeCase version of it as a StringName, used internally for methods and property names
+     */
+    fun getOrCreateGodotName(key: String): StringName {
+        return synchronized(stringNameCache) {
+            stringNameCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                StringName(key.convertToSnakeCase())
             }
         }
     }

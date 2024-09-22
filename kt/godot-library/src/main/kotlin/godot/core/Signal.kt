@@ -2,7 +2,7 @@ package godot.core
 
 import godot.Object
 import godot.global.GD
-import godot.util.camelToSnakeCase
+import godot.tools.common.extensions.convertToSnakeCase
 
 open class Signal internal constructor(
     val godotObject: Object,
@@ -11,7 +11,7 @@ open class Signal internal constructor(
 
     constructor(instance: Object, jvmName: String) : this(
         instance,
-        jvmName.camelToSnakeCase().removePrefix("_").asStringName()
+        jvmName.convertToSnakeCase().removePrefix("_").asStringName()
     )
 
     fun emitSignal(vararg args: Any?) {

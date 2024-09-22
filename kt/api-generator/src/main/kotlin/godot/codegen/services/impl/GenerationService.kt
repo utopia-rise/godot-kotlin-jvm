@@ -45,7 +45,7 @@ import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
+import godot.tools.common.constants.CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
@@ -703,7 +703,7 @@ class GenerationService(
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION, AS_STRING_NAME_UTIL_FUNCTION)
+                rpcFunSpec.addStatement(templateString, CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION, AS_STRING_NAME_UTIL_FUNCTION)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())

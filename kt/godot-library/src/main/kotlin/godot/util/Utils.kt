@@ -14,12 +14,6 @@ typealias VoidPtr = Long
 const val nullptr: VoidPtr = 0L
 val nullObjectID = ObjectID(-1L)
 
-fun String.camelToSnakeCase(): String {
-    return "(?<=[a-zA-Z0-9])[A-Z]".toRegex().replace(this) {
-        "_${it.value}"
-    }.lowercase(Locale.ENGLISH)
-}
-
 inline fun Number.toRealT(): RealT = this.toDouble()
 inline fun Double.toRealT(): RealT = this
 inline fun Float.toRealT(): RealT = this.toDouble()

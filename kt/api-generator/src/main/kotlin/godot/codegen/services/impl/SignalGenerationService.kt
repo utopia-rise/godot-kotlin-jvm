@@ -18,7 +18,7 @@ import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
 import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
 import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION
+import godot.tools.common.constants.CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GODOT_OBJECT
@@ -270,7 +270,7 @@ class SignalGenerationService : ISignalGenerationService {
                 "return·$methodName(%T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M().%M())$flagsParameters)",
                 GODOT_CALLABLE,
                 KCallable::class.asClassName(),
-                CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION,
+                CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION,
                 AS_STRING_NAME_UTIL_FUNCTION
             )
         }

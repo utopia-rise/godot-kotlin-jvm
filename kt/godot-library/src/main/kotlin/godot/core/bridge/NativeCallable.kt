@@ -6,8 +6,8 @@ package godot.core
 import godot.Object
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
+import godot.tools.common.extensions.convertToSnakeCase
 import godot.util.VoidPtr
-import godot.util.camelToSnakeCase
 import kotlin.reflect.KCallable
 
 class NativeCallable : NativeCoreType, Callable {
@@ -174,56 +174,56 @@ class NativeCallable : NativeCoreType, Callable {
         operator fun <T : Object> invoke(
             target: T,
             callable: T.() -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P> invoke(
             target: T,
             callable: T.(P) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2> invoke(
             target: T,
             callable: T.(P1, P2) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3> invoke(
             target: T,
             callable: T.(P1, P2, P3) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
 
         operator fun <T : Object, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> invoke(
             target: T,
             callable: T.(P1, P2, P3, P4, P5, P6, P7, P8, P9, P10) -> Unit
-        ) = NativeCallable(target, (callable as KCallable<*>).name.camelToSnakeCase().asStringName())
+        ) = NativeCallable(target, (callable as KCallable<*>).name.convertToSnakeCase().asStringName())
     }
 }

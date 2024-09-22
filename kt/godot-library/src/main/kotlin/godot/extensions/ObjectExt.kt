@@ -9,7 +9,7 @@ import godot.core.VariantArray
 import godot.core.asStringName
 import godot.core.memory.MemoryManager
 import godot.core.Signal
-import godot.util.camelToSnakeCase
+import godot.tools.common.extensions.convertToSnakeCase
 import kotlin.reflect.KFunction
 
 /**
@@ -17,7 +17,7 @@ import kotlin.reflect.KFunction
  * Use [Object.callDeferred] to call functions by string or [callDeferredRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.callDeferred(function: T, vararg args: Any?) =
-    callDeferred(function.name.camelToSnakeCase().asStringName(), *args)
+    callDeferred(function.name.convertToSnakeCase().asStringName(), *args)
 
 /**
  * Same as [callDeferred] but the function name is not converted to snake_case
@@ -30,7 +30,7 @@ inline fun <reified T : KFunction<*>> Object.callDeferredRawName(function: T, va
  * Use [Object.call] to call functions by string or [callRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.call(function: T, vararg args: Any?) =
-    call(function.name.camelToSnakeCase().asStringName(), *args)
+    call(function.name.convertToSnakeCase().asStringName(), *args)
 
 /**
  * Same as [call] but the function name is not converted to snake_case
@@ -43,7 +43,7 @@ inline fun <reified T : KFunction<*>> Object.callRawName(function: T, vararg arg
  * Use [Object.callv] to call functions by string or [callvRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.callv(function: T, argArray: VariantArray<Any?>) =
-    callv(function.name.camelToSnakeCase().asStringName(), argArray)
+    callv(function.name.convertToSnakeCase().asStringName(), argArray)
 
 /**
  * Same as [callv] but the function name is not converted to snake_case
@@ -56,7 +56,7 @@ inline fun <reified T : KFunction<*>> Object.callvRawName(function: T, argArray:
  * Use [Object.hasMethod] to check function existence by string or [hasMethodRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.hasMethod(function: T) =
-    hasMethod(function.name.camelToSnakeCase().asStringName())
+    hasMethod(function.name.convertToSnakeCase().asStringName())
 
 /**
  * Same as [hasMethod] but the function name is not converted to snake_case
@@ -73,7 +73,7 @@ inline fun <reified T : KFunction<*>> Object.isConnected(
     signal: Signal,
     target: Object,
     function: T
-) = isConnected(signal.name, Callable(target, function.name.camelToSnakeCase().asStringName()))
+) = isConnected(signal.name, Callable(target, function.name.convertToSnakeCase().asStringName()))
 
 /**
  * Same as [isConnected] but the function name is not converted to snake_case
@@ -97,7 +97,7 @@ inline fun <reified T : KFunction<*>> Object.connect(
     flags: Int = 0
 ) = connect(
     signal.name,
-    Callable(target, function.name.camelToSnakeCase().asStringName()),
+    Callable(target, function.name.convertToSnakeCase().asStringName()),
     flags.toLong()
 )
 
@@ -121,7 +121,7 @@ inline fun <reified T : KFunction<*>> Object.disconnect(
     signal: Signal,
     target: Object,
     function: T
-) = disconnect(signal.name, Callable(target, function.name.camelToSnakeCase().asStringName()))
+) = disconnect(signal.name, Callable(target, function.name.convertToSnakeCase().asStringName()))
 
 /**
  * Same as [disconnect] but the function name is not converted to snake_case
