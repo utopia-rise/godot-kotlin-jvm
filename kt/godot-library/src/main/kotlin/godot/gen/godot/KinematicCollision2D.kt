@@ -9,11 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TypeManager
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType._RID
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

@@ -16,6 +16,7 @@ import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
+import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotRegistrationPackage
@@ -95,7 +96,7 @@ object FunctionRegistrationGenerator {
 
         return buildList {
             add(getFunctionReference(registeredFunction, className))
-            add(registeredFunction.returnType?.toKtVariantType() ?: ClassName("$godotCorePackage.${GodotKotlinJvmTypes.variantType}", "NIL"))
+            add(registeredFunction.returnType?.toKtVariantType() ?: VARIANT_PARSER_NIL)
 
             if (registeredFunction.parameters.isNotEmpty()) {
                 registeredFunction.parameters.forEach { parameter ->

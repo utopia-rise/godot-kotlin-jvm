@@ -12,11 +12,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.NIL
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

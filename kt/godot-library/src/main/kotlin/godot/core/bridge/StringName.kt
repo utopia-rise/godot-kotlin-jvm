@@ -12,31 +12,31 @@ class StringName : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     //CONSTRUCTORS
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     constructor(string: String) {
-        TransferContext.writeArguments(VariantType.STRING to string)
+        TransferContext.writeArguments(VariantParser.STRING to string)
         _handle = Bridge.engine_call_constructor_string()
-        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     constructor(stringName: StringName) {
-        TransferContext.writeArguments(VariantType.STRING_NAME to stringName)
+        TransferContext.writeArguments(VariantParser.STRING_NAME to stringName)
         _handle = Bridge.engine_call_copy_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.STRING_NAME)
+        MemoryManager.registerNativeCoreType(this, VariantParser.STRING_NAME)
     }
 
     override fun toString(): String {
         TransferContext.writeArguments()
         Bridge.engine_call_operator_string(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING) as String
+        return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
     /**

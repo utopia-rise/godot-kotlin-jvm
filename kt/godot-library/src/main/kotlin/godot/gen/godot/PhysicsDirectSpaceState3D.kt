@@ -11,11 +11,11 @@ import godot.core.Dictionary
 import godot.core.PackedFloat32Array
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

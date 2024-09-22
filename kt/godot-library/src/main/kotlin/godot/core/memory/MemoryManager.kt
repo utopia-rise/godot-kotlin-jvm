@@ -8,7 +8,7 @@ import godot.core.NodePath
 import godot.core.ObjectID
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantType
+import godot.core.VariantParser
 import godot.util.LRUCache
 import godot.util.VoidPtr
 import java.util.concurrent.ConcurrentHashMap
@@ -198,7 +198,7 @@ internal object MemoryManager {
 
     fun isInstanceValid(ktObject: KtObject) = checkInstance(ktObject.rawPtr, ktObject.objectID.id)
 
-    fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantType) {
+    fun registerNativeCoreType(nativeCoreType: NativeCoreType, variantType: VariantParser) {
         val rawPtr = nativeCoreType._handle
         nativeCoreTypeMap[rawPtr] = NativeCoreBinding(nativeCoreType, variantType)
     }

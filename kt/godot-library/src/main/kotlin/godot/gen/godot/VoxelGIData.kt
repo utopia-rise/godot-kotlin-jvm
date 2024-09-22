@@ -12,13 +12,13 @@ import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.TRANSFORM3D
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -152,7 +152,7 @@ public open class VoxelGIData : Resource() {
     distanceField: PackedByteArray,
     levelCounts: PackedInt32Array,
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantType.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
+    TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
     TransferContext.callMethod(rawPtr, MethodBindings.allocatePtr, NIL)
   }
 
@@ -164,8 +164,8 @@ public open class VoxelGIData : Resource() {
    */
   public final fun getBounds(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getOctreeSize(): Vector3 {

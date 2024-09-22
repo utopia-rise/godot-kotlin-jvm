@@ -14,31 +14,31 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
     //INTERNALS
     internal constructor(@Suppress("LocalVariableName") _handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
     /**
      * Constructs a [PackedVector2Array] as a copy of the given [PackedVector2Array].
      */
     constructor(from: PackedVector2Array) {
-        TransferContext.writeArguments(VariantType.PACKED_VECTOR2_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_VECTOR2_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
     /**
      * Constructs a new [PackedVector2Array] by converting a [VariantArray]<[Vector2]>.
      */
     constructor(from: VariantArray<Vector2>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR2_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR2_ARRAY)
     }
 
     override fun toString(): String {
@@ -66,8 +66,8 @@ class PackedVector2Array : PackedArray<PackedVector2Array, Vector2> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_VECTOR2_ARRAY
-        override val elementVariantType = VariantType.VECTOR2
+        override val packedArrayVariantType = VariantParser.PACKED_VECTOR2_ARRAY
+        override val elementVariantType = VariantParser.VECTOR2
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

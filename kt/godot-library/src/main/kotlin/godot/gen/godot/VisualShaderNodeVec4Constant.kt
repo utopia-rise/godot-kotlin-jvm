@@ -11,8 +11,8 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
-import godot.core.VariantType.QUATERNION
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.QUATERNION
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int

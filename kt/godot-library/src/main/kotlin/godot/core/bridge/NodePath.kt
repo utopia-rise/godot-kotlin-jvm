@@ -12,26 +12,26 @@ class NodePath : NativeCoreType {
     //INTERNAL
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     //CONSTRUCTORS
 
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     constructor(from: String) {
-        TransferContext.writeArguments(VariantType.STRING to from)
+        TransferContext.writeArguments(VariantParser.STRING to from)
         _handle = Bridge.engine_call_constructor_string()
-        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     constructor(from: NodePath) {
-        TransferContext.writeArguments(VariantType.NODE_PATH to from)
+        TransferContext.writeArguments(VariantParser.NODE_PATH to from)
         _handle = Bridge.engine_call_constructor_node_path()
-        MemoryManager.registerNativeCoreType(this, VariantType.NODE_PATH)
+        MemoryManager.registerNativeCoreType(this, VariantParser.NODE_PATH)
     }
 
     //API
@@ -40,7 +40,7 @@ class NodePath : NativeCoreType {
     val path: String
         get() {
             Bridge.engine_call_path(_handle)
-            return TransferContext.readReturnValue(VariantType.STRING) as String
+            return TransferContext.readReturnValue(VariantParser.STRING) as String
         }
 
     /**
@@ -49,7 +49,7 @@ class NodePath : NativeCoreType {
      */
     fun getAsPropertyPath(): NodePath {
         Bridge.engine_call_getAsPropertyPath(_handle)
-        return TransferContext.readReturnValue(VariantType.NODE_PATH) as NodePath
+        return TransferContext.readReturnValue(VariantParser.NODE_PATH) as NodePath
     }
 
     /**
@@ -58,7 +58,7 @@ class NodePath : NativeCoreType {
     fun getName(idx: Int): String {
         TransferContext.writeArguments(VariantCaster.INT to idx)
         Bridge.engine_call_getName(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING) as String
+        return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
     /**
@@ -75,7 +75,7 @@ class NodePath : NativeCoreType {
     fun getSubname(idx: Int): String {
         TransferContext.writeArguments(VariantCaster.INT to idx)
         Bridge.engine_call_getSubname(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING) as String
+        return TransferContext.readReturnValue(VariantParser.STRING) as String
     }
 
     /**
@@ -91,7 +91,7 @@ class NodePath : NativeCoreType {
      */
     fun isAbsolute(): Boolean {
         Bridge.engine_call_isAbsolute(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -107,7 +107,7 @@ class NodePath : NativeCoreType {
      */
     fun isEmpty(): Boolean {
         Bridge.engine_call_isEmpty(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -115,7 +115,7 @@ class NodePath : NativeCoreType {
      */
     fun getConcatenatedNames(): StringName {
         Bridge.engine_call_getConcatenatedNames(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING_NAME) as StringName
+        return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
     /**
@@ -124,16 +124,16 @@ class NodePath : NativeCoreType {
      */
     fun getConcatenatedSubnames(): StringName {
         Bridge.engine_call_getConcatenatedSubnames(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING_NAME) as StringName
+        return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
 
     //UTILITIES
     override fun equals(other: Any?): Boolean {
         return if (other is NodePath) {
-            TransferContext.writeArguments(VariantType.NODE_PATH to other)
+            TransferContext.writeArguments(VariantParser.NODE_PATH to other)
             Bridge.engine_call_equals(_handle)
-            return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+            return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
         } else {
             false
         }

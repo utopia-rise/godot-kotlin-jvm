@@ -14,31 +14,31 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
     /**
      * Constructs a [PackedVector3Array] as a copy of the given [PackedVector3Array].
      */
     constructor(from: PackedVector3Array) {
-        TransferContext.writeArguments(VariantType.PACKED_VECTOR3_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_VECTOR3_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
     /**
      * Constructs a new [PackedVector3Array] by converting a [VariantArray]<[Vector3]>.
      */
     constructor(from: VariantArray<Vector3>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_VECTOR3_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_VECTOR3_ARRAY)
     }
 
     override fun toString(): String {
@@ -66,8 +66,8 @@ class PackedVector3Array : PackedArray<PackedVector3Array, Vector3> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_VECTOR3_ARRAY
-        override val elementVariantType = VariantType.VECTOR3
+        override val packedArrayVariantType = VariantParser.PACKED_VECTOR3_ARRAY
+        override val elementVariantType = VariantParser.VECTOR3
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

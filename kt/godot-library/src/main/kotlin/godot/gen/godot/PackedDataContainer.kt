@@ -9,7 +9,7 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.LONG
+import godot.core.VariantParser.LONG
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

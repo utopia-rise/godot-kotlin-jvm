@@ -13,12 +13,12 @@ import godot.core.AABB
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -469,14 +469,15 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public enum class ShadowCastingSetting(

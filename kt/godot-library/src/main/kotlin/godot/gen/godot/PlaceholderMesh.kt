@@ -11,7 +11,7 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
+import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -70,7 +70,7 @@ public open class PlaceholderMesh : Mesh() {
 
 
   public final fun setAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
 

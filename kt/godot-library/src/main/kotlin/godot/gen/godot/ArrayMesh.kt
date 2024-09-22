@@ -17,16 +17,16 @@ import godot.core.StringName
 import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -370,14 +370,15 @@ public open class ArrayMesh : Mesh() {
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setShadowMesh(mesh: ArrayMesh?): Unit {

@@ -14,15 +14,15 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -660,15 +660,15 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun setFilterBakingAabb(bakingAabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to bakingAabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to bakingAabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
   }
 
   public final fun getFilterBakingAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3): Unit {

@@ -11,11 +11,11 @@ import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.PROJECTION
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType._RID
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PROJECTION
+import godot.core.VariantParser.TRANSFORM3D
+import godot.core.VariantParser.VECTOR3
+import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

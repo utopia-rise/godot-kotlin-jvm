@@ -17,7 +17,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import godot.codegen.services.IKtCallableGenerationService
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.VARIANT_TYPE_NIL
+import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 
 class KtCallableGenerationService : IKtCallableGenerationService {
@@ -293,7 +293,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                             },
                             variantMapperMember,
                             returnTypeParameter,
-                            VARIANT_TYPE_NIL,
+                            VARIANT_PARSER_NIL,
                             *typeVariableNames
                                 .flatMap {
                                     listOf(variantMapperMember, it)

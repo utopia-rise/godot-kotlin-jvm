@@ -30,7 +30,7 @@ abstract class KtCallable<R : Any?>(
             TransferContext.writeReturnValue(ret, variantConverter)
         } catch (t: Throwable) {
             GD.printErr("Error calling a JVM custom Callable from Godot:\n", t.stackTraceToString())
-            TransferContext.writeReturnValue(null, VariantType.NIL)
+            TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
         ret
     }

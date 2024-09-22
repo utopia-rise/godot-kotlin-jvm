@@ -13,11 +13,11 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_INT_64_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int

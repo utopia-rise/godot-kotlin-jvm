@@ -11,10 +11,10 @@ import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

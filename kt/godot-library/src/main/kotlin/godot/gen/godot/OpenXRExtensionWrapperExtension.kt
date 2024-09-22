@@ -11,8 +11,8 @@ import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

@@ -57,7 +57,7 @@ import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
-import godot.tools.common.constants.VARIANT_TYPE_LONG
+import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import java.util.*
@@ -862,7 +862,7 @@ class GenerationService(
                 addStatement(
                     "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
                     TRANSFER_CONTEXT,
-                    VARIANT_TYPE_LONG,
+                    VARIANT_PARSER_LONG,
                     LONG
                 )
             } else if (callable.isBitField()) {
@@ -874,7 +874,7 @@ class GenerationService(
                         "${callable.getTypeClassName().className.simpleName}Value"
                     ),
                     TRANSFER_CONTEXT,
-                    VARIANT_TYPE_LONG,
+                    VARIANT_PARSER_LONG,
                     LONG
                 )
             } else {

@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

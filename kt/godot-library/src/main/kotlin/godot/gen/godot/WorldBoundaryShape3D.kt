@@ -11,8 +11,8 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PLANE
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PLANE
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int

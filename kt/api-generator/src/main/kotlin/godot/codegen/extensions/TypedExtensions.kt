@@ -23,27 +23,27 @@ import godot.tools.common.constants.GODOT_VARIANT_TYPE
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
-import godot.tools.common.constants.VARIANT_TYPE_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_BOOL
-import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
-import godot.tools.common.constants.VARIANT_TYPE_LONG
-import godot.tools.common.constants.VARIANT_TYPE_NIL
-import godot.tools.common.constants.VARIANT_TYPE_NODE_PATH
-import godot.tools.common.constants.VARIANT_TYPE_OBJECT
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_BYTE_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_COLOR_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_32_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_64_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
-import godot.tools.common.constants.VARIANT_TYPE__RID
+import godot.tools.common.constants.VARIANT_PARSER_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_BOOL
+import godot.tools.common.constants.VARIANT_PARSER_DOUBLE
+import godot.tools.common.constants.VARIANT_PARSER_LONG
+import godot.tools.common.constants.VARIANT_PARSER_NIL
+import godot.tools.common.constants.VARIANT_PARSER_NODE_PATH
+import godot.tools.common.constants.VARIANT_PARSER_OBJECT
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_32_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_64_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_STRING_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
+import godot.tools.common.constants.VARIANT_PARSER__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
-import godot.tools.common.constants.variantTypePackage
+import godot.tools.common.constants.variantParserPackage
 import java.util.*
 
 const val enumPrefix = "enum::"
@@ -139,28 +139,28 @@ fun TypedTrait.isObjectSubClass() = !(type.isNullOrEmpty() || isEnum() || isPrim
 val TypedTrait.jvmVariantTypeValue: ClassName
     get() {
         return when {
-            type.isNullOrEmpty() -> VARIANT_TYPE_NIL
-            isEnum() -> VARIANT_TYPE_LONG
-            isBitField() -> VARIANT_TYPE_LONG
-            type == GodotTypes.bool -> VARIANT_TYPE_BOOL
-            type == GodotTypes.int -> VARIANT_TYPE_LONG
-            type == GodotTypes.float -> VARIANT_TYPE_DOUBLE
-            type == GodotTypes.nodePath -> VARIANT_TYPE_NODE_PATH
-            type == GodotTypes.stringName -> VARIANT_TYPE_STRING_NAME
-            type == GodotTypes.rid -> VARIANT_TYPE__RID
-            type == GodotTypes.array || isTypedArray() -> VARIANT_TYPE_ARRAY
-            type == GodotTypes.packedByteArray -> VARIANT_TYPE_PACKED_BYTE_ARRAY
-            type == GodotTypes.packedInt32Array -> VARIANT_TYPE_PACKED_INT_32_ARRAY
-            type == GodotTypes.packedInt64Array -> VARIANT_TYPE_PACKED_INT_64_ARRAY
-            type == GodotTypes.packedFloat32Array -> VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
-            type == GodotTypes.packedFloat64Array -> VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
-            type == GodotTypes.packedStringArray -> VARIANT_TYPE_PACKED_STRING_ARRAY
-            type == GodotTypes.packedVector2Array -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
-            type == GodotTypes.packedVector3Array -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
-            type == GodotTypes.packedColorArray -> VARIANT_TYPE_PACKED_COLOR_ARRAY
+            type.isNullOrEmpty() -> VARIANT_PARSER_NIL
+            isEnum() -> VARIANT_PARSER_LONG
+            isBitField() -> VARIANT_PARSER_LONG
+            type == GodotTypes.bool -> VARIANT_PARSER_BOOL
+            type == GodotTypes.int -> VARIANT_PARSER_LONG
+            type == GodotTypes.float -> VARIANT_PARSER_DOUBLE
+            type == GodotTypes.nodePath -> VARIANT_PARSER_NODE_PATH
+            type == GodotTypes.stringName -> VARIANT_PARSER_STRING_NAME
+            type == GodotTypes.rid -> VARIANT_PARSER__RID
+            type == GodotTypes.array || isTypedArray() -> VARIANT_PARSER_ARRAY
+            type == GodotTypes.packedByteArray -> VARIANT_PARSER_PACKED_BYTE_ARRAY
+            type == GodotTypes.packedInt32Array -> VARIANT_PARSER_PACKED_INT_32_ARRAY
+            type == GodotTypes.packedInt64Array -> VARIANT_PARSER_PACKED_INT_64_ARRAY
+            type == GodotTypes.packedFloat32Array -> VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
+            type == GodotTypes.packedFloat64Array -> VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
+            type == GodotTypes.packedStringArray -> VARIANT_PARSER_PACKED_STRING_ARRAY
+            type == GodotTypes.packedVector2Array -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
+            type == GodotTypes.packedVector3Array -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+            type == GodotTypes.packedColorArray -> VARIANT_PARSER_PACKED_COLOR_ARRAY
             type == GodotTypes.variant -> VARIANT_CASTER_ANY
-            isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.uppercase(Locale.US))
-            else -> VARIANT_TYPE_OBJECT
+            isCoreType() || isPrimitive() -> ClassName(variantParserPackage, type!!.uppercase(Locale.US))
+            else -> VARIANT_PARSER_OBJECT
         }
     }
 

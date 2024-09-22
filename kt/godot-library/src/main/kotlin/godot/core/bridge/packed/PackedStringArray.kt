@@ -14,31 +14,31 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
     /**
      * Constructs a [PackedStringArray] as a copy of the given [PackedStringArray].
      */
     constructor(from: PackedStringArray) {
-        TransferContext.writeArguments(VariantType.PACKED_STRING_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_STRING_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
     /**
      * Constructs a new [PackedStringArray] by converting a [VariantArray]<[String]>.
      */
     constructor(from: VariantArray<String>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_STRING_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_STRING_ARRAY)
     }
 
     override fun toString(): String {
@@ -66,8 +66,8 @@ class PackedStringArray : PackedArray<PackedStringArray, String> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_STRING_ARRAY
-        override val elementVariantType = VariantType.STRING
+        override val packedArrayVariantType = VariantParser.PACKED_STRING_ARRAY
+        override val elementVariantType = VariantParser.STRING
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

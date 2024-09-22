@@ -42,7 +42,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      * Note: Calling [bsearch] on an unsorted array results in unexpected behavior.
      */
     fun bsearch(value: T, before: Boolean = true): Int {
-        TransferContext.writeArguments(bridge.elementVariantType to value, VariantType.BOOL to before)
+        TransferContext.writeArguments(bridge.elementVariantType to value, VariantParser.BOOL to before)
         bridge.engine_call_bsearch(_handle)
         return TransferContext.readReturnValue(VariantCaster.INT) as Int
     }
@@ -107,7 +107,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
     fun has(value: T): Boolean {
         TransferContext.writeArguments(bridge.elementVariantType to value)
         bridge.engine_call_has(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -124,7 +124,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
      */
     fun isEmpty(): Boolean {
         bridge.engine_call_is_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -199,7 +199,7 @@ abstract class PackedArray<Derived : PackedArray<Derived, T>, T> internal constr
 
     fun toPackedByteArray(): PackedByteArray {
         bridge.engine_call_to_byte_array(_handle)
-        return TransferContext.readReturnValue(VariantType.PACKED_BYTE_ARRAY) as PackedByteArray
+        return TransferContext.readReturnValue(VariantParser.PACKED_BYTE_ARRAY) as PackedByteArray
     }
 
     //UTILITIES

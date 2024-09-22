@@ -11,11 +11,11 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.TRANSFORM2D
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.TRANSFORM2D
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean

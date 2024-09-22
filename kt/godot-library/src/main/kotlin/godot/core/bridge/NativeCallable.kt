@@ -14,42 +14,42 @@ class NativeCallable : NativeCoreType, Callable {
 
     internal constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
     internal constructor(target: Object, methodName: StringName) {
-        TransferContext.writeArguments(VariantType.OBJECT to target, VariantType.STRING_NAME to methodName)
+        TransferContext.writeArguments(VariantParser.OBJECT to target, VariantParser.STRING_NAME to methodName)
         _handle = Bridge.engine_call_constructor_object_string_name()
-        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
     internal constructor(callable: NativeCallable) {
-        TransferContext.writeArguments(VariantType.CALLABLE to callable)
+        TransferContext.writeArguments(VariantParser.CALLABLE to callable)
         _handle = Bridge.engine_call_copy_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
     internal constructor(ktCallable: KtCallable<*>) {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
         _handle = Bridge.engine_call_constructor_kt_custom_callable(ktCallable, ktCallable.variantConverter.id, ktCallable.hashCode())
-        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
     internal constructor(_handle: VoidPtr){
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.CALLABLE)
+        MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
     fun bind(vararg args: Any?): NativeCallable {
         TransferContext.writeArguments(*args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_bind(_handle)
-        return TransferContext.readReturnValue(VariantType.CALLABLE) as NativeCallable
+        return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
     }
 
     fun bindv(args: VariantArray<Any?>): NativeCallable {
-        TransferContext.writeArguments(VariantType.ARRAY to args)
+        TransferContext.writeArguments(VariantParser.ARRAY to args)
         Bridge.engine_call_bindv(_handle)
-        return TransferContext.readReturnValue(VariantType.CALLABLE) as NativeCallable
+        return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
     }
 
     override fun call(vararg args: Any?): Any? {
@@ -64,7 +64,7 @@ class NativeCallable : NativeCoreType, Callable {
     }
 
     fun callv(args: VariantArray<Any?>): Any? {
-        TransferContext.writeArguments(VariantType.ARRAY to args)
+        TransferContext.writeArguments(VariantParser.ARRAY to args)
         Bridge.engine_call_callv(_handle)
         return TransferContext.readReturnValue(VariantCaster.ANY)
     }
@@ -72,7 +72,7 @@ class NativeCallable : NativeCoreType, Callable {
     fun getBoundArguments(): VariantArray<Any?> {
         Bridge.engine_call_get_bound_arguments(_handle)
         @Suppress("UNCHECKED_CAST")
-        return TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<Any?>
+        return TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<Any?>
     }
 
     fun getBoundArgumentCount(): Int {
@@ -82,17 +82,17 @@ class NativeCallable : NativeCoreType, Callable {
 
     fun getMethod(): StringName {
         Bridge.engine_call_get_method(_handle)
-        return TransferContext.readReturnValue(VariantType.STRING_NAME) as StringName
+        return TransferContext.readReturnValue(VariantParser.STRING_NAME) as StringName
     }
 
     fun getObject(): Object {
         Bridge.engine_call_get_object(_handle)
-        return TransferContext.readReturnValue(VariantType.OBJECT) as Object
+        return TransferContext.readReturnValue(VariantParser.OBJECT) as Object
     }
 
     fun getObjectId(): ObjectID {
         Bridge.engine_call_get_object_id(_handle)
-        return ObjectID(TransferContext.readReturnValue(VariantType.LONG) as Long)
+        return ObjectID(TransferContext.readReturnValue(VariantParser.LONG) as Long)
     }
 
     override fun hashCode(): Int {
@@ -102,22 +102,22 @@ class NativeCallable : NativeCoreType, Callable {
 
     fun isCustom(): Boolean {
         Bridge.engine_call_is_custom(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     fun isNull(): Boolean {
         Bridge.engine_call_is_null(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     fun isStandard(): Boolean {
         Bridge.engine_call_is_standard(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     fun isValid(): Boolean {
         Bridge.engine_call_is_valid(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     fun rpc(vararg args: Any?) {
@@ -126,14 +126,14 @@ class NativeCallable : NativeCoreType, Callable {
     }
 
     fun rpcId(peerId: Long, vararg args: Any?) {
-        TransferContext.writeArguments(VariantType.LONG to peerId, *args.map { VariantCaster.ANY to it }.toTypedArray())
+        TransferContext.writeArguments(VariantParser.LONG to peerId, *args.map { VariantCaster.ANY to it }.toTypedArray())
         Bridge.engine_call_rpc_id(_handle)
     }
 
     fun unbind(argCount: Int): NativeCallable {
         TransferContext.writeArguments(VariantCaster.INT to argCount)
         Bridge.engine_call_unbind(_handle)
-        return TransferContext.readReturnValue(VariantType.CALLABLE) as NativeCallable
+        return TransferContext.readReturnValue(VariantParser.CALLABLE) as NativeCallable
     }
 
     override fun equals(other: Any?): Boolean {

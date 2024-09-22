@@ -2,7 +2,7 @@
 package godot
 
 import godot.core.TypeManager
-import godot.core.VariantType.OBJECT
+import godot.core.VariantParser.OBJECT
 import godot.core.variantMapper
 import kotlin.Unit
 

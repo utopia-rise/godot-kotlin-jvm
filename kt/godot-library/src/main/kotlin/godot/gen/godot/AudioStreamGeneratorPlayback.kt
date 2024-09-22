@@ -9,11 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

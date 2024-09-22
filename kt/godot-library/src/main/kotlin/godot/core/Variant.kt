@@ -110,7 +110,7 @@ sealed interface VariantConverter {
     fun toGodot(buffer: ByteBuffer, any: Any?)
 }
 
-enum class VariantType(override val id: Int) : VariantConverter {
+enum class VariantParser(override val id: Int) : VariantConverter {
     NIL(0) {
         override fun toUnsafeKotlin(buffer: ByteBuffer) = Unit
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) {}
@@ -471,7 +471,7 @@ enum class VariantType(override val id: Int) : VariantConverter {
         if (idInBuffer != id) {
             throw TypeCastException(
                 "Shared Buffer Error: JVM expected a ${this::class.simpleName} but received a ${
-                    VariantType.from(
+                    VariantParser.from(
                         idInBuffer.toLong()
                     )
                 }."
@@ -495,10 +495,10 @@ enum class VariantType(override val id: Int) : VariantConverter {
 }
 
 //TODO: Unify VariantCaster with Meta in the API gen + use it in entry gen. Or maybe get rid of it and just have both with their own solution.
-sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
+sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
     override val id by coreVariant::id
 
-    sealed class VariantSimpleCaster(coreVariant: VariantType) : VariantCaster(coreVariant) {
+    sealed class VariantSimpleCaster(coreVariant: VariantParser) : VariantCaster(coreVariant) {
         override fun toKotlin(buffer: ByteBuffer) = toKotlinCast(coreVariant.toKotlin(buffer))
         override fun toGodot(buffer: ByteBuffer, any: Any?) = coreVariant.toGodot(buffer, toGodotCast(any))
 
@@ -506,17 +506,17 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
         abstract fun toGodotCast(any: Any?): Any?
     }
 
-    data object BYTE : VariantSimpleCaster(VariantType.LONG) {
+    data object BYTE : VariantSimpleCaster(VariantParser.LONG) {
         override fun toKotlinCast(any: Any?) = (any as Long).toByte()
         override fun toGodotCast(any: Any?) = (any as Byte).toLong()
     }
 
-    data object INT : VariantSimpleCaster(VariantType.LONG) {
+    data object INT : VariantSimpleCaster(VariantParser.LONG) {
         override fun toKotlinCast(any: Any?) = (any as Long).toInt()
         override fun toGodotCast(any: Any?) = (any as Int).toLong()
     }
 
-    data object FLOAT : VariantSimpleCaster(VariantType.DOUBLE) {
+    data object FLOAT : VariantSimpleCaster(VariantParser.DOUBLE) {
         override fun toKotlinCast(any: Any?) = (any as Double).toFloat()
         override fun toGodotCast(any: Any?) = (any as Float).toDouble()
     }
@@ -524,15 +524,15 @@ sealed class VariantCaster(val coreVariant: VariantType) : VariantConverter {
     // It can seem weird for ANY to have a NIL id, which is the opposite concept. But that's how Godot works.
     // Each parameter, property, or return type of Variant type actually uses a PropertyUsageFlag named NIL_IS_VARIANT.
     // https://docs.godotengine.org/en/stable/classes/class_%40globalscope.html#enum-globalscope-propertyusageflags
-    data object ANY : VariantCaster(VariantType.NIL) {
+    data object ANY : VariantCaster(VariantParser.NIL) {
         override fun toKotlin(buffer: ByteBuffer): Any? {
             val expectedType = buffer.variantType
-            return VariantType.entries[expectedType].toUnsafeKotlin(buffer)
+            return VariantParser.entries[expectedType].toUnsafeKotlin(buffer)
         }
 
         override fun toGodot(buffer: ByteBuffer, any: Any?) {
             if (any === null) {
-                VariantType.NIL.toGodot(buffer, null)
+                VariantParser.NIL.toGodot(buffer, null)
             } else {
                 val type = variantMapper[any::class]
                     ?: throw UnsupportedOperationException("Can't convert type ${any::class} to Variant")

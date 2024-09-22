@@ -12,8 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Signal0
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.NIL
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -87,7 +87,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
 
   public final fun setAabb(rect: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to rect)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
 

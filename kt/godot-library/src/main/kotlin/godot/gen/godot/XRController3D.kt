@@ -12,11 +12,11 @@ import godot.core.Signal2
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.core.signal
