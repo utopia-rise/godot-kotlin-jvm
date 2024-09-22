@@ -24,7 +24,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
         Error err;
         Ref<FileAccess> file = FileAccess::open(file_location, FileAccess::WRITE, &err);
         if (err != OK) {
-            LOG_WARNING("Cannot save template file '" + file_location + "'.");
+            JVM_LOG_WARNING("Cannot save template file '" + file_location + "'.");
         } else if (file_is_binary[i]) {
             PackedByteArray file_content = marshall->base64_to_raw(file_contents[i]);
             file->store_buffer(file_content);
@@ -34,6 +34,9 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
                                     .replace(PROJECT_NAME_TEMPLATE, GLOBAL_GET("application/config/name"));
             file->store_string(file_content);
         }
+#if UNIX_ENABLED
+        file->set_unix_permissions(file_location, FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER);
+#endif
     }
 
     memdelete(marshall);

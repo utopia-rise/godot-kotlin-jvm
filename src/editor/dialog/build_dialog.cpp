@@ -18,7 +18,7 @@ void BuildDialog::set_scrollbar_at_bottom() {
 
 void BuildDialog::update_state(String log) {
     log_label->set_text(log);
-    LOG_INFO(log);
+    JVM_LOG_INFO(log);
 
     popup_centered();
     scroll_container->connect(SNAME("draw"), callable_mp(this, &BuildDialog::set_scrollbar_at_bottom), CONNECT_ONE_SHOT);
