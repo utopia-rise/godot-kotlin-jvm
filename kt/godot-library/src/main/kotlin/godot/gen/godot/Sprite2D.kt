@@ -22,7 +22,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -40,12 +39,12 @@ public open class Sprite2D : Node2D() {
   /**
    * Emitted when the [frame] changes.
    */
-  public val frameChanged: Signal0 by signal()
+  public val frameChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [texture] changes.
    */
-  public val textureChanged: Signal0 by signal()
+  public val textureChanged: Signal0 by Signal0
 
   /**
    * [Texture2D] object to draw.

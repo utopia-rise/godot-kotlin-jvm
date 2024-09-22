@@ -26,7 +26,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -46,30 +45,30 @@ public object XRServer : Object() {
   /**
    * Emitted when the reference frame transform changes.
    */
-  public val referenceFrameChanged: Signal0 by signal()
+  public val referenceFrameChanged: Signal0 by Signal0
 
   /**
    * Emitted when a new interface has been added.
    */
-  public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
+  public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
-  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
+  public val interfaceRemoved: Signal1<StringName> by Signal1
 
   /**
    * Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if
    * you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the
    * appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker.
    */
-  public val trackerAdded: Signal2<StringName, Long> by signal("trackerName", "type")
+  public val trackerAdded: Signal2<StringName, Long> by Signal2
 
   /**
    * Emitted when an existing tracker has been updated. This can happen if the user switches
    * controllers.
    */
-  public val trackerUpdated: Signal2<StringName, Long> by signal("trackerName", "type")
+  public val trackerUpdated: Signal2<StringName, Long> by Signal2
 
   /**
    * Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D]
@@ -77,7 +76,7 @@ public object XRServer : Object() {
    * active again when a new tracker becomes available (i.e. a new controller is switched on that takes
    * the place of the previous one).
    */
-  public val trackerRemoved: Signal2<StringName, Long> by signal("trackerName", "type")
+  public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_XRSERVER)

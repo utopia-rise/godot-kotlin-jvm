@@ -19,7 +19,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -46,7 +45,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * Emitted every time the blend space's triangles are created, removed, or when one of their
    * vertices changes position.
    */
-  public val trianglesUpdated: Signal0 by signal()
+  public val trianglesUpdated: Signal0 by Signal0
 
   /**
    * If `true`, the blend space is triangulated automatically. The mesh updates every time you add

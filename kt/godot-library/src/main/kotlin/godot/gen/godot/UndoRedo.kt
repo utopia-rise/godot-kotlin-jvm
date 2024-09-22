@@ -20,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -136,7 +135,7 @@ public open class UndoRedo : Object() {
   /**
    * Called when [undo] or [redo] was called.
    */
-  public val versionChanged: Signal0 by signal()
+  public val versionChanged: Signal0 by Signal0
 
   /**
    * The maximum number of steps that can be stored in the undo/redo history. If the number of

@@ -25,7 +25,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -66,8 +65,7 @@ public open class Area2D : CollisionObject2D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val bodyShapeEntered: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeEntered: Signal4<RID, Node2D, Long, Long> by Signal4
 
   /**
    * Emitted when a [Shape2D] of the received [body] exits a shape of this area. [body] can be a
@@ -75,22 +73,21 @@ public open class Area2D : CollisionObject2D() {
    * configured. Requires [monitoring] to be set to `true`.
    * See also [signal body_shape_entered].
    */
-  public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by Signal4
 
   /**
    * Emitted when the received [body] enters this area. [body] can be a [PhysicsBody2D] or a
    * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
    * [monitoring] to be set to `true`.
    */
-  public val bodyEntered: Signal1<Node2D> by signal("body")
+  public val bodyEntered: Signal1<Node2D> by Signal1
 
   /**
    * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody2D] or a
    * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
    * [monitoring] to be set to `true`.
    */
-  public val bodyExited: Signal1<Node2D> by signal("body")
+  public val bodyExited: Signal1<Node2D> by Signal1
 
   /**
    * Emitted when a [Shape2D] of the received [area] enters a shape of this area. Requires
@@ -109,26 +106,24 @@ public open class Area2D : CollisionObject2D() {
    * var local_shape_node = shape_owner_get_owner(local_shape_owner)
    * ```
    */
-  public val areaShapeEntered: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
-      "areaShapeIndex", "localShapeIndex")
+  public val areaShapeEntered: Signal4<RID, Area2D, Long, Long> by Signal4
 
   /**
    * Emitted when a [Shape2D] of the received [area] exits a shape of this area. Requires
    * [monitoring] to be set to `true`.
    * See also [signal area_shape_entered].
    */
-  public val areaShapeExited: Signal4<RID, Area2D, Long, Long> by signal("areaRid", "area",
-      "areaShapeIndex", "localShapeIndex")
+  public val areaShapeExited: Signal4<RID, Area2D, Long, Long> by Signal4
 
   /**
    * Emitted when the received [area] enters this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaEntered: Signal1<Area2D> by signal("area")
+  public val areaEntered: Signal1<Area2D> by Signal1
 
   /**
    * Emitted when the received [area] exits this area. Requires [monitoring] to be set to `true`.
    */
-  public val areaExited: Signal1<Area2D> by signal("area")
+  public val areaExited: Signal1<Area2D> by Signal1
 
   /**
    * If `true`, the area detects bodies or areas entering and exiting it.

@@ -12,7 +12,6 @@ import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
@@ -54,7 +53,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */
-  public val timeout: Signal0 by signal()
+  public val timeout: Signal0 by Signal0
 
   /**
    * The time remaining (in seconds).

@@ -20,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -140,14 +139,14 @@ public open class WebXRInterface internal constructor() : XRInterface() {
   /**
    * Emitted by [isSessionSupported] to indicate if the given [sessionMode] is supported or not.
    */
-  public val sessionSupported: Signal2<String, Boolean> by signal("sessionMode", "supported")
+  public val sessionSupported: Signal2<String, Boolean> by Signal2
 
   /**
    * Emitted by [XRInterface.initialize] if the session is successfully started.
    * At this point, it's safe to do `get_viewport().use_xr = true` to instruct Godot to start
    * rendering to the XR device.
    */
-  public val sessionStarted: Signal0 by signal()
+  public val sessionStarted: Signal0 by Signal0
 
   /**
    * Emitted when the user ends the WebXR session (which can be done using UI from the browser or
@@ -155,61 +154,61 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * At this point, you should do `get_viewport().use_xr = false` to instruct Godot to resume
    * rendering to the screen.
    */
-  public val sessionEnded: Signal0 by signal()
+  public val sessionEnded: Signal0 by Signal0
 
   /**
    * Emitted by [XRInterface.initialize] if the session fails to start.
    * [message] may optionally contain an error message from WebXR, or an empty string if no message
    * is available.
    */
-  public val sessionFailed: Signal1<String> by signal("message")
+  public val sessionFailed: Signal1<String> by Signal1
 
   /**
    * Emitted when one of the input source has started its "primary action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val selectstart: Signal1<Long> by signal("inputSourceId")
+  public val selectstart: Signal1<Long> by Signal1
 
   /**
    * Emitted after one of the input sources has finished its "primary action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val select: Signal1<Long> by signal("inputSourceId")
+  public val select: Signal1<Long> by Signal1
 
   /**
    * Emitted when one of the input sources has finished its "primary action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val selectend: Signal1<Long> by signal("inputSourceId")
+  public val selectend: Signal1<Long> by Signal1
 
   /**
    * Emitted when one of the input sources has started its "primary squeeze action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val squeezestart: Signal1<Long> by signal("inputSourceId")
+  public val squeezestart: Signal1<Long> by Signal1
 
   /**
    * Emitted after one of the input sources has finished its "primary squeeze action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val squeeze: Signal1<Long> by signal("inputSourceId")
+  public val squeeze: Signal1<Long> by Signal1
 
   /**
    * Emitted when one of the input sources has finished its "primary squeeze action".
    * Use [getInputSourceTracker] and [getInputSourceTargetRayMode] to get more information about the
    * input source.
    */
-  public val squeezeend: Signal1<Long> by signal("inputSourceId")
+  public val squeezeend: Signal1<Long> by Signal1
 
   /**
    * Emitted when [visibilityState] has changed.
    */
-  public val visibilityStateChanged: Signal0 by signal()
+  public val visibilityStateChanged: Signal0 by Signal0
 
   /**
    * Emitted to indicate that the reference space has been reset or reconfigured.
@@ -219,12 +218,12 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * See [url=https://developer.mozilla.org/en-US/docs/Web/API/XRReferenceSpace/reset_event]WebXR's
    * XRReferenceSpace reset event[/url] for more information.
    */
-  public val referenceSpaceReset: Signal0 by signal()
+  public val referenceSpaceReset: Signal0 by Signal0
 
   /**
    * Emitted after the display's refresh rate has changed.
    */
-  public val displayRefreshRateChanged: Signal0 by signal()
+  public val displayRefreshRateChanged: Signal0 by Signal0
 
   /**
    * The session mode used by [XRInterface.initialize] when setting up the WebXR session.

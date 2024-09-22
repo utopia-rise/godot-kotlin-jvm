@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -64,18 +63,18 @@ public open class LineEdit : Control() {
   /**
    * Emitted when the text changes.
    */
-  public val textChanged: Signal1<String> by signal("newText")
+  public val textChanged: Signal1<String> by Signal1
 
   /**
    * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to
    * fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
    */
-  public val textChangeRejected: Signal1<String> by signal("rejectedSubstring")
+  public val textChangeRejected: Signal1<String> by Signal1
 
   /**
    * Emitted when the user presses [KEY_ENTER] on the [LineEdit].
    */
-  public val textSubmitted: Signal1<String> by signal("newText")
+  public val textSubmitted: Signal1<String> by Signal1
 
   /**
    * String value of the [LineEdit].

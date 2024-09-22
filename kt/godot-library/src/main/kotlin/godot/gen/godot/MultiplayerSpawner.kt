@@ -19,7 +19,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -43,13 +42,13 @@ public open class MultiplayerSpawner : Node() {
    * Emitted when a spawnable scene or custom spawn was despawned by the multiplayer authority. Only
    * called on puppets.
    */
-  public val despawned: Signal1<Node> by signal("node")
+  public val despawned: Signal1<Node> by Signal1
 
   /**
    * Emitted when a spawnable scene or custom spawn was spawned by the multiplayer authority. Only
    * called on puppets.
    */
-  public val spawned: Signal1<Node> by signal("node")
+  public val spawned: Signal1<Node> by Signal1
 
   /**
    * Path to the spawn root. Spawnable scenes that are added as direct children are replicated to

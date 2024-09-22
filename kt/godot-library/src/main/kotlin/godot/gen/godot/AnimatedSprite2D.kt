@@ -22,7 +22,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -46,29 +45,29 @@ public open class AnimatedSprite2D : Node2D() {
   /**
    * Emitted when [spriteFrames] changes.
    */
-  public val spriteFramesChanged: Signal0 by signal()
+  public val spriteFramesChanged: Signal0 by Signal0
 
   /**
    * Emitted when [animation] changes.
    */
-  public val animationChanged: Signal0 by signal()
+  public val animationChanged: Signal0 by Signal0
 
   /**
    * Emitted when [frame] changes.
    */
-  public val frameChanged: Signal0 by signal()
+  public val frameChanged: Signal0 by Signal0
 
   /**
    * Emitted when the animation loops.
    */
-  public val animationLooped: Signal0 by signal()
+  public val animationLooped: Signal0 by Signal0
 
   /**
    * Emitted when the animation reaches the end, or the start if it is played in reverse. When the
    * animation finishes, it pauses the playback.
    * **Note:** This signal is not emitted if an animation is looping.
    */
-  public val animationFinished: Signal0 by signal()
+  public val animationFinished: Signal0 by Signal0
 
   /**
    * The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit,

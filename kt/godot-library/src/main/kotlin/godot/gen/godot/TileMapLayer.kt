@@ -26,7 +26,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -56,7 +55,7 @@ public open class TileMapLayer : Node2D() {
    * executing complex processing in a connected function, and consider delaying it to the end of the
    * frame instead (i.e. calling [Object.callDeferred]).
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * The raw tile map data as a byte array.

@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -46,7 +45,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Emitted when the audio stops playing.
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   /**
    * The [AudioStream] resource to be played.

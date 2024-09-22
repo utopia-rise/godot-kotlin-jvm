@@ -14,7 +14,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -33,13 +32,13 @@ public open class BoneMap : Resource() {
    * This signal is emitted when change the key value in the [BoneMap]. This is used to validate
    * mapping and to update [BoneMap] editor.
    */
-  public val boneMapUpdated: Signal0 by signal()
+  public val boneMapUpdated: Signal0 by Signal0
 
   /**
    * This signal is emitted when change the value in profile or change the reference of profile.
    * This is used to update key names in the [BoneMap] and to redraw the [BoneMap] editor.
    */
-  public val profileUpdated: Signal0 by signal()
+  public val profileUpdated: Signal0 by Signal0
 
   /**
    * A [SkeletonProfile] of the mapping target. Key names in the [BoneMap] are synchronized with it.

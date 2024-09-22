@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -37,7 +36,7 @@ public open class Curve : Resource() {
   /**
    * Emitted when [maxValue] or [minValue] is changed.
    */
-  public val rangeChanged: Signal0 by signal()
+  public val rangeChanged: Signal0 by Signal0
 
   /**
    * The minimum value the curve can reach.

@@ -20,7 +20,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -41,7 +40,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Emitted when the input port information is changed.
    */
-  public val nodeChanged: Signal1<StringName> by signal("nodeName")
+  public val nodeChanged: Signal1<StringName> by Signal1
 
   /**
    * The global offset of all sub animation nodes.

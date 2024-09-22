@@ -21,7 +21,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -42,13 +41,12 @@ public object AudioServer : Object() {
   /**
    * Emitted when an audio bus is added, deleted, or moved.
    */
-  public val busLayoutChanged: Signal0 by signal()
+  public val busLayoutChanged: Signal0 by Signal0
 
   /**
    * Emitted when the audio bus at [busIndex] is renamed from [oldName] to [newName].
    */
-  public val busRenamed: Signal3<Long, StringName, StringName> by signal("busIndex", "oldName",
-      "newName")
+  public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_AUDIOSERVER)

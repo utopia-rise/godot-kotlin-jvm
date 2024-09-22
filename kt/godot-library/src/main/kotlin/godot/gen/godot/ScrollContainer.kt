@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -42,7 +41,7 @@ public open class ScrollContainer : Container() {
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
-  public val scrollStarted: Signal0 by signal()
+  public val scrollStarted: Signal0 by Signal0
 
   /**
    * Emitted when scrolling stops when dragging the scrollable area *with a touch event*. This
@@ -51,7 +50,7 @@ public open class ScrollContainer : Container() {
    * **Note:** This signal is only emitted on Android or iOS, or on desktop/web platforms when
    * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is enabled.
    */
-  public val scrollEnded: Signal0 by signal()
+  public val scrollEnded: Signal0 by Signal0
 
   /**
    * If `true`, the ScrollContainer will automatically scroll to focused children (including

@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -37,7 +36,7 @@ public open class SkeletonModifier3D : Node3D() {
    * **Note:** If you want to get the modified bone pose by the modifier, you must use
    * [Skeleton3D.getBonePose] or [Skeleton3D.getBoneGlobalPose] at the moment this signal is fired.
    */
-  public val modificationProcessed: Signal0 by signal()
+  public val modificationProcessed: Signal0 by Signal0
 
   /**
    * If `true`, the [SkeletonModifier3D] will be processing.

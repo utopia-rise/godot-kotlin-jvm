@@ -19,7 +19,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -48,27 +47,27 @@ public open class XRController3D : XRNode3D() {
   /**
    * Emitted when a button on this controller is pressed.
    */
-  public val buttonPressed: Signal1<String> by signal("name")
+  public val buttonPressed: Signal1<String> by Signal1
 
   /**
    * Emitted when a button on this controller is released.
    */
-  public val buttonReleased: Signal1<String> by signal("name")
+  public val buttonReleased: Signal1<String> by Signal1
 
   /**
    * Emitted when a trigger or similar input on this controller changes value.
    */
-  public val inputFloatChanged: Signal2<String, Double> by signal("name", "value")
+  public val inputFloatChanged: Signal2<String, Double> by Signal2
 
   /**
    * Emitted when a thumbstick or thumbpad on this controller is moved.
    */
-  public val inputVector2Changed: Signal2<String, Vector2> by signal("name", "value")
+  public val inputVector2Changed: Signal2<String, Vector2> by Signal2
 
   /**
    * Emitted when the interaction profile on this controller is changed.
    */
-  public val profileChanged: Signal1<String> by signal("role")
+  public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_XRCONTROLLER3D, scriptIndex)

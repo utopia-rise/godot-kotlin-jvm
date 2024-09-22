@@ -23,7 +23,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -55,7 +54,7 @@ public open class CanvasLayer : Node() {
   /**
    * Emitted when visibility of the layer is changed. See [visible].
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.

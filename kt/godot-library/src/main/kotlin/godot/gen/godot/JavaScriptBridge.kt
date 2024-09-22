@@ -20,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -48,7 +47,7 @@ public object JavaScriptBridge : Object() {
    * activated because a previous version is active. See [pwaUpdate] to force the update to take place
    * immediately.
    */
-  public val pwaUpdateAvailable: Signal0 by signal()
+  public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_JAVASCRIPTBRIDGE)

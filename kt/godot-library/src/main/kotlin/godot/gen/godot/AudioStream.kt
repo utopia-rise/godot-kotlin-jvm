@@ -15,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -35,7 +34,7 @@ public open class AudioStream : Resource() {
   /**
    * Signal to be emitted to notify when the parameter list changed.
    */
-  public val parameterListChanged: Signal0 by signal()
+  public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)

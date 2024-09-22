@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -35,7 +34,7 @@ public open class AnimationTree : AnimationMixer() {
   /**
    * Emitted when the [animPlayer] is changed.
    */
-  public val animationPlayerChanged: Signal0 by signal()
+  public val animationPlayerChanged: Signal0 by Signal0
 
   /**
    * The root animation node of this [AnimationTree]. See [AnimationRootNode].

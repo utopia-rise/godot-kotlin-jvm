@@ -23,7 +23,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -48,7 +47,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.
    */
-  public val inputEvent: Signal3<Node, InputEvent, Long> by signal("viewport", "event", "shapeIdx")
+  public val inputEvent: Signal3<Node, InputEvent, Long> by Signal3
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputPickable] to
@@ -59,7 +58,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
    * [CollisionObject2D] in question.
    */
-  public val mouseEntered: Signal0 by signal()
+  public val mouseEntered: Signal0 by Signal0
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputPickable] to be
@@ -70,21 +69,21 @@ public open class CollisionObject2D internal constructor() : Node2D() {
    * This signal may also not be emitted if another [CollisionObject2D] is overlapping the
    * [CollisionObject2D] in question.
    */
-  public val mouseExited: Signal0 by signal()
+  public val mouseExited: Signal0 by Signal0
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes or moves from one shape to
    * another. [shapeIdx] is the child index of the newly entered [Shape2D]. Requires [inputPickable] to
    * be `true` and at least one [collisionLayer] bit to be set.
    */
-  public val mouseShapeEntered: Signal1<Long> by signal("shapeIdx")
+  public val mouseShapeEntered: Signal1<Long> by Signal1
 
   /**
    * Emitted when the mouse pointer exits any of this object's shapes. [shapeIdx] is the child index
    * of the exited [Shape2D]. Requires [inputPickable] to be `true` and at least one [collisionLayer]
    * bit to be set.
    */
-  public val mouseShapeExited: Signal1<Long> by signal("shapeIdx")
+  public val mouseShapeExited: Signal1<Long> by Signal1
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].

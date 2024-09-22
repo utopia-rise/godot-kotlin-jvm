@@ -19,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -41,7 +40,7 @@ public open class GraphFrame : GraphElement() {
   /**
    * Emitted when [autoshrinkEnabled] or [autoshrinkMargin] changes.
    */
-  public val autoshrinkChanged: Signal0 by signal()
+  public val autoshrinkChanged: Signal0 by Signal0
 
   /**
    * Title of the frame.

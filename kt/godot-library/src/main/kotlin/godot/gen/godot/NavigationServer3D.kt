@@ -28,7 +28,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -66,17 +65,17 @@ public object NavigationServer3D : Object() {
   /**
    * Emitted when a navigation map is updated, when a region moves or is modified.
    */
-  public val mapChanged: Signal1<RID> by signal("map")
+  public val mapChanged: Signal1<RID> by Signal1
 
   /**
    * Emitted when navigation debug settings are changed. Only available in debug builds.
    */
-  public val navigationDebugChanged: Signal0 by signal()
+  public val navigationDebugChanged: Signal0 by Signal0
 
   /**
    * Emitted when avoidance debug settings are changed. Only available in debug builds.
    */
-  public val avoidanceDebugChanged: Signal0 by signal()
+  public val avoidanceDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)

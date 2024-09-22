@@ -21,7 +21,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -168,19 +167,19 @@ public open class Tween : RefCounted() {
    * Emitted when one step of the [Tween] is complete, providing the step index. One step is either
    * a single [Tweener] or a group of [Tweener]s running in parallel.
    */
-  public val stepFinished: Signal1<Long> by signal("idx")
+  public val stepFinished: Signal1<Long> by Signal1
 
   /**
    * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is
    * not emitted after the final loop, use [signal finished] instead for this case.
    */
-  public val loopFinished: Signal1<Long> by signal("loopCount")
+  public val loopFinished: Signal1<Long> by Signal1
 
   /**
    * Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to
    * infinite looping (see [setLoops]).
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TWEEN, scriptIndex)

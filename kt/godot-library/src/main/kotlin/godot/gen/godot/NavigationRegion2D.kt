@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -52,12 +51,12 @@ public open class NavigationRegion2D : Node2D() {
    * Emitted when the used navigation polygon is replaced or changes to the internals of the current
    * navigation polygon are committed.
    */
-  public val navigationPolygonChanged: Signal0 by signal()
+  public val navigationPolygonChanged: Signal0 by Signal0
 
   /**
    * Emitted when a navigation polygon bake operation is completed.
    */
-  public val bakeFinished: Signal0 by signal()
+  public val bakeFinished: Signal0 by Signal0
 
   /**
    * The [NavigationPolygon] resource to use.

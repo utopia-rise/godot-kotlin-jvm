@@ -17,6 +17,7 @@ const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.varian
 
 const val kotlinPackage = "kotlin"
 const val kotlinCollectionsPackage = "$kotlinPackage.collections"
+const val kotlinReflectPackage = "$kotlinPackage.reflect"
 const val kotlinTextPackage = "$kotlinPackage.text"
-const val kotlinCoroutinePackage = "kotlin.coroutines"
+const val kotlinCoroutinePackage = "$kotlinPackage..coroutines"
 const val kotlinxCoroutinePackage = "kotlinx.coroutines"

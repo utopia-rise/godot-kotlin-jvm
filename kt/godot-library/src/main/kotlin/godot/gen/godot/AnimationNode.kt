@@ -25,7 +25,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -63,7 +62,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine],
    * [AnimationNodeBlendTree] and [AnimationNodeTransition].
    */
-  public val treeChanged: Signal0 by signal()
+  public val treeChanged: Signal0 by Signal0
 
   /**
    * Emitted by nodes that inherit from this class and that have an internal tree when one of their
@@ -71,8 +70,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
    * [AnimationNodeBlendTree].
    */
-  public val animationNodeRenamed: Signal3<Long, String, String> by signal("objectId", "oldName",
-      "newName")
+  public val animationNodeRenamed: Signal3<Long, String, String> by Signal3
 
   /**
    * Emitted by nodes that inherit from this class and that have an internal tree when one of their
@@ -80,7 +78,7 @@ public open class AnimationNode : Resource() {
    * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
    * [AnimationNodeBlendTree].
    */
-  public val animationNodeRemoved: Signal2<Long, String> by signal("objectId", "name")
+  public val animationNodeRemoved: Signal2<Long, String> by Signal2
 
   /**
    * If `true`, filtering is enabled.

@@ -19,7 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -39,17 +38,17 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Emitted when the color is changed.
    */
-  public val colorChanged: Signal1<Color> by signal("color")
+  public val colorChanged: Signal1<Color> by Signal1
 
   /**
    * Emitted when a preset is added.
    */
-  public val presetAdded: Signal1<Color> by signal("color")
+  public val presetAdded: Signal1<Color> by Signal1
 
   /**
    * Emitted when a preset is removed.
    */
-  public val presetRemoved: Signal1<Color> by signal("color")
+  public val presetRemoved: Signal1<Color> by Signal1
 
   /**
    * The currently selected color.

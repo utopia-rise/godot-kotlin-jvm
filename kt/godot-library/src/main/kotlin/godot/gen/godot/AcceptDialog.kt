@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -36,17 +35,17 @@ public open class AcceptDialog : Window() {
   /**
    * Emitted when the dialog is accepted, i.e. the OK button is pressed.
    */
-  public val confirmed: Signal0 by signal()
+  public val confirmed: Signal0 by Signal0
 
   /**
    * Emitted when the dialog is closed or the button created with [addCancelButton] is pressed.
    */
-  public val canceled: Signal0 by signal()
+  public val canceled: Signal0 by Signal0
 
   /**
    * Emitted when a custom button is pressed. See [addButton].
    */
-  public val customAction: Signal1<StringName> by signal("action")
+  public val customAction: Signal1<StringName> by Signal1
 
   /**
    * The text displayed by the OK button (see [getOkButton]).

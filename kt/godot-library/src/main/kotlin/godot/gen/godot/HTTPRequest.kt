@@ -20,7 +20,6 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -198,8 +197,7 @@ public open class HTTPRequest : Node() {
   /**
    * Emitted when a request is completed.
    */
-  public val requestCompleted: Signal4<Long, Long, PackedStringArray, PackedByteArray> by
-      signal("result", "responseCode", "headers", "body")
+  public val requestCompleted: Signal4<Long, Long, PackedStringArray, PackedByteArray> by Signal4
 
   /**
    * The file to download into. Will output any received file into it.

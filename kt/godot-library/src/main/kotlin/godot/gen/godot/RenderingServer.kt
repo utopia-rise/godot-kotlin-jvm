@@ -61,7 +61,6 @@ import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -175,13 +174,13 @@ public object RenderingServer : Object() {
   /**
    * Emitted at the beginning of the frame, before the RenderingServer updates all the Viewports.
    */
-  public val framePreDraw: Signal0 by signal()
+  public val framePreDraw: Signal0 by Signal0
 
   /**
    * Emitted at the end of the frame, after the RenderingServer has finished updating all the
    * Viewports.
    */
-  public val framePostDraw: Signal0 by signal()
+  public val framePostDraw: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_RENDERINGSERVER)

@@ -19,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -41,17 +40,17 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Emitted when the user selects a file by double-clicking it or pressing the **OK** button.
    */
-  public val fileSelected: Signal1<String> by signal("path")
+  public val fileSelected: Signal1<String> by Signal1
 
   /**
    * Emitted when the user selects multiple files.
    */
-  public val filesSelected: Signal1<PackedStringArray> by signal("paths")
+  public val filesSelected: Signal1<PackedStringArray> by Signal1
 
   /**
    * Emitted when the user selects a directory.
    */
-  public val dirSelected: Signal1<String> by signal("dir")
+  public val dirSelected: Signal1<String> by Signal1
 
   /**
    * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting

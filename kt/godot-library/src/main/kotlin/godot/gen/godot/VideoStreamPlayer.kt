@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -42,7 +41,7 @@ public open class VideoStreamPlayer : Control() {
   /**
    * Emitted when playback is finished.
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   /**
    * The embedded audio track to play.

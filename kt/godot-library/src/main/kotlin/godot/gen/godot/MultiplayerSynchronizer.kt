@@ -20,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -51,18 +50,18 @@ public open class MultiplayerSynchronizer : Node() {
    * Emitted when a new synchronization state is received by this synchronizer after the properties
    * have been updated.
    */
-  public val synchronized: Signal0 by signal()
+  public val synchronized: Signal0 by Signal0
 
   /**
    * Emitted when a new delta synchronization state is received by this synchronizer after the
    * properties have been updated.
    */
-  public val deltaSynchronized: Signal0 by signal()
+  public val deltaSynchronized: Signal0 by Signal0
 
   /**
    * Emitted when visibility of [forPeer] is updated. See [updateVisibility].
    */
-  public val visibilityChanged: Signal1<Long> by signal("forPeer")
+  public val visibilityChanged: Signal1<Long> by Signal1
 
   /**
    * Node path that replicated properties are relative to.

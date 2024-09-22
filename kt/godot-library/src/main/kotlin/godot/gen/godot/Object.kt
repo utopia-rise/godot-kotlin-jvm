@@ -25,7 +25,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -89,12 +88,12 @@ public open class Object : KtObject() {
    * **Note:** When this signal is emitted, the new script is not initialized yet. If you need to
    * access the new script, defer connections to this signal with [CONNECT_DEFERRED].
    */
-  public val scriptChanged: Signal0 by signal()
+  public val scriptChanged: Signal0 by Signal0
 
   /**
    * Emitted when [notifyPropertyListChanged] is called.
    */
-  public val propertyListChanged: Signal0 by signal()
+  public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_OBJECT, scriptIndex)

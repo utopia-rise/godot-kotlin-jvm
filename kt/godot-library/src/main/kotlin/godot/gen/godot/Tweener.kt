@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.signal
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,7 +22,7 @@ public open class Tweener internal constructor() : RefCounted() {
   /**
    * Emitted when the [Tweener] has just finished its job.
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_TWEENER, scriptIndex)

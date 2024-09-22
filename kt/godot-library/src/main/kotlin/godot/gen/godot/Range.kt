@@ -15,7 +15,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -39,12 +38,12 @@ public open class Range : Control() {
    * **Note:** Unlike signals such as [signal LineEdit.text_changed], [signal value_changed] is also
    * emitted when [value] is set directly via code.
    */
-  public val valueChanged: Signal1<Double> by signal("value")
+  public val valueChanged: Signal1<Double> by Signal1
 
   /**
    * Emitted when [minValue], [maxValue], [page], or [step] change.
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * Minimum value. Range is clamped if [value] is less than [minValue].

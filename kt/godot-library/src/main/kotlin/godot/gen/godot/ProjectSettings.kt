@@ -21,7 +21,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -53,7 +52,7 @@ public object ProjectSettings : Object() {
   /**
    * Emitted when any setting is changed, up to once per process frame.
    */
-  public val settingsChanged: Signal0 by signal()
+  public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_PROJECTSETTINGS)

@@ -20,7 +20,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +53,7 @@ public open class GraphNode : GraphElement() {
   /**
    * Emitted when any GraphNode's slot is updated.
    */
-  public val slotUpdated: Signal1<Long> by signal("slotIndex")
+  public val slotUpdated: Signal1<Long> by Signal1
 
   /**
    * The text displayed in the GraphNode's title bar.

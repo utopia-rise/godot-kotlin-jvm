@@ -24,7 +24,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -69,8 +68,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
    * Emitted when the collision between one of this RigidBody2D's [Shape2D]s and another
@@ -87,8 +85,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Get the [CollisionShape2D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
    * Emitted when a collision with another [PhysicsBody2D] or [TileMap] occurs. Requires
@@ -96,7 +93,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
-  public val bodyEntered: Signal1<Node> by signal("body")
+  public val bodyEntered: Signal1<Node> by Signal1
 
   /**
    * Emitted when the collision with another [PhysicsBody2D] or [TileMap] ends. Requires
@@ -104,7 +101,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * the collisions. [TileMap]s are detected if the [TileSet] has Collision [Shape2D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody2D] or [TileMap].
    */
-  public val bodyExited: Signal1<Node> by signal("body")
+  public val bodyExited: Signal1<Node> by Signal1
 
   /**
    * Emitted when the physics engine changes the body's sleeping state.
@@ -112,7 +109,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is
    * used.
    */
-  public val sleepingStateChanged: Signal0 by signal()
+  public val sleepingStateChanged: Signal0 by Signal0
 
   /**
    * The body's mass.

@@ -22,7 +22,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -51,31 +50,31 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * ID of the new peer. Clients get notified when other clients connect to the same server. Upon
    * connecting to a server, a client also receives this signal for the server (with ID being 1).
    */
-  public val peerConnected: Signal1<Long> by signal("id")
+  public val peerConnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from a peer. Clients get
    * notified when other clients disconnect from the same server.
    */
-  public val peerDisconnected: Signal1<Long> by signal("id")
+  public val peerDisconnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] successfully connected to a server. Only
    * emitted on clients.
    */
-  public val connectedToServer: Signal0 by signal()
+  public val connectedToServer: Signal0 by Signal0
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] fails to establish a connection to a
    * server. Only emitted on clients.
    */
-  public val connectionFailed: Signal0 by signal()
+  public val connectionFailed: Signal0 by Signal0
 
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] disconnects from server. Only emitted on
    * clients.
    */
-  public val serverDisconnected: Signal0 by signal()
+  public val serverDisconnected: Signal0 by Signal0
 
   /**
    * The peer object to handle the RPC system (effectively enabling networking when set). Depending

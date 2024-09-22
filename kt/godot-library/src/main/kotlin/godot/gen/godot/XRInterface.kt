@@ -29,7 +29,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -55,7 +54,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * boundary or entering a new play area, the player changing the play area mode, the world scale
    * changing or the player resetting their headset orientation.
    */
-  public val playAreaChanged: Signal1<Long> by signal("mode")
+  public val playAreaChanged: Signal1<Long> by Signal1
 
   /**
    * `true` if this is the primary interface.

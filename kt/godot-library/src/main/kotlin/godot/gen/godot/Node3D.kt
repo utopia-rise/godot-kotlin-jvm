@@ -29,7 +29,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -59,7 +58,7 @@ public open class Node3D : Node() {
   /**
    * Emitted when node visibility changes.
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Local space [Transform3D] of this node, with respect to the parent node.

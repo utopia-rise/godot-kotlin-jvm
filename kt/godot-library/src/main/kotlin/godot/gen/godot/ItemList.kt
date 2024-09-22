@@ -31,7 +31,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -74,31 +73,30 @@ public open class ItemList : Control() {
    * Triggered when specified item has been selected.
    * [allowReselect] must be enabled to reselect an item.
    */
-  public val itemSelected: Signal1<Long> by signal("index")
+  public val itemSelected: Signal1<Long> by Signal1
 
   /**
    * Triggered when any mouse click is issued within the rect of the list but on empty space.
    */
-  public val emptyClicked: Signal2<Vector2, Long> by signal("atPosition", "mouseButtonIndex")
+  public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
    * Triggered when specified list item has been clicked with any mouse button.
    * The click position is also provided to allow appropriate popup of context menus at the correct
    * location.
    */
-  public val itemClicked: Signal3<Long, Vector2, Long> by signal("index", "atPosition",
-      "mouseButtonIndex")
+  public val itemClicked: Signal3<Long, Vector2, Long> by Signal3
 
   /**
    * Triggered when a multiple selection is altered on a list allowing multiple selection.
    */
-  public val multiSelected: Signal2<Long, Boolean> by signal("index", "selected")
+  public val multiSelected: Signal2<Long, Boolean> by Signal2
 
   /**
    * Triggered when specified list item is activated via double-clicking or by pressing
    * [kbd]Enter[/kbd].
    */
-  public val itemActivated: Signal1<Long> by signal("index")
+  public val itemActivated: Signal1<Long> by Signal1
 
   /**
    * Allows single or multiple item selection. See the [SelectMode] constants.

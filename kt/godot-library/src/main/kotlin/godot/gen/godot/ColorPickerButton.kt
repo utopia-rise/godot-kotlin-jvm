@@ -18,7 +18,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -39,17 +38,17 @@ public open class ColorPickerButton : Button() {
   /**
    * Emitted when the color changes.
    */
-  public val colorChanged: Signal1<Color> by signal("color")
+  public val colorChanged: Signal1<Color> by Signal1
 
   /**
    * Emitted when the [ColorPicker] is closed.
    */
-  public val popupClosed: Signal0 by signal()
+  public val popupClosed: Signal0 by Signal0
 
   /**
    * Emitted when the [ColorPicker] is created (the button is pressed for the first time).
    */
-  public val pickerCreated: Signal0 by signal()
+  public val pickerCreated: Signal0 by Signal0
 
   /**
    * The currently selected color.

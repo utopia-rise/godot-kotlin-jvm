@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -51,12 +50,12 @@ public open class NavigationRegion3D : Node3D() {
   /**
    * Notifies when the [NavigationMesh] has changed.
    */
-  public val navigationMeshChanged: Signal0 by signal()
+  public val navigationMeshChanged: Signal0 by Signal0
 
   /**
    * Notifies when the navigation mesh bake operation is completed.
    */
-  public val bakeFinished: Signal0 by signal()
+  public val bakeFinished: Signal0 by Signal0
 
   /**
    * The [NavigationMesh] resource to use.

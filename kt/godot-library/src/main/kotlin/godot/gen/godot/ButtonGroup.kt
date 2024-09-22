@@ -15,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,7 @@ public open class ButtonGroup : Resource() {
   /**
    * Emitted when one of the buttons of the group is pressed.
    */
-  public val pressed: Signal1<BaseButton> by signal("button")
+  public val pressed: Signal1<BaseButton> by Signal1
 
   /**
    * If `true`, it is possible to unpress all buttons in this [ButtonGroup].

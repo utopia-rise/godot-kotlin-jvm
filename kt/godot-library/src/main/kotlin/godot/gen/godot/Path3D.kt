@@ -12,7 +12,6 @@ import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -30,7 +29,7 @@ public open class Path3D : Node3D() {
   /**
    * Emitted when the [curve] changes.
    */
-  public val curveChanged: Signal0 by signal()
+  public val curveChanged: Signal0 by Signal0
 
   /**
    * A [Curve3D] describing the path.

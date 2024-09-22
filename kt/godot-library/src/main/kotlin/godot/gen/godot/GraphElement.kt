@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -36,44 +35,44 @@ public open class GraphElement : Container() {
   /**
    * Emitted when the GraphElement is selected.
    */
-  public val nodeSelected: Signal0 by signal()
+  public val nodeSelected: Signal0 by Signal0
 
   /**
    * Emitted when the GraphElement is deselected.
    */
-  public val nodeDeselected: Signal0 by signal()
+  public val nodeDeselected: Signal0 by Signal0
 
   /**
    * Emitted when displaying the GraphElement over other ones is requested. Happens on focusing
    * (clicking into) the GraphElement.
    */
-  public val raiseRequest: Signal0 by signal()
+  public val raiseRequest: Signal0 by Signal0
 
   /**
    * Emitted when removing the GraphElement is requested.
    */
-  public val deleteRequest: Signal0 by signal()
+  public val deleteRequest: Signal0 by Signal0
 
   /**
    * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle
    * (see [resizable]).
    */
-  public val resizeRequest: Signal1<Vector2> by signal("newSize")
+  public val resizeRequest: Signal1<Vector2> by Signal1
 
   /**
    * Emitted when releasing the mouse button after dragging the resizer handle (see [resizable]).
    */
-  public val resizeEnd: Signal1<Vector2> by signal("newSize")
+  public val resizeEnd: Signal1<Vector2> by Signal1
 
   /**
    * Emitted when the GraphElement is dragged.
    */
-  public val dragged: Signal2<Vector2, Vector2> by signal("from", "to")
+  public val dragged: Signal2<Vector2, Vector2> by Signal2
 
   /**
    * Emitted when the GraphElement is moved.
    */
-  public val positionOffsetChanged: Signal0 by signal()
+  public val positionOffsetChanged: Signal0 by Signal0
 
   /**
    * The offset of the GraphElement, relative to the scroll offset of the [GraphEdit].

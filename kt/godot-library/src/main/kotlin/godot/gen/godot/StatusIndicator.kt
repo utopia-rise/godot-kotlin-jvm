@@ -19,7 +19,6 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,7 @@ public open class StatusIndicator : Node() {
   /**
    * Emitted when the status indicator is pressed.
    */
-  public val pressed: Signal2<Long, Vector2i> by signal("mouseButton", "mousePosition")
+  public val pressed: Signal2<Long, Vector2i> by Signal2
 
   /**
    * Status indicator tooltip.

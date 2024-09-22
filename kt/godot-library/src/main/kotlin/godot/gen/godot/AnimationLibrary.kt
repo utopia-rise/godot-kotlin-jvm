@@ -19,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -36,24 +35,24 @@ public open class AnimationLibrary : Resource() {
   /**
    * Emitted when an [Animation] is added, under the key [name].
    */
-  public val animationAdded: Signal1<StringName> by signal("name")
+  public val animationAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an [Animation] stored with the key [name] is removed.
    */
-  public val animationRemoved: Signal1<StringName> by signal("name")
+  public val animationRemoved: Signal1<StringName> by Signal1
 
   /**
    * Emitted when the key for an [Animation] is changed, from [name] to [toName].
    */
-  public val animationRenamed: Signal2<StringName, StringName> by signal("name", "toName")
+  public val animationRenamed: Signal2<StringName, StringName> by Signal2
 
   /**
    * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
    * changed paths. [name] is the key of the animation that was changed.
    * See also [signal Resource.changed], which this acts as a relay for.
    */
-  public val animationChanged: Signal1<StringName> by signal("name")
+  public val animationChanged: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_ANIMATIONLIBRARY, scriptIndex)

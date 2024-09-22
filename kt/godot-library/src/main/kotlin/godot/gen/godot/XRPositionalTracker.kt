@@ -24,7 +24,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -50,38 +49,38 @@ public open class XRPositionalTracker : XRTracker() {
   /**
    * Emitted when the state of a pose tracked by this tracker changes.
    */
-  public val poseChanged: Signal1<XRPose> by signal("pose")
+  public val poseChanged: Signal1<XRPose> by Signal1
 
   /**
    * Emitted when a pose tracked by this tracker stops getting updated tracking data.
    */
-  public val poseLostTracking: Signal1<XRPose> by signal("pose")
+  public val poseLostTracking: Signal1<XRPose> by Signal1
 
   /**
    * Emitted when a button on this tracker is pressed. Note that many XR runtimes allow other inputs
    * to be mapped to buttons.
    */
-  public val buttonPressed: Signal1<String> by signal("name")
+  public val buttonPressed: Signal1<String> by Signal1
 
   /**
    * Emitted when a button on this tracker is released.
    */
-  public val buttonReleased: Signal1<String> by signal("name")
+  public val buttonReleased: Signal1<String> by Signal1
 
   /**
    * Emitted when a trigger or similar input on this tracker changes value.
    */
-  public val inputFloatChanged: Signal2<String, Double> by signal("name", "value")
+  public val inputFloatChanged: Signal2<String, Double> by Signal2
 
   /**
    * Emitted when a thumbstick or thumbpad on this tracker moves.
    */
-  public val inputVector2Changed: Signal2<String, Vector2> by signal("name", "vector")
+  public val inputVector2Changed: Signal2<String, Vector2> by Signal2
 
   /**
    * Emitted when the profile of our tracker changes.
    */
-  public val profileChanged: Signal1<String> by signal("role")
+  public val profileChanged: Signal1<String> by Signal1
 
   /**
    * The profile associated with this tracker, interface dependent but will indicate the type of

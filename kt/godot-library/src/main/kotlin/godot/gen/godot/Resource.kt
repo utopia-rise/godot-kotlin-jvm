@@ -16,7 +16,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -50,12 +49,12 @@ public open class Resource : RefCounted() {
    * **Note:** This signal is not emitted automatically for properties of custom resources. If
    * necessary, a setter needs to be created to emit the signal.
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * Emitted by a newly duplicated resource with [resourceLocalToScene] set to `true`.
    */
-  public val setupLocalToSceneRequested: Signal0 by signal()
+  public val setupLocalToSceneRequested: Signal0 by Signal0
 
   /**
    * If `true`, the resource is duplicated for each instance of all scenes using it. At run-time,

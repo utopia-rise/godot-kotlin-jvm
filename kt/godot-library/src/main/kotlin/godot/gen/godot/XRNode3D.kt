@@ -17,7 +17,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -38,7 +37,7 @@ public open class XRNode3D : Node3D() {
    * Emitted when the [tracker] starts or stops receiving updated tracking data for the [pose] being
    * tracked. The [tracking] argument indicates whether the tracker is getting updated tracking data.
    */
-  public val trackingChanged: Signal1<Boolean> by signal("tracking")
+  public val trackingChanged: Signal1<Boolean> by Signal1
 
   /**
    * The name of the tracker we're bound to. Which trackers are available is not known during design

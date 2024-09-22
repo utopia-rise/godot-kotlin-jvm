@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -44,14 +43,14 @@ public open class OptionButton : Button() {
    * passed as argument.
    * [allowReselect] must be enabled to reselect an item.
    */
-  public val itemSelected: Signal1<Long> by signal("index")
+  public val itemSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user navigates to an item using the [ProjectSettings.input/uiUp] or
    * [ProjectSettings.input/uiDown] input actions. The index of the item selected is passed as
    * argument.
    */
-  public val itemFocused: Signal1<Long> by signal("index")
+  public val itemFocused: Signal1<Long> by Signal1
 
   /**
    * The index of the currently selected item, or `-1` if no item is selected.

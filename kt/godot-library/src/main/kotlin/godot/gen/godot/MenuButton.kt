@@ -14,7 +14,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,7 @@ public open class MenuButton : Button() {
   /**
    * Emitted when the [PopupMenu] of this MenuButton is about to show.
    */
-  public val aboutToPopup: Signal0 by signal()
+  public val aboutToPopup: Signal0 by Signal0
 
   /**
    * If `true`, when the cursor hovers above another [MenuButton] within the same parent which also
