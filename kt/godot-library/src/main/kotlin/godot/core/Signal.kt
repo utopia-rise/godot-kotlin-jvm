@@ -11,7 +11,7 @@ open class Signal internal constructor(
 
     constructor(instance: Object, jvmName: String) : this(
         instance,
-        jvmName.convertToSnakeCase().removePrefix("_").asStringName()
+        jvmName.convertToSnakeCase().asStringName()
     )
 
     fun emitSignal(vararg args: Any?) {

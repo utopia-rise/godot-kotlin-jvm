@@ -9,7 +9,7 @@ import godot.tools.common.extensions.convertToCamelCase
 import godot.tools.common.extensions.escapeKotlinReservedNames
 
 class EnrichedSignal(val internal: Signal) : TypedTrait, IDocumented {
-    val name = internal.name.convertToCamelCase().escapeKotlinReservedNames()
+    val name = internal.name.convertToCamelCase()
     // We assume signals parameters can't be null
     val arguments = internal.arguments?.toEnriched(false) ?: listOf()
     override val type = "Signal${arguments.size}"

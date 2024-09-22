@@ -12,7 +12,7 @@ import godot.tools.common.constants.GodotTypes
 import godot.tools.common.extensions.convertToCamelCase
 
 class EnrichedProperty(val internal: Property) : CastableTrait, NullableTrait, IDocumented {
-    val name = internal.name.replace("/", "_").convertToCamelCase()
+    val name = internal.name.convertToCamelCase()
     val getter = internal.getter.convertToCamelCase()
     val setter = internal.setter?.convertToCamelCase()
     val isIndexed = internal.index != null
