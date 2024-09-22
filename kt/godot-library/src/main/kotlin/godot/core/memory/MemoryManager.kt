@@ -56,7 +56,7 @@ internal object MemoryManager {
     }
 
     /** Base capacity for caches.*/
-    private const val CACHE_INITIAL_CAPACITY = 256
+    private const val CACHE_INITIAL_CAPACITY = 512
 
     /** Base capacity for several binding containers.*/
     private const val BINDING_INITIAL_CAPACITY = 4096

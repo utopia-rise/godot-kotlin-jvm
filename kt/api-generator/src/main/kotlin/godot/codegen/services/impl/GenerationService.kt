@@ -44,8 +44,7 @@ import godot.codegen.services.IEnumService
 import godot.codegen.services.IGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
-import godot.tools.common.constants.AS_STRING_NAME_UTIL_FUNCTION
-import godot.tools.common.constants.CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION
+import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
 import godot.tools.common.constants.GENERATED_COMMENT
@@ -147,7 +146,7 @@ class GenerationService(
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
         }
 
-        for (method in enrichedClass.methods.filter{ !it.internal.isVirtual}) {
+        for (method in enrichedClass.methods.filter { !it.internal.isVirtual }) {
             methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
         }
 
@@ -694,7 +693,7 @@ class GenerationService(
                     templateString += "id, "
                 }
 
-                templateString += "function.name.%M().%M()"
+                templateString += "function.name.%M()"
 
                 kFunctionTypeParameters.forEachIndexed { index, typeVariableName ->
                     rpcFunSpec.addTypeVariable(typeVariableName)
@@ -703,7 +702,7 @@ class GenerationService(
                     templateString += ", $argParamName"
                 }
                 templateString += ")"
-                rpcFunSpec.addStatement(templateString, CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION, AS_STRING_NAME_UTIL_FUNCTION)
+                rpcFunSpec.addStatement(templateString, TO_GODOT_NAME_UTIL_FUNCTION)
 
                 rpcFunSpec.addTypeVariable(TypeVariableName.invoke("FUNCTION", kFunctionClassName).copy(reified = true))
                 addFunction(rpcFunSpec.build())

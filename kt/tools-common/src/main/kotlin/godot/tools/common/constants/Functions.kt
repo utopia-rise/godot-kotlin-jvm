@@ -9,12 +9,12 @@ object KotlinFunctions {
 
 object GodotFunctions {
     const val notification = "_notification"
-    const val convertToSnakeCase = "convertToSnakeCase"
-    const val asStringName = "asStringName"
+    const val toGodotName = "toGodotName"
+    const val asCachedStringName = "asCachedStringName"
     const val asCallable = "asCallable"
 }
 
 val KOTLIN_LIST_OF = MemberName(kotlinCollectionsPackage, KotlinFunctions.listOf)
-val CONVERT_TO_SNAKE_CASE_UTIL_FUNCTION = MemberName(godotToolExtPackage, GodotFunctions.convertToSnakeCase)
-val AS_STRING_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asStringName)
+val TO_GODOT_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.toGodotName)
+val AS_CACHED_STRING_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asCachedStringName)
 val AS_CALLABLE_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asCallable)

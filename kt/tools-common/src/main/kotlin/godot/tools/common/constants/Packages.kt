@@ -7,7 +7,6 @@ const val godotMemoryPackage = "godot.core.memory"
 const val godotCoroutinePackage = "godot.coroutines"
 const val godotAnnotationPackage = "godot.annotation"
 const val godotUtilPackage = "godot.util"
-const val godotToolExtPackage = "godot.tools.common.extensions"
 
 const val godotRegistrationPackage = "godot.registration"
 const val godotEntryBasePackage = "godot.entry"

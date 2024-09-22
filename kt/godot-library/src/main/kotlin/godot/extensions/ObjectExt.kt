@@ -6,10 +6,10 @@ import godot.Object
 import godot.RefCounted
 import godot.core.Callable
 import godot.core.VariantArray
-import godot.core.asStringName
 import godot.core.memory.MemoryManager
 import godot.core.Signal
-import godot.tools.common.extensions.convertToSnakeCase
+import godot.core.asCachedStringName
+import godot.core.toGodotName
 import kotlin.reflect.KFunction
 
 /**
@@ -17,52 +17,52 @@ import kotlin.reflect.KFunction
  * Use [Object.callDeferred] to call functions by string or [callDeferredRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.callDeferred(function: T, vararg args: Any?) =
-    callDeferred(function.name.convertToSnakeCase().asStringName(), *args)
+    callDeferred(function.name.toGodotName(), *args)
 
 /**
  * Same as [callDeferred] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.callDeferredRawName(function: T, vararg args: Any?) =
-    callDeferred(function.name.asStringName(), *args)
+    callDeferred(function.name.asCachedStringName(), *args)
 
 /**
  * **Note:** The function name is converted to snake_case
  * Use [Object.call] to call functions by string or [callRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.call(function: T, vararg args: Any?) =
-    call(function.name.convertToSnakeCase().asStringName(), *args)
+    call(function.name.toGodotName(), *args)
 
 /**
  * Same as [call] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.callRawName(function: T, vararg args: Any?) =
-    call(function.name.asStringName(), *args)
+    call(function.name.asCachedStringName(), *args)
 
 /**
  * **Note:** The function name is converted to snake_case
  * Use [Object.callv] to call functions by string or [callvRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.callv(function: T, argArray: VariantArray<Any?>) =
-    callv(function.name.convertToSnakeCase().asStringName(), argArray)
+    callv(function.name.toGodotName(), argArray)
 
 /**
  * Same as [callv] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.callvRawName(function: T, argArray: VariantArray<Any?>) =
-    callv(function.name.asStringName(), argArray)
+    callv(function.name.asCachedStringName(), argArray)
 
 /**
  * **Note:** The function name is converted to snake_case
  * Use [Object.hasMethod] to check function existence by string or [hasMethodRawName] for an unconverted version of this function
  */
 inline fun <reified T : KFunction<*>> Object.hasMethod(function: T) =
-    hasMethod(function.name.convertToSnakeCase().asStringName())
+    hasMethod(function.name.toGodotName())
 
 /**
  * Same as [hasMethod] but the function name is not converted to snake_case
  */
 inline fun <reified T : KFunction<*>> Object.hasMethodRawName(function: T) =
-    hasMethod(function.name.asStringName())
+    hasMethod(function.name.asCachedStringName())
 
 /**
  * **Note:** The function name is converted to snake_case
@@ -73,7 +73,7 @@ inline fun <reified T : KFunction<*>> Object.isConnected(
     signal: Signal,
     target: Object,
     function: T
-) = isConnected(signal.name, Callable(target, function.name.convertToSnakeCase().asStringName()))
+) = isConnected(signal.name, Callable(target, function.name.toGodotName()))
 
 /**
  * Same as [isConnected] but the function name is not converted to snake_case
@@ -83,7 +83,7 @@ inline fun <reified T : KFunction<*>> Object.isConnectedRawName(
     signal: Signal,
     target: Object,
     function: T
-) = isConnected(signal.name, Callable(target, function.name.asStringName()))
+) = isConnected(signal.name, Callable(target, function.name.asCachedStringName()))
 
 /**
  * **Note:** The function name is converted to snake_case
@@ -97,7 +97,7 @@ inline fun <reified T : KFunction<*>> Object.connect(
     flags: Int = 0
 ) = connect(
     signal.name,
-    Callable(target, function.name.convertToSnakeCase().asStringName()),
+    Callable(target, function.name.toGodotName()),
     flags.toLong()
 )
 
@@ -110,7 +110,7 @@ inline fun <reified T : KFunction<*>> Object.connectRawName(
     target: Object,
     function: T,
     flags: Int = 0
-) = connect(signal.name, Callable(target, function.name.asStringName()), flags.toLong())
+) = connect(signal.name, Callable(target, function.name.asCachedStringName()), flags.toLong())
 
 /**
  * **Note:** The function name is converted to snake_case
@@ -121,7 +121,7 @@ inline fun <reified T : KFunction<*>> Object.disconnect(
     signal: Signal,
     target: Object,
     function: T
-) = disconnect(signal.name, Callable(target, function.name.convertToSnakeCase().asStringName()))
+) = disconnect(signal.name, Callable(target, function.name.toGodotName()))
 
 /**
  * Same as [disconnect] but the function name is not converted to snake_case
@@ -131,7 +131,7 @@ inline fun <reified T : KFunction<*>> Object.disconnectRawName(
     signal: Signal,
     target: Object,
     function: T
-) = disconnect(signal.name, Callable(target, function.name.asStringName()))
+) = disconnect(signal.name, Callable(target, function.name.asCachedStringName()))
 
 
 /**
