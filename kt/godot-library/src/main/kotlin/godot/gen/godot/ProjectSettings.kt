@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.TypeManager
@@ -307,10 +306,10 @@ public object ProjectSettings : Object() {
    * can't be loaded back in the running app. If you want to change project settings in exported
    * projects, use [saveCustom] to save `override.cfg` file.
    */
-  public final fun save(): GodotError {
+  public final fun save(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -339,10 +338,10 @@ public object ProjectSettings : Object() {
    * `override.cfg` file, which is also text, but can be used in exported projects unlike other
    * formats.
    */
-  public final fun saveCustom(`file`: String): GodotError {
+  public final fun saveCustom(`file`: String): Error {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   internal object MethodBindings {

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -106,10 +105,10 @@ public open class RegEx : RefCounted() {
    * Compiles and assign the search pattern to use. Returns [OK] if the compilation is successful.
    * If an error is encountered, details are printed to standard output and an error is returned.
    */
-  public final fun compile(pattern: String): GodotError {
+  public final fun compile(pattern: String): Error {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.compilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantType.DOUBLE
@@ -120,10 +119,10 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * with either `ws://` or `wss://`.
    */
   @JvmOverloads
-  public final fun createClient(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
+  public final fun createClient(url: String, tlsClientOptions: TLSOptions? = null): Error {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -135,10 +134,10 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     port: Int,
     bindAddress: String = "*",
     tlsServerOptions: TLSOptions? = null,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

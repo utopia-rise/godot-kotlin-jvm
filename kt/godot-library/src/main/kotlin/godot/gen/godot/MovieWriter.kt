@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.NIL
 import godot.core.VariantType.OBJECT
@@ -105,7 +104,7 @@ public open class MovieWriter : Object() {
     movieSize: Vector2i,
     fps: Long,
     basePath: String,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_write_begin is not implemented for MovieWriter")
   }
 

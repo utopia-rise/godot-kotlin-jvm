@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -108,10 +107,10 @@ public open class PackedScene : Resource() {
    * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will
    * be cleared. See [Node.owner].
    */
-  public final fun pack(path: Node?): GodotError {
+  public final fun pack(path: Node?): Error {
     TransferContext.writeArguments(OBJECT to path)
     TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

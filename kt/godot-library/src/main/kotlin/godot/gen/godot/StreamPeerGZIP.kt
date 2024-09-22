@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -44,11 +43,10 @@ public open class StreamPeerGZIP : StreamPeer() {
    * uses deflate instead of GZIP.
    */
   @JvmOverloads
-  public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535):
-      GodotError {
+  public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.startCompressionPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -56,20 +54,19 @@ public open class StreamPeerGZIP : StreamPeer() {
    * uses deflate instead of GZIP.
    */
   @JvmOverloads
-  public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535):
-      GodotError {
+  public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
     TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.startDecompressionPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Finalizes the stream, compressing or decompressing any buffered chunk left.
    */
-  public final fun finish(): GodotError {
+  public final fun finish(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

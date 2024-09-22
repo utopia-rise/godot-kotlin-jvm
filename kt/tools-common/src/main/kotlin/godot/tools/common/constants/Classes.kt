@@ -2,14 +2,14 @@ package godot.tools.common.constants
 
 import com.squareup.kotlinpoet.ClassName
 
-object GodotKotlinJvmTypes{
+object GodotKotlinJvmTypes {
     const val color = "Color"
     const val stringName = "StringName"
     const val array = "VariantArray"
     const val callable = "Callable"
     const val callableBase = "Callable"
     const val dictionary = "Dictionary"
-    const val error = "GodotError"
+    const val error = "Error"
     const val nodePath = "NodePath"
     const val variant = "Any"
     const val refCounted = "RefCounted"
@@ -201,7 +201,8 @@ object GodotTypes {
     )
 }
 
-val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
+val GODOT_ERROR = ClassName(godotApiPackage, GodotKotlinJvmTypes.error)
+val GODOT_VARIANT_TYPE = ClassName(godotApiPackage, GodotKotlinJvmTypes.variantType)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
 val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)
@@ -232,13 +233,11 @@ val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VE
 val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
 val VARIANT_TYPE_PACKED_CALLABLE = ClassName(variantTypePackage, "CALLABLE")
 val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
-val VARIANT_TYPE_ANY = ClassName(variantCasterPackage, "ANY")
 
 val VARIANT_CASTER_BYTE = ClassName(variantCasterPackage, "BYTE")
 val VARIANT_CASTER_INT = ClassName(variantCasterPackage, "INT")
 val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
 val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
-
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -74,10 +73,10 @@ public open class XMLParser : RefCounted() {
   /**
    * Parses the next node in the file. This method returns an error code.
    */
-  public final fun read(): GodotError {
+  public final fun read(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -211,28 +210,28 @@ public open class XMLParser : RefCounted() {
    * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node
    * there. This method returns an error code.
    */
-  public final fun seek(position: Long): GodotError {
+  public final fun seek(position: Long): Error {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Opens an XML [file] for parsing. This method returns an error code.
    */
-  public final fun `open`(`file`: String): GodotError {
+  public final fun `open`(`file`: String): Error {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Opens an XML raw [buffer] for parsing. This method returns an error code.
    */
-  public final fun openBuffer(buffer: PackedByteArray): GodotError {
+  public final fun openBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.openBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class NodeType(

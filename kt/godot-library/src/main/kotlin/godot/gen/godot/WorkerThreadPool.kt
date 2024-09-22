@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.CALLABLE
@@ -121,10 +120,10 @@ public object WorkerThreadPool : Object() {
    * matter when some tasks depend on others (in the current implementation, the tricky case is a task
    * trying to wait on an older one).
    */
-  public final fun waitForTaskCompletion(taskId: Long): GodotError {
+  public final fun waitForTaskCompletion(taskId: Long): Error {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, MethodBindings.waitForTaskCompletionPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

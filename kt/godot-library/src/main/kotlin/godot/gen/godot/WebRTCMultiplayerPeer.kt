@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantType.ARRAY
@@ -56,10 +55,10 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   @JvmOverloads
   public final fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
-      GodotError {
+      Error {
     TransferContext.writeArguments(ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -72,10 +71,10 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   @JvmOverloads
   public final fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
-      godot.core.variantArrayOf()): GodotError {
+      godot.core.variantArrayOf()): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -84,10 +83,10 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    */
   @JvmOverloads
   public final fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
-      godot.core.variantArrayOf()): GodotError {
+      godot.core.variantArrayOf()): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
     TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -102,10 +101,10 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     peer: WebRTCPeerConnection?,
     peerId: Int,
     unreliableLifetime: Int = 1,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to peer, LONG to peerId.toLong(), LONG to unreliableLifetime.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPeerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

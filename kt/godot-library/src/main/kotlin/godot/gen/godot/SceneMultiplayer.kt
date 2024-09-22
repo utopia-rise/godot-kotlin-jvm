@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
@@ -229,10 +228,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected
    * peers).
    */
-  public final fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
+  public final fun sendAuth(id: Int, `data`: PackedByteArray): Error {
     TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendAuthPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -245,10 +244,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * peer_authentication_failed] signal will be emitted instead of [signal
    * MultiplayerAPI.peer_disconnected].
    */
-  public final fun completeAuth(id: Int): GodotError {
+  public final fun completeAuth(id: Int): Error {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.completeAuthPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAuthCallback(callback: Callable): Unit {
@@ -316,10 +315,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     id: Int = 0,
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
     channel: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.sendBytesPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSyncPacketSize(): Int {

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -61,10 +60,10 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * Sends a chunk of data through the connection, blocking if necessary until the data is done
    * sending. This function returns an [Error] code.
    */
-  public final fun putData(`data`: PackedByteArray): GodotError {
+  public final fun putData(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.putDataPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

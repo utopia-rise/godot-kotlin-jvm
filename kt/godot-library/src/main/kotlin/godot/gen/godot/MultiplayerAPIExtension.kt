@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -108,7 +107,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.poll].
    */
-  public open fun _poll(): GodotError {
+  public open fun _poll(): Error {
     throw NotImplementedError("_poll is not implemented for MultiplayerAPIExtension")
   }
 
@@ -147,7 +146,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
     _object: Object?,
     method: StringName,
     args: VariantArray<Any?>,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_rpc is not implemented for MultiplayerAPIExtension")
   }
 
@@ -161,14 +160,14 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
-  public open fun _objectConfigurationAdd(_object: Object?, configuration: Any?): GodotError {
+  public open fun _objectConfigurationAdd(_object: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_add is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
-  public open fun _objectConfigurationRemove(_object: Object?, configuration: Any?): GodotError {
+  public open fun _objectConfigurationRemove(_object: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_remove is not implemented for MultiplayerAPIExtension")
   }
 

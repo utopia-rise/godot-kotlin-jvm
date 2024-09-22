@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
@@ -613,10 +612,10 @@ public open class SceneTree : MainLoop() {
    * or [ERR_CANT_CREATE] if that scene cannot be instantiated.
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
-  public final fun changeSceneToFile(path: String): GodotError {
+  public final fun changeSceneToFile(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.changeSceneToFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -633,10 +632,10 @@ public open class SceneTree : MainLoop() {
    * This ensures that both scenes aren't running at the same time, while still freeing the previous
    * scene in a safe way similar to [Node.queueFree].
    */
-  public final fun changeSceneToPacked(packedScene: PackedScene?): GodotError {
+  public final fun changeSceneToPacked(packedScene: PackedScene?): Error {
     TransferContext.writeArguments(OBJECT to packedScene)
     TransferContext.callMethod(rawPtr, MethodBindings.changeSceneToPackedPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -646,10 +645,10 @@ public open class SceneTree : MainLoop() {
    * [currentScene] cannot be loaded into a [PackedScene], or [ERR_CANT_CREATE] if the scene cannot be
    * instantiated.
    */
-  public final fun reloadCurrentScene(): GodotError {
+  public final fun reloadCurrentScene(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.reloadCurrentScenePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

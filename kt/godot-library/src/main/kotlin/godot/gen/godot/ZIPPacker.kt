@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantType.LONG
@@ -50,49 +49,49 @@ public open class ZIPPacker : RefCounted() {
    */
   @JvmOverloads
   public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
-      GodotError {
+      Error {
     TransferContext.writeArguments(STRING to path, LONG to append.id)
     TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Starts writing to a file within the archive. Only one file can be written at the same time.
    * Must be called after [open].
    */
-  public final fun startFile(path: String): GodotError {
+  public final fun startFile(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.startFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Write the given [data] to the file.
    * Needs to be called after [startFile].
    */
-  public final fun writeFile(`data`: PackedByteArray): GodotError {
+  public final fun writeFile(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.writeFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Stops writing to a file within the archive.
    * It will fail if there is no open file.
    */
-  public final fun closeFile(): GodotError {
+  public final fun closeFile(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closeFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Closes the underlying resources used by this instance.
    */
-  public final fun close(): GodotError {
+  public final fun close(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class ZipAppend(

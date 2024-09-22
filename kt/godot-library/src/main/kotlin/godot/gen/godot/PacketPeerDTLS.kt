@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.NIL
@@ -58,10 +57,10 @@ public open class PacketPeerDTLS : PacketPeer() {
     packetPeer: PacketPeerUDP?,
     hostname: String,
     clientOptions: TLSOptions? = null,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToPeerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

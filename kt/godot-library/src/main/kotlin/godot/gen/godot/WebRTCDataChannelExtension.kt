@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -29,7 +28,7 @@ public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
     throw NotImplementedError("_get_max_packet_size is not implemented for WebRTCDataChannelExtension")
   }
 
-  public open fun _poll(): GodotError {
+  public open fun _poll(): Error {
     throw NotImplementedError("_poll is not implemented for WebRTCDataChannelExtension")
   }
 

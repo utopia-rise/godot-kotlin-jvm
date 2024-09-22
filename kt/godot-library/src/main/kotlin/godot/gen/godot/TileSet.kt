@@ -12,7 +12,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType
 import godot.core.VariantType.ARRAY
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.COLOR

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -63,10 +62,10 @@ public open class AnimationLibrary : Resource() {
   /**
    * Adds the [animation] to the library, accessible by the key [name].
    */
-  public final fun addAnimation(name: StringName, animation: Animation?): GodotError {
+  public final fun addAnimation(name: StringName, animation: Animation?): Error {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

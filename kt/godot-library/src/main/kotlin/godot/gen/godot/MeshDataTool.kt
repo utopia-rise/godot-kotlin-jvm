@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.GodotError
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
@@ -104,20 +103,20 @@ public open class MeshDataTool : RefCounted() {
    * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
    * Requires [Mesh] with primitive type [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public final fun createFromSurface(mesh: ArrayMesh?, surface: Int): GodotError {
+  public final fun createFromSurface(mesh: ArrayMesh?, surface: Int): Error {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromSurfacePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Adds a new surface to specified [Mesh] with edited data.
    */
   @JvmOverloads
-  public final fun commitToSurface(mesh: ArrayMesh?, compressionFlags: Long = 0): GodotError {
+  public final fun commitToSurface(mesh: ArrayMesh?, compressionFlags: Long = 0): Error {
     TransferContext.writeArguments(OBJECT to mesh, LONG to compressionFlags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitToSurfacePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

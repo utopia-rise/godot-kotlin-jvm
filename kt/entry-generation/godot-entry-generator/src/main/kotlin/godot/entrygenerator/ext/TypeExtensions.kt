@@ -5,11 +5,11 @@ import com.squareup.kotlinpoet.TypeName
 import godot.entrygenerator.model.Type
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_CASTER_BYTE
 import godot.tools.common.constants.VARIANT_CASTER_FLOAT
 import godot.tools.common.constants.VARIANT_CASTER_INT
 import godot.tools.common.constants.VARIANT_TYPE_AABB
-import godot.tools.common.constants.VARIANT_TYPE_ANY
 import godot.tools.common.constants.VARIANT_TYPE_ARRAY
 import godot.tools.common.constants.VARIANT_TYPE_BOOL
 import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
@@ -75,7 +75,7 @@ fun Type?.toKtVariantType(): ClassName = when {
         fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())
     )
 
-    fqName == Any::class.qualifiedName -> VARIANT_TYPE_ANY
+    fqName == Any::class.qualifiedName -> VARIANT_CASTER_ANY
     else -> VARIANT_TYPE_OBJECT
 }
 

@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantType.LONG
@@ -56,10 +55,10 @@ public open class PackedDataContainer : Resource() {
    * [Dictionary], any other type will result in invalid data error.
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
-  public final fun pack(`value`: Any?): GodotError {
+  public final fun pack(`value`: Any?): Error {
     TransferContext.writeArguments(ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

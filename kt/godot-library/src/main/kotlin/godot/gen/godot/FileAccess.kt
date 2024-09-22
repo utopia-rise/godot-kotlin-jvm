@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
@@ -110,10 +109,10 @@ public open class FileAccess internal constructor() : RefCounted() {
    * If the file is extended, NUL characters are appended. If the file is truncated, all data from the
    * end file to the original length of the file is lost.
    */
-  public final fun resize(length: Long): GodotError {
+  public final fun resize(length: Long): Error {
     TransferContext.writeArguments(LONG to length)
     TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -359,10 +358,10 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Returns the last error that happened when trying to perform operations. Compare with the
    * `ERR_FILE_*` constants from [Error].
    */
-  public final fun getError(): GodotError {
+  public final fun getError(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getErrorPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -811,10 +810,10 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
-    public final fun getOpenError(): GodotError {
+    public final fun getOpenError(): Error {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -897,11 +896,10 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file UNIX permissions.
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
-    public final fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags):
-        GodotError {
+    public final fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): Error {
       TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
       TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -918,20 +916,20 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Sets file **hidden** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public final fun setHiddenAttribute(`file`: String, hidden: Boolean): GodotError {
+    public final fun setHiddenAttribute(`file`: String, hidden: Boolean): Error {
       TransferContext.writeArguments(STRING to file, BOOL to hidden)
       TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
      * Sets file **read only** attribute.
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
-    public final fun setReadOnlyAttribute(`file`: String, ro: Boolean): GodotError {
+    public final fun setReadOnlyAttribute(`file`: String, ro: Boolean): Error {
       TransferContext.writeArguments(STRING to file, BOOL to ro)
       TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**

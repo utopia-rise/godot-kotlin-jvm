@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.Signal0
 import godot.core.TypeManager
@@ -138,10 +137,10 @@ public object JavaScriptBridge : Object() {
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
    * `true`.
    */
-  public final fun pwaUpdate(): GodotError {
+  public final fun pwaUpdate(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaUpdatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -2,6 +2,7 @@
 
 package godot.core
 
+import godot.Error
 import godot.Object
 import godot.util.camelToSnakeCase
 import kotlin.Int
@@ -23,14 +24,14 @@ public class Signal0(
     target: T,
     method: T.() -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.() -> Unit): Unit =
       disconnect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()))
 }
 
-public fun Signal0.connect(flags: Int = 0, method: () -> Unit): GodotError =
+public fun Signal0.connect(flags: Int = 0, method: () -> Unit): Error =
     connect(method.asCallable(), flags)
 
 public fun signal(): SignalDelegateProvider<Signal0> = SignalDelegateProvider(::Signal0)
@@ -47,7 +48,7 @@ public class Signal1<P0>(
     target: T,
     method: T.(p0: P0) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(p0: P0) -> Unit): Unit =
@@ -55,7 +56,7 @@ public class Signal1<P0>(
 }
 
 public inline fun <reified P0> Signal1<P0>.connect(flags: Int = 0, noinline
-    method: (p0: P0) -> Unit): GodotError = connect(method.asCallable(), flags)
+    method: (p0: P0) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0> signal(p0: String): SignalDelegateProvider<Signal1<P0>> =
@@ -73,7 +74,7 @@ public class Signal2<P0, P1>(
     target: T,
     method: T.(p0: P0, p1: P1) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(p0: P0, p1: P1) -> Unit): Unit =
@@ -81,7 +82,7 @@ public class Signal2<P0, P1>(
 }
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Int = 0, noinline
-    method: (p0: P0, p1: P1) -> Unit): GodotError = connect(method.asCallable(), flags)
+    method: (p0: P0, p1: P1) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1> signal(p0: String, p1: String): SignalDelegateProvider<Signal2<P0, P1>> =
@@ -107,7 +108,7 @@ public class Signal3<P0, P1, P2>(
       p2: P2,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -123,7 +124,7 @@ public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.conne
   p0: P0,
   p1: P1,
   p2: P2,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2> signal(
@@ -154,7 +155,7 @@ public class Signal4<P0, P1, P2, P3>(
       p3: P3,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -172,7 +173,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3>
   p1: P1,
   p2: P2,
   p3: P3,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3> signal(
@@ -206,7 +207,7 @@ public class Signal5<P0, P1, P2, P3, P4>(
       p4: P4,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -226,7 +227,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
   p2: P2,
   p3: P3,
   p4: P4,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4> signal(
@@ -263,7 +264,7 @@ public class Signal6<P0, P1, P2, P3, P4, P5>(
       p5: P5,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -285,7 +286,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p3: P3,
   p4: P4,
   p5: P5,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5> signal(
@@ -325,7 +326,7 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6>(
       p6: P6,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -349,7 +350,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p4: P4,
   p5: P5,
   p6: P6,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6> signal(
@@ -392,7 +393,7 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(
       p7: P7,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -419,7 +420,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
   p6: P6,
   p7: P7,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
@@ -466,7 +467,7 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
       p8: P8,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -495,7 +496,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
   p7: P7,
   p8: P8,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
@@ -545,7 +546,7 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
       p9: P9,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -576,7 +577,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
   p8: P8,
   p9: P9,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
@@ -629,7 +630,7 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
       p10: P10,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -662,7 +663,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
   p9: P9,
   p10: P10,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
@@ -718,7 +719,7 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
       p11: P11,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -754,7 +755,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
   p10: P10,
   p11: P11,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
@@ -813,7 +814,7 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
       p12: P12,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -851,7 +852,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
   p11: P11,
   p12: P12,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
@@ -913,7 +914,7 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
       p13: P13,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -953,7 +954,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
   p12: P12,
   p13: P13,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
@@ -1018,7 +1019,7 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
       p14: P14,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -1061,7 +1062,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
   p13: P13,
   p14: P14,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> signal(
@@ -1129,7 +1130,7 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
       p15: P15,
     ) -> Unit,
     flags: Int = 0,
-  ): GodotError =
+  ): Error =
       connect(Callable(target, (method as KCallable<*>).name.camelToSnakeCase().asStringName()), flags)
 
   public fun <T : Object> disconnect(target: T, method: T.(
@@ -1174,7 +1175,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
   p14: P14,
   p15: P15,
-) -> Unit): GodotError = connect(method.asCallable(), flags)
+) -> Unit): Error = connect(method.asCallable(), flags)
 
 @Suppress("UNUSED_PARAMETER")
 public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> signal(

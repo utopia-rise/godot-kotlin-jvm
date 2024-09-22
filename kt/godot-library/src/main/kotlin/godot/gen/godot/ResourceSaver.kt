@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -52,10 +51,10 @@ public object ResourceSaver : Object() {
     resource: Resource?,
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

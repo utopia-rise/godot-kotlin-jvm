@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -56,10 +55,10 @@ public open class ENetConnection : RefCounted() {
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort.toLong(), LONG to maxPeers.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createHostBoundPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -77,10 +76,10 @@ public open class ENetConnection : RefCounted() {
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to maxPeers.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createHostPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -186,10 +185,10 @@ public open class ENetConnection : RefCounted() {
    * servers. Call this right after [createHostBound] to have ENet expect peers to connect using DTLS.
    * See [TLSOptions.server].
    */
-  public final fun dtlsServerSetup(serverOptions: TLSOptions?): GodotError {
+  public final fun dtlsServerSetup(serverOptions: TLSOptions?): Error {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsServerSetupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -200,11 +199,10 @@ public open class ENetConnection : RefCounted() {
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public final fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null):
-      GodotError {
+  public final fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): Error {
     TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsClientSetupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

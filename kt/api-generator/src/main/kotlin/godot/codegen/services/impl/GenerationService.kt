@@ -56,7 +56,7 @@ import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KT_OBJECT
 import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
-import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_TYPE_LONG
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
@@ -829,7 +829,7 @@ class GenerationService(
                 "%T.writeArguments($callArgumentsAsString·*__var_args.map·{·%T·to·it·}.toTypedArray())",
                 TRANSFER_CONTEXT,
                 *ktVariantClassNames,
-                VARIANT_TYPE_ANY
+                VARIANT_CASTER_ANY
             )
         } else {
             addStatement(

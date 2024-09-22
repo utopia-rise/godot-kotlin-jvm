@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
@@ -437,10 +436,10 @@ public object Engine : Object() {
    * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type.
    */
-  public final fun registerScriptLanguage(language: ScriptLanguage?): GodotError {
+  public final fun registerScriptLanguage(language: ScriptLanguage?): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.registerScriptLanguagePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -449,10 +448,10 @@ public object Engine : Object() {
    * - [OK] on success;
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
-  public final fun unregisterScriptLanguage(language: ScriptLanguage?): GodotError {
+  public final fun unregisterScriptLanguage(language: ScriptLanguage?): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterScriptLanguagePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

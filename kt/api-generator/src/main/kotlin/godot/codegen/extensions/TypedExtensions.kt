@@ -19,9 +19,10 @@ import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_CALLABLE_BASE
 import godot.tools.common.constants.GODOT_DICTIONARY
 import godot.tools.common.constants.GODOT_ERROR
+import godot.tools.common.constants.GODOT_VARIANT_TYPE
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
-import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_TYPE_ARRAY
 import godot.tools.common.constants.VARIANT_TYPE_BOOL
 import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
@@ -76,12 +77,7 @@ fun TypedTrait.getTypeClassName(): ClassTypeNameWrapper {
         isEnum() -> {
             val enumType = type!!.removePrefix(enumPrefix)
             if (enumType == GodotTypes.variantType) {
-                ClassTypeNameWrapper(
-                    ClassName(
-                        godotCorePackage,
-                        GodotKotlinJvmTypes.variantType
-                    )
-                )
+                ClassTypeNameWrapper(GODOT_VARIANT_TYPE)
             } else {
                 val containerAndEnum = enumType.split('.')
                 val packageName = object : TypedTrait {
@@ -162,7 +158,7 @@ val TypedTrait.jvmVariantTypeValue: ClassName
             type == GodotTypes.packedVector2Array -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
             type == GodotTypes.packedVector3Array -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
             type == GodotTypes.packedColorArray -> VARIANT_TYPE_PACKED_COLOR_ARRAY
-            type == GodotTypes.variant -> VARIANT_TYPE_ANY
+            type == GodotTypes.variant -> VARIANT_CASTER_ANY
             isCoreType() || isPrimitive() -> ClassName(variantTypePackage, type!!.uppercase(Locale.US))
             else -> VARIANT_TYPE_OBJECT
         }

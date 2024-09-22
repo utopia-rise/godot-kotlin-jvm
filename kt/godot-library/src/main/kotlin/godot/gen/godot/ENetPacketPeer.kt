@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
@@ -110,10 +109,10 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     channel: Int,
     packet: PackedByteArray,
     flags: Int,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

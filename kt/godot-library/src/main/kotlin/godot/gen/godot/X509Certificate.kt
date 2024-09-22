@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.LONG
 import godot.core.VariantType.STRING
@@ -35,19 +34,19 @@ public open class X509Certificate : Resource() {
   /**
    * Saves a certificate to the given [path] (should be a "*.crt" file).
    */
-  public final fun save(path: String): GodotError {
+  public final fun save(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads a certificate from [path] ("*.crt" file).
    */
-  public final fun load(path: String): GodotError {
+  public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -63,10 +62,10 @@ public open class X509Certificate : Resource() {
   /**
    * Loads a certificate from the given [string].
    */
-  public final fun loadFromString(string: String): GodotError {
+  public final fun loadFromString(string: String): Error {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

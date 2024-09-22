@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -40,10 +39,10 @@ public open class CryptoKey : Resource() {
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
-  public final fun save(path: String, publicOnly: Boolean = false): GodotError {
+  public final fun save(path: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -51,10 +50,10 @@ public open class CryptoKey : Resource() {
    * **Note:** [path] should be a "*.pub" file if [publicOnly] is `true`, a "*.key" file otherwise.
    */
   @JvmOverloads
-  public final fun load(path: String, publicOnly: Boolean = false): GodotError {
+  public final fun load(path: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -82,10 +81,10 @@ public open class CryptoKey : Resource() {
    * loaded.
    */
   @JvmOverloads
-  public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): GodotError {
+  public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): Error {
     TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
     TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

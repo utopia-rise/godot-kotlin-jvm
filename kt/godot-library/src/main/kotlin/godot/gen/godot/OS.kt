@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
@@ -413,10 +412,10 @@ public object OS : Object() {
    * **Note:** This method can also be used to kill processes that were not spawned by the engine.
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
-  public final fun kill(pid: Int): GodotError {
+  public final fun kill(pid: Int): Error {
     TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.killPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -436,10 +435,10 @@ public object OS : Object() {
    * project exported to the Web platform.
    * **Note:** This method is implemented on Android, iOS, Web, Linux, macOS and Windows.
    */
-  public final fun shellOpen(uri: String): GodotError {
+  public final fun shellOpen(uri: String): Error {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, MethodBindings.shellOpenPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -454,10 +453,10 @@ public object OS : Object() {
    */
   @JvmOverloads
   public final fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true):
-      GodotError {
+      Error {
     TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
     TransferContext.callMethod(rawPtr, MethodBindings.shellShowInFileManagerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -955,10 +954,10 @@ public object OS : Object() {
    * **Note:** If the user has disabled the recycle bin on their system, the file will be
    * permanently deleted instead.
    */
-  public final fun moveToTrash(path: String): GodotError {
+  public final fun moveToTrash(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.moveToTrashPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1152,10 +1151,10 @@ public object OS : Object() {
    * Assigns the given name to the current thread. Returns [ERR_UNAVAILABLE] if unavailable on the
    * current platform.
    */
-  public final fun setThreadName(name: String): GodotError {
+  public final fun setThreadName(name: String): Error {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setThreadNamePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

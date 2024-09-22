@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -43,29 +42,29 @@ public open class StreamPeerTCP : StreamPeer() {
    * some NAT punchthrough techniques, or when forcing the source network interface.
    */
   @JvmOverloads
-  public final fun bind(port: Int, host: String = "*"): GodotError {
+  public final fun bind(port: Int, host: String = "*"): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
     TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Connects to the specified `host:port` pair. A hostname will be resolved if valid. Returns [OK]
    * on success.
    */
-  public final fun connectToHost(host: String, port: Int): GodotError {
+  public final fun connectToHost(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Poll the socket, updating its state. See [getStatus].
    */
-  public final fun poll(): GodotError {
+  public final fun poll(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

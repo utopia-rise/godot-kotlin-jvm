@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -51,10 +50,10 @@ public open class PacketPeerUDP : PacketPeer() {
     port: Int,
     bindAddress: String = "*",
     recvBufSize: Int = 65536,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, LONG to recvBufSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -101,10 +100,10 @@ public open class PacketPeerUDP : PacketPeer() {
    * }
    * ```
    */
-  public final fun wait(): GodotError {
+  public final fun wait(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -127,10 +126,10 @@ public open class PacketPeerUDP : PacketPeer() {
    * spoofing, etc. Think about using an encryption technique like TLS or DTLS if you feel like your
    * application is transferring sensitive information.
    */
-  public final fun connectToHost(host: String, port: Int): GodotError {
+  public final fun connectToHost(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -178,10 +177,10 @@ public open class PacketPeerUDP : PacketPeer() {
    * **Note:** [setBroadcastEnabled] must be enabled before sending packets to a broadcast address
    * (e.g. `255.255.255.255`).
    */
-  public final fun setDestAddress(host: String, port: Int): GodotError {
+  public final fun setDestAddress(host: String, port: Int): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDestAddressPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -203,21 +202,20 @@ public open class PacketPeerUDP : PacketPeer() {
    * **Note:** Some Android devices might require the `CHANGE_WIFI_MULTICAST_STATE` permission for
    * multicast to work.
    */
-  public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): GodotError {
+  public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, MethodBindings.joinMulticastGroupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Removes the interface identified by [interfaceName] from the multicast group specified by
    * [multicastAddress].
    */
-  public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String):
-      GodotError {
+  public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): Error {
     TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
     TransferContext.callMethod(rawPtr, MethodBindings.leaveMulticastGroupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

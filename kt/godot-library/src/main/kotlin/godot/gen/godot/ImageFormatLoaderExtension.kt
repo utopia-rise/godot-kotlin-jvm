@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantType.NIL
@@ -47,7 +46,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     fileaccess: FileAccess?,
     flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")
   }
 

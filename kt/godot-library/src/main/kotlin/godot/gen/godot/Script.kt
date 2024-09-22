@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -105,10 +104,10 @@ public open class Script internal constructor() : Resource() {
    * Reloads the script's class implementation. Returns an error code.
    */
   @JvmOverloads
-  public final fun reload(keepState: Boolean = false): GodotError {
+  public final fun reload(keepState: Boolean = false): Error {
     TransferContext.writeArguments(BOOL to keepState)
     TransferContext.callMethod(rawPtr, MethodBindings.reloadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

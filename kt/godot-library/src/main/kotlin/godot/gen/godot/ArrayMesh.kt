@@ -12,7 +12,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.StringName
 import godot.core.Transform3D
@@ -364,10 +363,10 @@ public open class ArrayMesh : Mesh() {
   /**
    * Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping.
    */
-  public final fun lightmapUnwrap(transform: Transform3D, texelSize: Float): GodotError {
+  public final fun lightmapUnwrap(transform: Transform3D, texelSize: Float): Error {
     TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapUnwrapPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {

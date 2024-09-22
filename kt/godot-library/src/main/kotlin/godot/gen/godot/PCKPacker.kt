@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -60,10 +59,10 @@ public open class PCKPacker : RefCounted() {
     alignment: Int = 32,
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
     encryptDirectory: Boolean = false,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to pckName, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
     TransferContext.callMethod(rawPtr, MethodBindings.pckStartPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -75,10 +74,10 @@ public open class PCKPacker : RefCounted() {
     pckPath: String,
     sourcePath: String,
     encrypt: Boolean = false,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
     TransferContext.callMethod(rawPtr, MethodBindings.addFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -86,10 +85,10 @@ public open class PCKPacker : RefCounted() {
    * `true`, a list of files added will be printed to the console for easier debugging.
    */
   @JvmOverloads
-  public final fun flush(verbose: Boolean = false): GodotError {
+  public final fun flush(verbose: Boolean = false): Error {
     TransferContext.writeArguments(BOOL to verbose)
     TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public companion object

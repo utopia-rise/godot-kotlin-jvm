@@ -11,7 +11,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
@@ -2215,10 +2214,10 @@ public object DisplayServer : Object() {
     description: String,
     buttons: PackedStringArray,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.dialogShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2232,10 +2231,10 @@ public object DisplayServer : Object() {
     description: String,
     existingText: String,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.dialogInputTextPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2262,10 +2261,10 @@ public object DisplayServer : Object() {
     mode: FileDialogMode,
     filters: PackedStringArray,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2299,10 +2298,10 @@ public object DisplayServer : Object() {
     filters: PackedStringArray,
     options: VariantArray<Dictionary<Any?, Any?>>,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

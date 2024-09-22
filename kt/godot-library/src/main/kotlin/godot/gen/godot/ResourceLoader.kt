@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
@@ -56,10 +55,10 @@ public object ResourceLoader : Object() {
     typeHint: String = "",
     useSubThreads: Boolean = false,
     cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.loadThreadedRequestPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

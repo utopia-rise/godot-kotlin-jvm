@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantType.BOOL
 import godot.core.VariantType.LONG
@@ -48,10 +47,10 @@ public open class TCPServer : RefCounted() {
    * address exists).
    */
   @JvmOverloads
-  public final fun listen(port: Int, bindAddress: String = "*"): GodotError {
+  public final fun listen(port: Int, bindAddress: String = "*"): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
     TransferContext.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

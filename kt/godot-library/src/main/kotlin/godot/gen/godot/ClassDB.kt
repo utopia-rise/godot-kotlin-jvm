@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.TypeManager
@@ -165,10 +164,10 @@ public object ClassDB : Object() {
     _object: Object?,
     `property`: StringName,
     `value`: Any?,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

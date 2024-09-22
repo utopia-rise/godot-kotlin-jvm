@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.Signal0
@@ -541,10 +540,10 @@ public open class Object : KtObject() {
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
-  public final fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
+  public final fun emitSignal(signal: StringName, vararg __var_args: Any?): Error {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.emitSignalPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -912,10 +911,10 @@ public open class Object : KtObject() {
     signal: StringName,
     callable: Callable,
     flags: Long = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.connectPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

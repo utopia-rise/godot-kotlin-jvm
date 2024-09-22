@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
@@ -91,10 +90,10 @@ public open class WebRTCPeerConnection : RefCounted() {
    * [/codeblock]
    */
   @JvmOverloads
-  public final fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): GodotError {
+  public final fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): Error {
     TransferContext.writeArguments(DICTIONARY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.initializePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -142,10 +141,10 @@ public open class WebRTCPeerConnection : RefCounted() {
    * If this functions returns [OK], [signal session_description_created] will be called when the
    * session is ready to be sent.
    */
-  public final fun createOffer(): GodotError {
+  public final fun createOffer(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createOfferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -154,10 +153,10 @@ public open class WebRTCPeerConnection : RefCounted() {
    * After calling this function the peer will start emitting [signal ice_candidate_created] (unless
    * an [Error] different from [OK] is returned).
    */
-  public final fun setLocalDescription(type: String, sdp: String): GodotError {
+  public final fun setLocalDescription(type: String, sdp: String): Error {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocalDescriptionPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -167,10 +166,10 @@ public open class WebRTCPeerConnection : RefCounted() {
    * appropriate answer.
    * If [type] is `"answer"` the peer will start emitting [signal ice_candidate_created].
    */
-  public final fun setRemoteDescription(type: String, sdp: String): GodotError {
+  public final fun setRemoteDescription(type: String, sdp: String): Error {
     TransferContext.writeArguments(STRING to type, STRING to sdp)
     TransferContext.callMethod(rawPtr, MethodBindings.setRemoteDescriptionPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -181,20 +180,20 @@ public open class WebRTCPeerConnection : RefCounted() {
     media: String,
     index: Int,
     name: String,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to media, LONG to index.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.addIceCandidatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Call this method frequently (e.g. in [Node.Process] or [Node.PhysicsProcess]) to properly
    * receive signals.
    */
-  public final fun poll(): GodotError {
+  public final fun poll(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

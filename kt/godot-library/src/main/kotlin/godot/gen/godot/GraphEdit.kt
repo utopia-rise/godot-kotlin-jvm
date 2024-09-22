@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.Signal0
@@ -583,10 +582,10 @@ public open class GraphEdit : Control() {
     fromPort: Int,
     toNode: StringName,
     toPort: Int,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectNodePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

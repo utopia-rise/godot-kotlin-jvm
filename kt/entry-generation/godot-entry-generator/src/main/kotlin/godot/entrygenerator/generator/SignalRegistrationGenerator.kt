@@ -10,7 +10,7 @@ import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.VARIANT_TYPE_ANY
+import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.godotRegistrationPackage
 
 object SignalRegistrationGenerator {
@@ -30,7 +30,7 @@ object SignalRegistrationGenerator {
         append("signal(%L") //signalPropertyReference
 
         //a KtFunctionArgument per signal argument
-        (0 until kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)).forEach {  _ ->
+        (0 until kotlin.math.max(registeredSignal.parameterTypes.size, registeredSignal.parameterNames.size)).forEach { _ ->
             append(",·%T(%T,·%S,·%L)")
         }
 
@@ -54,7 +54,7 @@ object SignalRegistrationGenerator {
             }
         } else {
             registeredSignal.parameterNames.forEachIndexed { index, argumentName ->
-                val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantType() ?: VARIANT_TYPE_ANY
+                val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantType() ?: VARIANT_CASTER_ANY
                 val argumentTypeFqName = registeredSignal.parameterTypes.getOrNull(index)?.fqName ?: EntryGenerator.jvmTypeFqNamesProvider(JvmType.ANY).first()
 
                 add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
