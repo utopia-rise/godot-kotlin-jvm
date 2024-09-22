@@ -73,8 +73,8 @@ public object JavaScriptBridge : Object() {
    * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
    * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
-  public final fun getInterface(_interface: String): JavaScriptObject? {
-    TransferContext.writeArguments(STRING to _interface)
+  public final fun getInterface(`interface`: String): JavaScriptObject? {
+    TransferContext.writeArguments(STRING to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as JavaScriptObject?)
   }
@@ -94,8 +94,8 @@ public object JavaScriptBridge : Object() {
    * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
    * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
-  public final fun createObject(_object: String, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING to _object,  *__var_args.map { ANY to it }.toTypedArray())
+  public final fun createObject(`object`: String, vararg __var_args: Any?): Any? {
+    TransferContext.writeArguments(STRING to `object`,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.createObjectPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }

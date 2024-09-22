@@ -132,8 +132,8 @@ public open class Object : KtObject() {
    *
    * **Note:** This method ignores `class_name` declarations in the object's script.
    */
-  public final fun isClass(_class: String): Boolean {
-    TransferContext.writeArguments(STRING to _class)
+  public final fun isClass(`class`: String): Boolean {
+    TransferContext.writeArguments(STRING to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.isClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

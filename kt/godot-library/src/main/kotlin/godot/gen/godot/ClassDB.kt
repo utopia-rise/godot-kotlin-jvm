@@ -51,8 +51,8 @@ public object ClassDB : Object() {
   /**
    * Returns the names of all the classes that directly or indirectly inherit from [class].
    */
-  public final fun getInheritersFromClass(_class: StringName): PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun getInheritersFromClass(`class`: StringName): PackedStringArray {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.getInheritersFromClassPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -61,8 +61,8 @@ public object ClassDB : Object() {
   /**
    * Returns the parent class of [class].
    */
-  public final fun getParentClass(_class: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun getParentClass(`class`: StringName): StringName {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.getParentClassPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -70,8 +70,8 @@ public object ClassDB : Object() {
   /**
    * Returns whether the specified [class] is available or not.
    */
-  public final fun classExists(_class: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun classExists(`class`: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.classExistsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -79,8 +79,8 @@ public object ClassDB : Object() {
   /**
    * Returns whether [inherits] is an ancestor of [class] or not.
    */
-  public final fun isParentClass(_class: StringName, inherits: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to inherits)
+  public final fun isParentClass(`class`: StringName, inherits: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to inherits)
     TransferContext.callMethod(rawPtr, MethodBindings.isParentClassPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -89,8 +89,8 @@ public object ClassDB : Object() {
    * Returns `true` if objects can be instantiated from the specified [class], otherwise returns
    * `false`.
    */
-  public final fun canInstantiate(_class: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun canInstantiate(`class`: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -98,8 +98,8 @@ public object ClassDB : Object() {
   /**
    * Creates an instance of [class].
    */
-  public final fun instantiate(_class: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun instantiate(`class`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -107,8 +107,8 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] or its ancestry has a signal called [signal] or not.
    */
-  public final fun classHasSignal(_class: StringName, signal: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
+  public final fun classHasSignal(`class`: StringName, signal: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, MethodBindings.classHasSignalPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -118,8 +118,8 @@ public object ClassDB : Object() {
    * the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint,
    * hint_string, name, type, usage)`.
    */
-  public final fun classGetSignal(_class: StringName, signal: StringName): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to signal)
+  public final fun classGetSignal(`class`: StringName, signal: StringName): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
@@ -129,9 +129,9 @@ public object ClassDB : Object() {
    * Every element of the array is a [Dictionary] as described in [classGetSignal].
    */
   @JvmOverloads
-  public final fun classGetSignalList(_class: StringName, noInheritance: Boolean = false):
+  public final fun classGetSignalList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -141,9 +141,9 @@ public object ClassDB : Object() {
    * `false`.
    */
   @JvmOverloads
-  public final fun classGetPropertyList(_class: StringName, noInheritance: Boolean = false):
+  public final fun classGetPropertyList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -151,8 +151,8 @@ public object ClassDB : Object() {
   /**
    * Returns the value of [property] of [object] or its ancestry.
    */
-  public final fun classGetProperty(_object: Object?, `property`: StringName): Any? {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property)
+  public final fun classGetProperty(`object`: Object?, `property`: StringName): Any? {
+    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -161,11 +161,11 @@ public object ClassDB : Object() {
    * Sets [property] value of [object] to [value].
    */
   public final fun classSetProperty(
-    _object: Object?,
+    `object`: Object?,
     `property`: StringName,
     `value`: Any?,
   ): Error {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
+    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -173,8 +173,8 @@ public object ClassDB : Object() {
   /**
    * Returns the default value of [property] of [class] or its ancestor classes.
    */
-  public final fun classGetPropertyDefaultValue(_class: StringName, `property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to property)
+  public final fun classGetPropertyDefaultValue(`class`: StringName, `property`: StringName): Any? {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -185,11 +185,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun classHasMethod(
-    _class: StringName,
+    `class`: StringName,
     method: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -200,11 +200,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun classGetMethodArgumentCount(
-    _class: StringName,
+    `class`: StringName,
     method: StringName,
     noInheritance: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to method, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -217,9 +217,9 @@ public object ClassDB : Object() {
    * dictionaries will contain only method names.
    */
   @JvmOverloads
-  public final fun classGetMethodList(_class: StringName, noInheritance: Boolean = false):
+  public final fun classGetMethodList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -228,9 +228,9 @@ public object ClassDB : Object() {
    * Returns an array with the names all the integer constants of [class] or its ancestry.
    */
   @JvmOverloads
-  public final fun classGetIntegerConstantList(_class: StringName, noInheritance: Boolean = false):
+  public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantListPtr,
         PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -239,8 +239,8 @@ public object ClassDB : Object() {
   /**
    * Returns whether [class] or its ancestry has an integer constant called [name] or not.
    */
-  public final fun classHasIntegerConstant(_class: StringName, name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
+  public final fun classHasIntegerConstant(`class`: StringName, name: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.classHasIntegerConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -249,8 +249,8 @@ public object ClassDB : Object() {
    * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0
    * when the constant could not be found.
    */
-  public final fun classGetIntegerConstant(_class: StringName, name: StringName): Long {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name)
+  public final fun classGetIntegerConstant(`class`: StringName, name: StringName): Long {
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -260,11 +260,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun classHasEnum(
-    _class: StringName,
+    `class`: StringName,
     name: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classHasEnumPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -273,9 +273,9 @@ public object ClassDB : Object() {
    * Returns an array with all the enums of [class] or its ancestry.
    */
   @JvmOverloads
-  public final fun classGetEnumList(_class: StringName, noInheritance: Boolean = false):
+  public final fun classGetEnumList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to _class, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -285,11 +285,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun classGetEnumConstants(
-    _class: StringName,
-    _enum: StringName,
+    `class`: StringName,
+    `enum`: StringName,
     noInheritance: Boolean = false,
   ): PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -299,11 +299,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun classGetIntegerConstantEnum(
-    _class: StringName,
+    `class`: StringName,
     name: StringName,
     noInheritance: Boolean = false,
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to name, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
@@ -314,11 +314,11 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   public final fun isClassEnumBitfield(
-    _class: StringName,
-    _enum: StringName,
+    `class`: StringName,
+    `enum`: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class, STRING_NAME to _enum, BOOL to noInheritance)
+    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
     TransferContext.callMethod(rawPtr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -326,8 +326,8 @@ public object ClassDB : Object() {
   /**
    * Returns whether this [class] is enabled or not.
    */
-  public final fun isClassEnabled(_class: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to _class)
+  public final fun isClassEnabled(`class`: StringName): Boolean {
+    TransferContext.writeArguments(STRING_NAME to `class`)
     TransferContext.callMethod(rawPtr, MethodBindings.isClassEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

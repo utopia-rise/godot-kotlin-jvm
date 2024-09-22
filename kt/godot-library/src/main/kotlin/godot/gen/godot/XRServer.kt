@@ -157,8 +157,8 @@ public object XRServer : Object() {
   /**
    * Registers an [XRInterface] object.
    */
-  public final fun addInterface(_interface: XRInterface?): Unit {
-    TransferContext.writeArguments(OBJECT to _interface)
+  public final fun addInterface(`interface`: XRInterface?): Unit {
+    TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
 
@@ -177,8 +177,8 @@ public object XRServer : Object() {
   /**
    * Removes this [interface].
    */
-  public final fun removeInterface(_interface: XRInterface?): Unit {
-    TransferContext.writeArguments(OBJECT to _interface)
+  public final fun removeInterface(`interface`: XRInterface?): Unit {
+    TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
 
@@ -250,8 +250,8 @@ public object XRServer : Object() {
     return (TransferContext.readReturnValue(OBJECT) as XRInterface?)
   }
 
-  public final fun setPrimaryInterface(_interface: XRInterface?): Unit {
-    TransferContext.writeArguments(OBJECT to _interface)
+  public final fun setPrimaryInterface(`interface`: XRInterface?): Unit {
+    TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
 

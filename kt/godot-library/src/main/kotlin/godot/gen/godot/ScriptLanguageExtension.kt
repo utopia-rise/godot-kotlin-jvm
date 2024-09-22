@@ -72,7 +72,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     throw NotImplementedError("_make_template is not implemented for ScriptLanguageExtension")
   }
 
-  public open fun _getBuiltInTemplates(_object: StringName): VariantArray<Dictionary<Any?, Any?>> {
+  public open fun _getBuiltInTemplates(`object`: StringName): VariantArray<Dictionary<Any?, Any?>> {
     throw NotImplementedError("_get_built_in_templates is not implemented for ScriptLanguageExtension")
   }
 

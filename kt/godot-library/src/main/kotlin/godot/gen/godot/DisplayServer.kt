@@ -2555,8 +2555,8 @@ public object DisplayServer : Object() {
    * [unregisterAdditionalOutput].
    * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
    */
-  public final fun registerAdditionalOutput(_object: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to _object)
+  public final fun registerAdditionalOutput(`object`: Object?): Unit {
+    TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
   }
 
@@ -2564,8 +2564,8 @@ public object DisplayServer : Object() {
    * Unregisters an [Object] representing an additional output, that was registered via
    * [registerAdditionalOutput].
    */
-  public final fun unregisterAdditionalOutput(_object: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to _object)
+  public final fun unregisterAdditionalOutput(`object`: Object?): Unit {
+    TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
   }
 

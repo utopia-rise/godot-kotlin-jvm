@@ -48,7 +48,7 @@ public open class ScriptExtension : Script() {
     throw NotImplementedError("_get_instance_base_type is not implemented for ScriptExtension")
   }
 
-  public open fun _instanceHas(_object: Object?): Boolean {
+  public open fun _instanceHas(`object`: Object?): Boolean {
     throw NotImplementedError("_instance_has is not implemented for ScriptExtension")
   }
 

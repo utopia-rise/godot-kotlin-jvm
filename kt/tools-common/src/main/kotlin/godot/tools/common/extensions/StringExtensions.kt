@@ -40,7 +40,7 @@ fun String.convertToSnakeCase(): String =
     }.toString()
 
 fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null)
-    "_$this"
+    "`$this`"
 else
     this
 

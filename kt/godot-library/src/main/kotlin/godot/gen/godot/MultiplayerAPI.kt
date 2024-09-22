@@ -170,11 +170,11 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   @JvmOverloads
   public final fun rpc(
     peer: Int,
-    _object: Object?,
+    `object`: Object?,
     method: StringName,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Error {
-    TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
+    TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to `object`, STRING_NAME to method, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, MethodBindings.rpcPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -188,8 +188,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public final fun objectConfigurationAdd(_object: Object?, configuration: Any?): Error {
-    TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
+  public final fun objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
+    TransferContext.writeArguments(OBJECT to `object`, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationAddPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -203,8 +203,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public final fun objectConfigurationRemove(_object: Object?, configuration: Any?): Error {
-    TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
+  public final fun objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
+    TransferContext.writeArguments(OBJECT to `object`, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationRemovePtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

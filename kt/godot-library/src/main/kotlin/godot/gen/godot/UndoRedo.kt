@@ -213,11 +213,11 @@ public open class UndoRedo : Object() {
    * Register a [property] that would change its value to [value] when the action is committed.
    */
   public final fun addDoProperty(
-    _object: Object?,
+    `object`: Object?,
     `property`: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
+    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.addDoPropertyPtr, NIL)
   }
 
@@ -225,11 +225,11 @@ public open class UndoRedo : Object() {
    * Register a [property] that would change its value to [value] when the action is undone.
    */
   public final fun addUndoProperty(
-    _object: Object?,
+    `object`: Object?,
     `property`: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to _object, STRING_NAME to property, ANY to value)
+    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.addUndoPropertyPtr, NIL)
   }
 
@@ -247,8 +247,8 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * [/codeblock]
    */
-  public final fun addDoReference(_object: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to _object)
+  public final fun addDoReference(`object`: Object?): Unit {
+    TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.addDoReferencePtr, NIL)
   }
 
@@ -266,8 +266,8 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * [/codeblock]
    */
-  public final fun addUndoReference(_object: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to _object)
+  public final fun addUndoReference(`object`: Object?): Unit {
+    TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.addUndoReferencePtr, NIL)
   }
 
