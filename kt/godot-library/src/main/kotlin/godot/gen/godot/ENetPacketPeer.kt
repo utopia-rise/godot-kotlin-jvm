@@ -7,15 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -110,10 +109,10 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     channel: Int,
     packet: PackedByteArray,
     flags: Int,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

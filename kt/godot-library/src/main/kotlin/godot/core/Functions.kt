@@ -47,7 +47,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
             TransferContext.writeReturnValue(ret, variantConverter)
         } catch (t: Throwable) {
             GD.printErr("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n", t.stackTraceToString())
-            TransferContext.writeReturnValue(null, VariantType.NIL)
+            TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
         ret
     }

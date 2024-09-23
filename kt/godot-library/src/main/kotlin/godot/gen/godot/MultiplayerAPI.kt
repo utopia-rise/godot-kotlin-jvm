@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -15,13 +14,13 @@ import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -154,10 +153,10 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method results in RPCs being called, so they will be executed in the same
    * context of this function (e.g. `_process`, `physics`, [Thread]).
    */
-  public final fun poll(): GodotError {
+  public final fun poll(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -174,10 +173,10 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     _object: Object?,
     method: StringName,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to _object, STRING_NAME to method, ARRAY to arguments)
     TransferContext.callMethod(rawPtr, MethodBindings.rpcPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -189,10 +188,10 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public final fun objectConfigurationAdd(_object: Object?, configuration: Any?): GodotError {
+  public final fun objectConfigurationAdd(_object: Object?, configuration: Any?): Error {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationAddPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -204,10 +203,10 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * **Note:** This method is mostly relevant when extending or overriding the MultiplayerAPI
    * behavior via [MultiplayerAPIExtension].
    */
-  public final fun objectConfigurationRemove(_object: Object?, configuration: Any?): GodotError {
+  public final fun objectConfigurationRemove(_object: Object?, configuration: Any?): Error {
     TransferContext.writeArguments(OBJECT to _object, ANY to configuration)
     TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationRemovePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

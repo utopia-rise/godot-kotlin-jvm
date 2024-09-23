@@ -7,15 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Double
@@ -120,10 +119,10 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
    * with either `ws://` or `wss://`.
    */
   @JvmOverloads
-  public final fun createClient(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
+  public final fun createClient(url: String, tlsClientOptions: TLSOptions? = null): Error {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -135,10 +134,10 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     port: Int,
     bindAddress: String = "*",
     tlsServerOptions: TLSOptions? = null,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, OBJECT to tlsServerOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

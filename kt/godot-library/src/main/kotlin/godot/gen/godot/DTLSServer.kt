@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.OBJECT
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -181,10 +180,10 @@ public open class DTLSServer : RefCounted() {
   /**
    * Setup the DTLS server to use the given [serverOptions]. See [TLSOptions.server].
    */
-  public final fun setup(serverOptions: TLSOptions?): GodotError {
+  public final fun setup(serverOptions: TLSOptions?): Error {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

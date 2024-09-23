@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -46,10 +45,10 @@ public open class ImageTexture3D : Texture3D() {
     depth: Int,
     useMipmaps: Boolean,
     `data`: VariantArray<Image>,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.createPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

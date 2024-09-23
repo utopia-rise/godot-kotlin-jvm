@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -86,19 +85,19 @@ public open class HashingContext : RefCounted() {
    * Starts a new hash computation of the given [type] (e.g. [HASH_SHA256] to start computation of
    * an SHA-256).
    */
-  public final fun start(type: HashType): GodotError {
+  public final fun start(type: HashType): Error {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Updates the computation with the given [chunk] of data.
    */
-  public final fun update(chunk: PackedByteArray): GodotError {
+  public final fun update(chunk: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

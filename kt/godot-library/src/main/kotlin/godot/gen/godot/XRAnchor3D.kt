@@ -9,8 +9,8 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
 import godot.core.TypeManager
-import godot.core.VariantType.PLANE
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.PLANE
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

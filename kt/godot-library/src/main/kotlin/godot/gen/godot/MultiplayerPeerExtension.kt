@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import kotlin.Boolean
 import kotlin.Int
@@ -52,7 +51,7 @@ public open class MultiplayerPeerExtension : MultiplayerPeer() {
    * Called when a packet needs to be sent by the [MultiplayerAPI], if [_putPacket] isn't
    * implemented. Use this when extending this class via GDScript.
    */
-  public open fun _putPacketScript(pBuffer: PackedByteArray): GodotError {
+  public open fun _putPacketScript(pBuffer: PackedByteArray): Error {
     throw NotImplementedError("_put_packet_script is not implemented for MultiplayerPeerExtension")
   }
 

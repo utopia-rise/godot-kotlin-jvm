@@ -2,27 +2,28 @@ package godot.tools.common.constants
 
 import com.squareup.kotlinpoet.ClassName
 
-object GodotKotlinJvmTypes{
+object GodotKotlinJvmTypes {
     const val color = "Color"
     const val stringName = "StringName"
     const val array = "VariantArray"
     const val callable = "Callable"
     const val callableBase = "Callable"
     const val dictionary = "Dictionary"
-    const val error = "GodotError"
+    const val error = "Error"
     const val nodePath = "NodePath"
     const val variant = "Any"
     const val refCounted = "RefCounted"
     const val resource = "Resource"
     const val obj = "Object"
     const val signal = "Signal"
+    const val variantType = "VariantType"
 
     const val ktObject = "KtObject"
     const val ktFunctionArgument = "KtFunctionArgument"
     const val ktRpcConfig = "KtRpcConfig"
 
     const val variantConverter = "VariantConverter"
-    const val variantType = "VariantType"
+    const val variantParser = "VariantParser"
     const val variantCaster = "VariantCaster"
     const val variantArray = "VariantArray"
     const val transferContext = "TransferContext"
@@ -201,7 +202,8 @@ object GodotTypes {
     )
 }
 
-val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
+val GODOT_ERROR = ClassName(godotApiPackage, GodotKotlinJvmTypes.error)
+val GODOT_VARIANT_TYPE = ClassName(godotApiPackage, GodotKotlinJvmTypes.variantType)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
 val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)
@@ -209,36 +211,34 @@ val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionar
 val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
 val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
 
-val VARIANT_TYPE_NIL = ClassName(variantTypePackage, "NIL")
-val VARIANT_TYPE_BOOL = ClassName(variantTypePackage, "BOOL")
-val VARIANT_TYPE_LONG = ClassName(variantTypePackage, "LONG")
-val VARIANT_TYPE_DOUBLE = ClassName(variantTypePackage, "DOUBLE")
-val VARIANT_TYPE_NODE_PATH = ClassName(variantTypePackage, "NODE_PATH")
-val VARIANT_TYPE_STRING_NAME = ClassName(variantTypePackage, "STRING_NAME")
-val VARIANT_TYPE_STRING = ClassName(variantTypePackage, "STRING")
-val VARIANT_TYPE__RID = ClassName(variantTypePackage, "_RID")
-val VARIANT_TYPE_ARRAY = ClassName(variantTypePackage, "ARRAY")
-val VARIANT_TYPE_AABB = ClassName(variantTypePackage, "AABB")
-val VARIANT_TYPE_TRANSFORM2D = ClassName(variantTypePackage, "TRANSFORM2D")
-val VARIANT_TYPE_TRANSFORM3D = ClassName(variantTypePackage, "TRANSFORM3D")
-val VARIANT_TYPE_PACKED_BYTE_ARRAY = ClassName(variantTypePackage, "PACKED_BYTE_ARRAY")
-val VARIANT_TYPE_PACKED_INT_32_ARRAY = ClassName(variantTypePackage, "PACKED_INT_32_ARRAY")
-val VARIANT_TYPE_PACKED_INT_64_ARRAY = ClassName(variantTypePackage, "PACKED_INT_64_ARRAY")
-val VARIANT_TYPE_PACKED_FLOAT_32_ARRAY = ClassName(variantTypePackage, "PACKED_FLOAT_32_ARRAY")
-val VARIANT_TYPE_PACKED_FLOAT_64_ARRAY = ClassName(variantTypePackage, "PACKED_FLOAT_64_ARRAY")
-val VARIANT_TYPE_PACKED_STRING_ARRAY = ClassName(variantTypePackage, "PACKED_STRING_ARRAY")
-val VARIANT_TYPE_PACKED_VECTOR2_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR2_ARRAY")
-val VARIANT_TYPE_PACKED_VECTOR3_ARRAY = ClassName(variantTypePackage, "PACKED_VECTOR3_ARRAY")
-val VARIANT_TYPE_PACKED_COLOR_ARRAY = ClassName(variantTypePackage, "PACKED_COLOR_ARRAY")
-val VARIANT_TYPE_PACKED_CALLABLE = ClassName(variantTypePackage, "CALLABLE")
-val VARIANT_TYPE_OBJECT = ClassName(variantTypePackage, "OBJECT")
-val VARIANT_TYPE_ANY = ClassName(variantCasterPackage, "ANY")
+val VARIANT_PARSER_NIL = ClassName(variantParserPackage, "NIL")
+val VARIANT_PARSER_BOOL = ClassName(variantParserPackage, "BOOL")
+val VARIANT_PARSER_LONG = ClassName(variantParserPackage, "LONG")
+val VARIANT_PARSER_DOUBLE = ClassName(variantParserPackage, "DOUBLE")
+val VARIANT_PARSER_NODE_PATH = ClassName(variantParserPackage, "NODE_PATH")
+val VARIANT_PARSER_STRING_NAME = ClassName(variantParserPackage, "STRING_NAME")
+val VARIANT_PARSER_STRING = ClassName(variantParserPackage, "STRING")
+val VARIANT_PARSER__RID = ClassName(variantParserPackage, "_RID")
+val VARIANT_PARSER_ARRAY = ClassName(variantParserPackage, "ARRAY")
+val VARIANT_PARSER_AABB = ClassName(variantParserPackage, "AABB")
+val VARIANT_PARSER_TRANSFORM2D = ClassName(variantParserPackage, "TRANSFORM2D")
+val VARIANT_PARSER_TRANSFORM3D = ClassName(variantParserPackage, "TRANSFORM3D")
+val VARIANT_PARSER_PACKED_BYTE_ARRAY = ClassName(variantParserPackage, "PACKED_BYTE_ARRAY")
+val VARIANT_PARSER_PACKED_INT_32_ARRAY = ClassName(variantParserPackage, "PACKED_INT_32_ARRAY")
+val VARIANT_PARSER_PACKED_INT_64_ARRAY = ClassName(variantParserPackage, "PACKED_INT_64_ARRAY")
+val VARIANT_PARSER_PACKED_FLOAT_32_ARRAY = ClassName(variantParserPackage, "PACKED_FLOAT_32_ARRAY")
+val VARIANT_PARSER_PACKED_FLOAT_64_ARRAY = ClassName(variantParserPackage, "PACKED_FLOAT_64_ARRAY")
+val VARIANT_PARSER_PACKED_STRING_ARRAY = ClassName(variantParserPackage, "PACKED_STRING_ARRAY")
+val VARIANT_PARSER_PACKED_VECTOR2_ARRAY = ClassName(variantParserPackage, "PACKED_VECTOR2_ARRAY")
+val VARIANT_PARSER_PACKED_VECTOR3_ARRAY = ClassName(variantParserPackage, "PACKED_VECTOR3_ARRAY")
+val VARIANT_PARSER_PACKED_COLOR_ARRAY = ClassName(variantParserPackage, "PACKED_COLOR_ARRAY")
+val VARIANT_PARSER_PACKED_CALLABLE = ClassName(variantParserPackage, "CALLABLE")
+val VARIANT_PARSER_OBJECT = ClassName(variantParserPackage, "OBJECT")
 
 val VARIANT_CASTER_BYTE = ClassName(variantCasterPackage, "BYTE")
 val VARIANT_CASTER_INT = ClassName(variantCasterPackage, "INT")
 val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
 val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
-
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)

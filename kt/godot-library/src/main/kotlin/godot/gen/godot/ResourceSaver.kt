@@ -7,15 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -52,10 +51,10 @@ public object ResourceSaver : Object() {
     resource: Resource?,
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
@@ -16,21 +15,21 @@ import godot.core.Rect2
 import godot.core.Transform2D
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.STRING
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.TRANSFORM2D
+import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
@@ -336,10 +335,10 @@ public open class FontFile : Font() {
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
-  public final fun loadBitmapFont(path: String): GodotError {
+  public final fun loadBitmapFont(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadBitmapFontPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -348,10 +347,10 @@ public open class FontFile : Font() {
    * **Warning:** This method should only be used in the editor or in cases when you need to load
    * external fonts at run-time, such as fonts located at the `user://` directory.
    */
-  public final fun loadDynamicFont(path: String): GodotError {
+  public final fun loadDynamicFont(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadDynamicFontPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {

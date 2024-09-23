@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedColorArray
 import godot.core.PackedInt64Array
@@ -16,21 +15,21 @@ import godot.core.RID
 import godot.core.Rect2
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_COLOR_ARRAY
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2I
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType._RID
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_COLOR_ARRAY
+import godot.core.VariantParser.PACKED_INT_64_ARRAY
+import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.VECTOR2I
+import godot.core.VariantParser.VECTOR3
+import godot.core.VariantParser._RID
 import godot.core.Vector2i
 import godot.core.Vector3
 import godot.core.memory.TransferContext
@@ -159,10 +158,10 @@ public open class RenderingDevice internal constructor() : Object() {
     texture: RID,
     layer: Long,
     `data`: PackedByteArray,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to texture, LONG to layer, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.textureUpdatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -236,10 +235,10 @@ public open class RenderingDevice internal constructor() : Object() {
     dstMipmap: Long,
     srcLayer: Long,
     dstLayer: Long,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture, VECTOR3 to fromPos, VECTOR3 to toPos, VECTOR3 to size, LONG to srcMipmap, LONG to dstMipmap, LONG to srcLayer, LONG to dstLayer)
     TransferContext.callMethod(rawPtr, MethodBindings.textureCopyPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -259,10 +258,10 @@ public open class RenderingDevice internal constructor() : Object() {
     mipmapCount: Long,
     baseLayer: Long,
     layerCount: Long,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to texture, COLOR to color, LONG to baseMipmap, LONG to mipmapCount, LONG to baseLayer, LONG to layerCount)
     TransferContext.callMethod(rawPtr, MethodBindings.textureClearPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -284,10 +283,10 @@ public open class RenderingDevice internal constructor() : Object() {
    * **Note:** [toTexture] texture must **not** be multisampled and must also be 2D (or a slice of a
    * 3D/cubemap texture).
    */
-  public final fun textureResolveMultisample(fromTexture: RID, toTexture: RID): GodotError {
+  public final fun textureResolveMultisample(fromTexture: RID, toTexture: RID): Error {
     TransferContext.writeArguments(_RID to fromTexture, _RID to toTexture)
     TransferContext.callMethod(rawPtr, MethodBindings.textureResolveMultisamplePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -696,10 +695,10 @@ public open class RenderingDevice internal constructor() : Object() {
     srcOffset: Long,
     dstOffset: Long,
     size: Long,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to srcBuffer, _RID to dstBuffer, LONG to srcOffset, LONG to dstOffset, LONG to size)
     TransferContext.callMethod(rawPtr, MethodBindings.bufferCopyPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -715,10 +714,10 @@ public open class RenderingDevice internal constructor() : Object() {
     offset: Long,
     sizeBytes: Long,
     `data`: PackedByteArray,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.bufferUpdatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -733,10 +732,10 @@ public open class RenderingDevice internal constructor() : Object() {
     buffer: RID,
     offset: Long,
     sizeBytes: Long,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(_RID to buffer, LONG to offset, LONG to sizeBytes)
     TransferContext.callMethod(rawPtr, MethodBindings.bufferClearPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

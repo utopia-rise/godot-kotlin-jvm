@@ -11,9 +11,9 @@ import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.RECT2
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -41,10 +40,10 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   /**
    * Loads the texture at [path].
    */
-  public final fun load(path: String): GodotError {
+  public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getLoadPath(): String {

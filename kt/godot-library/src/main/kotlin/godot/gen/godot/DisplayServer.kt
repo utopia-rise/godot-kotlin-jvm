@@ -11,7 +11,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
@@ -21,25 +20,25 @@ import godot.core.Rect2i
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.RECT2I
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
-import godot.core.VariantType.VECTOR3I
-import godot.core.VariantType._RID
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.RECT2I
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR2I
+import godot.core.VariantParser.VECTOR3I
+import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
@@ -2215,10 +2214,10 @@ public object DisplayServer : Object() {
     description: String,
     buttons: PackedStringArray,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.dialogShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2232,10 +2231,10 @@ public object DisplayServer : Object() {
     description: String,
     existingText: String,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.dialogInputTextPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2262,10 +2261,10 @@ public object DisplayServer : Object() {
     mode: FileDialogMode,
     filters: PackedStringArray,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2299,10 +2298,10 @@ public object DisplayServer : Object() {
     filters: PackedStringArray,
     options: VariantArray<Dictionary<Any?, Any?>>,
     callback: Callable,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

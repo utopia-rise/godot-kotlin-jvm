@@ -12,7 +12,7 @@ const val godotRegistrationPackage = "godot.registration"
 const val godotEntryBasePackage = "godot.entry"
 
 const val variantConverterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantConverter}"
-const val variantTypePackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantType}"
+const val variantParserPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantParser}"
 const val variantCasterPackage = "$godotCorePackage.${GodotKotlinJvmTypes.variantCaster}"
 
 const val kotlinPackage = "kotlin"

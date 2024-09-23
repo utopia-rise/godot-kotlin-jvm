@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -37,10 +36,10 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * other images *must* have the same width, height, image format and mipmapping setting.
    * Each [Image] represents one `layer`.
    */
-  public final fun createFromImages(images: VariantArray<Image>): GodotError {
+  public final fun createFromImages(images: VariantArray<Image>): Error {
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

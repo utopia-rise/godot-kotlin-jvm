@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any

@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -34,7 +33,7 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     throw NotImplementedError("_get_signaling_state is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _initialize(pConfig: Dictionary<Any?, Any?>): GodotError {
+  public open fun _initialize(pConfig: Dictionary<Any?, Any?>): Error {
     throw NotImplementedError("_initialize is not implemented for WebRTCPeerConnectionExtension")
   }
 
@@ -43,15 +42,15 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     throw NotImplementedError("_create_data_channel is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _createOffer(): GodotError {
+  public open fun _createOffer(): Error {
     throw NotImplementedError("_create_offer is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _setRemoteDescription(pType: String, pSdp: String): GodotError {
+  public open fun _setRemoteDescription(pType: String, pSdp: String): Error {
     throw NotImplementedError("_set_remote_description is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _setLocalDescription(pType: String, pSdp: String): GodotError {
+  public open fun _setLocalDescription(pType: String, pSdp: String): Error {
     throw NotImplementedError("_set_local_description is not implemented for WebRTCPeerConnectionExtension")
   }
 
@@ -59,11 +58,11 @@ public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
     pSdpMidName: String,
     pSdpMlineIndex: Int,
     pSdpName: String,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_add_ice_candidate is not implemented for WebRTCPeerConnectionExtension")
   }
 
-  public open fun _poll(): GodotError {
+  public open fun _poll(): Error {
     throw NotImplementedError("_poll is not implemented for WebRTCPeerConnectionExtension")
   }
 

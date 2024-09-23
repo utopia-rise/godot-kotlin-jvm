@@ -7,17 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -106,10 +105,10 @@ public open class RegEx : RefCounted() {
    * Compiles and assign the search pattern to use. Returns [OK] if the compilation is successful.
    * If an error is encountered, details are printed to standard output and an error is returned.
    */
-  public final fun compile(pattern: String): GodotError {
+  public final fun compile(pattern: String): Error {
     TransferContext.writeArguments(STRING to pattern)
     TransferContext.callMethod(rawPtr, MethodBindings.compilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

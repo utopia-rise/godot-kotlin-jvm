@@ -10,20 +10,19 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.VECTOR2
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -212,10 +211,10 @@ public open class VisualShader : Shader() {
     fromPort: Int,
     toNode: Int,
     toPort: Int,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.connectNodesPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

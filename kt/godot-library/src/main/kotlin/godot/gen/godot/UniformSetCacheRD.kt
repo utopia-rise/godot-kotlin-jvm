@@ -10,9 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.LONG
-import godot.core.VariantType._RID
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int

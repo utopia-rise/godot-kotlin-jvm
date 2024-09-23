@@ -7,15 +7,14 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -129,10 +128,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * can vary between operating systems. If you want a list of all files or folders sorted
    * alphabetically, use [getFiles] or [getDirectories].
    */
-  public final fun listDirBegin(): GodotError {
+  public final fun listDirBegin(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.listDirBeginPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -213,10 +212,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * inside `res://`, you can't change it to `user://` directory. If you need to open a directory in
    * another access scope, use [open] to create a new instance instead.
    */
-  public final fun changeDir(toDir: String): GodotError {
+  public final fun changeDir(toDir: String): Error {
     TransferContext.writeArguments(STRING to toDir)
     TransferContext.callMethod(rawPtr, MethodBindings.changeDirPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -236,10 +235,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * path recursively, see [makeDirRecursive]).
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public final fun makeDir(path: String): GodotError {
+  public final fun makeDir(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.makeDirPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -247,10 +246,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * [makeDir] recursively. The argument can be relative to the current directory, or an absolute path.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public final fun makeDirRecursive(path: String): GodotError {
+  public final fun makeDirRecursive(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.makeDirRecursivePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -297,10 +296,10 @@ public open class DirAccess internal constructor() : RefCounted() {
     from: String,
     to: String,
     chmodFlags: Int = -1,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.copyPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -309,10 +308,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * exists and is not access-protected, it will be overwritten.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public final fun rename(from: String, to: String): GodotError {
+  public final fun rename(from: String, to: String): Error {
     TransferContext.writeArguments(STRING to from, STRING to to)
     TransferContext.callMethod(rawPtr, MethodBindings.renamePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -322,10 +321,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * If you don't want to delete the file/directory permanently, use [OS.moveToTrash] instead.
    * Returns one of the [Error] code constants ([OK] on success).
    */
-  public final fun remove(path: String): GodotError {
+  public final fun remove(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.removePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -355,10 +354,10 @@ public open class DirAccess internal constructor() : RefCounted() {
    * privileges or Developer Mode is enabled.
    * **Note:** This method is implemented on macOS, Linux, and Windows.
    */
-  public final fun createLink(source: String, target: String): GodotError {
+  public final fun createLink(source: String, target: String): Error {
     TransferContext.writeArguments(STRING to source, STRING to target)
     TransferContext.callMethod(rawPtr, MethodBindings.createLinkPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setIncludeNavigational(enable: Boolean): Unit {
@@ -412,10 +411,10 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Returns the result of the last [open] call in the current thread.
      */
-    public final fun getOpenError(): GodotError {
+    public final fun getOpenError(): Error {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -468,19 +467,19 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * Static version of [makeDir]. Supports only absolute paths.
      */
-    public final fun makeDirAbsolute(path: String): GodotError {
+    public final fun makeDirAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirAbsolutePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
      * Static version of [makeDirRecursive]. Supports only absolute paths.
      */
-    public final fun makeDirRecursiveAbsolute(path: String): GodotError {
+    public final fun makeDirRecursiveAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.makeDirRecursiveAbsolutePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -500,28 +499,28 @@ public open class DirAccess internal constructor() : RefCounted() {
       from: String,
       to: String,
       chmodFlags: Int = -1,
-    ): GodotError {
+    ): Error {
       TransferContext.writeArguments(STRING to from, STRING to to, LONG to chmodFlags.toLong())
       TransferContext.callMethod(0, MethodBindings.copyAbsolutePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
      * Static version of [rename]. Supports only absolute paths.
      */
-    public final fun renameAbsolute(from: String, to: String): GodotError {
+    public final fun renameAbsolute(from: String, to: String): Error {
       TransferContext.writeArguments(STRING to from, STRING to to)
       TransferContext.callMethod(0, MethodBindings.renameAbsolutePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
 
     /**
      * Static version of [remove]. Supports only absolute paths.
      */
-    public final fun removeAbsolute(path: String): GodotError {
+    public final fun removeAbsolute(path: String): Error {
       TransferContext.writeArguments(STRING to path)
       TransferContext.callMethod(0, MethodBindings.removeAbsolutePtr, LONG)
-      return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+      return Error.from(TransferContext.readReturnValue(LONG) as Long)
     }
   }
 

@@ -14,31 +14,31 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     /**
      * Constructs a [PackedInt32Array] as a copy of the given [PackedInt32Array].
      */
     constructor(from: PackedInt32Array) {
-        TransferContext.writeArguments(VariantType.PACKED_INT_32_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_INT_32_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     /**
      * Constructs a new [PackedInt32Array] by converting a [VariantArray]<[Int]>.
      */
     constructor(from: VariantArray<Int>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     /**
@@ -46,7 +46,7 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
      */
     constructor(from: IntArray) {
         _handle = Bridge.engine_convert_to_godot(from)
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     override fun toString(): String {
@@ -75,7 +75,7 @@ class PackedInt32Array : PackedArray<PackedInt32Array, Int> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_INT_32_ARRAY
+        override val packedArrayVariantType = VariantParser.PACKED_INT_32_ARRAY
         override val elementVariantType = VariantCaster.INT
 
         external override fun engine_call_constructor(): VoidPtr

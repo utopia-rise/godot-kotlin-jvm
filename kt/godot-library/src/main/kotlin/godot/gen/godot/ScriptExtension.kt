@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.StringName
 import godot.core.VariantArray
 import kotlin.Any
@@ -64,7 +63,7 @@ public open class ScriptExtension : Script() {
   public open fun _setSourceCode(code: String): Unit {
   }
 
-  public open fun _reload(keepState: Boolean): GodotError {
+  public open fun _reload(keepState: Boolean): Error {
     throw NotImplementedError("_reload is not implemented for ScriptExtension")
   }
 

@@ -10,10 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr

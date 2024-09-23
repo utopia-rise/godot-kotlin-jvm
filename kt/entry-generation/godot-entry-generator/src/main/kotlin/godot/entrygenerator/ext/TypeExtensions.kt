@@ -5,78 +5,78 @@ import com.squareup.kotlinpoet.TypeName
 import godot.entrygenerator.model.Type
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_CASTER_BYTE
 import godot.tools.common.constants.VARIANT_CASTER_FLOAT
 import godot.tools.common.constants.VARIANT_CASTER_INT
-import godot.tools.common.constants.VARIANT_TYPE_AABB
-import godot.tools.common.constants.VARIANT_TYPE_ANY
-import godot.tools.common.constants.VARIANT_TYPE_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_BOOL
-import godot.tools.common.constants.VARIANT_TYPE_DOUBLE
-import godot.tools.common.constants.VARIANT_TYPE_LONG
-import godot.tools.common.constants.VARIANT_TYPE_NIL
-import godot.tools.common.constants.VARIANT_TYPE_NODE_PATH
-import godot.tools.common.constants.VARIANT_TYPE_OBJECT
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_BYTE_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_CALLABLE
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_COLOR_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_32_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_INT_64_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_STRING_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR2_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_PACKED_VECTOR3_ARRAY
-import godot.tools.common.constants.VARIANT_TYPE_STRING
-import godot.tools.common.constants.VARIANT_TYPE_STRING_NAME
-import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM2D
-import godot.tools.common.constants.VARIANT_TYPE_TRANSFORM3D
-import godot.tools.common.constants.VARIANT_TYPE__RID
+import godot.tools.common.constants.VARIANT_PARSER_AABB
+import godot.tools.common.constants.VARIANT_PARSER_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_BOOL
+import godot.tools.common.constants.VARIANT_PARSER_DOUBLE
+import godot.tools.common.constants.VARIANT_PARSER_LONG
+import godot.tools.common.constants.VARIANT_PARSER_NIL
+import godot.tools.common.constants.VARIANT_PARSER_NODE_PATH
+import godot.tools.common.constants.VARIANT_PARSER_OBJECT
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_BYTE_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_CALLABLE
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_COLOR_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_32_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_INT_64_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_STRING_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR2_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+import godot.tools.common.constants.VARIANT_PARSER_STRING
+import godot.tools.common.constants.VARIANT_PARSER_STRING_NAME
+import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM2D
+import godot.tools.common.constants.VARIANT_PARSER_TRANSFORM3D
+import godot.tools.common.constants.VARIANT_PARSER__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
-import godot.tools.common.constants.variantTypePackage
+import godot.tools.common.constants.variantParserPackage
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
 
 //TODO: make compatible with other languages
 fun Type?.toKtVariantType(): ClassName = when {
-    this == null || fqName == Unit::class.qualifiedName -> VARIANT_TYPE_NIL
+    this == null || fqName == Unit::class.qualifiedName -> VARIANT_PARSER_NIL
     fqName == Byte::class.qualifiedName -> VARIANT_CASTER_BYTE
     fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
-        fqName == Long::class.qualifiedName -> VARIANT_TYPE_LONG
+        fqName == Long::class.qualifiedName -> VARIANT_PARSER_LONG
 
     fqName == Float::class.qualifiedName -> VARIANT_CASTER_FLOAT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
-        fqName == Double::class.qualifiedName -> VARIANT_TYPE_DOUBLE
+        fqName == Double::class.qualifiedName -> VARIANT_PARSER_DOUBLE
 
-    fqName == String::class.qualifiedName -> VARIANT_TYPE_STRING
-    fqName == Boolean::class.qualifiedName -> VARIANT_TYPE_BOOL
-    fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_TYPE_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_TYPE_STRING_NAME
-    fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_TYPE__RID
-    fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_TYPE_AABB
-    fqName == "$godotCorePackage.${GodotTypes.nodePath}" -> VARIANT_TYPE_NODE_PATH
-    fqName == "$godotCorePackage.${GodotTypes.transform2D}" -> VARIANT_TYPE_TRANSFORM2D
-    fqName == "$godotCorePackage.${GodotTypes.transform3D}" -> VARIANT_TYPE_TRANSFORM3D
-    fqName == "$godotCorePackage.${GodotTypes.packedByteArray}" -> VARIANT_TYPE_PACKED_BYTE_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedInt32Array}" -> VARIANT_TYPE_PACKED_INT_32_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedInt64Array}" -> VARIANT_TYPE_PACKED_INT_64_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedFloat32Array}" -> VARIANT_TYPE_PACKED_FLOAT_32_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedFloat64Array}" -> VARIANT_TYPE_PACKED_FLOAT_64_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedStringArray}" -> VARIANT_TYPE_PACKED_STRING_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_TYPE_PACKED_VECTOR2_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_TYPE_PACKED_VECTOR3_ARRAY
-    fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_TYPE_PACKED_COLOR_ARRAY
-    fqName.startsWith("$godotCorePackage.${GodotTypes.ktCallable}") -> VARIANT_TYPE_PACKED_CALLABLE
+    fqName == String::class.qualifiedName -> VARIANT_PARSER_STRING
+    fqName == Boolean::class.qualifiedName -> VARIANT_PARSER_BOOL
+    fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_PARSER_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_PARSER_STRING_NAME
+    fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_PARSER__RID
+    fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_PARSER_AABB
+    fqName == "$godotCorePackage.${GodotTypes.nodePath}" -> VARIANT_PARSER_NODE_PATH
+    fqName == "$godotCorePackage.${GodotTypes.transform2D}" -> VARIANT_PARSER_TRANSFORM2D
+    fqName == "$godotCorePackage.${GodotTypes.transform3D}" -> VARIANT_PARSER_TRANSFORM3D
+    fqName == "$godotCorePackage.${GodotTypes.packedByteArray}" -> VARIANT_PARSER_PACKED_BYTE_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedInt32Array}" -> VARIANT_PARSER_PACKED_INT_32_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedInt64Array}" -> VARIANT_PARSER_PACKED_INT_64_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedFloat32Array}" -> VARIANT_PARSER_PACKED_FLOAT_32_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedFloat64Array}" -> VARIANT_PARSER_PACKED_FLOAT_64_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedStringArray}" -> VARIANT_PARSER_PACKED_STRING_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
+    fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_PARSER_PACKED_COLOR_ARRAY
+    fqName.startsWith("$godotCorePackage.${GodotTypes.ktCallable}") -> VARIANT_PARSER_PACKED_CALLABLE
     isCoreType() -> ClassName(
-        variantTypePackage,
+        variantParserPackage,
         fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())
     )
 
-    fqName == Any::class.qualifiedName -> VARIANT_TYPE_ANY
-    else -> VARIANT_TYPE_OBJECT
+    fqName == Any::class.qualifiedName -> VARIANT_CASTER_ANY
+    else -> VARIANT_PARSER_OBJECT
 }
 
 /**
@@ -86,8 +86,8 @@ fun Type?.toKtVariantType(): ClassName = when {
  */
 fun Type?.toGodotVariantType(): ClassName = this?.let {
     when (it.fqName) {
-        Byte::class.qualifiedName, Int::class.qualifiedName -> VARIANT_TYPE_LONG
-        Float::class.qualifiedName -> VARIANT_TYPE_DOUBLE
+        Byte::class.qualifiedName, Int::class.qualifiedName -> VARIANT_PARSER_LONG
+        Float::class.qualifiedName -> VARIANT_PARSER_DOUBLE
         else -> toKtVariantType()
     }
 } ?: toKtVariantType()

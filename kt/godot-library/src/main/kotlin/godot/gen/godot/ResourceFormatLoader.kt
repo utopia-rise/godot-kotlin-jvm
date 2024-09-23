@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import kotlin.Any
@@ -104,7 +103,7 @@ public open class ResourceFormatLoader : RefCounted() {
    * dictionary `{ String => String }` mapping old dependency paths to new paths.
    * Returns [OK] on success, or an [Error] constant in case of failure.
    */
-  public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): GodotError {
+  public open fun _renameDependencies(path: String, renames: Dictionary<Any?, Any?>): Error {
     throw NotImplementedError("_rename_dependencies is not implemented for ResourceFormatLoader")
   }
 

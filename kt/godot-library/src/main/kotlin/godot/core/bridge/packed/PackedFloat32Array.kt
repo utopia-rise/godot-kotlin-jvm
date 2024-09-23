@@ -13,7 +13,7 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
     //CONSTRUCTOR
@@ -22,25 +22,25 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
      */
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
     /**
      * Constructs a [PackedFloat32Array] as a copy of the given [PackedFloat32Array].
      */
     constructor(from: PackedFloat32Array) {
-        TransferContext.writeArguments(VariantType.PACKED_FLOAT_32_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_FLOAT_32_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
     /**
      * Constructs a new [PackedFloat32Array] by converting a [VariantArray]<[Float]>.
      */
     constructor(from: VariantArray<Float>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
     /**
@@ -48,7 +48,7 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
      */
     constructor(from: FloatArray) {
         _handle = Bridge.engine_convert_to_godot(from)
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_FLOAT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_FLOAT_32_ARRAY)
     }
 
     override fun toString(): String {
@@ -77,7 +77,7 @@ class PackedFloat32Array : PackedArray<PackedFloat32Array, Float> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_FLOAT_32_ARRAY
+        override val packedArrayVariantType = VariantParser.PACKED_FLOAT_32_ARRAY
         override val elementVariantType = VariantCaster.FLOAT
 
         external override fun engine_call_constructor(): VoidPtr

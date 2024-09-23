@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -47,10 +46,10 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
-  public final fun acceptStream(stream: StreamPeer?, serverOptions: TLSOptions?): GodotError {
+  public final fun acceptStream(stream: StreamPeer?, serverOptions: TLSOptions?): Error {
     TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -64,10 +63,10 @@ public open class StreamPeerTLS : StreamPeer() {
     stream: StreamPeer?,
     commonName: String,
     clientOptions: TLSOptions? = null,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToStreamPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

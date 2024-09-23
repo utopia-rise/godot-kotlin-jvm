@@ -2,7 +2,7 @@
 
 package godot.core
 
-import godot.core.VariantType.NIL
+import godot.core.VariantParser.NIL
 import kotlin.Any
 import kotlin.Suppress
 

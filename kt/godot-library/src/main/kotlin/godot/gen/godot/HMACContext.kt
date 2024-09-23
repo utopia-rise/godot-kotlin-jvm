@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -78,20 +77,20 @@ public open class HMACContext : RefCounted() {
    * Initializes the HMACContext. This method cannot be called again on the same HMACContext until
    * [finish] has been called.
    */
-  public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): GodotError {
+  public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): Error {
     TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Updates the message to be HMACed. This can be called multiple times before [finish] is called
    * to append [data] to the message, but cannot be called until [start] has been called.
    */
-  public final fun update(`data`: PackedByteArray): GodotError {
+  public final fun update(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -8,18 +8,17 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.Signal0
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -138,10 +137,10 @@ public object JavaScriptBridge : Object() {
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
    * `true`.
    */
-  public final fun pwaUpdate(): GodotError {
+  public final fun pwaUpdate(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaUpdatePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

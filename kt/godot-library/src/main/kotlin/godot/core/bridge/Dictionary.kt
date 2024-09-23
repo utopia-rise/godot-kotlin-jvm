@@ -14,15 +14,15 @@ import kotlin.reflect.KClass
 
 class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
-    internal var keyVariantConverter: VariantConverter = VariantType.NIL
-    internal var valueVariantConverter: VariantConverter = VariantType.NIL
+    internal var keyVariantConverter: VariantConverter = VariantParser.NIL
+    internal var valueVariantConverter: VariantConverter = VariantParser.NIL
 
     @PublishedApi
     internal constructor(handle: VoidPtr) {
         keyVariantConverter = VariantCaster.ANY
         valueVariantConverter = VariantCaster.ANY
         _handle = handle
-        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
 
     constructor(keyClass: Class<*>, valueClass: Class<*>) : this(Reflection.getOrCreateKotlinClass(keyClass), Reflection.getOrCreateKotlinClass(valueClass))
@@ -45,7 +45,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         this.keyVariantConverter = keyVariantConverter!!
         this.valueVariantConverter = valueVariantConverter!!
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
 
     //########################PUBLIC###############################
@@ -156,7 +156,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         keyVariantConverter = other.keyVariantConverter
         valueVariantConverter = other.valueVariantConverter
         _handle = other._handle
-        MemoryManager.registerNativeCoreType(this, VariantType.DICTIONARY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.DICTIONARY)
     }
 
 
@@ -184,10 +184,10 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
 
     fun duplicate(deep: Boolean): Dictionary<K, V> {
-        TransferContext.writeArguments(VariantType.BOOL to deep)
+        TransferContext.writeArguments(VariantParser.BOOL to deep)
         Bridge.engine_call_duplicate(_handle)
         @Suppress("UNCHECKED_CAST")
-        return (TransferContext.readReturnValue(VariantType.DICTIONARY) as Dictionary<K, V>).also {
+        return (TransferContext.readReturnValue(VariantParser.DICTIONARY) as Dictionary<K, V>).also {
             it.keyVariantConverter = keyVariantConverter
             it.valueVariantConverter = valueVariantConverter
         }
@@ -226,7 +226,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     fun has(key: K): Boolean {
         TransferContext.writeArguments(keyVariantConverter to key)
         Bridge.engine_call_has(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
 
@@ -234,9 +234,9 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      * Returns true if the dictionary has all of the keys in the given array.
      */
     fun hasAll(keys: VariantArray<K>): Boolean {
-        TransferContext.writeArguments(VariantType.ARRAY to keys)
+        TransferContext.writeArguments(VariantParser.ARRAY to keys)
         Bridge.engine_call_hasAll(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
 
@@ -253,7 +253,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     fun isReadOnly(): Boolean {
         Bridge.engine_call_is_read_only(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -261,7 +261,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
      */
     override fun isEmpty(): Boolean {
         Bridge.engine_call_is_empty(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     /**
@@ -270,7 +270,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     fun keys(): VariantArray<K> {
         Bridge.engine_call_keys(_handle)
         @Suppress("UNCHECKED_CAST")
-        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<K>).also {
+        return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<K>).also {
             it.variantConverter = keyVariantConverter
         }
     }
@@ -280,7 +280,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     }
 
     fun merge(dictionary: Dictionary<K, V>, overwrite: Boolean = false) {
-        TransferContext.writeArguments(VariantType.DICTIONARY to dictionary, VariantType.BOOL to overwrite)
+        TransferContext.writeArguments(VariantParser.DICTIONARY to dictionary, VariantParser.BOOL to overwrite)
         Bridge.engine_call_merge(_handle)
     }
 
@@ -308,7 +308,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     fun values(): VariantArray<V> {
         Bridge.engine_call_values(_handle)
         @Suppress("UNCHECKED_CAST")
-        return (TransferContext.readReturnValue(VariantType.ARRAY) as VariantArray<V>).also {
+        return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<V>).also {
             it.variantConverter = valueVariantConverter
         }
     }
@@ -341,9 +341,9 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
         if (other == null || other !is Dictionary<*, *>) {
             return false
         }
-        TransferContext.writeArguments(VariantType.DICTIONARY to this, VariantType.DICTIONARY to other)
+        TransferContext.writeArguments(VariantParser.DICTIONARY to this, VariantParser.DICTIONARY to other)
         Bridge.engine_call_equals(_handle)
-        return TransferContext.readReturnValue(VariantType.BOOL) as Boolean
+        return TransferContext.readReturnValue(VariantParser.BOOL) as Boolean
     }
 
     override fun hashCode(): Int {

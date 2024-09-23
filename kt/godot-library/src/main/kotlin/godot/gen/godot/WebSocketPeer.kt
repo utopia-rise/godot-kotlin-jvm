@@ -7,17 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -142,10 +141,10 @@ public open class WebSocketPeer : PacketPeer() {
    * directly via the IP address for `wss://` connections, as it won't match with the TLS certificate.
    */
   @JvmOverloads
-  public final fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): GodotError {
+  public final fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): Error {
     TransferContext.writeArguments(STRING to url, OBJECT to tlsClientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToUrlPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -154,10 +153,10 @@ public open class WebSocketPeer : PacketPeer() {
    * [StreamPeerTLS.acceptStream].
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
-  public final fun acceptStream(stream: StreamPeer?): GodotError {
+  public final fun acceptStream(stream: StreamPeer?): Error {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -166,10 +165,10 @@ public open class WebSocketPeer : PacketPeer() {
    */
   @JvmOverloads
   public final fun send(message: PackedByteArray, writeMode: WriteMode =
-      WebSocketPeer.WriteMode.WRITE_MODE_BINARY): GodotError {
+      WebSocketPeer.WriteMode.WRITE_MODE_BINARY): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -177,10 +176,10 @@ public open class WebSocketPeer : PacketPeer() {
    * [PacketPeer.putPacket] when interacting with third-party text-based API (e.g. when using [JSON]
    * formatted messages).
    */
-  public final fun sendText(message: String): GodotError {
+  public final fun sendText(message: String): Error {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, MethodBindings.sendTextPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

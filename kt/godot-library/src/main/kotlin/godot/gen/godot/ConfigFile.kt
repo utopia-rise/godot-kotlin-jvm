@@ -7,17 +7,16 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -226,10 +225,10 @@ public open class ConfigFile : RefCounted() {
    * the [ConfigFile] object which the method was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun load(path: String): GodotError {
+  public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -237,10 +236,10 @@ public open class ConfigFile : RefCounted() {
    * the ConfigFile object which the method was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun parse(`data`: String): GodotError {
+  public final fun parse(`data`: String): Error {
     TransferContext.writeArguments(STRING to data)
     TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -248,10 +247,10 @@ public open class ConfigFile : RefCounted() {
    * file uses an INI-style structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun save(path: String): GodotError {
+  public final fun save(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -269,10 +268,10 @@ public open class ConfigFile : RefCounted() {
    * called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun loadEncrypted(path: String, key: PackedByteArray): GodotError {
+  public final fun loadEncrypted(path: String, key: PackedByteArray): Error {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -281,10 +280,10 @@ public open class ConfigFile : RefCounted() {
    * was called on.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun loadEncryptedPass(path: String, password: String): GodotError {
+  public final fun loadEncryptedPass(path: String, password: String): Error {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPassPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -292,10 +291,10 @@ public open class ConfigFile : RefCounted() {
    * parameter, using the provided [key] to encrypt it. The output file uses an INI-style structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun saveEncrypted(path: String, key: PackedByteArray): GodotError {
+  public final fun saveEncrypted(path: String, key: PackedByteArray): Error {
     TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -304,10 +303,10 @@ public open class ConfigFile : RefCounted() {
    * structure.
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
-  public final fun saveEncryptedPass(path: String, password: String): GodotError {
+  public final fun saveEncryptedPass(path: String, password: String): Error {
     TransferContext.writeArguments(STRING to path, STRING to password)
     TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPassPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

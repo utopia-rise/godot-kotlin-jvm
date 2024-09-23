@@ -15,14 +15,14 @@ import godot.core.PackedFloat32Array
 import godot.core.Transform2D
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.TRANSFORM3D
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantParser.TRANSFORM2D
+import godot.core.VariantParser.TRANSFORM3D
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -320,14 +320,15 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -335,8 +336,8 @@ public open class MultiMesh : Resource() {
    */
   public final fun getAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getBuffer(): PackedFloat32Array {

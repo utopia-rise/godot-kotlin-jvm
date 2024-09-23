@@ -7,19 +7,18 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.Signal4
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -324,10 +323,10 @@ public open class HTTPRequest : Node() {
     customHeaders: PackedStringArray = PackedStringArray(),
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = "",
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
     TransferContext.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -345,10 +344,10 @@ public open class HTTPRequest : Node() {
     customHeaders: PackedStringArray = PackedStringArray(),
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray(),
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

@@ -14,31 +14,31 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
     //INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_32_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_32_ARRAY)
     }
 
     /**
      * Constructs a [PackedInt64Array] as a copy of the given [PackedInt64Array].
      */
     constructor(from: PackedInt64Array) {
-        TransferContext.writeArguments(VariantType.PACKED_INT_64_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_INT_64_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
     /**
      * Constructs a new [PackedInt64Array] by converting a [VariantArray]<[Long]>.
      */
     constructor(from: VariantArray<Long>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
     /**
@@ -46,7 +46,7 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
      */
     constructor(from: LongArray) {
         _handle = Bridge.engine_convert_to_godot(from)
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_INT_64_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_INT_64_ARRAY)
     }
 
     override fun toString(): String {
@@ -75,8 +75,8 @@ class PackedInt64Array : PackedArray<PackedInt64Array, Long> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_INT_64_ARRAY
-        override val elementVariantType = VariantType.LONG
+        override val packedArrayVariantType = VariantParser.PACKED_INT_64_ARRAY
+        override val elementVariantType = VariantParser.LONG
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

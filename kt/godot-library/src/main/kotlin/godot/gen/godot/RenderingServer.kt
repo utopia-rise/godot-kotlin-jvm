@@ -29,33 +29,33 @@ import godot.core.Transform3D
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BASIS
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_COLOR_ARRAY
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_64_ARRAY
-import godot.core.VariantType.PACKED_VECTOR2_ARRAY
-import godot.core.VariantType.PACKED_VECTOR3_ARRAY
-import godot.core.VariantType.RECT2
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.TRANSFORM2D
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR2I
-import godot.core.VariantType.VECTOR3
-import godot.core.VariantType.VECTOR3I
-import godot.core.VariantType._RID
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BASIS
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_COLOR_ARRAY
+import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PACKED_INT_64_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
+import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
+import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.TRANSFORM2D
+import godot.core.VariantParser.TRANSFORM3D
+import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR2I
+import godot.core.VariantParser.VECTOR3
+import godot.core.VariantParser.VECTOR3I
+import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
@@ -759,7 +759,7 @@ public object RenderingServer : Object() {
    * Sets a mesh's custom aabb.
    */
   public final fun meshSetCustomAabb(mesh: RID, aabb: AABB): Unit {
-    TransferContext.writeArguments(_RID to mesh, godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(_RID to mesh, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.meshSetCustomAabbPtr, NIL)
   }
 
@@ -769,8 +769,8 @@ public object RenderingServer : Object() {
   public final fun meshGetCustomAabb(mesh: RID): AABB {
     TransferContext.writeArguments(_RID to mesh)
     TransferContext.callMethod(rawPtr, MethodBindings.meshGetCustomAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -927,15 +927,15 @@ public object RenderingServer : Object() {
   public final fun multimeshGetAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
    * Sets the custom AABB for this MultiMesh resource.
    */
   public final fun multimeshSetCustomAabb(multimesh: RID, aabb: AABB): Unit {
-    TransferContext.writeArguments(_RID to multimesh, godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(_RID to multimesh, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshSetCustomAabbPtr, NIL)
   }
 
@@ -945,8 +945,8 @@ public object RenderingServer : Object() {
   public final fun multimeshGetCustomAabb(multimesh: RID): AABB {
     TransferContext.writeArguments(_RID to multimesh)
     TransferContext.callMethod(rawPtr, MethodBindings.multimeshGetCustomAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -1647,7 +1647,7 @@ public object RenderingServer : Object() {
     distanceField: PackedByteArray,
     levelCounts: PackedInt32Array,
   ): Unit {
-    TransferContext.writeArguments(_RID to voxelGi, TRANSFORM3D to toCellXform, godot.core.VariantType.AABB to aabb, VECTOR3I to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
+    TransferContext.writeArguments(_RID to voxelGi, TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3I to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
     TransferContext.callMethod(rawPtr, MethodBindings.voxelGiAllocateDataPtr, NIL)
   }
 
@@ -1792,7 +1792,7 @@ public object RenderingServer : Object() {
   }
 
   public final fun lightmapSetProbeBounds(lightmap: RID, bounds: AABB): Unit {
-    TransferContext.writeArguments(_RID to lightmap, godot.core.VariantType.AABB to bounds)
+    TransferContext.writeArguments(_RID to lightmap, godot.core.VariantParser.AABB to bounds)
     TransferContext.callMethod(rawPtr, MethodBindings.lightmapSetProbeBoundsPtr, NIL)
   }
 
@@ -1986,7 +1986,7 @@ public object RenderingServer : Object() {
    * [GPUParticles3D.visibilityAabb].
    */
   public final fun particlesSetCustomAabb(particles: RID, aabb: AABB): Unit {
-    TransferContext.writeArguments(_RID to particles, godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(_RID to particles, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesSetCustomAabbPtr, NIL)
   }
 
@@ -2154,8 +2154,8 @@ public object RenderingServer : Object() {
   public final fun particlesGetCurrentAabb(particles: RID): AABB {
     TransferContext.writeArguments(_RID to particles)
     TransferContext.callMethod(rawPtr, MethodBindings.particlesGetCurrentAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -2345,7 +2345,7 @@ public object RenderingServer : Object() {
   }
 
   public final fun visibilityNotifierSetAabb(notifier: RID, aabb: AABB): Unit {
-    TransferContext.writeArguments(_RID to notifier, godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(_RID to notifier, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.visibilityNotifierSetAabbPtr, NIL)
   }
 
@@ -3925,7 +3925,7 @@ public object RenderingServer : Object() {
    * [GeometryInstance3D.customAabb].
    */
   public final fun instanceSetCustomAabb(instance: RID, aabb: AABB): Unit {
-    TransferContext.writeArguments(_RID to instance, godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(_RID to instance, godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.instanceSetCustomAabbPtr, NIL)
   }
 
@@ -4106,7 +4106,7 @@ public object RenderingServer : Object() {
    */
   @JvmOverloads
   public final fun instancesCullAabb(aabb: AABB, scenario: RID = RID()): PackedInt64Array {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb, _RID to scenario)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb, _RID to scenario)
     TransferContext.callMethod(rawPtr, MethodBindings.instancesCullAabbPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }

@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -63,10 +62,10 @@ public open class AnimationLibrary : Resource() {
   /**
    * Adds the [animation] to the library, accessible by the key [name].
    */
-  public final fun addAnimation(name: StringName, animation: Animation?): GodotError {
+  public final fun addAnimation(name: StringName, animation: Animation?): Error {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to animation)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

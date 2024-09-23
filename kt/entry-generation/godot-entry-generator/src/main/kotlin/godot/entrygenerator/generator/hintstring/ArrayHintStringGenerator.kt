@@ -1,7 +1,7 @@
 package godot.entrygenerator.generator.hintstring
 
 import godot.PropertyHint
-import godot.core.VariantType
+import godot.core.VariantParser
 import godot.entrygenerator.ext.baseGodotType
 import godot.entrygenerator.ext.getAsGodotClassName
 import godot.entrygenerator.ext.getAsVariantTypeOrdinal
@@ -31,7 +31,7 @@ class ArrayHintStringGenerator(
             elementType != null && elementType.fqName == Any::class.qualifiedName -> ""
             elementType != null && elementType.kind == TypeKind.ENUM_CLASS -> {
                 propertyHintAnnotation?.enumValueNames?.joinToString(",")?.let { enumValuesHintString ->
-                    "${VariantType.LONG.id}/${VariantType.LONG.id}:$enumValuesHintString"
+                    "${VariantParser.LONG.id}/${VariantParser.LONG.id}:$enumValuesHintString"
                 } ?: ""
             }
 
@@ -53,7 +53,7 @@ class ArrayHintStringGenerator(
                     loop@ while (currentElementType != null) {
                         when {
                             currentElementType.isCompatibleList() -> {
-                                append(VariantType.ARRAY.id)
+                                append(VariantParser.ARRAY.id)
                                 currentElementType = currentElementType.arguments().firstOrNull()
                             }
 
@@ -63,7 +63,7 @@ class ArrayHintStringGenerator(
                             }
 
                             currentElementType.isNodeType() || currentElementType.isResource() -> {
-                                val objectVariantType = VariantType.OBJECT.id
+                                val objectVariantType = VariantParser.OBJECT.id
 
                                 val propertyType = when {
                                     currentElementType.isNodeType() -> PropertyHint.PROPERTY_HINT_NODE_TYPE.ordinal

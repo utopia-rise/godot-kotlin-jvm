@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.Signal0
@@ -17,14 +16,14 @@ import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.STRING
-import godot.core.VariantType.STRING_NAME
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -541,10 +540,10 @@ public open class Object : KtObject() {
    * Prefer using the names exposed in the `SignalName` class to avoid allocating a new [StringName] on
    * each call.
    */
-  public final fun emitSignal(signal: StringName, vararg __var_args: Any?): GodotError {
+  public final fun emitSignal(signal: StringName, vararg __var_args: Any?): Error {
     TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.emitSignalPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -912,10 +911,10 @@ public open class Object : KtObject() {
     signal: StringName,
     callable: Callable,
     flags: Long = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.connectPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

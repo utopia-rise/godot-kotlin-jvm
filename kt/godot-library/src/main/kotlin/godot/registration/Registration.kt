@@ -1,7 +1,6 @@
 package godot.registration
 
 import godot.PropertyHint
-import godot.PropertyUsageFlags
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
@@ -31,9 +30,8 @@ import godot.core.KtPropertyInfo
 import godot.core.KtRpcConfig
 import godot.core.KtSignalInfo
 import godot.core.TypeManager
-import godot.core.VariantCaster
 import godot.core.VariantConverter
-import godot.core.VariantType
+import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
 import godot.tools.common.constants.Constraints
@@ -140,7 +138,7 @@ class ClassBuilderDsl<T : KtObject>(
 
         properties[propertyName] = KtEnumProperty(
             KtPropertyInfo(
-                VariantType.LONG,
+                VariantParser.LONG,
                 propertyName,
                 "Int",
                 PropertyHint.PROPERTY_HINT_ENUM,
@@ -165,7 +163,7 @@ class ClassBuilderDsl<T : KtObject>(
 
         properties[propertyName] = KtEnumListProperty(
             KtPropertyInfo(
-                VariantType.ARRAY,
+                VariantParser.ARRAY,
                 propertyName,
                 "Int",
                 PropertyHint.PROPERTY_HINT_ENUM,
@@ -211,7 +209,7 @@ class ClassBuilderDsl<T : KtObject>(
 
         properties[propertyName] = KtEnumProperty(
             KtPropertyInfo(
-                VariantType.LONG,
+                VariantParser.LONG,
                 propertyName,
                 "Int",
                 PropertyHint.PROPERTY_HINT_FLAGS,

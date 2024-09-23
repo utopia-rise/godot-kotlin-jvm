@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -16,17 +15,17 @@ import godot.core.Signal1
 import godot.core.StringName
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.QUATERNION
-import godot.core.VariantType.STRING_NAME
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.QUATERNION
+import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.core.signal
@@ -247,10 +246,10 @@ public open class AnimationMixer internal constructor() : Node() {
    * global_library.add_animation("animation_name", animation_resource)
    * ```
    */
-  public final fun addAnimationLibrary(name: StringName, library: AnimationLibrary?): GodotError {
+  public final fun addAnimationLibrary(name: StringName, library: AnimationLibrary?): Error {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
     TransferContext.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

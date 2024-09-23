@@ -35,7 +35,7 @@ open class KtProperty<T : KtObject, P : Any?>(
             TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
         } catch (t: Throwable) {
             GD.printErr("Error calling JVM getter ${kProperty.name} of script $instance from Godot\n:", t.stackTraceToString())
-            TransferContext.writeReturnValue(null, VariantType.NIL)
+            TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
     }
 
@@ -84,10 +84,10 @@ class KtEnumListProperty<T : KtObject, P : Enum<P>, L : Collection<P>>(
 ) : KtProperty<T, L>(
     ktPropertyInfo,
     kProperty,
-    VariantType.ARRAY
+    VariantParser.ARRAY
 ) {
     override fun callGet(instance: T) {
-        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantType.ARRAY)
+        TransferContext.writeReturnValue(getValueConverter(kProperty.get(instance)), VariantParser.ARRAY)
     }
 
     override fun callSet(instance: T) {

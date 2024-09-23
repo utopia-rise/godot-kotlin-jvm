@@ -14,31 +14,31 @@ class PackedColorArray : PackedArray<PackedColorArray, Color> {
     // INTERNALS
     internal constructor(_handle: VoidPtr) {
         this._handle = _handle
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
     }
 
     //CONSTRUCTOR
     constructor() {
         _handle = Bridge.engine_call_constructor()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
     }
 
     /**
      * Constructs a [PackedColorArray] as a copy of the given [PackedColorArray].
      */
     constructor(from: PackedColorArray) {
-        TransferContext.writeArguments(VariantType.PACKED_COLOR_ARRAY to from)
+        TransferContext.writeArguments(VariantParser.PACKED_COLOR_ARRAY to from)
         _handle = Bridge.engine_call_constructor_packed_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
     }
 
     /**
      * Constructs a new [PackedColorArray] by converting a [VariantArray]<[Color]>.
      */
     constructor(from: VariantArray<Color>) {
-        TransferContext.writeArguments(VariantType.ARRAY to from)
+        TransferContext.writeArguments(VariantParser.ARRAY to from)
         _handle = Bridge.engine_call_constructor_array()
-        MemoryManager.registerNativeCoreType(this, VariantType.PACKED_COLOR_ARRAY)
+        MemoryManager.registerNativeCoreType(this, VariantParser.PACKED_COLOR_ARRAY)
     }
 
     override fun toString(): String {
@@ -66,8 +66,8 @@ class PackedColorArray : PackedArray<PackedColorArray, Color> {
 
     @Suppress("LocalVariableName")
     internal object Bridge : PackedArrayBridge {
-        override val packedArrayVariantType = VariantType.PACKED_COLOR_ARRAY
-        override val elementVariantType = VariantType.COLOR
+        override val packedArrayVariantType = VariantParser.PACKED_COLOR_ARRAY
+        override val elementVariantType = VariantParser.COLOR
 
         external override fun engine_call_constructor(): VoidPtr
         external override fun engine_call_constructor_packed_array(): VoidPtr

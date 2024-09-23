@@ -15,15 +15,15 @@ import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Transform3D
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.TRANSFORM3D
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.TRANSFORM3D
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.core.signal
@@ -483,7 +483,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   public final fun setVisibilityAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantType.AABB to aabb)
+    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
     TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
   }
 
@@ -572,8 +572,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
   public final fun getVisibilityAabb(): AABB {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
-        godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+        godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
@@ -690,8 +690,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
    */
   public final fun captureAabb(): AABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.captureAabbPtr, godot.core.VariantType.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantType.AABB) as AABB)
+    TransferContext.callMethod(rawPtr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
+    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setSubEmitter(path: NodePath): Unit {

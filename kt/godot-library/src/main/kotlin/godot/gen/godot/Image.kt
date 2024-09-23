@@ -9,21 +9,20 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.Rect2i
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.RECT2I
-import godot.core.VariantType.STRING
-import godot.core.VariantType.VECTOR2I
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.RECT2I
+import godot.core.VariantParser.STRING
+import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
@@ -215,10 +214,10 @@ public open class Image : Resource() {
    * the image.
    */
   @JvmOverloads
-  public final fun generateMipmaps(renormalize: Boolean = false): GodotError {
+  public final fun generateMipmaps(renormalize: Boolean = false): Error {
     TransferContext.writeArguments(BOOL to renormalize)
     TransferContext.callMethod(rawPtr, MethodBindings.generateMipmapsPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -261,19 +260,19 @@ public open class Image : Resource() {
    * in exported projects.
    * See also [ImageTexture] description for usage examples.
    */
-  public final fun load(path: String): GodotError {
+  public final fun load(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Saves the image as a PNG file to the file at [path].
    */
-  public final fun savePng(path: String): GodotError {
+  public final fun savePng(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.savePngPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -294,10 +293,10 @@ public open class Image : Resource() {
    * image will still be saved, but the resulting JPEG file won't contain the alpha channel.
    */
   @JvmOverloads
-  public final fun saveJpg(path: String, quality: Float = 0.75f): GodotError {
+  public final fun saveJpg(path: String, quality: Float = 0.75f): Error {
     TransferContext.writeArguments(STRING to path, DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.saveJpgPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -323,10 +322,10 @@ public open class Image : Resource() {
    * return [ERR_UNAVAILABLE] when it is called from an exported project.
    */
   @JvmOverloads
-  public final fun saveExr(path: String, grayscale: Boolean = false): GodotError {
+  public final fun saveExr(path: String, grayscale: Boolean = false): Error {
     TransferContext.writeArguments(STRING to path, BOOL to grayscale)
     TransferContext.callMethod(rawPtr, MethodBindings.saveExrPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -355,10 +354,10 @@ public open class Image : Resource() {
     path: String,
     lossy: Boolean = false,
     quality: Float = 0.75f,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to path, BOOL to lossy, DOUBLE to quality.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.saveWebpPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -421,10 +420,10 @@ public open class Image : Resource() {
     mode: CompressMode,
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -440,10 +439,10 @@ public open class Image : Resource() {
     mode: CompressMode,
     channels: UsedChannels,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
     TransferContext.callMethod(rawPtr, MethodBindings.compressFromChannelsPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -452,10 +451,10 @@ public open class Image : Resource() {
    * **Note:** The following formats can be decompressed: DXT, RGTC, BPTC. The formats ETC1 and ETC2
    * are not supported.
    */
-  public final fun decompress(): GodotError {
+  public final fun decompress(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.decompressPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -755,28 +754,28 @@ public open class Image : Resource() {
   /**
    * Loads an image from the binary contents of a PNG file.
    */
-  public final fun loadPngFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadPngFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadPngFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads an image from the binary contents of a JPEG file.
    */
-  public final fun loadJpgFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadJpgFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadJpgFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads an image from the binary contents of a WebP file.
    */
-  public final fun loadWebpFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadWebpFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadWebpFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -785,10 +784,10 @@ public open class Image : Resource() {
    * default, the TGA module is enabled, but it can be disabled at build-time using the
    * `module_tga_enabled=no` SCons option.
    */
-  public final fun loadTgaFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadTgaFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadTgaFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -799,10 +798,10 @@ public open class Image : Resource() {
    * default, the BMP module is enabled, but it can be disabled at build-time using the
    * `module_bmp_enabled=no` SCons option.
    */
-  public final fun loadBmpFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadBmpFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadBmpFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -815,10 +814,10 @@ public open class Image : Resource() {
    * default, the KTX module is enabled, but it can be disabled at build-time using the
    * `module_ktx_enabled=no` SCons option.
    */
-  public final fun loadKtxFromBuffer(buffer: PackedByteArray): GodotError {
+  public final fun loadKtxFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(rawPtr, MethodBindings.loadKtxFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -830,10 +829,10 @@ public open class Image : Resource() {
    * `module_svg_enabled=no` SCons option.
    */
   @JvmOverloads
-  public final fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): GodotError {
+  public final fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -843,10 +842,10 @@ public open class Image : Resource() {
    * `module_svg_enabled=no` SCons option.
    */
   @JvmOverloads
-  public final fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): GodotError {
+  public final fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): Error {
     TransferContext.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromStringPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class Format(

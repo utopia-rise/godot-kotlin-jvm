@@ -7,18 +7,17 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -56,10 +55,10 @@ public open class ENetConnection : RefCounted() {
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to bindAddress, LONG to bindPort.toLong(), LONG to maxPeers.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createHostBoundPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -77,10 +76,10 @@ public open class ENetConnection : RefCounted() {
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to maxPeers.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createHostPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -186,10 +185,10 @@ public open class ENetConnection : RefCounted() {
    * servers. Call this right after [createHostBound] to have ENet expect peers to connect using DTLS.
    * See [TLSOptions.server].
    */
-  public final fun dtlsServerSetup(serverOptions: TLSOptions?): GodotError {
+  public final fun dtlsServerSetup(serverOptions: TLSOptions?): Error {
     TransferContext.writeArguments(OBJECT to serverOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsServerSetupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -200,11 +199,10 @@ public open class ENetConnection : RefCounted() {
    * [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
-  public final fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null):
-      GodotError {
+  public final fun dtlsClientSetup(hostname: String, clientOptions: TLSOptions? = null): Error {
     TransferContext.writeArguments(STRING to hostname, OBJECT to clientOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.dtlsClientSetupPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

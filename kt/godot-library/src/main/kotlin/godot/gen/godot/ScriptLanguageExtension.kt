@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -140,7 +139,7 @@ public open class ScriptLanguageExtension : ScriptLanguage() {
     script: Script?,
     line: Int,
     column: Int,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_open_in_external_editor is not implemented for ScriptLanguageExtension")
   }
 

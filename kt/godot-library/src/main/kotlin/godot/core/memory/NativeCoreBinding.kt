@@ -1,13 +1,13 @@
 package godot.core.memory
 
 import godot.core.NativeCoreType
-import godot.core.VariantType
+import godot.core.VariantParser
 import java.lang.ref.ReferenceQueue
 import java.lang.ref.WeakReference
 
 internal class NativeCoreBinding(
     ref: NativeCoreType,
-    val variantType: VariantType
+    val variantType: VariantParser
 ) : WeakReference<NativeCoreType>(ref, queue) {
     val ptr = ref._handle
 

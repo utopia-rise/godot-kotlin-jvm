@@ -8,18 +8,17 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DICTIONARY
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_STRING_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_STRING_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Any
@@ -118,10 +117,10 @@ public open class HTTPClient : RefCounted() {
     host: String,
     port: Int = -1,
     tlsOptions: TLSOptions? = null,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to host, LONG to port.toLong(), OBJECT to tlsOptions)
     TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setConnection(connection: StreamPeer?): Unit {
@@ -150,10 +149,10 @@ public open class HTTPClient : RefCounted() {
     url: String,
     headers: PackedStringArray,
     body: PackedByteArray,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -195,10 +194,10 @@ public open class HTTPClient : RefCounted() {
     url: String,
     headers: PackedStringArray,
     body: String = "",
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -318,10 +317,10 @@ public open class HTTPClient : RefCounted() {
   /**
    * This needs to be called in order to have any request processed. Check results with [getStatus].
    */
-  public final fun poll(): GodotError {
+  public final fun poll(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

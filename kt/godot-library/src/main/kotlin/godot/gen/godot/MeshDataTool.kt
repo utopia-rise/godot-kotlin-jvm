@@ -8,21 +8,20 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.GodotError
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.Plane
 import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.VariantType.COLOR
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_FLOAT_32_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
-import godot.core.VariantType.PLANE
-import godot.core.VariantType.VECTOR2
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.PLANE
+import godot.core.VariantParser.VECTOR2
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
@@ -104,20 +103,20 @@ public open class MeshDataTool : RefCounted() {
    * Uses specified surface of given [Mesh] to populate data for MeshDataTool.
    * Requires [Mesh] with primitive type [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public final fun createFromSurface(mesh: ArrayMesh?, surface: Int): GodotError {
+  public final fun createFromSurface(mesh: ArrayMesh?, surface: Int): Error {
     TransferContext.writeArguments(OBJECT to mesh, LONG to surface.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createFromSurfacePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Adds a new surface to specified [Mesh] with edited data.
    */
   @JvmOverloads
-  public final fun commitToSurface(mesh: ArrayMesh?, compressionFlags: Long = 0): GodotError {
+  public final fun commitToSurface(mesh: ArrayMesh?, compressionFlags: Long = 0): Error {
     TransferContext.writeArguments(OBJECT to mesh, LONG to compressionFlags)
     TransferContext.callMethod(rawPtr, MethodBindings.commitToSurfacePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

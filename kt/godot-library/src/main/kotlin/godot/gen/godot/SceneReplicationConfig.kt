@@ -10,11 +10,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.TypeManager
 import godot.core.VariantArray
-import godot.core.VariantType.ARRAY
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
+import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean

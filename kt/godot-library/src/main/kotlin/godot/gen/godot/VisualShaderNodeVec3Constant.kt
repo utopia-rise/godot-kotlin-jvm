@@ -10,8 +10,8 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
-import godot.core.VariantType.VECTOR3
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr

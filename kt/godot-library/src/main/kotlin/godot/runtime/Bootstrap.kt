@@ -2,7 +2,7 @@ package godot.runtime
 
 import godot.core.KtClass
 import godot.core.TypeManager
-import godot.core.VariantType
+import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.registration.ClassRegistry
 import godot.registration.Entry
@@ -139,7 +139,7 @@ internal class Bootstrap {
                 if (!engineTypesRegistered && isMainEntry) {
                     context.initEngineTypes()
                     for (clazz in context.getRegisteredClasses()) {
-                        variantMapper[clazz] = VariantType.OBJECT
+                        variantMapper[clazz] = VariantParser.OBJECT
                     }
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),

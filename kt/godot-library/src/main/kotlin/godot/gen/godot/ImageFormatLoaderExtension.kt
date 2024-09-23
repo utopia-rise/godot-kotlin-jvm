@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedStringArray
 import godot.core.TypeManager
-import godot.core.VariantType.NIL
+import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Float
@@ -47,7 +46,7 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
     fileaccess: FileAccess?,
     flags: ImageFormatLoader.LoaderFlags,
     scale: Float,
-  ): GodotError {
+  ): Error {
     throw NotImplementedError("_load_image is not implemented for ImageFormatLoaderExtension")
   }
 

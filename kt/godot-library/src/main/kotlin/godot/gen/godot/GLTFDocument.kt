@@ -7,16 +7,15 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.PackedByteArray
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Boolean
@@ -133,10 +132,10 @@ public open class GLTFDocument : Resource() {
     state: GLTFState?,
     flags: Long = 0,
     basePath: String = "",
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
     TransferContext.callMethod(rawPtr, MethodBindings.appendFromFilePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -150,10 +149,10 @@ public open class GLTFDocument : Resource() {
     basePath: String,
     state: GLTFState?,
     flags: Long = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.appendFromBufferPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -165,10 +164,10 @@ public open class GLTFDocument : Resource() {
     node: Node?,
     state: GLTFState?,
     flags: Long = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
     TransferContext.callMethod(rawPtr, MethodBindings.appendFromScenePtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -202,10 +201,10 @@ public open class GLTFDocument : Resource() {
    * **Note:** The extension of the glTF file determines if it is a .glb binary file or a .gltf text
    * file.
    */
-  public final fun writeToFilesystem(state: GLTFState?, path: String): GodotError {
+  public final fun writeToFilesystem(state: GLTFState?, path: String): Error {
     TransferContext.writeArguments(OBJECT to state, STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.writeToFilesystemPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public enum class RootNodeMode(

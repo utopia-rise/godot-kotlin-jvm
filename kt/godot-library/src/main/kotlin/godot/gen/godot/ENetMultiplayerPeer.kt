@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.GodotError
 import godot.core.TypeManager
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.OBJECT
-import godot.core.VariantType.STRING
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
 import kotlin.Int
@@ -63,10 +62,10 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     maxChannels: Int = 0,
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -93,10 +92,10 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
     localPort: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -107,20 +106,20 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * connection process (e.g. when dealing with NAT punch-through) and for better distribution of the
    * network load (which would otherwise be more taxing on the server).
    */
-  public final fun createMesh(uniqueId: Int): GodotError {
+  public final fun createMesh(uniqueId: Int): Error {
     TransferContext.writeArguments(LONG to uniqueId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
    * Add a new remote peer with the given [peerId] connected to the given [host].
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
-  public final fun addMeshPeer(peerId: Int, host: ENetConnection?): GodotError {
+  public final fun addMeshPeer(peerId: Int, host: ENetConnection?): Error {
     TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
     TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**

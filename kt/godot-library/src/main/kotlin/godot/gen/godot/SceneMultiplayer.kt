@@ -8,21 +8,20 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.GodotError
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.TypeManager
-import godot.core.VariantType.BOOL
-import godot.core.VariantType.CALLABLE
-import godot.core.VariantType.DOUBLE
-import godot.core.VariantType.LONG
-import godot.core.VariantType.NIL
-import godot.core.VariantType.NODE_PATH
-import godot.core.VariantType.PACKED_BYTE_ARRAY
-import godot.core.VariantType.PACKED_INT_32_ARRAY
+import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
+import godot.core.VariantParser.DOUBLE
+import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
+import godot.core.VariantParser.NODE_PATH
+import godot.core.VariantParser.PACKED_BYTE_ARRAY
+import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
 import godot.core.signal
 import godot.util.VoidPtr
@@ -229,10 +228,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * MultiplayerAPI.peer_connected] is emitted (and the remote peer accepted as one of the connected
    * peers).
    */
-  public final fun sendAuth(id: Int, `data`: PackedByteArray): GodotError {
+  public final fun sendAuth(id: Int, `data`: PackedByteArray): Error {
     TransferContext.writeArguments(LONG to id.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendAuthPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -245,10 +244,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * peer_authentication_failed] signal will be emitted instead of [signal
    * MultiplayerAPI.peer_disconnected].
    */
-  public final fun completeAuth(id: Int): GodotError {
+  public final fun completeAuth(id: Int): Error {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.completeAuthPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setAuthCallback(callback: Callable): Unit {
@@ -316,10 +315,10 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     id: Int = 0,
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.TRANSFER_MODE_RELIABLE,
     channel: Int = 0,
-  ): GodotError {
+  ): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.sendBytesPtr, LONG)
-    return GodotError.from(TransferContext.readReturnValue(LONG) as Long)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSyncPacketSize(): Int {
