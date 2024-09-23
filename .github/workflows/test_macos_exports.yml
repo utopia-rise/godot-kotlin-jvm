@@ -26,16 +26,8 @@ jobs:
             bootstrap-target: release
 
     steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
-        with:
-          path: modules/kotlin_jvm
 
       - uses: actions/setup-java@v4
         with:
@@ -51,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_universal
-          path: './bin'
+          path: "./"
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: './bin'
+          path: "./"
 
       - name: Download macos export template
         uses: actions/download-artifact@v4
@@ -68,42 +60,42 @@ jobs:
       - name: Prepare export
         run: |
           chmod +x bin/godot.*
-          mkdir -p modules/kotlin_jvm/harness/tests/export
-          mv export_template_all_macos.zip modules/kotlin_jvm/harness/tests/export_template_all_macos.zip
+          mkdir -p harness/tests/export
+          mv export_template_all_macos.zip harness/tests/export_template_all_macos.zip
 
       - name: Build tests project
         run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
 
       - name: Create JRE
         run: |
-          cd modules/kotlin_jvm/harness/tests/
+          cd harness/tests/
           jlink --add-modules java.base,java.logging --output jre-arm64-macos
           mkdir jre-amd64-macos #create a fake jre dir for amd64 so the export is happy. The test will run on arm anyways
 
       - name: Export tests debug
         if: ${{ matrix.bootstrap-target == 'debug' }}
         run: |
-          cd modules/kotlin_jvm/harness/tests/
+          cd harness/tests/
           ./gradlew exportDebug
         timeout-minutes: 30
 
       - name: Export tests release
         if: ${{ matrix.bootstrap-target == 'release' }}
         run: |
-          cd modules/kotlin_jvm/harness/tests/
+          cd harness/tests/
           ./gradlew exportRelease
         timeout-minutes: 30
 
       - name: Extract app from dmg
         run: |
-          cd modules/kotlin_jvm/harness/tests/export
+          cd harness/tests/export
           hdiutil attach tests.dmg
           cp -a /Volumes/Godot\ Kotlin\ Tests/Godot\ Kotlin\ Tests.app Godot\ Kotlin\ Tests.app
           hdiutil detach /Volumes/Godot\ Kotlin\ Tests
 
       - name: Run Tests
         run: |
-          cd modules/kotlin_jvm/harness/tests/
+          cd harness/tests/
           ./gradlew runExportedGutTests
         timeout-minutes: 30
