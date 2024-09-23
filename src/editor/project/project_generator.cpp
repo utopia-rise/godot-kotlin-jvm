@@ -8,7 +8,14 @@
 #include <core/config/project_settings.h>
 #include <core/io/dir_access.h>
 
+constexpr const int permissions = FileAccess::UnixPermissionFlags::UNIX_READ_OTHER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OTHER
+                                | FileAccess::UnixPermissionFlags::UNIX_READ_GROUP | FileAccess::UnixPermissionFlags::UNIX_WRITE_GROUP
+                                | FileAccess::UnixPermissionFlags::UNIX_READ_OWNER | FileAccess::UnixPermissionFlags::UNIX_WRITE_OWNER
+                                | FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER;
+
 void ProjectGenerator::generate_jvm_files(bool erase_existing) {
+    JVM_LOG_INFO("Generating JVM project files...");
+
     String root = String("res://");
     Ref<DirAccess> root_directory = DirAccess::open(root);
     core_bind::Marshalls* marshall = memnew(core_bind::Marshalls);
@@ -22,7 +29,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
         if (!DirAccess::exists(root.path_join(file_location))) { root_directory->make_dir_recursive(directory_path); }
 
         {
-            //Its own scope so the FileAccess is automatically closed.
+            // Its own scope so the FileAccess is automatically closed.
             Error err;
             Ref<FileAccess> file = FileAccess::open(file_location, FileAccess::WRITE, &err);
             if (err != OK) {
@@ -38,11 +45,12 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
             }
         }
 #if UNIX_ENABLED
-        FileAccess::set_unix_permissions(file_location, FileAccess::UnixPermissionFlags::UNIX_EXECUTE_OWNER);
+        FileAccess::set_unix_permissions(file_location, permissions);
 #endif
-    }
 
+    }
     memdelete(marshall);
+    JVM_LOG_INFO("JVM project files generated.");
 }
 
 #endif// TOOLS_ENABLED
