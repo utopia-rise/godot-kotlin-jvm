@@ -25,7 +25,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.core.toGodotName
 import godot.util.VoidPtr
 import kotlin.Any
@@ -522,8 +521,7 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpc(
@@ -537,8 +535,7 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8)
+  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcId(
@@ -553,8 +550,8 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
+      arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpc(
@@ -569,8 +566,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8, arg9)
+  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
+      arg9)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcId(
@@ -586,8 +583,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8, arg9)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
+      arg8, arg9)
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as

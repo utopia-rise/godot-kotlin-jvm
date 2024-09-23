@@ -18,10 +18,10 @@ import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
 import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
-import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinReflectPackage
 import kotlin.reflect.KCallable
@@ -44,11 +44,6 @@ class SignalGenerationService : ISignalGenerationService {
             }
         }
 
-        val genericParameters = genericTypes
-            .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                ParameterSpec.builder("p$index", typeVariableName).build()
-            }
-
         val reifiedTypes = genericTypes.map { it.copy(reified = true) }
         val reifiedClassName = className.run {
             if (reifiedTypes.isNotEmpty()) {
@@ -57,6 +52,28 @@ class SignalGenerationService : ISignalGenerationService {
                 this
             }
         }
+
+        fun toTypeSpecBuilder() = TypeSpec
+            .classBuilder(className)
+            .addTypeVariables(genericTypes)
+
+        fun toFunSpecBuilder(name: String) = FunSpec
+            .builder(name)
+            .addTypeVariables(genericTypes)
+
+        fun toExtensionFunSpecBuilder(name: String) = toFunSpecBuilder(name).receiver(genericClassName)
+
+        fun toReifiedFunSpecBuilder(name: String) = FunSpec
+            .builder(name)
+            .addTypeVariables(reifiedTypes)
+            .addModifiers(KModifier.INLINE)
+
+        fun toReifiedExtensionFunSpecBuilder(name: String) = toReifiedFunSpecBuilder(name).receiver(reifiedClassName)
+
+        fun toParameterSpecList() = genericTypes
+            .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
+                ParameterSpec.builder("p$index", typeVariableName).build()
+            }
     }
 
     override fun generate(maxArgumentCount: Int): FileSpec {
@@ -100,13 +117,12 @@ class SignalGenerationService : ISignalGenerationService {
 
         val lambdaTypeName = LambdaTypeName.get(
             receiver = godotObjectBoundTypeVariable,
-            parameters = genericClassNameInfo.genericParameters,
+            parameters = genericClassNameInfo.toParameterSpecList(),
             returnType = UNIT
         )
 
-        return TypeSpec
-            .classBuilder(genericClassNameInfo.className)
-            .addTypeVariables(genericClassNameInfo.genericTypes)
+        return genericClassNameInfo
+            .toTypeSpecBuilder()
             .superclass(ClassName(godotCorePackage, SIGNAL_CLASS_NAME))
             .primaryConstructor(
                 FunSpec.constructorBuilder()
@@ -125,7 +141,7 @@ class SignalGenerationService : ISignalGenerationService {
                     FunSpec.builder(EMIT_METHOD_NAME)
                         .returns(UNIT)
                         .addParameters(
-                            genericClassNameInfo.genericParameters
+                            genericClassNameInfo.toParameterSpecList()
                         )
                         .addCode(
                             CodeBlock.of(
@@ -174,8 +190,8 @@ class SignalGenerationService : ISignalGenerationService {
     private fun generateSignalDelegateCompanion(genericClassNameInfo: GenericClassNameInfo): TypeSpec {
         return TypeSpec.companionObjectBuilder()
             .addFunction(
-                FunSpec.builder("getValue")
-                    .addTypeVariables(genericClassNameInfo.genericTypes)
+                genericClassNameInfo
+                    .toFunSpecBuilder("getValue")
                     .addModifiers(KModifier.OPERATOR)
                     .addParameters(
                         listOf(
@@ -186,7 +202,7 @@ class SignalGenerationService : ISignalGenerationService {
                     .returns(genericClassNameInfo.genericClassName)
                     .addCode(
                         CodeBlock.of(
-                            "return %T(thisRef, property.name)",
+                            "return·%T(thisRef,·property.name)",
                             genericClassNameInfo.className,
                         )
                     )
@@ -200,11 +216,10 @@ class SignalGenerationService : ISignalGenerationService {
         val flagsParameters = if (isDisconnect) "" else ",·$FLAGS_PARAMETER_NAME"
 
         return CodeBlock.of(
-            "return·$methodName(%T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M().%M())$flagsParameters)",
+            "return·$methodName(%T($TARGET_PARAMETER_NAME,·($METHOD_PARAMETER_NAME·as·%T<*>).name.%M())$flagsParameters)",
             GODOT_CALLABLE,
             KCallable::class.asClassName(),
-            CAMEL_TO_SNAKE_CASE_UTIL_FUNCTION,
-            AS_STRING_NAME_UTIL_FUNCTION
+            TO_GODOT_NAME_UTIL_FUNCTION,
         )
     }
 
@@ -216,16 +231,15 @@ class SignalGenerationService : ISignalGenerationService {
         val signalConnectExtensionGenericParameters = ParameterSpec.builder(
             METHOD_PARAMETER_NAME,
             LambdaTypeName.get(
-                parameters = genericClassNameInfo.genericParameters,
+                parameters = genericClassNameInfo.toParameterSpecList(),
                 returnType = UNIT
             )
         )
             .addModifiers(KModifier.NOINLINE)
             .build()
 
-        return FunSpec.builder(CONNECT_METHOD_NAME)
-            .addTypeVariables(genericClassNameInfo.reifiedTypes)
-            .receiver(genericClassNameInfo.reifiedClassName)
+        return genericClassNameInfo
+            .toReifiedExtensionFunSpecBuilder(CONNECT_METHOD_NAME)
             .addParameters(
                 listOf(
                     flagsParameter,
@@ -236,14 +250,13 @@ class SignalGenerationService : ISignalGenerationService {
                 "return·$CONNECT_METHOD_NAME($METHOD_PARAMETER_NAME.%M(),·$FLAGS_PARAMETER_NAME)",
                 AS_CALLABLE_UTIL_FUNCTION
             )
-            .addModifiers(KModifier.INLINE)
             .returns(GODOT_ERROR)
             .build()
     }
 
     private fun generateSignalDelegateMethod(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
-        return FunSpec.builder(SIGNAL_FUNCTION_NAME)
-            .addTypeVariables(genericClassNameInfo.genericTypes)
+        return genericClassNameInfo
+            .toFunSpecBuilder(SIGNAL_FUNCTION_NAME)
             .addParameters(
                 (0..<argCount)
                     .map {
@@ -252,7 +265,7 @@ class SignalGenerationService : ISignalGenerationService {
             )
             .addCode(
                 CodeBlock.of(
-                    "return %T<%T, %T> { thisRef, property ->  %T(thisRef, property.name)}",
+                    "return·%T<%T,·%T>·{·thisRef,·property·->·%T(thisRef,·property.name)}",
                     readOnlyPropertyClassName,
                     GODOT_OBJECT,
                     genericClassNameInfo.genericClassName,
@@ -263,8 +276,8 @@ class SignalGenerationService : ISignalGenerationService {
     }
 
     private fun generateSignalProvider(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
-        return FunSpec.builder(SIGNAL_FUNCTION_NAME)
-            .addTypeVariables(genericClassNameInfo.genericTypes)
+        return genericClassNameInfo
+            .toFunSpecBuilder(SIGNAL_FUNCTION_NAME)
             .addParameters(
                 listOf(
                     ParameterSpec.builder(THIS_REF_PARAMETER_NAME, GODOT_OBJECT).build(),
