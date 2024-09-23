@@ -92,9 +92,6 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             editor_base_control->add_child(about_dialog);
             editor_base_control->add_child(project_dialog);
 
-            if (EDITOR_GET(show_info_on_start)) {
-                GodotKotlinJvmEditor::on_menu_option_pressed(0);
-            }
             break;
 
         case NOTIFICATION_EXIT_TREE:

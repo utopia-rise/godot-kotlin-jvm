@@ -44,8 +44,10 @@ void AboutDialog::_notification(int notification) {
     about_dialog_check_box->set_text("Show this info when starting the editor");
     about_dialog_check_box->set_h_size_flags(Control::SizeFlags::SIZE_SHRINK_CENTER);
     about_dialog_check_box->connect(SNAME("toggled"), callable_mp(this, &AboutDialog::on_checkbox_toggled));
+
     bool show_on_start = EDITOR_GET(show_info_on_start);
     about_dialog_check_box->set_pressed(show_on_start);
+
     about_vbox->add_child(about_dialog_check_box);
 
     if (show_on_start) {
