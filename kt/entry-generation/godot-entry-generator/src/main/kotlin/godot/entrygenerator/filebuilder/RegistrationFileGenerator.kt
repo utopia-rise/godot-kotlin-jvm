@@ -1,7 +1,7 @@
 package godot.entrygenerator.filebuilder
 
 import godot.entrygenerator.model.RegisteredClassMetadataContainer
-import godot.util.camelToSnakeCase
+import godot.tools.common.extensions.convertToSnakeCase
 import java.io.BufferedWriter
 
 class RegistrationFileGenerator(
@@ -23,13 +23,13 @@ class RegistrationFileGenerator(
                     |    ${metadata.superTypes.split(",").joinToString(",\n\t") { it.trim() }}
                     |]
                     |signals = [
-                    |    ${metadata.signals.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().camelToSnakeCase() }}
+                    |    ${metadata.signals.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                     |properties = [
-                    |    ${metadata.properties.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().camelToSnakeCase() }}
+                    |    ${metadata.properties.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                     |functions = [
-                    |    ${metadata.functions.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().camelToSnakeCase() }}
+                    |    ${metadata.functions.split(",").joinToString(",\n\t") { it.substringAfterLast(".").trim().convertToSnakeCase() }}
                     |]
                 """.trimMargin()
             )

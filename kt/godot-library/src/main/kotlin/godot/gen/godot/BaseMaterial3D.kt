@@ -2368,8 +2368,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionOperator(_operator: EmissionOperator): Unit {
-    TransferContext.writeArguments(LONG to _operator.id)
+  public final fun setEmissionOperator(`operator`: EmissionOperator): Unit {
+    TransferContext.writeArguments(LONG to `operator`.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
   }
 

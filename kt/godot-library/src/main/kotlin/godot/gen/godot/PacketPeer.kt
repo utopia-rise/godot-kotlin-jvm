@@ -75,8 +75,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public final fun putVar(_var: Any?, fullObjects: Boolean = false): Error {
-    TransferContext.writeArguments(ANY to _var, BOOL to fullObjects)
+  public final fun putVar(`var`: Any?, fullObjects: Boolean = false): Error {
+    TransferContext.writeArguments(ANY to `var`, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.putVarPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

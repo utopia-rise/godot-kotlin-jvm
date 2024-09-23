@@ -35,7 +35,7 @@ import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
 import godot.tools.common.constants.Constraints
-import godot.util.camelToSnakeCase
+import godot.tools.common.extensions.convertToSnakeCase
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
@@ -108,7 +108,7 @@ class ClassBuilderDsl<T : KtObject>(
         hintString: String = "",
         usage: Long
     ) {
-        val propertyName = kProperty.name.camelToSnakeCase()
+        val propertyName = kProperty.name.convertToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $registeredName"
         }
@@ -131,7 +131,7 @@ class ClassBuilderDsl<T : KtObject>(
         usage: Long,
         hintString: String
     ) {
-        val propertyName = kProperty.name.camelToSnakeCase()
+        val propertyName = kProperty.name.convertToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $registeredName"
         }
@@ -156,7 +156,7 @@ class ClassBuilderDsl<T : KtObject>(
         usage: Long,
         hintString: String
     ) {
-        val propertyName = kProperty.name.camelToSnakeCase()
+        val propertyName = kProperty.name.convertToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $registeredName"
         }
@@ -202,7 +202,7 @@ class ClassBuilderDsl<T : KtObject>(
         usage: Long,
         hintString: String
     ) {
-        val propertyName = kProperty.name.camelToSnakeCase()
+        val propertyName = kProperty.name.convertToSnakeCase()
         require(!properties.contains(propertyName)) {
             "Found two properties with name $propertyName for class $registeredName"
         }
@@ -271,7 +271,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction0(
                 KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(),
                     returnVal = returnType.toKtPropertyInfo(),
                     rpcConfig = rpcConfig
@@ -293,7 +293,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction1(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo()
                     ),
@@ -320,7 +320,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction2(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -351,7 +351,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction3(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -386,7 +386,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction4(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -425,7 +425,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction5(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -468,7 +468,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction6(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -515,7 +515,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction7(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -566,7 +566,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction8(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -621,7 +621,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction9(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -680,7 +680,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction10(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -743,7 +743,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction11(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -810,7 +810,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction12(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -881,7 +881,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction13(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -956,7 +956,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction14(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -1035,7 +1035,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction15(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -1118,7 +1118,7 @@ class ClassBuilderDsl<T : KtObject>(
         appendFunction(
             KtFunction16(
                 functionInfo = KtFunctionInfo(
-                    name = func.name.camelToSnakeCase(),
+                    name = func.name.convertToSnakeCase(),
                     _arguments = listOf(
                         p0.toKtPropertyInfo(),
                         p1.toKtPropertyInfo(),
@@ -1164,7 +1164,7 @@ class ClassBuilderDsl<T : KtObject>(
 
     fun <T> signal(kProperty: KProperty<T>) {
         appendSignal(
-            KtSignalInfo(kProperty.name.camelToSnakeCase(), listOf())
+            KtSignalInfo(kProperty.name.convertToSnakeCase(), listOf())
         )
     }
 
@@ -1174,7 +1174,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.camelToSnakeCase(),
+                kProperty.name.convertToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo()
                 )
@@ -1189,7 +1189,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.camelToSnakeCase(),
+                kProperty.name.convertToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo()
@@ -1206,7 +1206,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.camelToSnakeCase(),
+                kProperty.name.convertToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),
@@ -1225,7 +1225,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.camelToSnakeCase(),
+                kProperty.name.convertToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),
@@ -1246,7 +1246,7 @@ class ClassBuilderDsl<T : KtObject>(
     ) {
         appendSignal(
             KtSignalInfo(
-                kProperty.name.camelToSnakeCase(),
+                kProperty.name.convertToSnakeCase(),
                 listOf(
                     p0.toKtPropertyInfo(),
                     p1.toKtPropertyInfo(),

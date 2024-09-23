@@ -472,10 +472,10 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setCustomDraw(
     column: Int,
-    _object: Object?,
+    `object`: Object?,
     callback: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to _object, STRING_NAME to callback)
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to `object`, STRING_NAME to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.setCustomDrawPtr, NIL)
   }
 

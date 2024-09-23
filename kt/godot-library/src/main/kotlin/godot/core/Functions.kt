@@ -4,7 +4,7 @@ package godot.core
 
 import godot.core.memory.TransferContext
 import godot.global.GD
-import godot.util.camelToSnakeCase
+import godot.tools.common.extensions.convertToSnakeCase
 
 data class KtFunctionInfo(
     val name: String,
@@ -30,7 +30,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
     vararg parameterTypes: VariantConverter
 ) {
     private val types: Array<VariantConverter> = parameterTypes.toList().toTypedArray()
-    val registrationName = functionInfo.name.camelToSnakeCase()
+    val registrationName = functionInfo.name.convertToSnakeCase()
 
     fun invoke(instance: T): Unit = withParameters(types) {
         try {

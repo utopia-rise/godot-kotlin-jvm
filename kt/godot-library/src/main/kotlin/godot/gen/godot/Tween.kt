@@ -232,12 +232,12 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun tweenProperty(
-    _object: Object?,
+    `object`: Object?,
     `property`: NodePath,
     finalVal: Any?,
     duration: Double,
   ): PropertyTweener? {
-    TransferContext.writeArguments(OBJECT to _object, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
+    TransferContext.writeArguments(OBJECT to `object`, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
     TransferContext.callMethod(rawPtr, MethodBindings.tweenPropertyPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }

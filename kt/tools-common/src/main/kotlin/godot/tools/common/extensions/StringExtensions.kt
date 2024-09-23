@@ -39,7 +39,10 @@ fun String.convertToSnakeCase(): String =
         else accumulator.append(character)
     }.toString()
 
-fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null) "_$this" else this
+fun String.escapeKotlinReservedNames() = if (kotlinReservedNames.find { s -> s == this } != null)
+    "`$this`"
+else
+    this
 
 private val kotlinReservedNames = listOf(
     "class",

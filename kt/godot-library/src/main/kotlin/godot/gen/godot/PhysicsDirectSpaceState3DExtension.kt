@@ -33,7 +33,7 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
     callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
   }
 
-  public open fun _getClosestPointToObjectVolume(_object: RID, point: Vector3): Vector3 {
+  public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
     throw NotImplementedError("_get_closest_point_to_object_volume is not implemented for PhysicsDirectSpaceState3DExtension")
   }
 

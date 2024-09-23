@@ -143,7 +143,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
    */
   public open fun _rpc(
     peer: Int,
-    _object: Object?,
+    `object`: Object?,
     method: StringName,
     args: VariantArray<Any?>,
   ): Error {
@@ -160,14 +160,14 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Callback for [MultiplayerAPI.objectConfigurationAdd].
    */
-  public open fun _objectConfigurationAdd(_object: Object?, configuration: Any?): Error {
+  public open fun _objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_add is not implemented for MultiplayerAPIExtension")
   }
 
   /**
    * Callback for [MultiplayerAPI.objectConfigurationRemove].
    */
-  public open fun _objectConfigurationRemove(_object: Object?, configuration: Any?): Error {
+  public open fun _objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
     throw NotImplementedError("_object_configuration_remove is not implemented for MultiplayerAPIExtension")
   }
 

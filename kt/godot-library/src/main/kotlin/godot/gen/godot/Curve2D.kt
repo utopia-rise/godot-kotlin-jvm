@@ -87,11 +87,11 @@ public open class Curve2D : Resource() {
   @JvmOverloads
   public final fun addPoint(
     position: Vector2,
-    _in: Vector2 = Vector2(0, 0),
+    `in`: Vector2 = Vector2(0, 0),
     `out`: Vector2 = Vector2(0, 0),
     index: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to _in, VECTOR2 to out, LONG to index.toLong())
+    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to `in`, VECTOR2 to out, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
 

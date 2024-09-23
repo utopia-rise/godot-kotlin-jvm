@@ -64,7 +64,15 @@ class StringName : NativeCoreType {
     }
 }
 
-@Suppress("NOTHING_TO_INLINE")
 fun String.asStringName(): StringName {
+    return StringName(this)
+}
+
+fun String.asCachedStringName(): StringName {
     return MemoryManager.getOrCreateStringName(this)
 }
+
+fun String.toGodotName(): StringName {
+    return MemoryManager.getOrCreateGodotName(this)
+}
+
