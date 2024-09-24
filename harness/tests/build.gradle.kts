@@ -221,11 +221,14 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
     }
 }
 
-fun provideEditorExecutable(): File = (projectDir
-    .resolve("../../../../bin")
-    .listFiles()
-    ?.also {
-        println("[${it.joinToString()}]")
-    }
-    ?.firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") }
-    ?: throw Exception("Could not find editor executable"))
+fun provideEditorExecutable(): File = (
+        listOf(
+            projectDir.resolve("../../../../bin"),
+            projectDir.resolve("bin"),
+        )
+            .flatMap { (it.listFiles() ?: arrayOf()).toList() }
+            .also {
+                println("[${it.joinToString()}]")
+            }
+            .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") }
+            ?: throw Exception("Could not find editor executable"))

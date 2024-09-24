@@ -43,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_linux_x86_64
-          path: "./"
+          path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: "./"
+          path: './bin'
 
       - name: Download linux x86_64 ${{ matrix.bootstrap-target }} export template
         uses: actions/download-artifact@v4
@@ -59,7 +59,7 @@ jobs:
 
       - name: Prepare export
         run: |
-          chmod +x godot.*
+          chmod +x bin/godot.*
           mkdir -p harness/tests/export
           mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64 harness/tests/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64
 

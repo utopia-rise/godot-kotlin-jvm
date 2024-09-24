@@ -43,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_macos_universal
-          path: "./"
+          path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: "./"
+          path: './bin'
 
       - name: Download macos export template
         uses: actions/download-artifact@v4
@@ -59,7 +59,7 @@ jobs:
 
       - name: Prepare export
         run: |
-          chmod +x godot.*
+          chmod +x bin/godot.*
           mkdir -p harness/tests/export
           mv export_template_all_macos.zip harness/tests/export_template_all_macos.zip
 

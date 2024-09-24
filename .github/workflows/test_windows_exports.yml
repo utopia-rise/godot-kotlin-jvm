@@ -43,13 +43,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_windows_x86_64
-          path: "./"
+          path: './bin'
 
       - name: Download godot-bootstrap ${{ matrix.bootstrap-target }}
         uses: actions/download-artifact@v4
         with:
           name: jvm_godot-bootstrap_${{ matrix.bootstrap-target }}
-          path: "./"
+          path: './bin'
 
       - name: Download windows x86_64 ${{ matrix.bootstrap-target }} export template
         uses: actions/download-artifact@v4
