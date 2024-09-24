@@ -168,21 +168,31 @@ Currently this feature except abstract classes.
 
 ## Caching
 
-Several Godot functions take `StringName` or `NodePath` as a parameter.
+Several Godot functions take `StringName` or `NodePath` as a parameter. 
+It's often more convenient to directly use a String that need to be converted.
 
-Extension functions have been provided `String.asStringName()`, `String.asNodePath()` and `StringName.asNodePath()`, to allow for the easy creation of these.
-As an optimisation, these `StringName` and `NodePath` instances are cached to reduce the overhead of creating new instances unnecessarily.
+This operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
+
+- `String.asCachedStringName()`
+- `String.asCachedNodePath()` 
+- `StringName.asCachedNodePath()`
 
 ```kotlin
 // This first call to the extension function creates the cache entry.
-val firstCall = "Test".asStringName()
+val firstCall = "Test".asCachedStringName()
 
 // This second call for the same String value, will return the previously cached instance.
-val secondCall = "Test".asStringName()
+val secondCall = "Test".asCachedStringName()
 
 // This third call will create a second entry in the cache due to the different key value.
-val thirdCall = "OtherTest".asStringName()
+val thirdCall = "OtherTest".asCachedStringName()
 ```
+
+You can also use the non-cached version of them if you simply want ease of conversion:
+
+- `String.asStringName()`
+- `String.asNodePath()`
+- `StringName.asNodePath()`
 
 ## Logging
 

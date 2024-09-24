@@ -113,10 +113,6 @@ internal object MemoryManager {
         }
     }
 
-    fun getOrCreateNodePath(key: StringName): NodePath {
-        return getOrCreateNodePath(key.toString())
-    }
-
     fun registerCallback(callback: () -> Unit) {
         cleanupCallbacks.add(callback)
     }
