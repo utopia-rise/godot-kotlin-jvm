@@ -169,9 +169,17 @@ class NodePath : NativeCoreType {
 }
 
 fun String.asNodePath(): NodePath {
-    return MemoryManager.getOrCreateNodePath(this)
+    return NodePath(this)
 }
 
 fun StringName.asNodePath(): NodePath {
+    return NodePath(this.toString())
+}
+
+fun String.asCachedNodePath(): NodePath {
     return MemoryManager.getOrCreateNodePath(this)
+}
+
+fun StringName.asCachedNodePath(): NodePath {
+    return MemoryManager.getOrCreateNodePath(this.toString())
 }
