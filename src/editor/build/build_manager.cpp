@@ -12,14 +12,12 @@
 
 Mutex build_mutex {};
 
-Error BuildManager::build_project() {
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
-        return Error::OK;
-    }
+String get_build_gradle_path() {
+    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    return gradle_wrapper_path.path_join("build.gradle.kts");
+}
 
-    List<String> args {};
-    args.push_back("build");
-
+String get_gradlew_path() {
 #if defined _WIN32 || defined _WIN64
     String gradle_wrapper {"gradlew.bat"};
 #else
@@ -27,28 +25,32 @@ Error BuildManager::build_project() {
 #endif
 
     String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    return gradle_wrapper_path.path_join(gradle_wrapper);
+}
 
-    if (!gradle_wrapper_path.ends_with("/")) { gradle_wrapper_path = gradle_wrapper_path + "/"; }
+Error BuildManager::build_project() {
+    List<String> args {};
+    args.push_back("build");
 
-    String gradle_command {gradle_wrapper_path + gradle_wrapper};
+    String gradlew_path = get_gradlew_path();
+    JVM_LOG_INFO("Running %s build task...", gradlew_path);
 
     int exit_code;
-    Error result = OS::get_singleton()->execute(gradle_command, args, &build_log, &exit_code, true, &build_mutex, false);
-    last_build_exit_code = exit_code;
-
+    Error result = OS::get_singleton()->execute(gradlew_path, args, &build_log, &exit_code, true, &build_mutex, false);
     return result;
 }
 
 bool BuildManager::build_project_blocking() {
-    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), false, missing_gradle_project);
+    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()), false, missing_gradle_project);
 
     build_log.clear();
-    Error result = build_project();
 
-    // When in blocking mode, only make the window appears when it fails
-    if (!last_build_successful()) { GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log); }
-
-    return result == Error::OK && last_build_successful();
+    if (build_project() != Error::OK) {
+        // When in blocking mode, only make the window appears when it fails
+        GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log);
+        return false;
+    }
+    return true;
 }
 
 void BuildManager::build_task(void* p_userdata) {
@@ -56,21 +58,16 @@ void BuildManager::build_task(void* p_userdata) {
 
     BuildManager::get_instance().build_project();
 
-    BuildManager::get_instance().taskId = WorkerThreadPool::INVALID_TASK_ID;
     GodotKotlinJvmEditor::get_instance()->update_build_dialog(BuildManager::get_instance().build_log);
+    BuildManager::get_instance().taskId = WorkerThreadPool::INVALID_TASK_ID;
 }
 
 void BuildManager::build_project_non_blocking() {
     if (taskId != WorkerThreadPool::INVALID_TASK_ID) { return; }
-    JVM_ERR_FAIL_COND_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts"), missing_gradle_project);
+    JVM_ERR_FAIL_COND_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()), missing_gradle_project);
 
     build_log.clear();
     taskId = WorkerThreadPool::get_singleton()->add_native_task(build_task, nullptr);
-}
-
-bool BuildManager::last_build_successful() const {
-    bool result = last_build_exit_code == 0;
-    return result;
 }
 
 BuildManager& BuildManager::get_instance() {

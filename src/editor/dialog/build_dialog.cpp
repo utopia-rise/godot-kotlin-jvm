@@ -21,7 +21,13 @@ void BuildDialog::update_state(String log) {
     JVM_LOG_INFO(log);
 
     popup_centered();
-    scroll_container->connect(SNAME("draw"), callable_mp(this, &BuildDialog::set_scrollbar_at_bottom), CONNECT_ONE_SHOT);
+
+    StringName signal = SNAME("draw");
+    Callable callback = callable_mp(this, &BuildDialog::set_scrollbar_at_bottom);
+
+    if (!scroll_container->is_connected(signal, callback)) {
+        scroll_container->connect(signal, callback, CONNECT_ONE_SHOT);
+    }
 }
 
 void BuildDialog::_notification(int notification) {

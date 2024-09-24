@@ -12,7 +12,6 @@ class BuildManager {
     WorkerThreadPool::TaskID taskId = WorkerThreadPool::INVALID_TASK_ID;
 
     String build_log;
-    int last_build_exit_code;
 
     BuildManager() = default;
     Error build_project();
@@ -27,8 +26,6 @@ public:
 
     bool build_project_blocking();
     void build_project_non_blocking();
-
-    bool last_build_successful() const;
 };
 
 #endif// GODOT_JVM_BUILD_MANAGER_H
