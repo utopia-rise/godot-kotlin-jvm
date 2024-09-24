@@ -27,7 +27,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -53,7 +52,7 @@ public open class TileMap : Node2D() {
   /**
    * Emitted when the [TileSet] of this TileMap changes.
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * The [TileSet] used by this [TileMap]. The textures, collisions, and additional behavior of all

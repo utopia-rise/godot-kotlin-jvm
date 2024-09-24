@@ -34,7 +34,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -62,39 +61,39 @@ public open class TextEdit : Control() {
   /**
    * Emitted when [clear] is called or [text] is set.
    */
-  public val textSet: Signal0 by signal()
+  public val textSet: Signal0 by Signal0
 
   /**
    * Emitted when the text changes.
    */
-  public val textChanged: Signal0 by signal()
+  public val textChanged: Signal0 by Signal0
 
   /**
    * Emitted immediately when the text changes.
    * When text is added [fromLine] will be less than [toLine]. On a remove [toLine] will be less
    * than [fromLine].
    */
-  public val linesEditedFrom: Signal2<Long, Long> by signal("fromLine", "toLine")
+  public val linesEditedFrom: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when any caret changes position.
    */
-  public val caretChanged: Signal0 by signal()
+  public val caretChanged: Signal0 by Signal0
 
   /**
    * Emitted when a gutter is clicked.
    */
-  public val gutterClicked: Signal2<Long, Long> by signal("line", "gutter")
+  public val gutterClicked: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when a gutter is added.
    */
-  public val gutterAdded: Signal0 by signal()
+  public val gutterAdded: Signal0 by Signal0
 
   /**
    * Emitted when a gutter is removed.
    */
-  public val gutterRemoved: Signal0 by signal()
+  public val gutterRemoved: Signal0 by Signal0
 
   /**
    * String value of the [TextEdit].

@@ -24,7 +24,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -52,44 +51,44 @@ public open class SceneTree : MainLoop() {
   /**
    * Emitted any time the tree's hierarchy changes (nodes being moved, renamed, etc.).
    */
-  public val treeChanged: Signal0 by signal()
+  public val treeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [Node.processMode] of any node inside the tree is changed. Only emitted in the
    * editor, to update the visibility of disabled nodes.
    */
-  public val treeProcessModeChanged: Signal0 by signal()
+  public val treeProcessModeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [node] enters this tree.
    */
-  public val nodeAdded: Signal1<Node> by signal("node")
+  public val nodeAdded: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node] exits this tree.
    */
-  public val nodeRemoved: Signal1<Node> by signal("node")
+  public val nodeRemoved: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node]'s [Node.name] is changed.
    */
-  public val nodeRenamed: Signal1<Node> by signal("node")
+  public val nodeRenamed: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [node]'s [Node.updateConfigurationWarnings] is called. Only emitted in the
    * editor.
    */
-  public val nodeConfigurationWarningChanged: Signal1<Node> by signal("node")
+  public val nodeConfigurationWarningChanged: Signal1<Node> by Signal1
 
   /**
    * Emitted immediately before [Node.Process] is called on every node in this tree.
    */
-  public val processFrame: Signal0 by signal()
+  public val processFrame: Signal0 by Signal0
 
   /**
    * Emitted immediately before [Node.PhysicsProcess] is called on every node in this tree.
    */
-  public val physicsFrame: Signal0 by signal()
+  public val physicsFrame: Signal0 by Signal0
 
   /**
    * If `true`, the application automatically accepts quitting requests.

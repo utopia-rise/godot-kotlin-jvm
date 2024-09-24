@@ -26,7 +26,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -71,8 +70,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
    * Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another
@@ -89,8 +87,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * Get the [CollisionShape3D] node with
    * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
-  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by signal("bodyRid", "body",
-      "bodyShapeIndex", "localShapeIndex")
+  public val bodyShapeExited: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
    * Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires
@@ -98,7 +95,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
-  public val bodyEntered: Signal1<Node> by signal("body")
+  public val bodyEntered: Signal1<Node> by Signal1
 
   /**
    * Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires
@@ -106,7 +103,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
-  public val bodyExited: Signal1<Node> by signal("body")
+  public val bodyExited: Signal1<Node> by Signal1
 
   /**
    * Emitted when the physics engine changes the body's sleeping state.
@@ -114,7 +111,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is
    * used.
    */
-  public val sleepingStateChanged: Signal0 by signal()
+  public val sleepingStateChanged: Signal0 by Signal0
 
   /**
    * The body's mass.

@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -36,23 +35,23 @@ public open class BaseButton : Control() {
    * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
    * toggled] instead.
    */
-  public val pressed: Signal0 by signal()
+  public val pressed: Signal0 by Signal0
 
   /**
    * Emitted when the button stops being held down.
    */
-  public val buttonUp: Signal0 by signal()
+  public val buttonUp: Signal0 by Signal0
 
   /**
    * Emitted when the button starts being held down.
    */
-  public val buttonDown: Signal0 by signal()
+  public val buttonDown: Signal0 by Signal0
 
   /**
    * Emitted when the button was just toggled between pressed and normal states (only if
    * [toggleMode] is active). The new state is contained in the [toggledOn] argument.
    */
-  public val toggled: Signal1<Boolean> by signal("toggledOn")
+  public val toggled: Signal1<Boolean> by Signal1
 
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.

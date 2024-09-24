@@ -22,7 +22,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -50,43 +49,43 @@ public open class OpenXRInterface : XRInterface() {
   /**
    * Informs our OpenXR session has been started.
    */
-  public val sessionBegun: Signal0 by signal()
+  public val sessionBegun: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is stopping.
    */
-  public val sessionStopping: Signal0 by signal()
+  public val sessionStopping: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session now has focus.
    */
-  public val sessionFocussed: Signal0 by signal()
+  public val sessionFocussed: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is now visible (output is being sent to the HMD).
    */
-  public val sessionVisible: Signal0 by signal()
+  public val sessionVisible: Signal0 by Signal0
 
   /**
    * Informs our OpenXR session is in the process of being lost.
    */
-  public val sessionLossPending: Signal0 by signal()
+  public val sessionLossPending: Signal0 by Signal0
 
   /**
    * Informs our OpenXR instance is exiting.
    */
-  public val instanceExiting: Signal0 by signal()
+  public val instanceExiting: Signal0 by Signal0
 
   /**
    * Informs the user queued a recenter of the player position.
    */
-  public val poseRecentered: Signal0 by signal()
+  public val poseRecentered: Signal0 by Signal0
 
   /**
    * Informs the user the HMD refresh rate has changed.
    * **Note:** Only emitted if XR runtime supports the refresh rate extension.
    */
-  public val refreshRateChanged: Signal1<Double> by signal("refreshRate")
+  public val refreshRateChanged: Signal1<Double> by Signal1
 
   /**
    * The display refresh rate for the current HMD. Only functional if this feature is supported by

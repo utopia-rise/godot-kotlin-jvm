@@ -13,7 +13,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -37,12 +36,12 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Emitted when a remote peer connects.
    */
-  public val peerConnected: Signal1<Long> by signal("id")
+  public val peerConnected: Signal1<Long> by Signal1
 
   /**
    * Emitted when a remote peer has disconnected.
    */
-  public val peerDisconnected: Signal1<Long> by signal("id")
+  public val peerDisconnected: Signal1<Long> by Signal1
 
   /**
    * If `true`, this [MultiplayerPeer] refuses new connections.

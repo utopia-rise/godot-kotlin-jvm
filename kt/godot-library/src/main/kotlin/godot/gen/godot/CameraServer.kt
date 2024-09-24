@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -36,12 +35,12 @@ public object CameraServer : Object() {
   /**
    * Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
    */
-  public val cameraFeedAdded: Signal1<Long> by signal("id")
+  public val cameraFeedAdded: Signal1<Long> by Signal1
 
   /**
    * Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged).
    */
-  public val cameraFeedRemoved: Signal1<Long> by signal("id")
+  public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_CAMERASERVER)

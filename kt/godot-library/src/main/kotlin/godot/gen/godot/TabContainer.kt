@@ -19,7 +19,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -41,38 +40,38 @@ public open class TabContainer : Container() {
   /**
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
-  public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+  public val activeTabRearranged: Signal1<Long> by Signal1
 
   /**
    * Emitted when switching to another tab.
    */
-  public val tabChanged: Signal1<Long> by signal("tab")
+  public val tabChanged: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is clicked, even if it is the current tab.
    */
-  public val tabClicked: Signal1<Long> by signal("tab")
+  public val tabClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is hovered by the mouse.
    */
-  public val tabHovered: Signal1<Long> by signal("tab")
+  public val tabHovered: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is selected via click, directional input, or script, even if it is the
    * current tab.
    */
-  public val tabSelected: Signal1<Long> by signal("tab")
+  public val tabSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user clicks on the button icon on this tab.
    */
-  public val tabButtonPressed: Signal1<Long> by signal("tab")
+  public val tabButtonPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when the [TabContainer]'s [Popup] button is clicked. See [setPopup] for details.
    */
-  public val prePopupPressed: Signal0 by signal()
+  public val prePopupPressed: Signal0 by Signal0
 
   /**
    * Sets the position at which tabs will be placed. See [TabBar.AlignmentMode] for details.

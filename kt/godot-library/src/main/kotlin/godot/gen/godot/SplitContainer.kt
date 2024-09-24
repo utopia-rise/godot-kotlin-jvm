@@ -13,7 +13,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -32,7 +31,7 @@ public open class SplitContainer : Container() {
   /**
    * Emitted when the dragger is dragged by user.
    */
-  public val dragged: Signal1<Long> by signal("offset")
+  public val dragged: Signal1<Long> by Signal1
 
   /**
    * The initial offset of the splitting between the two [Control]s, with `0` being at the end of

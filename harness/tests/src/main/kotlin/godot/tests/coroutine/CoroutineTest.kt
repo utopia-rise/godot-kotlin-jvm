@@ -1,13 +1,13 @@
 package godot.tests.coroutine
 
 
-import godot.annotation.RegisterClass
-import godot.core.Dictionary
-import godot.core.VariantArray
 import godot.Object
+import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
+import godot.core.Signal1
+import godot.core.Signal4
 import godot.core.Vector2
 import godot.core.signal
 import godot.coroutines.GodotCoroutine
@@ -21,10 +21,10 @@ class CoroutineTest : Object() {
     val signalWithoutParameter by signal()
 
     @RegisterSignal
-    val signalWithOneParameter by signal<Int>("int")
+    val signalWithOneParameter: Signal1<Int> by signal("int")
 
     @RegisterSignal
-    val signalWithManyParameters by signal<Int, Float, Vector2, String>("int", "float", "vector2", "string")
+    val signalWithManyParameters: Signal4<Int, Float, Vector2, String> by signal("int", "float", "vector2", "string")
 
     @RegisterProperty
     var step: Int = 0

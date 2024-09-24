@@ -12,7 +12,6 @@ import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -29,7 +28,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   /**
    * Emitted when input is changed via [inputName].
    */
-  public val inputTypeChanged: Signal0 by signal()
+  public val inputTypeChanged: Signal0 by Signal0
 
   /**
    * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or

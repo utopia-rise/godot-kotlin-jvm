@@ -14,7 +14,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -35,7 +34,7 @@ public object ThemeDB : Object() {
    * Emitted when one of the fallback values had been changed. Use it to refresh the look of
    * controls that may rely on the fallback theme items.
    */
-  public val fallbackChanged: Signal0 by signal()
+  public val fallbackChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_THEMEDB)

@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -41,12 +40,12 @@ public open class TouchScreenButton : Node2D() {
   /**
    * Emitted when the button is pressed (down).
    */
-  public val pressed: Signal0 by signal()
+  public val pressed: Signal0 by Signal0
 
   /**
    * Emitted when the button is released (up).
    */
-  public val released: Signal0 by signal()
+  public val released: Signal0 by Signal0
 
   /**
    * The button's texture for the normal state.

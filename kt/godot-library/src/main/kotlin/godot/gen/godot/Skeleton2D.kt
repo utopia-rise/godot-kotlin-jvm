@@ -19,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser._RID
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -41,7 +40,7 @@ public open class Skeleton2D : Node2D() {
    * Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used
    * internally within the skeleton.
    */
-  public val boneSetupChanged: Signal0 by signal()
+  public val boneSetupChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_SKELETON2D, scriptIndex)

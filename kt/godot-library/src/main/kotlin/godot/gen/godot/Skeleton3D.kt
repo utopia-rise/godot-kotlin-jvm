@@ -31,7 +31,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -59,7 +58,7 @@ public open class Skeleton3D : Node3D() {
    * **Note:** During the update process, this signal is not fired, so modification by
    * [SkeletonModifier3D] is not detected.
    */
-  public val poseUpdated: Signal0 by signal()
+  public val poseUpdated: Signal0 by Signal0
 
   /**
    * Emitted when the final pose has been calculated will be applied to the skin in the update
@@ -68,20 +67,20 @@ public open class Skeleton3D : Node3D() {
    * completion of the processing of each [SkeletonModifier3D], use [signal
    * SkeletonModifier3D.modification_processed].
    */
-  public val skeletonUpdated: Signal0 by signal()
+  public val skeletonUpdated: Signal0 by Signal0
 
   /**
    * Emitted when the bone at [boneIdx] is toggled with [setBoneEnabled]. Use [isBoneEnabled] to
    * check the new value.
    */
-  public val boneEnabledChanged: Signal1<Long> by signal("boneIdx")
+  public val boneEnabledChanged: Signal1<Long> by Signal1
 
-  public val boneListChanged: Signal0 by signal()
+  public val boneListChanged: Signal0 by Signal0
 
   /**
    * Emitted when the value of [showRestOnly] changes.
    */
-  public val showRestOnlyChanged: Signal0 by signal()
+  public val showRestOnlyChanged: Signal0 by Signal0
 
   /**
    * Multiplies the 3D position track animation.

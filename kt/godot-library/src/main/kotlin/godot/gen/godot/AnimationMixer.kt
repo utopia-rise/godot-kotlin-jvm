@@ -28,7 +28,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -52,39 +51,39 @@ public open class AnimationMixer internal constructor() : Node() {
   /**
    * Notifies when an animation list is changed.
    */
-  public val animationListChanged: Signal0 by signal()
+  public val animationListChanged: Signal0 by Signal0
 
   /**
    * Notifies when the animation libraries have changed.
    */
-  public val animationLibrariesUpdated: Signal0 by signal()
+  public val animationLibrariesUpdated: Signal0 by Signal0
 
   /**
    * Notifies when an animation finished playing.
    * **Note:** This signal is not emitted if an animation is looping.
    */
-  public val animationFinished: Signal1<StringName> by signal("animName")
+  public val animationFinished: Signal1<StringName> by Signal1
 
   /**
    * Notifies when an animation starts playing.
    */
-  public val animationStarted: Signal1<StringName> by signal("animName")
+  public val animationStarted: Signal1<StringName> by Signal1
 
   /**
    * Notifies when the caches have been cleared, either automatically, or manually via
    * [clearCaches].
    */
-  public val cachesCleared: Signal0 by signal()
+  public val cachesCleared: Signal0 by Signal0
 
   /**
    * Notifies when the blending result related have been applied to the target objects.
    */
-  public val mixerApplied: Signal0 by signal()
+  public val mixerApplied: Signal0 by Signal0
 
   /**
    * Notifies when the property related process have been updated.
    */
-  public val mixerUpdated: Signal0 by signal()
+  public val mixerUpdated: Signal0 by Signal0
 
   /**
    * If `true`, the [AnimationMixer] will be processing.

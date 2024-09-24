@@ -1,4 +1,8 @@
-@file:Suppress("PackageDirectoryMismatch")
+@file:Suppress(
+  "PackageDirectoryMismatch",
+  "NOTHING_TO_INLINE",
+  "UNUSED_PARAMETER",
+)
 
 package godot.core
 
@@ -10,6 +14,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 import kotlin.reflect.KCallable
+import kotlin.reflect.KProperty
 
 public class Signal0(
   instance: Object,
@@ -27,12 +32,17 @@ public class Signal0(
 
   public fun <T : Object> disconnect(target: T, method: T.() -> Unit): Unit =
       disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun getValue(thisRef: Object, `property`: KProperty<*>): Signal0 =
+        Signal0(thisRef, property.name)
+  }
 }
 
-public fun Signal0.connect(flags: Int = 0, method: () -> Unit): Error =
+public inline fun Signal0.connect(flags: Int = 0, noinline method: () -> Unit): Error =
     connect(method.asCallable(), flags)
 
-public fun signal(): SignalDelegateProvider<Signal0> = SignalDelegateProvider(::Signal0)
+public inline fun signal() = Signal0
 
 public class Signal1<P0>(
   instance: Object,
@@ -50,14 +60,17 @@ public class Signal1<P0>(
 
   public fun <T : Object> disconnect(target: T, method: T.(p0: P0) -> Unit): Unit =
       disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0> getValue(thisRef: Object, `property`: KProperty<*>): Signal1<P0> =
+        Signal1(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0> Signal1<P0>.connect(flags: Int = 0, noinline
     method: (p0: P0) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0> signal(p0: String): SignalDelegateProvider<Signal1<P0>> =
-    SignalDelegateProvider(::Signal1)
+public inline fun signal(p0: String) = Signal1
 
 public class Signal2<P0, P1>(
   instance: Object,
@@ -75,14 +88,17 @@ public class Signal2<P0, P1>(
 
   public fun <T : Object> disconnect(target: T, method: T.(p0: P0, p1: P1) -> Unit): Unit =
       disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1> getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal2<P0, P1> = Signal2(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Int = 0, noinline
     method: (p0: P0, p1: P1) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1> signal(p0: String, p1: String): SignalDelegateProvider<Signal2<P0, P1>> =
-    SignalDelegateProvider(::Signal2)
+public inline fun signal(p0: String, p1: String) = Signal2
 
 public class Signal3<P0, P1, P2>(
   instance: Object,
@@ -111,6 +127,11 @@ public class Signal3<P0, P1, P2>(
     p1: P1,
     p2: P2,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2> getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal3<P0, P1, P2> = Signal3(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.connect(flags: Int = 0,
@@ -120,12 +141,11 @@ public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.conne
   p2: P2,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
-): SignalDelegateProvider<Signal3<P0, P1, P2>> = SignalDelegateProvider(::Signal3)
+) = Signal3
 
 public class Signal4<P0, P1, P2, P3>(
   instance: Object,
@@ -157,6 +177,11 @@ public class Signal4<P0, P1, P2, P3>(
     p2: P2,
     p3: P3,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3> getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal4<P0, P1, P2, P3> = Signal4(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3>
@@ -167,13 +192,12 @@ public inline fun <reified P0, reified P1, reified P2, reified P3>
   p3: P3,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
-): SignalDelegateProvider<Signal4<P0, P1, P2, P3>> = SignalDelegateProvider(::Signal4)
+) = Signal4
 
 public class Signal5<P0, P1, P2, P3, P4>(
   instance: Object,
@@ -208,6 +232,11 @@ public class Signal5<P0, P1, P2, P3, P4>(
     p3: P3,
     p4: P4,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4> getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal5<P0, P1, P2, P3, P4> = Signal5(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
@@ -219,14 +248,13 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
   p4: P4,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
   p4: String,
-): SignalDelegateProvider<Signal5<P0, P1, P2, P3, P4>> = SignalDelegateProvider(::Signal5)
+) = Signal5
 
 public class Signal6<P0, P1, P2, P3, P4, P5>(
   instance: Object,
@@ -264,6 +292,11 @@ public class Signal6<P0, P1, P2, P3, P4, P5>(
     p4: P4,
     p5: P5,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal6<P0, P1, P2, P3, P4, P5> = Signal6(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
@@ -276,15 +309,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
   p4: String,
   p5: String,
-): SignalDelegateProvider<Signal6<P0, P1, P2, P3, P4, P5>> = SignalDelegateProvider(::Signal6)
+) = Signal6
 
 public class Signal7<P0, P1, P2, P3, P4, P5, P6>(
   instance: Object,
@@ -325,6 +357,12 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6>(
     p5: P5,
     p6: P6,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal7<P0, P1, P2, P3, P4, P5, P6> =
+        Signal7(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -338,8 +376,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -347,7 +384,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6> signal(
   p4: String,
   p5: String,
   p6: String,
-): SignalDelegateProvider<Signal7<P0, P1, P2, P3, P4, P5, P6>> = SignalDelegateProvider(::Signal7)
+) = Signal7
 
 public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(
   instance: Object,
@@ -391,6 +428,12 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(
     p6: P6,
     p7: P7,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
+        Signal8(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -406,8 +449,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -416,8 +458,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
   p5: String,
   p6: String,
   p7: String,
-): SignalDelegateProvider<Signal8<P0, P1, P2, P3, P4, P5, P6, P7>> =
-    SignalDelegateProvider(::Signal8)
+) = Signal8
 
 public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
   instance: Object,
@@ -464,6 +505,12 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     p7: P7,
     p8: P8,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
+        Signal9(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -480,8 +527,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -491,8 +537,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
   p6: String,
   p7: String,
   p8: String,
-): SignalDelegateProvider<Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> =
-    SignalDelegateProvider(::Signal9)
+) = Signal9
 
 public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
   instance: Object,
@@ -542,6 +587,12 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
     p8: P8,
     p9: P9,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
+        Signal10(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -559,8 +610,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -571,8 +621,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
   p7: String,
   p8: String,
   p9: String,
-): SignalDelegateProvider<Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> =
-    SignalDelegateProvider(::Signal10)
+) = Signal10
 
 public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
   instance: Object,
@@ -625,6 +674,12 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
     p9: P9,
     p10: P10,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+        Signal11(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -643,8 +698,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -656,8 +710,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
   p8: String,
   p9: String,
   p10: String,
-): SignalDelegateProvider<Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> =
-    SignalDelegateProvider(::Signal11)
+) = Signal11
 
 public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
   instance: Object,
@@ -713,6 +766,12 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
     p10: P10,
     p11: P11,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> getValue(thisRef: Object,
+        `property`: KProperty<*>): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+        Signal12(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -733,8 +792,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -747,8 +805,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
   p9: String,
   p10: String,
   p11: String,
-): SignalDelegateProvider<Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> =
-    SignalDelegateProvider(::Signal12)
+) = Signal12
 
 public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
   instance: Object,
@@ -807,6 +864,13 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
     p11: P11,
     p12: P12,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
+        getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
+        Signal13(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -828,8 +892,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -843,8 +906,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
   p10: String,
   p11: String,
   p12: String,
-): SignalDelegateProvider<Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> =
-    SignalDelegateProvider(::Signal13)
+) = Signal13
 
 public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(
   instance: Object,
@@ -906,6 +968,13 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     p12: P12,
     p13: P13,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
+        getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
+        Signal14(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -928,8 +997,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -944,8 +1012,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
   p11: String,
   p12: String,
   p13: String,
-): SignalDelegateProvider<Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> =
-    SignalDelegateProvider(::Signal14)
+) = Signal14
 
 public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(
   instance: Object,
@@ -1010,6 +1077,13 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     p13: P13,
     p14: P14,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
+        getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
+        Signal15(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1034,8 +1108,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -1051,8 +1124,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> sig
   p12: String,
   p13: String,
   p14: String,
-): SignalDelegateProvider<Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>>
-    = SignalDelegateProvider(::Signal15)
+) = Signal15
 
 public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(
   instance: Object,
@@ -1120,6 +1192,13 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
     p14: P14,
     p15: P15,
   ) -> Unit): Unit = disconnect(Callable(target, (method as KCallable<*>).name.toGodotName()))
+
+  public companion object {
+    public operator fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
+        getValue(thisRef: Object, `property`: KProperty<*>):
+        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
+        Signal16(thisRef, property.name)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1145,8 +1224,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p15: P15,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-@Suppress("UNUSED_PARAMETER")
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -1163,32 +1241,27 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15
   p13: String,
   p14: String,
   p15: String,
-):
-    SignalDelegateProvider<Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>>
-    = SignalDelegateProvider(::Signal16)
+) = Signal16
 
 public object SignalProvider {
   @JvmStatic
   public fun signal(thisRef: Object, name: String): Signal0 = Signal0(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0> signal(
     thisRef: Object,
     name: String,
     p0: String,
-  ): Signal1<P0> = Signal1<P0>(thisRef, name)
+  ): Signal1<P0> = Signal1(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1> signal(
     thisRef: Object,
     name: String,
     p0: String,
     p1: String,
-  ): Signal2<P0, P1> = Signal2<P0, P1>(thisRef, name)
+  ): Signal2<P0, P1> = Signal2(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2> signal(
     thisRef: Object,
@@ -1196,9 +1269,8 @@ public object SignalProvider {
     p0: String,
     p1: String,
     p2: String,
-  ): Signal3<P0, P1, P2> = Signal3<P0, P1, P2>(thisRef, name)
+  ): Signal3<P0, P1, P2> = Signal3(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3> signal(
     thisRef: Object,
@@ -1207,9 +1279,8 @@ public object SignalProvider {
     p1: String,
     p2: String,
     p3: String,
-  ): Signal4<P0, P1, P2, P3> = Signal4<P0, P1, P2, P3>(thisRef, name)
+  ): Signal4<P0, P1, P2, P3> = Signal4(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4> signal(
     thisRef: Object,
@@ -1219,9 +1290,8 @@ public object SignalProvider {
     p2: String,
     p3: String,
     p4: String,
-  ): Signal5<P0, P1, P2, P3, P4> = Signal5<P0, P1, P2, P3, P4>(thisRef, name)
+  ): Signal5<P0, P1, P2, P3, P4> = Signal5(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5> signal(
     thisRef: Object,
@@ -1232,9 +1302,8 @@ public object SignalProvider {
     p3: String,
     p4: String,
     p5: String,
-  ): Signal6<P0, P1, P2, P3, P4, P5> = Signal6<P0, P1, P2, P3, P4, P5>(thisRef, name)
+  ): Signal6<P0, P1, P2, P3, P4, P5> = Signal6(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6> signal(
     thisRef: Object,
@@ -1246,9 +1315,8 @@ public object SignalProvider {
     p4: String,
     p5: String,
     p6: String,
-  ): Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7<P0, P1, P2, P3, P4, P5, P6>(thisRef, name)
+  ): Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
     thisRef: Object,
@@ -1261,10 +1329,8 @@ public object SignalProvider {
     p5: String,
     p6: String,
     p7: String,
-  ): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
-      Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(thisRef, name)
+  ): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> = Signal8(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
     thisRef: Object,
@@ -1278,10 +1344,8 @@ public object SignalProvider {
     p6: String,
     p7: String,
     p8: String,
-  ): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
-      Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(thisRef, name)
+  ): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = Signal9(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
     thisRef: Object,
@@ -1296,10 +1360,8 @@ public object SignalProvider {
     p7: String,
     p8: String,
     p9: String,
-  ): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
-      Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(thisRef, name)
+  ): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = Signal10(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
     thisRef: Object,
@@ -1315,10 +1377,8 @@ public object SignalProvider {
     p8: String,
     p9: String,
     p10: String,
-  ): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
-      Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(thisRef, name)
+  ): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> = Signal11(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
     thisRef: Object,
@@ -1335,10 +1395,8 @@ public object SignalProvider {
     p9: String,
     p10: String,
     p11: String,
-  ): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
-      Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(thisRef, name)
+  ): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> = Signal12(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
     thisRef: Object,
@@ -1356,10 +1414,8 @@ public object SignalProvider {
     p10: String,
     p11: String,
     p12: String,
-  ): Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
-      Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(thisRef, name)
+  ): Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> = Signal13(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
     thisRef: Object,
@@ -1378,10 +1434,8 @@ public object SignalProvider {
     p11: String,
     p12: String,
     p13: String,
-  ): Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
-      Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(thisRef, name)
+  ): Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> = Signal14(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> signal(
     thisRef: Object,
@@ -1402,9 +1456,8 @@ public object SignalProvider {
     p13: String,
     p14: String,
   ): Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
-      Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(thisRef, name)
+      Signal15(thisRef, name)
 
-  @Suppress("UNUSED_PARAMETER")
   @JvmStatic
   public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> signal(
     thisRef: Object,
@@ -1426,5 +1479,5 @@ public object SignalProvider {
     p14: String,
     p15: String,
   ): Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
-      Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(thisRef, name)
+      Signal16(thisRef, name)
 }

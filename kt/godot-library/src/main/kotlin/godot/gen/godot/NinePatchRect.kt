@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -38,7 +37,7 @@ public open class NinePatchRect : Control() {
   /**
    * Emitted when the node's texture changes.
    */
-  public val textureChanged: Signal0 by signal()
+  public val textureChanged: Signal0 by Signal0
 
   /**
    * The node's texture resource.

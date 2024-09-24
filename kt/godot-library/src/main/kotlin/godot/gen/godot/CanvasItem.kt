@@ -32,7 +32,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -73,23 +72,23 @@ public open class CanvasItem internal constructor() : Node() {
    * notification, and *before* [_draw] is called.
    * **Note:** Deferred connections do not allow drawing through the `draw_*` methods.
    */
-  public val draw: Signal0 by signal()
+  public val draw: Signal0 by Signal0
 
   /**
    * Emitted when the visibility (hidden/visible) changes.
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Emitted when becoming hidden.
    */
-  public val hidden: Signal0 by signal()
+  public val hidden: Signal0 by Signal0
 
   /**
    * Emitted when the item's [Rect2] boundaries (position or size) have changed, or when an action
    * is taking place that may have impacted these boundaries (e.g. changing [Sprite2D.texture]).
    */
-  public val itemRectChanged: Signal0 by signal()
+  public val itemRectChanged: Signal0 by Signal0
 
   /**
    * If `true`, this [CanvasItem] is drawn. The node is only visible if all of its ancestors are

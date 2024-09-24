@@ -20,7 +20,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -44,7 +43,7 @@ public open class SkeletonProfile : Resource() {
    * **Note:** This signal is not connected directly to editor to simplify the reference, instead it
    * is passed on to editor through the [BoneMap].
    */
-  public val profileUpdated: Signal0 by signal()
+  public val profileUpdated: Signal0 by Signal0
 
   /**
    * A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of

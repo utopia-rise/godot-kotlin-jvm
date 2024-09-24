@@ -25,7 +25,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -47,7 +46,7 @@ public open class CPUParticles2D : Node2D() {
    * Emitted when all active particles have finished processing. When [oneShot] is disabled,
    * particles will process continuously, so this is never emitted.
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   /**
    * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from

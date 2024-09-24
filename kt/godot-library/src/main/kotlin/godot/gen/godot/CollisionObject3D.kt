@@ -23,7 +23,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -48,8 +47,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is
    * the normal vector of the surface at that point.
    */
-  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by signal("camera",
-      "event", "eventPosition", "normal", "shapeIdx")
+  public val inputEvent: Signal5<Node, InputEvent, Vector3, Vector3, Long> by Signal5
 
   /**
    * Emitted when the mouse pointer enters any of this object's shapes. Requires [inputRayPickable]
@@ -59,7 +57,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
    * [CollisionObject3D] in question.
    */
-  public val mouseEntered: Signal0 by signal()
+  public val mouseEntered: Signal0 by Signal0
 
   /**
    * Emitted when the mouse pointer exits all this object's shapes. Requires [inputRayPickable] to
@@ -69,7 +67,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
    * This signal may also not be emitted if another [CollisionObject3D] is overlapping the
    * [CollisionObject3D] in question.
    */
-  public val mouseExited: Signal0 by signal()
+  public val mouseExited: Signal0 by Signal0
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].

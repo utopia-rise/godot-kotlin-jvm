@@ -27,7 +27,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -53,7 +52,7 @@ public object Input : Object() {
   /**
    * Emitted when a joypad device has been connected or disconnected.
    */
-  public val joyConnectionChanged: Signal2<Long, Boolean> by signal("device", "connected")
+  public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_INPUT)

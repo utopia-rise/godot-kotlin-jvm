@@ -22,7 +22,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -52,7 +51,7 @@ public open class AnimationPlayer : AnimationMixer() {
   /**
    * Emitted when [currentAnimation] changes.
    */
-  public val currentAnimationChanged: Signal1<String> by signal("name")
+  public val currentAnimationChanged: Signal1<String> by Signal1
 
   /**
    * Emitted when a queued animation plays after the previous animation finished. See also
@@ -60,7 +59,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * **Note:** The signal is not emitted when the animation is changed via [AnimationPlayer.play] or
    * by an [AnimationTree].
    */
-  public val animationChanged: Signal2<StringName, StringName> by signal("oldName", "newName")
+  public val animationChanged: Signal2<StringName, StringName> by Signal2
 
   /**
    * The key of the currently playing animation. If no animation is playing, the property's value is

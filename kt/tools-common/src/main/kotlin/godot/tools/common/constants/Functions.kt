@@ -16,5 +16,4 @@ object GodotFunctions {
 
 val KOTLIN_LIST_OF = MemberName(kotlinCollectionsPackage, KotlinFunctions.listOf)
 val TO_GODOT_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.toGodotName)
-val AS_CACHED_STRING_NAME_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asCachedStringName)
 val AS_CALLABLE_UTIL_FUNCTION = MemberName(godotCorePackage, GodotFunctions.asCallable)

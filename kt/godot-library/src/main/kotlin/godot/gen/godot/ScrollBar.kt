@@ -12,7 +12,6 @@ import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -30,7 +29,7 @@ public open class ScrollBar internal constructor() : Range() {
   /**
    * Emitted when the scrollbar is being scrolled.
    */
-  public val scrolling: Signal0 by signal()
+  public val scrolling: Signal0 by Signal0
 
   /**
    * Overrides the step used when clicking increment and decrement buttons or when using arrow keys

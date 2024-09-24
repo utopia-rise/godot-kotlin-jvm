@@ -16,7 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -38,12 +37,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * Emitted when the VisibleOnScreenNotifier2D enters the screen.
    */
-  public val screenEntered: Signal0 by signal()
+  public val screenEntered: Signal0 by Signal0
 
   /**
    * Emitted when the VisibleOnScreenNotifier2D exits the screen.
    */
-  public val screenExited: Signal0 by signal()
+  public val screenExited: Signal0 by Signal0
 
   /**
    * The VisibleOnScreenNotifier2D's bounding rectangle.

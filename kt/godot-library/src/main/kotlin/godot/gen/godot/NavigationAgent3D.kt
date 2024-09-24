@@ -28,7 +28,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -58,7 +57,7 @@ public open class NavigationAgent3D : Node() {
    * - because navigation map has changed.
    * - because agent pushed further away from the current path segment than the [pathMaxDistance].
    */
-  public val pathChanged: Signal0 by signal()
+  public val pathChanged: Signal0 by Signal0
 
   /**
    * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance]
@@ -68,7 +67,7 @@ public open class NavigationAgent3D : Node() {
    * It may not always be possible to reach the target but it should always be possible to reach the
    * final position. See [getFinalPosition].
    */
-  public val targetReached: Signal0 by signal()
+  public val targetReached: Signal0 by Signal0
 
   /**
    * Signals that the agent reached a waypoint. Emitted when the agent moves within
@@ -80,7 +79,7 @@ public open class NavigationAgent3D : Node() {
    * - `rid`: The [RID] of the containing navigation primitive (region or link).
    * - `owner`: The object which manages the containing navigation primitive (region or link).
    */
-  public val waypointReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
+  public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
    * Signals that the agent reached a navigation link. Emitted when the agent moves within
@@ -96,7 +95,7 @@ public open class NavigationAgent3D : Node() {
    * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
    * contain the global position of the link's point which the agent is exiting.
    */
-  public val linkReached: Signal1<Dictionary<Any?, Any?>> by signal("details")
+  public val linkReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
    * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
@@ -104,13 +103,13 @@ public open class NavigationAgent3D : Node() {
    * of the path is reached. This signal is emitted only once per loaded path.
    * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
-  public val navigationFinished: Signal0 by signal()
+  public val navigationFinished: Signal0 by Signal0
 
   /**
    * Notifies when the collision avoidance velocity is calculated. Emitted every update as long as
    * [avoidanceEnabled] is `true` and the agent has a navigation map.
    */
-  public val velocityComputed: Signal1<Vector3> by signal("safeVelocity")
+  public val velocityComputed: Signal1<Vector3> by Signal1
 
   /**
    * If set, a new navigation path from the current agent position to the [targetPosition] is

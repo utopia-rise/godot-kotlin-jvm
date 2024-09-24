@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -45,7 +44,7 @@ public open class Timer : Node() {
   /**
    * Emitted when the timer reaches the end.
    */
-  public val timeout: Signal0 by signal()
+  public val timeout: Signal0 by Signal0
 
   /**
    * Specifies when the timer is updated during the main loop (see [TimerProcessCallback]).

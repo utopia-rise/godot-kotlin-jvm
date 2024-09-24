@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -32,12 +31,12 @@ public open class Container : Control() {
   /**
    * Emitted when children are going to be sorted.
    */
-  public val preSortChildren: Signal0 by signal()
+  public val preSortChildren: Signal0 by Signal0
 
   /**
    * Emitted when sorting the children is needed.
    */
-  public val sortChildren: Signal0 by signal()
+  public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_CONTAINER, scriptIndex)

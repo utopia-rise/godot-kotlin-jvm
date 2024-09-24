@@ -34,7 +34,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -86,12 +85,12 @@ public open class Control : CanvasItem() {
   /**
    * Emitted when the control changes size.
    */
-  public val resized: Signal0 by signal()
+  public val resized: Signal0 by Signal0
 
   /**
    * Emitted when the node receives an [InputEvent].
    */
-  public val guiInput: Signal1<InputEvent> by signal("event")
+  public val guiInput: Signal1<InputEvent> by Signal1
 
   /**
    * Emitted when the mouse cursor enters the control's (or any child control's) visible area, that
@@ -99,7 +98,7 @@ public open class Control : CanvasItem() {
    * it and regardless if it's currently focused or not.
    * **Note:** [CanvasItem.zIndex] doesn't affect, which Control receives the signal.
    */
-  public val mouseEntered: Signal0 by signal()
+  public val mouseEntered: Signal0 by Signal0
 
   /**
    * Emitted when the mouse cursor leaves the control's (and all child control's) visible area, that
@@ -114,32 +113,32 @@ public open class Control : CanvasItem() {
    *         # Not hovering over area.
    * [/codeblock]
    */
-  public val mouseExited: Signal0 by signal()
+  public val mouseExited: Signal0 by Signal0
 
   /**
    * Emitted when the node gains focus.
    */
-  public val focusEntered: Signal0 by signal()
+  public val focusEntered: Signal0 by Signal0
 
   /**
    * Emitted when the node loses focus.
    */
-  public val focusExited: Signal0 by signal()
+  public val focusExited: Signal0 by Signal0
 
   /**
    * Emitted when one of the size flags changes. See [sizeFlagsHorizontal] and [sizeFlagsVertical].
    */
-  public val sizeFlagsChanged: Signal0 by signal()
+  public val sizeFlagsChanged: Signal0 by Signal0
 
   /**
    * Emitted when the node's minimum size changes.
    */
-  public val minimumSizeChanged: Signal0 by signal()
+  public val minimumSizeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
-  public val themeChanged: Signal0 by signal()
+  public val themeChanged: Signal0 by Signal0
 
   /**
    * Enables whether rendering of [CanvasItem] based children should be clipped to this control's

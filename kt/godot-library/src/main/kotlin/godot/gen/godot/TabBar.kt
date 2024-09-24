@@ -20,7 +20,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -42,22 +41,22 @@ public open class TabBar : Control() {
    * Emitted when a tab is selected via click, directional input, or script, even if it is the
    * current tab.
    */
-  public val tabSelected: Signal1<Long> by signal("tab")
+  public val tabSelected: Signal1<Long> by Signal1
 
   /**
    * Emitted when switching to another tab.
    */
-  public val tabChanged: Signal1<Long> by signal("tab")
+  public val tabChanged: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is clicked, even if it is the current tab.
    */
-  public val tabClicked: Signal1<Long> by signal("tab")
+  public val tabClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is right-clicked. [selectWithRmb] must be enabled.
    */
-  public val tabRmbClicked: Signal1<Long> by signal("tab")
+  public val tabRmbClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab's close button is pressed.
@@ -73,22 +72,22 @@ public open class TabBar : Control() {
    * GetNode<TabBar>("TabBar").TabClosePressed += GetNode<TabBar>("TabBar").RemoveTab;
    * ```
    */
-  public val tabClosePressed: Signal1<Long> by signal("tab")
+  public val tabClosePressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab's right button is pressed. See [setTabButtonIcon].
    */
-  public val tabButtonPressed: Signal1<Long> by signal("tab")
+  public val tabButtonPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when a tab is hovered by the mouse.
    */
-  public val tabHovered: Signal1<Long> by signal("tab")
+  public val tabHovered: Signal1<Long> by Signal1
 
   /**
    * Emitted when the active tab is rearranged via mouse drag. See [dragToRearrangeEnabled].
    */
-  public val activeTabRearranged: Signal1<Long> by signal("idxTo")
+  public val activeTabRearranged: Signal1<Long> by Signal1
 
   /**
    * The index of the current selected tab. A value of `-1` means that no tab is selected and can

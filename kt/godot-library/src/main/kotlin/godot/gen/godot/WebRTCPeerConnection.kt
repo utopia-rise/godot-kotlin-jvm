@@ -20,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -49,13 +48,13 @@ public open class WebRTCPeerConnection : RefCounted() {
    * an answer). The parameters are meant to be passed to [setLocalDescription] on this object, and
    * sent to the remote peer over the signaling server.
    */
-  public val sessionDescriptionCreated: Signal2<String, String> by signal("type", "sdp")
+  public val sessionDescriptionCreated: Signal2<String, String> by Signal2
 
   /**
    * Emitted when a new ICE candidate has been created. The three parameters are meant to be passed
    * to the remote peer over the signaling server.
    */
-  public val iceCandidateCreated: Signal3<String, Long, String> by signal("media", "index", "name")
+  public val iceCandidateCreated: Signal3<String, Long, String> by Signal3
 
   /**
    * Emitted when a new in-band channel is received, i.e. when the channel was created with
@@ -63,7 +62,7 @@ public open class WebRTCPeerConnection : RefCounted() {
    * The object will be an instance of [WebRTCDataChannel]. You must keep a reference of it or it
    * will be closed automatically. See [createDataChannel].
    */
-  public val dataChannelReceived: Signal1<WebRTCDataChannel> by signal("channel")
+  public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)

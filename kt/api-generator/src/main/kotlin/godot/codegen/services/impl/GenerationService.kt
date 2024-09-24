@@ -395,21 +395,11 @@ class GenerationService(
                 signalClass.typeName
             )
             .addKdoc(signal)
+            .delegate(
+                "%T",
+                ClassName(godotCorePackage, "Signal" + arguments.size)
+            )
 
-        if (arguments.isEmpty()) {
-            builder.delegate(
-                "%M()",
-                MemberName(godotCorePackage, "signal")
-            )
-        } else {
-            builder.delegate("%M(${
-                arguments
-                    .map { "\"${it.name}\"" + if (it != arguments.last()) ", " else "" }
-                    .reduce { acc, s -> acc + s }
-            })",
-                MemberName(godotCorePackage, "signal")
-            )
-        }
         return builder.build()
     }
 

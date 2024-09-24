@@ -27,7 +27,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -50,7 +49,7 @@ public open class TileData : Object() {
   /**
    * Emitted when any of the properties are changed.
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * If `true`, the tile will have its texture flipped horizontally.

@@ -33,7 +33,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -69,57 +68,52 @@ public open class GraphEdit : Control() {
    * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode]
    * [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
    */
-  public val connectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
-      "fromPort", "toNode", "toPort")
+  public val connectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
   /**
    * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and
    * [toPort] of [toNode] [GraphNode] is attempted to be removed.
    */
-  public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by signal("fromNode",
-      "fromPort", "toNode", "toPort")
+  public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
   /**
    * Emitted when user drags a connection from an output port into the empty space of the graph.
    */
-  public val connectionToEmpty: Signal3<StringName, Long, Vector2> by signal("fromNode", "fromPort",
-      "releasePosition")
+  public val connectionToEmpty: Signal3<StringName, Long, Vector2> by Signal3
 
   /**
    * Emitted when user drags a connection from an input port into the empty space of the graph.
    */
-  public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by signal("toNode", "toPort",
-      "releasePosition")
+  public val connectionFromEmpty: Signal3<StringName, Long, Vector2> by Signal3
 
   /**
    * Emitted at the beginning of a connection drag.
    */
-  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by signal("fromNode",
-      "fromPort", "isOutput")
+  public val connectionDragStarted: Signal3<StringName, Long, Boolean> by Signal3
 
   /**
    * Emitted at the end of a connection drag.
    */
-  public val connectionDragEnded: Signal0 by signal()
+  public val connectionDragEnded: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In
    * general, this signal indicates that the selected [GraphElement]s should be copied.
    */
-  public val copyNodesRequest: Signal0 by signal()
+  public val copyNodesRequest: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In
    * general, this signal indicates that previously copied [GraphElement]s should be pasted.
    */
-  public val pasteNodesRequest: Signal0 by signal()
+  public val pasteNodesRequest: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by
    * default). In general, this signal indicates that the selected [GraphElement]s should be
    * duplicated.
    */
-  public val duplicateNodesRequest: Signal0 by signal()
+  public val duplicateNodesRequest: Signal0 by Signal0
 
   /**
    * Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by
@@ -127,52 +121,51 @@ public open class GraphEdit : Control() {
    * [nodes] is an array of node names that should be removed. These usually include all selected
    * nodes.
    */
-  public val deleteNodesRequest: Signal1<VariantArray<StringName>> by signal("nodes")
+  public val deleteNodesRequest: Signal1<VariantArray<StringName>> by Signal1
 
   /**
    * Emitted when the given [GraphElement] node is selected.
    */
-  public val nodeSelected: Signal1<Node> by signal("node")
+  public val nodeSelected: Signal1<Node> by Signal1
 
   /**
    * Emitted when the given [GraphElement] node is deselected.
    */
-  public val nodeDeselected: Signal1<Node> by signal("node")
+  public val nodeDeselected: Signal1<Node> by Signal1
 
   /**
    * Emitted when the [GraphFrame] [frame] is resized to [newRect].
    */
-  public val frameRectChanged: Signal2<GraphFrame, Vector2> by signal("frame", "newRect")
+  public val frameRectChanged: Signal2<GraphFrame, Vector2> by Signal2
 
   /**
    * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is
    * the position of the mouse pointer when the signal is sent.
    */
-  public val popupRequest: Signal1<Vector2> by signal("atPosition")
+  public val popupRequest: Signal1<Vector2> by Signal1
 
   /**
    * Emitted at the beginning of a [GraphElement]'s movement.
    */
-  public val beginNodeMove: Signal0 by signal()
+  public val beginNodeMove: Signal0 by Signal0
 
   /**
    * Emitted at the end of a [GraphElement]'s movement.
    */
-  public val endNodeMove: Signal0 by signal()
+  public val endNodeMove: Signal0 by Signal0
 
   /**
    * Emitted when one or more [GraphElement]s are dropped onto the [GraphFrame] named [frame], when
    * they were not previously attached to any other one.
    * [elements] is an array of [GraphElement]s to be attached.
    */
-  public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by
-      signal("elements", "frame")
+  public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by Signal2
 
   /**
    * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
    * code.
    */
-  public val scrollOffsetChanged: Signal1<Vector2> by signal("offset")
+  public val scrollOffsetChanged: Signal1<Vector2> by Signal1
 
   /**
    * The scroll offset.

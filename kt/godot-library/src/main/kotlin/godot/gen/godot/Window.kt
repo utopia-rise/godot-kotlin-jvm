@@ -32,7 +32,6 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -59,7 +58,7 @@ public open class Window : Viewport() {
    * Emitted when the [Window] is currently focused and receives any input, passing the received
    * event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
-  public val windowInput: Signal1<InputEvent> by signal("event")
+  public val windowInput: Signal1<InputEvent> by Signal1
 
   /**
    * Emitted when files are dragged from the OS file manager and dropped in the game window. The
@@ -75,72 +74,72 @@ public open class Window : Viewport() {
    *     print(files)
    * [/codeblock]
    */
-  public val filesDropped: Signal1<PackedStringArray> by signal("files")
+  public val filesDropped: Signal1<PackedStringArray> by Signal1
 
   /**
    * Emitted when the mouse cursor enters the [Window]'s visible area, that is not occluded behind
    * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
    * it's currently focused or not.
    */
-  public val mouseEntered: Signal0 by signal()
+  public val mouseEntered: Signal0 by Signal0
 
   /**
    * Emitted when the mouse cursor leaves the [Window]'s visible area, that is not occluded behind
    * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
    * it's currently focused or not.
    */
-  public val mouseExited: Signal0 by signal()
+  public val mouseExited: Signal0 by Signal0
 
   /**
    * Emitted when the [Window] gains focus.
    */
-  public val focusEntered: Signal0 by signal()
+  public val focusEntered: Signal0 by Signal0
 
   /**
    * Emitted when the [Window] loses its focus.
    */
-  public val focusExited: Signal0 by signal()
+  public val focusExited: Signal0 by Signal0
 
   /**
    * Emitted when the [Window]'s close button is pressed or when [popupWindow] is enabled and user
    * clicks outside the window.
    * This signal can be used to handle window closing, e.g. by connecting it to [hide].
    */
-  public val closeRequested: Signal0 by signal()
+  public val closeRequested: Signal0 by Signal0
 
   /**
    * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right
    * after [Node.NOTIFICATION_WM_GO_BACK_REQUEST].
    */
-  public val goBackRequested: Signal0 by signal()
+  public val goBackRequested: Signal0 by Signal0
 
   /**
    * Emitted when [Window] is made visible or disappears.
    */
-  public val visibilityChanged: Signal0 by signal()
+  public val visibilityChanged: Signal0 by Signal0
 
   /**
    * Emitted right after [popup] call, before the [Window] appears or does anything.
    */
-  public val aboutToPopup: Signal0 by signal()
+  public val aboutToPopup: Signal0 by Signal0
 
   /**
    * Emitted when the [NOTIFICATION_THEME_CHANGED] notification is sent.
    */
-  public val themeChanged: Signal0 by signal()
+  public val themeChanged: Signal0 by Signal0
 
   /**
    * Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window
    * from a Retina display to a lower resolution one).
    * **Note:** Only implemented on macOS.
    */
-  public val dpiChanged: Signal0 by signal()
+  public val dpiChanged: Signal0 by Signal0
 
   /**
    * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen
    * mode, or extend-to-title flag is changed.
    */
-  public val titlebarChanged: Signal0 by signal()
+  public val titlebarChanged: Signal0 by Signal0
 
   /**
    * Set's the window's current mode.

@@ -12,7 +12,6 @@ import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -29,7 +28,7 @@ public open class MeshInstance2D : Node2D() {
   /**
    * Emitted when the [texture] is changed.
    */
-  public val textureChanged: Signal0 by signal()
+  public val textureChanged: Signal0 by Signal0
 
   /**
    * The [Mesh] that will be drawn by the [MeshInstance2D].

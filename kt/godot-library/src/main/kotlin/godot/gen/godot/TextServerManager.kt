@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -37,12 +36,12 @@ public object TextServerManager : Object() {
   /**
    * Emitted when a new interface has been added.
    */
-  public val interfaceAdded: Signal1<StringName> by signal("interfaceName")
+  public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
-  public val interfaceRemoved: Signal1<StringName> by signal("interfaceName")
+  public val interfaceRemoved: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_TEXTSERVERMANAGER)

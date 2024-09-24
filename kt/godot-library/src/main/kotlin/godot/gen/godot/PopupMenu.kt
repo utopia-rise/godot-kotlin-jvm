@@ -20,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -62,23 +61,23 @@ public open class PopupMenu : Popup() {
    * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the
    * corresponding index instead.
    */
-  public val idPressed: Signal1<Long> by signal("id")
+  public val idPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user navigated to an item of some [id] using the [ProjectSettings.input/uiUp]
    * or [ProjectSettings.input/uiDown] input action.
    */
-  public val idFocused: Signal1<Long> by signal("id")
+  public val idFocused: Signal1<Long> by Signal1
 
   /**
    * Emitted when an item of some [index] is pressed or its accelerator is activated.
    */
-  public val indexPressed: Signal1<Long> by signal("index")
+  public val indexPressed: Signal1<Long> by Signal1
 
   /**
    * Emitted when any item is added, modified or removed.
    */
-  public val menuChanged: Signal0 by signal()
+  public val menuChanged: Signal0 by Signal0
 
   /**
    * If `true`, hides the [PopupMenu] when an item is selected.

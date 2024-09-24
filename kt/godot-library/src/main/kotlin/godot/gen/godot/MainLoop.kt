@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal2
-import godot.core.signal
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -83,7 +82,7 @@ public open class MainLoop : Object() {
   /**
    * Emitted when a user responds to a permission request.
    */
-  public val onRequestPermissionsResult: Signal2<String, Boolean> by signal("permission", "granted")
+  public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
     callConstructor(ENGINECLASS_MAINLOOP, scriptIndex)

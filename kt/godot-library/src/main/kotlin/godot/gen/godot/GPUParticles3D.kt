@@ -26,7 +26,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -54,7 +53,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * a short period after receiving the signal during which setting [emitting] to `true` will not
    * restart the emission cycle. This delay is avoided by instead calling [restart].
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   /**
    * If `true`, particles are being emitted. [emitting] can be used to start and stop particles from

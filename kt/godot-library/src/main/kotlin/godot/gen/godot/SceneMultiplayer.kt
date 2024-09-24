@@ -23,7 +23,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -57,19 +56,19 @@ public open class SceneMultiplayer : MultiplayerAPI() {
    * [getAuthenticatingPeers]), and only authentication data will be sent or received. See [sendAuth]
    * for sending authentication data.
    */
-  public val peerAuthenticating: Signal1<Long> by signal("id")
+  public val peerAuthenticating: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] disconnects from a peer for
    * which authentication had not yet completed. See [signal peer_authenticating].
    */
-  public val peerAuthenticationFailed: Signal1<Long> by signal("id")
+  public val peerAuthenticationFailed: Signal1<Long> by Signal1
 
   /**
    * Emitted when this MultiplayerAPI's [MultiplayerAPI.multiplayerPeer] receives a [packet] with
    * custom data (see [sendBytes]). ID is the peer ID of the peer that sent the packet.
    */
-  public val peerPacket: Signal2<Long, PackedByteArray> by signal("id", "packet")
+  public val peerPacket: Signal2<Long, PackedByteArray> by Signal2
 
   /**
    * The root path to use for RPCs and replication. Instead of an absolute path, a relative path

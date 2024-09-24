@@ -25,7 +25,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.core.toGodotName
 import godot.util.VoidPtr
 import kotlin.Any
@@ -104,18 +103,18 @@ public open class Node : Object() {
   /**
    * Emitted when the node is considered ready, after [_ready] is called.
    */
-  public val ready: Signal0 by signal()
+  public val ready: Signal0 by Signal0
 
   /**
    * Emitted when the node's [name] is changed, if the node is inside the tree.
    */
-  public val renamed: Signal0 by signal()
+  public val renamed: Signal0 by Signal0
 
   /**
    * Emitted when the node enters the tree.
    * This signal is emitted *after* the related [NOTIFICATION_ENTER_TREE] notification.
    */
-  public val treeEntered: Signal0 by signal()
+  public val treeEntered: Signal0 by Signal0
 
   /**
    * Emitted when the node is just about to exit the tree. The node is still valid. As such, this is
@@ -123,13 +122,13 @@ public open class Node : Object() {
    * This signal is emitted *after* the node's [_exitTree], and *before* the related
    * [NOTIFICATION_EXIT_TREE].
    */
-  public val treeExiting: Signal0 by signal()
+  public val treeExiting: Signal0 by Signal0
 
   /**
    * Emitted after the node exits the tree and is no longer active.
    * This signal is emitted *after* the related [NOTIFICATION_EXIT_TREE] notification.
    */
-  public val treeExited: Signal0 by signal()
+  public val treeExited: Signal0 by Signal0
 
   /**
    * Emitted when the child [node] enters the [SceneTree], usually because this node entered the
@@ -137,7 +136,7 @@ public open class Node : Object() {
    * This signal is emitted *after* the child node's own [NOTIFICATION_ENTER_TREE] and [signal
    * tree_entered].
    */
-  public val childEnteredTree: Signal1<Node> by signal("node")
+  public val childEnteredTree: Signal1<Node> by Signal1
 
   /**
    * Emitted when the child [node] is about to exit the [SceneTree], usually because this node is
@@ -146,25 +145,25 @@ public open class Node : Object() {
    * When this signal is received, the child [node] is still accessible inside the tree. This signal
    * is emitted *after* the child node's own [signal tree_exiting] and [NOTIFICATION_EXIT_TREE].
    */
-  public val childExitingTree: Signal1<Node> by signal("node")
+  public val childExitingTree: Signal1<Node> by Signal1
 
   /**
    * Emitted when the list of children is changed. This happens when child nodes are added, moved or
    * removed.
    */
-  public val childOrderChanged: Signal0 by signal()
+  public val childOrderChanged: Signal0 by Signal0
 
   /**
    * Emitted when this node is being replaced by the [node], see [replaceBy].
    * This signal is emitted *after* [node] has been added as a child of the original parent node,
    * but *before* all original child nodes have been reparented to [node].
    */
-  public val replacingBy: Signal1<Node> by signal("node")
+  public val replacingBy: Signal1<Node> by Signal1
 
   /**
    * Emitted when the node's editor description field changed.
    */
-  public val editorDescriptionChanged: Signal1<Node> by signal("node")
+  public val editorDescriptionChanged: Signal1<Node> by Signal1
 
   /**
    * The name of the node. This name must be unique among the siblings (other child nodes from the
@@ -522,8 +521,7 @@ public open class Node : Object() {
     arg5: ARG5,
     arg6: ARG6,
     arg7: ARG7,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpc(
@@ -537,8 +535,7 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8)
+  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, reified FUNCTION :
       KFunction9<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, *>> rpcId(
@@ -553,8 +550,8 @@ public open class Node : Object() {
     arg6: ARG6,
     arg7: ARG7,
     arg8: ARG8,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
+      arg8)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpc(
@@ -569,8 +566,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
-      arg8, arg9)
+  ): Error = rpc(function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8,
+      arg9)
 
   public inline fun <ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, reified FUNCTION :
       KFunction10<ARG0, ARG1, ARG2, ARG3, ARG4, ARG5, ARG6, ARG7, ARG8, ARG9, *>> rpcId(
@@ -586,8 +583,8 @@ public open class Node : Object() {
     arg7: ARG7,
     arg8: ARG8,
     arg9: ARG9,
-  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6,
-      arg7, arg8, arg9)
+  ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
+      arg8, arg9)
 
   /**
    * Called during the processing step of the main loop. Processing happens at every frame and as

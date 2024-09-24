@@ -23,7 +23,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -84,49 +83,48 @@ public open class Tree : Control() {
   /**
    * Emitted when an item is selected.
    */
-  public val itemSelected: Signal0 by signal()
+  public val itemSelected: Signal0 by Signal0
 
   /**
    * Emitted when a cell is selected.
    */
-  public val cellSelected: Signal0 by signal()
+  public val cellSelected: Signal0 by Signal0
 
   /**
    * Emitted instead of [signal item_selected] if [selectMode] is set to [SELECT_MULTI].
    */
-  public val multiSelected: Signal3<TreeItem, Long, Boolean> by signal("item", "column", "selected")
+  public val multiSelected: Signal3<TreeItem, Long, Boolean> by Signal3
 
   /**
    * Emitted when an item is selected with a mouse button.
    */
-  public val itemMouseSelected: Signal2<Vector2, Long> by signal("mousePosition",
-      "mouseButtonIndex")
+  public val itemMouseSelected: Signal2<Vector2, Long> by Signal2
 
   /**
    * Emitted when a mouse button is clicked in the empty space of the tree.
    */
-  public val emptyClicked: Signal2<Vector2, Long> by signal("clickPosition", "mouseButtonIndex")
+  public val emptyClicked: Signal2<Vector2, Long> by Signal2
 
   /**
    * Emitted when an item is edited.
    */
-  public val itemEdited: Signal0 by signal()
+  public val itemEdited: Signal0 by Signal0
 
   /**
    * Emitted when an item with [TreeItem.CELL_MODE_CUSTOM] is clicked with a mouse button.
    */
-  public val customItemClicked: Signal1<Long> by signal("mouseButtonIndex")
+  public val customItemClicked: Signal1<Long> by Signal1
 
   /**
    * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the
    * item is double-clicked, see [signal item_activated].
    */
-  public val itemIconDoubleClicked: Signal0 by signal()
+  public val itemIconDoubleClicked: Signal0 by Signal0
 
   /**
    * Emitted when an item is collapsed by a click on the folding arrow.
    */
-  public val itemCollapsed: Signal1<TreeItem> by signal("item")
+  public val itemCollapsed: Signal1<TreeItem> by Signal1
 
   /**
    * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items
@@ -134,35 +132,34 @@ public open class Tree : Control() {
    * will be processed is as follows: the item that invoked the method, children of that item, and
    * finally parents of that item.
    */
-  public val checkPropagatedToItem: Signal2<TreeItem, Long> by signal("item", "column")
+  public val checkPropagatedToItem: Signal2<TreeItem, Long> by Signal2
 
   /**
    * Emitted when a button on the tree was pressed (see [TreeItem.addButton]).
    */
-  public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by signal("item", "column", "id",
-      "mouseButtonIndex")
+  public val buttonClicked: Signal4<TreeItem, Long, Long, Long> by Signal4
 
   /**
    * Emitted when a cell with the [TreeItem.CELL_MODE_CUSTOM] is clicked to be edited.
    */
-  public val customPopupEdited: Signal1<Boolean> by signal("arrowClicked")
+  public val customPopupEdited: Signal1<Boolean> by Signal1
 
   /**
    * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using
    * [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
    */
-  public val itemActivated: Signal0 by signal()
+  public val itemActivated: Signal0 by Signal0
 
   /**
    * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or
    * [MOUSE_BUTTON_RIGHT].
    */
-  public val columnTitleClicked: Signal2<Long, Long> by signal("column", "mouseButtonIndex")
+  public val columnTitleClicked: Signal2<Long, Long> by Signal2
 
   /**
    * Emitted when a left mouse button click does not select any item.
    */
-  public val nothingSelected: Signal0 by signal()
+  public val nothingSelected: Signal0 by Signal0
 
   /**
    * The number of columns.

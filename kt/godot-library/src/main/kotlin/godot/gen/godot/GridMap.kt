@@ -28,7 +28,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector3
 import godot.core.Vector3i
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -59,12 +58,12 @@ public open class GridMap : Node3D() {
   /**
    * Emitted when [cellSize] changes.
    */
-  public val cellSizeChanged: Signal1<Vector3> by signal("cellSize")
+  public val cellSizeChanged: Signal1<Vector3> by Signal1
 
   /**
    * Emitted when the [MeshLibrary] of this GridMap changes.
    */
-  public val changed: Signal0 by signal()
+  public val changed: Signal0 by Signal0
 
   /**
    * The assigned [MeshLibrary].

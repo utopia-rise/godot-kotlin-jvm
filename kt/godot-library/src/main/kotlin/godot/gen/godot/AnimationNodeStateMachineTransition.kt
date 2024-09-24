@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -40,7 +39,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   /**
    * Emitted when [advanceCondition] is changed.
    */
-  public val advanceConditionChanged: Signal0 by signal()
+  public val advanceConditionChanged: Signal0 by Signal0
 
   /**
    * The time to cross-fade between this state and the next.

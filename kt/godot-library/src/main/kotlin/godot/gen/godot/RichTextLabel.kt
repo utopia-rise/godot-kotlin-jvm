@@ -32,7 +32,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -85,22 +84,22 @@ public open class RichTextLabel : Control() {
    *     OS.shell_open(str(meta))
    * ```
    */
-  public val metaClicked: Signal1<Any> by signal("meta")
+  public val metaClicked: Signal1<Any> by Signal1
 
   /**
    * Triggers when the mouse enters a meta tag.
    */
-  public val metaHoverStarted: Signal1<Any> by signal("meta")
+  public val metaHoverStarted: Signal1<Any> by Signal1
 
   /**
    * Triggers when the mouse exits a meta tag.
    */
-  public val metaHoverEnded: Signal1<Any> by signal("meta")
+  public val metaHoverEnded: Signal1<Any> by Signal1
 
   /**
    * Triggered when the document is fully loaded.
    */
-  public val finished: Signal0 by signal()
+  public val finished: Signal0 by Signal0
 
   /**
    * If `true`, the label uses BBCode formatting.

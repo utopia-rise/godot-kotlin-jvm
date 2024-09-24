@@ -28,7 +28,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.memory.TransferContext
-import godot.core.signal
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -54,23 +53,23 @@ public open class CodeEdit : TextEdit() {
    * Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a
    * removed is emitted at the old line.
    */
-  public val breakpointToggled: Signal1<Long> by signal("line")
+  public val breakpointToggled: Signal1<Long> by Signal1
 
   /**
    * Emitted when the user requests code completion.
    */
-  public val codeCompletionRequested: Signal0 by signal()
+  public val codeCompletionRequested: Signal0 by Signal0
 
   /**
    * Emitted when the user has clicked on a valid symbol.
    */
-  public val symbolLookup: Signal3<String, Long, Long> by signal("symbol", "line", "column")
+  public val symbolLookup: Signal3<String, Long, Long> by Signal3
 
   /**
    * Emitted when the user hovers over a symbol. The symbol should be validated and responded to, by
    * calling [setSymbolLookupWordAsValid].
    */
-  public val symbolValidate: Signal1<String> by signal("symbol")
+  public val symbolValidate: Signal1<String> by Signal1
 
   /**
    * Set when a validated word from [signal symbol_validate] is clicked, the [signal symbol_lookup]
