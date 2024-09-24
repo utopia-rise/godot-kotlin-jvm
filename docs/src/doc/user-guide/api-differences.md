@@ -171,7 +171,7 @@ Currently this feature except abstract classes.
 Several Godot functions take `StringName` or `NodePath` as a parameter. 
 It's often more convenient to directly use a String that need to be converted.
 
-This operation can be costly so we provide extension caching the result of the conversion for later calls:
+This operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
 
 - `String.asCachedStringName()`
 - `String.asCachedNodePath()` 
