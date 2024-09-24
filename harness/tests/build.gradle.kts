@@ -225,6 +225,7 @@ fun provideEditorExecutable(): File = (
         listOf(
             projectDir.resolve("../../../../bin"),
             projectDir.resolve("bin"),
+            rootProject.layout.projectDirectory.asFile.resolve("bin"),
         )
             .flatMap { (it.listFiles() ?: arrayOf()).toList() }
             .also {
