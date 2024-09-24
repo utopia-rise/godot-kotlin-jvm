@@ -13,7 +13,6 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
-import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KCallable
 import kotlin.reflect.KProperty
 
@@ -43,8 +42,7 @@ public class Signal0(
 public inline fun Signal0.connect(flags: Int = 0, noinline method: () -> Unit): Error =
     connect(method.asCallable(), flags)
 
-public fun signal() =
-    ReadOnlyProperty<Object, Signal0> { thisRef, property -> Signal0(thisRef, property.name)}
+public inline fun signal() = Signal0
 
 public class Signal1<P0>(
   instance: Object,
@@ -72,8 +70,7 @@ public class Signal1<P0>(
 public inline fun <reified P0> Signal1<P0>.connect(flags: Int = 0, noinline
     method: (p0: P0) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0> signal(p0: String) =
-    ReadOnlyProperty<Object, Signal1<P0>> { thisRef, property -> Signal1<P0>(thisRef, property.name)}
+public inline fun signal(p0: String) = Signal1
 
 public class Signal2<P0, P1>(
   instance: Object,
@@ -101,8 +98,7 @@ public class Signal2<P0, P1>(
 public inline fun <reified P0, reified P1> Signal2<P0, P1>.connect(flags: Int = 0, noinline
     method: (p0: P0, p1: P1) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1> signal(p0: String, p1: String) =
-    ReadOnlyProperty<Object, Signal2<P0, P1>> { thisRef, property -> Signal2<P0, P1>(thisRef, property.name)}
+public inline fun signal(p0: String, p1: String) = Signal2
 
 public class Signal3<P0, P1, P2>(
   instance: Object,
@@ -145,12 +141,11 @@ public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.conne
   p2: P2,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
-) =
-    ReadOnlyProperty<Object, Signal3<P0, P1, P2>> { thisRef, property -> Signal3<P0, P1, P2>(thisRef, property.name)}
+) = Signal3
 
 public class Signal4<P0, P1, P2, P3>(
   instance: Object,
@@ -197,13 +192,12 @@ public inline fun <reified P0, reified P1, reified P2, reified P3>
   p3: P3,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
-) =
-    ReadOnlyProperty<Object, Signal4<P0, P1, P2, P3>> { thisRef, property -> Signal4<P0, P1, P2, P3>(thisRef, property.name)}
+) = Signal4
 
 public class Signal5<P0, P1, P2, P3, P4>(
   instance: Object,
@@ -254,14 +248,13 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
   p4: P4,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
   p4: String,
-) =
-    ReadOnlyProperty<Object, Signal5<P0, P1, P2, P3, P4>> { thisRef, property -> Signal5<P0, P1, P2, P3, P4>(thisRef, property.name)}
+) = Signal5
 
 public class Signal6<P0, P1, P2, P3, P4, P5>(
   instance: Object,
@@ -316,15 +309,14 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p5: P5,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
   p3: String,
   p4: String,
   p5: String,
-) =
-    ReadOnlyProperty<Object, Signal6<P0, P1, P2, P3, P4, P5>> { thisRef, property -> Signal6<P0, P1, P2, P3, P4, P5>(thisRef, property.name)}
+) = Signal6
 
 public class Signal7<P0, P1, P2, P3, P4, P5, P6>(
   instance: Object,
@@ -384,7 +376,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p6: P6,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -392,8 +384,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6> signal(
   p4: String,
   p5: String,
   p6: String,
-) =
-    ReadOnlyProperty<Object, Signal7<P0, P1, P2, P3, P4, P5, P6>> { thisRef, property -> Signal7<P0, P1, P2, P3, P4, P5, P6>(thisRef, property.name)}
+) = Signal7
 
 public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(
   instance: Object,
@@ -458,7 +449,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p7: P7,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -467,8 +458,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7> signal(
   p5: String,
   p6: String,
   p7: String,
-) =
-    ReadOnlyProperty<Object, Signal8<P0, P1, P2, P3, P4, P5, P6, P7>> { thisRef, property -> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>(thisRef, property.name)}
+) = Signal8
 
 public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
   instance: Object,
@@ -537,7 +527,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p8: P8,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -547,8 +537,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> signal(
   p6: String,
   p7: String,
   p8: String,
-) =
-    ReadOnlyProperty<Object, Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> { thisRef, property -> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(thisRef, property.name)}
+) = Signal9
 
 public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
   instance: Object,
@@ -621,7 +610,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p9: P9,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -632,8 +621,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> signal(
   p7: String,
   p8: String,
   p9: String,
-) =
-    ReadOnlyProperty<Object, Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> { thisRef, property -> Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(thisRef, property.name)}
+) = Signal10
 
 public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
   instance: Object,
@@ -710,7 +698,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p10: P10,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -722,8 +710,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> signal(
   p8: String,
   p9: String,
   p10: String,
-) =
-    ReadOnlyProperty<Object, Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> { thisRef, property -> Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(thisRef, property.name)}
+) = Signal11
 
 public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
   instance: Object,
@@ -805,7 +792,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p11: P11,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -818,8 +805,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> signal(
   p9: String,
   p10: String,
   p11: String,
-) =
-    ReadOnlyProperty<Object, Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> { thisRef, property -> Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(thisRef, property.name)}
+) = Signal12
 
 public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
   instance: Object,
@@ -906,7 +892,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p12: P12,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -920,8 +906,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> signal(
   p10: String,
   p11: String,
   p12: String,
-) =
-    ReadOnlyProperty<Object, Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> { thisRef, property -> Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(thisRef, property.name)}
+) = Signal13
 
 public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(
   instance: Object,
@@ -1012,7 +997,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p13: P13,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -1027,8 +1012,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> signal(
   p11: String,
   p12: String,
   p13: String,
-) =
-    ReadOnlyProperty<Object, Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> { thisRef, property -> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(thisRef, property.name)}
+) = Signal14
 
 public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(
   instance: Object,
@@ -1124,7 +1108,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p14: P14,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -1140,8 +1124,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> sig
   p12: String,
   p13: String,
   p14: String,
-) =
-    ReadOnlyProperty<Object, Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> { thisRef, property -> Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(thisRef, property.name)}
+) = Signal15
 
 public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(
   instance: Object,
@@ -1241,7 +1224,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
   p15: P15,
 ) -> Unit): Error = connect(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> signal(
+public inline fun signal(
   p0: String,
   p1: String,
   p2: String,
@@ -1258,8 +1241,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15
   p13: String,
   p14: String,
   p15: String,
-) =
-    ReadOnlyProperty<Object, Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> { thisRef, property -> Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(thisRef, property.name)}
+) = Signal16
 
 public object SignalProvider {
   @JvmStatic

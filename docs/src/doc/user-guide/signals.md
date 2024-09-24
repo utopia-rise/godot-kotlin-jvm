@@ -9,7 +9,7 @@ To create a signal use the delegate function `signal` and annotate it with `@Reg
 @RegisterClass
 class RotatingCube: Node3D() {
     @RegisterSignal
-    val reverseChanged by signal<Boolean>("reverse")
+    val reverseChanged: Signal1<Boolean> by signal("reverse")
 }
 ```
 

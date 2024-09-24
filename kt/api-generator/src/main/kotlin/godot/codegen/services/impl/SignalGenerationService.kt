@@ -1,5 +1,6 @@
 package godot.codegen.services.impl
 
+import com.squareup.kotlinpoet.ANY
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
@@ -53,6 +54,14 @@ class SignalGenerationService : ISignalGenerationService {
             }
         }
 
+        val erasedGenericClassName = className.run {
+            if (genericTypes.isNotEmpty()) {
+                parameterizedBy(genericTypes.map{ANY})
+            } else {
+                this
+            }
+        }
+
         fun toTypeSpecBuilder() = TypeSpec
             .classBuilder(className)
             .addTypeVariables(genericTypes)
@@ -96,13 +105,12 @@ class SignalGenerationService : ISignalGenerationService {
         return signalFileSpec
             .addType(signalProviderObject.build())
             .addAnnotation(
-                AnnotationSpec.run {
-                    builder(ClassName("kotlin", "Suppress"))
-                        .addMember("\"PackageDirectoryMismatch\"")
-                        .addMember("\"NOTHING_TO_INLINE\"")
-                        .addMember("\"UNUSED_PARAMETER\"")
-                        .build()
-                }
+                AnnotationSpec
+                    .builder(ClassName("kotlin", "Suppress"))
+                    .addMember("\"PackageDirectoryMismatch\"")
+                    .addMember("\"NOTHING_TO_INLINE\"")
+                    .addMember("\"UNUSED_PARAMETER\"")
+                    .build()
             )
             .build()
 
@@ -255,8 +263,9 @@ class SignalGenerationService : ISignalGenerationService {
     }
 
     private fun generateSignalDelegateMethod(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
-        return genericClassNameInfo
-            .toFunSpecBuilder(SIGNAL_FUNCTION_NAME)
+        return FunSpec
+            .builder(SIGNAL_FUNCTION_NAME)
+            .addModifiers(KModifier.INLINE)
             .addParameters(
                 (0..<argCount)
                     .map {
@@ -265,11 +274,8 @@ class SignalGenerationService : ISignalGenerationService {
             )
             .addCode(
                 CodeBlock.of(
-                    "return·%T<%T,·%T>·{·thisRef,·property·->·%T(thisRef,·property.name)}",
-                    readOnlyPropertyClassName,
-                    GODOT_OBJECT,
-                    genericClassNameInfo.genericClassName,
-                    genericClassNameInfo.genericClassName
+                    "return·%T",
+                    genericClassNameInfo.className
                 )
             )
             .build()
