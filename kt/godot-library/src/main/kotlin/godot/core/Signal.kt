@@ -9,7 +9,7 @@ open class Signal internal constructor(
     val name: StringName
 ) : CoreType {
 
-    constructor(instance: Object, jvmName: String) : this(
+    internal constructor(instance: Object, jvmName: String) : this(
         instance,
         jvmName.convertToSnakeCase().asStringName()
     )
