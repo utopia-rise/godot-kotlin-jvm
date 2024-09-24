@@ -4,118 +4,70 @@
 #include "build_manager.h"
 
 #include "../godot_kotlin_jvm_editor.h"
+#include "editor/strings.h"
+#include "logging.h"
 
 #include <core/config/project_settings.h>
 #include <editor/editor_node.h>
 
-void background_trigger_build(void* p_userdata) {
-    BuildManager::get_instance().build_blocking();
+Mutex build_mutex {};
+
+String get_build_gradle_path() {
+    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    return gradle_wrapper_path.path_join("build.gradle.kts");
 }
 
-BuildManager::BuildManager() : build_finished(false), build_mutex(), last_build_exit_code(0) {}
-
-bool BuildManager::build_project_blocking() {
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) { return true; }
-
-    clear_log();
-
-    EditorNode::progress_add_task("build_godot_kotlin_jvm", "Building with gradle...", 2);
-    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Building gradle project", 1);
-
-    Error result = build_blocking();
-
-    EditorNode::progress_task_step("build_godot_kotlin_jvm", "Done", 2);// dummy to not start at 0% or 100%
-    EditorNode::progress_end_task("build_godot_kotlin_jvm");
-
-    GodotKotlinJvmEditor::get_instance()->on_build_check_timeout();// manually call what timer would call to update ui
-    return result == Error::OK && last_build_successful();
-}
-
-void BuildManager::build_project_non_blocking() {
-    if (!build_thread.is_started()) {
-        clear_log();
-        GodotKotlinJvmEditor::get_instance()->build_check_timer->start();
-        build_thread.start(background_trigger_build, nullptr);
-    }
-}
-
-bool BuildManager::can_build_project() {
-    build_mutex.lock();
-    bool result = build_finished;
-    build_mutex.unlock();
-    return result;
-}
-
-// convenience function for better readability in some places
-bool BuildManager::is_build_finished() {
-    return can_build_project();
-}
-
-void BuildManager::update_build_state() {
-    if (!build_thread.is_started()) {
-        GodotKotlinJvmEditor::get_instance()->build_check_timer->stop();
-        return;
-    }
-
-    build_mutex.lock();
-    if (build_finished) { build_thread.wait_to_finish(); }
-    build_mutex.unlock();
-}
-
-String BuildManager::get_log() {
-    build_mutex.lock();
-    String result = build_log;
-    build_mutex.unlock();
-    return result;
-}
-
-void BuildManager::clear_log() {
-    build_mutex.lock();
-    build_log.clear();
-    build_mutex.unlock();
-}
-
-Error BuildManager::build_blocking() {
-    if (!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists("build.gradle.kts")) {
-        return Error::OK;
-    }
-    clear_log();
-    build_mutex.lock();
-    build_finished = false;
-    build_mutex.unlock();
-
-    List<String> args {};
-    args.push_back("build");
-
+String get_gradlew_path() {
 #if defined _WIN32 || defined _WIN64
     String gradle_wrapper {"gradlew.bat"};
 #else
     String gradle_wrapper {"gradlew"};
 #endif
 
-    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(ProjectSettings::get_singleton()->get_setting("kotlin_jvm/editor/gradle_wrapper_dir"
-    ))};
+    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    return gradle_wrapper_path.path_join(gradle_wrapper);
+}
 
-    if (!gradle_wrapper_path.ends_with("/")) { gradle_wrapper_path = gradle_wrapper_path + "/"; }
+Error BuildManager::build_project() {
+    List<String> args {};
+    args.push_back("build");
 
-    String gradle_command {gradle_wrapper_path + gradle_wrapper};
+    String gradlew_path = get_gradlew_path();
+    JVM_LOG_INFO("Running %s build task...", gradlew_path);
 
     int exit_code;
-    Error result = OS::get_singleton()->execute(gradle_command, args, &build_log, &exit_code, true, &build_mutex, false);
-
-    build_mutex.lock();
-    last_build_exit_code = exit_code;
-    build_finished = true;
-    build_mutex.unlock();
-
+    Error result = OS::get_singleton()->execute(gradlew_path, args, &build_log, &exit_code, true, &build_mutex, false);
     return result;
 }
 
-bool BuildManager::last_build_successful() const {
-    build_mutex.lock();
-    bool result = last_build_exit_code == 0;
-    build_mutex.unlock();
-    return result;
+bool BuildManager::build_project_blocking() {
+    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()), false, missing_gradle_project);
+
+    build_log.clear();
+
+    if (build_project() != Error::OK) {
+        // When in blocking mode, only make the window appears when it fails
+        GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log);
+        return false;
+    }
+    return true;
+}
+
+void BuildManager::build_task(void* p_userdata) {
+    GodotKotlinJvmEditor::get_instance()->update_build_dialog(start_build);
+
+    BuildManager::get_instance().build_project();
+
+    GodotKotlinJvmEditor::get_instance()->update_build_dialog(BuildManager::get_instance().build_log);
+    BuildManager::get_instance().taskId = WorkerThreadPool::INVALID_TASK_ID;
+}
+
+void BuildManager::build_project_non_blocking() {
+    if (taskId != WorkerThreadPool::INVALID_TASK_ID) { return; }
+    JVM_ERR_FAIL_COND_MSG(!FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()), missing_gradle_project);
+
+    build_log.clear();
+    taskId = WorkerThreadPool::get_singleton()->add_native_task(build_task, nullptr);
 }
 
 BuildManager& BuildManager::get_instance() {

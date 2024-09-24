@@ -1,10 +1,14 @@
 import os
+import generate_templates
 
 Import("env")
 
 java_home = os.environ["JAVA_HOME"]
 
 module_env = env.Clone()
+
+# Generate templates when building the engine.
+generate_templates.generate_header_from_files("kt/plugins/godot-intellij-plugin/src/main/resources/template", "src/editor/project/templates.h")
 
 # For header includes
 module_env.Append(CPPPATH=["src/"])
@@ -23,6 +27,7 @@ if env["platform"] != "android":
 module_env.add_source_files(module_env.modules_sources, "register_types.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/*.cpp")
+module_env.add_source_files(module_env.modules_sources, "src/editor/project/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/build/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/dialog/*.cpp")
 module_env.add_source_files(module_env.modules_sources, "src/editor/panel/*.cpp")

@@ -198,11 +198,11 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
         File(basePath, "src/main/kotlin/$packagePathAsFolderStructure").mkdirs()
 
         if (wizardContext.isCreatingNewProject) {
-            copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.jar")
-            copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.properties")
-            copyTemplateFile(basePath, "gradlew")
-            copyTemplateFile(basePath, "gradlew.bat")
-            copyTemplateFile(basePath, "build.gradle.kts") { outFile ->
+            copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.jar.template")
+            copyTemplateFile(basePath, "gradle/wrapper/gradle-wrapper.properties.template")
+            copyTemplateFile(basePath, "gradlew.template")
+            copyTemplateFile(basePath, "gradlew.bat.template")
+            copyTemplateFile(basePath, "build.gradle.kts.template") { outFile ->
                 outFile.writeText(
                     outFile
                         .readText()
@@ -219,7 +219,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                         .replace("IS_IOS_ENABLED", wizardContext.getUserData(isIOSEnabledKey)?.toString() ?: "false")
                 )
             }
-            copyTemplateFile(basePath, "settings.gradle.kts") { outFile ->
+            copyTemplateFile(basePath, "settings.gradle.kts.template") { outFile ->
                 outFile.writeText(
                     outFile
                         .readText()
@@ -240,7 +240,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
 
             copyTemplateFile(
                 basePath,
-                "build.gradle.kts.submodule",
+                "build.gradle.kts.submodule.intellij_template",
                 "build.gradle.kts"
             ) { outFile ->
                 outFile.writeText(
@@ -269,7 +269,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                 )
             }
         }
-        copyTemplateFile(basePath, "src/main/kotlin/$packagePathAsFolderStructure/Simple.kt") { outFile ->
+        copyTemplateFile(basePath, "Simple.kt.intellij_template", "src/main/kotlin/$packagePathAsFolderStructure/Simple.kt") { outFile ->
             outFile.writeText(
                 outFile
                     .readText()
@@ -277,36 +277,36 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     .replace("ARTEFACT_ID", artifact)
             )
         }
-        copyTemplateFile(basePath, "icon.svg")
-        copyTemplateFile(basePath, "project.godot") { outFile ->
+        copyTemplateFile(basePath, "icon.svg.intellij_template")
+        copyTemplateFile(basePath, "project.godot.intellij_template") { outFile ->
             outFile.writeText(
                 outFile
                     .readText()
                     .replace("PROJECT_NAME", module.project.name)
             )
         }
-        copyTemplateFile(basePath, ".gitattributes")
-        copyTemplateFile(basePath, ".gitignore")
+        copyTemplateFile(basePath, ".gitattributes.template")
+        copyTemplateFile(basePath, ".gitignore.template")
     }
 
     private fun copyTemplateFile(
         baseDir: String,
-        sourceFileName: String,
-        targetFileName: String = sourceFileName.substringAfterLast("/"),
+        sourcePath: String,
+        targetPath: String = sourcePath.removeSuffix(".template").removeSuffix(".intellij_template"),
         modifyOutFile: (File) -> Unit = {}
     ) {
-        val templateFile = "${sourceFileName.substringAfterLast("/")}.template"
-        val parentDir = sourceFileName.substringBeforeLast("/")
 
-        val parentFile = if (parentDir.isNotEmpty() && parentDir != sourceFileName) {
+        val parentDir = targetPath.substringBeforeLast("/")
+        val targetDir = if (parentDir.isNotEmpty() && parentDir != targetPath) {
             File(baseDir, parentDir).apply {
                 mkdirs()
             }
         } else File(baseDir)
 
-        val outFile = File(parentFile, targetFileName)
+        val targetFile = targetPath.substringAfterLast("/")
+        val outFile = File(targetDir, targetFile)
 
-        this::class.java.getResourceAsStream("/template/$templateFile").use { inputStream ->
+        this::class.java.getResourceAsStream("/template/$sourcePath").use { inputStream ->
             inputStream?.copyTo(outFile.outputStream())
         }
 

@@ -23,7 +23,7 @@ Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
 
 #ifdef TOOLS_ENABLED
-static void editor_init() {
+static void export_plugin_init() {
     Ref<KotlinEditorExportPlugin> export_plugin;
     export_plugin.instantiate();
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
@@ -57,8 +57,8 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
-        EditorNode::add_init_callback(editor_init);
-        // EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+        EditorNode::add_init_callback(export_plugin_init);
+        EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
     }
 #endif
 }
