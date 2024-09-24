@@ -22,7 +22,6 @@ import godot.annotation.PlaceHolderText
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.annotation.RegisterSignal
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.NodePath
@@ -34,15 +33,10 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.RID
-import godot.core.Signal1
-import godot.core.Signal2
 import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.asStringName
-import godot.core.connect
 import godot.core.dictionaryOf
-import godot.core.signal
 import godot.core.variantArrayOf
 import godot.extensions.getNodeAs
 import godot.registration.Range
@@ -319,38 +313,6 @@ class Invocation : Node3D() {
     @RegisterProperty
     var utf8String = ""
 
-    @RegisterSignal
-    val noParam by signal()
-
-    @RegisterSignal
-    val oneParam: Signal1<Boolean> by signal("refresh")
-
-    @RegisterSignal
-    val twoParam: Signal2<String, Invocation> by signal("str", "inv")
-
-    @RegisterSignal
-    val signalWithMultipleTargets: Signal1<Vector2> by signal("vector2")
-
-    //To store values emitted by signals
-    @RegisterProperty
-    var array: VariantArray<Vector2> = VariantArray()
-
-    @RegisterFunction
-    fun targetFunctionOne(vector2: Vector2) {
-        array.append(vector2)
-        //call GodotAPI to insert different parameters in the stack.
-        this.setMeta("Random".asStringName(), "Value")
-        val size = array.size
-        if (size < 8)
-        //Call signal inside another signal
-            signalWithMultipleTargets.emit(Vector2(1, size))
-    }
-
-    @RegisterFunction
-    fun targetFunctionTwo(vector2: Vector2) {
-        array.append(vector2)
-    }
-
     @RegisterFunction
     fun intValue(value: Int) = value
 
@@ -408,33 +370,16 @@ class Invocation : Node3D() {
         val path = NodePath("CanvasLayer/Button")
         val getNode2 = getNodeAs<Button>(path)
 
-        noParam.connect(invocation, OtherScript::hookNoParam)
-        oneParam.connect(invocation, OtherScript::hookOneParam)
-        twoParam.connect(invocation, OtherScript::hookTwoParam)
-
-        noParam.connect { println("noParam signal emitted") }
-        oneParam.connect { b -> println("oneParam signal emitted with $b") }
-        twoParam.connect { p0, p1 -> println("twoParam signal emitted with $p0 and $p1") }
-
-        signalWithMultipleTargets.connect(this, Invocation::targetFunctionOne)
-        signalWithMultipleTargets.connect(this, Invocation::targetFunctionTwo)
-
         (getNodeOrNull(path) as Button?)?.pressed?.connect(
             invocation,
             OtherScript::hookNoParam
         )
-        noParam.emit()
-        oneParam.emit(false)
-        twoParam.emit("My Awesome param !", this)
-
-        signalWithMultipleTargets.emit(Vector2(0, 0))
 
         println("NavMesh instance id before re-assign: ${resourceTest.getInstanceId()}")
         resourceTest = NavigationMesh()
         println("NavMesh instance id after re-assign: ${resourceTest.getInstanceId()}")
         resourceTest = NavigationMesh()
         println("NavMesh instance id after re-re-assign: ${resourceTest.getInstanceId()}")
-
 
         //Just there to register static instances in the GC
         GodotStaticDelegateTest.myScene

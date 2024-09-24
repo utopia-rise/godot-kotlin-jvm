@@ -5,14 +5,13 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.Signal2
-import godot.core.signal
 import godot.global.GD
 
 @RegisterClass
 class ClassInheritanceChild : ClassInheritanceParent() {
 
     @RegisterSignal
-    override val testOverridden: Signal2<String, Int> by signal("blubb", "habbalubbb")
+    override val testOverridden  by Signal2<String, Int>("blubb", "habbalubbb")
 
     //---------------- Here to check ------------------
 

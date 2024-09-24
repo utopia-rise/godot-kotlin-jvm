@@ -7,7 +7,6 @@ import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.Signal1
 import godot.core.Signal2
-import godot.core.signal
 
 // register class annotation is optional for abstract classes
 abstract class AbstractClassInheritanceParent : Node() {
@@ -17,10 +16,10 @@ abstract class AbstractClassInheritanceParent : Node() {
     var registeredExportedPropertyInParent = false
 
     @RegisterSignal
-    val testNotOverridden: Signal1<String> by signal("blubb")
+    val testNotOverridden by  Signal1<String>("blubb")
 
     @RegisterSignal
-    open val testOverridden: Signal2<String, Int> by signal("blubb", "habbalubb")
+    open val testOverridden  by Signal2<String, Int>("blubb", "habbalubb")
 
     //---------------- Here to check ------------------
 

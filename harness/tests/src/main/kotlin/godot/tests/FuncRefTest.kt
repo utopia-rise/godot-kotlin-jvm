@@ -6,7 +6,7 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
-import godot.core.signal
+import godot.core.Signal0
 import godot.extensions.call
 import godot.extensions.callDeferred
 
@@ -14,7 +14,7 @@ import godot.extensions.callDeferred
 class FuncRefTest : Node() {
 
     @RegisterSignal
-    val test by signal()
+    val test by Signal0()
 
     @RegisterProperty
     var blubb: Boolean = false
