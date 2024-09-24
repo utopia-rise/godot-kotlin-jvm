@@ -2,7 +2,6 @@ import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
-    id("com.utopia-rise.api-generator")
     id("com.utopia-rise.godot-publish")
     id("com.utopia-rise.versioninfo")
     alias(libs.plugins.kotlinPreProcessors)
@@ -33,13 +32,9 @@ dependencies {
 }
 
 tasks {
-    compileKotlin {
-        dependsOn(":godot-library:generateAPI")
-    }
-
     // here so the sourcesJar task has an explicit dependency on the generateApi task. Needed since gradle 8
-    withType<Jar> {
-        dependsOn(":godot-library:generateAPI")
+    getByName("sourcesJar") {
+        dependsOn(":godot-library:sourcesJar")
     }
 }
 
