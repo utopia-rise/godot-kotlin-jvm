@@ -29,7 +29,7 @@ In order to test a change from a specific branch in your own project, you'll nee
     }
     ```
 13. Check the version name which you've built: `ls ~/.m2/repository/com/utopia-rise/godot-gradle-plugin/`
-    It should be something like: `0.9.1-4.3.0-d68f299-SNAPSHOT`
+    It should be something like: `0.10.0-4.3.0-d68f299-SNAPSHOT`
 14. Use that version in your project
 15. Build your project
 16. Run your project with the editor binary you've built in step 10
