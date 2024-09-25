@@ -18,7 +18,7 @@ class OtherScript : Node() {
     }
 
     @RegisterFunction
-    fun hookTwoParam(str: String, inv: Node3D) {
+    fun hookTwoParam(str: String, inv: Node) {
         println("Hook was called with parameters: $str, $inv")
     }
 

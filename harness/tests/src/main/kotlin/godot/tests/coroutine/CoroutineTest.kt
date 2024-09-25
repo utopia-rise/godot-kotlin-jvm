@@ -6,10 +6,10 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
-import godot.core.Signal0
-import godot.core.Signal1
-import godot.core.Signal4
 import godot.core.Vector2
+import godot.core.signal0
+import godot.core.signal1
+import godot.core.signal4
 import godot.coroutines.GodotCoroutine
 import godot.coroutines.await
 import kotlinx.coroutines.CoroutineStart
@@ -18,13 +18,13 @@ import kotlinx.coroutines.CoroutineStart
 class CoroutineTest : Object() {
 
     @RegisterSignal
-    val signalWithoutParameter by Signal0()
+    val signalWithoutParameter by signal0()
 
     @RegisterSignal
-    val signalWithOneParameter by Signal1<Int>("int")
+    val signalWithOneParameter by signal1<Int>("int")
 
     @RegisterSignal
-    val signalWithManyParameters by Signal4<Int, Float, Vector2, String>("int", "float", "vector2", "string")
+    val signalWithManyParameters by signal4<Int, Float, Vector2, String>("int", "float", "vector2", "string")
 
     @RegisterProperty
     var step: Int = 0

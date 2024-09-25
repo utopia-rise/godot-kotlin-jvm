@@ -12,18 +12,21 @@ import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.asStringName
 import godot.core.connect
+import godot.core.signal0
+import godot.core.signal1
+import godot.core.signal2
 import godot.tests.subpackage.OtherScript
 
 @RegisterClass
 class SignalTest : Node() {
     @RegisterSignal
-    val noParamSignalDelegate by Signal0()
+    val noParamSignalDelegate by signal0()
 
     @RegisterSignal
-    val oneParamSignalDelegate by Signal1<Boolean>("refresh")
+    val oneParamSignalDelegate by signal1<Boolean>("refresh")
 
     @RegisterSignal
-    val twoParamSignalDelegate by Signal2<String, SignalTest>("str", "inv")
+    val twoParamSignalDelegate by signal2<String, SignalTest>("str", "inv")
 
 
     @RegisterSignal
@@ -74,7 +77,7 @@ class SignalTest : Node() {
 
 
     @RegisterSignal
-    val signalWithMultipleTargets by Signal1<Vector2>("vector2")
+    val signalWithMultipleTargets by signal1<Vector2>("vector2")
 
     //To store values emitted by signals
     @RegisterProperty

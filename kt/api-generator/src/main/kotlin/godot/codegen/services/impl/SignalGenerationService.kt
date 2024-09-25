@@ -89,8 +89,6 @@ class SignalGenerationService : ISignalGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
         val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
 
-        val signalProviderObject = TypeSpec
-            .objectBuilder(ClassName(godotCorePackage, "SignalProvider"))
 
         for (argCount in 0..maxArgumentCount) {
             val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
@@ -99,11 +97,11 @@ class SignalGenerationService : ISignalGenerationService {
             signalFileSpec.addType(generateSignalClass(argCount, genericClassNameInfo))
 
             signalFileSpec.addFunction(generateFakeSignalConstructor(argCount, genericClassNameInfo))
+            signalFileSpec.addFunction(generateSignalDelegate(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo))
         }
 
         return signalFileSpec
-            .addType(signalProviderObject.build())
             .addAnnotation(
                 AnnotationSpec
                     .builder(Suppress::class)
@@ -212,7 +210,6 @@ class SignalGenerationService : ISignalGenerationService {
 
     private fun generateSignalCompanion(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
         val erasedReadOnlyPropertyClassName = readOnlyPropertyClassName.parameterizedBy(GODOT_OBJECT, genericClassNameInfo.erasedGenericClassName)
-        val genericReadOnlyPropertyClassName = readOnlyPropertyClassName.parameterizedBy(GODOT_OBJECT, genericClassNameInfo.genericClassName)
 
         return TypeSpec.companionObjectBuilder()
             .addProperty(
@@ -221,7 +218,7 @@ class SignalGenerationService : ISignalGenerationService {
                     .addAnnotation(PublishedApi::class)
                     .initializer(
                         "%T·{·$THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER·->·getValue($THIS_REF_PARAMETER_NAME,·$PROPERTY_PARAMETER)·}",
-                        erasedReadOnlyPropertyClassName
+                        readOnlyPropertyClassName
                     )
                     .build()
             )
@@ -242,35 +239,6 @@ class SignalGenerationService : ISignalGenerationService {
                             genericClassNameInfo.className,
                         )
                     )
-                    .build()
-            )
-            .addFunction(
-                genericClassNameInfo
-                    .toFunSpecBuilder(INVOKE_METHOD_NAME)
-                    .addModifiers(KModifier.OPERATOR, KModifier.INLINE)
-                    .addParameters(
-                        (0..<argCount)
-                            .map {
-                                ParameterSpec.builder("p$it", STRING).build()
-                            }
-                    )
-                    .addCode(
-                        if (argCount == 0) {
-                            CodeBlock.of("return·$DELEGATE_PROPERTY_NAME")
-                        } else {
-                            CodeBlock.of("return·$DELEGATE_PROPERTY_NAME·as·%T", genericReadOnlyPropertyClassName)
-                        }
-                    )
-                    .apply {
-                        if (argCount != 0) {
-                            addAnnotation(
-                                AnnotationSpec
-                                    .builder(Suppress::class)
-                                    .addMember("\"UNCHECKED_CAST\"")
-                                    .build()
-                            )
-                        }
-                    }
                     .build()
             )
             .addFunction(
@@ -329,6 +297,39 @@ class SignalGenerationService : ISignalGenerationService {
             .build()
     }
 
+    private fun generateSignalDelegate(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
+        val genericReadOnlyPropertyClassName = readOnlyPropertyClassName.parameterizedBy(GODOT_OBJECT, genericClassNameInfo.genericClassName)
+
+        return genericClassNameInfo
+                .toFunSpecBuilder(SIGNAL_METHOD_NAME + argCount)
+                .addModifiers(KModifier.INLINE)
+                .receiver(GODOT_OBJECT)
+                .addParameters(
+                    (0..<argCount)
+                        .map {
+                            ParameterSpec.builder("p$it", STRING).build()
+                        }
+                )
+                .addCode(
+                    if (argCount == 0) {
+                        CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME", genericClassNameInfo.className)
+                    } else {
+                        CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
+                    }
+                )
+                .apply {
+                    if (argCount != 0) {
+                        addAnnotation(
+                            AnnotationSpec
+                                .builder(Suppress::class)
+                                .addMember("\"UNCHECKED_CAST\"")
+                                .build()
+                        )
+                    }
+                }
+                .build()
+    }
+
 
     private fun generateSignalExtension(genericClassNameInfo: GenericClassNameInfo): FunSpec {
         val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
@@ -375,7 +376,7 @@ class SignalGenerationService : ISignalGenerationService {
         private const val EMIT_METHOD_NAME = "emit"
         private const val CONNECT_METHOD_NAME = "connect"
         private const val DISCONNECT_METHOD_NAME = "disconnect"
-        private const val INVOKE_METHOD_NAME = "invoke"
+        private const val SIGNAL_METHOD_NAME = "signal"
         private const val JAVA_CREATE_METHOD_NAME = "javaCreate"
 
         private const val DELEGATE_PROPERTY_NAME = "delegate"

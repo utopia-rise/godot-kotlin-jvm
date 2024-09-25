@@ -8,19 +8,20 @@ import godot.annotation.RegisterSignal
 import godot.core.Signal3
 import godot.core.asCallable
 import godot.core.connect
-import godot.core.signal
+import godot.core.signal0
+import godot.core.signal3
 
 @RegisterClass
 class LambdaCallableTest : Node() {
 
     @RegisterSignal
-    val signalNoParam by signal()
+    val signalNoParam by signal0()
 
     @RegisterProperty
     var hasSignalNoParamBeenTriggered = false
 
     @RegisterSignal
-    val signalWithParams: Signal3<String, Long, Node> by signal("str", "long", "node")
+    val signalWithParams: Signal3<String, Long, Node> by signal3("str", "long", "node")
 
     @RegisterProperty
     var signalString: String = ""

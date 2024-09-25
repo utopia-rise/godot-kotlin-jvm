@@ -11,7 +11,7 @@ In both case, you have to provide the name of the signal parameters as strings f
 @RegisterClass
 class MyScript: Node() {
     @RegisterSignal
-    val mySignal by Signal1<Boolean>("reverse")
+    val mySignal by signal1<Boolean>("reverse")
     
     @RegisterSignal
     val mySignal = Signal1<Boolean>("mySignal", "reverse")
