@@ -5,6 +5,8 @@ package godot.core
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import kotlin.reflect.KFunction
+import kotlin.reflect.KProperty
 
 @Suppress("MemberVisibilityCanBePrivate")
 class NodePath : NativeCoreType {
@@ -168,18 +170,37 @@ class NodePath : NativeCoreType {
     }
 }
 
+/**
+ * Directly convert String to NodePath
+ */
 fun String.asNodePath(): NodePath {
     return NodePath(this)
 }
 
+/**
+ * Directly convert StringName to NodePath
+ */
 fun StringName.asNodePath(): NodePath {
     return NodePath(this.toString())
 }
 
+/**
+ * Convert String to NodePath and cache it for future calls.
+ */
 fun String.asCachedNodePath(): NodePath {
     return MemoryManager.getOrCreateNodePath(this)
 }
 
-fun StringName.asCachedNodePath(): NodePath {
-    return MemoryManager.getOrCreateNodePath(this.toString())
+/**
+ * Convert a snake_case version of the String to NodePath and cache it for future calls.
+ */
+fun String.toGodotPath(): NodePath {
+    return MemoryManager.getOrCreateGodotPath(this)
+}
+
+/**
+ * Convert a snake_case version of the property's name to NodePath and cache it for future calls.
+ */
+fun KProperty<*>.toGodotPath(): NodePath {
+    return MemoryManager.getOrCreateGodotPath(this.name)
 }

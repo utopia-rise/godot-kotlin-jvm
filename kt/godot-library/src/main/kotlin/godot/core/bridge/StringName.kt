@@ -6,6 +6,8 @@ package godot.core
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.util.VoidPtr
+import kotlin.reflect.KFunction
+import kotlin.reflect.KProperty
 
 class StringName : NativeCoreType {
 
@@ -64,15 +66,38 @@ class StringName : NativeCoreType {
     }
 }
 
+/**
+ * Directly convert String to StringName
+ */
 fun String.asStringName(): StringName {
     return StringName(this)
 }
 
+/**
+ * Convert String to StringName and cache it for future calls.
+ */
 fun String.asCachedStringName(): StringName {
     return MemoryManager.getOrCreateStringName(this)
 }
 
+/**
+ * Convert a snake_case version of the String to StringName and cache it for future calls.
+ */
 fun String.toGodotName(): StringName {
     return MemoryManager.getOrCreateGodotName(this)
+}
+
+/**
+ * Convert a snake_case version of the property's name to StringName and cache it for future calls.
+ */
+fun KProperty<*>.toGodotName(): StringName {
+    return MemoryManager.getOrCreateGodotName(this.name)
+}
+
+/**
+ * Convert a snake_case version of the function's name to StringName and cache it for future calls.
+ */
+fun KFunction<*>.toGodotName(): StringName {
+    return MemoryManager.getOrCreateGodotName(this.name)
 }
 
