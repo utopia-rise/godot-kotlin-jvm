@@ -305,18 +305,14 @@ void JvmUserConfiguration::merge_with_command_line(JvmUserConfiguration& json_co
 void JvmUserConfiguration::sanitize_and_log_configuration(JvmUserConfiguration& config) {
     if (config.max_string_size != -1) {
         JVM_LOG_WARNING(
-          "The max string size was changed to %s which can modify the size of the shared buffer. "
-          "Be aware that it might impact performance and memory usage.",
+          "The max string size was changed to %s which can modify the size of the shared buffer."
+          "Be aware that it might impact performance and memory usage. Set to -1 if you want the default size.",
           config.max_string_size
         );
     }
 
-    if (config.disable_leak_warning_on_close) {
-        JVM_LOG_WARNING("You won't be notified if your Kotlin code got instances leaking");
-    }
-
     if (!config.jvm_args.is_empty()) {
-        JVM_LOG_WARNING("Custom JVM arguments are provided, be sure they are valid: %s", config.jvm_args);
+        JVM_LOG_WARNING("Custom JVM arguments are provided, they can causes the JVM to not properly start if invalid: %s", config.jvm_args);
     }
 
 #ifdef __ANDROID__
