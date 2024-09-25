@@ -6,9 +6,7 @@ import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import godot.util.err
-import godot.util.info
-import godot.util.warning
+import godot.util.GodotLogging
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
@@ -43,9 +41,9 @@ internal class Bootstrap {
                 doInit(userCodeFile.toURI().toURL(), loader)
             } else {
                 if (projectRootDir.isNotEmpty()) {
-                    ::warning
+                    GodotLogging::warning
                 } else {
-                    ::err
+                    GodotLogging::error
                 }.invoke("No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle project to load classes")
             }
 
@@ -68,10 +66,10 @@ internal class Bootstrap {
                     val events = watchKey.pollEvents()
                     if (events.isNotEmpty()) {
                         if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
-                            info("Build lock present. Not reloading...")
+                            GodotLogging.info("Build lock present. Not reloading...")
                             return@scheduleAtFixedRate
                         }
-                        info("Changes detected, reloading classes ...")
+                        GodotLogging.info("Changes detected, reloading classes ...")
 
                         if (::serviceLoader.isInitialized) {
                             clearClassesCache()
@@ -81,7 +79,7 @@ internal class Bootstrap {
                         if (userCodeFile.exists()) {
                             doInit(userCodeFile.toURI().toURL(), null) //no classloader so new main jar gets loaded
                         } else {
-                            warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
+                            GodotLogging.warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
                         }
                     }
                 }, 3, 3, TimeUnit.SECONDS)
@@ -111,7 +109,7 @@ internal class Bootstrap {
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
         if (!entryIterator.hasNext()) {
-            err("Unable to find Entry class, no classes will be loaded")
+            GodotLogging.error("Unable to find Entry class, no classes will be loaded")
         }
 
         val entries = buildList {

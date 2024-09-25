@@ -3,7 +3,7 @@
 package godot.core
 
 import godot.core.memory.TransferContext
-import godot.global.GD
+import godot.util.GodotLogging
 import godot.util.VoidPtr
 
 abstract class KtCallable<R : Any?>(
@@ -19,7 +19,7 @@ abstract class KtCallable<R : Any?>(
         try {
             invokeKt()
         } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM custom Callable from Godot:\n", t.stackTraceToString())
+            GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())
         }
     }
 
@@ -29,7 +29,7 @@ abstract class KtCallable<R : Any?>(
             ret = invokeKt()
             TransferContext.writeReturnValue(ret, variantConverter)
         } catch (t: Throwable) {
-            GD.printErr("Error calling a JVM custom Callable from Godot:\n", t.stackTraceToString())
+            GodotLogging.error("Error calling a JVM custom Callable from Godot:\n" + t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
         ret

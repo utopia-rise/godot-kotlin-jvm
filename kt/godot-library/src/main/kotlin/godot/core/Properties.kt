@@ -3,7 +3,7 @@ package godot.core
 import godot.PropertyHint
 import godot.PropertyUsageFlags
 import godot.core.memory.TransferContext
-import godot.global.GD
+import godot.util.GodotLogging
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(
@@ -34,7 +34,7 @@ open class KtProperty<T : KtObject, P : Any?>(
         try {
             TransferContext.writeReturnValue(kProperty.get(instance), variantConverter)
         } catch (t: Throwable) {
-            GD.printErr("Error calling JVM getter ${kProperty.name} of script $instance from Godot\n:", t.stackTraceToString())
+            GodotLogging.error("Error calling JVM getter ${kProperty.name} of script $instance from Godot\n:" + t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
     }
@@ -44,7 +44,7 @@ open class KtProperty<T : KtObject, P : Any?>(
         try {
             kProperty.set(instance, arg)
         } catch (t: Throwable) {
-            GD.printErr("Error calling JVM setter ${kProperty.name} of script $instance from Godot:\n", t.stackTraceToString())
+            GodotLogging.error("Error calling JVM setter ${kProperty.name} of script $instance from Godot:\n" + t.stackTraceToString())
         }
     }
 
