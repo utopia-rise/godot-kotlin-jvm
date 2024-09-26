@@ -1,7 +1,9 @@
 package godot.entrygenerator.checks
 
 import godot.entrygenerator.ext.isCoreType
+import godot.entrygenerator.ext.isEnum
 import godot.entrygenerator.ext.isGodotPrimitive
+import godot.entrygenerator.ext.isKotlinCollection
 import godot.entrygenerator.ext.isNodeType
 import godot.entrygenerator.ext.isRefCounted
 import godot.entrygenerator.model.RegisterPropertyAnnotation
@@ -23,6 +25,8 @@ class PropertyTypeCheck(logger: Logger, sourceFiles: List<SourceFile>) : BaseChe
                     && !exportedProperty.type.isCoreType()
                     && !exportedProperty.type.isNodeType()
                     && !exportedProperty.type.isRefCounted()
+                    && !exportedProperty.type.isKotlinCollection()
+                    && !exportedProperty.type.isEnum()
                 ) {
                     hasIssue = true
                     logger.error(

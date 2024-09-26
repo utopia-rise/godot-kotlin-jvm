@@ -24,6 +24,7 @@ import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
+import org.jetbrains.kotlin.idea.inspections.collections.isCollection
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
@@ -46,7 +47,7 @@ class RegisterPropertiesAnnotator : Annotator {
 
         if (element is KtProperty) {
             if (element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null) {
-                typeChecks(element, holder)
+                typeCheck(element, holder)
                 checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
@@ -148,12 +149,14 @@ class RegisterPropertiesAnnotator : Annotator {
         }
     }
 
-    private fun typeChecks(ktProperty: KtProperty, holder: AnnotationHolder) {
+    private fun typeCheck(ktProperty: KtProperty, holder: AnnotationHolder) {
         if (
             ktProperty.type()?.isGodotPrimitive() == false
             && ktProperty.type()?.isCoreType() == false
             && ktProperty.type()?.isGodotNode() == false
             && ktProperty.type()?.isRefCounted() == false
+            && ktProperty.type()?.isEnum() == false
+            && ktProperty.type()?.isCollection() == false
         ) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.property.type"),

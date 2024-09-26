@@ -2,7 +2,9 @@ package godot.entrygenerator.ext
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.TypeName
+import godot.core.CoreType
 import godot.entrygenerator.model.Type
+import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
@@ -35,6 +37,7 @@ import godot.tools.common.constants.VARIANT_PARSER__RID
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
+import godot.tools.common.constants.kotlinCollectionsPackage
 import godot.tools.common.constants.variantParserPackage
 import godot.tools.common.extensions.convertToCamelCase
 import java.util.*
@@ -93,10 +96,7 @@ fun Type?.toGodotVariantType(): ClassName = this?.let {
 } ?: toKtVariantType()
 
 fun Type.isCoreType(): Boolean {
-    return listOf(
-        *GodotTypes.coreTypes.map { "$godotCorePackage.$it" }.toTypedArray(),
-        "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}"
-    ).contains(fqName)
+    return supertypes.any { it.fqName == CoreType::class.qualifiedName || it.allSuperTypes.any { superType -> superType.fqName == CoreType::class.qualifiedName } }
 }
 
 fun Type.isNodeType(): Boolean {
@@ -120,6 +120,10 @@ fun Type.isCompatibleList(): Boolean = when (fqName) {
     "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
     else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
 }
+
+fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)
+
+fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 
 fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
     .allSuperTypes
