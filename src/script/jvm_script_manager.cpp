@@ -122,10 +122,16 @@ Ref<PathScript> JvmScriptManager::get_script_from_path(const String& p_path) con
 #ifdef TOOLS_ENABLED
 void JvmScriptManager::update_all_scripts() {
     for (const Ref<NamedScript>& script : named_scripts) {
-        script->update_script();
+        // We have to delay the call to update_script. The engine is not fully initialized and scripts can cause undefined behaviors.
+        JvmScript* ptr = script.ptr();
+        ptr->export_dirty_flag = true;
+        MessageQueue::get_singleton()->push_callable(callable_mp(ptr, &JvmScript::update_script));
     }
     for (const Ref<PathScript>& script : path_scripts) {
-        script->update_script();
+        // We have to delay the call to update_script. The engine is not fully initialized and scripts can cause undefined behaviors.
+        JvmScript* ptr = script.ptr();
+        ptr->export_dirty_flag = true;
+        MessageQueue::get_singleton()->push_callable(callable_mp(ptr, &JvmScript::update_script));
     }
 }
 #endif

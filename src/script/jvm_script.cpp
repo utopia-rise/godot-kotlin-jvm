@@ -1,13 +1,13 @@
 #include "jvm_script.h"
 
-#include <scene/main/node.h>
-
+#include "binding/kotlin_binding_manager.h"
 #include "core/os/thread.h"
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
-#include "binding/kotlin_binding_manager.h"
+
+#include <scene/main/node.h>
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
     Object* obj = _object_create(p_args, p_arg_count);
@@ -81,11 +81,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_V_MSG(
-      !is_valid(),
-      nullptr,
-      "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path()
-    );
+    JVM_ERR_FAIL_COND_V_MSG(!is_valid(), nullptr, "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path());
     JVM_DEV_VERBOSE("Try to create %s instance.", kotlin_class->registered_class_name);
 #endif
 
@@ -127,7 +123,7 @@ bool JvmScript::has_method(const StringName& p_method) const {
 
 MethodInfo JvmScript::get_method_info(const StringName& p_method) const {
     if (is_valid()) {
-        if (KtFunction* method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
+        if (KtFunction * method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return {};
 }
@@ -214,6 +210,8 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
+
+    update_script(); // Update in case this method is called between the (re)loading and the delayed update_script().
     placeholder->update(exported_properties, exported_members_default_value_cache);
 
     placeholders.insert(placeholder);
@@ -221,6 +219,10 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
 }
 
 void JvmScript::update_script() {
+    if(!export_dirty_flag){
+        return;
+    }
+
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 
@@ -234,10 +236,14 @@ void JvmScript::update_script() {
         Variant default_value;
         const String& property_name {exported_property.name};
 
-        if(exported_property.type != Variant::OBJECT) {
-            JVM_DEV_VERBOSE("Get default value for %s property from %s:", exported_property.name, kotlin_class->registered_class_name);
+        if (exported_property.type != Variant::OBJECT) {
             kotlin_script_instance->get_or_default(property_name, default_value);
-            JVM_DEV_VERBOSE("    %s", default_value.stringify());
+            JVM_DEV_VERBOSE(
+              "Get default value for %s property from %s: %s",
+              exported_property.name,
+              kotlin_class->registered_class_name,
+              default_value.stringify()
+            );
         }
         exported_members_default_value_cache[property_name] = default_value;
     }
@@ -249,6 +255,7 @@ void JvmScript::update_script() {
 
     jni::Env env = jni::Jvm::current_env();
     MemoryManager::get_instance().direct_object_deletion(env, tmp_object);
+    export_dirty_flag = false;
 }
 
 void JvmScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {

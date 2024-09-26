@@ -59,6 +59,8 @@ public:
 private:
     HashSet<PlaceHolderScriptInstance*> placeholders;
     HashMap<StringName, Variant> exported_members_default_value_cache;
+    bool export_dirty_flag = true;
+
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
 
 public:
