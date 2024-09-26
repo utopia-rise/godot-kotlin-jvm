@@ -16,7 +16,7 @@ class NullablePropertyCheck(logger: Logger, sourceFiles: List<SourceFile>): Base
             .forEach { exportedProperty ->
                 if (exportedProperty.type.isNullable && (exportedProperty.type.isCoreType() || exportedProperty.type.isGodotPrimitive())) {
                     hasIssue = true
-                    logger.error(exportedProperty, "Registered property which is a godot primitive or godot core type cannot be nullable. Assign a default value")
+                    logger.error(exportedProperty, "Registered property which is a Kotlin/Java primitive or Godot core type cannot be nullable. Assign a default value")
                 }
             }
         return hasIssue
