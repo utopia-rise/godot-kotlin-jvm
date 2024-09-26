@@ -34,7 +34,7 @@ abstract class GodotPlugin : Plugin<Project> {
 
         // registers the tooling model builder, so it can be used by the ide plugin
         afterEvaluate {
-            if (godotJvmExtension.enableGodotCoroutines.get()) {
+            if (godotJvmExtension.isGodotCoroutinesEnabled.get()) {
                 dependencies.add(
                     "implementation",
                     dependencies.create("com.utopia-rise:${godotCoroutineLibraryArtifactName}:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
