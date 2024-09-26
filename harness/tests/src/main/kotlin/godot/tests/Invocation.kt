@@ -171,9 +171,7 @@ class Invocation : Node3D() {
     @RegisterProperty
     var color = Color()
 
-    @Export
-    @RegisterProperty
-    var rid = RID()
+    val rid = RID()
 
     @Export
     @RegisterProperty
