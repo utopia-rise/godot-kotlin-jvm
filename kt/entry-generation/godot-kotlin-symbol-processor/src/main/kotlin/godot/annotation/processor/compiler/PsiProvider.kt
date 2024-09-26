@@ -46,7 +46,7 @@ internal object PsiProvider {
      * use with %L rather than with %S as these strings already are surrounded with ""
      */
     fun provideSignalArgumentNames(signal: KSPropertyDeclaration, signalFqName: String): List<String> {
-        return findSignalNameInKotlinFiles(signalFqName)
+        return findSignalNameInKotlinFiles(signal, signalFqName)
             ?: findSignalNameInJavaFiles(signal, signalFqName)
             ?: run {
                 val message = "No initializer expression found for signal $signalFqName! Signals always have to be initialized! For kotlin use the signal delegate. For java use the the SignalProvider::signal function."
@@ -64,7 +64,7 @@ internal object PsiProvider {
             ?.firstOrNull { javaField -> javaField.name == propertyFqName.substringAfterLast(".") }
             ?.initializer
 
-        if (fieldInitializer != null && !fieldInitializer.text.contains("SignalProvider")) {
+        if (fieldInitializer != null && !fieldInitializer.text.contains("Signal\\d+\\.create".toRegex())) {
             val message = "Initialisation expression does not use SignalProvider! Only use the SignalProvider::signal function to initialize a Signal"
             GodotKotlinSymbolProcessor.logger.error(message, signal)
             throw EntryGeneratorException(message)
@@ -79,11 +79,21 @@ internal object PsiProvider {
             ?.map { it.text }
     }
 
-    private fun findSignalNameInKotlinFiles(propertyFqName: String): List<String>? = getPropertyInitializerExpression(propertyFqName)
+    private fun findSignalNameInKotlinFiles(signal: KSPropertyDeclaration, propertyFqName: String): List<String>? = getPropertyInitializerExpression(propertyFqName)
         ?.children
         ?.last() // value argument list
         ?.children
         ?.map { it.text }
+        ?.let { argumentList ->
+            // drop the first n arguments
+            // n is the number of additional arguments needed to construct the signal
+            // this is the case if one does not use the signal delegate but signal instantiation
+            // ex.: val twoParamSignalField = Signal2<String, SignalTest>("noParamSignalField","str", "inv")
+            // here the first argument is the signal name. But we're only interested in the signal param names
+            // the signal param names are always the last arguments in that list
+            // hence we can drop all additional args at the start of the list if the arg list is larger than the signal type's generic type parameter list
+            argumentList.drop(argumentList.size - signal.type.resolve().arguments.size)
+        }
 
     private fun getPropertyInitializerExpression(propertyFqName: String): KtExpression? {
         val containingClassFqName = propertyFqName.substringBeforeLast(".")

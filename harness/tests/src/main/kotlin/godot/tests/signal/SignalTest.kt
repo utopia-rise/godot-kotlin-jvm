@@ -39,7 +39,7 @@ class SignalTest : Node() {
     val twoParamSignalField = Signal2<String, SignalTest>("noParamSignalField","str", "inv")
 
     @RegisterProperty
-    val otherScript = OtherScript()
+    var otherScript = OtherScript()
 
     @RegisterFunction
     override fun _ready() {
