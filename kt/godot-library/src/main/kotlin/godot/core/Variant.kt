@@ -468,17 +468,19 @@ enum class VariantParser(override val id: Int) : VariantConverter {
 
     override fun toKotlin(buffer: ByteBuffer): Any? {
         val idInBuffer = buffer.variantType
-        if (idInBuffer != id) {
-            throw TypeCastException(
-                "Shared Buffer Error: JVM expected a ${this::class.simpleName} but received a ${
-                    VariantParser.from(
-                        idInBuffer.toLong()
-                    )
-                }."
-            )
-
+        if (idInBuffer == id) {
+            return toUnsafeKotlin(buffer)
+        } else if(id == OBJECT.id && idInBuffer == NIL.id) {
+            // Godot can sometimes send null pointer as NIL variant, so we need to test for that case.
+            return null
         }
-        return toUnsafeKotlin(buffer)
+        throw TypeCastException(
+            "Shared Buffer Error: JVM expected a ${this::class.simpleName} but received a ${
+                VariantParser.from(
+                    idInBuffer.toLong()
+                )
+            }."
+        )
     }
 
     override fun toGodot(buffer: ByteBuffer, any: Any?) {
