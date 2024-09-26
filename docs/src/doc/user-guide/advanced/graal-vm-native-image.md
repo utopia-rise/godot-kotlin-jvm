@@ -41,7 +41,7 @@ The same applies for resource files which should be added (basically any files i
 
 ```kotlin
 godot {
-    isGraalExportEnabled.set(true)
+    isGraalNativeImageExportEnabled.set(true)
     graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
     windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
     
