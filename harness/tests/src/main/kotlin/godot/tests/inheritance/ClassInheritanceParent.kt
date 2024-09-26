@@ -6,19 +6,18 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.core.GodotNotification
-import godot.core.Signal1
-import godot.core.Signal2
-import godot.core.signal
+import godot.core.signal1
+import godot.core.signal2
 import godot.global.GD
 
 @RegisterClass
 open class ClassInheritanceParent : Node() {
 
     @RegisterSignal
-    val testNotOverridden: Signal1<String> by signal("blubb")
+    val testNotOverridden by signal1<String>("blubb")
 
     @RegisterSignal
-    open val testOverridden: Signal2<String, Int> by signal("blubb", "habbalubb")
+    open val testOverridden by signal2<String, Int>("blubb", "habbalubb")
 
     //---------------- Here to check ------------------
 

@@ -1,22 +1,26 @@
-To create a signal use the delegate function `signal` and annotate it with `@RegisterSignal`.
+Signals in Godot are typed generic classes. They must be connected to and emitted using those exact arguments as well.
+You have 2 ways to declare your custom signals in scripts: Using a delegate or a backing field.
 
-!!! warning Signal parameter count
-    In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. At the moment, you can create signals and expose them to Godot with at most 10 parameters.  
-    If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (`snake_case`) to the above mentioned functions (see the section [Naming](#naming) below for details).
+The delegate is the recommended way, it is lightweight and doesn't store the signal directly, instead it generates a new one each call.
+You can opt to directly create a signal and store it in your script, but it uses more memory.
+Signals are not stateful so it's usually a waste to store them directly per instance, unless you have a high rate of connection/disconnection.
 
+In both case, you have to provide the name of the signal parameters as strings for the registration to Godot.
 
 ```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class MyScript: Node() {
     @RegisterSignal
-    val reverseChanged: Signal1<Boolean> by signal("reverse")
+    val mySignal by signal1<Boolean>("reverse")
+    
+    @RegisterSignal
+    val mySignal = Signal1<Boolean>("mySignal", "reverse")
 }
 ```
 
-## Naming
-
-For consistency with Godot's style, the name of your signal is converted to snake_case.
-The signal `helloThere` is known as `hello_there` in GDScript.
+!!! warning Signal parameter count
+    In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. 
+    At the moment, you can create signals and expose them to Godot up to 16 parameters.
 
 ## Emitting
 
@@ -44,7 +48,20 @@ class AnotherObject: Object() {
     val targetObject = SomeObject()
 
     init {
-        reverseChanged.connect(targetObject, targetObject::onReverseChanged)
+        mySignal.connect(targetObject, targetObject::onReverseChanged)
     }
 }
 ```
+
+You can also use Kotlin lambdas directly to subscribe to signals
+
+```kt
+mySignal.connect {
+    println("This message has been written by a Kotlin Lambda")
+}
+```
+
+## Naming
+
+For consistency with Godot's style, the name of your signal is converted to snake_case.
+The signal `helloThere` is known as `hello_there` in GDScript.

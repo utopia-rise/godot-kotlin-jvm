@@ -3,9 +3,9 @@ package godot.entrygenerator
 import godot.entrygenerator.checks.ConstructorArgCountCheck
 import godot.entrygenerator.checks.ConstructorOverloadingCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
-import godot.entrygenerator.checks.ExportedMutablilityCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
+import godot.entrygenerator.checks.PropertyMutablilityCheck
 import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
 import godot.entrygenerator.exceptions.ChecksFailedException
@@ -112,7 +112,7 @@ object EntryGenerator {
 
             SignalTypeCheck(logger, sourceFiles).execute(),
 
-            ExportedMutablilityCheck(logger, sourceFiles).execute(),
+            PropertyMutablilityCheck(logger, sourceFiles).execute(),
             LateinitPropertyCheck(logger, sourceFiles).execute(),
 
             RpcCheck(logger, sourceFiles).execute(),
