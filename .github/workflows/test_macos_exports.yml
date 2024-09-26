@@ -59,7 +59,7 @@ jobs:
 
       - name: Prepare export
         run: |
-          chmod +x bin/godot.*
+          chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
           mv export_template_all_macos.zip harness/tests/export_template_all_macos.zip
 
