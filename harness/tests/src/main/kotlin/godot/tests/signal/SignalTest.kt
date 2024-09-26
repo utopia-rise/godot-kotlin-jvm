@@ -33,10 +33,10 @@ class SignalTest : Node() {
     val noParamSignalField = Signal0("noParamSignalField")
 
     @RegisterSignal
-    val oneParamSignalField = Signal1<Boolean>("noParamSignalField","refresh")
+    val oneParamSignalField = Signal1<Boolean>("oneParamSignalField","refresh")
 
     @RegisterSignal
-    val twoParamSignalField = Signal2<String, SignalTest>("noParamSignalField","str", "inv")
+    val twoParamSignalField = Signal2<String, SignalTest>("twoParamSignalField","str", "inv")
 
     @RegisterProperty
     var otherScript = OtherScript()

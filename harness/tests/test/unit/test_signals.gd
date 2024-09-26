@@ -3,13 +3,13 @@ extends "res://addons/gut/test.gd"
 func test_signal_connection_script_instantiation():
 	var script = SignalTest.new()
 	get_tree().root.add_child(script)
-	assert_eq(script.is_connected("no_param_signal_delegate", Callable(script.otherScript, "hook_no_param")), true, "signal \"no_param_signal_delegate\" should be connected to \"otherScript::hook_no_param\"")
-	assert_eq(script.is_connected("one_param_signal_delegate", Callable(script.otherScript, "hook_one_param")), true, "signal \"one_param_signal_delegate\" should be connected to \"otherScript::hook_one_param\"")
-	assert_eq(script.is_connected("two_param_signal_delegate", Callable(script.otherScript, "hook_two_param")), true, "signal \"two_param_signal_delegate\" should be connected to \"otherScript::hook_two_param\"")
+	assert_eq(script.is_connected("no_param_signal_delegate", Callable(script.other_script, "hook_no_param")), true, "signal \"no_param_signal_delegate\" should be connected to \"otherScript::hook_no_param\"")
+	assert_eq(script.is_connected("one_param_signal_delegate", Callable(script.other_script, "hook_one_param")), true, "signal \"one_param_signal_delegate\" should be connected to \"otherScript::hook_one_param\"")
+	assert_eq(script.is_connected("two_param_signal_delegate", Callable(script.other_script, "hook_two_param")), true, "signal \"two_param_signal_delegate\" should be connected to \"otherScript::hook_two_param\"")
 
-	assert_eq(script.is_connected("no_param_signal_field", Callable(script.otherScript, "hook_no_param")), true, "signal \"no_param_signal_field\" should be connected to \"otherScript::hook_no_param\"")
-	assert_eq(script.is_connected("one_param_signal_field", Callable(script.otherScript, "hook_one_param")), true, "signal \"one_param_signal_field\" should be connected to \"otherScript::hook_one_param\"")
-	assert_eq(script.is_connected("two_param_signal_field", Callable(script.otherScript, "hook_two_param")), true, "signal \"two_param_signal_field\" should be connected to \"otherScript::hook_two_param\"")
+	assert_eq(script.is_connected("no_param_signal_field", Callable(script.other_script, "hook_no_param")), true, "signal \"no_param_signal_field\" should be connected to \"otherScript::hook_no_param\"")
+	assert_eq(script.is_connected("one_param_signal_field", Callable(script.other_script, "hook_one_param")), true, "signal \"one_param_signal_field\" should be connected to \"otherScript::hook_one_param\"")
+	assert_eq(script.is_connected("two_param_signal_field", Callable(script.other_script, "hook_two_param")), true, "signal \"two_param_signal_field\" should be connected to \"otherScript::hook_two_param\"")
 
 	script.free()
 
