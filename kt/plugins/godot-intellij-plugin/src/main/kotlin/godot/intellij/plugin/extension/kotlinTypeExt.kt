@@ -2,6 +2,7 @@ package godot.intellij.plugin.extension
 
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
 import org.jetbrains.kotlin.idea.base.utils.fqname.fqName
@@ -29,11 +30,11 @@ fun KotlinType.isCoreType(): Boolean = getKotlinTypeFqName(false)
     || supertypes().any { supertype -> supertype.isCoreType() }
 
 fun KotlinType.isGodotNode(): Boolean = getKotlinTypeFqName(false)
-    .removeSuffix("?") == "$godotCorePackage.${GodotTypes.node}"
+    .removeSuffix("?") == "$godotApiPackage.${GodotTypes.node}"
     || supertypes().any { supertype -> supertype.isGodotNode() }
 
 fun KotlinType.isRefCounted(): Boolean = getKotlinTypeFqName(false)
-    .removeSuffix("?") == "$godotCorePackage.${GodotTypes.refCounted}"
+    .removeSuffix("?") == "$godotApiPackage.${GodotTypes.refCounted}"
     || supertypes().any { supertype -> supertype.isRefCounted() }
 
 
