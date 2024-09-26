@@ -28,6 +28,14 @@ fun KotlinType.isCoreType(): Boolean = getKotlinTypeFqName(false)
     .removeSuffix("?") == "$godotCorePackage.${GodotTypes.coreType}"
     || supertypes().any { supertype -> supertype.isCoreType() }
 
+fun KotlinType.isGodotNode(): Boolean = getKotlinTypeFqName(false)
+    .removeSuffix("?") == "$godotCorePackage.${GodotTypes.node}"
+    || supertypes().any { supertype -> supertype.isGodotNode() }
+
+fun KotlinType.isRefCounted(): Boolean = getKotlinTypeFqName(false)
+    .removeSuffix("?") == "$godotCorePackage.${GodotTypes.refCounted}"
+    || supertypes().any { supertype -> supertype.isRefCounted() }
+
 
 fun KotlinType.isGodotPrimitive(): Boolean = when (this.fqName?.asString()?.removeSuffix("?")) {
     Int::class.qualifiedName,

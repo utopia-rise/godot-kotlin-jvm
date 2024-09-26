@@ -86,6 +86,7 @@ object GodotTypes {
     const val dictionary = "Dictionary"
     const val nodePath = "NodePath"
     const val node = "Node"
+    const val refCounted = "RefCounted"
     const val plane = "Plane"
     const val coreType = "CoreType"
     const val packedByteArray = "PackedByteArray"

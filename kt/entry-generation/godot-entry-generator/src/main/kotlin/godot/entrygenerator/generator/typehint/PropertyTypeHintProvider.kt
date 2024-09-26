@@ -1,7 +1,11 @@
 package godot.entrygenerator.generator.typehint
 
 import com.squareup.kotlinpoet.ClassName
-import godot.entrygenerator.ext.*
+import godot.entrygenerator.ext.hasAnnotation
+import godot.entrygenerator.ext.isCompatibleList
+import godot.entrygenerator.ext.isCoreType
+import godot.entrygenerator.ext.isNodeType
+import godot.entrygenerator.ext.isRefCounted
 import godot.entrygenerator.generator.typehint.array.JvmArrayTypeHintGenerator
 import godot.entrygenerator.generator.typehint.coretypes.JvmCoreTypeTypeHintGenerator
 import godot.entrygenerator.generator.typehint.primitives.JvmPrimitivesTypeHintGenerator
@@ -53,7 +57,7 @@ object PropertyTypeHintProvider {
                 registeredProperty
             ).getPropertyTypeHint()
 
-            registeredProperty.type.isReference() -> ClassName(
+            registeredProperty.type.isRefCounted() -> ClassName(
                 "$godotApiPackage.${GodotTypes.propertyHint}",
                 "PROPERTY_HINT_RESOURCE_TYPE"
             )
