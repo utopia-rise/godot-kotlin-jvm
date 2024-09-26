@@ -11,10 +11,9 @@ On Windows, you should add `VC_VARS_PATH` environment variable to point to vcvar
 In order to build a native image, you should add the following configuration to gradle plugin to enable building of native-image:
 ```kotlin
 godot {
-    isGraalExportEnabled.set(true)
-    graalVmDirectory.set(System.getenv("GRAALVM_HOME"))
-    
-    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
+    isGraalNativeImageExportEnabled.set(true)
+    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
 }
 ```
 
@@ -29,10 +28,10 @@ In order to append those configurations add the json in `graal` folder of your p
 
 ```kotlin
 godot {
-    isGraalExportEnabled.set(true)
-    graalVmDirectory.set(System.getenv("GRAALVM_HOME"))
+    isGraalNativeImageExportEnabled.set(true)
+    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
     
-    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
     additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))
     additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json", "another-conf.json"))
 }
@@ -43,9 +42,9 @@ The same applies for resource files which should be added (basically any files i
 ```kotlin
 godot {
     isGraalExportEnabled.set(true)
-    nativeImageToolPath.set("${System.getenv("GRAALVM_HOME")}/bin/native-image")
+    graalVmDirectory.set(File(System.getenv("GRAALVM_HOME")))
+    windowsDeveloperVCVarsPath.set(File(System.getenv("VC_VARS_PATH")))
     
-    windowsDeveloperVCVarsPath.set(System.getenv("VC_VARS_PATH"))
     additionalGraalJniConfigurationFiles.set(arrayOf("my-jni-configuration-file.json", "another-conf.json"))
     additionalGraalReflectionConfigurationFiles.set(arrayOf("my-reflection-configuration-file.json", "another-conf.json"))
     additionalGraalResourceConfigurationFiles.set(arrayOf("my-resource-configuration-file.json", "another-conf.json"))
