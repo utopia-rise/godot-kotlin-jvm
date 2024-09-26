@@ -8,10 +8,8 @@ import godot.intellij.plugin.annotator.general.checkNotGeneric
 import godot.intellij.plugin.data.model.EXPORT_ANNOTATION
 import godot.intellij.plugin.data.model.REGISTER_PROPERTY_ANNOTATION
 import godot.intellij.plugin.extension.isCoreType
-import godot.intellij.plugin.extension.isGodotNode
 import godot.intellij.plugin.extension.isGodotPrimitive
 import godot.intellij.plugin.extension.isInGodotRoot
-import godot.intellij.plugin.extension.isRefCounted
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
@@ -24,7 +22,6 @@ import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinCollectionsPackage
 import org.jetbrains.kotlin.asJava.toLightElements
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
-import org.jetbrains.kotlin.idea.inspections.collections.isCollection
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
@@ -47,7 +44,6 @@ class RegisterPropertiesAnnotator : Annotator {
 
         if (element is KtProperty) {
             if (element.findAnnotation(FqName(REGISTER_PROPERTY_ANNOTATION)) != null) {
-                typeCheck(element, holder)
                 checkNotGeneric(element.toLightElements().firstIsInstance(), holder)
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
@@ -144,22 +140,6 @@ class RegisterPropertiesAnnotator : Annotator {
         ) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.property.nullable"),
-                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
-            )
-        }
-    }
-
-    private fun typeCheck(ktProperty: KtProperty, holder: AnnotationHolder) {
-        if (
-            ktProperty.type()?.isGodotPrimitive() == false
-            && ktProperty.type()?.isCoreType() == false
-            && ktProperty.type()?.isGodotNode() == false
-            && ktProperty.type()?.isRefCounted() == false
-            && ktProperty.type()?.isEnum() == false
-            && ktProperty.type()?.isCollection() == false
-        ) {
-            holder.registerProblem(
-                message = GodotPluginBundle.message("problem.property.type"),
                 errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
             )
         }
