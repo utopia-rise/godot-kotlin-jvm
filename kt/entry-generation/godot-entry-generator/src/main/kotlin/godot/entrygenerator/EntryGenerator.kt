@@ -5,6 +5,7 @@ import godot.entrygenerator.checks.ConstructorOverloadingCheck
 import godot.entrygenerator.checks.DefaultConstructorCheck
 import godot.entrygenerator.checks.FunctionArgCountCheck
 import godot.entrygenerator.checks.LateinitPropertyCheck
+import godot.entrygenerator.checks.NullablePropertyCheck
 import godot.entrygenerator.checks.PropertyMutablilityCheck
 import godot.entrygenerator.checks.RpcCheck
 import godot.entrygenerator.checks.SignalTypeCheck
@@ -114,6 +115,7 @@ object EntryGenerator {
 
             PropertyMutablilityCheck(logger, sourceFiles).execute(),
             LateinitPropertyCheck(logger, sourceFiles).execute(),
+            NullablePropertyCheck(logger, sourceFiles).execute(),
 
             RpcCheck(logger, sourceFiles).execute(),
         ).any { hasIssue -> hasIssue }
