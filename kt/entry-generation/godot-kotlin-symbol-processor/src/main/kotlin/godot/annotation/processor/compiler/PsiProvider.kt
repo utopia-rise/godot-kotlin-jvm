@@ -24,6 +24,8 @@ import java.io.File
  * Abstracted here rather than in the entry gen to keep it independent of compiler and psi classes
  */
 internal object PsiProvider {
+    private val javaSignalProviderRegex = "Signal\\d+\\.create".toRegex()
+
     private val psiFiles by lazy { providePsiFiles() }
     private val ktClasses by lazy {
         psiFiles
@@ -64,7 +66,7 @@ internal object PsiProvider {
             ?.firstOrNull { javaField -> javaField.name == propertyFqName.substringAfterLast(".") }
             ?.initializer
 
-        if (fieldInitializer != null && !fieldInitializer.text.contains("Signal\\d+\\.create".toRegex())) {
+        if (fieldInitializer != null && !fieldInitializer.text.contains(javaSignalProviderRegex)) {
             val message = "Initialisation expression does not use SignalProvider! Only use the SignalProvider::signal function to initialize a Signal"
             GodotKotlinSymbolProcessor.logger.error(message, signal)
             throw EntryGeneratorException(message)
