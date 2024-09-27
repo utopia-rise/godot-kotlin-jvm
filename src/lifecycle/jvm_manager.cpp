@@ -4,6 +4,7 @@
 #include "jvm_wrapper/bridge/callable_bridge.h"
 #include "jvm_wrapper/bridge/dictionary_bridge.h"
 #include "jvm_wrapper/bridge/gd_print_bridge.h"
+#include "jvm_wrapper/bridge/jvm_stack_trace.h"
 #include "jvm_wrapper/bridge/kt_callable_bridge.h"
 #include "jvm_wrapper/bridge/node_path_bridge.h"
 #include "jvm_wrapper/bridge/packed_array_bridge.h"
@@ -22,7 +23,6 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 #include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/memory_manager.h"
-#include "jvm_wrapper/bridge/jvm_stack_trace.h"
 
 #include <jni.h>
 
@@ -109,28 +109,23 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtClass::initialize_jni_binding(p_env, class_loader);
     KtCallable::initialize_jni_binding(p_env, class_loader);
 
-    bool ret = TransferContext::initialize(p_env, class_loader)
-        && TypeManager::initialize(p_env, class_loader)
-        && LongStringQueue::initialize(p_env, class_loader)
-        && MemoryManager::initialize(p_env, class_loader)
-        && bridges::GDPrintBridge::initialize(p_env, class_loader)
-        && bridges::JvmStackTrace::initialize(p_env, class_loader)
-        && bridges::CallableBridge::initialize(p_env, class_loader)
-        && bridges::KtCallableBridge::initialize(p_env, class_loader)
-        && bridges::DictionaryBridge::initialize(p_env, class_loader)
-        && bridges::StringNameBridge::initialize(p_env, class_loader)
-        && bridges::NodePathBridge::initialize(p_env, class_loader)
-        && bridges::VariantArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedByteArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedColorArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedInt32ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedInt64ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedStringArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
-        && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
+    bool ret = TransferContext::initialize(p_env, class_loader) && TypeManager::initialize(p_env, class_loader)
+            && LongStringQueue::initialize(p_env, class_loader) && MemoryManager::initialize(p_env, class_loader)
+            && bridges::GDPrintBridge::initialize(p_env, class_loader) && bridges::JvmStackTrace::initialize(p_env, class_loader)
+            && bridges::CallableBridge::initialize(p_env, class_loader) && bridges::KtCallableBridge::initialize(p_env, class_loader)
+            && bridges::DictionaryBridge::initialize(p_env, class_loader)
+            && bridges::StringNameBridge::initialize(p_env, class_loader) && bridges::NodePathBridge::initialize(p_env, class_loader)
+            && bridges::VariantArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedByteArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedColorArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedFloat32ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedFloat64ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedInt32ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedInt64ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedStringArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedVector2ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedVector3ArrayBridge::initialize(p_env, class_loader)
+            && bridges::PackedVector4ArrayBridge::initialize(p_env, class_loader);
 
     jni::Env::set_exception_handler(&bridges::JvmStackTrace::print_exception_stacktrace);
 
@@ -168,6 +163,8 @@ void JvmManager::destroy_jni_classes() {
 
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
+    //TODO: Remove the return jvm when https://github.com/godotengine/godot/issues/95809 is resolved
+    return;
     JVM_LOG_VERBOSE("Shutting down JVM ...");
     jni::Jvm::destroy();
 #endif
