@@ -44,6 +44,11 @@ public suspend inline fun ResourceLoader.awaitLoad(
         return null
     }
 
+    // early return in case the resource is already loaded
+    if (this.loadThreadedGetStatus(path) == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED) {
+        return this.loadThreadedGet(path)
+    }
+
     return suspendCancellableCoroutine { continuation ->
         CoroutineScope(Dispatchers.Default).launch {
             var success = false
