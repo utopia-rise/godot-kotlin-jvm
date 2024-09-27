@@ -7,7 +7,7 @@ class RID(
      * Returns the ID of the referenced low-level resource.
      */
     val id: Long
-) : Comparable<RID> {
+) : Comparable<RID>, CoreType {
 
 
     //CONSTRUCTOR

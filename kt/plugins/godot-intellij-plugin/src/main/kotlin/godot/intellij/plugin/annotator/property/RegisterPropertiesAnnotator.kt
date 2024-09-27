@@ -16,7 +16,6 @@ import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.PropertyRemoveExportAnnotationQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
-import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
@@ -49,6 +48,7 @@ class RegisterPropertiesAnnotator : Annotator {
                 checkMutability(element, holder)
                 checkRegisteredType(element, holder)
                 lateinitChecks(element, holder)
+                nullableChecks(element, holder)
             }
             // outside to check if the property is also registered
             propertyHintAnnotationChecker.checkPropertyHintAnnotations(element, holder)
@@ -128,6 +128,18 @@ class RegisterPropertiesAnnotator : Annotator {
         ) {
             holder.registerProblem(
                 message = GodotPluginBundle.message("problem.property.lateinit.coreType"),
+                errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
+            )
+        }
+    }
+
+    private fun nullableChecks(ktProperty: KtProperty, holder: AnnotationHolder) {
+        if (
+            ktProperty.type()?.isNullable() == true
+            && (ktProperty.type()?.isCoreType() == true || ktProperty.type()?.isGodotPrimitive() == true)
+        ) {
+            holder.registerProblem(
+                message = GodotPluginBundle.message("problem.property.nullable"),
                 errorLocation = ktProperty.nameIdentifier ?: ktProperty.navigationElement,
             )
         }

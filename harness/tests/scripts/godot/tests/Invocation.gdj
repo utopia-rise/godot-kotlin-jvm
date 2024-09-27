@@ -43,7 +43,6 @@ properties = [
 	nav_meshes_dictionary,
 	nullable_dictionary,
 	color,
-	rid,
 	packed_byte_array,
 	packed_int32_array,
 	packed_float64_array,
