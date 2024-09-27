@@ -59,7 +59,7 @@ class CoroutineTest : Object() {
     }
 
     @RegisterSignal
-    val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>("threadNames")
+    val runOnMainThreadFromBackgroundThreadFinished by signal1<Boolean>("is_test_successful")
 
     @RegisterFunction
     fun runOnMainThreadFromBackgroundThread() {
