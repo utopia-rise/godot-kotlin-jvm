@@ -1,0 +1,31 @@
+// THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
+// Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
+
+registeredName = SignalTest
+fqName = godot.tests.signal.SignalTest
+relativeSourcePath = src/main/kotlin/godot/tests/signal/SignalTest.kt
+baseType = Node
+supertypes = [
+    godot.Node,
+	godot.Object,
+	godot.core.KtObject,
+	kotlin.Any
+]
+signals = [
+    no_param_signal_delegate,
+	one_param_signal_delegate,
+	two_param_signal_delegate,
+	no_param_signal_field,
+	one_param_signal_field,
+	two_param_signal_field,
+	signal_with_multiple_targets
+]
+properties = [
+    other_script,
+	array
+]
+functions = [
+    _ready,
+	target_function_one,
+	target_function_two
+]
