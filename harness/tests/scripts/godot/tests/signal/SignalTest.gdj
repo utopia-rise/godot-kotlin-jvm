@@ -1,28 +1,31 @@
 // THIS FILE IS GENERATED! DO NOT EDIT OR DELETE IT. EDIT OR DELETE THE ASSOCIATED SOURCE CODE FILE INSTEAD
 // Note: You can however freely move this file inside your godot project if you want. Keep in mind however, that if you rename the originating source code file, this file will be deleted and regenerated as a new file instead of being updated! Other modifications to the source file however, will result in this file being updated.
 
-registeredName = CoroutineTest
-fqName = godot.tests.coroutine.CoroutineTest
-relativeSourcePath = src/main/kotlin/godot/tests/coroutine/CoroutineTest.kt
-baseType = Object
+registeredName = SignalTest
+fqName = godot.tests.signal.SignalTest
+relativeSourcePath = src/main/kotlin/godot/tests/signal/SignalTest.kt
+baseType = Node
 supertypes = [
-    godot.Object,
+    godot.Node,
+	godot.Object,
 	godot.core.KtObject,
 	kotlin.Any
 ]
 signals = [
-    signal_without_parameter,
-	signal_with_one_parameter,
-	signal_with_many_parameters,
-	run_on_main_thread_from_background_thread_finished
+    no_param_signal_delegate,
+	one_param_signal_delegate,
+	two_param_signal_delegate,
+	no_param_signal_field,
+	one_param_signal_field,
+	two_param_signal_field,
+	signal_with_multiple_targets
 ]
 properties = [
-    step
+    other_script,
+	array
 ]
 functions = [
-    start_coroutine_without_parameter,
-	start_coroutine_with_one_parameter,
-	start_coroutine_with_many_parameters,
-	start_coroutine_undispatched,
-	run_on_main_thread_from_background_thread
+    _ready,
+	target_function_one,
+	target_function_two
 ]
