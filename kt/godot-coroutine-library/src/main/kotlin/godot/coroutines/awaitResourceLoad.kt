@@ -32,6 +32,11 @@ public suspend inline fun ResourceLoader.awaitLoad(
     cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
     crossinline onProgress: (RealT) -> Unit = {},
 ): Resource? {
+    // early return in case the resource is already loaded
+    if (this.hasCached(path)) {
+        return this.load(path)
+    }
+
     val error = this.loadThreadedRequest(
         path = path,
         typeHint = typeHint,
@@ -42,11 +47,6 @@ public suspend inline fun ResourceLoader.awaitLoad(
     if (error != Error.OK) {
         GD.printErr("Could not trigger resource load. Got error: $error")
         return null
-    }
-
-    // early return in case the resource is already loaded
-    if (this.loadThreadedGetStatus(path) == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED) {
-        return this.loadThreadedGet(path)
     }
 
     return suspendCancellableCoroutine { continuation ->
