@@ -65,15 +65,10 @@ tasks {
 
         isIgnoreExitValue = true
 
-        val editorExecutable: String = projectDir
-            .resolve("../../../../bin")
-            .listFiles()
-            ?.also {
-                println("[${it.joinToString()}]")
-            }
-            ?.firstOrNull { it.name.startsWith("godot.") }
-            ?.absolutePath
-            ?: throw Exception("Could not find editor executable")
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val editorExecutable: String = provideEditorExecutable().absolutePath
 
         if (HostManager.hostIsMingw) {
             commandLine(
@@ -88,69 +83,153 @@ tasks {
                 "$editorExecutable --headless --import",
             )
         }
+    }
+    val exportDebug by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in debug mode"
+        dependsOn(importResources, build)
+
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
+        projectDir.resolve("export").mkdirs()
+
+        commandLine(
+            provideEditorExecutable().absolutePath,
+            "--headless",
+            "--export-debug",
+            target,
+        )
+    }
+    val exportRelease by registering(Exec::class) {
+        description = "Exports the tests for the current host OS in release mode"
+        dependsOn(importResources, build)
+
+        environment("JAVA_HOME", System.getProperty("java.home"))
+        workingDir = projectDir
+
+        val target = when {
+            HostManager.hostIsLinux -> "tests_linux"
+            HostManager.hostIsMac -> "tests_macos"
+            HostManager.hostIsMingw -> "tests_windows"
+            else -> throw IllegalStateException("Unsupported OS for exporting")
+        }
+
+        projectDir.resolve("export").mkdirs()
+
+        commandLine(
+            provideEditorExecutable().absolutePath,
+            "--headless",
+            "--export-release",
+            target,
+        )
     }
     register<Exec>("runGutTests") {
         group = "verification"
 
         dependsOn(importResources)
 
-        val editorExecutable: String = projectDir
-            .resolve("../../../../bin")
+        setupTestExecution {
+            provideEditorExecutable().absolutePath
+        }
+    }
+    register<Exec>("runExportedGutTests") {
+        group = "verification"
+
+        val executable = projectDir
+            .resolve("export")
             .listFiles()
             ?.also {
-                println("[${it.joinToString()}]")
+                println("Test executables: [${it.joinToString()}]")
+                it.forEach { file -> file.setExecutable(true) }
             }
-            ?.firstOrNull { it.name.startsWith("godot.") }
-            ?.absolutePath
-            ?: throw Exception("Could not find editor executable")
-
-        var didAllTestsPass = false
-        var isJvmClosed = false
-        val testOutputFile = File("$projectDir/test_output.txt")
-        standardOutput = testOutputFile.outputStream()
-        errorOutput = testOutputFile.outputStream()
-
-        doLast {
-            val testOutput = testOutputFile.readText()
-            val outputLines = testOutput.split("\n")
-
-            outputLines.forEach { line ->
-                when {
-                    line.contains("All tests passed") -> {
-                        didAllTestsPass = true
-                    }
-
-                    line.contains("JVM Memory cleaned") -> {
-                        isJvmClosed = true
-                    }
+            ?.firstOrNull { file ->
+                listOf("exe", "x86_64", "app")
+                    .any { executableExtensions -> file.name.contains(executableExtensions) }
+            }
+            ?.let { executable ->
+                if (executable.name.contains("app")) {
+                    executable.resolve("Contents/MacOS").listFiles()?.firstOrNull()
+                } else {
+                    executable
                 }
             }
+            ?.absolutePath
 
-            val error = when {
-                !didAllTestsPass -> Exception("ERROR: Some assertions failed")
-                !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
-                else -> null
+        setupTestExecution {
+            executable ?: "no_test_executable_found"
+        }
+    }
+}
+
+fun Exec.setupTestExecution(executableProvider: () -> String) {
+    var didAllTestsPass = false
+    var isJvmClosed = false
+    val testOutputFile = File("${projectDir}/test_output.txt")
+    this.standardOutput = testOutputFile.outputStream()
+    this.errorOutput = testOutputFile.outputStream()
+
+    this.doLast {
+        val testOutput = testOutputFile.readText()
+        val outputLines = testOutput.split("\n")
+
+        outputLines.forEach { line ->
+            when {
+                line.contains("All tests passed") -> {
+                    didAllTestsPass = true
+                }
+
+                line.contains("JVM Memory cleaned") -> {
+                    isJvmClosed = true
+                }
             }
-
-            println(testOutput)
-
-            error?.let { throw it }
         }
 
-        isIgnoreExitValue = true
+        val error = when {
+            !didAllTestsPass -> Exception("ERROR: Some assertions failed")
+            !isJvmClosed -> Exception("ERROR: JVM has not closed properly")
+            else -> null
+        }
 
+        println(testOutput)
+
+        error?.let { throw it }
+    }
+
+    this.isIgnoreExitValue = true
+
+    doFirst {
         if (HostManager.hostIsMingw) {
-            commandLine(
+            this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         } else {
-            commandLine(
+            this@setupTestExecution.commandLine(
                 "bash",
                 "-c",
-                "$editorExecutable -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
             )
         }
     }
 }
+
+fun provideEditorExecutable(): File = (
+        listOf(
+            projectDir.resolve("../../../../bin"),
+            projectDir.resolve("bin"),
+            rootProject.layout.projectDirectory.asFile.resolve("bin"),
+        )
+            .flatMap { (it.listFiles() ?: arrayOf()).toList() }
+            .also {
+                println("[${it.joinToString()}]")
+            }
+            .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") }
+            ?: throw Exception("Could not find editor executable"))

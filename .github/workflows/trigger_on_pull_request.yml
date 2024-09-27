@@ -157,3 +157,36 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  test-linux-exports:
+    name: 🐧 Test Linux Exports
+    uses: ./.github/workflows/test_linux_exports.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-linux
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  test-macos-exports:
+    name: 🍎 Test Macos Exports
+    uses: ./.github/workflows/test_macos_exports.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - assemble-macos # we need the universal binary
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+
+  test-windows-exports:
+    name: 🪟 Test Windows Exports
+    uses: ./.github/workflows/test_windows_exports.yml
+    needs:
+      - setup-build-variables
+      - build-jvm
+      - build-windows
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
