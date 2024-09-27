@@ -15,17 +15,13 @@ import kotlin.coroutines.resume
  *
  * @param block the code block to execute at the end of the frame
  */
-public suspend inline fun awaitDeferred(
-    crossinline block: () -> Unit
-): Unit = suspendCancellableCoroutine { continuation ->
+public suspend inline fun <R> awaitDeferred(
+    crossinline block: () -> R
+): R = suspendCancellableCoroutine { continuation ->
     Callable(
         {
             if (continuation.isActive) {
-                try {
-                    block()
-                } finally {
-                    continuation.resume(Unit)
-                }
+                continuation.resume(block())
             }
         }.asCallable()
     ).callDeferred()

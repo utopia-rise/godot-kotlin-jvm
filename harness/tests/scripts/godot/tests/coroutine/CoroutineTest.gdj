@@ -14,7 +14,8 @@ signals = [
     signal_without_parameter,
 	signal_with_one_parameter,
 	signal_with_many_parameters,
-	run_on_main_thread_from_background_thread_finished
+	run_on_main_thread_from_background_thread_finished,
+	async_load_resource_finished
 ]
 properties = [
     step
@@ -24,5 +25,6 @@ functions = [
 	start_coroutine_with_one_parameter,
 	start_coroutine_with_many_parameters,
 	start_coroutine_undispatched,
-	run_on_main_thread_from_background_thread
+	run_on_main_thread_from_background_thread,
+	async_load_resource
 ]

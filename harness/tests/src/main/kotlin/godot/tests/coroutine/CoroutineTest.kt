@@ -2,6 +2,8 @@ package godot.tests.coroutine
 
 
 import godot.Object
+import godot.PackedScene
+import godot.ResourceLoader
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
@@ -13,6 +15,7 @@ import godot.core.signal4
 import godot.coroutines.GodotCoroutine
 import godot.coroutines.await
 import godot.coroutines.awaitDeferred
+import godot.coroutines.awaitLoadAs
 import godot.global.GD
 import kotlinx.coroutines.CoroutineStart
 
@@ -77,12 +80,32 @@ class CoroutineTest : Object() {
 
             GD.print("Thread names: ${listOf(thread, bgThread, fgThread, bg2Thread).joinToString()}")
 
-            runOnMainThreadFromBackgroundThreadFinished.emit(
-                thread != bgThread
-                    && thread != bg2Thread
-                    && bgThread != fgThread
-                    && thread == fgThread // check that the code is run on the main thread
-            )
+            awaitDeferred {
+                runOnMainThreadFromBackgroundThreadFinished.emit(
+                    thread != bgThread
+                        && thread != bg2Thread
+                        && bgThread != fgThread
+                        && thread == fgThread // check that the code is run on the main thread
+                )
+            }
+        }
+    }
+
+    @RegisterSignal
+    val asyncLoadResourceFinished by signal1<Boolean>("is_test_successful")
+
+    @RegisterFunction
+    fun asyncLoadResource() {
+        GodotCoroutine {
+            val resource = ResourceLoader.awaitLoadAs<PackedScene>("res://Spatial.tscn") { progress ->
+                GD.print("Resource load progress: $progress")
+            }
+
+            GD.print("Resource: $resource")
+
+            awaitDeferred {
+                asyncLoadResourceFinished.emit(resource != null)
+            }
         }
     }
 }

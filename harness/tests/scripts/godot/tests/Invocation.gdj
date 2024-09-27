@@ -13,10 +13,7 @@ supertypes = [
 	kotlin.Any
 ]
 signals = [
-    no_param,
-	one_param,
-	two_param,
-	signal_with_multiple_targets
+    
 ]
 properties = [
     button,
@@ -72,13 +69,10 @@ properties = [
 	stringtemplation,
 	test_string,
 	ascii_string,
-	utf8_string,
-	array
+	utf8_string
 ]
 functions = [
-    target_function_one,
-	target_function_two,
-	int_value,
+    int_value,
 	long_value,
 	float_value,
 	double_value,
