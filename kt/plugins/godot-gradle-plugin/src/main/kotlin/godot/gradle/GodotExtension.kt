@@ -171,7 +171,7 @@ open class GodotExtension(objects: ObjectFactory) {
      *
      * If set to true, import godot-coroutine-library
      */
-    val enableGodotCoroutines: Property<Boolean> = objects.property(Boolean::class.java)
+    val isGodotCoroutinesEnabled: Property<Boolean> = objects.property(Boolean::class.java)
 
     internal fun configureExtensionDefaults(target: Project) {
         val androidSdkRoot = System.getenv("ANDROID_SDK_ROOT")?.let { androidSdkRoot ->
@@ -226,7 +226,7 @@ open class GodotExtension(objects: ObjectFactory) {
         additionalGraalResourceConfigurationFiles.set(arrayOf())
         isGraalVmNativeImageGenerationVerbose.set(false)
 
-        enableGodotCoroutines.set(false)
+        isGodotCoroutinesEnabled.set(false)
 
         System.getenv("VC_VARS_PATH")?.let {
             windowsDeveloperVCVarsPath.set(File(it))

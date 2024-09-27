@@ -13,7 +13,7 @@ repositories {
 godot {
     registrationFileBaseDir.set(projectDir.resolve("scripts").also { it.mkdirs() })
     isRegistrationFileHierarchyEnabled.set(true)
-    enableGodotCoroutines.set(true)
+    isGodotCoroutinesEnabled.set(true)
 
     //uncomment to test android
 //    isAndroidExportEnabled.set(true)
