@@ -44,7 +44,7 @@ internal class Bootstrap {
                     GodotLogging::warning
                 } else {
                     GodotLogging::error
-                }.invoke("No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle project to load classes")
+                }.invoke("No main.jar detected at $userCodeFile. No script will be loaded. Build the gradle project to load scripts.")
             }
 
             if (projectRootDir.isNotEmpty()) {

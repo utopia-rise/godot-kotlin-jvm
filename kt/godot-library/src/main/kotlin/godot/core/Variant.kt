@@ -413,7 +413,12 @@ enum class VariantParser(override val id: Int) : VariantConverter {
             toGodotNativeCoreType<Dictionary<Any, Any?>>(buffer, any)
     },
     ARRAY(28) {
-        override fun toUnsafeKotlin(buffer: ByteBuffer) = VariantArray<Any?>(buffer.long)
+        override fun toUnsafeKotlin(buffer: ByteBuffer) : VariantArray<*>{
+            val ptr = buffer.long
+            val type = buffer.long
+            // TODO: Use the type to create the correct VariantArray type. For now, we just use the less efficient but flexible Any type.
+            return VariantArray<Any?>(ptr)
+        }
         override fun toUnsafeGodot(buffer: ByteBuffer, any: Any?) =
             toGodotNativeCoreType<VariantArray<Any?>>(buffer, any)
     },

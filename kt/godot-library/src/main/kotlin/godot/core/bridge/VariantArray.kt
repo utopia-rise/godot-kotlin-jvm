@@ -16,11 +16,14 @@ import kotlin.reflect.KClass
 @Suppress("unused", "UNCHECKED_CAST")
 class VariantArray<T> : NativeCoreType, MutableCollection<T> {
 
-    internal var variantConverter: VariantConverter = VariantParser.NIL
+    internal var variantConverter: VariantConverter
 
     @PublishedApi
-    internal constructor(handle: VoidPtr) {
-        variantConverter = VariantCaster.ANY
+    internal constructor(handle: VoidPtr) : this(handle, VariantCaster.ANY)
+
+    @PublishedApi
+    internal constructor(handle: VoidPtr, converter: VariantConverter) {
+        variantConverter = converter
         _handle = handle
         MemoryManager.registerNativeCoreType(this, VariantParser.ARRAY)
     }

@@ -64,10 +64,18 @@ namespace ktvariant {
         );
     }
 
-    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::*converter)() const>
+    template<Variant::Type variantType, class TNativeCoreType, TNativeCoreType (Variant::* converter)() const>
     static void to_kvariant_fromNATIVECORETYPE(SharedBuffer* des, const Variant& src) {
         set_variant_type(des, variantType);
         append_nativecoretype(des, (src.*converter)());
+    }
+
+    static void to_kvariant_fromARRAY(SharedBuffer* des, const Variant& src) {
+        Array arr = src.operator Array();
+        uint64_t type = arr.get_typed_builtin();
+        set_variant_type(des, Variant::Type::ARRAY);
+        des->increment_position(encode_uint64(reinterpret_cast<uintptr_t>(memnew(Array(arr))), des->get_cursor()));
+        des->increment_position(encode_uint64(type, des->get_cursor()));
     }
 
     static void append_object(SharedBuffer* des, Object* ptr) {
@@ -125,7 +133,7 @@ namespace ktvariant {
         to_kt_array[Variant::SIGNAL] = to_kvariant_fromSIGNAL;
         to_kt_array[Variant::DICTIONARY] = to_kvariant_fromNATIVECORETYPE < Variant::DICTIONARY, Dictionary,
         &Variant::operator Dictionary>;
-        to_kt_array[Variant::ARRAY] = to_kvariant_fromNATIVECORETYPE < Variant::ARRAY, Array, &Variant::operator Array>;
+        to_kt_array[Variant::ARRAY] = to_kvariant_fromARRAY;
         to_kt_array[Variant::STRING_NAME] = to_kvariant_fromNATIVECORETYPE < Variant::STRING_NAME, StringName,
         &Variant::operator StringName>;
         to_kt_array[Variant::NODE_PATH] = to_kvariant_fromNATIVECORETYPE < Variant::NODE_PATH, NodePath,
@@ -188,7 +196,7 @@ namespace ktvariant {
 
     template<class T>
     static Variant from_kvariant_to_kVariantCoreTypeValue(SharedBuffer* byte_buffer) {
-        auto result { reinterpret_cast<T*>(byte_buffer->get_cursor()) };
+        auto result {reinterpret_cast<T*>(byte_buffer->get_cursor())};
         byte_buffer->increment_position(sizeof(T));
         return *result;
     }
@@ -221,9 +229,7 @@ namespace ktvariant {
         bool is_custom {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
 
-        if (is_custom) {
-            return Callable(to_native_core_type<CallableCustom>(byte_buffer));
-        }
+        if (is_custom) { return Callable(to_native_core_type<CallableCustom>(byte_buffer)); }
 
         return from_kvariant_tokVariantNativeCoreTypeValue<Callable>(byte_buffer);
     }
