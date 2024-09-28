@@ -53,27 +53,42 @@ Error read_all_file_utf8(const String& p_path, String& r_content) {
 #endif
 
 Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& p_original_path, Error* r_error, bool p_use_sub_threads, float* r_progress, CacheMode p_cache_mode) {
-    Ref<JvmScript> ref;
+    Ref<JvmScript> jvm_script;
 
     String extension = p_path.get_extension();
+    bool script_is_new = true;
+    bool is_source;
     if (extension == GODOT_JVM_REGISTRATION_FILE_EXTENSION) {
-        ref = JvmScriptManager::get_instance().get_or_create_script<GdjScript>(p_path);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_script<GdjScript>(p_path, &script_is_new);
+        is_source = false;
     } else if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION) {
-        ref = JvmScriptManager::get_instance().get_or_create_script<KotlinScript>(p_path);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_script<KotlinScript>(p_path, &script_is_new);
+        is_source = true;
     } else if (extension == GODOT_JAVA_SCRIPT_EXTENSION) {
-        ref = JvmScriptManager::get_instance().get_or_create_script<JavaScript>(p_path);
+        jvm_script = JvmScriptManager::get_instance()->get_or_create_script<JavaScript>(p_path, &script_is_new);
+        is_source = true;
+    } else {
+        if (r_error) { *r_error = Error::ERR_FILE_UNRECOGNIZED; }
+        return nullptr;
     }
 
-    if (ref.is_valid()) {
+    if (jvm_script.is_valid()) {
 #ifdef TOOLS_ENABLED
         String source_code;
         Error load_err {read_all_file_utf8(p_path, source_code)};
         if (r_error) { *r_error = load_err; }
-        ref->set_source_code(source_code);
+        jvm_script->set_source_code(source_code);
+
+        if (!script_is_new && is_source) {
+            String path = jvm_script->get_path();
+            MessageQueue::get_singleton()->push_callable(
+              callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(path)
+            );
+        }
 #endif
     } else {
         if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
     }
 
-    return ref;
+    return jvm_script;
 }

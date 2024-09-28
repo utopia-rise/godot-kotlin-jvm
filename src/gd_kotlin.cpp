@@ -221,7 +221,7 @@ void GDKotlin::finish() {
     if (state >= State::JVM_SCRIPTS_INITIALIZED) {
         jni::Env env {jni::Jvm::current_env()};
         bootstrap->finish(env);
-        JvmScriptManager::get_instance().clear();
+        JvmScriptManager::get_instance()->clear();
         TypeManager::get_instance().clear();
     }
 

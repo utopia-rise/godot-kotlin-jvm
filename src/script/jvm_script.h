@@ -59,16 +59,21 @@ public:
 private:
     HashSet<PlaceHolderScriptInstance*> placeholders;
     HashMap<StringName, Variant> exported_members_default_value_cache;
+    uint64_t last_time_source_modified = 0;
     bool export_dirty_flag = true;
 
     void _placeholder_erased(PlaceHolderScriptInstance* p_placeholder) override;
 
 public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
-    void update_script();
     Vector<DocData::ClassDoc> get_documentation() const override;
     PropertyInfo get_class_category() const override;
     String get_class_icon_path() const override;
+
+    uint64_t get_last_time_source_modified();
+    void set_last_time_source_modified(uint64_t p_time);
+
+    void update_script_exports();
 #endif
 
 protected:

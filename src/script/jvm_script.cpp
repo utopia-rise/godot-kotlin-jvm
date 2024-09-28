@@ -59,7 +59,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return JvmScriptManager::get_instance().get_script_from_name(parent_name);
+    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -210,17 +210,27 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
 
-    update_script(); // Update in case this method is called between the (re)loading and the delayed update_script().
+    update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
     placeholder->update(exported_properties, exported_members_default_value_cache);
 
     placeholders.insert(placeholder);
     return placeholder;
 }
 
-void JvmScript::update_script() {
-    if(!export_dirty_flag){
-        return;
+uint64_t JvmScript::get_last_time_source_modified() {
+    return last_time_source_modified;
+}
+
+void JvmScript::set_last_time_source_modified(uint64_t p_time) {
+    last_time_source_modified = p_time;
+
+    for (PlaceHolderScriptInstance* placeholder : placeholders) {
+        if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
+}
+
+void JvmScript::update_script_exports() {
+    if (!export_dirty_flag) { return; }
 
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
@@ -249,7 +259,6 @@ void JvmScript::update_script() {
 
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         placeholder->update(exported_properties, exported_members_default_value_cache);
-        if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
 
     jni::Env env = jni::Jvm::current_env();
