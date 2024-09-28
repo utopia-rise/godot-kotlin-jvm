@@ -7,7 +7,7 @@ class JvmScriptManager {
     Vector<Ref<NamedScript>> named_scripts;
     HashMap<StringName, Ref<NamedScript>> named_scripts_map;
 
-    HashMap<String, StringName> filepath_to_name_map;
+    HashMap<StringName, String> name_to_filepath_map;
 
     Vector<Ref<PathScript>> path_scripts;
     HashMap<String, Ref<PathScript>> path_scripts_map;
@@ -53,23 +53,12 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_script(const String& p_path) {
             script.instantiate();
             named_scripts_map[script_name] = script;
             named_scripts.push_back(script);
-#ifdef DEBUG_ENABLED
-            JVM_LOG_WARNING("Loaded an unregistered JVM Script named %s", script_name);
-#endif
         }
     } else if constexpr (std::is_base_of<PathScript, SCRIPT>()) {
-        // Path Scripts are created on the fly used the mapping from path to name. If mapping can't be found, we create a placeholder.
+        // Path Scripts are created and cached when loading the usercode, we create a placeholder if missing.
         script = get_script_from_path(p_path);
         if (script.is_null()) {
             script.instantiate();
-            if (filepath_to_name_map.has(p_path)) {
-                script->kotlin_class = named_scripts_map[filepath_to_name_map[p_path]]->kotlin_class;
-            }
-#ifdef DEBUG_ENABLED
-            else {
-                JVM_LOG_WARNING("Loaded an unregistered JVM Script with path %s", p_path);
-            }
-#endif
             path_scripts_map[p_path] = script;
             path_scripts.push_back(script);
         }

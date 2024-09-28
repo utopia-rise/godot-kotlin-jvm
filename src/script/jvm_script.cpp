@@ -108,7 +108,6 @@ String JvmScript::get_source_code() const {
 }
 
 void JvmScript::set_source_code(const String& p_code) {
-    if (source == p_code) { return; }
     source = p_code;
     // TODO : deal with tool mode
 }

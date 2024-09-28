@@ -70,7 +70,6 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         Error load_err {read_all_file_utf8(p_path, source_code)};
         if (r_error) { *r_error = load_err; }
         ref->set_source_code(source_code);
-        ref->update_script();
 #endif
     } else {
         if (r_error) { *r_error = Error::ERR_UNAVAILABLE; }
