@@ -18,6 +18,7 @@ tasks {
         val tokens = mapOf(
             "godot.kotlin.jvm.assembled.version" to fullGodotKotlinJvmVersion,
             "godot.kotlin.jvm.version" to libs.versions.godotKotlinJvm.get(),
+            "godot.kotlinx.coroutine.version" to libs.versions.kotlinCoroutine.get(),
             "godot.version" to libs.versions.godot.get(),
             "kotlin.version" to libs.versions.kotlin.get(),
             "ios.jdk.version" to libs.versions.iosJdk.get(),

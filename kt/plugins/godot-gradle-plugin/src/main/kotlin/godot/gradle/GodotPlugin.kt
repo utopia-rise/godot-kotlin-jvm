@@ -39,6 +39,10 @@ abstract class GodotPlugin : Plugin<Project> {
                     "implementation",
                     dependencies.create("com.utopia-rise:${godotCoroutineLibraryArtifactName}:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
                 )
+                dependencies.add(
+                    "implementation",
+                    dependencies.create("org.jetbrains.kotlinx:kotlinx-coroutines-core:${GodotBuildProperties.kotlinCoroutineVersion}")
+                )
             }
             registry.register(
                 PropertiesModelBuilder(
