@@ -29,4 +29,8 @@ internal object GodotLogging {
     fun error(message: String) = GD.printErr("Godot-JVM: ", message)
 }
 
-private fun printWithTextColor(message: String, color: Color) = println("${color.foreground}$message$RESET")
+internal object JVMLogging {
+    fun info(message: String) = println("Godot-JVM: $message")
+    fun warning(message: String) = println("${Color.YELLOW.foreground}$message$RESET")
+    fun error(message: String) = System.err.println("Godot-JVM:  $message")
+}
