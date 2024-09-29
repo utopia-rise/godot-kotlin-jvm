@@ -72,11 +72,11 @@ public class JavaTestClass extends Node {
     @RegisterFunction
     public void connectAndTriggerSignal() {
         connect(
-                StringNameUtils.asStringName("test_signal"),
-                new NativeCallable(this, StringNameUtils.asStringName("signal_callback")),
+                StringNames.asStringName("test_signal"),
+                new NativeCallable(this, StringNames.asStringName("signal_callback")),
                 (int) ConnectFlags.CONNECT_ONE_SHOT.getId()
         );
-        emitSignal(StringNameUtils.asStringName("test_signal"));
+        emitSignal(StringNames.asStringName("test_signal"));
     }
 
     @NotNull

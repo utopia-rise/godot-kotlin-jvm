@@ -1,3 +1,4 @@
+@file:JvmName("NodePaths")
 @file:Suppress("PackageDirectoryMismatch")
 
 package godot.core

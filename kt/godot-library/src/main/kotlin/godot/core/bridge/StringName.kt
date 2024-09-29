@@ -1,4 +1,4 @@
-@file:JvmName("StringNameUtils")
+@file:JvmName("StringNames")
 @file:Suppress("PackageDirectoryMismatch")
 
 package godot.core
