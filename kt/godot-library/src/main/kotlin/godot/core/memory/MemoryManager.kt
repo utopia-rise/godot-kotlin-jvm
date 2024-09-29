@@ -83,6 +83,9 @@ internal object MemoryManager {
     private val stringNameCache = LRUCache<String, StringName>(CACHE_INITIAL_CAPACITY)
     private val nodePathCache = LRUCache<String, NodePath>(CACHE_INITIAL_CAPACITY)
 
+    /**
+     * Take a String, cache it, and return it as a StringName.
+     */
     fun getOrCreateStringName(key: String): StringName {
         return synchronized(stringNameCache) {
             stringNameCache.getOrPut(key) {
@@ -93,7 +96,7 @@ internal object MemoryManager {
     }
 
     /**
-     * Take a CamelCase String and return a snakeCase version of it as a StringName, used internally for methods and property names
+     * Take a CamelCase String, cache it and return a snakeCase version of it as a StringName, used internally for methods and property names
      */
     fun getOrCreateGodotName(key: String): StringName {
         return synchronized(stringNameCache) {
@@ -104,11 +107,26 @@ internal object MemoryManager {
         }
     }
 
+    /**
+     * Take a String, cache it and return it as a NodePath.
+     */
     fun getOrCreateNodePath(key: String): NodePath {
         return synchronized(nodePathCache) {
             nodePathCache.getOrPut(key) {
                 // Cache miss, so create and return new instance.
                 NodePath(key)
+            }
+        }
+    }
+
+    /**
+     * Take a CamelCase String, cache it and return a snakeCase version of it as a NodePath.
+     */
+    fun getOrCreateGodotPath(key: String): NodePath {
+        return synchronized(nodePathCache) {
+            nodePathCache.getOrPut(key) {
+                // Cache miss, so create and return new instance.
+                NodePath(key.convertToSnakeCase())
             }
         }
     }

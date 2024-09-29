@@ -723,11 +723,9 @@
   {
     "name":"godot.core.KtCallable",
     "methods":[
-      {"name":"getParameterCount","parameterTypes":[] },
       {"name":"invokeNoReturn","parameterTypes":[] },
       {"name":"invokeWithReturn","parameterTypes":[] },
-      {"name":"getReturnVariantType","parameterTypes":[] },
-      {"name":"hashCode","parameterTypes":[] }
+      {"name":"getReturnVariantType","parameterTypes":[] }
     ]
   },
   {

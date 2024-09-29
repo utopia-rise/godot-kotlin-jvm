@@ -3,8 +3,8 @@
 package godot.core
 
 import godot.core.memory.TransferContext
-import godot.global.GD
 import godot.tools.common.extensions.convertToSnakeCase
+import godot.util.GodotLogging
 
 data class KtFunctionInfo(
     val name: String,
@@ -36,7 +36,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
         try {
             invokeKt(instance)
         } catch (t: Throwable) {
-            GD.printErr("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n", t.stackTraceToString())
+            GodotLogging.error("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n" + t.stackTraceToString())
         }
     }
 
@@ -46,7 +46,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
             ret = invokeKt(instance)
             TransferContext.writeReturnValue(ret, variantConverter)
         } catch (t: Throwable) {
-            GD.printErr("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n", t.stackTraceToString())
+            GodotLogging.error("Error calling JVM method ${functionInfo.name} of script $instance from Godot:\n" + t.stackTraceToString())
             TransferContext.writeReturnValue(null, VariantParser.NIL)
         }
         ret

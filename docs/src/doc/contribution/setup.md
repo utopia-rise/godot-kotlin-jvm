@@ -15,7 +15,7 @@ Make sure that Java is installed and its `PATH` set in your system as well (**at
 Once you have all the necessary dependencies, proceed to do the following:
 
 1. Clone Godot's repository with the stable tag you want to develop for. Notice that the branch tag must be
-aligned to the current binding's version (e.g., current version `0.9.1-4.3.0`, we need Godot at `4.3.0` version).
+aligned to the current binding's version (e.g., current version `0.10.0-4.3.0`, we need Godot at `4.3.0` version).
 
 ```bash
 git clone git@github.com:godotengine/godot.git --branch 4.3-stable --recursive

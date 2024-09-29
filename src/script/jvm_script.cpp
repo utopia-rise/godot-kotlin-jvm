@@ -1,13 +1,13 @@
 #include "jvm_script.h"
 
-#include <scene/main/node.h>
-
+#include "binding/kotlin_binding_manager.h"
 #include "core/os/thread.h"
 #include "jvm_instance.h"
 #include "jvm_placeholder_instance.h"
 #include "language/gdj_language.h"
 #include "script/jvm_script_manager.h"
-#include "binding/kotlin_binding_manager.h"
+
+#include <scene/main/node.h>
 
 Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallError& r_error) {
     Object* obj = _object_create(p_args, p_arg_count);
@@ -59,7 +59,7 @@ bool JvmScript::inherits_script(const Ref<Script>& p_script) const {
 Ref<Script> JvmScript::get_base_script() const {
     if (!is_valid() || kotlin_class->registered_supertypes.size() == 0) { return {}; }
     StringName parent_name = kotlin_class->registered_supertypes[0];
-    return JvmScriptManager::get_instance().get_script_from_name(parent_name);
+    return JvmScriptManager::get_instance()->get_script_from_name(parent_name);
 }
 
 StringName JvmScript::get_instance_base_type() const {
@@ -81,11 +81,7 @@ ScriptInstance* JvmScript::_instance_create(const Variant** p_args, int p_arg_co
     }
 
 #ifdef DEBUG_ENABLED
-    JVM_ERR_FAIL_COND_V_MSG(
-      !is_valid(),
-      nullptr,
-      "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path()
-    );
+    JVM_ERR_FAIL_COND_V_MSG(!is_valid(), nullptr, "Invalid script %s was attempted to be used. Make sure you have properly built your project.", get_path());
     JVM_DEV_VERBOSE("Try to create %s instance.", kotlin_class->registered_class_name);
 #endif
 
@@ -112,7 +108,6 @@ String JvmScript::get_source_code() const {
 }
 
 void JvmScript::set_source_code(const String& p_code) {
-    if (source == p_code) { return; }
     source = p_code;
     // TODO : deal with tool mode
 }
@@ -127,7 +122,7 @@ bool JvmScript::has_method(const StringName& p_method) const {
 
 MethodInfo JvmScript::get_method_info(const StringName& p_method) const {
     if (is_valid()) {
-        if (KtFunction* method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
+        if (KtFunction * method {kotlin_class->get_method(p_method)}) { return method->get_member_info(); }
     }
     return {};
 }
@@ -214,13 +209,29 @@ PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this
 
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
+
+    update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
     placeholder->update(exported_properties, exported_members_default_value_cache);
 
     placeholders.insert(placeholder);
     return placeholder;
 }
 
-void JvmScript::update_script() {
+uint64_t JvmScript::get_last_time_source_modified() {
+    return last_time_source_modified;
+}
+
+void JvmScript::set_last_time_source_modified(uint64_t p_time) {
+    last_time_source_modified = p_time;
+
+    for (PlaceHolderScriptInstance* placeholder : placeholders) {
+        if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
+    }
+}
+
+void JvmScript::update_script_exports() {
+    if (!export_dirty_flag) { return; }
+
     exported_members_default_value_cache.clear();
     if (!is_valid()) { return; }
 
@@ -234,21 +245,25 @@ void JvmScript::update_script() {
         Variant default_value;
         const String& property_name {exported_property.name};
 
-        if(exported_property.type != Variant::OBJECT) {
-            JVM_DEV_VERBOSE("Get default value for %s property from %s:", exported_property.name, kotlin_class->registered_class_name);
+        if (exported_property.type != Variant::OBJECT) {
             kotlin_script_instance->get_or_default(property_name, default_value);
-            JVM_DEV_VERBOSE("    %s", default_value.stringify());
+            JVM_DEV_VERBOSE(
+              "Get default value for %s property from %s: %s",
+              exported_property.name,
+              kotlin_class->registered_class_name,
+              default_value.stringify()
+            );
         }
         exported_members_default_value_cache[property_name] = default_value;
     }
 
     for (PlaceHolderScriptInstance* placeholder : placeholders) {
         placeholder->update(exported_properties, exported_members_default_value_cache);
-        if (Node* node = cast_to<Node>(placeholder->get_owner())) { node->update_configuration_warnings(); }
     }
 
     jni::Env env = jni::Jvm::current_env();
     MemoryManager::get_instance().direct_object_deletion(env, tmp_object);
+    export_dirty_flag = false;
 }
 
 void JvmScript::_placeholder_erased(PlaceHolderScriptInstance* p_placeholder) {

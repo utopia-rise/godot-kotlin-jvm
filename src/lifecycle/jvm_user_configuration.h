@@ -50,8 +50,6 @@ struct JvmUserConfiguration {
 
     bool disable_gc {false};
 
-    bool disable_leak_warning_on_close {false};
-
     String jvm_args {""};
 
     JvmUserConfiguration() = default;

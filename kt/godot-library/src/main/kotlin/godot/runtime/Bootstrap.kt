@@ -6,9 +6,7 @@ import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import godot.util.err
-import godot.util.info
-import godot.util.warning
+import godot.util.JVMLogging
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
@@ -43,10 +41,10 @@ internal class Bootstrap {
                 doInit(userCodeFile.toURI().toURL(), loader)
             } else {
                 if (projectRootDir.isNotEmpty()) {
-                    ::warning
+                    JVMLogging::warning
                 } else {
-                    ::err
-                }.invoke("No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle project to load classes")
+                    JVMLogging::error
+                }.invoke("No main.jar detected at $userCodeFile. No script will be loaded. Build the gradle project to load scripts.")
             }
 
             if (projectRootDir.isNotEmpty()) {
@@ -68,10 +66,10 @@ internal class Bootstrap {
                     val events = watchKey.pollEvents()
                     if (events.isNotEmpty()) {
                         if (File(getBuildLockDir(projectRootDir), "buildLock.lock").exists()) {
-                            info("Build lock present. Not reloading...")
+                            JVMLogging.info("Build lock present. Not reloading...")
                             return@scheduleAtFixedRate
                         }
-                        info("Changes detected, reloading classes ...")
+                        JVMLogging.info("Changes detected, reloading classes ...")
 
                         if (::serviceLoader.isInitialized) {
                             clearClassesCache()
@@ -81,7 +79,7 @@ internal class Bootstrap {
                         if (userCodeFile.exists()) {
                             doInit(userCodeFile.toURI().toURL(), null) //no classloader so new main jar gets loaded
                         } else {
-                            warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
+                            JVMLogging.warning("No main.jar detected. No classes will be loaded. Build the project to load classes")
                         }
                     }
                 }, 3, 3, TimeUnit.SECONDS)
@@ -111,7 +109,7 @@ internal class Bootstrap {
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
         if (!entryIterator.hasNext()) {
-            err("Unable to find Entry class, no classes will be loaded")
+            JVMLogging.error("Unable to find Entry class, no classes will be loaded")
         }
 
         val entries = buildList {

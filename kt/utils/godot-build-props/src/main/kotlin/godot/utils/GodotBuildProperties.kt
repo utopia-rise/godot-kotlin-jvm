@@ -17,6 +17,10 @@ object GodotBuildProperties {
         buildProperties["godot.kotlin.jvm.version"] as String
     }
 
+    val kotlinCoroutineVersion by lazy {
+        buildProperties["godot.kotlinx.coroutine.version"] as String
+    }
+
     val godotVersion by lazy {
         buildProperties["godot.version"] as String
     }
