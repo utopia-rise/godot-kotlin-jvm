@@ -15,7 +15,7 @@ bool JvmPlaceHolderInstance::has_method(const StringName& p_method) const {
 Variant JvmPlaceHolderInstance::callp(const StringName& p_method, const Variant** p_args, int p_argcount, Callable::CallError& r_error) {
     if (p_method == SNAME("_get_configuration_warnings")) {
         Ref<JvmScript> script_ref = get_script();
-        if (!script_ref.is_valid()) {
+        if (!script_ref->is_valid()) {
             PackedStringArray packed {};
             packed.append("This script can't be found in your JVM project. Don't forget to build it and use a valid "
                           "gdj/kt/java file.");
