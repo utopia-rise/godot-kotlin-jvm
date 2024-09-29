@@ -35,6 +35,7 @@ void GdjLanguage::init() {
 }
 
 void GdjLanguage::frame() {
+    if (unlikely(GDKotlin::get_instance().state < GDKotlin::State::CORE_LIBRARY_INITIALIZED)) { return; }
     if (unlikely(GDKotlin::get_instance().user_configuration.disable_gc)) { return; }
     jni::Env env {jni::Jvm::current_env()};
     MemoryManager::get_instance().sync_memory(env);

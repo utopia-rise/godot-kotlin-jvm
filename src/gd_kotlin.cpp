@@ -152,6 +152,7 @@ bool GDKotlin::load_bootstrap() {
 }
 
 bool GDKotlin::initialize_core_library() {
+    callable_middleman = memnew(Object);
     jni::Env env {jni::Jvm::current_env()};
 
     if (!JvmManager::initialize_jni_classes(env, bootstrap_class_loader)) { return false; }
@@ -200,8 +201,6 @@ bool GDKotlin::load_user_code() {
 }
 
 void GDKotlin::init() {
-    callable_middleman = memnew(Object);
-
     fetch_user_configuration();
     set_jvm_options();
 
@@ -229,6 +228,8 @@ void GDKotlin::finish() {
         jni::Env env {jni::Jvm::current_env()};
         MemoryManager::get_instance().clean_up(env);
         JvmManager::destroy_jni_classes();
+        memdelete(callable_middleman);
+        callable_middleman = nullptr;
     }
 
     if (state >= State::BOOTSTRAP_LOADED) {
@@ -244,9 +245,6 @@ void GDKotlin::finish() {
 #endif
 
     state = State::NOT_STARTED;
-
-    memdelete(callable_middleman);
-    callable_middleman = nullptr;
 }
 
 const JvmUserConfiguration& GDKotlin::get_configuration() {
