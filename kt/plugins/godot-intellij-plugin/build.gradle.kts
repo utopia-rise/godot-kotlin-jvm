@@ -25,7 +25,7 @@ val buildMatrix: Map<String, BuildConfig> = mapOf(
         sdk = "232.8660.185",
         prefix = "IJ2023.2",
         extraSource = "",
-        version = VersionRange("232.1", "999.*"),
+        version = VersionRange("232.1", ""), // empty is the same as 999.* was before
         ideVersionsForVerifierTask = listOf("2023.2"),
         deps = listOf(
             "java",
