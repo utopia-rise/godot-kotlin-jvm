@@ -12,7 +12,6 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotCorePackage
-import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.util.findAnnotation
 import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.js.resolve.diagnostics.findPsi
@@ -113,7 +112,7 @@ class PropertyHintAnnotationChecker {
 
     private fun checkEnumFlag(ktProperty: KtProperty, holder: AnnotationHolder) {
         checkForRegistrationAnnotation(ktProperty, holder)
-        if (ktProperty.type()?.fqName?.asString()?.matches(Regex("^kotlin\\.collections\\..*Set\$")) == false) {
+        if (ktProperty.type()?.getKotlinTypeFqName(false)?.matches(Regex("^kotlin\\.collections\\..*Set\$")) == false) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.property.hint.wrongType", "kotlin.collections.Set or kotlin.collections.MutableSet"),
                 ktProperty.findAnnotation(FqName("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}"))?.psiOrParent ?: ktProperty.nameIdentifier ?: ktProperty.navigationElement

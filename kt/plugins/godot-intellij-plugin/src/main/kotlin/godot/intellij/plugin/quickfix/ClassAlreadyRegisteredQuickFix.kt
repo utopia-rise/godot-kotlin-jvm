@@ -6,7 +6,9 @@ import com.intellij.openapi.fileEditor.FileEditorManager
 import com.intellij.openapi.fileEditor.OpenFileDescriptor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.ui.popup.JBPopupFactory
+import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
+import com.intellij.psi.util.findParentOfType
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.data.model.RegisteredClassDataContainer
 import godot.intellij.plugin.extension.registeredClassNameCache
@@ -14,7 +16,6 @@ import org.jetbrains.kotlin.idea.base.psi.getLineNumber
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.codeinsight.utils.findExistingEditor
 import org.jetbrains.kotlin.idea.core.util.toPsiFile
-import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
 
 /**
@@ -38,7 +39,7 @@ class ClassAlreadyRegisteredQuickFix(private val registeredClassName: String) : 
         val containers = registeredClassNameCache.getContainersByName(registeredClassName)
 
         val containingClassFqName = if (psiElement is PsiElement) {
-            psiElement.getContainingClass()?.qualifiedName
+            psiElement.findParentOfType<PsiClass>()?.qualifiedName
         } else null
 
         // when only two classes are registered with the same name and on of those is the class that triggered this quick fix,

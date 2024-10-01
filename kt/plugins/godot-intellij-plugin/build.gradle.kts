@@ -18,58 +18,25 @@ plugins {
     id("com.utopia-rise.versioninfo")
 }
 
-//sdk version: https://github.com/JetBrains/intellij-community/tags
-//kotlin plugin version: https://plugins.jetbrains.com/plugin/6954-kotlin/versions
-val buildMatrix: Map<String, BuildConfig> = mapOf(
-    "IJ232" to BuildConfig(
-        sdk = "232.8660.185",
-        prefix = "IJ2023.2",
-        extraSource = "",
-        version = VersionRange("232.1", ""), // empty is the same as 999.* was before
-        ideVersionsForVerifierTask = listOf("2023.2"),
-        deps = listOf(
-            "java",
-            "org.jetbrains.kotlin",
-            "gradle"
-        ) // kotlin plugin version no longer needed as it's now bundled with the IDE
-    )
-)
-
 // needed as the intellij plugin does add its own repositories and thus the ones defined in the settings.gradle.kts are ignored. Hence, we need to redefine them here
 repositories {
     mavenLocal()
     mavenCentral()
     google()
     maven { url = uri("https://plugins.gradle.org/m2/") } // needed for shadowJar plugin dependency implementation in `godot-gradle-plugin`
+
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 version = fullGodotKotlinJvmVersion
-
 group = "com.utopia-rise"
 
-val sdkVersion = project.properties["godot.plugins.intellij.version"] ?: "IJ232"
-val settings = checkNotNull(buildMatrix[sdkVersion])
-
-// Configure gradle-intellij-plugin plugin.
-// Read more: https://github.com/JetBrains/gradle-intellij-plugin
-intellij {
-    pluginName.set("godot-jvm-idea-plugin")
-    version.set(settings.sdk)
-    type.set("IC")
-    downloadSources.set(true)
-    updateSinceUntilBuild.set(true)
-
-    plugins.set(settings.deps)
-}
+val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
 
 kotlin {
-    jvmToolchain(17)
-
-    sourceSets {
-        main {
-            kotlin.srcDirs("src/${settings.extraSource}/kotlin")
-        }
-    }
+    jvmToolchain(21)
 }
 
 dependencies {
@@ -77,7 +44,22 @@ dependencies {
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
     implementation(project(":godot-plugins-common"))
+
+    // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
+    intellijPlatform {
+        intellijIdeaCommunity(intellijVersion)
+
+        bundledPlugin("com.intellij.java")
+        bundledPlugin("org.jetbrains.kotlin")
+        bundledPlugin("com.intellij.gradle")
+
+        instrumentationTools()
+        pluginVerifier()
+        zipSigner()
+    }
 }
+
+intellijPlatform.pluginVerification.ides.ide(intellijVersion)
 
 tasks {
     runIde {
@@ -87,12 +69,11 @@ tasks {
     patchPluginXml {
         if (isSnapshot) {
             val projectVersion = project.version as String
-            version.set("${projectVersion.removeSuffix("-SNAPSHOT")}-${settings.prefix}-SNAPSHOT")
+            this.pluginVersion.set("${projectVersion.removeSuffix("-SNAPSHOT")}-IJ$intellijVersion-SNAPSHOT")
         } else {
-            version.set("${project.version}-${settings.prefix}")
+            this.pluginVersion.set("${project.version}-IJ$intellijVersion")
         }
-        sinceBuild.set(settings.version.since)
-        untilBuild.set(settings.version.until)
+        sinceBuild.set("242.3")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
         pluginDescription.set(
@@ -111,10 +92,6 @@ tasks {
         changeNotes.set(changelog.renderItem(changelog.getLatest(), Changelog.OutputType.HTML))
     }
 
-    runPluginVerifier {
-        ideVersions.set(settings.ideVersionsForVerifierTask)
-    }
-
     publishPlugin {
         dependsOn("patchChangelog")
         token.set(System.getenv("GODOT_KOTLIN_INTELLIJ_PLUGIN_PUBLISH"))
@@ -130,8 +107,8 @@ tasks {
     }
 
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            freeCompilerArgs += "-Xjvm-default=all"
+        compilerOptions {
+            freeCompilerArgs.add("-Xjvm-default=all")
         }
     }
 }

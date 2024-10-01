@@ -8,9 +8,9 @@ import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotApiPackage
-import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 
 
@@ -65,7 +65,7 @@ object CallFunctionReferenceChecker {
 
     private fun isGodotFunction(containingClass: KtClass?, callReference: KtNameReferenceExpression?) =
         containingClass?.fqName?.asString() == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" ||
-            containingClass?.type()?.supertypes()?.map { it.fqName?.asString() }?.any { it == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true ||
+            containingClass?.type()?.supertypes()?.map { it.getKotlinTypeFqName(false) }?.any { it == "$godotApiPackage.${GodotKotlinJvmTypes.obj}" } == true ||
             isGodotExtensionFunction(callReference)
 
     private fun isGodotExtensionFunction(callReference: KtNameReferenceExpression?): Boolean {

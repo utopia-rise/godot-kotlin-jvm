@@ -1,5 +1,4 @@
-<idea-plugin
-        require-restart="false">
+<idea-plugin require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
     <name>Godot Kotlin/Jvm</name>
     <!-- The vendor of the plugin.

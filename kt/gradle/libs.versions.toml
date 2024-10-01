@@ -4,6 +4,7 @@ godotKotlinJvm = "0.10.0"
 kotlin = "2.0.20" # https://kotlinlang.org/docs/releases.html#release-details
 kotlinCoroutine = "1.8.1"
 godot = "4.3.0"
+ideaPluginDefaultIntellijVersion = "2024.2"
 
 shadowJar = "8.3.0" # https://github.com/johnrengelman/shadow/releases
 # TODO: bump kotlin poet version once: https://github.com/square/kotlinpoet/issues/1759 is fixed
@@ -20,8 +21,8 @@ grgit = "5.2.2" # https://github.com/ajoberstar/grgit/releases
 gradlePublish = "1.2.1" # https://plugins.gradle.org/plugin/com.gradle.plugin-publish
 
 changelog = "2.2.1" # https://github.com/JetBrains/gradle-changelog-plugin/releases
-gradleIntelliJPlugin = "1.17.4" # https://plugins.gradle.org/plugin/org.jetbrains.intellij
-ideaSync = "1.1.8" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
+gradleIntelliJPlugin = "2.1.0" # https://plugins.gradle.org/plugin/org.jetbrains.intellij
+ideaSync = "1.1.9" # https://plugins.gradle.org/plugin/org.jetbrains.gradle.plugin.idea-ext
 kotlinPreProcessors = "0.2.0" # https://github.com/utopia-rise/kotlin-preprocessors/tags
 
 iosJdk = "21"
@@ -40,10 +41,11 @@ ideaSync = { module = "org.jetbrains.gradle.plugin.idea-ext:org.jetbrains.gradle
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
-gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
+gradleIntelliJPlugin = { id = "org.jetbrains.intellij.platform", version.ref = "gradleIntelliJPlugin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 java = { id = "java" }
 grgit = { id = "org.ajoberstar.grgit", version.ref = "grgit" }
 shadowJar = { id = "com.gradleup.shadow", version.ref = "shadowJar" }
 gradlePublish = { id = "com.gradle.plugin-publish", version.ref = "gradlePublish" }
 kotlinPreProcessors = { id = "com.utopia-rise.kotlin-preprocessors", version.ref = "kotlinPreProcessors" }
+ideaSync = { id = "org.jetbrains.gradle.plugin.idea-ext", version.ref = "ideaSync" }
