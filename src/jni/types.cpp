@@ -91,10 +91,9 @@ namespace jni {
         env.handle_exception();
     }
 
-    MethodID JClass::get_constructor_method_id(Env& env, const char* signature) {
     void JClass::unregister_natives(Env& env) {
         env.env->UnregisterNatives((jclass) obj);
-        env.check_exceptions();
+        env.handle_exception();
     }
 
     MethodID JClass::get_constructor_method_id(Env& env, const char* signature) {

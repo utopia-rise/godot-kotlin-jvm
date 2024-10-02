@@ -56,7 +56,7 @@ private:
     void unload_boostrap();
 
     bool initialize_core_library();
-    void finalize_core_library() const;
+    void finalize_core_library();
 
     bool load_user_code();
     void unload_user_code();
