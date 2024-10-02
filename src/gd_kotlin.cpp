@@ -34,8 +34,8 @@ bool GDKotlin::load_dynamic_lib() {
 #ifdef TOOLS_ENABLED
             else if (String environment_jvm = get_path_to_environment_jvm();
                      !environment_jvm.is_empty() && FileAccess::exists(environment_jvm)) {
-                LOG_WARNING(vformat("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
-                                    "documentation if you don't know how to do that"));
+                JVM_LOG_WARNING("Godot-JVM: You really should embed a JRE in your project with jlink! See the "
+                                "documentation if you don't know how to do that");
                 path_to_jvm_lib = environment_jvm;
             } else {
 #ifdef MACOS_ENABLED
@@ -71,7 +71,7 @@ bool GDKotlin::load_dynamic_lib() {
             break;
         default:
             // Sanity check. Should never happen
-            JVM_CRASH_NOW_MSG("Tried to load a VM that's neither the JVM nor Graal Native Image");
+            JVM_DEV_ASSERT(false, "Tried to load a VM that's neither the JVM nor Graal Native Image");
     }
 
     if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
@@ -82,7 +82,7 @@ bool GDKotlin::load_dynamic_lib() {
 
 #ifdef TOOLS_ENABLED
 String GDKotlin::get_path_to_embedded_jvm() {
-    String godot_path {String(RES_DIRECTORY).path_join(EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
+    String godot_path {String(RES_DIRECTORY).path_join(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
     return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
@@ -179,8 +179,9 @@ void GDKotlin::set_jvm_options() {
     if (user_configuration.jvm_jmx_port >= 0) { jvm_options.add_jmx_option(user_configuration.jvm_jmx_port); }
 
     if (!Engine::get_singleton()->is_editor_hint() && !user_configuration.jvm_args.is_empty()) {
-        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to not "
-                    "launch properly");
+        JVM_LOG_WARNING("You are using custom arguments for the JVM. Make sure they are valid or you risk the JVM to "
+                        "not "
+                        "launch properly");
         jvm_options.add_custom_options(user_configuration.jvm_args);
     }
 }
@@ -205,15 +206,15 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
     // if we don't do this, subsequent app starts where the files already exist, error out
 
     String file_user_path_global {ProjectSettings::get_singleton()->globalize_path(file_user_path)};
-    unlink(file_user_path_global.utf8().get_data()); // we do not really care about errors here
+    unlink(file_user_path_global.utf8().get_data());// we do not really care about errors here
 #endif
 
-    Error err;
-    Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
+        Error err;
+        Ref<DirAccess> dir_access {DirAccess::open(BUILD_DIRECTORY, &err)};
 
-    JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Cannot open %s file in res://.", file_name);
+        JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Cannot open %s file in res://.", file_name);
 
-    dir_access->copy(file_res_path, file_user_path);
+        dir_access->copy(file_res_path, file_user_path);
 
 #ifndef __ANDROID__
     }
@@ -282,9 +283,9 @@ bool GDKotlin::load_user_code() {
             String message {"No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle "
                             "project to load classes"};
 #ifdef TOOLS_ENABLED
-            LOG_WARNING(message, user_code_path);
+            JVM_LOG_WARNING(message, user_code_path);
 #elif defined DEBUG_ENABLED
-            LOG_ERROR(vformat(message, user_code_path));
+            JVM_ERR_FAIL_MSG(message, user_code_path);
 #endif
             return false;
         }
@@ -316,15 +317,15 @@ void GDKotlin::unload_user_code() {
     TypeManager::get_instance().clear();
 }
 
-void GDKotlin::finalize_core_library() const {
+void GDKotlin::finalize_core_library() {
     jni::Env env {jni::Jvm::current_env()};
 
-        MemoryManager::get_instance().clean_up(env);
+    MemoryManager::get_instance().clean_up(env);
 
     JvmManager::finalize_jvm_wrappers(env, bootstrap_class_loader);
-memdelete(callable_middleman);
-        callable_middleman = nullptr;
-    }
+    memdelete(callable_middleman);
+    callable_middleman = nullptr;
+}
 
 void GDKotlin::unload_boostrap() {
     delete bootstrap;
@@ -341,7 +342,7 @@ void GDKotlin::unload_boostrap() {
     }
 
 void GDKotlin::initialize_up_to(State target_state) {
-    if(state == State::NOT_STARTED){
+    if (state == State::NOT_STARTED) {
         fetch_user_configuration();
         set_jvm_options();
     }

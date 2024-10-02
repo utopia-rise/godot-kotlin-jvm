@@ -96,7 +96,7 @@ bool JvmManager::initialize_or_get_jvm(void* lib_handle, JvmUserConfiguration& u
     return true;
 }
 
-bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_loader) {
+bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loader) {
     Bootstrap::initialize_jni_binding(p_env, class_loader);
     KtObject::initialize_jni_binding(p_env, class_loader);
     KtPropertyInfo::initialize_jni_binding(p_env, class_loader);
@@ -142,7 +142,6 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     bridges::GDPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);
-    bridges::RidBridge::finalize(p_env, class_loader);
     bridges::StringNameBridge::finalize(p_env, class_loader);
     bridges::NodePathBridge::finalize(p_env, class_loader);
     bridges::VariantArrayBridge::finalize(p_env, class_loader);
@@ -150,11 +149,12 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     bridges::PackedColorArrayBridge::finalize(p_env, class_loader);
     bridges::PackedFloat32ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedFloat64ArrayBridge::finalize(p_env, class_loader);
-    bridges::PackedInt32IntArrayBridge::finalize(p_env, class_loader);
-    bridges::PackedInt64IntArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedInt32ArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedInt64ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedStringArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector2ArrayBridge::finalize(p_env, class_loader);
     bridges::PackedVector3ArrayBridge::finalize(p_env, class_loader);
+    bridges::PackedVector4ArrayBridge::finalize(p_env, class_loader);
     Bootstrap::finalize(p_env, class_loader);
     KtObject::finalize(p_env, class_loader);
     KtPropertyInfo::finalize(p_env, class_loader);

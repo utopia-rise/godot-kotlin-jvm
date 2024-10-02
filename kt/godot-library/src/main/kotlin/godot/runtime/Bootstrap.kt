@@ -84,7 +84,7 @@ internal class Bootstrap {
                     )
                 }
                 for (clazz in context.getRegisteredClasses()) {
-                    variantMapper[clazz] = VariantType.OBJECT
+                    variantMapper[clazz] = VariantParser.OBJECT
                 }
                 context.init()
             }

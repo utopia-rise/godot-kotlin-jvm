@@ -46,9 +46,9 @@ public:                                                                         
     static void finalize_jni_binding(jni::Env& p_env, ClassLoader* class_loader) {   \
         jni::JClass clazz;                                                           \
         if (class_loader) {                                                          \
-            clazz = class_loader->load_class(p_env, get_fully_qualified_name());     \
+            clazz = class_loader->load_class(p_env, fq_name);                        \
         } else {                                                                     \
-            clazz = p_env.find_class(get_fully_qualified_name());                    \
+            clazz = p_env.find_class(fq_name);                                       \
         }                                                                            \
                                                                                      \
         clazz.unregister_natives(p_env);                                             \
@@ -79,7 +79,6 @@ public:
     const jni::JObject& get_wrapped() const;
     void swap_to_strong_unsafe(jni::Env& p_env);
     void swap_to_weak_unsafe(jni::Env& p_env);
-    static const char* get_fully_qualified_name();
 
     static bool initialize(jni::Env& p_env, ClassLoader* class_loader);
     static Derived* create_instance(jni::Env& p_env, ClassLoader* class_loader);
