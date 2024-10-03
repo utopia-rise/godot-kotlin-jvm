@@ -12,7 +12,7 @@ After the export templates have been added, you can export your game. Your game 
 On desktop platforms, this also copies the JRE folder of your project in the exported game folder.
 
 !!!danger
-    The official export templates from Godot will not work! You have to use our export templates or build your own! Therefore, you cannot just hit the "Download and Install" button in the export template manager!
+    The official export templates from Godot will not work! You have to use our export templates or build your own! Therefore, you cannot just hit the "Download and Install" button in the export template manager! If you have both our export templates and the official ones installed, you must set the "Custom Template" in the export settings window to ours, or the official ones will be used and your exported game will fail to load any scene with Kotlin/Java code.
 
 
 ## Requirements
