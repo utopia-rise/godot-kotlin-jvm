@@ -5,6 +5,10 @@
 <img src=".README/logo.png" width="30%" height="30%">
 </p>
 
+[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=for-the-badge)](LICENSE)
+[![Discord](https://img.shields.io/discord/675058327088136212?style=for-the-badge&label=Discord)](https://discord.gg/zpb5Ru7v9x)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fgodot-kotl.in%2Fen%2Fstable%2F&style=for-the-badge&label=Documentation)](https://godot-kotl.in/en/stable/)
+
 ## Overview
 
 This is a [**Kotlin**](https://kotlinlang.org) language binding for the [**Godot**](https://godotengine.org/) game engine.
@@ -18,7 +22,6 @@ You can find project examples in those repositories:
 - [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
 - [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
 
-
 ### Code Distribution
 
 There are two methods for distributing JVM bytecode produced by the Kotlin compiler:
@@ -29,8 +32,6 @@ There are two methods for distributing JVM bytecode produced by the Kotlin compi
 
 Just write your game scripts like you would for [GDScript](https://docs.godotengine.org/en/4.2/getting_started/scripting/gdscript/gdscript_basics.html)
 or for [C#](https://docs.godotengine.org/en/3.1/getting_started/scripting/c_sharp/) but with all the syntactic sugar of Kotlin.
-
-[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=flat-square)](LICENSE)
 
 ## Important Notes
 
