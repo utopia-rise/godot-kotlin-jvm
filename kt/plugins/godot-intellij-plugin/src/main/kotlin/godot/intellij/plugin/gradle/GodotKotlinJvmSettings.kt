@@ -13,6 +13,7 @@ import com.intellij.ui.EditorNotifications
 import godot.intellij.plugin.GodotPluginBundle
 import godot.intellij.plugin.notification.SettingsFetchingNotification
 import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.gradle.action.FetchProjectModelsBuildAction
 import org.jetbrains.plugins.gradle.service.execution.GradleExecutionHelper
 import org.jetbrains.plugins.gradle.settings.DistributionType
 import org.jetbrains.plugins.gradle.settings.GradleExecutionSettings

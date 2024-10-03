@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.jvm) apply false
     id("com.utopia-rise.versioninfo")
     alias(libs.plugins.gradleIntelliJPlugin) apply false
+    alias(libs.plugins.ideaSync) apply false
 }
 
 version = fullGodotKotlinJvmVersion

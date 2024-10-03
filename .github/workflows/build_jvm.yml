@@ -100,3 +100,7 @@ jobs:
         with:
           name: jvm_godot-bootstrap_debug
           path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+
+      - name: Verify ide plugin
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ verifyPlugin

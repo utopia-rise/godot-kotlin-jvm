@@ -12,9 +12,9 @@ import org.jetbrains.kotlin.asJava.toLightClass
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.core.getFqNameByDirectory
 import org.jetbrains.kotlin.idea.core.getPackage
-import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.psiUtil.getChildrenOfType
 
 class RefactoringListenerProvider : RefactoringElementListenerProvider {
     override fun getListener(element: PsiElement?): RefactoringElementListener? {
@@ -76,7 +76,7 @@ private class PsiClassRefactoringListenerBatch(
             *psiDirectory.files.toList().flatMap { file ->
                 when(file) {
                     is KtFile -> file.classes.toList()
-                    is PsiFile -> file.getContainingClass()?.let { listOf(it) } ?: emptyList()
+                    is PsiFile -> file.getChildrenOfType<PsiClass>().toList()
                     else -> emptyList()
                 }
             }.toTypedArray(),
@@ -86,7 +86,7 @@ private class PsiClassRefactoringListenerBatch(
 
     private fun elementRefactored(element: PsiElement) {
         val classes: List<PsiClass> = when(element) {
-            is PsiFile -> element.getContainingClass()?.let { listOf(it) } ?: emptyList()
+            is PsiFile -> element.getChildrenOfType<PsiClass>().toList()
             is PsiDirectory -> collectClassesFromDirectory(element)
             else -> emptyList()
         }

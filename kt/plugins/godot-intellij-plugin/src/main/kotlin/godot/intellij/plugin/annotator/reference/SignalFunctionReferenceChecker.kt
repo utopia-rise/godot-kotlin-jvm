@@ -9,10 +9,10 @@ import godot.intellij.plugin.extension.type
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.godotCorePackage
-import org.jetbrains.kotlin.idea.refactoring.fqName.fqName
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
 import org.jetbrains.kotlin.idea.references.mainReference
 import org.jetbrains.kotlin.idea.util.findAnnotation
+import org.jetbrains.kotlin.js.descriptorUtils.getKotlinTypeFqName
 import org.jetbrains.kotlin.name.FqName
 
 
@@ -39,8 +39,8 @@ object SignalFunctionReferenceChecker {
             )?.type()
 
         if (
-            type?.fqName?.asString() == "$godotCorePackage.${GodotKotlinJvmTypes.signal}" ||
-            type?.supertypes()?.map { it.fqName?.asString() }?.any { it == "$godotCorePackage.${GodotKotlinJvmTypes.signal}" } == true
+            type?.getKotlinTypeFqName(false) == "$godotCorePackage.${GodotKotlinJvmTypes.signal}" ||
+            type?.supertypes()?.map { it.getKotlinTypeFqName(false) }?.any { it == "$godotCorePackage.${GodotKotlinJvmTypes.signal}" } == true
         ) {
             val targetFunction = element
                 .callableReference

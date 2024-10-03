@@ -24,9 +24,9 @@ import org.jetbrains.kotlin.idea.KotlinFileType
 import org.jetbrains.kotlin.idea.KotlinLanguage
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.idea.core.getPackage
-import org.jetbrains.kotlin.j2k.getContainingClass
 import org.jetbrains.kotlin.psi.KtClass
 import org.jetbrains.kotlin.psi.KtFile
+import org.jetbrains.kotlin.psi.psiUtil.getChildrenOfType
 
 class PsiTreeListener(
     private val registeredClassNameCacheProvider: (Module) -> RegisteredClassNameCache
@@ -76,7 +76,7 @@ class PsiTreeListener(
 
                         val containingClasses: List<PsiClass> = when(containingFile) {
                             is KtFile -> containingFile.classes.toList()
-                            else -> containingFile.getContainingClass()?.let { clazz -> listOf(clazz) } ?: emptyList()
+                            else -> containingFile.getChildrenOfType<PsiClass>().toList()
                         }
 
                         containingClasses

@@ -6,7 +6,7 @@ import com.intellij.openapi.externalSystem.model.task.ExternalSystemTaskType.RES
 import godot.intellij.plugin.notification.SettingsFetchingNotification
 import org.jetbrains.kotlin.idea.configuration.GRADLE_SYSTEM_ID
 
-class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter() {
+class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter(null) {
     override fun onStart(
         id: ExternalSystemTaskId,
         workingDir: String?,
