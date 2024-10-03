@@ -71,7 +71,7 @@ jobs:
       - name: Create JRE
         run: |
           cd harness/tests/
-          jlink --add-modules java.base,java.logging --output jre-amd64-windows
+          jlink --add-modules java.base,java.logging --output jvm/jre-amd64-windows
 
       - name: Export tests debug
         if: ${{ matrix.bootstrap-target == 'debug' }}

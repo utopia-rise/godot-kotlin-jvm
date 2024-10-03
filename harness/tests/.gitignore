@@ -5,8 +5,8 @@
 # Ignore Gradle build output directory
 build
 
-jre-arm64-*
-jre-amd64-*
+jvm/jre-arm64-*
+jvm/jre-amd64-*
 
 graal/godot-kotlin-graal-jni-config.json
 

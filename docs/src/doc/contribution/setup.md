@@ -35,9 +35,9 @@ scons platform=linuxbsd # your target platform (windows, macos, ...)
     1. Navigate to `<module-root>/harness/tests`
     2. Create an embedded Java Virtual Machine:
         - For `amd64` systems:
-          - `jlink --add-modules java.base,java.logging --output jre-amd64-<platform ex. linux>`
+          - `jlink --add-modules java.base,java.logging --output jvm/jre-amd64-<platform ex. linux>`
         - For `arm64` (macOS with **Apple Silicon** chips) systems:
-          - `jlink --add-modules java.base,java.logging --output jre-arm64-<platform ex. macos>`
+          - `jlink --add-modules java.base,java.logging --output jvm/jre-arm64-<platform ex. macos>`
         - If you want to remote debug add module `jdk.jdwp.agent` to command.
         - If you want to enable `jmx`, add `jdk.management.agent` to command.
     3. Then build the project using the Gradle wrapper.
