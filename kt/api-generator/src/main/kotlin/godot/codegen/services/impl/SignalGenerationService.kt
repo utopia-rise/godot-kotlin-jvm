@@ -98,7 +98,8 @@ class SignalGenerationService : ISignalGenerationService {
 
             signalFileSpec.addFunction(generateFakeSignalConstructor(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalDelegate(argCount, genericClassNameInfo))
-            signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo))
+            signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, false))
+            signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, true))
         }
 
         return signalFileSpec
@@ -179,6 +180,19 @@ class SignalGenerationService : ISignalGenerationService {
                         .addCode(generateConnectionCodeBlock())
                         .build(),
 
+                    FunSpec.builder(CONNECT_THREAD_SAFE_METHOD_NAME)
+                        .addTypeVariable(godotObjectBoundTypeVariable)
+                        .addParameters(
+                            listOf(
+                                ParameterSpec.builder(TARGET_PARAMETER_NAME, godotObjectBoundTypeVariable).build(),
+                                ParameterSpec.builder(METHOD_PARAMETER_NAME, lambdaTypeName).build(),
+                                flagsParameter
+                            )
+                        )
+                        .returns(ANY.copy(nullable = true))
+                        .addCode(generateConnectionCodeBlock(false, true))
+                        .build(),
+
                     FunSpec.builder(DISCONNECT_METHOD_NAME)
                         .addTypeVariable(godotObjectBoundTypeVariable)
                         .addParameters(
@@ -196,8 +210,16 @@ class SignalGenerationService : ISignalGenerationService {
             .build()
     }
 
-    private fun generateConnectionCodeBlock(isDisconnect: Boolean = false): CodeBlock {
-        val methodName = if (isDisconnect) DISCONNECT_METHOD_NAME else CONNECT_METHOD_NAME
+    private fun generateConnectionCodeBlock(isDisconnect: Boolean = false, isThreadSafe: Boolean = false): CodeBlock {
+        val methodName = if (isDisconnect) {
+            DISCONNECT_METHOD_NAME
+        } else {
+            if (isThreadSafe) {
+                CONNECT_THREAD_SAFE_METHOD_NAME
+            } else {
+                CONNECT_METHOD_NAME
+            }
+        }
         val flagsParameters = if (isDisconnect) "" else ",·$FLAGS_PARAMETER_NAME"
 
         return CodeBlock.of(
@@ -301,37 +323,37 @@ class SignalGenerationService : ISignalGenerationService {
         val genericReadOnlyPropertyClassName = readOnlyPropertyClassName.parameterizedBy(GODOT_OBJECT, genericClassNameInfo.genericClassName)
 
         return genericClassNameInfo
-                .toFunSpecBuilder(SIGNAL_METHOD_NAME + argCount)
-                .addModifiers(KModifier.INLINE)
-                .receiver(GODOT_OBJECT)
-                .addParameters(
-                    (0..<argCount)
-                        .map {
-                            ParameterSpec.builder("p$it", STRING).build()
-                        }
-                )
-                .addCode(
-                    if (argCount == 0) {
-                        CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME", genericClassNameInfo.className)
-                    } else {
-                        CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
+            .toFunSpecBuilder(SIGNAL_METHOD_NAME + argCount)
+            .addModifiers(KModifier.INLINE)
+            .receiver(GODOT_OBJECT)
+            .addParameters(
+                (0..<argCount)
+                    .map {
+                        ParameterSpec.builder("p$it", STRING).build()
                     }
-                )
-                .apply {
-                    if (argCount != 0) {
-                        addAnnotation(
-                            AnnotationSpec
-                                .builder(Suppress::class)
-                                .addMember("\"UNCHECKED_CAST\"")
-                                .build()
-                        )
-                    }
+            )
+            .addCode(
+                if (argCount == 0) {
+                    CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME", genericClassNameInfo.className)
+                } else {
+                    CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
                 }
-                .build()
+            )
+            .apply {
+                if (argCount != 0) {
+                    addAnnotation(
+                        AnnotationSpec
+                            .builder(Suppress::class)
+                            .addMember("\"UNCHECKED_CAST\"")
+                            .build()
+                    )
+                }
+            }
+            .build()
     }
 
 
-    private fun generateSignalExtension(genericClassNameInfo: GenericClassNameInfo): FunSpec {
+    private fun generateSignalExtension(genericClassNameInfo: GenericClassNameInfo, isThreadSafe: Boolean): FunSpec {
         val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
             .defaultValue("0")
             .build()
@@ -346,8 +368,14 @@ class SignalGenerationService : ISignalGenerationService {
             .addModifiers(KModifier.NOINLINE)
             .build()
 
+        val methodName = if (isThreadSafe) {
+            CONNECT_THREAD_SAFE_METHOD_NAME
+        } else {
+            CONNECT_METHOD_NAME
+        }
+
         return genericClassNameInfo
-            .toReifiedExtensionFunSpecBuilder(CONNECT_METHOD_NAME)
+            .toReifiedExtensionFunSpecBuilder(methodName)
             .addParameters(
                 listOf(
                     flagsParameter,
@@ -355,13 +383,18 @@ class SignalGenerationService : ISignalGenerationService {
                 )
             )
             .addCode(
-                "return·$CONNECT_METHOD_NAME($METHOD_PARAMETER_NAME.%M(),·$FLAGS_PARAMETER_NAME)",
+                "return·$methodName($METHOD_PARAMETER_NAME.%M(),·$FLAGS_PARAMETER_NAME)",
                 AS_CALLABLE_UTIL_FUNCTION
             )
-            .returns(GODOT_ERROR)
+            .returns(
+                if (isThreadSafe) {
+                    ANY.copy(nullable = true)
+                } else {
+                    GODOT_ERROR
+                }
+            )
             .build()
     }
-
 
     companion object {
         private const val SIGNAL_CLASS_NAME = "Signal"
@@ -375,6 +408,7 @@ class SignalGenerationService : ISignalGenerationService {
 
         private const val EMIT_METHOD_NAME = "emit"
         private const val CONNECT_METHOD_NAME = "connect"
+        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafe"
         private const val DISCONNECT_METHOD_NAME = "disconnect"
         private const val SIGNAL_METHOD_NAME = "signal"
         private const val JAVA_CREATE_METHOD_NAME = "javaCreate"

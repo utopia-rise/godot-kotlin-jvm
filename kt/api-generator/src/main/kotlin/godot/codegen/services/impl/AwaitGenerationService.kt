@@ -22,7 +22,7 @@ import godot.tools.common.constants.kotlinxCoroutinePackage
 
 private val cancellableContinuationClass = ClassName(kotlinxCoroutinePackage, "CancellableContinuation")
 private val suspendCancellableCoroutine = MemberName(kotlinxCoroutinePackage, "suspendCancellableCoroutine")
-private val connect = MemberName(godotCorePackage, "connect")
+private val connect = MemberName(godotCorePackage, "connectThreadSafe")
 private val resume = MemberName(kotlinCoroutinePackage, "resume")
 
 object AwaitGenerationService : IAwaitGenerationService {
