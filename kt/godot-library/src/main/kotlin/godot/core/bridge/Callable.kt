@@ -22,6 +22,6 @@ interface Callable: CoreType {
 
         @JvmStatic
         @JvmName("create")
-        operator fun invoke(ktCallable: KtCallable<*>) = NativeCallable(ktCallable)
+        operator fun invoke(lambdaCallable: LambdaCallable<*>) = NativeCallable(lambdaCallable)
     }
 }

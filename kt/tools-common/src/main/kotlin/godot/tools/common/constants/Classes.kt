@@ -114,7 +114,7 @@ object GodotTypes {
     const val vector4 = "Vector4"
     const val vector4i = "Vector4i"
     const val projection = "Projection"
-    const val ktCallable = "KtCallable"
+    const val lambdaCallable = "LambdaCallable"
     const val callable = "Callable"
     const val signal = "Signal"
     const val variant = "Variant"

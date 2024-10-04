@@ -6,7 +6,7 @@ import godot.core.memory.TransferContext
 import godot.util.GodotLogging
 import godot.util.VoidPtr
 
-abstract class KtCallable<R : Any?>(
+abstract class LambdaCallable<R : Any?>(
     internal val variantConverter: VariantConverter,
     vararg parameterTypes: VariantConverter
 ) : Callable {
@@ -43,7 +43,7 @@ abstract class KtCallable<R : Any?>(
 
     @Suppress("FunctionName")
     private object Bridge {
-        external fun wrap_in_custom_callable(instance: KtCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun wrap_in_custom_callable(instance: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
     }
 }
 

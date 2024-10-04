@@ -2,7 +2,6 @@ package godot.tests;
 
 import godot.Button;
 import godot.Node;
-import godot.Object;
 import godot.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;
@@ -71,7 +70,7 @@ public class JavaTestClass extends Node {
     @RegisterProperty
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
-    public KtCallable<Void> lambdaCallable = KtCallable0.create(
+    public LambdaCallable<Void> lambdaCallable = LambdaCallable0.create(
             Void.class,
             () -> {
                 System.out.println("Hello from Callable");

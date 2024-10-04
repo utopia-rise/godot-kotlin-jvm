@@ -24,7 +24,7 @@ import godot.codegen.services.impl.ClassGraphService
 import godot.codegen.services.impl.ClassService
 import godot.codegen.services.impl.EnumService
 import godot.codegen.services.impl.GenerationService
-import godot.codegen.services.impl.KtCallableGenerationService
+import godot.codegen.services.impl.LambdaCallableGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
@@ -96,7 +96,7 @@ fun File.generateApiFrom(jsonSource: File) {
             .writeTo(this)
     }
 
-    KtCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
+    LambdaCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
     SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
 }
 

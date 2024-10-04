@@ -111,7 +111,7 @@ internal val notNullableVariantSet = hashSetOf(
     Vector4i::class,
     Projection::class,
     NativeCallable::class,
-    KtCallable::class,
+    LambdaCallable::class,
     Signal::class,
     PackedByteArray::class,
     PackedColorArray::class,

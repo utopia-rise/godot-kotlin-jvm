@@ -72,7 +72,7 @@ fun Type?.toKtVariantType(): ClassName = when {
     fqName == "$godotCorePackage.${GodotTypes.packedVector2Array}" -> VARIANT_PARSER_PACKED_VECTOR2_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedVector3Array}" -> VARIANT_PARSER_PACKED_VECTOR3_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.packedColorArray}" -> VARIANT_PARSER_PACKED_COLOR_ARRAY
-    fqName.startsWith("$godotCorePackage.${GodotTypes.ktCallable}") -> VARIANT_PARSER_PACKED_CALLABLE
+    fqName.startsWith("$godotCorePackage.${GodotTypes.lambdaCallable}") -> VARIANT_PARSER_PACKED_CALLABLE
     isCoreType() -> ClassName(
         variantParserPackage,
         fqName.substringAfterLast(".").convertToCamelCase().uppercase(Locale.getDefault())

@@ -14,16 +14,16 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import godot.codegen.services.IKtCallableGenerationService
+import godot.codegen.services.ILambdaCallableGenerationService
 import godot.codegen.utils.GenericClassNameInfo
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 
-class KtCallableGenerationService : IKtCallableGenerationService {
+class LambdaCallableGenerationService : ILambdaCallableGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "KtCallables")
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
 
         for (argCount in 0..maxArgumentCount) {
             val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
@@ -131,6 +131,8 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         )
                         .build()
                 )
+                .addModifiers(KModifier.INTERNAL)
+                .addAnnotation(PublishedApi::class)
 
             classBuilder.primaryConstructor(primaryConstructor.build())
 
@@ -272,7 +274,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
 
             val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
             callableFileSpec.addFunction(
-                FunSpec.builder(CALLABLE_FUNCTION_NAME)
+                FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addModifiers(KModifier.INLINE)
@@ -317,7 +319,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addModifiers(KModifier.INLINE)
                         .receiver(lambdaTypeName)
-                        .addCode("return·$CALLABLE_FUNCTION_NAME(this)")
+                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount(this)")
                         .build()
                 )
         }
@@ -395,7 +397,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
 
     private companion object {
         const val FUNCTION_PARAMETER_NAME = "function"
-        const val KT_CALLABLE_NAME = "KtCallable"
+        const val KT_CALLABLE_NAME = "LambdaCallable"
         const val CALLABLE_FUNCTION_NAME = "callable"
         const val JAVA_CREATE_METHOD_NAME = "javaCreate"
         const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
