@@ -10,6 +10,7 @@ import godot.util.RealT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -35,17 +36,16 @@ public suspend inline fun ResourceLoader.awaitLoad(
     crossinline onProgress: (RealT) -> Unit = {},
 ): Resource? {
     // early return in case the resource is already loaded
-    if (this.hasCached(path)) {
-        return this.load(path)
+    if (hasCached(path)) {
+        return load(path)
     }
 
     // Start a new job so we have a suspension point in case the coroutine is currently in the main thread.
-    val job = GodotCoroutine.launch(Dispatchers.Default) {
+    val job = GodotCoroutine.async(Dispatchers.Default) {
         load(path)
     }
-    job.join()
 
-    return this.load(path)
+    return job.await()
 }
 
 /**
