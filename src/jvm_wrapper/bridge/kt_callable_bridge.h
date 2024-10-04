@@ -5,12 +5,12 @@
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
 namespace bridges {
-    JVM_SINGLETON_WRAPPER(KtCallableBridge, "godot.core.KtCallable$Bridge") {
-        SINGLETON_CLASS(KtCallableBridge)
+    JVM_SINGLETON_WRAPPER(LambdaCallableBridge, "godot.core.LambdaCallable$Bridge") {
+        SINGLETON_CLASS(LambdaCallableBridge)
 
         // clang-format off
         INIT_JNI_BINDINGS(
-            INIT_NATIVE_METHOD("wrap_in_custom_callable", "(Lgodot/core/KtCallable;II)J", KtCallableBridge::wrap_in_custom_callable)
+            INIT_NATIVE_METHOD("wrap_in_custom_callable", "(Lgodot/core/LambdaCallable;II)J", LambdaCallableBridge::wrap_in_custom_callable)
         )
         // clang-format on
 

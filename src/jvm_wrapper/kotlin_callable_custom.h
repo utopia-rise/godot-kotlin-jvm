@@ -4,8 +4,8 @@
 #include "jvm_wrapper/jvm_instance_wrapper.h"
 #include "core/variant/callable.h"
 
-JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.KtCallable") {
-    JVM_CLASS(KtCallable)
+JVM_INSTANCE_WRAPPER(LambdaCallable, "godot.core.LambdaCallable") {
+    JVM_CLASS(LambdaCallable)
     // clang-format off
 
     JNI_VOID_METHOD(INVOKE_NO_RETURN)
@@ -25,9 +25,9 @@ JVM_INSTANCE_WRAPPER(KtCallable, "godot.core.KtCallable") {
 public:
     void invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const;
     int get_hash_code() const;
-    bool equals(const KtCallable& other) const;
+    bool equals(const LambdaCallable& other) const;
 
-    KtCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code);
+    LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code);
 
 private:
     int hash_code;
@@ -47,7 +47,7 @@ public:
     KotlinCallableCustom(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code);
 
 private:
-    KtCallable kt_callable;
+    LambdaCallable kt_callable;
 
     static bool compare_equal(const CallableCustom* p_a, const CallableCustom* p_b);
     static bool compare_less(const CallableCustom* p_a, const CallableCustom* p_b);

@@ -107,12 +107,12 @@ bool JvmManager::initialize_jni_classes(jni::Env& p_env, ClassLoader* class_load
     KtFunctionInfo::initialize_jni_binding(p_env, class_loader);
     KtFunction::initialize_jni_binding(p_env, class_loader);
     KtClass::initialize_jni_binding(p_env, class_loader);
-    KtCallable::initialize_jni_binding(p_env, class_loader);
+    LambdaCallable::initialize_jni_binding(p_env, class_loader);
 
     bool ret = TransferContext::initialize(p_env, class_loader) && TypeManager::initialize(p_env, class_loader)
             && LongStringQueue::initialize(p_env, class_loader) && MemoryManager::initialize(p_env, class_loader)
             && bridges::GDPrintBridge::initialize(p_env, class_loader) && bridges::JvmStackTrace::initialize(p_env, class_loader)
-            && bridges::CallableBridge::initialize(p_env, class_loader) && bridges::KtCallableBridge::initialize(p_env, class_loader)
+            && bridges::CallableBridge::initialize(p_env, class_loader) && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
             && bridges::StringNameBridge::initialize(p_env, class_loader) && bridges::NodePathBridge::initialize(p_env, class_loader)
             && bridges::VariantArrayBridge::initialize(p_env, class_loader)
