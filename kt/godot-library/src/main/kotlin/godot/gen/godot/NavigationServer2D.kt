@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * NavigationServer2D is the server that handles navigation maps, regions and agents. It does not
@@ -65,11 +66,13 @@ public object NavigationServer2D : Object() {
   /**
    * Emitted when a navigation map is updated, when a region moves or is modified.
    */
+  @JvmStatic
   public val mapChanged: Signal1<RID> by Signal1
 
   /**
    * Emitted when navigation debug settings are changed. Only available in debug builds.
    */
+  @JvmStatic
   public val navigationDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -80,6 +83,7 @@ public object NavigationServer2D : Object() {
    * Returns all created navigation map [RID]s on the NavigationServer. This returns both 2D and 3D
    * created navigation maps as there is technically no distinction between them.
    */
+  @JvmStatic
   public final fun getMaps(): VariantArray<RID> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMapsPtr, ARRAY)
@@ -89,6 +93,7 @@ public object NavigationServer2D : Object() {
   /**
    * Create a new map.
    */
+  @JvmStatic
   public final fun mapCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mapCreatePtr, _RID)
@@ -98,6 +103,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the map active.
    */
+  @JvmStatic
   public final fun mapSetActive(map: RID, active: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to active)
     TransferContext.callMethod(rawPtr, MethodBindings.mapSetActivePtr, NIL)
@@ -106,6 +112,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns true if the map is active.
    */
+  @JvmStatic
   public final fun mapIsActive(map: RID): Boolean {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapIsActivePtr, BOOL)
@@ -116,6 +123,7 @@ public object NavigationServer2D : Object() {
    * Sets the map cell size used to rasterize the navigation mesh vertices. Must match with the cell
    * size of the used navigation meshes.
    */
+  @JvmStatic
   public final fun mapSetCellSize(map: RID, cellSize: Float): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to cellSize.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.mapSetCellSizePtr, NIL)
@@ -124,6 +132,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the map cell size used to rasterize the navigation mesh vertices.
    */
+  @JvmStatic
   public final fun mapGetCellSize(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetCellSizePtr, DOUBLE)
@@ -135,6 +144,7 @@ public object NavigationServer2D : Object() {
    * navigation regions to use edge connections to connect with other navigation regions within
    * proximity of the navigation map edge connection margin.
    */
+  @JvmStatic
   public final fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to map, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.mapSetUseEdgeConnectionsPtr, NIL)
@@ -145,6 +155,7 @@ public object NavigationServer2D : Object() {
    * connect with other navigation regions within proximity of the navigation map edge connection
    * margin.
    */
+  @JvmStatic
   public final fun mapGetUseEdgeConnections(map: RID): Boolean {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetUseEdgeConnectionsPtr, BOOL)
@@ -154,6 +165,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the map edge connection margin used to weld the compatible region edges.
    */
+  @JvmStatic
   public final fun mapSetEdgeConnectionMargin(map: RID, margin: Float): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to margin.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.mapSetEdgeConnectionMarginPtr, NIL)
@@ -163,6 +175,7 @@ public object NavigationServer2D : Object() {
    * Returns the edge connection margin of the map. The edge connection margin is a distance used to
    * connect two regions.
    */
+  @JvmStatic
   public final fun mapGetEdgeConnectionMargin(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetEdgeConnectionMarginPtr, DOUBLE)
@@ -172,6 +185,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the map's link connection radius used to connect links to navigation polygons.
    */
+  @JvmStatic
   public final fun mapSetLinkConnectionRadius(map: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to map, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.mapSetLinkConnectionRadiusPtr, NIL)
@@ -181,6 +195,7 @@ public object NavigationServer2D : Object() {
    * Returns the link connection radius of the map. This distance is the maximum range any link will
    * search for navigation mesh polygons to connect to.
    */
+  @JvmStatic
   public final fun mapGetLinkConnectionRadius(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinkConnectionRadiusPtr, DOUBLE)
@@ -192,6 +207,7 @@ public object NavigationServer2D : Object() {
    * bitmask of all region navigation layers that are allowed to be in the path.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun mapGetPath(
     map: RID,
     origin: Vector2,
@@ -207,6 +223,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the point closest to the provided [toPoint] on the navigation mesh surface.
    */
+  @JvmStatic
   public final fun mapGetClosestPoint(map: RID, toPoint: Vector2): Vector2 {
     TransferContext.writeArguments(_RID to map, VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointPtr, VECTOR2)
@@ -216,6 +233,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the owner region RID for the point returned by [mapGetClosestPoint].
    */
+  @JvmStatic
   public final fun mapGetClosestPointOwner(map: RID, toPoint: Vector2): RID {
     TransferContext.writeArguments(_RID to map, VECTOR2 to toPoint)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointOwnerPtr, _RID)
@@ -226,6 +244,7 @@ public object NavigationServer2D : Object() {
    * Returns all navigation link [RID]s that are currently assigned to the requested navigation
    * [map].
    */
+  @JvmStatic
   public final fun mapGetLinks(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinksPtr, ARRAY)
@@ -236,6 +255,7 @@ public object NavigationServer2D : Object() {
    * Returns all navigation regions [RID]s that are currently assigned to the requested navigation
    * [map].
    */
+  @JvmStatic
   public final fun mapGetRegions(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetRegionsPtr, ARRAY)
@@ -246,6 +266,7 @@ public object NavigationServer2D : Object() {
    * Returns all navigation agents [RID]s that are currently assigned to the requested navigation
    * [map].
    */
+  @JvmStatic
   public final fun mapGetAgents(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetAgentsPtr, ARRAY)
@@ -256,6 +277,7 @@ public object NavigationServer2D : Object() {
    * Returns all navigation obstacle [RID]s that are currently assigned to the requested navigation
    * [map].
    */
+  @JvmStatic
   public final fun mapGetObstacles(map: RID): VariantArray<RID> {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetObstaclesPtr, ARRAY)
@@ -283,6 +305,7 @@ public object NavigationServer2D : Object() {
    * NavigationServer command queue. Not only can this severely impact the performance of a game but it
    * can also introduce bugs if used inappropriately without much foresight.
    */
+  @JvmStatic
   public final fun mapForceUpdate(map: RID): Unit {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapForceUpdatePtr, NIL)
@@ -294,6 +317,7 @@ public object NavigationServer2D : Object() {
    * never synchronized.
    * **Note:** The iteration id will wrap back to 1 after reaching its range limit.
    */
+  @JvmStatic
   public final fun mapGetIterationId(map: RID): Long {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.mapGetIterationIdPtr, LONG)
@@ -306,6 +330,7 @@ public object NavigationServer2D : Object() {
    * area (slower).
    * If [uniformly] is `false`, just a random region and a random polygon are picked (faster).
    */
+  @JvmStatic
   public final fun mapGetRandomPoint(
     map: RID,
     navigationLayers: Long,
@@ -322,6 +347,7 @@ public object NavigationServer2D : Object() {
    * [NavigationPathQueryResult2D] result object with the path among other results requested by the
    * query.
    */
+  @JvmStatic
   public final fun queryPath(parameters: NavigationPathQueryParameters2D?,
       result: NavigationPathQueryResult2D?): Unit {
     TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
@@ -331,6 +357,7 @@ public object NavigationServer2D : Object() {
   /**
    * Creates a new region.
    */
+  @JvmStatic
   public final fun regionCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.regionCreatePtr, _RID)
@@ -340,6 +367,7 @@ public object NavigationServer2D : Object() {
   /**
    * If [enabled] is `true` the specified [region] will contribute to its current navigation map.
    */
+  @JvmStatic
   public final fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
@@ -348,6 +376,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` if the specified [region] is enabled.
    */
+  @JvmStatic
   public final fun regionGetEnabled(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
@@ -358,6 +387,7 @@ public object NavigationServer2D : Object() {
    * If [enabled] is `true`, the navigation [region] will use edge connections to connect with other
    * navigation regions within proximity of the navigation map edge connection margin.
    */
+  @JvmStatic
   public final fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to region, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetUseEdgeConnectionsPtr, NIL)
@@ -367,6 +397,7 @@ public object NavigationServer2D : Object() {
    * Returns whether the navigation [region] is set to use edge connections to connect with other
    * navigation regions within proximity of the navigation map edge connection margin.
    */
+  @JvmStatic
   public final fun regionGetUseEdgeConnections(region: RID): Boolean {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetUseEdgeConnectionsPtr, BOOL)
@@ -376,6 +407,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [enterCost] for this [region].
    */
+  @JvmStatic
   public final fun regionSetEnterCost(region: RID, enterCost: Float): Unit {
     TransferContext.writeArguments(_RID to region, DOUBLE to enterCost.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnterCostPtr, NIL)
@@ -384,6 +416,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the enter cost of this [region].
    */
+  @JvmStatic
   public final fun regionGetEnterCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnterCostPtr, DOUBLE)
@@ -393,6 +426,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [travelCost] for this [region].
    */
+  @JvmStatic
   public final fun regionSetTravelCost(region: RID, travelCost: Float): Unit {
     TransferContext.writeArguments(_RID to region, DOUBLE to travelCost.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetTravelCostPtr, NIL)
@@ -401,6 +435,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the travel cost of this [region].
    */
+  @JvmStatic
   public final fun regionGetTravelCost(region: RID): Float {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetTravelCostPtr, DOUBLE)
@@ -410,6 +445,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the `ObjectID` of the object which manages this region.
    */
+  @JvmStatic
   public final fun regionSetOwnerId(region: RID, ownerId: Long): Unit {
     TransferContext.writeArguments(_RID to region, LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetOwnerIdPtr, NIL)
@@ -418,6 +454,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `ObjectID` of the object which manages this region.
    */
+  @JvmStatic
   public final fun regionGetOwnerId(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetOwnerIdPtr, LONG)
@@ -436,6 +473,7 @@ public object NavigationServer2D : Object() {
    * **Note:** If navigation meshes from different navigation regions overlap (which should be
    * avoided in general) the result might not be what is expected.
    */
+  @JvmStatic
   public final fun regionOwnsPoint(region: RID, point: Vector2): Boolean {
     TransferContext.writeArguments(_RID to region, VECTOR2 to point)
     TransferContext.callMethod(rawPtr, MethodBindings.regionOwnsPointPtr, BOOL)
@@ -445,6 +483,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the map for the region.
    */
+  @JvmStatic
   public final fun regionSetMap(region: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to region, _RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetMapPtr, NIL)
@@ -453,6 +492,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation map [RID] the requested [region] is currently assigned to.
    */
+  @JvmStatic
   public final fun regionGetMap(region: RID): RID {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetMapPtr, _RID)
@@ -463,6 +503,7 @@ public object NavigationServer2D : Object() {
    * Set the region's navigation layers. This allows selecting regions from a path request (when
    * using [NavigationServer2D.mapGetPath]).
    */
+  @JvmStatic
   public final fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
     TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetNavigationLayersPtr, NIL)
@@ -471,6 +512,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the region's navigation layers.
    */
+  @JvmStatic
   public final fun regionGetNavigationLayers(region: RID): Long {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetNavigationLayersPtr, LONG)
@@ -480,6 +522,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the global transformation for the region.
    */
+  @JvmStatic
   public final fun regionSetTransform(region: RID, transform: Transform2D): Unit {
     TransferContext.writeArguments(_RID to region, TRANSFORM2D to transform)
     TransferContext.callMethod(rawPtr, MethodBindings.regionSetTransformPtr, NIL)
@@ -488,6 +531,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the global transformation of this [region].
    */
+  @JvmStatic
   public final fun regionGetTransform(region: RID): Transform2D {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetTransformPtr, TRANSFORM2D)
@@ -497,6 +541,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [navigationPolygon] for the region.
    */
+  @JvmStatic
   public final fun regionSetNavigationPolygon(region: RID, navigationPolygon: NavigationPolygon?):
       Unit {
     TransferContext.writeArguments(_RID to region, OBJECT to navigationPolygon)
@@ -506,6 +551,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns how many connections this [region] has with other regions in the map.
    */
+  @JvmStatic
   public final fun regionGetConnectionsCount(region: RID): Int {
     TransferContext.writeArguments(_RID to region)
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionsCountPtr, LONG)
@@ -516,6 +562,7 @@ public object NavigationServer2D : Object() {
    * Returns the starting point of a connection door. [connection] is an index between 0 and the
    * return value of [regionGetConnectionsCount].
    */
+  @JvmStatic
   public final fun regionGetConnectionPathwayStart(region: RID, connection: Int): Vector2 {
     TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayStartPtr, VECTOR2)
@@ -526,6 +573,7 @@ public object NavigationServer2D : Object() {
    * Returns the ending point of a connection door. [connection] is an index between 0 and the
    * return value of [regionGetConnectionsCount].
    */
+  @JvmStatic
   public final fun regionGetConnectionPathwayEnd(region: RID, connection: Int): Vector2 {
     TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayEndPtr, VECTOR2)
@@ -538,6 +586,7 @@ public object NavigationServer2D : Object() {
    * (slower).
    * If [uniformly] is `false`, just a random polygon and face is picked (faster).
    */
+  @JvmStatic
   public final fun regionGetRandomPoint(
     region: RID,
     navigationLayers: Long,
@@ -551,6 +600,7 @@ public object NavigationServer2D : Object() {
   /**
    * Create a new link between two positions on a map.
    */
+  @JvmStatic
   public final fun linkCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.linkCreatePtr, _RID)
@@ -560,6 +610,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the navigation map [RID] for the link.
    */
+  @JvmStatic
   public final fun linkSetMap(link: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to link, _RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetMapPtr, NIL)
@@ -568,6 +619,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation map [RID] the requested [link] is currently assigned to.
    */
+  @JvmStatic
   public final fun linkGetMap(link: RID): RID {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetMapPtr, _RID)
@@ -577,6 +629,7 @@ public object NavigationServer2D : Object() {
   /**
    * If [enabled] is `true`, the specified [link] will contribute to its current navigation map.
    */
+  @JvmStatic
   public final fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
@@ -585,6 +638,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` if the specified [link] is enabled.
    */
+  @JvmStatic
   public final fun linkGetEnabled(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
@@ -594,6 +648,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets whether this [link] can be travelled in both directions.
    */
+  @JvmStatic
   public final fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
     TransferContext.writeArguments(_RID to link, BOOL to bidirectional)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetBidirectionalPtr, NIL)
@@ -602,6 +657,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns whether this [link] can be travelled in both directions.
    */
+  @JvmStatic
   public final fun linkIsBidirectional(link: RID): Boolean {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkIsBidirectionalPtr, BOOL)
@@ -612,6 +668,7 @@ public object NavigationServer2D : Object() {
    * Set the links's navigation layers. This allows selecting links from a path request (when using
    * [NavigationServer2D.mapGetPath]).
    */
+  @JvmStatic
   public final fun linkSetNavigationLayers(link: RID, navigationLayers: Long): Unit {
     TransferContext.writeArguments(_RID to link, LONG to navigationLayers)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetNavigationLayersPtr, NIL)
@@ -620,6 +677,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation layers for this [link].
    */
+  @JvmStatic
   public final fun linkGetNavigationLayers(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetNavigationLayersPtr, LONG)
@@ -629,6 +687,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the entry position for this [link].
    */
+  @JvmStatic
   public final fun linkSetStartPosition(link: RID, position: Vector2): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetStartPositionPtr, NIL)
@@ -637,6 +696,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the starting position of this [link].
    */
+  @JvmStatic
   public final fun linkGetStartPosition(link: RID): Vector2 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetStartPositionPtr, VECTOR2)
@@ -646,6 +706,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the exit position for the [link].
    */
+  @JvmStatic
   public final fun linkSetEndPosition(link: RID, position: Vector2): Unit {
     TransferContext.writeArguments(_RID to link, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetEndPositionPtr, NIL)
@@ -654,6 +715,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the ending position of this [link].
    */
+  @JvmStatic
   public final fun linkGetEndPosition(link: RID): Vector2 {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEndPositionPtr, VECTOR2)
@@ -663,6 +725,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [enterCost] for this [link].
    */
+  @JvmStatic
   public final fun linkSetEnterCost(link: RID, enterCost: Float): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to enterCost.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnterCostPtr, NIL)
@@ -671,6 +734,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the enter cost of this [link].
    */
+  @JvmStatic
   public final fun linkGetEnterCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnterCostPtr, DOUBLE)
@@ -680,6 +744,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the [travelCost] for this [link].
    */
+  @JvmStatic
   public final fun linkSetTravelCost(link: RID, travelCost: Float): Unit {
     TransferContext.writeArguments(_RID to link, DOUBLE to travelCost.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetTravelCostPtr, NIL)
@@ -688,6 +753,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the travel cost of this [link].
    */
+  @JvmStatic
   public final fun linkGetTravelCost(link: RID): Float {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetTravelCostPtr, DOUBLE)
@@ -697,6 +763,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the `ObjectID` of the object which manages this link.
    */
+  @JvmStatic
   public final fun linkSetOwnerId(link: RID, ownerId: Long): Unit {
     TransferContext.writeArguments(_RID to link, LONG to ownerId)
     TransferContext.callMethod(rawPtr, MethodBindings.linkSetOwnerIdPtr, NIL)
@@ -705,6 +772,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `ObjectID` of the object which manages this link.
    */
+  @JvmStatic
   public final fun linkGetOwnerId(link: RID): Long {
     TransferContext.writeArguments(_RID to link)
     TransferContext.callMethod(rawPtr, MethodBindings.linkGetOwnerIdPtr, LONG)
@@ -714,6 +782,7 @@ public object NavigationServer2D : Object() {
   /**
    * Creates the agent.
    */
+  @JvmStatic
   public final fun agentCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.agentCreatePtr, _RID)
@@ -723,6 +792,7 @@ public object NavigationServer2D : Object() {
   /**
    * If [enabled] is `true`, the specified [agent] uses avoidance.
    */
+  @JvmStatic
   public final fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceEnabledPtr, NIL)
@@ -731,6 +801,7 @@ public object NavigationServer2D : Object() {
   /**
    * Return `true` if the specified [agent] uses avoidance.
    */
+  @JvmStatic
   public final fun agentGetAvoidanceEnabled(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceEnabledPtr, BOOL)
@@ -740,6 +811,7 @@ public object NavigationServer2D : Object() {
   /**
    * Puts the agent in the map.
    */
+  @JvmStatic
   public final fun agentSetMap(agent: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to agent, _RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetMapPtr, NIL)
@@ -748,6 +820,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation map [RID] the requested [agent] is currently assigned to.
    */
+  @JvmStatic
   public final fun agentGetMap(agent: RID): RID {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMapPtr, _RID)
@@ -758,6 +831,7 @@ public object NavigationServer2D : Object() {
    * If [paused] is true the specified [agent] will not be processed, e.g. calculate avoidance
    * velocities or receive avoidance callbacks.
    */
+  @JvmStatic
   public final fun agentSetPaused(agent: RID, paused: Boolean): Unit {
     TransferContext.writeArguments(_RID to agent, BOOL to paused)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetPausedPtr, NIL)
@@ -766,6 +840,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` if the specified [agent] is paused.
    */
+  @JvmStatic
   public final fun agentGetPaused(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetPausedPtr, BOOL)
@@ -777,6 +852,7 @@ public object NavigationServer2D : Object() {
    * larger this number, the longer the running time of the simulation. If the number is too low, the
    * simulation will not be safe.
    */
+  @JvmStatic
   public final fun agentSetNeighborDistance(agent: RID, distance: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to distance.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetNeighborDistancePtr, NIL)
@@ -786,6 +862,7 @@ public object NavigationServer2D : Object() {
    * Returns the maximum distance to other agents the specified [agent] takes into account in the
    * navigation.
    */
+  @JvmStatic
   public final fun agentGetNeighborDistance(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetNeighborDistancePtr, DOUBLE)
@@ -797,6 +874,7 @@ public object NavigationServer2D : Object() {
    * larger this number, the longer the running time of the simulation. If the number is too low, the
    * simulation will not be safe.
    */
+  @JvmStatic
   public final fun agentSetMaxNeighbors(agent: RID, count: Int): Unit {
     TransferContext.writeArguments(_RID to agent, LONG to count.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetMaxNeighborsPtr, NIL)
@@ -806,6 +884,7 @@ public object NavigationServer2D : Object() {
    * Returns the maximum number of other agents the specified [agent] takes into account in the
    * navigation.
    */
+  @JvmStatic
   public final fun agentGetMaxNeighbors(agent: RID): Int {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxNeighborsPtr, LONG)
@@ -818,6 +897,7 @@ public object NavigationServer2D : Object() {
    * to the presence of other agents, but the less freedom this agent has in choosing its velocities. A
    * too high value will slow down agents movement considerably. Must be positive.
    */
+  @JvmStatic
   public final fun agentSetTimeHorizonAgents(agent: RID, timeHorizon: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonAgentsPtr, NIL)
@@ -827,6 +907,7 @@ public object NavigationServer2D : Object() {
    * Returns the minimal amount of time for which the specified [agent]'s velocities that are
    * computed by the simulation are safe with respect to other agents.
    */
+  @JvmStatic
   public final fun agentGetTimeHorizonAgents(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonAgentsPtr, DOUBLE)
@@ -840,6 +921,7 @@ public object NavigationServer2D : Object() {
    * choosing its velocities. A too high value will slow down agents movement considerably. Must be
    * positive.
    */
+  @JvmStatic
   public final fun agentSetTimeHorizonObstacles(agent: RID, timeHorizon: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonObstaclesPtr, NIL)
@@ -849,6 +931,7 @@ public object NavigationServer2D : Object() {
    * Returns the minimal amount of time for which the specified [agent]'s velocities that are
    * computed by the simulation are safe with respect to static avoidance obstacles.
    */
+  @JvmStatic
   public final fun agentGetTimeHorizonObstacles(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonObstaclesPtr, DOUBLE)
@@ -858,6 +941,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the radius of the agent.
    */
+  @JvmStatic
   public final fun agentSetRadius(agent: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetRadiusPtr, NIL)
@@ -866,6 +950,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the radius of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetRadius(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetRadiusPtr, DOUBLE)
@@ -875,6 +960,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the maximum speed of the agent. Must be positive.
    */
+  @JvmStatic
   public final fun agentSetMaxSpeed(agent: RID, maxSpeed: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetMaxSpeedPtr, NIL)
@@ -883,6 +969,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the maximum speed of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetMaxSpeed(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxSpeedPtr, DOUBLE)
@@ -894,6 +981,7 @@ public object NavigationServer2D : Object() {
    * specified [agent]. When an agent is teleported to a new position far away this function should be
    * used in the same frame. If called frequently this function can get agents stuck.
    */
+  @JvmStatic
   public final fun agentSetVelocityForced(agent: RID, velocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetVelocityForcedPtr, NIL)
@@ -905,6 +993,7 @@ public object NavigationServer2D : Object() {
    * agent's and obstacles. When an agent is teleported to a new position far away use
    * [agentSetVelocityForced] instead to reset the internal velocity state.
    */
+  @JvmStatic
   public final fun agentSetVelocity(agent: RID, velocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetVelocityPtr, NIL)
@@ -913,6 +1002,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the velocity of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetVelocity(agent: RID): Vector2 {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetVelocityPtr, VECTOR2)
@@ -922,6 +1012,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the position of the agent in world space.
    */
+  @JvmStatic
   public final fun agentSetPosition(agent: RID, position: Vector2): Unit {
     TransferContext.writeArguments(_RID to agent, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetPositionPtr, NIL)
@@ -930,6 +1021,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the position of the specified [agent] in world space.
    */
+  @JvmStatic
   public final fun agentGetPosition(agent: RID): Vector2 {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetPositionPtr, VECTOR2)
@@ -939,6 +1031,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns true if the map got changed the previous frame.
    */
+  @JvmStatic
   public final fun agentIsMapChanged(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentIsMapChangedPtr, BOOL)
@@ -953,6 +1046,7 @@ public object NavigationServer2D : Object() {
    * as the agent is on a navigation map and not freed. To disable the dispatch of a callback from an
    * agent use [agentSetAvoidanceCallback] again with an empty [Callable].
    */
+  @JvmStatic
   public final fun agentSetAvoidanceCallback(agent: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to agent, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceCallbackPtr, NIL)
@@ -961,6 +1055,7 @@ public object NavigationServer2D : Object() {
   /**
    * Return `true` if the specified [agent] has an avoidance callback.
    */
+  @JvmStatic
   public final fun agentHasAvoidanceCallback(agent: RID): Boolean {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentHasAvoidanceCallbackPtr, BOOL)
@@ -970,6 +1065,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the agent's `avoidance_layers` bitmask.
    */
+  @JvmStatic
   public final fun agentSetAvoidanceLayers(agent: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to agent, LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceLayersPtr, NIL)
@@ -978,6 +1074,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `avoidance_layers` bitmask of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetAvoidanceLayers(agent: RID): Long {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceLayersPtr, LONG)
@@ -987,6 +1084,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the agent's `avoidance_mask` bitmask.
    */
+  @JvmStatic
   public final fun agentSetAvoidanceMask(agent: RID, mask: Long): Unit {
     TransferContext.writeArguments(_RID to agent, LONG to mask)
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceMaskPtr, NIL)
@@ -995,6 +1093,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `avoidance_mask` bitmask of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetAvoidanceMask(agent: RID): Long {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceMaskPtr, LONG)
@@ -1008,6 +1107,7 @@ public object NavigationServer2D : Object() {
    * `avoidance_mask` but have a lower `avoidance_priority`. This in turn makes the other agents with
    * lower priority adjust their velocities even more to avoid collision with this agent.
    */
+  @JvmStatic
   public final fun agentSetAvoidancePriority(agent: RID, priority: Float): Unit {
     TransferContext.writeArguments(_RID to agent, DOUBLE to priority.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidancePriorityPtr, NIL)
@@ -1016,6 +1116,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `avoidance_priority` of the specified [agent].
    */
+  @JvmStatic
   public final fun agentGetAvoidancePriority(agent: RID): Float {
     TransferContext.writeArguments(_RID to agent)
     TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidancePriorityPtr, DOUBLE)
@@ -1025,6 +1126,7 @@ public object NavigationServer2D : Object() {
   /**
    * Creates a new navigation obstacle.
    */
+  @JvmStatic
   public final fun obstacleCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleCreatePtr, _RID)
@@ -1034,6 +1136,7 @@ public object NavigationServer2D : Object() {
   /**
    * If [enabled] is `true`, the provided [obstacle] affects avoidance using agents.
    */
+  @JvmStatic
   public final fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceEnabledPtr, NIL)
@@ -1042,6 +1145,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` if the provided [obstacle] has avoidance enabled.
    */
+  @JvmStatic
   public final fun obstacleGetAvoidanceEnabled(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceEnabledPtr, BOOL)
@@ -1051,6 +1155,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the navigation map [RID] for the obstacle.
    */
+  @JvmStatic
   public final fun obstacleSetMap(obstacle: RID, map: RID): Unit {
     TransferContext.writeArguments(_RID to obstacle, _RID to map)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetMapPtr, NIL)
@@ -1059,6 +1164,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the navigation map [RID] the requested [obstacle] is currently assigned to.
    */
+  @JvmStatic
   public final fun obstacleGetMap(obstacle: RID): RID {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetMapPtr, _RID)
@@ -1069,6 +1175,7 @@ public object NavigationServer2D : Object() {
    * If [paused] is true the specified [obstacle] will not be processed, e.g. affect avoidance
    * velocities.
    */
+  @JvmStatic
   public final fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
     TransferContext.writeArguments(_RID to obstacle, BOOL to paused)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetPausedPtr, NIL)
@@ -1077,6 +1184,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` if the specified [obstacle] is paused.
    */
+  @JvmStatic
   public final fun obstacleGetPaused(obstacle: RID): Boolean {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPausedPtr, BOOL)
@@ -1086,6 +1194,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the radius of the dynamic obstacle.
    */
+  @JvmStatic
   public final fun obstacleSetRadius(obstacle: RID, radius: Float): Unit {
     TransferContext.writeArguments(_RID to obstacle, DOUBLE to radius.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetRadiusPtr, NIL)
@@ -1094,6 +1203,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the radius of the specified dynamic [obstacle].
    */
+  @JvmStatic
   public final fun obstacleGetRadius(obstacle: RID): Float {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetRadiusPtr, DOUBLE)
@@ -1104,6 +1214,7 @@ public object NavigationServer2D : Object() {
    * Sets [velocity] of the dynamic [obstacle]. Allows other agents to better predict the movement
    * of the dynamic obstacle. Only works in combination with the radius of the obstacle.
    */
+  @JvmStatic
   public final fun obstacleSetVelocity(obstacle: RID, velocity: Vector2): Unit {
     TransferContext.writeArguments(_RID to obstacle, VECTOR2 to velocity)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetVelocityPtr, NIL)
@@ -1112,6 +1223,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the velocity of the specified dynamic [obstacle].
    */
+  @JvmStatic
   public final fun obstacleGetVelocity(obstacle: RID): Vector2 {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVelocityPtr, VECTOR2)
@@ -1121,6 +1233,7 @@ public object NavigationServer2D : Object() {
   /**
    * Sets the position of the obstacle in world space.
    */
+  @JvmStatic
   public final fun obstacleSetPosition(obstacle: RID, position: Vector2): Unit {
     TransferContext.writeArguments(_RID to obstacle, VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetPositionPtr, NIL)
@@ -1129,6 +1242,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the position of the specified [obstacle] in world space.
    */
+  @JvmStatic
   public final fun obstacleGetPosition(obstacle: RID): Vector2 {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPositionPtr, VECTOR2)
@@ -1139,6 +1253,7 @@ public object NavigationServer2D : Object() {
    * Sets the outline vertices for the obstacle. If the vertices are winded in clockwise order
    * agents will be pushed in by the obstacle, else they will be pushed out.
    */
+  @JvmStatic
   public final fun obstacleSetVertices(obstacle: RID, vertices: PackedVector2Array): Unit {
     TransferContext.writeArguments(_RID to obstacle, PACKED_VECTOR2_ARRAY to vertices)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetVerticesPtr, NIL)
@@ -1147,6 +1262,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the outline vertices for the specified [obstacle].
    */
+  @JvmStatic
   public final fun obstacleGetVertices(obstacle: RID): PackedVector2Array {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVerticesPtr, PACKED_VECTOR2_ARRAY)
@@ -1156,6 +1272,7 @@ public object NavigationServer2D : Object() {
   /**
    * Set the obstacles's `avoidance_layers` bitmask.
    */
+  @JvmStatic
   public final fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Long): Unit {
     TransferContext.writeArguments(_RID to obstacle, LONG to layers)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceLayersPtr, NIL)
@@ -1164,6 +1281,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns the `avoidance_layers` bitmask of the specified [obstacle].
    */
+  @JvmStatic
   public final fun obstacleGetAvoidanceLayers(obstacle: RID): Long {
     TransferContext.writeArguments(_RID to obstacle)
     TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceLayersPtr, LONG)
@@ -1183,6 +1301,7 @@ public object NavigationServer2D : Object() {
    * arrays entirely in code.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun parseSourceGeometryData(
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
@@ -1198,6 +1317,7 @@ public object NavigationServer2D : Object() {
    * After the process is finished the optional [callback] will be called.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun bakeFromSourceGeometryData(
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
@@ -1213,6 +1333,7 @@ public object NavigationServer2D : Object() {
    * [callback] will be called.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun bakeFromSourceGeometryDataAsync(
     navigationPolygon: NavigationPolygon?,
     sourceGeometryData: NavigationMeshSourceGeometryData2D?,
@@ -1225,6 +1346,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` when the provided navigation polygon is being baked on a background thread.
    */
+  @JvmStatic
   public final fun isBakingNavigationPolygon(navigationPolygon: NavigationPolygon?): Boolean {
     TransferContext.writeArguments(OBJECT to navigationPolygon)
     TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationPolygonPtr, BOOL)
@@ -1236,6 +1358,7 @@ public object NavigationServer2D : Object() {
    * [sourceGeometryParserSetCallback] the callback will be called for every single node that gets
    * parsed whenever [parseSourceGeometryData] is used.
    */
+  @JvmStatic
   public final fun sourceGeometryParserCreate(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.sourceGeometryParserCreatePtr, _RID)
@@ -1251,6 +1374,7 @@ public object NavigationServer2D : Object() {
    * source geometry for navigation mesh baking to this object.
    * - `node` - The [Node] that is parsed.
    */
+  @JvmStatic
   public final fun sourceGeometryParserSetCallback(parser: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to parser, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.sourceGeometryParserSetCallbackPtr, NIL)
@@ -1264,6 +1388,7 @@ public object NavigationServer2D : Object() {
    * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
    * fields".
    */
+  @JvmStatic
   public final fun simplifyPath(path: PackedVector2Array, epsilon: Float): PackedVector2Array {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to path, DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.simplifyPathPtr, PACKED_VECTOR2_ARRAY)
@@ -1273,6 +1398,7 @@ public object NavigationServer2D : Object() {
   /**
    * Destroys the given RID.
    */
+  @JvmStatic
   public final fun freeRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
@@ -1281,6 +1407,7 @@ public object NavigationServer2D : Object() {
   /**
    * If `true` enables debug mode on the NavigationServer.
    */
+  @JvmStatic
   public final fun setDebugEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
@@ -1289,6 +1416,7 @@ public object NavigationServer2D : Object() {
   /**
    * Returns `true` when the NavigationServer has debug enabled.
    */
+  @JvmStatic
   public final fun getDebugEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)

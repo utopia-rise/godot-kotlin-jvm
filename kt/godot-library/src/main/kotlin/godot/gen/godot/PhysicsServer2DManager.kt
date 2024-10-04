@@ -19,6 +19,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for
@@ -36,6 +37,7 @@ public object PhysicsServer2DManager : Object() {
    * Register a [PhysicsServer2D] implementation by passing a [name] and a [Callable] that returns a
    * [PhysicsServer2D] object.
    */
+  @JvmStatic
   public final fun registerServer(name: String, createCallback: Callable): Unit {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
     TransferContext.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
@@ -45,6 +47,7 @@ public object PhysicsServer2DManager : Object() {
    * Set the default [PhysicsServer2D] implementation to the one identified by [name], if [priority]
    * is greater than the priority of the current default implementation.
    */
+  @JvmStatic
   public final fun setDefaultServer(name: String, priority: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)

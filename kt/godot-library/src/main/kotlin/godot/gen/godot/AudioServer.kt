@@ -31,6 +31,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [AudioServer] is a low-level server interface for audio access. It is in charge of creating
@@ -41,22 +42,26 @@ public object AudioServer : Object() {
   /**
    * Emitted when an audio bus is added, deleted, or moved.
    */
+  @JvmStatic
   public val busLayoutChanged: Signal0 by Signal0
 
   /**
    * Emitted when the audio bus at [busIndex] is renamed from [oldName] to [newName].
    */
+  @JvmStatic
   public val busRenamed: Signal3<Long, StringName, StringName> by Signal3
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_AUDIOSERVER)
   }
 
+  @JvmStatic
   public final fun setBusCount(amount: Int): Unit {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setBusCountPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getBusCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBusCountPtr, LONG)
@@ -66,6 +71,7 @@ public object AudioServer : Object() {
   /**
    * Removes the bus at index [index].
    */
+  @JvmStatic
   public final fun removeBus(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeBusPtr, NIL)
@@ -75,6 +81,7 @@ public object AudioServer : Object() {
    * Adds a bus at [atPosition].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addBus(atPosition: Int = -1): Unit {
     TransferContext.writeArguments(LONG to atPosition.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addBusPtr, NIL)
@@ -83,6 +90,7 @@ public object AudioServer : Object() {
   /**
    * Moves the bus from index [index] to index [toIndex].
    */
+  @JvmStatic
   public final fun moveBus(index: Int, toIndex: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to toIndex.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.moveBusPtr, NIL)
@@ -91,6 +99,7 @@ public object AudioServer : Object() {
   /**
    * Sets the name of the bus at index [busIdx] to [name].
    */
+  @JvmStatic
   public final fun setBusName(busIdx: Int, name: String): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusNamePtr, NIL)
@@ -99,6 +108,7 @@ public object AudioServer : Object() {
   /**
    * Returns the name of the bus with the index [busIdx].
    */
+  @JvmStatic
   public final fun getBusName(busIdx: Int): String {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusNamePtr, STRING)
@@ -109,6 +119,7 @@ public object AudioServer : Object() {
    * Returns the index of the bus with the name [busName]. Returns `-1` if no bus with the specified
    * name exist.
    */
+  @JvmStatic
   public final fun getBusIndex(busName: StringName): Int {
     TransferContext.writeArguments(STRING_NAME to busName)
     TransferContext.callMethod(rawPtr, MethodBindings.getBusIndexPtr, LONG)
@@ -118,6 +129,7 @@ public object AudioServer : Object() {
   /**
    * Returns the number of channels of the bus at index [busIdx].
    */
+  @JvmStatic
   public final fun getBusChannels(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusChannelsPtr, LONG)
@@ -127,6 +139,7 @@ public object AudioServer : Object() {
   /**
    * Sets the volume of the bus at index [busIdx] to [volumeDb].
    */
+  @JvmStatic
   public final fun setBusVolumeDb(busIdx: Int, volumeDb: Float): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setBusVolumeDbPtr, NIL)
@@ -135,6 +148,7 @@ public object AudioServer : Object() {
   /**
    * Returns the volume of the bus at index [busIdx] in dB.
    */
+  @JvmStatic
   public final fun getBusVolumeDb(busIdx: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusVolumeDbPtr, DOUBLE)
@@ -144,6 +158,7 @@ public object AudioServer : Object() {
   /**
    * Connects the output of the bus at [busIdx] to the bus named [send].
    */
+  @JvmStatic
   public final fun setBusSend(busIdx: Int, send: StringName): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), STRING_NAME to send)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusSendPtr, NIL)
@@ -152,6 +167,7 @@ public object AudioServer : Object() {
   /**
    * Returns the name of the bus that the bus at index [busIdx] sends to.
    */
+  @JvmStatic
   public final fun getBusSend(busIdx: Int): StringName {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusSendPtr, STRING_NAME)
@@ -161,6 +177,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is in solo mode.
    */
+  @JvmStatic
   public final fun setBusSolo(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusSoloPtr, NIL)
@@ -169,6 +186,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is in solo mode.
    */
+  @JvmStatic
   public final fun isBusSolo(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusSoloPtr, BOOL)
@@ -178,6 +196,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is muted.
    */
+  @JvmStatic
   public final fun setBusMute(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusMutePtr, NIL)
@@ -186,6 +205,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is muted.
    */
+  @JvmStatic
   public final fun isBusMute(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusMutePtr, BOOL)
@@ -195,6 +215,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is bypassing effects.
    */
+  @JvmStatic
   public final fun setBusBypassEffects(busIdx: Int, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusBypassEffectsPtr, NIL)
@@ -203,6 +224,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the bus at index [busIdx] is bypassing effects.
    */
+  @JvmStatic
   public final fun isBusBypassingEffects(busIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusBypassingEffectsPtr, BOOL)
@@ -213,6 +235,7 @@ public object AudioServer : Object() {
    * Adds an [AudioEffect] effect to the bus [busIdx] at [atPosition].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addBusEffect(
     busIdx: Int,
     effect: AudioEffect?,
@@ -225,6 +248,7 @@ public object AudioServer : Object() {
   /**
    * Removes the effect at index [effectIdx] from the bus at index [busIdx].
    */
+  @JvmStatic
   public final fun removeBusEffect(busIdx: Int, effectIdx: Int): Unit {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeBusEffectPtr, NIL)
@@ -233,6 +257,7 @@ public object AudioServer : Object() {
   /**
    * Returns the number of effects on the bus at [busIdx].
    */
+  @JvmStatic
   public final fun getBusEffectCount(busIdx: Int): Int {
     TransferContext.writeArguments(LONG to busIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusEffectCountPtr, LONG)
@@ -242,6 +267,7 @@ public object AudioServer : Object() {
   /**
    * Returns the [AudioEffect] at position [effectIdx] in bus [busIdx].
    */
+  @JvmStatic
   public final fun getBusEffect(busIdx: Int, effectIdx: Int): AudioEffect? {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusEffectPtr, OBJECT)
@@ -253,6 +279,7 @@ public object AudioServer : Object() {
    * channel).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getBusEffectInstance(
     busIdx: Int,
     effectIdx: Int,
@@ -266,6 +293,7 @@ public object AudioServer : Object() {
   /**
    * Swaps the position of two effects in bus [busIdx].
    */
+  @JvmStatic
   public final fun swapBusEffects(
     busIdx: Int,
     effectIdx: Int,
@@ -278,6 +306,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the effect at index [effectIdx] on the bus at index [busIdx] is enabled.
    */
+  @JvmStatic
   public final fun setBusEffectEnabled(
     busIdx: Int,
     effectIdx: Int,
@@ -290,6 +319,7 @@ public object AudioServer : Object() {
   /**
    * If `true`, the effect at index [effectIdx] on the bus at index [busIdx] is enabled.
    */
+  @JvmStatic
   public final fun isBusEffectEnabled(busIdx: Int, effectIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to effectIdx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isBusEffectEnabledPtr, BOOL)
@@ -299,6 +329,7 @@ public object AudioServer : Object() {
   /**
    * Returns the peak volume of the left speaker at bus index [busIdx] and channel index [channel].
    */
+  @JvmStatic
   public final fun getBusPeakVolumeLeftDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPeakVolumeLeftDbPtr, DOUBLE)
@@ -308,17 +339,20 @@ public object AudioServer : Object() {
   /**
    * Returns the peak volume of the right speaker at bus index [busIdx] and channel index [channel].
    */
+  @JvmStatic
   public final fun getBusPeakVolumeRightDb(busIdx: Int, channel: Int): Float {
     TransferContext.writeArguments(LONG to busIdx.toLong(), LONG to channel.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getBusPeakVolumeRightDbPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  @JvmStatic
   public final fun setPlaybackSpeedScale(scale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackSpeedScalePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getPlaybackSpeedScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackSpeedScalePtr, DOUBLE)
@@ -329,6 +363,7 @@ public object AudioServer : Object() {
    * Locks the audio driver's main loop.
    * **Note:** Remember to unlock it afterwards.
    */
+  @JvmStatic
   public final fun lock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.lockPtr, NIL)
@@ -337,6 +372,7 @@ public object AudioServer : Object() {
   /**
    * Unlocks the audio driver's main loop. (After locking it, you should always unlock it.)
    */
+  @JvmStatic
   public final fun unlock(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.unlockPtr, NIL)
@@ -345,6 +381,7 @@ public object AudioServer : Object() {
   /**
    * Returns the speaker configuration.
    */
+  @JvmStatic
   public final fun getSpeakerMode(): SpeakerMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSpeakerModePtr, LONG)
@@ -354,6 +391,7 @@ public object AudioServer : Object() {
   /**
    * Returns the sample rate at the output of the [AudioServer].
    */
+  @JvmStatic
   public final fun getMixRate(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
@@ -363,18 +401,21 @@ public object AudioServer : Object() {
   /**
    * Returns the names of all audio output devices detected on the system.
    */
+  @JvmStatic
   public final fun getOutputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputDeviceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
+  @JvmStatic
   public final fun getOutputDevice(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputDevicePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
+  @JvmStatic
   public final fun setOutputDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setOutputDevicePtr, NIL)
@@ -383,6 +424,7 @@ public object AudioServer : Object() {
   /**
    * Returns the relative time until the next mix occurs.
    */
+  @JvmStatic
   public final fun getTimeToNextMix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeToNextMixPtr, DOUBLE)
@@ -392,6 +434,7 @@ public object AudioServer : Object() {
   /**
    * Returns the relative time since the last mix occurred.
    */
+  @JvmStatic
   public final fun getTimeSinceLastMix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeSinceLastMixPtr, DOUBLE)
@@ -404,6 +447,7 @@ public object AudioServer : Object() {
    * on the operating system and audio driver.
    * **Note:** This can be expensive; it is not recommended to call [getOutputLatency] every frame.
    */
+  @JvmStatic
   public final fun getOutputLatency(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getOutputLatencyPtr, DOUBLE)
@@ -416,18 +460,21 @@ public object AudioServer : Object() {
    * See also that setting's description for caveats related to permissions and operating system
    * privacy settings.
    */
+  @JvmStatic
   public final fun getInputDeviceList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputDeviceListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
+  @JvmStatic
   public final fun getInputDevice(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInputDevicePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
+  @JvmStatic
   public final fun setInputDevice(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setInputDevicePtr, NIL)
@@ -436,6 +483,7 @@ public object AudioServer : Object() {
   /**
    * Overwrites the currently used [AudioBusLayout].
    */
+  @JvmStatic
   public final fun setBusLayout(busLayout: AudioBusLayout?): Unit {
     TransferContext.writeArguments(OBJECT to busLayout)
     TransferContext.callMethod(rawPtr, MethodBindings.setBusLayoutPtr, NIL)
@@ -444,6 +492,7 @@ public object AudioServer : Object() {
   /**
    * Generates an [AudioBusLayout] using the available buses and effects.
    */
+  @JvmStatic
   public final fun generateBusLayout(): AudioBusLayout? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.generateBusLayoutPtr, OBJECT)
@@ -456,6 +505,7 @@ public object AudioServer : Object() {
    * **Note:** This is enabled by default in the editor, as it is used by editor plugins for the
    * audio stream previews.
    */
+  @JvmStatic
   public final fun setEnableTaggingUsedAudioStreams(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnableTaggingUsedAudioStreamsPtr, NIL)
@@ -467,6 +517,7 @@ public object AudioServer : Object() {
    * If `false`, the stream will have to be registered before playing it. To prevent lag spikes,
    * register the stream as sample with [registerStreamAsSample].
    */
+  @JvmStatic
   public final fun isStreamRegisteredAsSample(stream: AudioStream?): Boolean {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.isStreamRegisteredAsSamplePtr, BOOL)
@@ -479,6 +530,7 @@ public object AudioServer : Object() {
    * It is suggested to call this method while loading assets, where the lag spike could be masked,
    * instead of registering the sample right before it needs to be played.
    */
+  @JvmStatic
   public final fun registerStreamAsSample(stream: AudioStream?): Unit {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(rawPtr, MethodBindings.registerStreamAsSamplePtr, NIL)

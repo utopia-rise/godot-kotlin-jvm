@@ -30,6 +30,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [OS] class wraps the most common functionalities for communicating with the host operating
@@ -51,6 +52,7 @@ public object OS : Object() {
    * entropy of lower quality on most platforms. Using [Crypto.generateRandomBytes] is preferred in
    * most cases.
    */
+  @JvmStatic
   public final fun getEntropy(size: Int): PackedByteArray {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getEntropyPtr, PACKED_BYTE_ARRAY)
@@ -61,6 +63,7 @@ public object OS : Object() {
    * Returns the list of certification authorities trusted by the operating system as a string of
    * concatenated certificates in PEM format.
    */
+  @JvmStatic
   public final fun getSystemCaCertificates(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemCaCertificatesPtr, STRING)
@@ -73,6 +76,7 @@ public object OS : Object() {
    * [closeMidiInputs].
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun getConnectedMidiInputs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectedMidiInputsPtr,
@@ -85,6 +89,7 @@ public object OS : Object() {
    * [InputEventMIDI]. See also [getConnectedMidiInputs] and [closeMidiInputs].
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun openMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.openMidiInputsPtr, NIL)
@@ -95,6 +100,7 @@ public object OS : Object() {
    * [openMidiInputs] and [getConnectedMidiInputs].
    * **Note:** This method is implemented on Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun closeMidiInputs(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.closeMidiInputsPtr, NIL)
@@ -105,6 +111,7 @@ public object OS : Object() {
    * blocked until the dialog is closed.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun alert(text: String, title: String = "Alert!"): Unit {
     TransferContext.writeArguments(STRING to text, STRING to title)
     TransferContext.callMethod(rawPtr, MethodBindings.alertPtr, NIL)
@@ -116,38 +123,45 @@ public object OS : Object() {
    * other purpose. For general error reporting, use (in order of preference) [@GDScript.assert],
    * [@GlobalScope.pushError], or [alert].
    */
+  @JvmStatic
   public final fun crash(message: String): Unit {
     TransferContext.writeArguments(STRING to message)
     TransferContext.callMethod(rawPtr, MethodBindings.crashPtr, NIL)
   }
 
+  @JvmStatic
   public final fun setLowProcessorUsageMode(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModePtr, NIL)
   }
 
+  @JvmStatic
   public final fun isInLowProcessorUsageMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInLowProcessorUsageModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  @JvmStatic
   public final fun setLowProcessorUsageModeSleepUsec(usec: Int): Unit {
     TransferContext.writeArguments(LONG to usec.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModeSleepUsecPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getLowProcessorUsageModeSleepUsec(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLowProcessorUsageModeSleepUsecPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  @JvmStatic
   public final fun setDeltaSmoothing(deltaSmoothingEnabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to deltaSmoothingEnabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setDeltaSmoothingPtr, NIL)
   }
 
+  @JvmStatic
   public final fun isDeltaSmoothingEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDeltaSmoothingEnabledPtr, BOOL)
@@ -158,6 +172,7 @@ public object OS : Object() {
    * Returns the number of *logical* CPU cores available on the host machine. On CPUs with
    * HyperThreading enabled, this number will be greater than the number of *physical* CPU cores.
    */
+  @JvmStatic
   public final fun getProcessorCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessorCountPtr, LONG)
@@ -170,6 +185,7 @@ public object OS : Object() {
    * **Note:** This method is only implemented on Windows, macOS, Linux and iOS. On Android and Web,
    * [getProcessorName] returns an empty string.
    */
+  @JvmStatic
   public final fun getProcessorName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessorNamePtr, STRING)
@@ -180,6 +196,7 @@ public object OS : Object() {
    * Returns the list of font family names available.
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun getSystemFonts(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontsPtr, PACKED_STRING_ARRAY)
@@ -195,6 +212,7 @@ public object OS : Object() {
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getSystemFontPath(
     fontName: String,
     weight: Int = 400,
@@ -220,6 +238,7 @@ public object OS : Object() {
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getSystemFontPathForText(
     fontName: String,
     text: String,
@@ -240,6 +259,7 @@ public object OS : Object() {
    * **Note:** On macOS, if you want to launch another instance of Godot, always use
    * [createInstance] instead of relying on the executable path.
    */
+  @JvmStatic
   public final fun getExecutablePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getExecutablePathPtr, STRING)
@@ -256,6 +276,7 @@ public object OS : Object() {
    * terminal. Otherwise, the standard input will not work correctly. If you need a single executable
    * with console support, use a custom build compiled with the `windows_subsystem=console` flag.
    */
+  @JvmStatic
   public final fun readStringFromStdin(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.readStringFromStdinPtr, STRING)
@@ -314,6 +335,7 @@ public object OS : Object() {
    * **Note:** On Android, system commands such as `dumpsys` can only be run on a rooted device.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun execute(
     path: String,
     arguments: PackedStringArray,
@@ -347,6 +369,7 @@ public object OS : Object() {
    * **Note:** On macOS, sandboxed applications are limited to run only embedded helper executables,
    * specified during export or system .app bundle, system .app bundles will ignore arguments.
    */
+  @JvmStatic
   public final fun executeWithPipe(path: String, arguments: PackedStringArray):
       Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments)
@@ -381,6 +404,7 @@ public object OS : Object() {
    * specified during export or system .app bundle, system .app bundles will ignore arguments.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun createProcess(
     path: String,
     arguments: PackedStringArray,
@@ -400,6 +424,7 @@ public object OS : Object() {
    * See [createProcess] if you wish to run a different process.
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun createInstance(arguments: PackedStringArray): Int {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
     TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, LONG)
@@ -412,6 +437,7 @@ public object OS : Object() {
    * **Note:** This method can also be used to kill processes that were not spawned by the engine.
    * **Note:** This method is implemented on Android, iOS, Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun kill(pid: Int): Error {
     TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.killPtr, LONG)
@@ -435,6 +461,7 @@ public object OS : Object() {
    * project exported to the Web platform.
    * **Note:** This method is implemented on Android, iOS, Web, Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun shellOpen(uri: String): Error {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(rawPtr, MethodBindings.shellOpenPtr, LONG)
@@ -452,6 +479,7 @@ public object OS : Object() {
    * it will fallback to [shellOpen] with a directory path of [fileOrDirPath] prefixed with `file://`.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true):
       Error {
     TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
@@ -464,6 +492,7 @@ public object OS : Object() {
    * terminated. [pid] must be a valid ID generated from [createProcess].
    * **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.
    */
+  @JvmStatic
   public final fun isProcessRunning(pid: Int): Boolean {
     TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isProcessRunningPtr, BOOL)
@@ -478,6 +507,7 @@ public object OS : Object() {
    * **Note:** Returns `-1` if the [pid] is a macOS bundled app process.
    * **Note:** This method is implemented on Android, Linux, macOS and Windows.
    */
+  @JvmStatic
   public final fun getProcessExitCode(pid: Int): Int {
     TransferContext.writeArguments(LONG to pid.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessExitCodePtr, LONG)
@@ -488,6 +518,7 @@ public object OS : Object() {
    * Returns the number used by the host machine to uniquely identify this application.
    * **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.
    */
+  @JvmStatic
   public final fun getProcessId(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessIdPtr, LONG)
@@ -499,6 +530,7 @@ public object OS : Object() {
    * **Note:** Double-check the casing of [variable]. Environment variable names are case-sensitive
    * on all platforms except Windows.
    */
+  @JvmStatic
   public final fun hasEnvironment(variable: String): Boolean {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, MethodBindings.hasEnvironmentPtr, BOOL)
@@ -512,6 +544,7 @@ public object OS : Object() {
    * on all platforms except Windows.
    * **Note:** On macOS, applications do not have access to shell environment variables.
    */
+  @JvmStatic
   public final fun getEnvironment(variable: String): String {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, STRING)
@@ -528,6 +561,7 @@ public object OS : Object() {
    * characters limit for the combined length of [variable], [value], and the `=` and null terminator
    * characters that will be registered in the environment block.
    */
+  @JvmStatic
   public final fun setEnvironment(variable: String, `value`: String): Unit {
     TransferContext.writeArguments(STRING to variable, STRING to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
@@ -541,6 +575,7 @@ public object OS : Object() {
    * after the Godot process was terminated.
    * **Note:** Environment variable names are case-sensitive on all platforms except Windows.
    */
+  @JvmStatic
   public final fun unsetEnvironment(variable: String): Unit {
     TransferContext.writeArguments(STRING to variable)
     TransferContext.callMethod(rawPtr, MethodBindings.unsetEnvironmentPtr, NIL)
@@ -607,6 +642,7 @@ public object OS : Object() {
    * **Note:** On Web platforms, it is still possible to determine the host platform's OS with
    * feature tags. See [hasFeature].
    */
+  @JvmStatic
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
@@ -621,6 +657,7 @@ public object OS : Object() {
    * Returns the same value as [getName] for other platforms.
    * **Note:** This method is not supported on the Web platform. It returns an empty string.
    */
+  @JvmStatic
   public final fun getDistributionName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDistributionNamePtr, STRING)
@@ -640,6 +677,7 @@ public object OS : Object() {
    * ROM, it attempts to return its version instead.
    * **Note:** This method is not supported on the Web platform. It returns an empty string.
    */
+  @JvmStatic
   public final fun getVersion(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, STRING)
@@ -692,6 +730,7 @@ public object OS : Object() {
    * or modify them. Instead, pass the standard UNIX double dash (`--`) and then the custom arguments,
    * which the engine will ignore by design. These can be read via [getCmdlineUserArgs].
    */
+  @JvmStatic
   public final fun getCmdlineArgs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineArgsPtr, PACKED_STRING_ARRAY)
@@ -711,6 +750,7 @@ public object OS : Object() {
    * [/codeblock]
    * To get all passed arguments, use [getCmdlineArgs].
    */
+  @JvmStatic
   public final fun getCmdlineUserArgs(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineUserArgsPtr, PACKED_STRING_ARRAY)
@@ -727,6 +767,7 @@ public object OS : Object() {
    * **Note:** This method is only supported on Linux/BSD and Windows when not running in headless
    * mode. On other platforms, it returns an empty array.
    */
+  @JvmStatic
   public final fun getVideoAdapterDriverInfo(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterDriverInfoPtr,
@@ -748,6 +789,7 @@ public object OS : Object() {
    * instead of the usual `SIGTERM`), the project won't restart automatically.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun setRestartOnExit(restart: Boolean, arguments: PackedStringArray =
       PackedStringArray()): Unit {
     TransferContext.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
@@ -758,6 +800,7 @@ public object OS : Object() {
    * Returns `true` if the project will automatically restart when it exits for any reason, `false`
    * otherwise. See also [setRestartOnExit] and [getRestartOnExitArguments].
    */
+  @JvmStatic
   public final fun isRestartOnExitSet(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isRestartOnExitSetPtr, BOOL)
@@ -768,6 +811,7 @@ public object OS : Object() {
    * Returns the list of command line arguments that will be used when the project automatically
    * restarts using [setRestartOnExit]. See also [isRestartOnExitSet].
    */
+  @JvmStatic
   public final fun getRestartOnExitArguments(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getRestartOnExitArgumentsPtr,
@@ -787,6 +831,7 @@ public object OS : Object() {
    * as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the
    * project if it is currently running (since the project is an independent child process).
    */
+  @JvmStatic
   public final fun delayUsec(usec: Int): Unit {
     TransferContext.writeArguments(LONG to usec.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.delayUsecPtr, NIL)
@@ -804,6 +849,7 @@ public object OS : Object() {
    * as part of an [EditorPlugin] or [EditorScript], it will freeze the editor but won't freeze the
    * project if it is currently running (since the project is an independent child process).
    */
+  @JvmStatic
   public final fun delayMsec(msec: Int): Unit {
     TransferContext.writeArguments(LONG to msec.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.delayMsecPtr, NIL)
@@ -825,6 +871,7 @@ public object OS : Object() {
    * If you want only the language code and not the fully specified locale from the OS, you can use
    * [getLocaleLanguage].
    */
+  @JvmStatic
   public final fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
@@ -840,6 +887,7 @@ public object OS : Object() {
    * code, when you don't need the additional information about country code or variants. For example,
    * for a French Canadian user with `fr_CA` locale, this would return `fr`.
    */
+  @JvmStatic
   public final fun getLocaleLanguage(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocaleLanguagePtr, STRING)
@@ -851,6 +899,7 @@ public object OS : Object() {
    * **Note:** This method is implemented on Android and iOS. Returns `"GenericDevice"` on
    * unsupported platforms.
    */
+  @JvmStatic
   public final fun getModelName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getModelNamePtr, STRING)
@@ -862,6 +911,7 @@ public object OS : Object() {
    * a player quits and starts the game again. Relevant to the Web platform, where this persistence may
    * be unavailable.
    */
+  @JvmStatic
   public final fun isUserfsPersistent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUserfsPersistentPtr, BOOL)
@@ -873,6 +923,7 @@ public object OS : Object() {
    * or if [ProjectSettings.debug/settings/stdout/verboseStdout] is `true`. See also
    * [@GlobalScope.printVerbose].
    */
+  @JvmStatic
   public final fun isStdoutVerbose(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isStdoutVerbosePtr, BOOL)
@@ -886,6 +937,7 @@ public object OS : Object() {
    * **Note:** To check whether the Godot binary used to run the project is an export template
    * (debug or release), use `OS.has_feature("template")` instead.
    */
+  @JvmStatic
   public final fun isDebugBuild(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDebugBuildPtr, BOOL)
@@ -896,6 +948,7 @@ public object OS : Object() {
    * Returns the amount of static memory being used by the program in bytes. Only works in debug
    * builds.
    */
+  @JvmStatic
   public final fun getStaticMemoryUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryUsagePtr, LONG)
@@ -905,6 +958,7 @@ public object OS : Object() {
   /**
    * Returns the maximum amount of static memory used. Only works in debug builds.
    */
+  @JvmStatic
   public final fun getStaticMemoryPeakUsage(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryPeakUsagePtr, LONG)
@@ -925,6 +979,7 @@ public object OS : Object() {
    * - `"stack"` - size of the current thread stack in bytes.
    * **Note:** Each entry's value may be `-1` if it is unknown.
    */
+  @JvmStatic
   public final fun getMemoryInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMemoryInfoPtr, DICTIONARY)
@@ -954,6 +1009,7 @@ public object OS : Object() {
    * **Note:** If the user has disabled the recycle bin on their system, the file will be
    * permanently deleted instead.
    */
+  @JvmStatic
   public final fun moveToTrash(path: String): Error {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.moveToTrashPtr, LONG)
@@ -978,6 +1034,7 @@ public object OS : Object() {
    * Not to be confused with [getDataDir], which returns the *global* (non-project-specific) user
    * home directory.
    */
+  @JvmStatic
   public final fun getUserDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUserDataDirPtr, STRING)
@@ -993,6 +1050,7 @@ public object OS : Object() {
    * restrictions on Android.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
     TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemDirPtr, STRING)
@@ -1008,6 +1066,7 @@ public object OS : Object() {
    * documentation for more information. See also [getCacheDir] and [getDataDir].
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
+  @JvmStatic
   public final fun getConfigDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConfigDirPtr, STRING)
@@ -1022,6 +1081,7 @@ public object OS : Object() {
    * documentation for more information. See also [getCacheDir] and [getConfigDir].
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
+  @JvmStatic
   public final fun getDataDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDataDirPtr, STRING)
@@ -1036,6 +1096,7 @@ public object OS : Object() {
    * documentation for more information. See also [getConfigDir] and [getDataDir].
    * Not to be confused with [getUserDataDir], which returns the *project-specific* user data path.
    */
+  @JvmStatic
   public final fun getCacheDir(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCacheDirPtr, STRING)
@@ -1052,6 +1113,7 @@ public object OS : Object() {
    * **Note:** On Web, returns an empty string and generates an error, as this method cannot be
    * implemented for security reasons.
    */
+  @JvmStatic
   public final fun getUniqueId(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, STRING)
@@ -1077,6 +1139,7 @@ public object OS : Object() {
    * See also [findKeycodeFromString], [InputEventKey.keycode], and
    * [InputEventKey.getKeycodeWithModifiers].
    */
+  @JvmStatic
   public final fun getKeycodeString(code: Key): String {
     TransferContext.writeArguments(LONG to code.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getKeycodeStringPtr, STRING)
@@ -1102,6 +1165,7 @@ public object OS : Object() {
    * GD.Print(OS.IsKeycodeUnicode((long)Key.Escape)); // Prints false
    * ```
    */
+  @JvmStatic
   public final fun isKeycodeUnicode(code: Long): Boolean {
     TransferContext.writeArguments(LONG to code)
     TransferContext.callMethod(rawPtr, MethodBindings.isKeycodeUnicodePtr, BOOL)
@@ -1130,6 +1194,7 @@ public object OS : Object() {
    *
    * See also [getKeycodeString].
    */
+  @JvmStatic
   public final fun findKeycodeFromString(string: String): Key {
     TransferContext.writeArguments(STRING to string)
     TransferContext.callMethod(rawPtr, MethodBindings.findKeycodeFromStringPtr, LONG)
@@ -1142,6 +1207,7 @@ public object OS : Object() {
    * This can useful when files may be opened by other applications, such as antiviruses, text
    * editors, or even the Godot editor itself.
    */
+  @JvmStatic
   public final fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseFileAccessSaveAndSwapPtr, NIL)
@@ -1151,6 +1217,7 @@ public object OS : Object() {
    * Assigns the given name to the current thread. Returns [ERR_UNAVAILABLE] if unavailable on the
    * current platform.
    */
+  @JvmStatic
   public final fun setThreadName(name: String): Error {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.setThreadNamePtr, LONG)
@@ -1162,6 +1229,7 @@ public object OS : Object() {
    * multi-threaded applications.
    * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
    */
+  @JvmStatic
   public final fun getThreadCallerId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getThreadCallerIdPtr, LONG)
@@ -1172,6 +1240,7 @@ public object OS : Object() {
    * Returns the ID of the main thread. See [getThreadCallerId].
    * **Note:** Thread IDs are not deterministic and may be reused across application restarts.
    */
+  @JvmStatic
   public final fun getMainThreadId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMainThreadIdPtr, LONG)
@@ -1188,6 +1257,7 @@ public object OS : Object() {
    * **Note:** On the Web platform, one of the following additional tags is defined to indicate the
    * host platform: `web_android`, `web_ios`, `web_linuxbsd`, `web_macos`, or `web_windows`.
    */
+  @JvmStatic
   public final fun hasFeature(tagName: String): Boolean {
     TransferContext.writeArguments(STRING to tagName)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
@@ -1198,6 +1268,7 @@ public object OS : Object() {
    * Returns `true` if the application is running in the sandbox.
    * **Note:** This method is only implemented on macOS and Linux.
    */
+  @JvmStatic
   public final fun isSandboxed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSandboxedPtr, BOOL)
@@ -1210,6 +1281,7 @@ public object OS : Object() {
    * **Note:** This method is currently only implemented on Android, to specifically request
    * permission for `"RECORD_AUDIO"` by `AudioDriverOpenSL`.
    */
+  @JvmStatic
   public final fun requestPermission(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionPtr, BOOL)
@@ -1222,6 +1294,7 @@ public object OS : Object() {
    * **Note:** This method is only implemented on Android. Normal permissions are automatically
    * granted at install time in Android applications.
    */
+  @JvmStatic
   public final fun requestPermissions(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionsPtr, BOOL)
@@ -1233,6 +1306,7 @@ public object OS : Object() {
    * On macOS: Returns the list of user selected folders accessible to the application (sandboxed
    * applications only). Use the native file dialog to request folder access permission.
    */
+  @JvmStatic
   public final fun getGrantedPermissions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
@@ -1243,6 +1317,7 @@ public object OS : Object() {
    * On macOS (sandboxed applications only), this function clears list of user selected folders
    * accessible to the application.
    */
+  @JvmStatic
   public final fun revokeGrantedPermissions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.revokeGrantedPermissionsPtr, NIL)

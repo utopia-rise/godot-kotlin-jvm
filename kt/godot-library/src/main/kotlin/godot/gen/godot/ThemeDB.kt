@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * This singleton provides access to static information about [Theme] resources used by the engine
@@ -34,6 +35,7 @@ public object ThemeDB : Object() {
    * Emitted when one of the fallback values had been changed. Use it to refresh the look of
    * controls that may rely on the fallback theme items.
    */
+  @JvmStatic
   public val fallbackChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -44,6 +46,7 @@ public object ThemeDB : Object() {
    * Returns a reference to the default engine [Theme]. This theme resource is responsible for the
    * out-of-the-box look of [Control] nodes and cannot be overridden.
    */
+  @JvmStatic
   public final fun getDefaultTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
@@ -55,61 +58,72 @@ public object ThemeDB : Object() {
    * default engine theme for every control node in the project.
    * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
+  @JvmStatic
   public final fun getProjectTheme(): Theme? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
+  @JvmStatic
   public final fun setFallbackBaseScale(baseScale: Float): Unit {
     TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackBaseScalePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getFallbackBaseScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  @JvmStatic
   public final fun setFallbackFont(font: Font?): Unit {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getFallbackFont(): Font? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
+  @JvmStatic
   public final fun setFallbackFontSize(fontSize: Int): Unit {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontSizePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getFallbackFontSize(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  @JvmStatic
   public final fun setFallbackIcon(icon: Texture2D?): Unit {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getFallbackIcon(): Texture2D? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
+  @JvmStatic
   public final fun setFallbackStylebox(stylebox: StyleBox?): Unit {
     TransferContext.writeArguments(OBJECT to stylebox)
     TransferContext.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getFallbackStylebox(): StyleBox? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)

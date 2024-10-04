@@ -2,6 +2,8 @@ package godot.tests;
 
 import godot.Button;
 import godot.Node;
+import godot.Object;
+import godot.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;
 import org.jetbrains.annotations.NotNull;
@@ -78,6 +80,15 @@ public class JavaTestClass extends Node {
     );
 
     public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
+
+    @RegisterFunction
+    @Override
+    public void _ready() {
+        // Check if Singletons have the correct syntax, without Single.INSTANCE
+        long constant = RenderingServer.NO_INDEX_ARRAY;
+        Signal signal = RenderingServer.getFramePreDraw();
+        RenderingServer.getDefaultClearColor();
+    }
 
     @RegisterFunction
     public void connectAndTriggerSignal() {

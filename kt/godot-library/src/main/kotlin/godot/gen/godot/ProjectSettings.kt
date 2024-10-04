@@ -30,6 +30,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or
@@ -52,6 +53,7 @@ public object ProjectSettings : Object() {
   /**
    * Emitted when any setting is changed, up to once per process frame.
    */
+  @JvmStatic
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,6 +63,7 @@ public object ProjectSettings : Object() {
   /**
    * Returns `true` if a configuration value is present.
    */
+  @JvmStatic
   public final fun hasSetting(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
@@ -83,6 +86,7 @@ public object ProjectSettings : Object() {
    * This can also be used to erase custom project settings. To do this change the setting value to
    * `null`.
    */
+  @JvmStatic
   public final fun setSetting(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
@@ -111,6 +115,7 @@ public object ProjectSettings : Object() {
    * [getSettingWithOverride] to handle seamlessly.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getSetting(name: String, defaultValue: Any? = null): Any? {
     TransferContext.writeArguments(STRING to name, ANY to defaultValue)
     TransferContext.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
@@ -135,6 +140,7 @@ public object ProjectSettings : Object() {
    * Then the overridden setting will be returned instead if the project is running on the *Windows*
    * operating system.
    */
+  @JvmStatic
   public final fun getSettingWithOverride(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getSettingWithOverridePtr, ANY)
@@ -152,6 +158,7 @@ public object ProjectSettings : Object() {
    * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they
    * start with `res://`.
    */
+  @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGlobalClassListPtr, ARRAY)
@@ -161,6 +168,7 @@ public object ProjectSettings : Object() {
   /**
    * Sets the order of a configuration value (influences when saved to the config file).
    */
+  @JvmStatic
   public final fun setOrder(name: String, position: Int): Unit {
     TransferContext.writeArguments(STRING to name, LONG to position.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setOrderPtr, NIL)
@@ -169,6 +177,7 @@ public object ProjectSettings : Object() {
   /**
    * Returns the order of a configuration value (influences when saved to the config file).
    */
+  @JvmStatic
   public final fun getOrder(name: String): Int {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getOrderPtr, LONG)
@@ -178,6 +187,7 @@ public object ProjectSettings : Object() {
   /**
    * Sets the specified setting's initial value. This is the value the setting reverts to.
    */
+  @JvmStatic
   public final fun setInitialValue(name: String, `value`: Any?): Unit {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
@@ -188,6 +198,7 @@ public object ProjectSettings : Object() {
    * shown in the project settings. Advanced settings will only be shown if the user enables the
    * "Advanced Settings" option.
    */
+  @JvmStatic
   public final fun setAsBasic(name: String, basic: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsBasicPtr, NIL)
@@ -198,6 +209,7 @@ public object ProjectSettings : Object() {
    * the Project Settings dialog. This is mostly useful for addons that need to store their own
    * internal settings without exposing them directly to the user.
    */
+  @JvmStatic
   public final fun setAsInternal(name: String, `internal`: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
     TransferContext.callMethod(rawPtr, MethodBindings.setAsInternalPtr, NIL)
@@ -238,6 +250,7 @@ public object ProjectSettings : Object() {
    * ProjectSettings.AddPropertyInfo(propertyInfo);
    * ```
    */
+  @JvmStatic
   public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(DICTIONARY to hint)
     TransferContext.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
@@ -249,6 +262,7 @@ public object ProjectSettings : Object() {
    * changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when
    * changed.
    */
+  @JvmStatic
   public final fun setRestartIfChanged(name: String, restart: Boolean): Unit {
     TransferContext.writeArguments(STRING to name, BOOL to restart)
     TransferContext.callMethod(rawPtr, MethodBindings.setRestartIfChangedPtr, NIL)
@@ -257,6 +271,7 @@ public object ProjectSettings : Object() {
   /**
    * Clears the whole configuration (not recommended, may break things).
    */
+  @JvmStatic
   public final fun clear(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
@@ -266,6 +281,7 @@ public object ProjectSettings : Object() {
    * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS
    * [path]. See also [globalizePath].
    */
+  @JvmStatic
   public final fun localizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.localizePathPtr, STRING)
@@ -293,6 +309,7 @@ public object ProjectSettings : Object() {
    *     path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
    * [/codeblock]
    */
+  @JvmStatic
   public final fun globalizePath(path: String): String {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.globalizePathPtr, STRING)
@@ -305,6 +322,7 @@ public object ProjectSettings : Object() {
    * can't be loaded back in the running app. If you want to change project settings in exported
    * projects, use [saveCustom] to save `override.cfg` file.
    */
+  @JvmStatic
   public final fun save(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
@@ -321,6 +339,7 @@ public object ProjectSettings : Object() {
    * start of the resource pack. This is only supported for .pck files.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun loadResourcePack(
     pack: String,
     replaceFiles: Boolean = true,
@@ -337,6 +356,7 @@ public object ProjectSettings : Object() {
    * `override.cfg` file, which is also text, but can be used in exported projects unlike other
    * formats.
    */
+  @JvmStatic
   public final fun saveCustom(`file`: String): Error {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)

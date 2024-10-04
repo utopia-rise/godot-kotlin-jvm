@@ -1,4 +1,3 @@
-@file:JvmName("Signals")
 @file:Suppress(
     "PackageDirectoryMismatch",
     "NOTHING_TO_INLINE",

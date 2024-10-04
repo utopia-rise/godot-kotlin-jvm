@@ -22,6 +22,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Provides data transformation and encoding utility functions.
@@ -38,6 +39,7 @@ public object Marshalls : Object() {
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun variantToBase64(variant: Any?, fullObjects: Boolean = false): String {
     TransferContext.writeArguments(ANY to variant, BOOL to fullObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.variantToBase64Ptr, STRING)
@@ -53,6 +55,7 @@ public object Marshalls : Object() {
    * remote code execution.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun base64ToVariant(base64Str: String, allowObjects: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to base64Str, BOOL to allowObjects)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToVariantPtr, ANY)
@@ -62,6 +65,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of a given [PackedByteArray].
    */
+  @JvmStatic
   public final fun rawToBase64(array: PackedByteArray): String {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to array)
     TransferContext.callMethod(rawPtr, MethodBindings.rawToBase64Ptr, STRING)
@@ -71,6 +75,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded [PackedByteArray] corresponding to the Base64-encoded string [base64Str].
    */
+  @JvmStatic
   public final fun base64ToRaw(base64Str: String): PackedByteArray {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToRawPtr, PACKED_BYTE_ARRAY)
@@ -80,6 +85,7 @@ public object Marshalls : Object() {
   /**
    * Returns a Base64-encoded string of the UTF-8 string [utf8Str].
    */
+  @JvmStatic
   public final fun utf8ToBase64(utf8Str: String): String {
     TransferContext.writeArguments(STRING to utf8Str)
     TransferContext.callMethod(rawPtr, MethodBindings.utf8ToBase64Ptr, STRING)
@@ -89,6 +95,7 @@ public object Marshalls : Object() {
   /**
    * Returns a decoded string corresponding to the Base64-encoded string [base64Str].
    */
+  @JvmStatic
   public final fun base64ToUtf8(base64Str: String): String {
     TransferContext.writeArguments(STRING to base64Str)
     TransferContext.callMethod(rawPtr, MethodBindings.base64ToUtf8Ptr, STRING)

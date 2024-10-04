@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * Provides a set of helper functions to create geometric shapes, compute intersections between
@@ -43,6 +44,7 @@ public object Geometry3D : Object() {
   /**
    * Calculates and returns all the vertex points of a convex shape defined by an array of [planes].
    */
+  @JvmStatic
   public final fun computeConvexMeshPoints(planes: VariantArray<Plane>): PackedVector3Array {
     TransferContext.writeArguments(ARRAY to planes)
     TransferContext.callMethod(rawPtr, MethodBindings.computeConvexMeshPointsPtr,
@@ -55,6 +57,7 @@ public object Geometry3D : Object() {
    * box size is defined by [extents], which represents one (positive) corner of the box (i.e. half its
    * actual size).
    */
+  @JvmStatic
   public final fun buildBoxPlanes(extents: Vector3): VariantArray<Plane> {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(rawPtr, MethodBindings.buildBoxPlanesPtr, ARRAY)
@@ -68,6 +71,7 @@ public object Geometry3D : Object() {
    * the cylinder is oriented (0 for X, 1 for Y, 2 for Z).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun buildCylinderPlanes(
     radius: Float,
     height: Float,
@@ -87,6 +91,7 @@ public object Geometry3D : Object() {
    * capsule is oriented (0 for X, 1 for Y, 2 for Z).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun buildCapsulePlanes(
     radius: Float,
     height: Float,
@@ -104,6 +109,7 @@ public object Geometry3D : Object() {
    * segments that are closest to each other. Returns a [PackedVector3Array] that contains this point
    * on ([p1], [p2]) as well the accompanying point on ([q1], [q2]).
    */
+  @JvmStatic
   public final fun getClosestPointsBetweenSegments(
     p1: Vector3,
     p2: Vector3,
@@ -120,6 +126,7 @@ public object Geometry3D : Object() {
    * Returns the 3D point on the 3D segment ([s1], [s2]) that is closest to [point]. The returned
    * point will always be inside the specified segment.
    */
+  @JvmStatic
   public final fun getClosestPointToSegment(
     point: Vector3,
     s1: Vector3,
@@ -135,6 +142,7 @@ public object Geometry3D : Object() {
    * returned point can be inside the segment ([s1], [s2]) or outside of it, i.e. somewhere on the line
    * extending from the segment.
    */
+  @JvmStatic
   public final fun getClosestPointToSegmentUncapped(
     point: Vector3,
     s1: Vector3,
@@ -153,6 +161,7 @@ public object Geometry3D : Object() {
    * [url=https://en.wikipedia.org/wiki/Barycentric_coordinate_system]Here is a more detailed
    * explanation of barycentric coordinates.[/url]
    */
+  @JvmStatic
   public final fun getTriangleBarycentricCoords(
     point: Vector3,
     a: Vector3,
@@ -169,6 +178,7 @@ public object Geometry3D : Object() {
    * specified by [a], [b] and [c]. If yes, returns the point of intersection as [Vector3]. If no
    * intersection takes place, returns `null`.
    */
+  @JvmStatic
   public final fun rayIntersectsTriangle(
     from: Vector3,
     dir: Vector3,
@@ -185,6 +195,7 @@ public object Geometry3D : Object() {
    * Tests if the segment ([from], [to]) intersects the triangle [a], [b], [c]. If yes, returns the
    * point of intersection as [Vector3]. If no intersection takes place, returns `null`.
    */
+  @JvmStatic
   public final fun segmentIntersectsTriangle(
     from: Vector3,
     to: Vector3,
@@ -203,6 +214,7 @@ public object Geometry3D : Object() {
    * [PackedVector3Array] containing the point of intersection and the sphere's normal at the point of
    * intersection.
    */
+  @JvmStatic
   public final fun segmentIntersectsSphere(
     from: Vector3,
     to: Vector3,
@@ -221,6 +233,7 @@ public object Geometry3D : Object() {
    * an intersection takes place, the returned array contains the point of intersection and the
    * cylinder's normal at the point of intersection.
    */
+  @JvmStatic
   public final fun segmentIntersectsCylinder(
     from: Vector3,
     to: Vector3,
@@ -239,6 +252,7 @@ public object Geometry3D : Object() {
    * [PackedVector3Array] containing the point the intersection and the hull's normal. Otherwise,
    * returns an empty array.
    */
+  @JvmStatic
   public final fun segmentIntersectsConvex(
     from: Vector3,
     to: Vector3,
@@ -254,6 +268,7 @@ public object Geometry3D : Object() {
    * Clips the polygon defined by the points in [points] against the [plane] and returns the points
    * of the clipped polygon.
    */
+  @JvmStatic
   public final fun clipPolygon(points: PackedVector3Array, plane: Plane): PackedVector3Array {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)
     TransferContext.callMethod(rawPtr, MethodBindings.clipPolygonPtr, PACKED_VECTOR3_ARRAY)
@@ -267,6 +282,7 @@ public object Geometry3D : Object() {
    * [points] array (resulting in an array with `n * 4` elements, where `n` is the number of tetrahedra
    * found). If the tetrahedralization is unsuccessful, an empty [PackedInt32Array] is returned.
    */
+  @JvmStatic
   public final fun tetrahedralizeDelaunay(points: PackedVector3Array): PackedInt32Array {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points)
     TransferContext.callMethod(rawPtr, MethodBindings.tetrahedralizeDelaunayPtr,

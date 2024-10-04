@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the
@@ -45,16 +46,19 @@ public object XRServer : Object() {
   /**
    * Emitted when the reference frame transform changes.
    */
+  @JvmStatic
   public val referenceFrameChanged: Signal0 by Signal0
 
   /**
    * Emitted when a new interface has been added.
    */
+  @JvmStatic
   public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
+  @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   /**
@@ -62,12 +66,14 @@ public object XRServer : Object() {
    * you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the
    * appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker.
    */
+  @JvmStatic
   public val trackerAdded: Signal2<StringName, Long> by Signal2
 
   /**
    * Emitted when an existing tracker has been updated. This can happen if the user switches
    * controllers.
    */
+  @JvmStatic
   public val trackerUpdated: Signal2<StringName, Long> by Signal2
 
   /**
@@ -76,29 +82,34 @@ public object XRServer : Object() {
    * active again when a new tracker becomes available (i.e. a new controller is switched on that takes
    * the place of the previous one).
    */
+  @JvmStatic
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(ENGINECLASS_XRSERVER)
   }
 
+  @JvmStatic
   public final fun getWorldScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
+  @JvmStatic
   public final fun setWorldScale(scale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getWorldOrigin(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWorldOriginPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  @JvmStatic
   public final fun setWorldOrigin(worldOrigin: Transform3D): Unit {
     TransferContext.writeArguments(TRANSFORM3D to worldOrigin)
     TransferContext.callMethod(rawPtr, MethodBindings.setWorldOriginPtr, NIL)
@@ -108,6 +119,7 @@ public object XRServer : Object() {
    * Returns the reference frame transform. Mostly used internally and exposed for GDExtension build
    * interfaces.
    */
+  @JvmStatic
   public final fun getReferenceFrame(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getReferenceFramePtr, TRANSFORM3D)
@@ -117,6 +129,7 @@ public object XRServer : Object() {
   /**
    * Clears the reference frame that was set by previous calls to [centerOnHmd].
    */
+  @JvmStatic
   public final fun clearReferenceFrame(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearReferenceFramePtr, NIL)
@@ -139,6 +152,7 @@ public object XRServer : Object() {
    * requests a realignment of the display holding a designated button on a controller for a short
    * period of time, or when implementing a teleport mechanism.
    */
+  @JvmStatic
   public final fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
     TransferContext.callMethod(rawPtr, MethodBindings.centerOnHmdPtr, NIL)
@@ -147,6 +161,7 @@ public object XRServer : Object() {
   /**
    * Returns the primary interface's transformation.
    */
+  @JvmStatic
   public final fun getHmdTransform(): Transform3D {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getHmdTransformPtr, TRANSFORM3D)
@@ -156,6 +171,7 @@ public object XRServer : Object() {
   /**
    * Registers an [XRInterface] object.
    */
+  @JvmStatic
   public final fun addInterface(`interface`: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
@@ -167,6 +183,7 @@ public object XRServer : Object() {
    * present the user with a selection or simply try to initialize each interface and use the first one
    * that returns `true`.
    */
+  @JvmStatic
   public final fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
@@ -176,6 +193,7 @@ public object XRServer : Object() {
   /**
    * Removes this [interface].
    */
+  @JvmStatic
   public final fun removeInterface(`interface`: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
@@ -184,6 +202,7 @@ public object XRServer : Object() {
   /**
    * Returns the interface registered at the given [idx] index in the list of interfaces.
    */
+  @JvmStatic
   public final fun getInterface(idx: Int): XRInterface? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
@@ -193,6 +212,7 @@ public object XRServer : Object() {
   /**
    * Returns a list of available interfaces the ID and name of each interface.
    */
+  @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
@@ -203,6 +223,7 @@ public object XRServer : Object() {
    * Finds an interface by its [name]. For example, if your project uses capabilities of an AR/VR
    * platform, you can find the interface for that platform by name and initialize it.
    */
+  @JvmStatic
   public final fun findInterface(name: String): XRInterface? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
@@ -212,6 +233,7 @@ public object XRServer : Object() {
   /**
    * Registers a new [XRTracker] that tracks a physical object.
    */
+  @JvmStatic
   public final fun addTracker(tracker: XRTracker?): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.addTrackerPtr, NIL)
@@ -220,6 +242,7 @@ public object XRServer : Object() {
   /**
    * Removes this [tracker].
    */
+  @JvmStatic
   public final fun removeTracker(tracker: XRTracker?): Unit {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTrackerPtr, NIL)
@@ -228,6 +251,7 @@ public object XRServer : Object() {
   /**
    * Returns a dictionary of trackers for [trackerTypes].
    */
+  @JvmStatic
   public final fun getTrackers(trackerTypes: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to trackerTypes.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackersPtr, DICTIONARY)
@@ -237,18 +261,21 @@ public object XRServer : Object() {
   /**
    * Returns the positional tracker with the given [trackerName].
    */
+  @JvmStatic
   public final fun getTracker(trackerName: StringName): XRTracker? {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as XRTracker?)
   }
 
+  @JvmStatic
   public final fun getPrimaryInterface(): XRInterface? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as XRInterface?)
   }
 
+  @JvmStatic
   public final fun setPrimaryInterface(`interface`: XRInterface?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
