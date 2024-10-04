@@ -3,8 +3,12 @@
 package godot.core
 
 import godot.core.VariantParser.NIL
+import java.lang.Class
 import kotlin.Any
 import kotlin.Suppress
+import kotlin.jvm.JvmName
+import kotlin.jvm.JvmStatic
+import kotlin.jvm.`internal`.Reflection
 
 public class KtCallable0<R>(
   variantConverter: VariantConverter,
@@ -15,6 +19,13 @@ public class KtCallable0<R>(
   public operator fun invoke(): R = function()
 
   public override fun call(vararg args: Any?): Any? = function()
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R> javaCreate(returnClass: Class<R>, function: () -> R) =
+        KtCallable0(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), function)
+  }
 }
 
 public inline fun <reified R> callable(noinline function: () -> R) =
@@ -34,6 +45,17 @@ public class KtCallable1<P0, R>(
   public override fun call(vararg args: Any?): Any? = function(args[0] as P0)
 
   public fun bind(p0: P0) = KtCallable0(variantConverter) {  -> function(p0) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      function: (p0: P0) -> R,
+    ) =
+        KtCallable1(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified R> callable(noinline function: (p0: P0) -> R) =
@@ -56,6 +78,18 @@ public class KtCallable2<P0, P1, R>(
   public fun bind(p0: P0, p1: P1) = KtCallable0(variantConverter) {  -> function(p0, p1) }
 
   public fun bind(p1: P1) = KtCallable1(variantConverter, p0Type) { p0: P0 -> function(p0, p1) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      function: (p0: P0, p1: P1) -> R,
+    ) =
+        KtCallable2(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified R> callable(noinline function: (p0: P0,
@@ -99,6 +133,23 @@ public class KtCallable3<P0, P1, P2, R>(
 
   public fun bind(p2: P2) =
       KtCallable2(variantConverter, p0Type, p1Type) { p0: P0, p1: P1 -> function(p0, p1, p2) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+      ) -> R,
+    ) =
+        KtCallable3(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified R> callable(noinline function: (
@@ -158,6 +209,25 @@ public class KtCallable4<P0, P1, P2, P3, R>(
 
   public fun bind(p3: P3) =
       KtCallable3(variantConverter, p0Type, p1Type, p2Type) { p0: P0, p1: P1, p2: P2 -> function(p0, p1, p2, p3) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+      ) -> R,
+    ) =
+        KtCallable4(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified R> callable(noinline
@@ -232,6 +302,27 @@ public class KtCallable5<P0, P1, P2, P3, P4, R>(
 
   public fun bind(p4: P4) =
       KtCallable4(variantConverter, p0Type, p1Type, p2Type, p3Type) { p0: P0, p1: P1, p2: P2, p3: P3 -> function(p0, p1, p2, p3, p4) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+      ) -> R,
+    ) =
+        KtCallable5(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified R>
@@ -321,6 +412,29 @@ public class KtCallable6<P0, P1, P2, P3, P4, P5, R>(
 
   public fun bind(p5: P5) =
       KtCallable5(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 -> function(p0, p1, p2, p3, p4, p5) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+      ) -> R,
+    ) =
+        KtCallable6(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -427,6 +541,31 @@ public class KtCallable7<P0, P1, P2, P3, P4, P5, P6, R>(
 
   public fun bind(p6: P6) =
       KtCallable6(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 -> function(p0, p1, p2, p3, p4, p5, p6) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+      ) -> R,
+    ) =
+        KtCallable7(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -551,6 +690,33 @@ public class KtCallable8<P0, P1, P2, P3, P4, P5, P6, P7, R>(
 
   public fun bind(p7: P7) =
       KtCallable7(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 -> function(p0, p1, p2, p3, p4, p5, p6, p7) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+      ) -> R,
+    ) =
+        KtCallable8(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -694,6 +860,35 @@ public class KtCallable9<P0, P1, P2, P3, P4, P5, P6, P7, P8, R>(
 
   public fun bind(p8: P8) =
       KtCallable8(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+      ) -> R,
+    ) =
+        KtCallable9(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -856,6 +1051,37 @@ public class KtCallable10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, R>(
 
   public fun bind(p9: P9) =
       KtCallable9(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+      ) -> R,
+    ) =
+        KtCallable10(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1038,6 +1264,39 @@ public class KtCallable11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, R>(
 
   public fun bind(p10: P10) =
       KtCallable10(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+      ) -> R,
+    ) =
+        KtCallable11(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1242,6 +1501,41 @@ public class KtCallable12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, R>(
 
   public fun bind(p11: P11) =
       KtCallable11(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      p11Class: Class<P11>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+        p11: P11,
+      ) -> R,
+    ) =
+        KtCallable12(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1469,6 +1763,43 @@ public class KtCallable13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12,
 
   public fun bind(p12: P12) =
       KtCallable12(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      p11Class: Class<P11>,
+      p12Class: Class<P12>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+        p11: P11,
+        p12: P12,
+      ) -> R,
+    ) =
+        KtCallable13(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1719,6 +2050,45 @@ public class KtCallable14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12,
 
   public fun bind(p13: P13) =
       KtCallable13(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      p11Class: Class<P11>,
+      p12Class: Class<P12>,
+      p13Class: Class<P13>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+        p11: P11,
+        p12: P12,
+        p13: P13,
+      ) -> R,
+    ) =
+        KtCallable14(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -1994,6 +2364,47 @@ public class KtCallable15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12,
 
   public fun bind(p14: P14) =
       KtCallable14(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      p11Class: Class<P11>,
+      p12Class: Class<P12>,
+      p13Class: Class<P13>,
+      p14Class: Class<P14>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+        p11: P11,
+        p12: P12,
+        p13: P13,
+        p14: P14,
+      ) -> R,
+    ) =
+        KtCallable15(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p14Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
@@ -2294,6 +2705,49 @@ public class KtCallable16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12,
 
   public fun bind(p15: P15) =
       KtCallable15(variantConverter, p0Type, p1Type, p2Type, p3Type, p4Type, p5Type, p6Type, p7Type, p8Type, p9Type, p10Type, p11Type, p12Type, p13Type, p14Type) { p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 -> function(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15) }
+
+  public companion object {
+    @JvmStatic
+    @JvmName("create")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> javaCreate(
+      returnClass: Class<R>,
+      p0Class: Class<P0>,
+      p1Class: Class<P1>,
+      p2Class: Class<P2>,
+      p3Class: Class<P3>,
+      p4Class: Class<P4>,
+      p5Class: Class<P5>,
+      p6Class: Class<P6>,
+      p7Class: Class<P7>,
+      p8Class: Class<P8>,
+      p9Class: Class<P9>,
+      p10Class: Class<P10>,
+      p11Class: Class<P11>,
+      p12Class: Class<P12>,
+      p13Class: Class<P13>,
+      p14Class: Class<P14>,
+      p15Class: Class<P15>,
+      function: (
+        p0: P0,
+        p1: P1,
+        p2: P2,
+        p3: P3,
+        p4: P4,
+        p5: P5,
+        p6: P6,
+        p7: P7,
+        p8: P8,
+        p9: P9,
+        p10: P10,
+        p11: P11,
+        p12: P12,
+        p13: P13,
+        p14: P14,
+        p15: P15,
+      ) -> R,
+    ) =
+        KtCallable16(variantMapper.getOrDefault(Reflection.getOrCreateKotlinClass(returnClass), NIL), variantMapper[Reflection.getOrCreateKotlinClass(p0Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p1Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p2Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p3Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p4Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p5Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p6Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p7Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p8Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p9Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p10Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p11Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p12Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p13Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p14Class)]!!, variantMapper[Reflection.getOrCreateKotlinClass(p15Class)]!!, function)
+  }
 }
 
 public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified

@@ -19,6 +19,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
+import godot.codegen.utils.GenericClassNameInfo
 import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
 import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_ERROR
@@ -29,62 +30,6 @@ import godot.tools.common.constants.kotlinReflectPackage
 import kotlin.reflect.KCallable
 
 class SignalGenerationService : ISignalGenerationService {
-
-    // Helper that provide utilities to handle generic classes.
-    private class GenericClassNameInfo(
-        val className: ClassName,
-        numberOfGenericParameters: Int
-    ) {
-        val genericTypes = Array(numberOfGenericParameters) {
-            TypeVariableName("P$it")
-        }.toList()
-        val genericClassName = className.run {
-            if (genericTypes.isNotEmpty()) {
-                parameterizedBy(genericTypes)
-            } else {
-                this
-            }
-        }
-
-        val reifiedTypes = genericTypes.map { it.copy(reified = true) }
-        val reifiedClassName = className.run {
-            if (reifiedTypes.isNotEmpty()) {
-                parameterizedBy(reifiedTypes)
-            } else {
-                this
-            }
-        }
-
-        val erasedGenericClassName = className.run {
-            if (genericTypes.isNotEmpty()) {
-                parameterizedBy(genericTypes.map { ANY })
-            } else {
-                this
-            }
-        }
-
-        fun toTypeSpecBuilder() = TypeSpec
-            .classBuilder(className)
-            .addTypeVariables(genericTypes)
-
-        fun toFunSpecBuilder(name: String) = FunSpec
-            .builder(name)
-            .addTypeVariables(genericTypes)
-
-        fun toExtensionFunSpecBuilder(name: String) = toFunSpecBuilder(name).receiver(genericClassName)
-
-        fun toReifiedFunSpecBuilder(name: String) = FunSpec
-            .builder(name)
-            .addTypeVariables(reifiedTypes)
-            .addModifiers(KModifier.INLINE)
-
-        fun toReifiedExtensionFunSpecBuilder(name: String) = toReifiedFunSpecBuilder(name).receiver(reifiedClassName)
-
-        fun toParameterSpecList() = genericTypes
-            .mapIndexed { index: Int, typeVariableName: TypeVariableName ->
-                ParameterSpec.builder("p$index", typeVariableName).build()
-            }
-    }
 
     override fun generate(maxArgumentCount: Int): FileSpec {
         val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")

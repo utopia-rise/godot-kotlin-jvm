@@ -69,6 +69,16 @@ public class JavaTestClass extends Node {
     @RegisterProperty
     public Dictionary<Float, String> dictionary = new Dictionary<>(Float.class, String.class);
 
+    public KtCallable<Void> lambdaCallable = KtCallable0.create(
+            Void.class,
+            () -> {
+                System.out.println("Hello from Callable");
+                return null;
+            }
+    );
+
+    public NativeCallable methodCallable = Callable.create(this, StringNames.asStringName("DummyName"));
+
     @RegisterFunction
     public void connectAndTriggerSignal() {
         connect(
