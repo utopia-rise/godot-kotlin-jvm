@@ -3,6 +3,7 @@ package godot.core
 @PublishedApi
 internal val variantMapper = mutableMapOf(
     Unit::class to VariantParser.NIL,
+    Void::class to VariantParser.NIL,
     Any::class to VariantCaster.ANY,
     java.lang.Object::class to VariantCaster.ANY,
     Boolean::class to VariantParser.BOOL,
