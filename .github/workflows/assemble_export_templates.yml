@@ -95,7 +95,7 @@ jobs:
 
       - name: Create version.txt
         run: |
-          refVersion=godot-kotlin-jvm-${{ inputs.godot-kotlin-jvm-version }}
+          refVersion=${{ inputs.godot-version }}.jvm.${{ inputs.build-version }}
           templatesVersion=${refVersion//-/.} #replace `-` with `.` in templates version
           echo "$templatesVersion" > templates/version.txt
         shell: bash
