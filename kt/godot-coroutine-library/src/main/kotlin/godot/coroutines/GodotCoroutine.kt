@@ -7,10 +7,10 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-object GodotCoroutine {
-    private val scope = CoroutineScope(Dispatchers.Default + SupervisorJob())
+object GodotCoroutine : CoroutineScope {
+    override val coroutineContext  = Dispatchers.Default + SupervisorJob()
+}
 
-    operator fun invoke(context: CoroutineContext = Dispatchers.Default, start: CoroutineStart = CoroutineStart.DEFAULT, block: suspend CoroutineScope.() -> Unit) {
-        scope.launch(context, start, block)
-    }
+fun godotCoroutine(context: CoroutineContext = Dispatchers.Default, start: CoroutineStart = CoroutineStart.DEFAULT, block: suspend CoroutineScope.() -> Unit) {
+    GodotCoroutine.launch(context, start, block)
 }

@@ -15,7 +15,7 @@ import kotlin.coroutines.resume
  *
  * @param block the code block to execute at the end of the frame
  */
-public suspend inline fun <R> awaitDeferred(
+public suspend inline fun <R> awaitMainThread(
     crossinline block: () -> R
 ): R = suspendCancellableCoroutine { continuation ->
     Callable(

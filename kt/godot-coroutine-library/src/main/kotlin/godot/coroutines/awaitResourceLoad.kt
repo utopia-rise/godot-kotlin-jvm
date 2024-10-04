@@ -9,7 +9,10 @@ import godot.global.GD
 import godot.util.RealT
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -33,55 +36,16 @@ public suspend inline fun ResourceLoader.awaitLoad(
     crossinline onProgress: (RealT) -> Unit = {},
 ): Resource? {
     // early return in case the resource is already loaded
-    if (this.hasCached(path)) {
-        return this.load(path)
+    if (hasCached(path)) {
+        return load(path)
     }
 
-    val error = this.loadThreadedRequest(
-        path = path,
-        typeHint = typeHint,
-        useSubThreads = useSubThreads,
-        cacheMode = cacheMode,
-    )
-
-    if (error != Error.OK) {
-        GD.printErr("Could not trigger resource load. Got error: $error")
-        return null
+    // Start a new job so we have a suspension point in case the coroutine is currently in the main thread.
+    val job = GodotCoroutine.async(Dispatchers.Default) {
+        load(path)
     }
 
-    return suspendCancellableCoroutine { continuation ->
-        CoroutineScope(Dispatchers.Default).launch {
-            var success = false
-            do {
-                val progress = variantArrayOf<Any?>()
-
-                val status = awaitDeferred {
-                    this@awaitLoad.loadThreadedGetStatus(
-                        path = path,
-                        progress = progress,
-                    ).also {
-                        (progress.firstOrNull() as? RealT)?.let { onProgress(it) }
-                    }
-                }
-
-                when (status) {
-                    ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED -> success = true
-                    ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS -> {
-                        // no op
-                    }
-
-                    ResourceLoader.ThreadLoadStatus.THREAD_LOAD_INVALID_RESOURCE,
-                    ResourceLoader.ThreadLoadStatus.THREAD_LOAD_FAILED -> continuation.resumeWithException(
-                        IllegalStateException("Failed to load resource: $status")
-                    )
-                }
-            } while (status == ResourceLoader.ThreadLoadStatus.THREAD_LOAD_IN_PROGRESS)
-
-            if (success) {
-                continuation.resume(this@awaitLoad.loadThreadedGet(path))
-            }
-        }
-    }
+    return job.await()
 }
 
 /**
