@@ -2,7 +2,9 @@ name: Deploy release
 on:
   push:
     tags:
+      - '\d+.\d+.\d+-\d+.\d+-SNAPSHOT'
       - '\d+.\d+.\d+-\d+.\d+.\d+-SNAPSHOT'
+      - '\d+.\d+.\d+-\d+.\d+'
       - '\d+.\d+.\d+-\d+.\d+.\d+'
 
 concurrency:
