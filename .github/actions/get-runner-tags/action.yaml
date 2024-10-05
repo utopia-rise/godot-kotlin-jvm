@@ -4,13 +4,13 @@ description: Determines runner tags based on the repository fork status
 outputs:
   linux-runner-tags:
     description: Runner tags for Linux
-    value: ${{ steps.set-linux-tag.outputs.tag }}
+    value: ${{ steps.set-linux-tag.outputs.tags }}
   macos-runner-tags:
     description: Runner tags for macOS
-    value: ${{ steps.set-macos-tag.outputs.tag }}
+    value: ${{ steps.set-macos-tag.outputs.tags }}
   windows-runner-tags:
     description: Runner tags for Windows
-    value: ${{ steps.set-windows-tag.outputs.tag }}
+    value: ${{ steps.set-windows-tag.outputs.tags }}
 
 runs:
   using: composite
@@ -20,12 +20,10 @@ runs:
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tag=ubuntu-latest" >> "$GITHUB_OUTPUT"
+          echo "tags=ubuntu-latest" >> "$GITHUB_OUTPUT"
         else
-          {
-            echo "tag=self-hosted";
-            echo "tag=Linux";
-          } >> "$GITHUB_OUTPUT"
+          linux_tags="self-hosted, Linux"
+          echo "tags=${linux_tags}" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for macOS
@@ -33,12 +31,10 @@ runs:
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tag=macos-latest" >> "$GITHUB_OUTPUT"
+          echo "tags=macos-latest" >> "$GITHUB_OUTPUT"
         else
-          {
-            echo "tag=self-hosted";
-            echo "tag=macOS";
-          } >> "$GITHUB_OUTPUT"
+          macos_tags="self-hosted, macOS"
+          echo "tags=${macos_tags}" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for Windows
@@ -46,10 +42,8 @@ runs:
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tag=windows-latest" >> "$GITHUB_OUTPUT"
+          echo "tags=windows-latest" >> "$GITHUB_OUTPUT"
         else
-          {
-            echo "tag=self-hosted";
-            echo "tag=Windows";
-          } >> "$GITHUB_OUTPUT"
+          windows_tags="self-hosted, Windows"
+          echo "tags=${windows_tags}" >> "$GITHUB_OUTPUT"
         fi
