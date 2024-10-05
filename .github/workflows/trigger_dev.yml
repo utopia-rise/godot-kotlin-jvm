@@ -20,9 +20,12 @@ jobs:
       macos-runner-tags: ${{ steps.runner-tags.outputs.macos-runner-tags }}
       windows-runner-tags: ${{ steps.runner-tags.outputs.windows-runner-tags }}
     steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+
       - name: Determine Runner Tags
         id: runner-tags
-        uses: ./modules/kotlin_jvm/.github/actions/get-runner-tags
+        uses: ./.github/actions/get-runner-tags
 
   # This job checks if the current commit is part of a pull request
   # The output is then used to determine if the subsequent jobs should run (see the `if` in `setup-build-variables`)
