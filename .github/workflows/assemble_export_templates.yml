@@ -83,7 +83,7 @@ jobs:
 
       - name: Move windows x86_64 release export template
         shell: sh
-        run: mv godot.windows.template_release.x86_64.jvm.${{ inputs.build-version }}.exe.jvm templates/windows_release_x86_64.exe
+        run: mv godot.windows.template_release.x86_64.jvm.${{ inputs.build-version }}.exe templates/windows_release_x86_64.exe
 
       - name: Download macos debug export template
         uses: actions/download-artifact@v4

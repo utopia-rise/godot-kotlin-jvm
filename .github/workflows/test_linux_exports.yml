@@ -63,7 +63,7 @@ jobs:
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }} harness/tests/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }}
+          mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }} harness/tests/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64
 
       - name: Build tests project
         run: |
