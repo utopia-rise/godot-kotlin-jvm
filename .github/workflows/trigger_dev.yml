@@ -21,8 +21,8 @@ jobs:
       windows-runner-tags: ${{ steps.runner-tags.outputs.windows-runner-tags }}
     steps:
       - name: Determine Runner Tags
-      - id: runner-tags
-      - uses: ./modules/kotlin_jvm/.github/actions/get-runner-tags
+        id: runner-tags
+        uses: ./modules/kotlin_jvm/.github/actions/get-runner-tags
 
   # This job checks if the current commit is part of a pull request
   # The output is then used to determine if the subsequent jobs should run (see the `if` in `setup-build-variables`)
