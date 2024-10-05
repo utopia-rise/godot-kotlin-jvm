@@ -23,6 +23,7 @@ runs:
           echo "tag=ubuntu-latest" >> "$GITHUB_OUTPUT"
         else
           echo "tag=self-hosted Linux" >> "$GITHUB_OUTPUT"
+        fi
 
     - name: Determine runner tag for macOS
       id: set-macos-tag
@@ -32,6 +33,7 @@ runs:
           echo "tag=macos-latest" >> "$GITHUB_OUTPUT"
         else
           echo "tag=self-hosted macOS" >> "$GITHUB_OUTPUT"
+        fi
 
     - name: Determine runner tag for Windows
       id: set-windows-tag
@@ -41,3 +43,4 @@ runs:
           echo "tag=windows-latest" >> "$GITHUB_OUTPUT"
         else
           echo "tag=self-hosted Windows" >> "$GITHUB_OUTPUT"
+        fi
