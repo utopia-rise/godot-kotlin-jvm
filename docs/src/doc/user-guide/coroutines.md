@@ -7,7 +7,7 @@ To use it, you need to add the following to your build.gradle:
 
 ```kotlin
 godot {
-    enableGodotCoroutines.set(true)
+    isGodotCoroutinesEnabled.set(true)
 }
 ```
 
