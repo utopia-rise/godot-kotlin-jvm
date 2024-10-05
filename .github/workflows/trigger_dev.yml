@@ -13,7 +13,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # This job determines the appropriate runner tags based on the repository's fork status
+  # and makes these tags available as outputs for subsequent jobs.
   get-runner-tags:
+    name: 🏷️ Get runner tags
     runs-on: ubuntu-latest
     outputs:
       linux-runner-tags: ${{ steps.runner-tags.outputs.linux-runner-tags }}
