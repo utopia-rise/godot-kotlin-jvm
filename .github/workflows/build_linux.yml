@@ -47,6 +47,7 @@ jobs:
     steps:
       - name: Maximize build disk space
         uses: easimon/maximize-build-space@v10
+        if: contains(inputs.runner-tags, 'self-hosted') == false
 
       - name: Clone Godot Engine
         uses: actions/checkout@v4
