@@ -17,6 +17,15 @@ jobs:
     name: Build android template (all)
 
     steps:
+      - name: Maximize build space
+        uses: AdityaGarg8/remove-unwanted-software@v4.1
+        with:
+          remove-dotnet: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
+          remove-swapfile: 'true'
+
       - name: Clone Godot Engine
         uses: actions/checkout@v4
         with:
