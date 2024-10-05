@@ -13,8 +13,6 @@ Once done, you can go to `Project/Tools/Kotlin/JVM/Generate JVM Project`.
 The following choice will appear:
 ![Project dialog](../assets/img/editor-plugin/generation_choice.png)
 
-After this action, all required files should be generated, and you can safely build the project using the `Build` button at the top-right of the editor window.
-![Build button](../assets/img/editor-plugin/build_button.png)
 ## Setting-up using IntelliJ IDEA project wizard
 
 This is the recommended solution as it creates the entire project in one action and import it in your IDE.

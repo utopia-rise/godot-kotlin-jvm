@@ -166,33 +166,41 @@ override fun _notification() = godotNotification {
 ```  
 Currently this feature except abstract classes.  
 
-## Caching
+## StringName and NodePath
 
 Several Godot functions take `StringName` or `NodePath` as a parameter. 
-It's often more convenient to directly use a String that need to be converted.
+It's often more convenient to directly use a String and convert it.
 
-This operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
+This kind of operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
 
-- `String.asCachedStringName()`
-- `String.asCachedNodePath()` 
-- `StringName.asCachedNodePath()`
-
+=== "Kotlin"
 ```kotlin
-// This first call to the extension function creates the cache entry.
-val firstCall = "Test".asCachedStringName()
+    val stringName = "myString".asCachedStringName() // Cache the string for faster future calls.
+    val nodePath = "myNode/myChildNode".asCachedNodePath() // Cache the string for faster future calls.
+    val snakeCaseStringName = "myString".toGodotName() // Convert the string to snake_case and cache it for faster future calls.
+```
 
-// This second call for the same String value, will return the previously cached instance.
-val secondCall = "Test".asCachedStringName()
-
-// This third call will create a second entry in the cache due to the different key value.
-val thirdCall = "OtherTest".asCachedStringName()
+=== "Java"
+```java
+    StringName stringName = StringNames.asCachedStringName("myString");
+    NodePath nodePath = NodePaths.asCachedNodePath("myNode/myChildNode");
+    StringName snakeCaseStringName = StringNames.toGodotName("myString");
 ```
 
 You can also use the non-cached version of them if you simply want ease of conversion:
 
-- `String.asStringName()`
-- `String.asNodePath()`
-- `StringName.asNodePath()`
+=== "Kotlin"
+```kotlin
+    val stringName = "myString".asStringName()
+    val nodePath = "myNode/myChildNode".asNodePath()
+```
+
+=== "Java"
+```java
+    StringName stringName = StringNames.asStringName("myString");
+    NodePath nodePath = NodePaths.asNodePath("myNode/myChildNode");
+```
+
 
 ## Logging
 
