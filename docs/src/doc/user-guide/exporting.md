@@ -63,12 +63,13 @@ Don't forget to remove them when writing an uninstaller for your game.
 
 In order to build for Android, set the `isAndroidExportEnabled` flag to `true` in your build file.
 
-=== "build.gradke.kts"
-    ```kt
-    godot {
-        isAndroidExportEnabled.set(true)
-    }
-    ```
+/// tab | build.gradke.kts
+```kt
+godot {
+    isAndroidExportEnabled.set(true)
+}
+```
+///
 
 On Android, we do not embed a JVM, we use the existing VM provided by the OS. In order for your game to load the necessary JAR files,
 they need to be converted into `.dex` format. Our Gradle plugin will handle this for you but it requires that you have the android build tools installed (you can easily install and update them with the SDK manager in Android Studio or by installing the Android plugin in Intellij and using the SDK manager there).

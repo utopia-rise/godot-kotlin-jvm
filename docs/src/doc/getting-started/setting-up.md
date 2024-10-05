@@ -86,18 +86,18 @@ If the user does not want to use our IntelliJ IDEA plugin, then they can follow 
 Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).
 The wrapper will ensure that anyone who wants to build your project from source will use the same Gradle version.
 
-/// tab | "Windows" 
-    ```shell
-    fsutil file createnew build.gradle.kts 0
-    fsutil file createnew gradle.properties 0
-    fsutil file createnew settings.gradle.kts 0
-    ```
+/// tab | Windows
+```shell
+fsutil file createnew build.gradle.kts 0
+fsutil file createnew gradle.properties 0
+fsutil file createnew settings.gradle.kts 0
+```
 ///
 
-/// tab | "Unix"
-    ```shell
-    touch build.gradle.kts gradle.properties settings.gradle.kts
-    ```
+/// tab | Unix
+```shell
+touch build.gradle.kts gradle.properties settings.gradle.kts
+```
 ///
 
 The above command(s) will create three empty files. As next step, type the following
@@ -111,17 +111,18 @@ After running the above command, the user should have the wrapper setup ready to
 Up next is setting-up the Gradle build. Now, open the `build.gradle.kts` file
 and paste the following content:
 
-=== "`build.gradle.kts`"
-    ```kotlin
-    plugins {
-        kotlin("jvm") version "$kotlinVersion"
-        id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
-    }
+/// tab | `build.gradle.kts`
+```kotlin
+plugins {
+    kotlin("jvm") version "$kotlinVersion"
+    id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
+}
 
-    repositories {
-        mavenCentral()
-    }
-    ```
+repositories {
+    mavenCentral()
+}
+```
+///
 
 !!! note 
     Please replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.

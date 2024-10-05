@@ -34,7 +34,6 @@ theme:
     - navigation.top
     - content.code.copy
 
-
 extra:
   social:
     - icon: fontawesome/brands/github-alt
@@ -44,7 +43,6 @@ markdown_extensions:
   - pymdownx.highlight:
       linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.blocks.tab:
       alternate_style: true
