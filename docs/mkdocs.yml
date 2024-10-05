@@ -32,6 +32,7 @@ theme:
     - navigation.tabs
     - navigation.expand
     - navigation.top
+    - content.code.copy
 
 
 extra:
@@ -45,7 +46,8 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.highlight
   - pymdownx.superfences
-  - pymdownx.tabbed
+  - pymdownx.blocks.tab:
+      alternate_style: true
   - pymdownx.details
   - admonition
   - meta

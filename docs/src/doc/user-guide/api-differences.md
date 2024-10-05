@@ -173,33 +173,37 @@ It's often more convenient to directly use a String and convert it.
 
 This kind of operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
     val stringName = "myString".asCachedStringName() // Cache the string for faster future calls.
     val nodePath = "myNode/myChildNode".asCachedNodePath() // Cache the string for faster future calls.
     val snakeCaseStringName = "myString".toGodotName() // Convert the string to snake_case and cache it for faster future calls.
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
     StringName stringName = StringNames.asCachedStringName("myString");
     NodePath nodePath = NodePaths.asCachedNodePath("myNode/myChildNode");
     StringName snakeCaseStringName = StringNames.toGodotName("myString");
 ```
+///
 
 You can also use the non-cached version of them if you simply want ease of conversion:
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
     val stringName = "myString".asStringName()
     val nodePath = "myNode/myChildNode".asNodePath()
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
     StringName stringName = StringNames.asStringName("myString");
     NodePath nodePath = NodePaths.asNodePath("myNode/myChildNode");
 ```
+///
 
 
 ## Logging

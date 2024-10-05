@@ -86,17 +86,19 @@ If the user does not want to use our IntelliJ IDEA plugin, then they can follow 
 Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).
 The wrapper will ensure that anyone who wants to build your project from source will use the same Gradle version.
 
-=== "Windows" 
+/// tab | "Windows" 
     ```shell
     fsutil file createnew build.gradle.kts 0
     fsutil file createnew gradle.properties 0
     fsutil file createnew settings.gradle.kts 0
     ```
+///
 
-=== "Unix"
+/// tab | "Unix"
     ```shell
     touch build.gradle.kts gradle.properties settings.gradle.kts
     ```
+///
 
 The above command(s) will create three empty files. As next step, type the following
 command on the terminal:

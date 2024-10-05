@@ -12,7 +12,7 @@ Signals are not stateful so it's usually a waste to store them directly per inst
 
 In both case, you have to provide the name of the signal parameters as strings for the registration to Godot.
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
 @RegisterClass
 class MyScript: Node() {
@@ -23,8 +23,9 @@ class MyScript: Node() {
     val mySignal = Signal1<Boolean>("mySignal", "reverse")
 }
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
 @RegisterClass
 public MyScript extends Node {
@@ -32,6 +33,7 @@ public MyScript extends Node {
     public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse"); // Only one way to do it in Java.
 }
 ```
+///
 
 !!! warning Signal parameter count
     In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language. 
@@ -41,28 +43,31 @@ public MyScript extends Node {
 
 Every signal has a `emit` method which can be used to emit it in a type-safe way.
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
 reverseChanged.emit(false)
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
 reverseChanged.emit(false);
 ```
+///
 
 ## Callables
 
 You can use a classic Callable referencing a Godot Object and one of its method or conveniently use to avoid to creating a separate function.
 
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
     val regularCallable = NativeCallable(myObject, MyObject::myMethod)
     val customCallable = callable1<String> { prinln(it) }
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
     NativeCallable regularCallable = Callables.create(myObject, "myMethod".toGodotName());
     LambdaCallable1<Void, String> customCallable = LambdaCallable1.create(
@@ -73,6 +78,7 @@ You can use a classic Callable referencing a Godot Object and one of its method 
             }
     );
 ```
+///
 
 ### Signals and Callables together
 
@@ -82,7 +88,7 @@ In that context and unlike GDScript, the only reason you want to use a Callable 
 A method can be subscribed/connected to a signal via `connect` using a function reference or a StringName of the method you want to call.
 Note that the connected method has to be a registered to Godot.
 
-=== "Kotlin"
+/// tab | Kotlin
 ```kotlin
 @RegisterClass
 class SomeObject: Object() {
@@ -105,8 +111,9 @@ class AnotherObject: Object() {
     }
 }
 ```
+///
 
-=== "Java"
+/// tab | Java
 ```java
 @RegisterClass
 public class SomeObject extends Object {
@@ -129,6 +136,7 @@ public class AnotherObject extends Object {
     }
 }
 ```
+///
 
 You can also use Kotlin lambdas directly to subscribe to signals
 
