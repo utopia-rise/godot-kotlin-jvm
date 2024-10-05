@@ -6,6 +6,8 @@ on:
         type: string
       jvm-version:
         type: string
+      runner-tags:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_exports_tests
@@ -13,7 +15,7 @@ concurrency:
 
 jobs:
   test-windows-exports:
-    runs-on: windows-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       matrix:

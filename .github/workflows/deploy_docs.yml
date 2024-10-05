@@ -3,10 +3,13 @@ name: Deploy docs
 
 on:
   workflow_call:
+    inputs:
+      runner-tags:
+        type: string
 
 jobs:
   publish_stable_tag:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner-tags }}
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4

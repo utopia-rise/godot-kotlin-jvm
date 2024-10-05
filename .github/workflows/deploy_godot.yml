@@ -5,10 +5,12 @@ on:
     inputs:
       godot-kotlin-jvm-version:
         type: string
+      runner-tags:
+        type: string
 
 jobs:
   deploy-editors:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: Deploy ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
     strategy:
       matrix:
@@ -64,7 +66,7 @@ jobs:
           asset_content_type: application/octet-stream
 
   deploy-export_templates:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: Deploy export templates
     steps:
       - name: Download deploy_release_url

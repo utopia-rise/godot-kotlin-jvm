@@ -4,6 +4,8 @@ on:
     inputs:
       godot-version:
         type: string
+      runner-tags:
+        type: string
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
@@ -14,8 +16,7 @@ concurrency:
 
 jobs:
   build-windows:
-    # Windows 10 with latest image
-    runs-on: windows-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -68,6 +69,7 @@ jobs:
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
+        if: contains(inputs.runner-tags, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

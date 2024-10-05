@@ -6,6 +6,8 @@ on:
         type: string
       godot-version:
         type: string
+      runner-tags:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_assemble
@@ -13,7 +15,7 @@ concurrency:
 
 jobs:
   create-macos-editor-universal:
-    runs-on: macos-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -61,7 +63,7 @@ jobs:
 
   create-macos-editor-app:
     needs: [ create-macos-editor-universal ]
-    runs-on: macos-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -112,7 +114,7 @@ jobs:
 
 
   create-macos-export-template-universal:
-    runs-on: macos-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -154,7 +156,7 @@ jobs:
 
   create-macos-export-template-app:
     needs: [ create-macos-export-template-universal ]
-    runs-on: macos-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: Create macos export template app
     steps:
       - name: Clone Godot Engine

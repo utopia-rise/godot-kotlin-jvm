@@ -6,6 +6,8 @@ on:
         type: string
       jvm-version:
         type: string
+      runner-tags:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-android_build
@@ -13,7 +15,7 @@ concurrency:
 
 jobs:
   android-template:
-    runs-on: ubuntu-20.04
+    runs-on: ${{ inputs.runner-tags }}
     name: Build android template (all)
 
     steps:
@@ -41,6 +43,7 @@ jobs:
       - name: Setup Godot build cache
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         continue-on-error: true
+        if: contains(inputs.runner-tags, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

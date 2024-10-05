@@ -4,6 +4,8 @@ on:
     inputs:
       godot-version:
         type: string
+      runner-tags:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_build
@@ -11,7 +13,7 @@ concurrency:
 
 jobs:
   build-macos:
-    runs-on: macos-latest
+    runs-on: ${{ inputs.runner-tags }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -84,6 +86,7 @@ jobs:
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
+        if: contains(inputs.runner-tags, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

@@ -19,7 +19,7 @@ jobs:
   # general concept taken from: https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
   get-pr-number:
     name: 🔗 Get PR number if present
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
     # Map a step output to a job output
     outputs:
       pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
@@ -61,7 +61,7 @@ jobs:
     # all subsequent jobs in this workflow depend on this one. So if we don't execute it, they won't be executed either
     if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
     name: 🛠️ Setup build variables
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
     steps:
       - run: |
           echo "Setup done"
@@ -77,6 +77,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -85,6 +86,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   test-linux:
     name: 🐧 Test Linux
@@ -96,6 +98,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
@@ -107,3 +110,4 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}

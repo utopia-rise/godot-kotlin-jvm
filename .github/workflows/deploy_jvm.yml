@@ -11,6 +11,8 @@ on:
         type: string
       jvm-version:
         type: string
+      runner-tags:
+        type: string
 
 env:
   GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII: ${{ secrets.GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII }}
@@ -24,7 +26,7 @@ env:
 jobs:
   deploy-jvm:
     name: Deploy jvm artifacts
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner-tags }}
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
@@ -101,7 +103,7 @@ jobs:
     strategy:
       matrix:
         ij_sdk: [ IJ232 ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.runner-tags }}
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
