@@ -9,7 +9,7 @@ on:
       - '!master'   # excludes master
 
 concurrency:
-  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_dev
+  group: ci-${{ github.actor }}-${{ github.head_ref || github.run_number }}-${{ github.ref }}-trigger_dev
   cancel-in-progress: true
 
 jobs:
@@ -38,7 +38,8 @@ jobs:
     name: 🔗 Get PR number if present
     needs:
       - get-runner-tags
-    runs-on: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+    # The runner tags are passed as an array here
+    runs-on: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}
     # Map a step output to a job output
     outputs:
       pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
@@ -81,7 +82,7 @@ jobs:
     # all subsequent jobs in this workflow depend on this one. So if we don't execute it, they won't be executed either
     if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
     name: 🛠️ Setup build variables
-    runs-on: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+    runs-on: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}
     steps:
       - run: |
           echo "Setup done"
@@ -98,7 +99,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -108,7 +109,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}
 
   test-linux:
     name: 🐧 Test Linux
@@ -121,7 +122,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
@@ -134,4 +135,4 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']) }}
+      runner-tags: ${{ fromJson(needs.get-runner-tags.outputs['linux-runner-tags']).tags }}

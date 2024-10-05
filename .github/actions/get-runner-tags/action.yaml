@@ -4,46 +4,46 @@ description: Determines runner tags based on the repository fork status
 outputs:
   linux-runner-tags:
     description: Runner tags for Linux
-    value: ${{ steps.set-linux-tag.outputs.tags }}
+    value: ${{ steps.set-linux-tags.outputs.tags }}
   macos-runner-tags:
     description: Runner tags for macOS
-    value: ${{ steps.set-macos-tag.outputs.tags }}
+    value: ${{ steps.set-macos-tags.outputs.tags }}
   windows-runner-tags:
     description: Runner tags for Windows
-    value: ${{ steps.set-windows-tag.outputs.tags }}
+    value: ${{ steps.set-windows-tags.outputs.tags }}
 
 runs:
   using: composite
   steps:
     - name: Determine runner tag for Linux
-      id: set-linux-tag
+      id: set-linux-tags
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tags=ubuntu-latest" >> "$GITHUB_OUTPUT"
+          echo '{"tags": ["ubuntu-latest"]}' >> "$GITHUB_OUTPUT"
         else
-          linux_tags="self-hosted, Linux"
-          echo "tags=${linux_tags}" >> "$GITHUB_OUTPUT"
+          linux_tags='["self-hosted", "Linux"]'
+          echo "{\"tags\": ${linux_tags}}" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for macOS
-      id: set-macos-tag
+      id: set-macos-tags
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tags=macos-latest" >> "$GITHUB_OUTPUT"
+          echo '{"tags": ["macos-latest"]}' >> "$GITHUB_OUTPUT"
         else
-          macos_tags="self-hosted, macOS"
-          echo "tags=${macos_tags}" >> "$GITHUB_OUTPUT"
+          macos_tags='["self-hosted", "macOS"]'
+          echo "{\"tags\": ${macos_tags}}" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for Windows
-      id: set-windows-tag
+      id: set-windows-tags
       shell: bash
       run: |
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
-          echo "tags=windows-latest" >> "$GITHUB_OUTPUT"
+          echo '{"tags": ["windows-latest"]}' >> "$GITHUB_OUTPUT"
         else
-          windows_tags="self-hosted, Windows"
-          echo "tags=${windows_tags}" >> "$GITHUB_OUTPUT"
+          windows_tags='["self-hosted", "Windows"]'
+          echo "{\"tags\": ${windows_tags}}" >> "$GITHUB_OUTPUT"
         fi
