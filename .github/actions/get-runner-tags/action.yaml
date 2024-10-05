@@ -40,10 +40,13 @@ runs:
           echo "tag=self-hosted Windows" >> "$GITHUB_OUTPUT"
 
     - name: Set output for Linux
+      shell: bash
       run: echo "linux-runner-tags=${{ steps.set-linux-tag.outputs.tag }}" >> "$GITHUB_OUTPUT"
 
     - name: Set output for macOS
+      shell: bash
       run: echo "macos-runner-tags=${{ steps.set-macos-tag.outputs.tag }}" >> "$GITHUB_OUTPUT"
 
     - name: Set output for Windows
+      shell: bash
       run: echo "windows-runner-tags=${{ steps.set-windows-tag.outputs.tag }}" >> "$GITHUB_OUTPUT"
