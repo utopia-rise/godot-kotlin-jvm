@@ -1,6 +1,5 @@
 #include "transfer_context.h"
 
-#include "script/jvm_script_manager.h"
 #include "script/jvm_instance.h"
 
 const int MAX_STACK_SIZE = MAX_FUNCTION_ARG_COUNT * 8;
@@ -30,14 +29,14 @@ SharedBuffer* TransferContext::get_and_rewind_buffer(jni::Env& p_env) {
 
 void TransferContext::read_return_value(jni::Env& p_env, Variant& r_ret) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
-    ktvariant::get_variant_from_buffer(buffer, r_ret);
+    BufferToVariant::read_variant(buffer, r_ret);
 }
 
 void TransferContext::write_args(jni::Env& p_env, const Variant** p_args, int args_size) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     buffer->increment_position(encode_uint32(args_size, buffer->get_cursor()));
     for (auto i = 0; i < args_size; ++i) {
-        ktvariant::send_variant_to_buffer(*p_args[i], buffer);
+        VariantToBuffer::write_variant(*p_args[i], buffer);
     }
 }
 
@@ -45,13 +44,13 @@ uint32_t TransferContext::read_args(jni::Env& p_env, Variant* args) {
     SharedBuffer* buffer {get_and_rewind_buffer(p_env)};
     uint32_t size {read_args_size(buffer)};
     for (uint32_t i = 0; i < size; ++i) {
-        ktvariant::get_variant_from_buffer(buffer, args[i]);
+        BufferToVariant::read_variant(buffer, args[i]);
     }
     return size;
 }
 
 void TransferContext::write_return_value(jni::Env& p_env, Variant& variant) {
-    ktvariant::send_variant_to_buffer(variant, get_and_rewind_buffer(p_env));
+    VariantToBuffer::write_variant(variant, get_and_rewind_buffer(p_env));
 }
 
 void TransferContext::write_object_data(jni::Env& p_env, uintptr_t ptr, ObjectID id) {
@@ -77,7 +76,14 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
 
     MethodBind* method_bind {reinterpret_cast<MethodBind*>(static_cast<uintptr_t>(j_method_ptr))};
 
-    JVM_DEV_ASSERT(args_size <= MAX_FUNCTION_ARG_COUNT, "Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args", MAX_FUNCTION_ARG_COUNT, method_bind->get_instance_class(), method_bind->get_name(), args_size);
+    JVM_DEV_ASSERT(
+      args_size <= MAX_FUNCTION_ARG_COUNT,
+      "Cannot have more than %s arguments for method call but tried to call method \"%s::%s\" with %s args",
+      MAX_FUNCTION_ARG_COUNT,
+      method_bind->get_instance_class(),
+      method_bind->get_name(),
+      args_size
+    );
 
     Callable::CallError r_error {Callable::CallError::CALL_OK};
 
@@ -93,7 +99,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
 
         buffer->rewind();
-        ktvariant::send_variant_to_buffer(ret_value, buffer);
+        VariantToBuffer::write_variant(ret_value, buffer);
     } else {
         Variant* args {variant_args + stack_offset};
         read_args_to_array(buffer, args, args_size);
@@ -109,7 +115,7 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         stack_offset -= args_size;
 
         buffer->rewind();
-        ktvariant::send_variant_to_buffer(ret_value, buffer);
+        VariantToBuffer::write_variant(ret_value, buffer);
     }
 
 #ifdef DEBUG_ENABLED
