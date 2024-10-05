@@ -13,14 +13,26 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  get-runner-tags:
+    runs-on: ubuntu-latest
+    outputs:
+      linux-runner-tags: ${{ steps.runner-tags.outputs.linux-runner-tags }}
+      macos-runner-tags: ${{ steps.runner-tags.outputs.macos-runner-tags }}
+      windows-runner-tags: ${{ steps.runner-tags.outputs.windows-runner-tags }}
+    steps:
+      - name: Determine Runner Tags
+      - id: runner-tags
+      - uses: ./modules/kotlin_jvm/.github/actions/get-runner-tags
+
   # This job checks if the current commit is part of a pull request
   # The output is then used to determine if the subsequent jobs should run (see the `if` in `setup-build-variables`)
   # This is needed as github actions does not allow to run on every push except on pull request pushes
   # general concept taken from: https://github.com/orgs/community/discussions/27071#discussioncomment-4943026
   get-pr-number:
     name: 🔗 Get PR number if present
-    runs-on:
-      ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+    needs:
+      - get-runner-tags
+    runs-on: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}
     # Map a step output to a job output
     outputs:
       pr-number: ${{ steps.get-pr-number.outputs.pr-number }}
@@ -58,12 +70,12 @@ jobs:
   setup-build-variables:
     needs:
       - get-pr-number
+      - get-runner-tags
     # we only want to run this if we're not in a pull request.
     # all subsequent jobs in this workflow depend on this one. So if we don't execute it, they won't be executed either
     if: ${{ needs.get-pr-number.outputs['pr-number'] == '' }}
     name: 🛠️ Setup build variables
-    runs-on:
-      ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+    runs-on: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}
     steps:
       - run: |
           echo "Setup done"
@@ -75,45 +87,45 @@ jobs:
     name: ☕ Build Jvm
     uses: ./.github/workflows/build_jvm.yml
     needs:
+      - get-runner-tags
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}
 
   build-linux:
     name: 🐧 Build Linux
     uses: ./.github/workflows/build_linux.yml
     needs:
+      - get-runner-tags
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}
 
   test-linux:
     name: 🐧 Test Linux
     uses: ./.github/workflows/test_linux.yml
     needs:
+      - get-runner-tags
       - setup-build-variables
       - build-jvm
       - build-linux
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
     uses: ./.github/workflows/test_linux_exports.yml
     needs:
+      - get-runner-tags
       - setup-build-variables
       - build-jvm
       - build-linux
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ needs.get-runner-tags.outputs['linux-runner-tags'] }}

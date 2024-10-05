@@ -14,8 +14,7 @@ jobs:
   setup-build-variables:
     # Fake job to define outputs which can be used in the other jobs
     name: 🛠️ Setup build variables
-    runs-on:
-      ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+    runs-on: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
     steps:
       - run: |
           echo "Setup done"
@@ -32,8 +31,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   build-android:
     name: 🤖 Build and Assemble Android
@@ -43,8 +41,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   build-ios:
     name: 🍏 Build iOS
@@ -53,8 +50,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -63,8 +59,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   build-macos:
     name: 🍎 Build macOS
@@ -73,8 +68,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
 
   build-windows:
     name: 🪟 Build Windows
@@ -83,8 +77,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'windows-latest' : 'self-hosted Windows' }}
+      runner-tags: ${{ github.event.repository.fork ? 'windows-latest' : 'self-hosted Windows' }}
 
   assemble-macos:
     name: 🍎 Assemble macos
@@ -96,8 +89,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
 
   assemble-ios:
     name: 🍏 Assemble ios
@@ -108,8 +100,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
 
   assemble-linux:
     name: 🐧 Assemble linux
@@ -121,8 +112,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   assemble-windows:
     name: 🪟 Assemble windows
@@ -135,8 +125,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       # does not need to run on windows -> only packs a zip
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
 
   assemble-export-templates:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
@@ -151,5 +140,4 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags:
-        ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
