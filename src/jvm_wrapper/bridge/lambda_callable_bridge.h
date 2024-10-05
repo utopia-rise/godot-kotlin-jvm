@@ -1,6 +1,5 @@
-#ifndef GODOT_JVM_KT_CALLABLE_BRIDGE_H
-#define GODOT_JVM_KT_CALLABLE_BRIDGE_H
-
+#ifndef GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H
+#define GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H
 
 #include "jvm_wrapper/jvm_singleton_wrapper.h"
 
@@ -20,4 +19,4 @@ namespace bridges {
 }
 
 
-#endif //GODOT_JVM_KT_CALLABLE_BRIDGE_H
+#endif// GODOT_JVM_LAMBDA_CALLABLE_BRIDGE_H

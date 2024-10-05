@@ -1,4 +1,4 @@
-#include "kt_callable_bridge.h"
+#include "lambda_callable_bridge.h"
 
 #include "jvm_wrapper/kotlin_callable_custom.h"
 
