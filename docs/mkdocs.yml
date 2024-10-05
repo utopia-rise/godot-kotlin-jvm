@@ -33,6 +33,7 @@ theme:
     - navigation.expand
     - navigation.top
     - content.code.copy
+    - toc.integrate
 
 extra:
   social:
