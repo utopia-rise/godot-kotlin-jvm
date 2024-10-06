@@ -10,6 +10,25 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # This job determines the appropriate runner tag based on the repository's fork status
+  # and makes these tag available as outputs for subsequent jobs.
+  # this is done as only in our own repository we want to use our self-hosted runners but not on forks (as there they
+  # are unavailable)
+  get-runner-tags:
+    name: 🏷️ Get runner tags
+    runs-on: ubuntu-latest
+    outputs:
+      linux-runner-tag: ${{ steps.runner-tags.outputs.linux-runner-tag }}
+      macos-runner-tag: ${{ steps.runner-tags.outputs.macos-runner-tag }}
+      windows-runner-tag: ${{ steps.runner-tags.outputs.windows-runner-tag }}
+    steps:
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+
+      - name: Determine Runner Tags
+        id: runner-tags
+        uses: ./.github/actions/get-runner-tags
+
   create-draft-release:
     name: 📝 Create draft release
     uses: ./.github/workflows/deploy_create_draft_release.yml
@@ -17,7 +36,7 @@ jobs:
 
   setup-build-variables:
     name: 🛠️ Setup build variables
-    runs-on: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+    runs-on: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
     needs:
       - create-draft-release
     steps:
@@ -36,7 +55,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   build-android:
     name: 🤖 Build and Assemble Android
@@ -46,7 +65,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   build-ios:
     name: 🍏 Build iOS
@@ -55,7 +74,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['macos-runner-tag'] }}
 
   build-linux:
     name: 🐧 Build Linux
@@ -64,7 +83,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   build-macos:
     name: 🍎 Build macOS
@@ -73,7 +92,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['macos-runner-tag'] }}
 
   build-windows:
     name: 🪟 Build Windows
@@ -82,7 +101,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'windows-latest' : 'self-hosted Windows' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['windows-runner-tag'] }}
 
   assemble-macos:
     name: 🍎 Assemble macos
@@ -94,7 +113,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['macos-runner-tag'] }}
 
   assemble-ios:
     name: 🍏 Assemble ios
@@ -105,7 +124,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'macos-latest' : 'self-hosted macOS' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['macos-runner-tag'] }}
 
   assemble-linux:
     name: 🐧 Assemble linux
@@ -117,7 +136,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   assemble-windows:
     name: 🪟 Assemble windows
@@ -130,7 +149,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       # does not need to run on windows -> only packs a zip
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   assemble-export-templates:
     name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
@@ -145,7 +164,7 @@ jobs:
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
 
   deploy-godot:
     name: 🚀 Deploy godot artifacts to Github
@@ -161,7 +180,7 @@ jobs:
       - assemble-export-templates
     with:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-jvm:
@@ -175,7 +194,7 @@ jobs:
       godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
 
   deploy-docs:
@@ -185,5 +204,5 @@ jobs:
       - deploy-godot
       - deploy-jvm
     with:
-      runner-tags: ${{ github.event.repository.fork ? 'ubuntu-latest' : 'self-hosted Linux' }}
+      runner-tag: ${{ needs.get-runner-tags.outputs['linux-runner-tag'] }}
     secrets: inherit # needed so that this sub workflow can also access github secrets for this workflow
