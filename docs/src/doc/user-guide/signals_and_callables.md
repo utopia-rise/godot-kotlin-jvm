@@ -63,13 +63,13 @@ You can use a classic Callable referencing a Godot Object and one of its method 
 /// tab | Kotlin
 ```kotlin
     val regularCallable = NativeCallable(myObject, MyObject::myMethod)
-    val customCallable = callable1<String> { prinln(it) }
+    val customCallable = callable1<String> { println(it) }
 ```
 ///
 
 /// tab | Java
 ```java
-    NativeCallable regularCallable = Callables.create(myObject, "myMethod".toGodotName());
+    NativeCallable regularCallable = Callable.create(myObject, "myMethod".toGodotName());
     LambdaCallable1<Void, String> customCallable = LambdaCallable1.create(
             Void.class,
             String.class,
@@ -135,9 +135,9 @@ public class AnotherObject extends Object {
 
     public AnotherObject() {
         // Here are 3 different ways to connect a signal to a registered method. The method reference syntax is not implemented for Java.
-        mySignal.connect(new Callable(targetObject, StringNames.toGodotName("onReverseChanged"))); // The recommanded way.
-        mySignal.connect(new Callable(targetObject, "on_reverse_changed")); // Unsafe, try to use snake_case in your code as least as possible.
-        connect("my_signal", new Callable(targetObject, "on_reverse_changed")); // Really, don't do that.
+        mySignal.connect(Callable.create(targetObject, StringNames.toGodotName("onReverseChanged"))); // The recommanded way.
+        mySignal.connect(Callable.create(targetObject, "on_reverse_changed")); // Unsafe, try to use snake_case in your code as least as possible.
+        connect("my_signal", Callable.create(targetObject, "on_reverse_changed")); // Really, don't do that.
     }
 }
 ```

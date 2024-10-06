@@ -2,7 +2,6 @@ To compile your project, run a classic *Gradle build*. By default this creates a
 
 Using the Godot editor:
 
-After this action, all required files should be generated, and you can safely build the project using the `Build` button at the top-right of the editor window.
 ![Build button](../assets/img/editor-plugin/build_button.png)
 
 Using your IDE:
@@ -11,9 +10,18 @@ Using your IDE:
 
 Using command-line:
 
+/// tab | Windows
+```shell
+gradlew build
+```
+///
+
+/// tab | Unix
 ```bash
 ./gradlew build
 ```
+///
+
 
 ## Targets
 
@@ -22,9 +30,17 @@ In order to build in release, you should add `release` parameter to your Gradle 
 
 Example:
 
+/// tab | Windows
+```shell
+gradlew build -Prelease
+```
+///
+
+/// tab | Unix
 ```bash
 ./gradlew build -Prelease
 ```
+///
 
 Using debug builds is recommended when developing. It adds some sanity checks that are cut off in `release`.  
 

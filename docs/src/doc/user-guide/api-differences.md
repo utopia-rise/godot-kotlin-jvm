@@ -125,13 +125,6 @@ dictionary.get("foo") {
 
 Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
-## Signals and exposed methods
-
-In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language.
-At the moment, you can create signals and expose them to Godot with at most 10 parameters.
-
-If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions.  
-
 ## Renamed symbols
 
 To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
