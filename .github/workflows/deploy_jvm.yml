@@ -26,7 +26,7 @@ env:
 jobs:
   deploy-jvm:
     name: Deploy jvm artifacts
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4
@@ -103,7 +103,7 @@ jobs:
     strategy:
       matrix:
         ij_sdk: [ IJ232 ]
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     steps:
       - name: Clone Godot Engine
         uses: actions/checkout@v4

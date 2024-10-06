@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build-jvm:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: Build Jvm artifacts
 
     steps:

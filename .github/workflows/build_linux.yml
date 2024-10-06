@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build-linux:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -47,7 +47,7 @@ jobs:
     steps:
       - name: Maximize build disk space
         uses: easimon/maximize-build-space@v10
-        if: contains(inputs.runner-tags, 'self-hosted') == false
+        if: contains(inputs.runner-tag, 'self-hosted') == false
 
       - name: Clone Godot Engine
         uses: actions/checkout@v4
@@ -65,7 +65,7 @@ jobs:
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
-        if: contains(inputs.runner-tags, 'self-hosted') == false
+        if: contains(inputs.runner-tag, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

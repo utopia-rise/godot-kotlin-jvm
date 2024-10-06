@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   create-linux-editor-zip:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false

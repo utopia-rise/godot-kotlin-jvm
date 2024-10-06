@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test-windows:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       matrix:

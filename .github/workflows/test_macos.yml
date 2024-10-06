@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test-macos:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       matrix:

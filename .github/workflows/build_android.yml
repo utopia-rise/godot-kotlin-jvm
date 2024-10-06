@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   android-template:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: Build android template (all)
 
     steps:
@@ -43,7 +43,7 @@ jobs:
       - name: Setup Godot build cache
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         continue-on-error: true
-        if: contains(inputs.runner-tags, 'self-hosted') == false
+        if: contains(inputs.runner-tag, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

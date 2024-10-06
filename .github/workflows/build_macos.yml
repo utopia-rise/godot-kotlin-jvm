@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   build-macos:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -86,7 +86,7 @@ jobs:
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
-        if: contains(inputs.runner-tags, 'self-hosted') == false
+        if: contains(inputs.runner-tag, 'self-hosted') == false
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps

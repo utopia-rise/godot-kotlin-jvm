@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   create-macos-editor-universal:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -63,7 +63,7 @@ jobs:
 
   create-macos-editor-app:
     needs: [ create-macos-editor-universal ]
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -114,7 +114,7 @@ jobs:
 
 
   create-macos-export-template-universal:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
@@ -156,7 +156,7 @@ jobs:
 
   create-macos-export-template-app:
     needs: [ create-macos-export-template-universal ]
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: Create macos export template app
     steps:
       - name: Clone Godot Engine

@@ -9,7 +9,7 @@ on:
 
 jobs:
   publish_stable_tag:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     steps:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4

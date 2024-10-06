@@ -10,7 +10,7 @@ on:
 
 jobs:
   deploy-editors:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: Deploy ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
     strategy:
       matrix:
@@ -66,7 +66,7 @@ jobs:
           asset_content_type: application/octet-stream
 
   deploy-export_templates:
-    runs-on: ${{ inputs.runner-tags }}
+    runs-on: ${{ inputs.runner-tag }}
     name: Deploy export templates
     steps:
       - name: Download deploy_release_url
