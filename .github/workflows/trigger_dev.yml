@@ -13,8 +13,10 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # This job determines the appropriate runner tags based on the repository's fork status
-  # and makes these tags available as outputs for subsequent jobs.
+  # This job determines the appropriate runner tag based on the repository's fork status
+  # and makes these tag available as outputs for subsequent jobs.
+  # this is done as only in our own repository we want to use our self-hosted runners but not on forks (as there they
+  # are unavailable)
   get-runner-tags:
     name: 🏷️ Get runner tags
     runs-on: ubuntu-latest
