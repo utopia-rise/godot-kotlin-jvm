@@ -69,7 +69,6 @@ public:
 
     static GDKotlin& get_instance();
     const JvmUserConfiguration& get_configuration();
-    State get_state();
 
     void initialize_up_to(State target_state);
     void finalize_down_to(State target_state);

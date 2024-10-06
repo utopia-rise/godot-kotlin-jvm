@@ -8,6 +8,7 @@
 
 class JvmInstance : public ScriptInstance {
     friend class MemoryManager;
+    friend class JvmScript;
 private:
     Object* owner;
     KtObject* kt_object;

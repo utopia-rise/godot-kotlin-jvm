@@ -15,10 +15,6 @@ GDKotlin& GDKotlin::get_instance() {
     return instance;
 }
 
-GDKotlin::State GDKotlin::get_state() {
-    return state;
-}
-
 const JvmUserConfiguration& GDKotlin::get_configuration() {
     return user_configuration;
 }
@@ -279,8 +275,11 @@ bool GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
+        jar.instantiate();
+        jar->set_path(user_code_path, true);
+
         if (!FileAccess::exists(user_code_path)) {
-            String message {"No main.jar detected at $userCodeFile. No classes will be loaded. Build the gradle "
+            String message {"No main.jar detected at %s. No classes will be loaded. Build the gradle "
                             "project to load classes"};
 #ifdef TOOLS_ENABLED
             JVM_LOG_WARNING(message, user_code_path);
@@ -291,7 +290,6 @@ bool GDKotlin::load_user_code() {
         }
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
-        jar = ResourceLoader::load(user_code_path);
 
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
@@ -313,8 +311,8 @@ bool GDKotlin::load_user_code() {
 void GDKotlin::unload_user_code() {
     jni::Env env {jni::Jvm::current_env()};
     bootstrap->finish(env);
-    JvmScriptManager::get_instance()->clear();
     TypeManager::get_instance().clear();
+    jar.unref();
 }
 
 void GDKotlin::finalize_core_library() {
@@ -379,8 +377,10 @@ void GDKotlin::finalize_down_to(State target_state) {
 
 #ifdef DYNAMIC_JVM
 void GDKotlin::reload_user_code() {
-    finalize_down_to(JVM_STARTED);
-    initialize_up_to(JVM_SCRIPTS_INITIALIZED);
+    if(user_configuration.vm_type == jni::JvmType::JVM) {
+        finalize_down_to(BOOTSTRAP_LOADED);
+        initialize_up_to(JVM_SCRIPTS_INITIALIZED);
+    }
 }
 #endif
 
