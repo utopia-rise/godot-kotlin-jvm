@@ -282,10 +282,10 @@ bool GDKotlin::load_user_code() {
                             "project to load classes"};
 #ifdef TOOLS_ENABLED
             JVM_LOG_WARNING(message, user_code_path);
-#elif defined DEBUG_ENABLED
-            JVM_ERR_FAIL_MSG(message, user_code_path);
-#endif
             return false;
+#elif defined DEBUG_ENABLED
+            JVM_ERR_FAIL_V_MSG(false, message, user_code_path);
+#endif
         }
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
