@@ -3,7 +3,7 @@ name: 📝 Create draft release
 on:
   workflow_call:
     inputs:
-      runner-tags:
+      runner-tag:
         type: string
 
 jobs:

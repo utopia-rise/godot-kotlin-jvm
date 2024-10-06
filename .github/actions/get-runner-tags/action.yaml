@@ -2,14 +2,14 @@ name: Determine Runner Tags
 description: Determines runner tags based on the repository fork status
 
 outputs:
-  linux-runner-tags:
-    description: Runner tags for Linux
+  linux-runner-tag:
+    description: Runner tag for Linux
     value: ${{ steps.set-linux-tag.outputs.tag }}
-  macos-runner-tags:
-    description: Runner tags for macOS
+  macos-runner-tag:
+    description: Runner tag for macOS
     value: ${{ steps.set-macos-tag.outputs.tag }}
-  windows-runner-tags:
-    description: Runner tags for Windows
+  windows-runner-tag:
+    description: Runner tag for Windows
     value: ${{ steps.set-windows-tag.outputs.tag }}
 
 runs:
@@ -22,7 +22,7 @@ runs:
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
           echo "tag=ubuntu-latest" >> "$GITHUB_OUTPUT"
         else
-          echo "tag=[self-hosted, Linux]" >> "$GITHUB_OUTPUT"
+          echo "tag=self-hosted-linux" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for macOS
@@ -32,7 +32,7 @@ runs:
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
           echo "tag=macos-latest" >> "$GITHUB_OUTPUT"
         else
-          echo "tag=[self-hosted, macOS]" >> "$GITHUB_OUTPUT"
+          echo "tag=self-hosted-macos" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for Windows
@@ -42,5 +42,5 @@ runs:
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
           echo "tag=windows-latest" >> "$GITHUB_OUTPUT"
         else
-          echo "tag=[self-hosted, Windows]" >> "$GITHUB_OUTPUT"
+          echo "tag=self-hosted-windows" >> "$GITHUB_OUTPUT"
         fi

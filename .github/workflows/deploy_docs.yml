@@ -4,7 +4,7 @@ name: Deploy docs
 on:
   workflow_call:
     inputs:
-      runner-tags:
+      runner-tag:
         type: string
 
 jobs:

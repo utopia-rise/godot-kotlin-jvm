@@ -6,7 +6,7 @@ on:
         type: string
       jvm-version:
         type: string
-      runner-tags:
+      runner-tag:
         type: string
 
 concurrency:

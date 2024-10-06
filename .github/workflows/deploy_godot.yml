@@ -5,7 +5,7 @@ on:
     inputs:
       godot-kotlin-jvm-version:
         type: string
-      runner-tags:
+      runner-tag:
         type: string
 
 jobs:
