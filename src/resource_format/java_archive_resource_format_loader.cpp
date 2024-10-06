@@ -32,8 +32,12 @@ Ref<Resource> JavaArchiveFormatLoader::load(
     JVM_LOG_VERBOSE(vformat("Loading usercode file at: %s", p_path));
     Ref<JavaArchive> ref;
     ref.instantiate();
+
+#ifdef TOOLS_ENABLED
     if(p_path.ends_with(USER_CODE_FILE)){
         GDKotlin::get_instance().reload_user_code();
     }
+#endif
+
     return ref;
 }
