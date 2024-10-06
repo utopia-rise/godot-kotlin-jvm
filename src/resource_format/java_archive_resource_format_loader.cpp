@@ -1,7 +1,9 @@
 
 #include "java_archive_resource_format_loader.h"
 
+#include "gd_kotlin.h"
 #include "java_archive.h"
+#include "lifecycle/paths.h"
 #include "logging.h"
 
 void JavaArchiveFormatLoader::get_recognized_extensions(List<String>* p_extensions) const {
@@ -30,5 +32,8 @@ Ref<Resource> JavaArchiveFormatLoader::load(
     JVM_LOG_VERBOSE(vformat("Loading usercode file at: %s", p_path));
     Ref<JavaArchive> ref;
     ref.instantiate();
+    if(p_path.ends_with(USER_CODE_FILE)){
+        GDKotlin::get_instance().reload_user_code();
+    }
     return ref;
 }

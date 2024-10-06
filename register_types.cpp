@@ -19,10 +19,10 @@
 #include "script/language/gdj_script.h"
 #include "script/language/java_script.h"
 #include "script/language/kotlin_script.h"
+#include "script/jvm_script_manager.h"
 
 Ref<JvmResourceFormatLoader> resource_format_loader;
 Ref<JvmResourceFormatSaver> resource_format_saver;
-
 Ref<JavaArchiveFormatLoader> java_archive_format_loader;
 
 #ifdef TOOLS_ENABLED
@@ -77,9 +77,9 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) { return; }
 
     ResourceLoader::remove_resource_format_loader((java_archive_format_loader));
-
     ResourceLoader::remove_resource_format_loader((resource_format_loader));
     ResourceSaver::remove_resource_format_saver(resource_format_saver);
+    java_archive_format_loader.unref();
     resource_format_loader.unref();
     resource_format_saver.unref();
 
@@ -94,4 +94,6 @@ void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
     JvmLanguage* jvm_language {GdjLanguage::get_instance()};
     ScriptServer::unregister_language(jvm_language);
     memdelete(jvm_language);
+
+    JvmScriptManager::finalize();
 }

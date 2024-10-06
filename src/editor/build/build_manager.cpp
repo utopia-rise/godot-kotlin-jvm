@@ -49,14 +49,19 @@ bool BuildManager::build_project_blocking() {
         // When in blocking mode, only make the window appears when it fails
         GodotKotlinJvmEditor::get_instance()->update_build_dialog(build_log);
         return false;
+    } else {
+        GodotKotlinJvmEditor::get_instance()->on_build_finished();
+        return true;
     }
-    return true;
+
 }
 
 void BuildManager::build_task(void* p_userdata) {
     GodotKotlinJvmEditor::get_instance()->update_build_dialog(start_build);
 
-    BuildManager::get_instance().build_project();
+    if (BuildManager::get_instance().build_project() == Error::OK) {
+        GodotKotlinJvmEditor::get_instance()->on_build_finished();
+    }
 
     GodotKotlinJvmEditor::get_instance()->update_build_dialog(BuildManager::get_instance().build_log);
     BuildManager::get_instance().taskId = WorkerThreadPool::INVALID_TASK_ID;

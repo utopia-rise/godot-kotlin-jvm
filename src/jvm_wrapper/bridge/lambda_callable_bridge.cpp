@@ -12,3 +12,5 @@ uintptr_t LambdaCallableBridge::wrap_in_custom_callable(JNIEnv* p_raw_env, jobje
         memnew(KotlinCallableCustom(env, p_kt_custom_callable_instance, static_cast<Variant::Type>(p_variant_type_ordinal), p_hash_code))
     );
 }
+
+KtCallableBridge::~KtCallableBridge() = default;

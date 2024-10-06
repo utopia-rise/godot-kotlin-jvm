@@ -20,7 +20,6 @@
 #include "jvm_wrapper/bridge/packed_vector4_array_bridge.h"
 #include "jvm_wrapper/bridge/string_name_bridge.h"
 #include "jvm_wrapper/bridge/variant_array_bridge.h"
-#include "jvm_wrapper/jvm_singleton_wrapper.h"
 #include "jvm_wrapper/kotlin_callable_custom.h"
 #include "jvm_wrapper/memory/memory_manager.h"
 
@@ -109,12 +108,17 @@ bool JvmManager::initialize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loa
     KtClass::initialize_jni_binding(p_env, class_loader);
     LambdaCallable::initialize_jni_binding(p_env, class_loader);
 
-    bool ret = TransferContext::initialize(p_env, class_loader) && TypeManager::initialize(p_env, class_loader)
-            && LongStringQueue::initialize(p_env, class_loader) && MemoryManager::initialize(p_env, class_loader)
-            && bridges::GDPrintBridge::initialize(p_env, class_loader) && bridges::JvmStackTrace::initialize(p_env, class_loader)
-            && bridges::CallableBridge::initialize(p_env, class_loader) && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
+    bool ret = TransferContext::initialize(p_env, class_loader)
+            && TypeManager::initialize(p_env, class_loader)
+            && LongStringQueue::initialize(p_env, class_loader)
+            && MemoryManager::initialize(p_env, class_loader)
+            && bridges::GDPrintBridge::initialize(p_env, class_loader)
+            && bridges::JvmStackTrace::initialize(p_env, class_loader)
+            && bridges::CallableBridge::initialize(p_env, class_loader)
+            && bridges::LambdaCallableBridge::initialize(p_env, class_loader)
             && bridges::DictionaryBridge::initialize(p_env, class_loader)
-            && bridges::StringNameBridge::initialize(p_env, class_loader) && bridges::NodePathBridge::initialize(p_env, class_loader)
+            && bridges::StringNameBridge::initialize(p_env, class_loader)
+            && bridges::NodePathBridge::initialize(p_env, class_loader)
             && bridges::VariantArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedByteArrayBridge::initialize(p_env, class_loader)
             && bridges::PackedColorArrayBridge::initialize(p_env, class_loader)
@@ -139,8 +143,10 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
     TypeManager::finalize(p_env, class_loader);
     LongStringQueue::finalize(p_env, class_loader);
     MemoryManager::finalize(p_env, class_loader);
+    bridges::JvmStackTrace::finalize(p_env, class_loader);
     bridges::GDPrintBridge::finalize(p_env, class_loader);
     bridges::CallableBridge::finalize(p_env, class_loader);
+    bridges::LambdaCallableBridge::finalize(p_env, class_loader);
     bridges::DictionaryBridge::finalize(p_env, class_loader);
     bridges::StringNameBridge::finalize(p_env, class_loader);
     bridges::NodePathBridge::finalize(p_env, class_loader);

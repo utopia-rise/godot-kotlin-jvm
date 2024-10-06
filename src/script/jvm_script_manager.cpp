@@ -73,7 +73,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             // Try to find if a matching PathScript exist
             if (name_to_filepath_cache.has(script_name)) {
                 // First we try using the path in cache. Necessary if the Kotlin file has been moved since the previous loading.
-                script_path = name_to_filepath_cache[script_name]; // Use the old path so we can properly remove its entry in the cache.
+                script_path = name_to_filepath_cache[script_name];// Use the old path so we can properly remove its entry in the cache.
                 path_script = path_script_cache[script_path];
             } else if (path_script_cache.has(script_path)) {
                 // Second we try with the name provided by the KtClass directly;
@@ -206,13 +206,17 @@ int64_t JvmScriptManager::get_last_reload() {
 }
 #endif
 
-void JvmScriptManager::clear() {
-    named_scripts.clear();
-    named_scripts_map.clear();
-    name_to_filepath_map.clear();
-    filepath_to_name_map.clear();
-    path_scripts.clear();
-    path_scripts_map.clear();
+void JvmScriptManager::finalize() {
+    JvmScriptManager* singleton = get_instance();
+
+    singleton->named_scripts.clear();
+    singleton->named_scripts_map.clear();
+    singleton->name_to_filepath_map.clear();
+    singleton->filepath_to_name_map.clear();
+    singleton->path_scripts.clear();
+    singleton->path_scripts_map.clear();
+
+    //memdelete(singleton);
 }
 
 JvmScriptManager* JvmScriptManager::get_instance() {

@@ -10,10 +10,8 @@
 #include <editor/editor_interface.h>
 #include <editor/filesystem_dock.h>
 
-
-
 void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
-    switch(option_id) {
+    switch (option_id) {
         case GENERATE_PROJECT:
             project_dialog->popup_centered();
             break;
@@ -30,6 +28,12 @@ void GodotKotlinJvmEditor::on_generate_project(bool erase_existing) {
 
 void GodotKotlinJvmEditor::on_build_project_pressed() {
     BuildManager::get_instance().build_project_non_blocking();
+}
+
+void GodotKotlinJvmEditor::on_build_finished() {
+    MessageQueue::get_singleton()->push_callable(
+      callable_mp(get_editor_interface()->get_resource_file_system(), &EditorFileSystem::scan_changes)
+    );
 }
 
 bool GodotKotlinJvmEditor::build() {
@@ -68,12 +72,13 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             project_dialog->set_text(generate_project);
 
             project_dialog->get_ok_button()->set_text(generate_missing);
-            project_dialog->get_ok_button()->connect("pressed", callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(false));
-            project_dialog
-              ->add_button(generate_all)
+            project_dialog->get_ok_button()->connect(
+              "pressed",
+              callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(false)
+            );
+            project_dialog->add_button(generate_all)
               ->connect("pressed", callable_mp(this, &GodotKotlinJvmEditor::on_generate_project).bind(true));
             project_dialog->add_cancel_button(generate_nothing);
-
 
             about_pop_menu->hide();
             about_pop_menu->connect(SNAME("id_pressed"), callable_mp(this, &GodotKotlinJvmEditor::on_menu_option_pressed));

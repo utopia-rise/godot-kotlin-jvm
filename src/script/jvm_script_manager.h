@@ -5,6 +5,7 @@
 
 // TODO: Transform this class into JarResource when moving to CPP reloading.
 class JvmScriptManager: public Object {
+    friend class Memory;
 
     Vector<Ref<NamedScript>> named_scripts;
     HashMap<StringName, Ref<NamedScript>> named_scripts_map;
@@ -15,15 +16,16 @@ class JvmScriptManager: public Object {
     Vector<Ref<PathScript>> path_scripts;
     HashMap<String, Ref<PathScript>> path_scripts_map;
 
-    JvmScriptManager() = default;
-    ~JvmScriptManager() = default;
-
 #ifdef TOOLS_ENABLED
     uint64_t last_reload = 0;
     void update_all_scripts(uint64_t update_time);
 #endif
 
 public:
+    // Must be public, or we can't use memnew and memdelete.
+    JvmScriptManager() = default;
+    ~JvmScriptManager() = default;
+
     JvmScriptManager(const JvmScriptManager&) = delete;
     void operator=(const JvmScriptManager&) = delete;
     JvmScriptManager& operator=(JvmScriptManager&&) noexcept = delete;
@@ -40,7 +42,8 @@ public:
 
     template<class SCRIPT>
     Ref<SCRIPT> get_or_create_script(const String& p_path, bool* created);
-    void clear();
+
+    static void finalize();
 
 #ifdef TOOLS_ENABLED
     int64_t get_last_reload();
