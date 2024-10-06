@@ -37,21 +37,21 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
     if (is_desktop_export) {
         if (export_jvm) {
             // files for all jvm desktop targets (bootstrap.jar and main.jar)
-            files_to_add.push_back(String(JVM_DIRECTORY).path_join(DESKTOP_BOOTSTRAP_FILE));
-            files_to_add.push_back(String(JVM_DIRECTORY).path_join(DESKTOP_USER_CODE_FILE));
+            files_to_add.push_back(String(RES_DIRECTORY).path_join(DESKTOP_BOOTSTRAP_FILE));
+            files_to_add.push_back(String(RES_DIRECTORY).path_join(DESKTOP_USER_CODE_FILE));
 
             // add embedded jre
             if (is_macos_export) {
                 // on macos the embedded jre needs to be added as a plugin file
                 if (is_arm64 || is_universal) {
-                    String jre_path{String(JVM_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
+                    String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_ARM_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
                     add_macos_plugin_file(jre_path);
                 }
                 if (is_x64 || is_universal) {
-                    String jre_path{String(JVM_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
+                    String jre_path{String(RES_DIRECTORY).path_join(MACOS_EMBEDDED_JRE_AMD_DIRECTORY)};
                     if (!DirAccess::exists(jre_path)) {
                         JVM_ERR_FAIL_MSG("JRE does not exist at %s! make sure you've created an embedded JRE using jlink!", jre_path);
                     }
@@ -68,21 +68,21 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
                 if (is_arm64) {
                     if (is_linux_export) {
-                        jre_dir = String(JVM_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
+                        jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
                         target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                     if (is_windows_export) {
-                        jre_dir = String(JVM_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
+                        jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
                         target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_ARM_DIRECTORY);
                     }
                 }
                 if (is_x64) {
                     if (is_linux_export) {
-                        jre_dir = String(JVM_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
+                        jre_dir = String(RES_DIRECTORY).path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
                         target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(LINUX_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                     if (is_windows_export) {
-                        jre_dir = String(JVM_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
+                        jre_dir = String(RES_DIRECTORY).path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
                         target_dir = ProjectSettings::get_singleton()->globalize_path(RES_DIRECTORY).path_join(p_path).get_base_dir().path_join(WINDOWS_EMBEDDED_JRE_AMD_DIRECTORY);
                     }
                 }
@@ -110,11 +110,11 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         // graal native image (usercode.(so, dll, dylib))
         if (export_graal) {
             if (is_windows_export) {
-                files_to_add.push_back(String(JVM_DIRECTORY).path_join(WINDOWS_GRAAL_NATIVE_IMAGE_FILE));
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(WINDOWS_GRAAL_NATIVE_IMAGE_FILE));
             } else if (is_linux_export) {
-                files_to_add.push_back(String(JVM_DIRECTORY).path_join(LINUX_GRAAL_NATIVE_IMAGE_FILE));
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(LINUX_GRAAL_NATIVE_IMAGE_FILE));
             } else if (is_macos_export) {
-                files_to_add.push_back(String(JVM_DIRECTORY).path_join(MACOS_GRAAL_NATIVE_IMAGE_FILE));
+                files_to_add.push_back(String(RES_DIRECTORY).path_join(MACOS_GRAAL_NATIVE_IMAGE_FILE));
             } else {
                 JVM_ERR_FAIL_MSG("Export target platform is not supported for graalvm export");
             }
@@ -129,11 +129,11 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
         }
     } else if (is_android_export) {
-        files_to_add.push_back(String(JVM_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
-        files_to_add.push_back(String(JVM_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
+        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_BOOTSTRAP_FILE));
+        files_to_add.push_back(String(RES_DIRECTORY).path_join(ANDROID_USER_CODE_FILE));
         _generate_export_configuration_file(jni::JvmType::ART);
     } else if (is_ios_export) {
-        String base_ios_build_dir {String(JVM_DIRECTORY).path_join("ios") };
+        String base_ios_build_dir {String(RES_DIRECTORY).path_join("jvm/ios") };
         String base_ios_jdk_dir {base_ios_build_dir.path_join("ios-jdk").path_join(ios_jdk_version)};
 
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
