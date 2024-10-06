@@ -30,6 +30,7 @@ class GodotKotlinJvmEditor : public EditorPlugin {
     void on_menu_option_pressed(int option_id);
     void on_generate_project(bool erase_existing);
     void on_build_finished();
+    void on_filesystem_change();
 
 protected:
     bool build() override;

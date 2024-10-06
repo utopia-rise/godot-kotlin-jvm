@@ -275,8 +275,6 @@ bool GDKotlin::load_user_code() {
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif
-        jar.instantiate();
-        jar->set_path(user_code_path, true);
 
         if (!FileAccess::exists(user_code_path)) {
             String message {"No main.jar detected at %s. No classes will be loaded. Build the gradle "
@@ -290,6 +288,8 @@ bool GDKotlin::load_user_code() {
         }
 
         JVM_LOG_VERBOSE("Loading usercode file at: %s", user_code_path);
+        jar.instantiate();
+        jar->set_path(user_code_path, true);
 
         ClassLoader* user_class_loader = ClassLoader::create_instance(
           env,
@@ -377,7 +377,7 @@ void GDKotlin::finalize_down_to(State target_state) {
 
 #ifdef DYNAMIC_JVM
 void GDKotlin::reload_user_code() {
-    if(user_configuration.vm_type == jni::JvmType::JVM) {
+    if (user_configuration.vm_type == jni::JvmType::JVM) {
         finalize_down_to(BOOTSTRAP_LOADED);
         initialize_up_to(JVM_SCRIPTS_INITIALIZED);
     }
