@@ -102,7 +102,8 @@ String GDKotlin::get_path_to_embedded_jvm() {
 #if defined(MACOS_ENABLED)
       .path_join("../PlugIns/")
 #endif
-      .path_join(EMBEDDED_JRE_DIRECTORY)
+      .path_join(JVM_DIRECTORY)
+      .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
       .path_join(RELATIVE_JVM_LIB_PATH);
 }
 
