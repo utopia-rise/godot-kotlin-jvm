@@ -99,8 +99,11 @@ class SomeObject: Object() {
 }
 
 @RegisterClass
-class AnotherObject: Object() {
-    val targetObject = SomeObject()
+class AnotherObject: Object() { 
+    @RegisterSignal
+    val mySignal by signal1<Boolean>("reverse")
+    
+    private val targetObject = SomeObject()
 
     init {
         // Here are 4 different ways to connect a signal to a registered method
@@ -125,11 +128,13 @@ public class SomeObject extends Object {
 
 @RegisterClass
 public class AnotherObject extends Object {
+    @RegisterSignal
+    public Signal1<Boolean> mySignal = Signal1.create(this, "mySignal", "reverse");
+
     private SomeObject targetObject = new SomeObject();
-    public Signal0 mySignal = new Signal0(); // Assuming a signal type like in Godot
 
     public AnotherObject() {
-        // Here are 3 different ways to connect a signal to a registered method. The method reference is not implemented for Java.
+        // Here are 3 different ways to connect a signal to a registered method. The method reference syntax is not implemented for Java.
         mySignal.connect(new Callable(targetObject, StringNames.toGodotName("onReverseChanged"))); // The recommanded way.
         mySignal.connect(new Callable(targetObject, "on_reverse_changed")); // Unsafe, try to use snake_case in your code as least as possible.
         connect("my_signal", new Callable(targetObject, "on_reverse_changed")); // Really, don't do that.
