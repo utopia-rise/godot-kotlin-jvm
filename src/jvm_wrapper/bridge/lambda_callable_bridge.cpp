@@ -13,4 +13,4 @@ uintptr_t LambdaCallableBridge::wrap_in_custom_callable(JNIEnv* p_raw_env, jobje
     );
 }
 
-KtCallableBridge::~KtCallableBridge() = default;
+LambdaCallableBridge::~LambdaCallableBridge() = default;

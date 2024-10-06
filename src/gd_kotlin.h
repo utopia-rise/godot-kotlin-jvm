@@ -11,6 +11,9 @@
 
 class GDKotlin {
     friend class GdjLanguage;
+#ifdef TOOLS_ENABLED
+    friend class GodotKotlinJvmEditor;
+#endif
 
 public:
     // Values should be in the correct initialization order, the number matters.
