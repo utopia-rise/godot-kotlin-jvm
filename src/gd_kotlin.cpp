@@ -47,7 +47,7 @@ bool GDKotlin::load_dynamic_lib() {
             }
 #else
             else {
-                JVM_ERR_FAIL_V_MSG(false, vformat("No embedded JRE found at: %s!", get_path_to_embedded_jvm()));
+                JVM_ERR_FAIL_V_MSG(false, "No embedded JRE found at: %s!", get_path_to_embedded_jvm());
             }
 #endif
 
@@ -102,7 +102,7 @@ String GDKotlin::get_path_to_embedded_jvm() {
 #if defined(MACOS_ENABLED)
       .path_join("../PlugIns/")
 #endif
-      .path_join(JVM_DIRECTORY)
+      .path_join(String(JVM_DIRECTORY).trim_prefix(RES_DIRECTORY))
       .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
       .path_join(RELATIVE_JVM_LIB_PATH);
 }
