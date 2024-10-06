@@ -32,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The [Engine] singleton allows you to query and modify the project's run-time parameters, such as
@@ -44,33 +45,39 @@ public object Engine : Object() {
     getSingleton(ENGINECLASS_ENGINE)
   }
 
+  @JvmStatic
   public final fun setPhysicsTicksPerSecond(physicsTicksPerSecond: Int): Unit {
     TransferContext.writeArguments(LONG to physicsTicksPerSecond.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsTicksPerSecondPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getPhysicsTicksPerSecond(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsTicksPerSecondPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  @JvmStatic
   public final fun setMaxPhysicsStepsPerFrame(maxPhysicsSteps: Int): Unit {
     TransferContext.writeArguments(LONG to maxPhysicsSteps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxPhysicsStepsPerFramePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getMaxPhysicsStepsPerFrame(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxPhysicsStepsPerFramePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  @JvmStatic
   public final fun setPhysicsJitterFix(physicsJitterFix: Double): Unit {
     TransferContext.writeArguments(DOUBLE to physicsJitterFix)
     TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsJitterFixPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getPhysicsJitterFix(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsJitterFixPtr, DOUBLE)
@@ -81,28 +88,33 @@ public object Engine : Object() {
    * Returns the fraction through the current physics tick we are at the time of rendering the
    * frame. This can be used to implement fixed timestep interpolation.
    */
+  @JvmStatic
   public final fun getPhysicsInterpolationFraction(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsInterpolationFractionPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
+  @JvmStatic
   public final fun setMaxFps(maxFps: Int): Unit {
     TransferContext.writeArguments(LONG to maxFps.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setMaxFpsPtr, NIL)
   }
 
+  @JvmStatic
   public final fun getMaxFps(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMaxFpsPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  @JvmStatic
   public final fun setTimeScale(timeScale: Double): Unit {
     TransferContext.writeArguments(DOUBLE to timeScale)
     TransferContext.callMethod(rawPtr, MethodBindings.setTimeScalePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getTimeScale(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeScalePtr, DOUBLE)
@@ -114,6 +126,7 @@ public object Engine : Object() {
    * **Note:** On headless platforms, or if rendering is disabled with `--disable-render-loop` via
    * command line, this method always returns `0`. See also [getProcessFrames].
    */
+  @JvmStatic
   public final fun getFramesDrawn(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesDrawnPtr, LONG)
@@ -123,6 +136,7 @@ public object Engine : Object() {
   /**
    * Returns the average frames rendered every second (FPS), also known as the framerate.
    */
+  @JvmStatic
   public final fun getFramesPerSecond(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFramesPerSecondPtr, DOUBLE)
@@ -153,6 +167,7 @@ public object Engine : Object() {
    * }
    * ```
    */
+  @JvmStatic
   public final fun getPhysicsFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsFramesPtr, LONG)
@@ -184,6 +199,7 @@ public object Engine : Object() {
    * }
    * ```
    */
+  @JvmStatic
   public final fun getProcessFrames(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getProcessFramesPtr, LONG)
@@ -196,6 +212,7 @@ public object Engine : Object() {
    * **Note:** The type instantiated as the main loop can changed with
    * [ProjectSettings.application/run/mainLoopType].
    */
+  @JvmStatic
   public final fun getMainLoop(): MainLoop? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMainLoopPtr, OBJECT)
@@ -241,6 +258,7 @@ public object Engine : Object() {
    * }
    * ```
    */
+  @JvmStatic
   public final fun getVersionInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getVersionInfoPtr, DICTIONARY)
@@ -252,6 +270,7 @@ public object Engine : Object() {
    * strings with the names of notable contributors to the Godot Engine: `lead_developers`, `founders`,
    * `project_managers`, and `developers`.
    */
+  @JvmStatic
   public final fun getAuthorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAuthorInfoPtr, DICTIONARY)
@@ -269,6 +288,7 @@ public object Engine : Object() {
    * "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]" or
    * "[url=https://creativecommons.org/licenses/by/4.0/]CC-BY-4.0[/url]").
    */
+  @JvmStatic
   public final fun getCopyrightInfo(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCopyrightInfoPtr, ARRAY)
@@ -280,6 +300,7 @@ public object Engine : Object() {
    * {`platinum_sponsors`, `gold_sponsors`, `silver_sponsors`, `bronze_sponsors`, `mini_sponsors`,
    * `gold_donors`, `silver_donors`, `bronze_donors`}
    */
+  @JvmStatic
   public final fun getDonorInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDonorInfoPtr, DICTIONARY)
@@ -292,6 +313,7 @@ public object Engine : Object() {
    * "[url=https://en.wikipedia.org/wiki/MIT_License#Ambiguity_and_variants]Expat[/url]") and its
    * associated text.
    */
+  @JvmStatic
   public final fun getLicenseInfo(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLicenseInfoPtr, DICTIONARY)
@@ -301,6 +323,7 @@ public object Engine : Object() {
   /**
    * Returns the full Godot license text.
    */
+  @JvmStatic
   public final fun getLicenseText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLicenseTextPtr, STRING)
@@ -333,6 +356,7 @@ public object Engine : Object() {
    * [OS.getProcessorName]). For example, when running an `x86_32` Godot binary on an `x86_64` system,
    * the returned value will still be `"x86_32"`.
    */
+  @JvmStatic
   public final fun getArchitectureName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getArchitectureNamePtr, STRING)
@@ -354,6 +378,7 @@ public object Engine : Object() {
    *     print(Engine.is_in_physics_frame()) # Prints true
    * [/codeblock]
    */
+  @JvmStatic
   public final fun isInPhysicsFrame(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isInPhysicsFramePtr, BOOL)
@@ -382,6 +407,7 @@ public object Engine : Object() {
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */
+  @JvmStatic
   public final fun hasSingleton(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSingletonPtr, BOOL)
@@ -394,6 +420,7 @@ public object Engine : Object() {
    * **Note:** Global singletons are not the same as autoloaded nodes, which are configurable in the
    * project settings.
    */
+  @JvmStatic
   public final fun getSingleton(name: StringName): Object? {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.getSingletonPtr, OBJECT)
@@ -404,6 +431,7 @@ public object Engine : Object() {
    * Registers the given [Object] [instance] as a singleton, available globally under [name]. Useful
    * for plugins.
    */
+  @JvmStatic
   public final fun registerSingleton(name: StringName, instance: Object?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to instance)
     TransferContext.callMethod(rawPtr, MethodBindings.registerSingletonPtr, NIL)
@@ -413,6 +441,7 @@ public object Engine : Object() {
    * Removes the singleton registered under [name]. The singleton object is *not* freed. Only works
    * with user-defined singletons registered with [registerSingleton].
    */
+  @JvmStatic
   public final fun unregisterSingleton(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterSingletonPtr, NIL)
@@ -421,6 +450,7 @@ public object Engine : Object() {
   /**
    * Returns a list of names of all available global singletons. See also [getSingleton].
    */
+  @JvmStatic
   public final fun getSingletonList(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSingletonListPtr, PACKED_STRING_ARRAY)
@@ -436,6 +466,7 @@ public object Engine : Object() {
    * - [ERR_ALREADY_EXISTS] if `ScriptServer` already contains a language with similar
    * extension/name/type.
    */
+  @JvmStatic
   public final fun registerScriptLanguage(language: ScriptLanguage?): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.registerScriptLanguagePtr, LONG)
@@ -448,6 +479,7 @@ public object Engine : Object() {
    * - [OK] on success;
    * - [ERR_DOES_NOT_EXIST] if the language is not registered in `ScriptServer`.
    */
+  @JvmStatic
   public final fun unregisterScriptLanguage(language: ScriptLanguage?): Error {
     TransferContext.writeArguments(OBJECT to language)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterScriptLanguagePtr, LONG)
@@ -457,6 +489,7 @@ public object Engine : Object() {
   /**
    * Returns the number of available script languages. Use with [getScriptLanguage].
    */
+  @JvmStatic
   public final fun getScriptLanguageCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptLanguageCountPtr, LONG)
@@ -466,6 +499,7 @@ public object Engine : Object() {
   /**
    * Returns an instance of a [ScriptLanguage] with the given [index].
    */
+  @JvmStatic
   public final fun getScriptLanguage(index: Int): ScriptLanguage? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptLanguagePtr, OBJECT)
@@ -499,6 +533,7 @@ public object Engine : Object() {
    * `OS.has_feature("editor")` evaluate to `true` both when the script is running in the editor and
    * when running the project from the editor, but returns `false` when run from an exported project.
    */
+  @JvmStatic
   public final fun isEditorHint(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEditorHintPtr, BOOL)
@@ -510,17 +545,20 @@ public object Engine : Object() {
    * started in Movie Maker mode. The default path can be changed in
    * [ProjectSettings.editor/movieWriter/movieFile].
    */
+  @JvmStatic
   public final fun getWriteMoviePath(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWriteMoviePathPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
+  @JvmStatic
   public final fun setPrintErrorMessages(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrintErrorMessagesPtr, NIL)
   }
 
+  @JvmStatic
   public final fun isPrintingErrorMessages(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPrintingErrorMessagesPtr, BOOL)

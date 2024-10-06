@@ -29,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [EngineDebugger] handles the communication between the editor and the running game. It is active
@@ -43,6 +44,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the debugger is active otherwise `false`.
    */
+  @JvmStatic
   public final fun isActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
@@ -52,6 +54,7 @@ public object EngineDebugger : Object() {
   /**
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
+  @JvmStatic
   public final fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(rawPtr, MethodBindings.registerProfilerPtr, NIL)
@@ -60,6 +63,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters a profiler with given [name].
    */
+  @JvmStatic
   public final fun unregisterProfiler(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterProfilerPtr, NIL)
@@ -68,6 +72,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present and active otherwise `false`.
    */
+  @JvmStatic
   public final fun isProfiling(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.isProfilingPtr, BOOL)
@@ -77,6 +82,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a profiler with the given name is present otherwise `false`.
    */
+  @JvmStatic
   public final fun hasProfiler(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasProfilerPtr, BOOL)
@@ -86,6 +92,7 @@ public object EngineDebugger : Object() {
   /**
    * Calls the `add` callable of the profiler with given [name] and [data].
    */
+  @JvmStatic
   public final fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.profilerAddFrameDataPtr, NIL)
@@ -96,6 +103,7 @@ public object EngineDebugger : Object() {
    * the same profiler depending on [enable] argument.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun profilerEnable(
     name: StringName,
     enable: Boolean,
@@ -111,6 +119,7 @@ public object EngineDebugger : Object() {
    * Callable must accept a message string and a data array as argument. If the message and data are
    * valid then callable must return `true` otherwise `false`.
    */
+  @JvmStatic
   public final fun registerMessageCapture(name: StringName, callable: Callable): Unit {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.registerMessageCapturePtr, NIL)
@@ -119,6 +128,7 @@ public object EngineDebugger : Object() {
   /**
    * Unregisters the message capture with given [name].
    */
+  @JvmStatic
   public final fun unregisterMessageCapture(name: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterMessageCapturePtr, NIL)
@@ -127,6 +137,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if a capture with the given name is present otherwise `false`.
    */
+  @JvmStatic
   public final fun hasCapture(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCapturePtr, BOOL)
@@ -138,6 +149,7 @@ public object EngineDebugger : Object() {
    * events every now and then when the script might get too busy, so that bugs like infinite loops can
    * be caught
    */
+  @JvmStatic
   public final fun linePoll(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.linePollPtr, NIL)
@@ -146,6 +158,7 @@ public object EngineDebugger : Object() {
   /**
    * Sends a message with given [message] and [data] array.
    */
+  @JvmStatic
   public final fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(rawPtr, MethodBindings.sendMessagePtr, NIL)
@@ -156,6 +169,7 @@ public object EngineDebugger : Object() {
    * continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false): Unit {
     TransferContext.writeArguments(BOOL to canContinue, BOOL to isErrorBreakpoint)
     TransferContext.callMethod(rawPtr, MethodBindings.debugPtr, NIL)
@@ -166,6 +180,7 @@ public object EngineDebugger : Object() {
    * continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun scriptDebug(
     language: ScriptLanguage?,
     canContinue: Boolean = true,
@@ -178,6 +193,7 @@ public object EngineDebugger : Object() {
   /**
    * Sets the current debugging lines that remain.
    */
+  @JvmStatic
   public final fun setLinesLeft(lines: Int): Unit {
     TransferContext.writeArguments(LONG to lines.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setLinesLeftPtr, NIL)
@@ -186,6 +202,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns the number of lines that remain.
    */
+  @JvmStatic
   public final fun getLinesLeft(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLinesLeftPtr, LONG)
@@ -195,6 +212,7 @@ public object EngineDebugger : Object() {
   /**
    * Sets the current debugging depth.
    */
+  @JvmStatic
   public final fun setDepth(depth: Int): Unit {
     TransferContext.writeArguments(LONG to depth.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
@@ -203,6 +221,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns the current debug depth.
    */
+  @JvmStatic
   public final fun getDepth(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
@@ -212,6 +231,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the given [source] and [line] represent an existing breakpoint.
    */
+  @JvmStatic
   public final fun isBreakpoint(line: Int, source: StringName): Boolean {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.isBreakpointPtr, BOOL)
@@ -221,6 +241,7 @@ public object EngineDebugger : Object() {
   /**
    * Returns `true` if the debugger is skipping breakpoints otherwise `false`.
    */
+  @JvmStatic
   public final fun isSkippingBreakpoints(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isSkippingBreakpointsPtr, BOOL)
@@ -230,6 +251,7 @@ public object EngineDebugger : Object() {
   /**
    * Inserts a new breakpoint with the given [source] and [line].
    */
+  @JvmStatic
   public final fun insertBreakpoint(line: Int, source: StringName): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.insertBreakpointPtr, NIL)
@@ -238,6 +260,7 @@ public object EngineDebugger : Object() {
   /**
    * Removes a breakpoint with the given [source] and [line].
    */
+  @JvmStatic
   public final fun removeBreakpoint(line: Int, source: StringName): Unit {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(rawPtr, MethodBindings.removeBreakpointPtr, NIL)
@@ -246,6 +269,7 @@ public object EngineDebugger : Object() {
   /**
    * Clears all breakpoints.
    */
+  @JvmStatic
   public final fun clearBreakpoints(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearBreakpointsPtr, NIL)

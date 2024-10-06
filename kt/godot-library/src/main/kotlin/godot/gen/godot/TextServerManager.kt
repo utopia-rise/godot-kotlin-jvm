@@ -25,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * [TextServerManager] is the API backend for loading, enumerating, and switching [TextServer]s.
@@ -36,11 +37,13 @@ public object TextServerManager : Object() {
   /**
    * Emitted when a new interface has been added.
    */
+  @JvmStatic
   public val interfaceAdded: Signal1<StringName> by Signal1
 
   /**
    * Emitted when an interface is removed.
    */
+  @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
@@ -50,6 +53,7 @@ public object TextServerManager : Object() {
   /**
    * Registers a [TextServer] interface.
    */
+  @JvmStatic
   public final fun addInterface(`interface`: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
@@ -58,6 +62,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the number of interfaces currently registered.
    */
+  @JvmStatic
   public final fun getInterfaceCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
@@ -68,6 +73,7 @@ public object TextServerManager : Object() {
    * Removes an interface. All fonts and shaped text caches should be freed before removing an
    * interface.
    */
+  @JvmStatic
   public final fun removeInterface(`interface`: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
@@ -76,6 +82,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the interface registered at a given index.
    */
+  @JvmStatic
   public final fun getInterface(idx: Int): TextServer? {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
@@ -85,6 +92,7 @@ public object TextServerManager : Object() {
   /**
    * Returns a list of available interfaces, with the index and name of each interface.
    */
+  @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
@@ -94,6 +102,7 @@ public object TextServerManager : Object() {
   /**
    * Finds an interface by its [name].
    */
+  @JvmStatic
   public final fun findInterface(name: String): TextServer? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
@@ -103,6 +112,7 @@ public object TextServerManager : Object() {
   /**
    * Sets the primary [TextServer] interface.
    */
+  @JvmStatic
   public final fun setPrimaryInterface(index: TextServer?): Unit {
     TransferContext.writeArguments(OBJECT to index)
     TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
@@ -111,6 +121,7 @@ public object TextServerManager : Object() {
   /**
    * Returns the primary [TextServer] interface currently in use.
    */
+  @JvmStatic
   public final fun getPrimaryInterface(): TextServer? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)

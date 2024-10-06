@@ -14,25 +14,27 @@ import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.TypeVariableName
-import godot.codegen.services.IKtCallableGenerationService
+import godot.codegen.services.ILambdaCallableGenerationService
+import godot.codegen.utils.GenericClassNameInfo
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotCorePackage
 
-class KtCallableGenerationService : IKtCallableGenerationService {
+class LambdaCallableGenerationService : ILambdaCallableGenerationService {
     override fun generate(maxArgumentCount: Int): FileSpec {
-        val callableFileSpec = FileSpec.builder(godotCorePackage, "KtCallables")
+        val callableFileSpec = FileSpec.builder(godotCorePackage, "LambdaCallables")
 
-        for (argCount in 0 .. maxArgumentCount) {
+        for (argCount in 0..maxArgumentCount) {
+            val ktCallableClassName = ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount")
             val classBuilder = TypeSpec
-                .classBuilder(ClassName(godotCorePackage, "$KT_CALLABLE_NAME$argCount"))
+                .classBuilder(ktCallableClassName)
                 .superclass(
                     KT_CALLABLE_CLASS_NAME
                         .parameterizedBy(returnTypeParameter)
                 )
 
-            val argumentRange = 0 ..< argCount
+            val argumentRange = 0..<argCount
 
             classBuilder
                 .addSuperclassConstructorParameter(
@@ -129,6 +131,8 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         )
                         .build()
                 )
+                .addModifiers(KModifier.INTERNAL)
+                .addAnnotation(PublishedApi::class)
 
             classBuilder.primaryConstructor(primaryConstructor.build())
 
@@ -231,13 +235,13 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                             buildString {
                                 append("return·%T($VARIANT_TYPE_ARGUMENT_NAME")
 
-                                for (index in (0 ..< removedTypeVariables)) {
+                                for (index in (0..<removedTypeVariables)) {
                                     append(",·p${index}Type")
                                 }
 
                                 append(")·{·")
 
-                                for (index in (0 ..< removedTypeVariables)) {
+                                for (index in (0..<removedTypeVariables)) {
                                     if (index != 0) append(",·")
 
                                     append("p${index}:·%T")
@@ -263,11 +267,14 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                 ++removedTypeVariables
             }
 
+            val genericClassNameInfo = GenericClassNameInfo(ktCallableClassName, argCount)
+            classBuilder.addType(generateKtCallableCompanion(argCount, genericClassNameInfo))
+
             callableFileSpec.addType(classBuilder.build())
 
             val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
             callableFileSpec.addFunction(
-                FunSpec.builder(CALLABLE_FUNCTION_NAME)
+                FunSpec.builder(CALLABLE_FUNCTION_NAME + argCount)
                     .addTypeVariables(typeVariableNames.map { it.copy(reified = true) })
                     .addTypeVariable(returnTypeParameter.copy(reified = true))
                     .addModifiers(KModifier.INLINE)
@@ -312,7 +319,7 @@ class KtCallableGenerationService : IKtCallableGenerationService {
                         .addTypeVariable(returnTypeParameter.copy(reified = true))
                         .addModifiers(KModifier.INLINE)
                         .receiver(lambdaTypeName)
-                        .addCode("return·$CALLABLE_FUNCTION_NAME(this)")
+                        .addCode("return·$CALLABLE_FUNCTION_NAME$argCount(this)")
                         .build()
                 )
         }
@@ -326,12 +333,79 @@ class KtCallableGenerationService : IKtCallableGenerationService {
         return callableFileSpec.build()
     }
 
+    // JAVA BRIDGE FUNCTION
+    private fun generateKtCallableCompanion(argCount: Int, genericClassNameInfo: GenericClassNameInfo): TypeSpec {
+        val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
+
+        return TypeSpec
+            .companionObjectBuilder()
+            .addFunction(
+                FunSpec
+                    .builder(JAVA_CREATE_METHOD_NAME)
+                    .addTypeVariable(returnTypeParameter)
+                    .addTypeVariables(genericClassNameInfo.genericTypes)
+                    .addParameter(
+                        ParameterSpec
+                            .builder("returnClass", JAVA_CLASS_CLASS_NAME.parameterizedBy(returnTypeParameter))
+                            .build()
+                    )
+                    .addParameters(genericClassNameInfo.toParameterSpecList().map {
+                        ParameterSpec
+                            .builder(it.name + "Class", JAVA_CLASS_CLASS_NAME.parameterizedBy(it.type))
+                            .build()
+                    })
+                    .addParameter(
+                        ParameterSpec
+                            .builder(
+                                FUNCTION_PARAMETER_NAME,
+                                genericClassNameInfo.toLambdaTypeName(returnTypeParameter)
+                            )
+                            .build()
+                    )
+                    .addCode(
+                        CodeBlock.of(
+                            buildString {
+                                append("return·$KT_CALLABLE_NAME$argCount(")
+                                append("%M.getOrDefault(%T.getOrCreateKotlinClass(returnClass),·%T),·")
+                                genericClassNameInfo.toParameterSpecList().forEach {
+                                    append("%M[%T.getOrCreateKotlinClass(${it.name}Class)]!!,·")
+                                }
+                                append(FUNCTION_PARAMETER_NAME)
+                                append(')')
+                            },
+                            variantMapperMember,
+                            REFLECTION_CLASS_NAME,
+                            VARIANT_PARSER_NIL,
+                            *genericClassNameInfo.genericTypes
+                                .flatMap {
+                                    listOf(variantMapperMember, REFLECTION_CLASS_NAME)
+                                }
+                                .toTypedArray()
+                        )
+                    )
+                    .addAnnotation(JvmStatic::class)
+                    .addAnnotation(
+                        AnnotationSpec
+                            .builder(JvmName::class)
+                            .addMember("\"create\"")
+                            .build()
+                    )
+                    .build()
+            )
+            .build()
+    }
+
     private companion object {
         const val FUNCTION_PARAMETER_NAME = "function"
-        const val KT_CALLABLE_NAME = "KtCallable"
+        const val KT_CALLABLE_NAME = "LambdaCallable"
         const val CALLABLE_FUNCTION_NAME = "callable"
+        const val JAVA_CREATE_METHOD_NAME = "javaCreate"
         const val VARIANT_TYPE_ARGUMENT_NAME = "variantConverter"
         val KT_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, KT_CALLABLE_NAME)
         val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
+
+        //Java
+        val REFLECTION_CLASS_NAME = ClassName("kotlin.jvm.internal", "Reflection")
+        val JAVA_CLASS_CLASS_NAME = ClassName("java.lang", "Class")
     }
 }

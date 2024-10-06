@@ -29,6 +29,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class provides access to a number of different monitors related to performance, such as
@@ -65,6 +66,7 @@ public object Performance : Object() {
    *
    * See [getCustomMonitor] to query custom performance monitors' values.
    */
+  @JvmStatic
   public final fun getMonitor(monitor: Monitor): Double {
     TransferContext.writeArguments(LONG to monitor.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
@@ -134,6 +136,7 @@ public object Performance : Object() {
    * Callables are called with arguments supplied in argument array.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addCustomMonitor(
     id: StringName,
     callable: Callable,
@@ -147,6 +150,7 @@ public object Performance : Object() {
    * Removes the custom monitor with given [id]. Prints an error if the given [id] is already
    * absent.
    */
+  @JvmStatic
   public final fun removeCustomMonitor(id: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
@@ -155,6 +159,7 @@ public object Performance : Object() {
   /**
    * Returns `true` if custom monitor with the given [id] is present, `false` otherwise.
    */
+  @JvmStatic
   public final fun hasCustomMonitor(id: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
@@ -165,6 +170,7 @@ public object Performance : Object() {
    * Returns the value of custom monitor with given [id]. The callable is called to get the value of
    * custom monitor. See also [hasCustomMonitor]. Prints an error if the given [id] is absent.
    */
+  @JvmStatic
   public final fun getCustomMonitor(id: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
@@ -175,6 +181,7 @@ public object Performance : Object() {
    * Returns the last tick in which custom monitor was added/removed (in microseconds since the
    * engine started). This is set to [Time.getTicksUsec] when the monitor is updated.
    */
+  @JvmStatic
   public final fun getMonitorModificationTime(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
@@ -184,6 +191,7 @@ public object Performance : Object() {
   /**
    * Returns the names of active custom monitors in an [Array].
    */
+  @JvmStatic
   public final fun getCustomMonitorNames(): VariantArray<StringName> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)

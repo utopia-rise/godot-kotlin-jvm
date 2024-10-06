@@ -16,6 +16,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The JavaClassWrapper singleton provides a way for the Godot application to send and receive data
@@ -35,6 +36,7 @@ public object JavaClassWrapper : Object() {
    * **Note:** This method only works on Android. On every other platform, this method does nothing
    * and returns an empty [JavaClass].
    */
+  @JvmStatic
   public final fun wrap(name: String): JavaClass? {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)

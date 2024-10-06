@@ -23,6 +23,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [WorkerThreadPool] singleton allocates a set of [Thread]s (called worker threads) on project
@@ -89,6 +90,7 @@ public object WorkerThreadPool : Object() {
    * cleaned up.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addTask(
     action: Callable,
     highPriority: Boolean = false,
@@ -103,6 +105,7 @@ public object WorkerThreadPool : Object() {
    * Returns `true` if the task with the given ID is completed.
    * **Note:** You should only call this method between adding the task and awaiting its completion.
    */
+  @JvmStatic
   public final fun isTaskCompleted(taskId: Long): Boolean {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, MethodBindings.isTaskCompletedPtr, BOOL)
@@ -120,6 +123,7 @@ public object WorkerThreadPool : Object() {
    * matter when some tasks depend on others (in the current implementation, the tricky case is a task
    * trying to wait on an older one).
    */
+  @JvmStatic
   public final fun waitForTaskCompletion(taskId: Long): Error {
     TransferContext.writeArguments(LONG to taskId)
     TransferContext.callMethod(rawPtr, MethodBindings.waitForTaskCompletionPtr, LONG)
@@ -141,6 +145,7 @@ public object WorkerThreadPool : Object() {
    * cleaned up.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addGroupTask(
     action: Callable,
     elements: Int,
@@ -158,6 +163,7 @@ public object WorkerThreadPool : Object() {
    * **Note:** You should only call this method between adding the group task and awaiting its
    * completion.
    */
+  @JvmStatic
   public final fun isGroupTaskCompleted(groupId: Long): Boolean {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.isGroupTaskCompletedPtr, BOOL)
@@ -170,6 +176,7 @@ public object WorkerThreadPool : Object() {
    * **Note:** If a thread has started executing the [Callable] but is yet to finish, it won't be
    * counted.
    */
+  @JvmStatic
   public final fun getGroupProcessedElementCount(groupId: Long): Long {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.getGroupProcessedElementCountPtr, LONG)
@@ -179,6 +186,7 @@ public object WorkerThreadPool : Object() {
   /**
    * Pauses the thread that calls this method until the group task with the given ID is completed.
    */
+  @JvmStatic
   public final fun waitForGroupTaskCompletion(groupId: Long): Unit {
     TransferContext.writeArguments(LONG to groupId)
     TransferContext.callMethod(rawPtr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)

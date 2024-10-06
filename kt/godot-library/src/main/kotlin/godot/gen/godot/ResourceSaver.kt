@@ -25,6 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A singleton for saving resource types to the filesystem.
@@ -47,6 +48,7 @@ public object ResourceSaver : Object() {
    * be saved as the required code is only executed in editor mode.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun save(
     resource: Resource?,
     path: String = "",
@@ -60,6 +62,7 @@ public object ResourceSaver : Object() {
   /**
    * Returns the list of extensions available for saving a resource of a given type.
    */
+  @JvmStatic
   public final fun getRecognizedExtensions(type: Resource?): PackedStringArray {
     TransferContext.writeArguments(OBJECT to type)
     TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
@@ -74,6 +77,7 @@ public object ResourceSaver : Object() {
    * [ResourceFormatSaver] for more information).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
       false): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
@@ -83,6 +87,7 @@ public object ResourceSaver : Object() {
   /**
    * Unregisters the given [ResourceFormatSaver].
    */
+  @JvmStatic
   public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)

@@ -6,7 +6,6 @@ package godot.core
 import godot.Object
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
-import godot.tools.common.extensions.convertToSnakeCase
 import godot.util.VoidPtr
 import kotlin.reflect.KCallable
 
@@ -29,9 +28,9 @@ class NativeCallable : NativeCoreType, Callable {
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
-    internal constructor(ktCallable: KtCallable<*>) {
+    internal constructor(lambdaCallable: LambdaCallable<*>) {
         // We pass all params using jni as we're often in a context of sending parameters to cpp, so we should not rewind buffer.
-        _handle = Bridge.engine_call_constructor_kt_custom_callable(ktCallable, ktCallable.variantConverter.id, ktCallable.hashCode())
+        _handle = Bridge.engine_call_constructor_kt_custom_callable(lambdaCallable, lambdaCallable.variantConverter.id, lambdaCallable.hashCode())
         MemoryManager.registerNativeCoreType(this, VariantParser.CALLABLE)
     }
 
@@ -147,7 +146,7 @@ class NativeCallable : NativeCoreType, Callable {
     object Bridge {
         external fun engine_call_constructor(): VoidPtr
         external fun engine_call_constructor_object_string_name(): VoidPtr
-        external fun engine_call_constructor_kt_custom_callable(callable: KtCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
+        external fun engine_call_constructor_kt_custom_callable(callable: LambdaCallable<*>, variantTypeOrdinal: Int, hashCode: Int): VoidPtr
         external fun engine_call_copy_constructor(): VoidPtr
 
         external fun engine_call_bind(_handle: VoidPtr)

@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
@@ -35,11 +36,13 @@ public object CameraServer : Object() {
   /**
    * Emitted when a [CameraFeed] is added (e.g. a webcam is plugged in).
    */
+  @JvmStatic
   public val cameraFeedAdded: Signal1<Long> by Signal1
 
   /**
    * Emitted when a [CameraFeed] is removed (e.g. a webcam is unplugged).
    */
+  @JvmStatic
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
@@ -49,6 +52,7 @@ public object CameraServer : Object() {
   /**
    * Returns the [CameraFeed] corresponding to the camera with the given [index].
    */
+  @JvmStatic
   public final fun getFeed(index: Int): CameraFeed? {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
@@ -58,6 +62,7 @@ public object CameraServer : Object() {
   /**
    * Returns the number of [CameraFeed]s registered.
    */
+  @JvmStatic
   public final fun getFeedCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
@@ -67,6 +72,7 @@ public object CameraServer : Object() {
   /**
    * Returns an array of [CameraFeed]s.
    */
+  @JvmStatic
   public final fun feeds(): VariantArray<CameraFeed> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
@@ -76,6 +82,7 @@ public object CameraServer : Object() {
   /**
    * Adds the camera [feed] to the camera server.
    */
+  @JvmStatic
   public final fun addFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
@@ -84,6 +91,7 @@ public object CameraServer : Object() {
   /**
    * Removes the specified camera [feed].
    */
+  @JvmStatic
   public final fun removeFeed(feed: CameraFeed?): Unit {
     TransferContext.writeArguments(OBJECT to feed)
     TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)

@@ -20,6 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * Resource UIDs (Unique IDentifiers) allow the engine to keep references between resources intact,
@@ -42,6 +43,7 @@ public object ResourceUID : Object() {
   /**
    * Converts the given UID to a `uid://` string value.
    */
+  @JvmStatic
   public final fun idToText(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
@@ -51,6 +53,7 @@ public object ResourceUID : Object() {
   /**
    * Extracts the UID value from the given `uid://` string.
    */
+  @JvmStatic
   public final fun textToId(textId: String): Long {
     TransferContext.writeArguments(STRING to textId)
     TransferContext.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
@@ -62,6 +65,7 @@ public object ResourceUID : Object() {
    * loaded UIDs.
    * In order for this UID to be registered, you must call [addId] or [setId].
    */
+  @JvmStatic
   public final fun createId(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
@@ -71,6 +75,7 @@ public object ResourceUID : Object() {
   /**
    * Returns whether the given UID value is known to the cache.
    */
+  @JvmStatic
   public final fun hasId(id: Long): Boolean {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
@@ -82,6 +87,7 @@ public object ResourceUID : Object() {
    * Fails with an error if the UID already exists, so be sure to check [hasId] beforehand, or use
    * [setId] instead.
    */
+  @JvmStatic
   public final fun addId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
@@ -92,6 +98,7 @@ public object ResourceUID : Object() {
    * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand, or use
    * [addId] instead.
    */
+  @JvmStatic
   public final fun setId(id: Long, path: String): Unit {
     TransferContext.writeArguments(LONG to id, STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.setIdPtr, NIL)
@@ -101,6 +108,7 @@ public object ResourceUID : Object() {
    * Returns the path that the given UID value refers to.
    * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand.
    */
+  @JvmStatic
   public final fun getIdPath(id: Long): String {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
@@ -111,6 +119,7 @@ public object ResourceUID : Object() {
    * Removes a loaded UID value from the cache.
    * Fails with an error if the UID does not exist, so be sure to check [hasId] beforehand.
    */
+  @JvmStatic
   public final fun removeId(id: Long): Unit {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)

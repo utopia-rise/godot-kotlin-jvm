@@ -1,10 +1,10 @@
-#include "kt_callable_bridge.h"
+#include "lambda_callable_bridge.h"
 
 #include "jvm_wrapper/kotlin_callable_custom.h"
 
 using namespace bridges;
 
-uintptr_t KtCallableBridge::wrap_in_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
+uintptr_t LambdaCallableBridge::wrap_in_custom_callable(JNIEnv* p_raw_env, jobject p_instance,
                                                     jobject p_kt_custom_callable_instance, jint p_variant_type_ordinal,
                                                     jint p_hash_code) {
     jni::Env env {p_raw_env};

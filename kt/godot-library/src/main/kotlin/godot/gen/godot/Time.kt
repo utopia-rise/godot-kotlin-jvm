@@ -25,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The Time singleton allows converting time between various formats and also getting time
@@ -58,6 +59,7 @@ public object Time : Object() {
    * Unix timestamp is the current time, with the exception of Daylight Savings Time as it cannot be
    * determined from the epoch.
    */
+  @JvmStatic
   public final fun getDatetimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeDictFromUnixTimePtr, DICTIONARY)
@@ -68,6 +70,7 @@ public object Time : Object() {
    * Converts the given Unix timestamp to a dictionary of keys: `year`, `month`, `day`, and
    * `weekday`.
    */
+  @JvmStatic
   public final fun getDateDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, MethodBindings.getDateDictFromUnixTimePtr, DICTIONARY)
@@ -77,6 +80,7 @@ public object Time : Object() {
   /**
    * Converts the given time to a dictionary of keys: `hour`, `minute`, and `second`.
    */
+  @JvmStatic
   public final fun getTimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeDictFromUnixTimePtr, DICTIONARY)
@@ -89,6 +93,7 @@ public object Time : Object() {
    * instead of the letter T.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false):
       String {
     TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
@@ -99,6 +104,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to an ISO 8601 date string (YYYY-MM-DD).
    */
+  @JvmStatic
   public final fun getDateStringFromUnixTime(unixTimeVal: Long): String {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, MethodBindings.getDateStringFromUnixTimePtr, STRING)
@@ -108,6 +114,7 @@ public object Time : Object() {
   /**
    * Converts the given Unix timestamp to an ISO 8601 time string (HH:MM:SS).
    */
+  @JvmStatic
   public final fun getTimeStringFromUnixTime(unixTimeVal: Long): String {
     TransferContext.writeArguments(LONG to unixTimeVal)
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeStringFromUnixTimePtr, STRING)
@@ -121,6 +128,7 @@ public object Time : Object() {
    * calculation is relatively expensive).
    * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
+  @JvmStatic
   public final fun getDatetimeDictFromDatetimeString(datetime: String, weekday: Boolean):
       Dictionary<Any?, Any?> {
     TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
@@ -139,6 +147,7 @@ public object Time : Object() {
    * If [useSpace] is `true`, the date and time bits are separated by an empty space character
    * instead of the letter T.
    */
+  @JvmStatic
   public final fun getDatetimeStringFromDatetimeDict(datetime: Dictionary<Any?, Any?>,
       useSpace: Boolean): String {
     TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
@@ -157,6 +166,7 @@ public object Time : Object() {
    * **Note:** Unix timestamps are often in UTC. This method does not do any timezone conversion, so
    * the timestamp will be in the same timezone as the given datetime dictionary.
    */
+  @JvmStatic
   public final fun getUnixTimeFromDatetimeDict(datetime: Dictionary<Any?, Any?>): Long {
     TransferContext.writeArguments(DICTIONARY to datetime)
     TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeDictPtr, LONG)
@@ -170,6 +180,7 @@ public object Time : Object() {
    * the timestamp will be in the same timezone as the given datetime string.
    * **Note:** Any decimal fraction in the time string will be ignored silently.
    */
+  @JvmStatic
   public final fun getUnixTimeFromDatetimeString(datetime: String): Long {
     TransferContext.writeArguments(STRING to datetime)
     TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeStringPtr, LONG)
@@ -180,6 +191,7 @@ public object Time : Object() {
    * Converts the given timezone offset in minutes to a timezone offset string. For example, -480
    * returns "-08:00", 345 returns "+05:45", and 0 returns "+00:00".
    */
+  @JvmStatic
   public final fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
     TransferContext.writeArguments(LONG to offsetMinutes)
     TransferContext.callMethod(rawPtr, MethodBindings.getOffsetStringFromOffsetMinutesPtr, STRING)
@@ -191,6 +203,7 @@ public object Time : Object() {
    * `minute`, `second`, and `dst` (Daylight Savings Time).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeDictFromSystemPtr, DICTIONARY)
@@ -203,6 +216,7 @@ public object Time : Object() {
    * UTC.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, MethodBindings.getDateDictFromSystemPtr, DICTIONARY)
@@ -215,6 +229,7 @@ public object Time : Object() {
    * UTC.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeDictFromSystemPtr, DICTIONARY)
@@ -229,6 +244,7 @@ public object Time : Object() {
    * instead of the letter T.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false):
       String {
     TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
@@ -242,6 +258,7 @@ public object Time : Object() {
    * UTC.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getDateStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, MethodBindings.getDateStringFromSystemPtr, STRING)
@@ -254,6 +271,7 @@ public object Time : Object() {
    * UTC.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getTimeStringFromSystem(utc: Boolean = false): String {
     TransferContext.writeArguments(BOOL to utc)
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeStringFromSystemPtr, STRING)
@@ -267,6 +285,7 @@ public object Time : Object() {
    * - `name` is the localized name of the time zone, according to the OS locale settings of the
    * current user.
    */
+  @JvmStatic
   public final fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTimeZoneFromSystemPtr, DICTIONARY)
@@ -281,6 +300,7 @@ public object Time : Object() {
    * **Note:** Unlike other methods that use integer timestamps, this method returns the timestamp
    * as a [float] for sub-second precision.
    */
+  @JvmStatic
   public final fun getUnixTimeFromSystem(): Double {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromSystemPtr, DOUBLE)
@@ -292,6 +312,7 @@ public object Time : Object() {
    * Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly 500 million
    * years).
    */
+  @JvmStatic
   public final fun getTicksMsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTicksMsecPtr, LONG)
@@ -303,6 +324,7 @@ public object Time : Object() {
    * Will always be positive or 0 and uses a 64-bit value (it will wrap after roughly half a million
    * years).
    */
+  @JvmStatic
   public final fun getTicksUsec(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getTicksUsecPtr, LONG)

@@ -2,7 +2,7 @@
 #include "jvm_wrapper/memory/transfer_context.h"
 #include "gd_kotlin.h"
 
-void KtCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const {
+void LambdaCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count, Variant& r_ret) const {
     TransferContext& transfer_context {TransferContext::get_instance()};
     transfer_context.write_args(p_env, p_args, args_count);
 
@@ -17,16 +17,16 @@ void KtCallable::invoke(jni::Env& p_env, const Variant** p_args, int args_count,
     wrapped.call_void_method<false>(p_env, INVOKE_NO_RETURN);
 }
 
-int KtCallable::get_hash_code() const {
+int LambdaCallable::get_hash_code() const {
     return hash_code;
 }
 
-bool KtCallable::equals(const KtCallable& other) const {
+bool LambdaCallable::equals(const LambdaCallable& other) const {
     jni::Env env {jni::Jvm::current_env()};
     return wrapped.is_same_object(env, other.wrapped);
 }
 
-KtCallable::KtCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code) : JvmInstanceWrapper(p_env, p_wrapped) {
+LambdaCallable::LambdaCallable(jni::Env& p_env, jni::JObject p_wrapped, Variant::Type return_type, int p_hash_code) : JvmInstanceWrapper(p_env, p_wrapped) {
     has_return_value = return_type != Variant::NIL;
 
     hash_code = p_hash_code;

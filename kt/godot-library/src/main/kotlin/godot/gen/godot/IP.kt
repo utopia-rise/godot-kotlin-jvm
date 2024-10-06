@@ -25,6 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different
@@ -53,6 +54,7 @@ public object IP : Object() {
    * address type returned depends on the [Type] constant given as [ipType].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.resolveHostnamePtr, STRING)
@@ -64,6 +66,7 @@ public object IP : Object() {
    * IPv6 addresses depending on [ipType].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
       PackedStringArray {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
@@ -77,6 +80,7 @@ public object IP : Object() {
    * constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(rawPtr, MethodBindings.resolveHostnameQueueItemPtr, LONG)
@@ -86,6 +90,7 @@ public object IP : Object() {
   /**
    * Returns a queued hostname's status as a [ResolverStatus] constant, given its queue [id].
    */
+  @JvmStatic
   public final fun getResolveItemStatus(id: Int): ResolverStatus {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemStatusPtr, LONG)
@@ -96,6 +101,7 @@ public object IP : Object() {
    * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error
    * or if resolution hasn't happened yet (see [getResolveItemStatus]).
    */
+  @JvmStatic
   public final fun getResolveItemAddress(id: Int): String {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemAddressPtr, STRING)
@@ -106,6 +112,7 @@ public object IP : Object() {
    * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen
    * yet (see [getResolveItemStatus]).
    */
+  @JvmStatic
   public final fun getResolveItemAddresses(id: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemAddressesPtr, ARRAY)
@@ -116,6 +123,7 @@ public object IP : Object() {
    * Removes a given item [id] from the queue. This should be used to free a queue after it has
    * completed to enable more queries to happen.
    */
+  @JvmStatic
   public final fun eraseResolveItem(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.eraseResolveItemPtr, NIL)
@@ -124,6 +132,7 @@ public object IP : Object() {
   /**
    * Returns all the user's current IPv4 and IPv6 addresses as an array.
    */
+  @JvmStatic
   public final fun getLocalAddresses(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalAddressesPtr, PACKED_STRING_ARRAY)
@@ -142,6 +151,7 @@ public object IP : Object() {
    * }
    * [/codeblock]
    */
+  @JvmStatic
   public final fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalInterfacesPtr, ARRAY)
@@ -153,6 +163,7 @@ public object IP : Object() {
    * addresses are removed.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun clearCache(hostname: String = ""): Unit {
     TransferContext.writeArguments(STRING to hostname)
     TransferContext.callMethod(rawPtr, MethodBindings.clearCachePtr, NIL)

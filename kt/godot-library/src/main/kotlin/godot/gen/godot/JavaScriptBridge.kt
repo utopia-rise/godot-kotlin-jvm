@@ -29,6 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the
@@ -47,6 +48,7 @@ public object JavaScriptBridge : Object() {
    * activated because a previous version is active. See [pwaUpdate] to force the update to take place
    * immediately.
    */
+  @JvmStatic
   public val pwaUpdateAvailable: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -61,6 +63,7 @@ public object JavaScriptBridge : Object() {
    * runtime environment.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun eval(code: String, useGlobalExecutionContext: Boolean = false): Any? {
     TransferContext.writeArguments(STRING to code, BOOL to useGlobalExecutionContext)
     TransferContext.callMethod(rawPtr, MethodBindings.evalPtr, ANY)
@@ -72,6 +75,7 @@ public object JavaScriptBridge : Object() {
    * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
    * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
+  @JvmStatic
   public final fun getInterface(`interface`: String): JavaScriptObject? {
     TransferContext.writeArguments(STRING to `interface`)
     TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
@@ -83,6 +87,7 @@ public object JavaScriptBridge : Object() {
    * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
    * usage.
    */
+  @JvmStatic
   public final fun createCallback(callable: Callable): JavaScriptObject? {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.createCallbackPtr, OBJECT)
@@ -93,6 +98,7 @@ public object JavaScriptBridge : Object() {
    * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
    * of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
+  @JvmStatic
   public final fun createObject(`object`: String, vararg __var_args: Any?): Any? {
     TransferContext.writeArguments(STRING to `object`,  *__var_args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(rawPtr, MethodBindings.createObjectPtr, ANY)
@@ -110,6 +116,7 @@ public object JavaScriptBridge : Object() {
    * requests are made in a quick succession.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun downloadBuffer(
     buffer: PackedByteArray,
     name: String,
@@ -123,6 +130,7 @@ public object JavaScriptBridge : Object() {
    * Returns `true` if a new version of the progressive web app is waiting to be activated.
    * **Note:** Only relevant when exported as a Progressive Web App.
    */
+  @JvmStatic
   public final fun pwaNeedsUpdate(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaNeedsUpdatePtr, BOOL)
@@ -136,6 +144,7 @@ public object JavaScriptBridge : Object() {
    * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
    * `true`.
    */
+  @JvmStatic
   public final fun pwaUpdate(): Error {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.pwaUpdatePtr, LONG)
@@ -147,6 +156,7 @@ public object JavaScriptBridge : Object() {
    * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write
    * files.
    */
+  @JvmStatic
   public final fun forceFsSync(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceFsSyncPtr, NIL)

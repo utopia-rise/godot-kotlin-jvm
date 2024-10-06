@@ -54,6 +54,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [DisplayServer] handles everything related to window management. It is separated from [OS] as a
@@ -115,6 +116,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the specified [feature] is supported by the current [DisplayServer], `false`
    * otherwise.
    */
+  @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
@@ -129,6 +131,7 @@ public object DisplayServer : Object() {
    * `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless`
    * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]).
    */
+  @JvmStatic
   public final fun getName(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
@@ -144,6 +147,7 @@ public object DisplayServer : Object() {
    * search result in the `Help` menu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable):
       Unit {
     TransferContext.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
@@ -154,6 +158,7 @@ public object DisplayServer : Object() {
    * Registers callables to emit when the menu is respectively about to show or closed. Callback
    * methods should have zero arguments.
    */
+  @JvmStatic
   public final fun globalMenuSetPopupCallbacks(
     menuRoot: String,
     openCallback: Callable,
@@ -178,6 +183,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddSubmenuItem(
     menuRoot: String,
     label: String,
@@ -209,6 +215,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddItem(
     menuRoot: String,
     label: String,
@@ -243,6 +250,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddCheckItem(
     menuRoot: String,
     label: String,
@@ -277,6 +285,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddIconItem(
     menuRoot: String,
     icon: Texture2D?,
@@ -313,6 +322,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddIconCheckItem(
     menuRoot: String,
     icon: Texture2D?,
@@ -351,6 +361,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddRadioCheckItem(
     menuRoot: String,
     label: String,
@@ -389,6 +400,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddIconRadioCheckItem(
     menuRoot: String,
     icon: Texture2D?,
@@ -429,6 +441,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddMultistateItem(
     menuRoot: String,
     label: String,
@@ -460,6 +473,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun globalMenuAddSeparator(menuRoot: String, index: Int = -1): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSeparatorPtr, LONG)
@@ -471,6 +485,7 @@ public object DisplayServer : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
     TransferContext.writeArguments(STRING to menuRoot, STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTextPtr, LONG)
@@ -482,6 +497,7 @@ public object DisplayServer : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
     TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTagPtr, LONG)
@@ -492,6 +508,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the item at index [idx] is checked.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckedPtr, BOOL)
@@ -503,6 +520,7 @@ public object DisplayServer : Object() {
    * or radio button.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckablePtr, BOOL)
@@ -515,6 +533,7 @@ public object DisplayServer : Object() {
    * radio groups.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemRadioCheckablePtr, BOOL)
@@ -525,6 +544,7 @@ public object DisplayServer : Object() {
    * Returns the callback of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCallbackPtr, CALLABLE)
@@ -535,6 +555,7 @@ public object DisplayServer : Object() {
    * Returns the callback of the item accelerator at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemKeyCallbackPtr, CALLABLE)
@@ -546,6 +567,7 @@ public object DisplayServer : Object() {
    * [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemTag(menuRoot: String, idx: Int): Any? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTagPtr, ANY)
@@ -556,6 +578,7 @@ public object DisplayServer : Object() {
    * Returns the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTextPtr, STRING)
@@ -567,6 +590,7 @@ public object DisplayServer : Object() {
    * on how to add a submenu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemSubmenuPtr, STRING)
@@ -578,6 +602,7 @@ public object DisplayServer : Object() {
    * keys that activate the item, no matter which control is focused.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemAccelerator(menuRoot: String, idx: Int): Key {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemAcceleratorPtr, LONG)
@@ -590,6 +615,7 @@ public object DisplayServer : Object() {
    * See [globalMenuSetItemDisabled] for more info on how to disable an item.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuIsItemDisabled(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemDisabledPtr, BOOL)
@@ -601,6 +627,7 @@ public object DisplayServer : Object() {
    * See [globalMenuSetItemHidden] for more info on how to hide an item.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
@@ -611,6 +638,7 @@ public object DisplayServer : Object() {
    * Returns the tooltip associated with the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTooltipPtr, STRING)
@@ -621,6 +649,7 @@ public object DisplayServer : Object() {
    * Returns the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemState(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemStatePtr, LONG)
@@ -631,6 +660,7 @@ public object DisplayServer : Object() {
    * Returns number of states of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemMaxStates(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemMaxStatesPtr, LONG)
@@ -641,6 +671,7 @@ public object DisplayServer : Object() {
    * Returns the icon of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIconPtr, OBJECT)
@@ -651,6 +682,7 @@ public object DisplayServer : Object() {
    * Returns the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndentationLevelPtr, LONG)
@@ -661,6 +693,7 @@ public object DisplayServer : Object() {
    * Sets the checkstate status of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemChecked(
     menuRoot: String,
     idx: Int,
@@ -675,6 +708,7 @@ public object DisplayServer : Object() {
    * plain text.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemCheckable(
     menuRoot: String,
     idx: Int,
@@ -691,6 +725,7 @@ public object DisplayServer : Object() {
    * radio groups.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemRadioCheckable(
     menuRoot: String,
     idx: Int,
@@ -707,6 +742,7 @@ public object DisplayServer : Object() {
    * created.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemCallback(
     menuRoot: String,
     idx: Int,
@@ -723,6 +759,7 @@ public object DisplayServer : Object() {
    * created.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemHoverCallbacks(
     menuRoot: String,
     idx: Int,
@@ -740,6 +777,7 @@ public object DisplayServer : Object() {
    * item was created.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemKeyCallback(
     menuRoot: String,
     idx: Int,
@@ -754,6 +792,7 @@ public object DisplayServer : Object() {
    * [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemTag(
     menuRoot: String,
     idx: Int,
@@ -767,6 +806,7 @@ public object DisplayServer : Object() {
    * Sets the text of the item at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemText(
     menuRoot: String,
     idx: Int,
@@ -781,6 +821,7 @@ public object DisplayServer : Object() {
    * would be shown when the item is clicked.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemSubmenu(
     menuRoot: String,
     idx: Int,
@@ -796,6 +837,7 @@ public object DisplayServer : Object() {
    * ([kbd]Ctrl + A[/kbd]).
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemAccelerator(
     menuRoot: String,
     idx: Int,
@@ -810,6 +852,7 @@ public object DisplayServer : Object() {
    * action can't be invoked.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemDisabled(
     menuRoot: String,
     idx: Int,
@@ -824,6 +867,7 @@ public object DisplayServer : Object() {
    * its action cannot be invoked.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemHidden(
     menuRoot: String,
     idx: Int,
@@ -837,6 +881,7 @@ public object DisplayServer : Object() {
    * Sets the [String] tooltip of the item at the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemTooltip(
     menuRoot: String,
     idx: Int,
@@ -850,6 +895,7 @@ public object DisplayServer : Object() {
    * Sets the state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemState(
     menuRoot: String,
     idx: Int,
@@ -863,6 +909,7 @@ public object DisplayServer : Object() {
    * Sets number of state of a multistate item. See [globalMenuAddMultistateItem] for details.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemMaxStates(
     menuRoot: String,
     idx: Int,
@@ -877,6 +924,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on macOS.
    * **Note:** This method is not supported by macOS "_dock" menu items.
    */
+  @JvmStatic
   public final fun globalMenuSetItemIcon(
     menuRoot: String,
     idx: Int,
@@ -890,6 +938,7 @@ public object DisplayServer : Object() {
    * Sets the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuSetItemIndentationLevel(
     menuRoot: String,
     idx: Int,
@@ -903,6 +952,7 @@ public object DisplayServer : Object() {
    * Returns number of items in the global menu with ID [menuRoot].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetItemCount(menuRoot: String): Int {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCountPtr, LONG)
@@ -914,6 +964,7 @@ public object DisplayServer : Object() {
    * **Note:** The indices of items after the removed item will be shifted by one.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuRemoveItem(menuRoot: String, idx: Int): Unit {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuRemoveItemPtr, NIL)
@@ -931,6 +982,7 @@ public object DisplayServer : Object() {
    * "_help" - Help menu (macOS).
    * [/codeblock]
    */
+  @JvmStatic
   public final fun globalMenuClear(menuRoot: String): Unit {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuClearPtr, NIL)
@@ -940,6 +992,7 @@ public object DisplayServer : Object() {
    * Returns Dictionary of supported system menu IDs and names.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
@@ -952,6 +1005,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsIsSpeaking(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsSpeakingPtr, BOOL)
@@ -964,6 +1018,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsIsPaused(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsIsPausedPtr, BOOL)
@@ -986,6 +1041,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesPtr, ARRAY)
@@ -998,6 +1054,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesForLanguagePtr,
@@ -1025,6 +1082,7 @@ public object DisplayServer : Object() {
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun ttsSpeak(
     text: String,
     voice: String,
@@ -1044,6 +1102,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsPause(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsPausePtr, NIL)
@@ -1055,6 +1114,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsResume(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsResumePtr, NIL)
@@ -1066,6 +1126,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsStop(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.ttsStopPtr, NIL)
@@ -1083,6 +1144,7 @@ public object DisplayServer : Object() {
    * Windows.
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
+  @JvmStatic
   public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
     TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
@@ -1092,6 +1154,7 @@ public object DisplayServer : Object() {
    * Returns `true` if OS supports dark mode.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
+  @JvmStatic
   public final fun isDarkModeSupported(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModeSupportedPtr, BOOL)
@@ -1102,6 +1165,7 @@ public object DisplayServer : Object() {
    * Returns `true` if OS is using dark mode.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
+  @JvmStatic
   public final fun isDarkMode(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isDarkModePtr, BOOL)
@@ -1112,6 +1176,7 @@ public object DisplayServer : Object() {
    * Returns OS theme accent color. Returns `Color(0, 0, 0, 0)`, if accent color is unknown.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getAccentColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
@@ -1123,6 +1188,7 @@ public object DisplayServer : Object() {
    * the base color is unknown.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getBaseColor(): Color {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
@@ -1134,6 +1200,7 @@ public object DisplayServer : Object() {
    * method should have zero arguments.
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
+  @JvmStatic
   public final fun setSystemThemeChangeCallback(callable: Callable): Unit {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(rawPtr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
@@ -1142,6 +1209,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the current mouse mode. See also [mouseGetMode].
    */
+  @JvmStatic
   public final fun mouseSetMode(mouseMode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mouseMode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.mouseSetModePtr, NIL)
@@ -1150,6 +1218,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the current mouse mode. See also [mouseSetMode].
    */
+  @JvmStatic
   public final fun mouseGetMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetModePtr, LONG)
@@ -1162,6 +1231,7 @@ public object DisplayServer : Object() {
    * **Note:** [warpMouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no
    * effect on Android, iOS, and Web.
    */
+  @JvmStatic
   public final fun warpMouse(position: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
@@ -1170,6 +1240,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the mouse cursor's current position in screen coordinates.
    */
+  @JvmStatic
   public final fun mouseGetPosition(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
@@ -1181,6 +1252,7 @@ public object DisplayServer : Object() {
    * multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to
    * [Input.getMouseButtonMask].
    */
+  @JvmStatic
   public final fun mouseGetButtonState(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.mouseGetButtonStatePtr, LONG)
@@ -1190,6 +1262,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the user's clipboard content to the given string.
    */
+  @JvmStatic
   public final fun clipboardSet(clipboard: String): Unit {
     TransferContext.writeArguments(STRING to clipboard)
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPtr, NIL)
@@ -1198,6 +1271,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the user's clipboard as a string if possible.
    */
+  @JvmStatic
   public final fun clipboardGet(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPtr, STRING)
@@ -1209,6 +1283,7 @@ public object DisplayServer : Object() {
    * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web
    * browser, not an image file copied from file explorer.
    */
+  @JvmStatic
   public final fun clipboardGetImage(): Image? {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
@@ -1218,6 +1293,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if there is a text content on the user's clipboard.
    */
+  @JvmStatic
   public final fun clipboardHas(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
@@ -1227,6 +1303,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if there is an image content on the user's clipboard.
    */
+  @JvmStatic
   public final fun clipboardHasImage(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
@@ -1242,6 +1319,7 @@ public object DisplayServer : Object() {
    * clipboard mechanism.
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
+  @JvmStatic
   public final fun clipboardSetPrimary(clipboardPrimary: String): Unit {
     TransferContext.writeArguments(STRING to clipboardPrimary)
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPrimaryPtr, NIL)
@@ -1256,6 +1334,7 @@ public object DisplayServer : Object() {
    * mechanism.
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
+  @JvmStatic
   public final fun clipboardGetPrimary(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPrimaryPtr, STRING)
@@ -1269,6 +1348,7 @@ public object DisplayServer : Object() {
    * **Note:** Currently only implemented on Android. Other platforms will return an empty array
    * even if they do have display cutouts or notches.
    */
+  @JvmStatic
   public final fun getDisplayCutouts(): VariantArray<Rect2> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
@@ -1279,6 +1359,7 @@ public object DisplayServer : Object() {
    * Returns the unobscured area of the display where interactive controls should be rendered. See
    * also [getDisplayCutouts].
    */
+  @JvmStatic
   public final fun getDisplaySafeArea(): Rect2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
@@ -1288,6 +1369,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the number of displays available.
    */
+  @JvmStatic
   public final fun getScreenCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenCountPtr, LONG)
@@ -1297,6 +1379,7 @@ public object DisplayServer : Object() {
   /**
    * Returns index of the primary screen.
    */
+  @JvmStatic
   public final fun getPrimaryScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryScreenPtr, LONG)
@@ -1307,6 +1390,7 @@ public object DisplayServer : Object() {
    * Returns the index of the screen containing the window with the keyboard focus, or the primary
    * screen if there's no focused window.
    */
+  @JvmStatic
   public final fun getKeyboardFocusScreen(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
@@ -1316,6 +1400,7 @@ public object DisplayServer : Object() {
   /**
    * Returns index of the screen which contains specified rectangle.
    */
+  @JvmStatic
   public final fun getScreenFromRect(rect: Rect2): Int {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.getScreenFromRectPtr, LONG)
@@ -1338,6 +1423,7 @@ public object DisplayServer : Object() {
    * **Note:** On Linux (Wayland) this method always returns `(0, 0)`.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetPosition(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPositionPtr, VECTOR2I)
@@ -1348,6 +1434,7 @@ public object DisplayServer : Object() {
    * Returns the screen's size in pixels. See also [screenGetPosition] and [screenGetUsableRect].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetSize(screen: Int = -1): Vector2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetSizePtr, VECTOR2I)
@@ -1359,6 +1446,7 @@ public object DisplayServer : Object() {
    * [screenGetSize].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetUsableRect(screen: Int = -1): Rect2i {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetUsableRectPtr, RECT2I)
@@ -1383,6 +1471,7 @@ public object DisplayServer : Object() {
    * Returns `72` on unsupported platforms.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetDpi(screen: Int = -1): Int {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetDpiPtr, LONG)
@@ -1399,6 +1488,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on macOS and Linux (Wayland).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetScale(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetScalePtr, DOUBLE)
@@ -1409,6 +1499,7 @@ public object DisplayServer : Object() {
    * Returns `true` if touch events are available (Android or iOS), the capability is detected on
    * the Web platform or if [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
+  @JvmStatic
   public final fun isTouchscreenAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
@@ -1421,6 +1512,7 @@ public object DisplayServer : Object() {
    * the system, and `1.0` in all other cases.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun screenGetMaxScale(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
@@ -1441,6 +1533,7 @@ public object DisplayServer : Object() {
    * [/codeblock]
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetRefreshRate(screen: Int = -1): Float {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetRefreshRatePtr, DOUBLE)
@@ -1453,6 +1546,7 @@ public object DisplayServer : Object() {
    * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
    * granted it will return desktop wallpaper color.
    */
+  @JvmStatic
   public final fun screenGetPixel(position: Vector2i): Color {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetPixelPtr, COLOR)
@@ -1466,6 +1560,7 @@ public object DisplayServer : Object() {
    * granted it will return desktop wallpaper color.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetImage(screen: Int = -1): Image? {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetImagePtr, OBJECT)
@@ -1478,6 +1573,7 @@ public object DisplayServer : Object() {
    * [ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenSetOrientationPtr, NIL)
@@ -1488,6 +1584,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android and iOS.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun screenGetOrientation(screen: Int = -1): ScreenOrientation {
     TransferContext.writeArguments(LONG to screen.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.screenGetOrientationPtr, LONG)
@@ -1498,6 +1595,7 @@ public object DisplayServer : Object() {
    * Sets whether the screen should never be turned off by the operating system's power-saving
    * measures. See also [screenIsKeptOn].
    */
+  @JvmStatic
   public final fun screenSetKeepOn(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.screenSetKeepOnPtr, NIL)
@@ -1507,6 +1605,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the screen should never be turned off by the operating system's power-saving
    * measures. See also [screenSetKeepOn].
    */
+  @JvmStatic
   public final fun screenIsKeptOn(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.screenIsKeptOnPtr, BOOL)
@@ -1517,6 +1616,7 @@ public object DisplayServer : Object() {
    * Returns the list of Godot window IDs belonging to this process.
    * **Note:** Native dialogs are not included in this list.
    */
+  @JvmStatic
   public final fun getWindowList(): PackedInt32Array {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
@@ -1537,6 +1637,7 @@ public object DisplayServer : Object() {
    * +-------------+ +-------+
    * [/codeblock]
    */
+  @JvmStatic
   public final fun getWindowAtScreenPosition(position: Vector2i): Int {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.getWindowAtScreenPositionPtr, LONG)
@@ -1548,6 +1649,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS, and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetNativeHandlePtr, LONG)
@@ -1557,6 +1659,7 @@ public object DisplayServer : Object() {
   /**
    * Returns ID of the active popup window, or [INVALID_WINDOW_ID] if there is none.
    */
+  @JvmStatic
   public final fun windowGetActivePopup(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetActivePopupPtr, LONG)
@@ -1567,6 +1670,7 @@ public object DisplayServer : Object() {
    * Sets the bounding box of control, or menu item that was used to open the popup window, in the
    * screen coordinate system. Clicking this area will not auto-close this popup.
    */
+  @JvmStatic
   public final fun windowSetPopupSafeRect(window: Int, rect: Rect2i): Unit {
     TransferContext.writeArguments(LONG to window.toLong(), RECT2I to rect)
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetPopupSafeRectPtr, NIL)
@@ -1576,6 +1680,7 @@ public object DisplayServer : Object() {
    * Returns the bounding box of control, or menu item that was used to open the popup window, in
    * the screen coordinate system.
    */
+  @JvmStatic
   public final fun windowGetPopupSafeRect(window: Int): Rect2i {
     TransferContext.writeArguments(LONG to window.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPopupSafeRectPtr, RECT2I)
@@ -1589,6 +1694,7 @@ public object DisplayServer : Object() {
    * certain window managers. Try to change the window title only a few times per second at most.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetTitle(title: String, windowId: Int = 0): Unit {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetTitlePtr, NIL)
@@ -1600,6 +1706,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
@@ -1640,6 +1747,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0): Unit {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMousePassthroughPtr, NIL)
@@ -1651,6 +1759,7 @@ public object DisplayServer : Object() {
    * [windowSetCurrentScreen].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetCurrentScreen(windowId: Int = 0): Int {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetCurrentScreenPtr, LONG)
@@ -1662,6 +1771,7 @@ public object DisplayServer : Object() {
    * [windowGetCurrentScreen].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetCurrentScreen(screen: Int, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to screen.toLong(), LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetCurrentScreenPtr, NIL)
@@ -1671,6 +1781,7 @@ public object DisplayServer : Object() {
    * Returns the position of the client area of the given window on the screen.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetPosition(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionPtr, VECTOR2I)
@@ -1682,6 +1793,7 @@ public object DisplayServer : Object() {
    * operating system. See also [windowGetPosition].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetPositionWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionWithDecorationsPtr, VECTOR2I)
@@ -1705,6 +1817,7 @@ public object DisplayServer : Object() {
    * **Note:** On Linux (Wayland): this method is a no-op.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetPositionPtr, NIL)
@@ -1716,6 +1829,7 @@ public object DisplayServer : Object() {
    * [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizePtr, VECTOR2I)
@@ -1728,6 +1842,7 @@ public object DisplayServer : Object() {
    * **Note:** It's recommended to change this value using [Window.size] instead.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetSize(size: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetSizePtr, NIL)
@@ -1740,6 +1855,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetRectChangedCallbackPtr, NIL)
@@ -1752,6 +1868,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowEventCallbackPtr, NIL)
@@ -1764,6 +1881,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputEventCallbackPtr, NIL)
@@ -1776,6 +1894,7 @@ public object DisplayServer : Object() {
    * default implementation, which can introduce bugs.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputTextCallbackPtr, NIL)
@@ -1790,6 +1909,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Windows, macOS, Linux (X11/Wayland), and Web.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetDropFilesCallbackPtr, NIL)
@@ -1799,6 +1919,7 @@ public object DisplayServer : Object() {
    * Returns the [Object.getInstanceId] of the [Window] the [windowId] is attached to.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetAttachedInstanceIdPtr, LONG)
@@ -1809,6 +1930,7 @@ public object DisplayServer : Object() {
    * Returns the window's maximum size (in pixels). See also [windowSetMaxSize].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetMaxSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMaxSizePtr, VECTOR2I)
@@ -1824,6 +1946,7 @@ public object DisplayServer : Object() {
    * restrictions and therefore bypass this limit.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMaxSizePtr, NIL)
@@ -1833,6 +1956,7 @@ public object DisplayServer : Object() {
    * Returns the window's minimum size (in pixels). See also [windowSetMinSize].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetMinSize(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetMinSizePtr, VECTOR2I)
@@ -1850,6 +1974,7 @@ public object DisplayServer : Object() {
    * restrictions and therefore bypass this limit.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetMinSizePtr, NIL)
@@ -1860,6 +1985,7 @@ public object DisplayServer : Object() {
    * by the operating system. See also [windowGetSize].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizeWithDecorationsPtr, VECTOR2I)
@@ -1870,6 +1996,7 @@ public object DisplayServer : Object() {
    * Returns the mode of the given window.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetMode(windowId: Int = 0): WindowMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetModePtr, LONG)
@@ -1883,6 +2010,7 @@ public object DisplayServer : Object() {
    * make sure to set it back to `false` when not wanted.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetModePtr, NIL)
@@ -1893,6 +2021,7 @@ public object DisplayServer : Object() {
    * their behavior.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetFlag(
     flag: WindowFlags,
     enabled: Boolean,
@@ -1906,6 +2035,7 @@ public object DisplayServer : Object() {
    * Returns the current value of the given window's [flag].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to flag.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetFlagPtr, BOOL)
@@ -1918,6 +2048,7 @@ public object DisplayServer : Object() {
    * **Note:** This flag is implemented only on macOS.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowButtonsOffsetPtr, NIL)
@@ -1928,6 +2059,7 @@ public object DisplayServer : Object() {
    * use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetSafeTitleMarginsPtr, VECTOR3I)
@@ -1940,6 +2072,7 @@ public object DisplayServer : Object() {
    * if the window is currently focused. The exact behavior varies depending on the operating system.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowRequestAttention(windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowRequestAttentionPtr, NIL)
@@ -1950,6 +2083,7 @@ public object DisplayServer : Object() {
    * windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowMoveToForeground(windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowMoveToForegroundPtr, NIL)
@@ -1959,6 +2093,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the window specified by [windowId] is focused.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowIsFocused(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsFocusedPtr, BOOL)
@@ -1971,6 +2106,7 @@ public object DisplayServer : Object() {
    * `false`.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowCanDraw(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowCanDrawPtr, BOOL)
@@ -1984,6 +2120,7 @@ public object DisplayServer : Object() {
    * **Note:** It's recommended to change this value using [Window.transient] instead.
    * **Note:** The behavior might be different depending on the platform.
    */
+  @JvmStatic
   public final fun windowSetTransient(windowId: Int, parentWindowId: Int): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong(), LONG to parentWindowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetTransientPtr, NIL)
@@ -1996,6 +2133,7 @@ public object DisplayServer : Object() {
    * screen) as the parent window.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun windowSetExclusive(windowId: Int, exclusive: Boolean): Unit {
     TransferContext.writeArguments(LONG to windowId.toLong(), BOOL to exclusive)
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetExclusivePtr, NIL)
@@ -2006,6 +2144,7 @@ public object DisplayServer : Object() {
    * be enabled for the window specified by [windowId]. See also [windowSetImePosition].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
     TransferContext.writeArguments(BOOL to active, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetImeActivePtr, NIL)
@@ -2017,6 +2156,7 @@ public object DisplayServer : Object() {
    * `true` for the specified [windowId].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetImePositionPtr, NIL)
@@ -2033,6 +2173,7 @@ public object DisplayServer : Object() {
    * rendering methods, not Compatibility.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowSetVsyncModePtr, NIL)
@@ -2042,6 +2183,7 @@ public object DisplayServer : Object() {
    * Returns the V-Sync mode of the given window.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowGetVsyncMode(windowId: Int = 0): VSyncMode {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowGetVsyncModePtr, LONG)
@@ -2052,6 +2194,7 @@ public object DisplayServer : Object() {
    * Returns `true` if the given window can be maximized (the maximize button is enabled).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun windowIsMaximizeAllowed(windowId: Int = 0): Boolean {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.windowIsMaximizeAllowedPtr, BOOL)
@@ -2062,6 +2205,7 @@ public object DisplayServer : Object() {
    * Returns `true`, if double-click on a window title should maximize it.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun windowMaximizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
@@ -2072,6 +2216,7 @@ public object DisplayServer : Object() {
    * Returns `true`, if double-click on a window title should minimize it.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun windowMinimizeOnTitleDblClick(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
@@ -2084,6 +2229,7 @@ public object DisplayServer : Object() {
    * `y` being the length of the selection.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun imeGetSelection(): Vector2i {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
@@ -2095,6 +2241,7 @@ public object DisplayServer : Object() {
    * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] window.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun imeGetText(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.imeGetTextPtr, STRING)
@@ -2114,6 +2261,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Android, iOS and Web.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun virtualKeyboardShow(
     existingText: String,
     position: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
@@ -2129,6 +2277,7 @@ public object DisplayServer : Object() {
   /**
    * Hides the virtual keyboard if it is shown, does nothing otherwise.
    */
+  @JvmStatic
   public final fun virtualKeyboardHide(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardHidePtr, NIL)
@@ -2138,6 +2287,7 @@ public object DisplayServer : Object() {
    * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it
    * is currently hidden.
    */
+  @JvmStatic
   public final fun virtualKeyboardGetHeight(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
@@ -2148,6 +2298,7 @@ public object DisplayServer : Object() {
    * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's
    * operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
    */
+  @JvmStatic
   public final fun cursorSetShape(shape: CursorShape): Unit {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(rawPtr, MethodBindings.cursorSetShapePtr, NIL)
@@ -2156,6 +2307,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the default mouse cursor shape set by [cursorSetShape].
    */
+  @JvmStatic
   public final fun cursorGetShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.cursorGetShapePtr, LONG)
@@ -2171,6 +2323,7 @@ public object DisplayServer : Object() {
    * [cursorSetShape].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun cursorSetCustomImage(
     cursor: Resource?,
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
@@ -2187,6 +2340,7 @@ public object DisplayServer : Object() {
    * **Note:** This doesn't affect native dialogs such as the ones spawned by
    * [DisplayServer.dialogShow].
    */
+  @JvmStatic
   public final fun getSwapCancelOk(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getSwapCancelOkPtr, BOOL)
@@ -2198,6 +2352,7 @@ public object DisplayServer : Object() {
    * operating system's focus stealing protection for the specified PID.
    * **Note:** This method is implemented only on Windows.
    */
+  @JvmStatic
   public final fun enableForStealingFocus(processId: Long): Unit {
     TransferContext.writeArguments(LONG to processId)
     TransferContext.callMethod(rawPtr, MethodBindings.enableForStealingFocusPtr, NIL)
@@ -2209,6 +2364,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
    * feature. Supported platforms include macOS and Windows.
    */
+  @JvmStatic
   public final fun dialogShow(
     title: String,
     description: String,
@@ -2226,6 +2382,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented if the display server has the
    * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS and Windows.
    */
+  @JvmStatic
   public final fun dialogInputText(
     title: String,
     description: String,
@@ -2253,6 +2410,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
+  @JvmStatic
   public final fun fileDialogShow(
     title: String,
     currentDirectory: String,
@@ -2288,6 +2446,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
+  @JvmStatic
   public final fun fileDialogWithOptionsShow(
     title: String,
     currentDirectory: String,
@@ -2308,6 +2467,7 @@ public object DisplayServer : Object() {
    * Returns the number of keyboard layouts.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetLayoutCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
@@ -2318,6 +2478,7 @@ public object DisplayServer : Object() {
    * Returns active keyboard layout index.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetCurrentLayout(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
@@ -2328,6 +2489,7 @@ public object DisplayServer : Object() {
    * Sets the active keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardSetCurrentLayout(index: Int): Unit {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardSetCurrentLayoutPtr, NIL)
@@ -2337,6 +2499,7 @@ public object DisplayServer : Object() {
    * Returns the ISO-639/BCP-47 language code of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetLayoutLanguage(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutLanguagePtr, STRING)
@@ -2347,6 +2510,7 @@ public object DisplayServer : Object() {
    * Returns the localized name of the keyboard layout at position [index].
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetLayoutName(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutNamePtr, STRING)
@@ -2357,6 +2521,7 @@ public object DisplayServer : Object() {
    * Converts a physical (US QWERTY) [keycode] to one in the active keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
@@ -2368,6 +2533,7 @@ public object DisplayServer : Object() {
    * keyboard layout.
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
+  @JvmStatic
   public final fun keyboardGetLabelFromPhysical(keycode: Key): Key {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
@@ -2378,6 +2544,7 @@ public object DisplayServer : Object() {
    * Perform window manager processing, including input flushing. See also
    * [forceProcessAndDropEvents], [Input.flushBufferedEvents] and [Input.useAccumulatedInput].
    */
+  @JvmStatic
   public final fun processEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.processEventsPtr, NIL)
@@ -2387,6 +2554,7 @@ public object DisplayServer : Object() {
    * Forces window manager processing while ignoring all [InputEvent]s. See also [processEvents].
    * **Note:** This method is implemented on Windows and macOS.
    */
+  @JvmStatic
   public final fun forceProcessAndDropEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
@@ -2401,6 +2569,7 @@ public object DisplayServer : Object() {
    * use [setIcon] instead.
    * **Note:** Requires support for [FEATURE_NATIVE_ICON].
    */
+  @JvmStatic
   public final fun setNativeIcon(filename: String): Unit {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(rawPtr, MethodBindings.setNativeIconPtr, NIL)
@@ -2411,6 +2580,7 @@ public object DisplayServer : Object() {
    * in the operating system's native format, use [setNativeIcon] instead.
    * **Note:** Requires support for [FEATURE_ICON].
    */
+  @JvmStatic
   public final fun setIcon(image: Image?): Unit {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
@@ -2422,6 +2592,7 @@ public object DisplayServer : Object() {
    * [callback] should take two arguments: the pressed mouse button (one of the [MouseButton]
    * constants) and the click position in screen coordinates (a [Vector2i]).
    */
+  @JvmStatic
   public final fun createStatusIndicator(
     icon: Texture2D?,
     tooltip: String,
@@ -2436,6 +2607,7 @@ public object DisplayServer : Object() {
    * Sets the application status indicator icon.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
@@ -2445,6 +2617,7 @@ public object DisplayServer : Object() {
    * Sets the application status indicator tooltip.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to tooltip)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
@@ -2460,6 +2633,7 @@ public object DisplayServer : Object() {
    * **Note:** Native popup is only supported if [NativeMenu] supports the
    * [NativeMenu.FEATURE_POPUP_MENU] feature.
    */
+  @JvmStatic
   public final fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), _RID to menuRid)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
@@ -2471,6 +2645,7 @@ public object DisplayServer : Object() {
    * screen coordinates.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
@@ -2481,6 +2656,7 @@ public object DisplayServer : Object() {
    * indicator is not visible, returns an empty [Rect2].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun statusIndicatorGetRect(id: Int): Rect2 {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
@@ -2490,6 +2666,7 @@ public object DisplayServer : Object() {
   /**
    * Removes the application status indicator.
    */
+  @JvmStatic
   public final fun deleteStatusIndicator(id: Int): Unit {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.deleteStatusIndicatorPtr, NIL)
@@ -2499,6 +2676,7 @@ public object DisplayServer : Object() {
    * Returns the total number of available tablet drivers.
    * **Note:** This method is implemented only on Windows.
    */
+  @JvmStatic
   public final fun tabletGetDriverCount(): Int {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverCountPtr, LONG)
@@ -2509,6 +2687,7 @@ public object DisplayServer : Object() {
    * Returns the tablet driver name for the given index.
    * **Note:** This method is implemented only on Windows.
    */
+  @JvmStatic
   public final fun tabletGetDriverName(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverNamePtr, STRING)
@@ -2519,6 +2698,7 @@ public object DisplayServer : Object() {
    * Returns current active tablet driver name.
    * **Note:** This method is implemented only on Windows.
    */
+  @JvmStatic
   public final fun tabletGetCurrentDriver(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
@@ -2533,6 +2713,7 @@ public object DisplayServer : Object() {
    * - `dummy`: Dummy driver, tablet input is disabled.
    * **Note:** This method is implemented only on Windows.
    */
+  @JvmStatic
   public final fun tabletSetCurrentDriver(name: String): Unit {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(rawPtr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
@@ -2543,6 +2724,7 @@ public object DisplayServer : Object() {
    * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`, or if
    * transparency is not supported by the renderer or OS compositor.
    */
+  @JvmStatic
   public final fun isWindowTransparencyAvailable(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
@@ -2555,6 +2737,7 @@ public object DisplayServer : Object() {
    * [unregisterAdditionalOutput].
    * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
    */
+  @JvmStatic
   public final fun registerAdditionalOutput(`object`: Object?): Unit {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
@@ -2564,6 +2747,7 @@ public object DisplayServer : Object() {
    * Unregisters an [Object] representing an additional output, that was registered via
    * [registerAdditionalOutput].
    */
+  @JvmStatic
   public final fun unregisterAdditionalOutput(`object`: Object?): Unit {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
@@ -2572,6 +2756,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if any additional outputs have been registered via [registerAdditionalOutput].
    */
+  @JvmStatic
   public final fun hasAdditionalOutputs(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)

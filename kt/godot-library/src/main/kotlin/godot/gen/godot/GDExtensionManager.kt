@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmStatic
 
 /**
  * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
@@ -34,6 +35,7 @@ public object GDExtensionManager : Object() {
   /**
    * Emitted after the editor has finished reloading one or more extensions.
    */
+  @JvmStatic
   public val extensionsReloaded: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
@@ -44,6 +46,7 @@ public object GDExtensionManager : Object() {
    * Loads an extension by absolute file path. The [path] needs to point to a valid [GDExtension].
    * Returns [LOAD_STATUS_OK] if successful.
    */
+  @JvmStatic
   public final fun loadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadExtensionPtr, LONG)
@@ -57,6 +60,7 @@ public object GDExtensionManager : Object() {
    * **Note:** You can only reload extensions in the editor. In release builds, this method always
    * fails and returns [LOAD_STATUS_FAILED].
    */
+  @JvmStatic
   public final fun reloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.reloadExtensionPtr, LONG)
@@ -67,6 +71,7 @@ public object GDExtensionManager : Object() {
    * Unloads an extension by file path. The [path] needs to point to an already loaded
    * [GDExtension], otherwise this method returns [LOAD_STATUS_NOT_LOADED].
    */
+  @JvmStatic
   public final fun unloadExtension(path: String): LoadStatus {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.unloadExtensionPtr, LONG)
@@ -77,6 +82,7 @@ public object GDExtensionManager : Object() {
    * Returns `true` if the extension at the given file [path] has already been loaded successfully.
    * See also [getLoadedExtensions].
    */
+  @JvmStatic
   public final fun isExtensionLoaded(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
@@ -86,6 +92,7 @@ public object GDExtensionManager : Object() {
   /**
    * Returns the file paths of all currently loaded extensions.
    */
+  @JvmStatic
   public final fun getLoadedExtensions(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
@@ -96,6 +103,7 @@ public object GDExtensionManager : Object() {
    * Returns the [GDExtension] at the given file [path], or `null` if it has not been loaded or does
    * not exist.
    */
+  @JvmStatic
   public final fun getExtension(path: String): GDExtension? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)

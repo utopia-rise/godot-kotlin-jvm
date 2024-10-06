@@ -27,6 +27,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A singleton used to load resource files from the filesystem.
@@ -50,6 +51,7 @@ public object ResourceLoader : Object() {
    * loading the resource. See [CacheMode] for details.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun loadThreadedRequest(
     path: String,
     typeHint: String = "",
@@ -70,6 +72,7 @@ public object ResourceLoader : Object() {
    * in [Node.Process], instead of a loop).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
@@ -84,6 +87,7 @@ public object ResourceLoader : Object() {
    * However, it's recommended to use [loadThreadedGetStatus] to known when the load has actually
    * completed.
    */
+  @JvmStatic
   public final fun loadThreadedGet(path: String): Resource? {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.loadThreadedGetPtr, OBJECT)
@@ -112,6 +116,7 @@ public object ResourceLoader : Object() {
    * results make sure your paths are absolute.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun load(
     path: String,
     typeHint: String = "",
@@ -125,6 +130,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the list of recognized extensions for a resource type.
    */
+  @JvmStatic
   public final fun getRecognizedExtensionsForType(type: String): PackedStringArray {
     TransferContext.writeArguments(STRING to type)
     TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsForTypePtr,
@@ -139,6 +145,7 @@ public object ResourceLoader : Object() {
    * [ResourceFormatLoader] for more information).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean =
       false): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
@@ -148,6 +155,7 @@ public object ResourceLoader : Object() {
   /**
    * Unregisters the given [ResourceFormatLoader].
    */
+  @JvmStatic
   public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?): Unit {
     TransferContext.writeArguments(OBJECT to formatLoader)
     TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
@@ -156,6 +164,7 @@ public object ResourceLoader : Object() {
   /**
    * Changes the behavior on missing sub-resources. The default behavior is to abort loading.
    */
+  @JvmStatic
   public final fun setAbortOnMissingResources(abort: Boolean): Unit {
     TransferContext.writeArguments(BOOL to abort)
     TransferContext.callMethod(rawPtr, MethodBindings.setAbortOnMissingResourcesPtr, NIL)
@@ -171,6 +180,7 @@ public object ResourceLoader : Object() {
    *     print(dep.get_slice("::", 2)) # Prints path.
    * [/codeblock]
    */
+  @JvmStatic
   public final fun getDependencies(path: String): PackedStringArray {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.getDependenciesPtr, PACKED_STRING_ARRAY)
@@ -183,6 +193,7 @@ public object ResourceLoader : Object() {
    * future calls to the [load] method will use the cached version. The cached resource can be
    * overridden by using [Resource.takeOverPath] on a new resource for that same path.
    */
+  @JvmStatic
   public final fun hasCached(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.hasCachedPtr, BOOL)
@@ -198,6 +209,7 @@ public object ResourceLoader : Object() {
    * even if the resource wasn't saved (i.e. exists only in resource cache).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun exists(path: String, typeHint: String = ""): Boolean {
     TransferContext.writeArguments(STRING to path, STRING to typeHint)
     TransferContext.callMethod(rawPtr, MethodBindings.existsPtr, BOOL)
@@ -207,6 +219,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the ID associated with a given resource path, or `-1` when no such ID exists.
    */
+  @JvmStatic
   public final fun getResourceUid(path: String): Long {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(rawPtr, MethodBindings.getResourceUidPtr, LONG)

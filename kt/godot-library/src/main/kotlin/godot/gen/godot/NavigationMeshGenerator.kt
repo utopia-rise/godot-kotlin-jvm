@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * This class is responsible for creating and clearing 3D navigation meshes used as [NavigationMesh]
@@ -59,6 +60,7 @@ public object NavigationMeshGenerator : Object() {
   /**
    * Bakes the [navigationMesh] with source geometry collected starting from the [rootNode].
    */
+  @JvmStatic
   public final fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
     TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
@@ -67,6 +69,7 @@ public object NavigationMeshGenerator : Object() {
   /**
    * Removes all polygons and vertices from the provided [navigationMesh] resource.
    */
+  @JvmStatic
   public final fun clear(navigationMesh: NavigationMesh?): Unit {
     TransferContext.writeArguments(OBJECT to navigationMesh)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
@@ -85,6 +88,7 @@ public object NavigationMeshGenerator : Object() {
    * arrays entirely in code.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun parseSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
@@ -100,6 +104,7 @@ public object NavigationMeshGenerator : Object() {
    * the process is finished the optional [callback] will be called.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun bakeFromSourceGeometryData(
     navigationMesh: NavigationMesh?,
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,

@@ -35,6 +35,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * [NativeMenu] handles low-level access to the OS native global menu bar and popup menus.
@@ -81,6 +82,7 @@ public object NativeMenu : Object() {
    * otherwise.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
     TransferContext.writeArguments(LONG to feature.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
@@ -91,6 +93,7 @@ public object NativeMenu : Object() {
    * Returns `true` if a special system menu is supported.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun hasSystemMenu(menuId: SystemMenus): Boolean {
     TransferContext.writeArguments(LONG to menuId.id)
     TransferContext.callMethod(rawPtr, MethodBindings.hasSystemMenuPtr, BOOL)
@@ -101,6 +104,7 @@ public object NativeMenu : Object() {
    * Returns RID of a special system menu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getSystemMenu(menuId: SystemMenus): RID {
     TransferContext.writeArguments(LONG to menuId.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuPtr, _RID)
@@ -111,6 +115,7 @@ public object NativeMenu : Object() {
    * Returns readable name of a special system menu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getSystemMenuName(menuId: SystemMenus): String {
     TransferContext.writeArguments(LONG to menuId.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getSystemMenuNamePtr, STRING)
@@ -121,6 +126,7 @@ public object NativeMenu : Object() {
    * Creates a new global menu object.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun createMenu(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.createMenuPtr, _RID)
@@ -131,6 +137,7 @@ public object NativeMenu : Object() {
    * Returns `true` if [rid] is valid global menu.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun hasMenu(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.hasMenuPtr, BOOL)
@@ -141,6 +148,7 @@ public object NativeMenu : Object() {
    * Frees a global menu object created by this [NativeMenu].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun freeMenu(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.freeMenuPtr, NIL)
@@ -150,6 +158,7 @@ public object NativeMenu : Object() {
    * Returns global menu size.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getSize(rid: RID): Vector2 {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
@@ -160,6 +169,7 @@ public object NativeMenu : Object() {
    * Shows the global menu at [position] in the screen coordinates.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun popup(rid: RID, position: Vector2i): Unit {
     TransferContext.writeArguments(_RID to rid, VECTOR2I to position)
     TransferContext.callMethod(rawPtr, MethodBindings.popupPtr, NIL)
@@ -169,6 +179,7 @@ public object NativeMenu : Object() {
    * Sets the menu text layout direction from right-to-left if [isRtl] is `true`.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setInterfaceDirection(rid: RID, isRtl: Boolean): Unit {
     TransferContext.writeArguments(_RID to rid, BOOL to isRtl)
     TransferContext.callMethod(rawPtr, MethodBindings.setInterfaceDirectionPtr, NIL)
@@ -178,6 +189,7 @@ public object NativeMenu : Object() {
    * Registers callable to emit after the menu is closed.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setPopupOpenCallback(rid: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to rid, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.setPopupOpenCallbackPtr, NIL)
@@ -187,6 +199,7 @@ public object NativeMenu : Object() {
    * Returns global menu open callback.
    * b]Note:[/b] This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getPopupOpenCallback(rid: RID): Callable {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupOpenCallbackPtr, CALLABLE)
@@ -200,6 +213,7 @@ public object NativeMenu : Object() {
    * is currently opened.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setPopupCloseCallback(rid: RID, callback: Callable): Unit {
     TransferContext.writeArguments(_RID to rid, CALLABLE to callback)
     TransferContext.callMethod(rawPtr, MethodBindings.setPopupCloseCallbackPtr, NIL)
@@ -209,6 +223,7 @@ public object NativeMenu : Object() {
    * Returns global menu close callback.
    * b]Note:[/b] This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getPopupCloseCallback(rid: RID): Callable {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.getPopupCloseCallbackPtr, CALLABLE)
@@ -219,6 +234,7 @@ public object NativeMenu : Object() {
    * Sets the minimum width of the global menu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setMinimumWidth(rid: RID, width: Float): Unit {
     TransferContext.writeArguments(_RID to rid, DOUBLE to width.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.setMinimumWidthPtr, NIL)
@@ -228,6 +244,7 @@ public object NativeMenu : Object() {
    * Returns global menu minimum width.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getMinimumWidth(rid: RID): Float {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.getMinimumWidthPtr, DOUBLE)
@@ -238,6 +255,7 @@ public object NativeMenu : Object() {
    * Returns `true` if the menu is currently opened.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun isOpened(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.isOpenedPtr, BOOL)
@@ -251,6 +269,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addSubmenuItem(
     rid: RID,
     label: String,
@@ -276,6 +295,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addItem(
     rid: RID,
     label: String,
@@ -303,6 +323,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addCheckItem(
     rid: RID,
     label: String,
@@ -330,6 +351,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addIconItem(
     rid: RID,
     icon: Texture2D?,
@@ -358,6 +380,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addIconCheckItem(
     rid: RID,
     icon: Texture2D?,
@@ -389,6 +412,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addRadioCheckItem(
     rid: RID,
     label: String,
@@ -419,6 +443,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addIconRadioCheckItem(
     rid: RID,
     icon: Texture2D?,
@@ -452,6 +477,7 @@ public object NativeMenu : Object() {
    * **Note:** On Windows, [accelerator] and [keyCallback] are ignored.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addMultistateItem(
     rid: RID,
     label: String,
@@ -474,6 +500,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addSeparator(rid: RID, index: Int = -1): Int {
     TransferContext.writeArguments(_RID to rid, LONG to index.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.addSeparatorPtr, LONG)
@@ -485,6 +512,7 @@ public object NativeMenu : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun findItemIndexWithText(rid: RID, text: String): Int {
     TransferContext.writeArguments(_RID to rid, STRING to text)
     TransferContext.callMethod(rawPtr, MethodBindings.findItemIndexWithTextPtr, LONG)
@@ -496,6 +524,7 @@ public object NativeMenu : Object() {
    * each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun findItemIndexWithTag(rid: RID, tag: Any?): Int {
     TransferContext.writeArguments(_RID to rid, ANY to tag)
     TransferContext.callMethod(rawPtr, MethodBindings.findItemIndexWithTagPtr, LONG)
@@ -507,6 +536,7 @@ public object NativeMenu : Object() {
    * automatically assigned to each item by the engine, and cannot be set manually.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun findItemIndexWithSubmenu(rid: RID, submenuRid: RID): Int {
     TransferContext.writeArguments(_RID to rid, _RID to submenuRid)
     TransferContext.callMethod(rawPtr, MethodBindings.findItemIndexWithSubmenuPtr, LONG)
@@ -517,6 +547,7 @@ public object NativeMenu : Object() {
    * Returns `true` if the item at index [idx] is checked.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun isItemChecked(rid: RID, idx: Int): Boolean {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemCheckedPtr, BOOL)
@@ -528,6 +559,7 @@ public object NativeMenu : Object() {
    * or radio button.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun isItemCheckable(rid: RID, idx: Int): Boolean {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemCheckablePtr, BOOL)
@@ -540,6 +572,7 @@ public object NativeMenu : Object() {
    * radio groups.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun isItemRadioCheckable(rid: RID, idx: Int): Boolean {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemRadioCheckablePtr, BOOL)
@@ -550,6 +583,7 @@ public object NativeMenu : Object() {
    * Returns the callback of the item at index [idx].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemCallback(rid: RID, idx: Int): Callable {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCallbackPtr, CALLABLE)
@@ -560,6 +594,7 @@ public object NativeMenu : Object() {
    * Returns the callback of the item accelerator at index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getItemKeyCallback(rid: RID, idx: Int): Callable {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemKeyCallbackPtr, CALLABLE)
@@ -571,6 +606,7 @@ public object NativeMenu : Object() {
    * [setItemTag], which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemTag(rid: RID, idx: Int): Any? {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTagPtr, ANY)
@@ -581,6 +617,7 @@ public object NativeMenu : Object() {
    * Returns the text of the item at index [idx].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemText(rid: RID, idx: Int): String {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTextPtr, STRING)
@@ -592,6 +629,7 @@ public object NativeMenu : Object() {
    * add a submenu.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemSubmenu(rid: RID, idx: Int): RID {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemSubmenuPtr, _RID)
@@ -603,6 +641,7 @@ public object NativeMenu : Object() {
    * keys that activate the item, no matter which control is focused.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getItemAccelerator(rid: RID, idx: Int): Key {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemAcceleratorPtr, LONG)
@@ -615,6 +654,7 @@ public object NativeMenu : Object() {
    * See [setItemDisabled] for more info on how to disable an item.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun isItemDisabled(rid: RID, idx: Int): Boolean {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemDisabledPtr, BOOL)
@@ -626,6 +666,7 @@ public object NativeMenu : Object() {
    * See [setItemHidden] for more info on how to hide an item.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun isItemHidden(rid: RID, idx: Int): Boolean {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isItemHiddenPtr, BOOL)
@@ -636,6 +677,7 @@ public object NativeMenu : Object() {
    * Returns the tooltip associated with the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getItemTooltip(rid: RID, idx: Int): String {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemTooltipPtr, STRING)
@@ -646,6 +688,7 @@ public object NativeMenu : Object() {
    * Returns the state of a multistate item. See [addMultistateItem] for details.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemState(rid: RID, idx: Int): Int {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemStatePtr, LONG)
@@ -656,6 +699,7 @@ public object NativeMenu : Object() {
    * Returns number of states of a multistate item. See [addMultistateItem] for details.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemMaxStates(rid: RID, idx: Int): Int {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemMaxStatesPtr, LONG)
@@ -666,6 +710,7 @@ public object NativeMenu : Object() {
    * Returns the icon of the item at index [idx].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemIcon(rid: RID, idx: Int): Texture2D? {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIconPtr, OBJECT)
@@ -676,6 +721,7 @@ public object NativeMenu : Object() {
    * Returns the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun getItemIndentationLevel(rid: RID, idx: Int): Int {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getItemIndentationLevelPtr, LONG)
@@ -686,6 +732,7 @@ public object NativeMenu : Object() {
    * Sets the checkstate status of the item at index [idx].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemChecked(
     rid: RID,
     idx: Int,
@@ -700,6 +747,7 @@ public object NativeMenu : Object() {
    * plain text.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemCheckable(
     rid: RID,
     idx: Int,
@@ -716,6 +764,7 @@ public object NativeMenu : Object() {
    * radio groups.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemRadioCheckable(
     rid: RID,
     idx: Int,
@@ -732,6 +781,7 @@ public object NativeMenu : Object() {
    * created.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemCallback(
     rid: RID,
     idx: Int,
@@ -748,6 +798,7 @@ public object NativeMenu : Object() {
    * created.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemHoverCallbacks(
     rid: RID,
     idx: Int,
@@ -765,6 +816,7 @@ public object NativeMenu : Object() {
    * item was created.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemKeyCallback(
     rid: RID,
     idx: Int,
@@ -779,6 +831,7 @@ public object NativeMenu : Object() {
    * which provides a simple way of assigning context data to items.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemTag(
     rid: RID,
     idx: Int,
@@ -792,6 +845,7 @@ public object NativeMenu : Object() {
    * Sets the text of the item at index [idx].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemText(
     rid: RID,
     idx: Int,
@@ -806,6 +860,7 @@ public object NativeMenu : Object() {
    * shown when the item is clicked.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemSubmenu(
     rid: RID,
     idx: Int,
@@ -821,6 +876,7 @@ public object NativeMenu : Object() {
    * ([kbd]Ctrl + A[/kbd]).
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemAccelerator(
     rid: RID,
     idx: Int,
@@ -835,6 +891,7 @@ public object NativeMenu : Object() {
    * action can't be invoked.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemDisabled(
     rid: RID,
     idx: Int,
@@ -849,6 +906,7 @@ public object NativeMenu : Object() {
    * its action cannot be invoked.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemHidden(
     rid: RID,
     idx: Int,
@@ -862,6 +920,7 @@ public object NativeMenu : Object() {
    * Sets the [String] tooltip of the item at the specified index [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemTooltip(
     rid: RID,
     idx: Int,
@@ -875,6 +934,7 @@ public object NativeMenu : Object() {
    * Sets the state of a multistate item. See [addMultistateItem] for details.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemState(
     rid: RID,
     idx: Int,
@@ -888,6 +948,7 @@ public object NativeMenu : Object() {
    * Sets number of state of a multistate item. See [addMultistateItem] for details.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun setItemMaxStates(
     rid: RID,
     idx: Int,
@@ -902,6 +963,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    * **Note:** This method is not supported by macOS Dock menu items.
    */
+  @JvmStatic
   public final fun setItemIcon(
     rid: RID,
     idx: Int,
@@ -915,6 +977,7 @@ public object NativeMenu : Object() {
    * Sets the horizontal offset of the item at the given [idx].
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun setItemIndentationLevel(
     rid: RID,
     idx: Int,
@@ -928,6 +991,7 @@ public object NativeMenu : Object() {
    * Returns number of items in the global menu [rid].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun getItemCount(rid: RID): Int {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.getItemCountPtr, LONG)
@@ -938,6 +1002,7 @@ public object NativeMenu : Object() {
    * Return `true` is global menu is a special system menu.
    * **Note:** This method is implemented only on macOS.
    */
+  @JvmStatic
   public final fun isSystemMenu(rid: RID): Boolean {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.isSystemMenuPtr, BOOL)
@@ -949,6 +1014,7 @@ public object NativeMenu : Object() {
    * **Note:** The indices of items after the removed item will be shifted by one.
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun removeItem(rid: RID, idx: Int): Unit {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
@@ -958,6 +1024,7 @@ public object NativeMenu : Object() {
    * Removes all items from the global menu [rid].
    * **Note:** This method is implemented on macOS and Windows.
    */
+  @JvmStatic
   public final fun clear(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)

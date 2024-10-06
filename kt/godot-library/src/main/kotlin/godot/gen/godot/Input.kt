@@ -38,6 +38,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The [Input] singleton handles key presses, mouse buttons and movement, gamepads, and input
@@ -52,6 +53,7 @@ public object Input : Object() {
   /**
    * Emitted when a joypad device has been connected or disconnected.
    */
+  @JvmStatic
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
@@ -62,6 +64,7 @@ public object Input : Object() {
    * Returns `true` if any action, key, joypad button, or mouse button is being pressed. This will
    * also return `true` if any action is simulated via code by calling [actionPress].
    */
+  @JvmStatic
   public final fun isAnythingPressed(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isAnythingPressedPtr, BOOL)
@@ -80,6 +83,7 @@ public object Input : Object() {
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
    * documentation for more information.
    */
+  @JvmStatic
   public final fun isKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isKeyPressedPtr, BOOL)
@@ -98,6 +102,7 @@ public object Input : Object() {
    * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
    * documentation for more information.
    */
+  @JvmStatic
   public final fun isPhysicalKeyPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isPhysicalKeyPressedPtr, BOOL)
@@ -108,6 +113,7 @@ public object Input : Object() {
    * Returns `true` if you are pressing the key with the [keycode] printed on it. You can pass a
    * [Key] constant or any Unicode character code.
    */
+  @JvmStatic
   public final fun isKeyLabelPressed(keycode: Key): Boolean {
     TransferContext.writeArguments(LONG to keycode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isKeyLabelPressedPtr, BOOL)
@@ -117,6 +123,7 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the mouse button specified with [MouseButton].
    */
+  @JvmStatic
   public final fun isMouseButtonPressed(button: MouseButton): Boolean {
     TransferContext.writeArguments(LONG to button.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isMouseButtonPressedPtr, BOOL)
@@ -126,6 +133,7 @@ public object Input : Object() {
   /**
    * Returns `true` if you are pressing the joypad button (see [JoyButton]).
    */
+  @JvmStatic
   public final fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
     TransferContext.callMethod(rawPtr, MethodBindings.isJoyButtonPressedPtr, BOOL)
@@ -142,6 +150,7 @@ public object Input : Object() {
    * documentation for more information.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun isActionPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
@@ -166,6 +175,7 @@ public object Input : Object() {
    * to query the action state of the current event.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun isActionJustPressed(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionJustPressedPtr, BOOL)
@@ -183,6 +193,7 @@ public object Input : Object() {
    * to query the action state of the current event.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.isActionJustReleasedPtr, BOOL)
@@ -198,6 +209,7 @@ public object Input : Object() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
@@ -211,6 +223,7 @@ public object Input : Object() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getActionRawStrength(action: StringName, exactMatch: Boolean = false): Float {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(rawPtr, MethodBindings.getActionRawStrengthPtr, DOUBLE)
@@ -222,6 +235,7 @@ public object Input : Object() {
    * This is a shorthand for writing `Input.get_action_strength("positive_action") -
    * Input.get_action_strength("negative_action")`.
    */
+  @JvmStatic
   public final fun getAxis(negativeAction: StringName, positiveAction: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to negativeAction, STRING_NAME to positiveAction)
     TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, DOUBLE)
@@ -237,6 +251,7 @@ public object Input : Object() {
    * However, you can override the deadzone to be whatever you want (on the range of 0 to 1).
    */
   @JvmOverloads
+  @JvmStatic
   public final fun getVector(
     negativeX: StringName,
     positiveX: StringName,
@@ -254,6 +269,7 @@ public object Input : Object() {
    * connected devices.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun addJoyMapping(mapping: String, updateExisting: Boolean = false): Unit {
     TransferContext.writeArguments(STRING to mapping, BOOL to updateExisting)
     TransferContext.callMethod(rawPtr, MethodBindings.addJoyMappingPtr, NIL)
@@ -262,6 +278,7 @@ public object Input : Object() {
   /**
    * Removes all mappings from the internal database that match the given GUID.
    */
+  @JvmStatic
   public final fun removeJoyMapping(guid: String): Unit {
     TransferContext.writeArguments(STRING to guid)
     TransferContext.callMethod(rawPtr, MethodBindings.removeJoyMappingPtr, NIL)
@@ -272,6 +289,7 @@ public object Input : Object() {
    * axis indices. Unknown joypads are not expected to match these constants, but you can still
    * retrieve events from them.
    */
+  @JvmStatic
   public final fun isJoyKnown(device: Int): Boolean {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.isJoyKnownPtr, BOOL)
@@ -281,6 +299,7 @@ public object Input : Object() {
   /**
    * Returns the current value of the joypad axis at given index (see [JoyAxis]).
    */
+  @JvmStatic
   public final fun getJoyAxis(device: Int, axis: JoyAxis): Float {
     TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyAxisPtr, DOUBLE)
@@ -292,6 +311,7 @@ public object Input : Object() {
    * the [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
    * determine gamepad names.
    */
+  @JvmStatic
   public final fun getJoyName(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyNamePtr, STRING)
@@ -304,6 +324,7 @@ public object Input : Object() {
    * [url=https://github.com/gabomdq/SDL_GameControllerDB]SDL2 game controller database[/url] to
    * determine gamepad names and mappings based on this GUID.
    */
+  @JvmStatic
   public final fun getJoyGuid(device: Int): String {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyGuidPtr, STRING)
@@ -323,6 +344,7 @@ public object Input : Object() {
    * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device
    * this key won't be present.
    */
+  @JvmStatic
   public final fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyInfoPtr, DICTIONARY)
@@ -337,6 +359,7 @@ public object Input : Object() {
    * *SteamInput* creates virtual devices from physical devices for remapping purposes. To avoid
    * handling the same input device twice, the original device is added to the ignore list.
    */
+  @JvmStatic
   public final fun shouldIgnoreDevice(vendorId: Int, productId: Int): Boolean {
     TransferContext.writeArguments(LONG to vendorId.toLong(), LONG to productId.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.shouldIgnoreDevicePtr, BOOL)
@@ -346,6 +369,7 @@ public object Input : Object() {
   /**
    * Returns an [Array] containing the device IDs of all currently connected joypads.
    */
+  @JvmStatic
   public final fun getConnectedJoypads(): VariantArray<Long> {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getConnectedJoypadsPtr, ARRAY)
@@ -356,6 +380,7 @@ public object Input : Object() {
    * Returns the strength of the joypad vibration: x is the strength of the weak motor, and y is the
    * strength of the strong motor.
    */
+  @JvmStatic
   public final fun getJoyVibrationStrength(device: Int): Vector2 {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationStrengthPtr, VECTOR2)
@@ -365,6 +390,7 @@ public object Input : Object() {
   /**
    * Returns the duration of the current vibration effect in seconds.
    */
+  @JvmStatic
   public final fun getJoyVibrationDuration(device: Int): Float {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.getJoyVibrationDurationPtr, DOUBLE)
@@ -382,6 +408,7 @@ public object Input : Object() {
    * **Note:** For macOS, vibration is only supported in macOS 11 and later.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun startJoyVibration(
     device: Int,
     weakMagnitude: Float,
@@ -395,6 +422,7 @@ public object Input : Object() {
   /**
    * Stops the vibration of the joypad started with [startJoyVibration].
    */
+  @JvmStatic
   public final fun stopJoyVibration(device: Int): Unit {
     TransferContext.writeArguments(LONG to device.toLong())
     TransferContext.callMethod(rawPtr, MethodBindings.stopJoyVibrationPtr, NIL)
@@ -414,6 +442,7 @@ public object Input : Object() {
    * [vibrateHandheld].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun vibrateHandheld(durationMs: Int = 500, amplitude: Float = -1.0f): Unit {
     TransferContext.writeArguments(LONG to durationMs.toLong(), DOUBLE to amplitude.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.vibrateHandheldPtr, NIL)
@@ -425,6 +454,7 @@ public object Input : Object() {
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
    */
+  @JvmStatic
   public final fun getGravity(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
@@ -440,6 +470,7 @@ public object Input : Object() {
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
    */
+  @JvmStatic
   public final fun getAccelerometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAccelerometerPtr, VECTOR3)
@@ -452,6 +483,7 @@ public object Input : Object() {
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
    */
+  @JvmStatic
   public final fun getMagnetometer(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMagnetometerPtr, VECTOR3)
@@ -464,6 +496,7 @@ public object Input : Object() {
    * **Note:** This method only works on Android and iOS. On other platforms, it always returns
    * [Vector3.ZERO].
    */
+  @JvmStatic
   public final fun getGyroscope(): Vector3 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getGyroscopePtr, VECTOR3)
@@ -476,6 +509,7 @@ public object Input : Object() {
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
+  @JvmStatic
   public final fun setGravity(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
@@ -487,6 +521,7 @@ public object Input : Object() {
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
+  @JvmStatic
   public final fun setAccelerometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setAccelerometerPtr, NIL)
@@ -498,6 +533,7 @@ public object Input : Object() {
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
+  @JvmStatic
   public final fun setMagnetometer(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setMagnetometerPtr, NIL)
@@ -509,6 +545,7 @@ public object Input : Object() {
    * **Note:** This value can be immediately overwritten by the hardware sensor value on Android and
    * iOS.
    */
+  @JvmStatic
   public final fun setGyroscope(`value`: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to value)
     TransferContext.callMethod(rawPtr, MethodBindings.setGyroscopePtr, NIL)
@@ -518,6 +555,7 @@ public object Input : Object() {
    * Returns the last mouse velocity. To provide a precise and jitter-free velocity, mouse velocity
    * is only calculated every 0.1s. Therefore, mouse velocity will lag mouse movements.
    */
+  @JvmStatic
   public final fun getLastMouseVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseVelocityPtr, VECTOR2)
@@ -529,6 +567,7 @@ public object Input : Object() {
    * velocity, mouse velocity is only calculated every 0.1s. Therefore, mouse velocity will lag mouse
    * movements.
    */
+  @JvmStatic
   public final fun getLastMouseScreenVelocity(): Vector2 {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLastMouseScreenVelocityPtr, VECTOR2)
@@ -539,17 +578,20 @@ public object Input : Object() {
    * Returns mouse buttons as a bitmask. If multiple mouse buttons are pressed at the same time, the
    * bits are added together. Equivalent to [DisplayServer.mouseGetButtonState].
    */
+  @JvmStatic
   public final fun getMouseButtonMask(): MouseButtonMask {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMouseButtonMaskPtr, LONG)
     return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  @JvmStatic
   public final fun setMouseMode(mode: MouseMode): Unit {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(rawPtr, MethodBindings.setMouseModePtr, NIL)
   }
 
+  @JvmStatic
   public final fun getMouseMode(): MouseMode {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getMouseModePtr, LONG)
@@ -564,6 +606,7 @@ public object Input : Object() {
    * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
    * Android, iOS and Web.
    */
+  @JvmStatic
   public final fun warpMouse(position: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
@@ -578,6 +621,7 @@ public object Input : Object() {
    * [parseInputEvent] instead.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun actionPress(action: StringName, strength: Float = 1.0f): Unit {
     TransferContext.writeArguments(STRING_NAME to action, DOUBLE to strength.toDouble())
     TransferContext.callMethod(rawPtr, MethodBindings.actionPressPtr, NIL)
@@ -586,6 +630,7 @@ public object Input : Object() {
   /**
    * If the specified action is already pressed, this will release it.
    */
+  @JvmStatic
   public final fun actionRelease(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(rawPtr, MethodBindings.actionReleasePtr, NIL)
@@ -598,6 +643,7 @@ public object Input : Object() {
    * **Note:** This method generates an [InputEventMouseMotion] to update cursor immediately.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.CURSOR_ARROW):
       Unit {
     TransferContext.writeArguments(LONG to shape.id)
@@ -607,6 +653,7 @@ public object Input : Object() {
   /**
    * Returns the currently assigned cursor shape (see [CursorShape]).
    */
+  @JvmStatic
   public final fun getCurrentCursorShape(): CursorShape {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getCurrentCursorShapePtr, LONG)
@@ -630,6 +677,7 @@ public object Input : Object() {
    * the page for [url=https://chromestatus.com/feature/5825971391299584]security reasons[/url].
    */
   @JvmOverloads
+  @JvmStatic
   public final fun setCustomMouseCursor(
     image: Resource?,
     shape: CursorShape = Input.CursorShape.CURSOR_ARROW,
@@ -664,16 +712,19 @@ public object Input : Object() {
    * (use [warpMouse] instead) and sending [kbd]Alt/Cmd + Tab[/kbd] as [InputEventKey] won't toggle
    * between active windows.
    */
+  @JvmStatic
   public final fun parseInputEvent(event: InputEvent?): Unit {
     TransferContext.writeArguments(OBJECT to event)
     TransferContext.callMethod(rawPtr, MethodBindings.parseInputEventPtr, NIL)
   }
 
+  @JvmStatic
   public final fun setUseAccumulatedInput(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setUseAccumulatedInputPtr, NIL)
   }
 
+  @JvmStatic
   public final fun isUsingAccumulatedInput(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isUsingAccumulatedInputPtr, BOOL)
@@ -688,27 +739,32 @@ public object Input : Object() {
    * However, this can be useful in advanced cases where you want precise control over the timing of
    * event handling.
    */
+  @JvmStatic
   public final fun flushBufferedEvents(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.flushBufferedEventsPtr, NIL)
   }
 
+  @JvmStatic
   public final fun setEmulateMouseFromTouch(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmulateMouseFromTouchPtr, NIL)
   }
 
+  @JvmStatic
   public final fun isEmulatingMouseFromTouch(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingMouseFromTouchPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  @JvmStatic
   public final fun setEmulateTouchFromMouse(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(rawPtr, MethodBindings.setEmulateTouchFromMousePtr, NIL)
   }
 
+  @JvmStatic
   public final fun isEmulatingTouchFromMouse(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isEmulatingTouchFromMousePtr, BOOL)

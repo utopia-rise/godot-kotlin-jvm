@@ -386,7 +386,7 @@ enum class VariantParser(override val id: Int) : VariantConverter {
                 buffer.bool = false
                 buffer.putLong(any._handle)
             } else {
-                require(any is KtCallable<*>)
+                require(any is LambdaCallable<*>)
                 buffer.bool = true
                 buffer.putLong(any.wrapInCustomCallable())
             }

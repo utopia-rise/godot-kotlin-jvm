@@ -26,6 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * The server that manages all language translations. Translations can be added to or removed from
@@ -42,6 +43,7 @@ public object TranslationServer : Object() {
    * (e.g. `en-US` would be matched to `en_US`).
    * If translations have been loaded beforehand for the new locale, they will be applied.
    */
+  @JvmStatic
   public final fun setLocale(locale: String): Unit {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
@@ -51,6 +53,7 @@ public object TranslationServer : Object() {
    * Returns the current locale of the project.
    * See also [OS.getLocale] and [OS.getLocaleLanguage] to query the locale of the user system.
    */
+  @JvmStatic
   public final fun getLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
@@ -61,6 +64,7 @@ public object TranslationServer : Object() {
    * Returns the current locale of the editor.
    * **Note:** When called from an exported project returns the same value as [getLocale].
    */
+  @JvmStatic
   public final fun getToolLocale(): String {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getToolLocalePtr, STRING)
@@ -71,6 +75,7 @@ public object TranslationServer : Object() {
    * Compares two locales and returns a similarity score between `0` (no match) and `10` (full
    * match).
    */
+  @JvmStatic
   public final fun compareLocales(localeA: String, localeB: String): Int {
     TransferContext.writeArguments(STRING to localeA, STRING to localeB)
     TransferContext.callMethod(rawPtr, MethodBindings.compareLocalesPtr, LONG)
@@ -81,6 +86,7 @@ public object TranslationServer : Object() {
    * Returns a [locale] string standardized to match known locales (e.g. `en-US` would be matched to
    * `en_US`).
    */
+  @JvmStatic
   public final fun standardizeLocale(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.standardizeLocalePtr, STRING)
@@ -90,6 +96,7 @@ public object TranslationServer : Object() {
   /**
    * Returns array of known language codes.
    */
+  @JvmStatic
   public final fun getAllLanguages(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
@@ -99,6 +106,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable language name for the [language] code.
    */
+  @JvmStatic
   public final fun getLanguageName(language: String): String {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(rawPtr, MethodBindings.getLanguageNamePtr, STRING)
@@ -108,6 +116,7 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of known script codes.
    */
+  @JvmStatic
   public final fun getAllScripts(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
@@ -117,6 +126,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable script name for the [script] code.
    */
+  @JvmStatic
   public final fun getScriptName(script: String): String {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(rawPtr, MethodBindings.getScriptNamePtr, STRING)
@@ -126,6 +136,7 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of known country codes.
    */
+  @JvmStatic
   public final fun getAllCountries(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
@@ -135,6 +146,7 @@ public object TranslationServer : Object() {
   /**
    * Returns a readable country name for the [country] code.
    */
+  @JvmStatic
   public final fun getCountryName(country: String): String {
     TransferContext.writeArguments(STRING to country)
     TransferContext.callMethod(rawPtr, MethodBindings.getCountryNamePtr, STRING)
@@ -145,6 +157,7 @@ public object TranslationServer : Object() {
    * Returns a locale's language and its variant (e.g. `"en_US"` would return `"English (United
    * States)"`).
    */
+  @JvmStatic
   public final fun getLocaleName(locale: String): String {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getLocaleNamePtr, STRING)
@@ -155,6 +168,7 @@ public object TranslationServer : Object() {
    * Returns the current locale's translation for the given message (key) and context.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
@@ -169,6 +183,7 @@ public object TranslationServer : Object() {
    * translation system to fetch the correct plural form for the selected language.
    */
   @JvmOverloads
+  @JvmStatic
   public final fun translatePlural(
     message: StringName,
     pluralMessage: StringName,
@@ -183,6 +198,7 @@ public object TranslationServer : Object() {
   /**
    * Adds a [Translation] resource.
    */
+  @JvmStatic
   public final fun addTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.addTranslationPtr, NIL)
@@ -191,6 +207,7 @@ public object TranslationServer : Object() {
   /**
    * Removes the given translation from the server.
    */
+  @JvmStatic
   public final fun removeTranslation(translation: Translation?): Unit {
     TransferContext.writeArguments(OBJECT to translation)
     TransferContext.callMethod(rawPtr, MethodBindings.removeTranslationPtr, NIL)
@@ -200,6 +217,7 @@ public object TranslationServer : Object() {
    * Returns the [Translation] instance based on the [locale] passed in.
    * It will return `null` if there is no [Translation] instance that matches the [locale].
    */
+  @JvmStatic
   public final fun getTranslationObject(locale: String): Translation? {
     TransferContext.writeArguments(STRING to locale)
     TransferContext.callMethod(rawPtr, MethodBindings.getTranslationObjectPtr, OBJECT)
@@ -209,6 +227,7 @@ public object TranslationServer : Object() {
   /**
    * Clears the server from all translations.
    */
+  @JvmStatic
   public final fun clear(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
@@ -217,18 +236,21 @@ public object TranslationServer : Object() {
   /**
    * Returns an array of all loaded locales of the project.
    */
+  @JvmStatic
   public final fun getLoadedLocales(): PackedStringArray {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
+  @JvmStatic
   public final fun isPseudolocalizationEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  @JvmStatic
   public final fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(rawPtr, MethodBindings.setPseudolocalizationEnabledPtr, NIL)
@@ -237,6 +259,7 @@ public object TranslationServer : Object() {
   /**
    * Reparses the pseudolocalization options and reloads the translation.
    */
+  @JvmStatic
   public final fun reloadPseudolocalization(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(rawPtr, MethodBindings.reloadPseudolocalizationPtr, NIL)
@@ -245,6 +268,7 @@ public object TranslationServer : Object() {
   /**
    * Returns the pseudolocalized string based on the [message] passed in.
    */
+  @JvmStatic
   public final fun pseudolocalize(message: StringName): StringName {
     TransferContext.writeArguments(STRING_NAME to message)
     TransferContext.callMethod(rawPtr, MethodBindings.pseudolocalizePtr, STRING_NAME)

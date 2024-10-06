@@ -82,7 +82,9 @@ class GenerationService(
         return generateCommonsForClass(
             classTypeBuilder,
             singletonClass,
+            true,
             classTypeBuilder
+
         )
     }
 
@@ -105,12 +107,13 @@ class GenerationService(
 
         classTypeBuilder.generateClassConstructor(clazz.engineClassDBIndexName)
 
-        return generateCommonsForClass(classTypeBuilder, clazz)
+        return generateCommonsForClass(classTypeBuilder, clazz, false)
     }
 
     private fun generateCommonsForClass(
         classTypeBuilder: TypeSpec.Builder,
         enrichedClass: EnrichedClass,
+        isSingleton: Boolean,
         constantsTypeReceiver: TypeSpec.Builder = TypeSpec.companionObjectBuilder()
     ): FileSpec {
         val name = enrichedClass.name
@@ -151,7 +154,7 @@ class GenerationService(
         }
 
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
-            constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true))
+            constantsTypeReceiver.addFunction(generateMethod(enrichedClass, method, true, isSingleton))
         }
 
         if (constantsTypeReceiver != classTypeBuilder) {
@@ -159,14 +162,14 @@ class GenerationService(
         }
 
         for (signal in enrichedClass.signals) {
-            classTypeBuilder.addProperty(generateSignals(signal))
+            classTypeBuilder.addProperty(generateSignals(signal, isSingleton))
         }
 
         for (property in enrichedClass.properties) {
-            val propertySpec = generateProperty(enrichedClass, property) ?: continue
+            val propertySpec = generateProperty(enrichedClass, property, isSingleton) ?: continue
             classTypeBuilder.addProperty(propertySpec)
             if (property.hasValidSetterInClass && property.isLocalCopyCoreTypes()) {
-                classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property))
+                classTypeBuilder.addFunction(generateCoreTypeHelper(enrichedClass, property, isSingleton))
             }
         }
 
@@ -181,7 +184,7 @@ class GenerationService(
             }
             shouldGenerate = shouldGenerate && nativeStructureRepository.findMatchingType(method) == null
             if (shouldGenerate) {
-                classTypeBuilder.addFunction(generateMethod(enrichedClass, method))
+                classTypeBuilder.addFunction(generateMethod(enrichedClass, method, false, isSingleton))
             }
         }
 
@@ -385,7 +388,7 @@ class GenerationService(
         }
     }
 
-    private fun generateSignals(signal: EnrichedSignal): PropertySpec {
+    private fun generateSignals(signal: EnrichedSignal, isSingleton: Boolean): PropertySpec {
         val signalClass = signal.getTypeClassName()
         val arguments = signal.arguments
 
@@ -400,10 +403,14 @@ class GenerationService(
                 ClassName(godotCorePackage, "Signal" + arguments.size)
             )
 
+        if (isSingleton) {
+            builder.addAnnotation(JvmStatic::class)
+        }
+
         return builder.build()
     }
 
-    private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty): PropertySpec? {
+    private fun generateProperty(enrichedClass: EnrichedClass, property: EnrichedProperty, isSingleton: Boolean): PropertySpec? {
         if (!property.hasValidGetterInClass && !property.hasValidSetterInClass) return null
 
         // We can't trust the property alone because some of them don't have a getter so we have to check on the setter's first parameter as well.
@@ -412,6 +419,10 @@ class GenerationService(
 
         val propertyType = propertyTypeName.typeName
         val propertySpecBuilder = PropertySpec.builder(property.name, propertyType).addModifiers(KModifier.FINAL)
+
+        if (isSingleton) {
+            propertySpecBuilder.addAnnotation(JvmStatic::class)
+        }
 
         if (property.hasValidGetterInClass) {
             val methodName = property.getter
@@ -502,10 +513,14 @@ class GenerationService(
         return propertySpecBuilder.build()
     }
 
-    private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty): FunSpec {
+    private fun generateCoreTypeHelper(enrichedClass: EnrichedClass, property: EnrichedProperty, isSingleton: Boolean): FunSpec {
         val parameterTypeName = property.getCastedType()
         val parameterName = property.name
         val propertyFunSpec = FunSpec.builder("${parameterName}Mutate").addModifiers(KModifier.FINAL)
+
+        if (isSingleton) {
+            propertyFunSpec.addAnnotation(JvmStatic::class)
+        }
 
         return propertyFunSpec
             .addParameter(
@@ -555,7 +570,7 @@ class GenerationService(
             .build()
     }
 
-    private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean = false): FunSpec {
+    private fun generateMethod(enrichedClass: EnrichedClass, method: EnrichedMethod, isStatic: Boolean, isSingleton: Boolean): FunSpec {
         val modifiers = mutableListOf<KModifier>()
 
         // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
@@ -626,7 +641,12 @@ class GenerationService(
                         )
                         .build()
                 )
+
             }
+        }
+
+        if (isSingleton) {
+            generatedFunBuilder.addAnnotation(JvmStatic::class)
         }
 
         return generatedFunBuilder.build()
@@ -938,7 +958,7 @@ class GenerationService(
         )
     }
 
-    fun TypeSpec.Builder.generateOperatorMethods(
+    private fun TypeSpec.Builder.generateOperatorMethods(
         operations: Array<String>,
         enum: EnrichedEnum,
         isOperator: Boolean = false
