@@ -32,7 +32,7 @@ runs:
         if [ "${{ github.event.repository.fork }}" == "true" ]; then
           echo "tag=macos-latest" >> "$GITHUB_OUTPUT"
         else
-          echo "[self-hosted, macOS]" >> "$GITHUB_OUTPUT"
+          echo "tag=[self-hosted, macOS]" >> "$GITHUB_OUTPUT"
         fi
 
     - name: Determine runner tag for Windows
