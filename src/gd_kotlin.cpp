@@ -78,13 +78,12 @@ bool GDKotlin::load_dynamic_lib() {
 
 #ifdef TOOLS_ENABLED
 String GDKotlin::get_path_to_embedded_jvm() {
-    String godot_path {String(JVM_DIRECTORY).path_join(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
+    String godot_path {String(HOST_EMBEDDED_JRE_DIRECTORY).path_join(RELATIVE_JVM_LIB_PATH)};
     return ProjectSettings::get_singleton()->globalize_path(godot_path);
 }
 
 String GDKotlin::get_path_to_native_image() {
-    String godot_path {String(JVM_DIRECTORY) + String(GRAAL_NATIVE_IMAGE_FILE)};
-    return ProjectSettings::get_singleton()->globalize_path(godot_path);
+    return ProjectSettings::get_singleton()->globalize_path(GRAAL_NATIVE_IMAGE_FILE);
 }
 
 String GDKotlin::get_path_to_environment_jvm() {
@@ -102,7 +101,6 @@ String GDKotlin::get_path_to_embedded_jvm() {
 #if defined(MACOS_ENABLED)
       .path_join("../PlugIns/")
 #endif
-      .path_join(String(JVM_DIRECTORY).trim_prefix(RES_DIRECTORY))
       .path_join(HOST_EMBEDDED_JRE_DIRECTORY)
       .path_join(RELATIVE_JVM_LIB_PATH);
 }
@@ -192,7 +190,7 @@ void GDKotlin::set_jvm_options() {
 #endif
 
 String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
-    String file_res_path {String(JVM_DIRECTORY) + file_name};
+    String file_res_path {String(RES_DIRECTORY) + file_name};
     String file_user_path {String(USER_DIRECTORY) + file_name};
 
 #ifndef __ANDROID__
@@ -207,11 +205,11 @@ String GDKotlin::copy_new_file_to_user_dir(const String& file_name) {
 #endif
 
         Error err;
-        Ref<DirAccess> dir_access {DirAccess::open(JVM_DIRECTORY, &err)};
+        Ref<DirAccess> dir_access {DirAccess::open(RES_DIRECTORY, &err)};
 
         JVM_ERR_FAIL_COND_V_MSG(err != OK, "", "Cannot open %s file in res://.", file_name);
 
-        dir_access->copy(file_res_path, file_user_path);
+        dir_access->copy(file_name, file_user_path);
 
 #ifndef __ANDROID__
     }
@@ -229,7 +227,7 @@ bool GDKotlin::load_bootstrap() {
 
     jni::Env env {jni::Jvm::current_env()};
 #ifdef TOOLS_ENABLED
-    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(BOOTSTRAP_FILE)};
+    String bootstrap_jar {OS::get_singleton()->get_executable_path().get_base_dir().path_join(EDITOR_BOOTSTRAP_PATH)};
     constexpr const char* error_text {"No godot-bootstrap.jar found! This file needs to stay alongside the godot "
                                       "editor executable!"};
 #else
@@ -272,7 +270,7 @@ bool GDKotlin::load_user_code() {
         return true;
     } else {
 #ifdef TOOLS_ENABLED
-        String user_code_path {String(JVM_DIRECTORY).path_join(USER_CODE_FILE)};
+        String user_code_path {String(RES_DIRECTORY).path_join(USER_CODE_FILE)};
 #else
         String user_code_path {copy_new_file_to_user_dir(USER_CODE_FILE)};
 #endif

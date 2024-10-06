@@ -43,7 +43,7 @@ void GodotKotlinJvmEditor::on_filesystem_change() {
 
     // We check for changes in the file system in case the main.jar has been added (not reloaded, just was not present when the editor started)
     if (GDKotlin::get_instance().state == GDKotlin::State::CORE_LIBRARY_INITIALIZED) {
-        String user_code_path {String(JVM_DIRECTORY).path_join(USER_CODE_FILE)};
+        String user_code_path {String(RES_DIRECTORY).path_join(USER_CODE_FILE)};
         if (FileAccess::exists(user_code_path)) {
             GDKotlin::get_instance().initialize_up_to(GDKotlin::State::JVM_SCRIPTS_INITIALIZED);
         }
