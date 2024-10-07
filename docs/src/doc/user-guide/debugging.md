@@ -19,3 +19,17 @@ Run your game with the command-line option `--jvm-debug-port=<port (normally 500
 
 Example:  
 ![remote debug configuration](../assets/img/remote_debug_configuration.png)
+
+
+## Write debug code
+
+You can add code only for debug version of your project, by using `GodotJvmDefinitions`.
+When building your project with the release flag, those ifs are going to be automatically removed from your code, not even the condition check is left.
+
+Example:
+
+```kotlin
+if (GodotJvmDefinitions.DEBUG) {
+    // ...
+}
+```

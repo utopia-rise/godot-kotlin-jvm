@@ -8,13 +8,14 @@ or [manually](#setting-up-manually).
 
 You can simply create a regular new Godot project. 
 Once done, you can go to `Project/Tools/Kotlin/JVM/Generate JVM Project`.
+
 ![Godot menu](../assets/img/editor-plugin/generation_menu.png)
 
 The following choice will appear:
 ![Project dialog](../assets/img/editor-plugin/generation_choice.png)
 
-After this action, all required files should be generated, and you can safely build the project using the `Build` button at the top-right of the editor window.
-![Build button](../assets/img/editor-plugin/build_button.png)
+After this action, all required files should be generated, and you can safely import your project in your IDE.
+
 ## Setting-up using IntelliJ IDEA project wizard
 
 This is the recommended solution as it creates the entire project in one action and import it in your IDE.
@@ -88,17 +89,19 @@ If the user does not want to use our IntelliJ IDEA plugin, then they can follow 
 Firstly, you need to setup a Gradle [wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html).
 The wrapper will ensure that anyone who wants to build your project from source will use the same Gradle version.
 
-=== "Windows" 
-    ```shell
-    fsutil file createnew build.gradle.kts 0
-    fsutil file createnew gradle.properties 0
-    fsutil file createnew settings.gradle.kts 0
-    ```
+/// tab | Windows
+```shell
+fsutil file createnew build.gradle.kts 0
+fsutil file createnew gradle.properties 0
+fsutil file createnew settings.gradle.kts 0
+```
+///
 
-=== "Unix"
-    ```shell
-    touch build.gradle.kts gradle.properties settings.gradle.kts
-    ```
+/// tab | Unix
+```shell
+touch build.gradle.kts gradle.properties settings.gradle.kts
+```
+///
 
 The above command(s) will create three empty files. As next step, type the following
 command on the terminal:
@@ -111,17 +114,18 @@ After running the above command, the user should have the wrapper setup ready to
 Up next is setting-up the Gradle build. Now, open the `build.gradle.kts` file
 and paste the following content:
 
-=== "`build.gradle.kts`"
-    ```kotlin
-    plugins {
-        kotlin("jvm") version "$kotlinVersion"
-        id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
-    }
+/// tab | `build.gradle.kts`
+```kotlin
+plugins {
+    kotlin("jvm") version "$kotlinVersion"
+    id("com.utopia-rise.godot-kotlin-jvm") version "$godotKotlinVersion"
+}
 
-    repositories {
-        mavenCentral()
-    }
-    ```
+repositories {
+    mavenCentral()
+}
+```
+///
 
 !!! note 
     Please replace `$kotlinVersion` and `$godotkotlinVersion` to the appropriate version you want to use.

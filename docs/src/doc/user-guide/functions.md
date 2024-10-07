@@ -26,8 +26,8 @@ register it as well with `@RegisterFunction`.
 
 ## Arguments count
 
-Godot limits the allowed argument count of functions to `8`. Thus, this binding also has this limitation.
-If you want to pass more than 8 parameters in a function, you need to wrap them in a container
+Godot limits the allowed argument count of functions to `16`. Thus, this binding also has this limitation.
+If you want to pass more than 16 parameters in a function, you need to wrap them in a container
 (like a custom container class or a `VariantArray` or `Dictionary`).
 
 ## Customization

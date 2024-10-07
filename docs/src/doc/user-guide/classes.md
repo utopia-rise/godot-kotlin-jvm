@@ -161,7 +161,7 @@ var instance := load("res://gdj/YourClass.gdj").new(oneArg, anotherArg)
 ```
 
 !!! info
-    The limitation of max 8 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked by the binding. The more arguments, the more unpacking is needed which means more overhead.
+    The limitation of max 16 arguments for constructors is arbitrary. We decided to introduce this limitation to prevent performance bottlenecks for creating objects as each argument passed to a constructor needs to be unpacked by the binding. The more arguments, the more unpacking is needed which means more overhead.
 
 
 ## Customization

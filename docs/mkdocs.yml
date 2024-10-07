@@ -32,7 +32,8 @@ theme:
     - navigation.tabs
     - navigation.expand
     - navigation.top
-
+    - content.code.copy
+    - toc.integrate
 
 extra:
   social:
@@ -43,9 +44,9 @@ markdown_extensions:
   - pymdownx.highlight:
       linenums: true
   - pymdownx.inlinehilite
-  - pymdownx.highlight
   - pymdownx.superfences
-  - pymdownx.tabbed
+  - pymdownx.blocks.tab:
+      alternate_style: true
   - pymdownx.details
   - admonition
   - meta
@@ -62,19 +63,17 @@ nav:
       - Requirements: getting-started/requirements.md
       - Setting-up: getting-started/setting-up.md
       - Your first Kotlin class: getting-started/your-first-class.md
+      - Compiling your project: getting-started/compiling-your-project.md
   - User guide:
     - API differences: user-guide/api-differences.md
     - Classes: user-guide/classes.md
-    - Compiling your project: user-guide/compiling-your-project.md
     - Properties: user-guide/properties.md
-    - Signals: user-guide/signals.md
+    - Signals and Callables: user-guide/signals_and_callables.md
     - Functions: user-guide/functions.md
-    - Exporting: user-guide/exporting.md
     - Coroutines: user-guide/coroutines.md
+    - Exporting: user-guide/exporting.md
     - Debugging: user-guide/debugging.md
     - Consuming libraries: user-guide/consuming-libraries.md
-    - Versioning: user-guide/versioning.md
-    - Supported platforms: user-guide/supported-platforms.md
     - Advanced:
       - Abstract classes: user-guide/advanced/abstract-classes.md
       - Cleanup operations: user-guide/advanced/cleanup-operations.md

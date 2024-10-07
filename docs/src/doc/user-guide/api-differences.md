@@ -125,13 +125,6 @@ dictionary.get("foo") {
 
 Godot enums are mapped to Kotlin enums, the generated enum exposes a `value` property that represents the value in Godot. Constants in Godot classes that represent an enum value (such as `Node.PAUSE_MODE_INHERIT`) are not present in this module, please use the generated enum instead (`Node.PauseMode.INHERIT`).
 
-## Signals and exposed methods
-
-In GDScript, signals can have any number of arguments, this is not possible in Kotlin as it is a statically typed language.
-At the moment, you can create signals and expose them to Godot with at most 10 parameters.
-
-If you need more than 10 parameters, you can either use the not typesafe function `connect(signalAsString, targetObject, targetMethodAsString)` and the corresponding emit function or you can write your own typesafe extension functions like we did, to further increase the supported arg count. Keep in mind that you pass in the converted function and signal names (snake_case) to the above mentioned functions.  
-
 ## Renamed symbols
 
 To avoid confusion and conflict with Kotlin types, the following Godot symbol is renamed.
@@ -166,33 +159,45 @@ override fun _notification() = godotNotification {
 ```  
 Currently this feature except abstract classes.  
 
-## Caching
+## StringName and NodePath
 
 Several Godot functions take `StringName` or `NodePath` as a parameter. 
-It's often more convenient to directly use a String that need to be converted.
+It's often more convenient to directly use a String and convert it.
 
-This operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
+This kind of operation can be costly so we provide extension functions which cache the result of the conversion for later calls:
 
-- `String.asCachedStringName()`
-- `String.asCachedNodePath()` 
-- `StringName.asCachedNodePath()`
-
+/// tab | Kotlin
 ```kotlin
-// This first call to the extension function creates the cache entry.
-val firstCall = "Test".asCachedStringName()
-
-// This second call for the same String value, will return the previously cached instance.
-val secondCall = "Test".asCachedStringName()
-
-// This third call will create a second entry in the cache due to the different key value.
-val thirdCall = "OtherTest".asCachedStringName()
+    val stringName = "myString".asCachedStringName() // Cache the string for faster future calls.
+    val nodePath = "myNode/myChildNode".asCachedNodePath() // Cache the string for faster future calls.
+    val snakeCaseStringName = "myString".toGodotName() // Convert the string to snake_case and cache it for faster future calls.
 ```
+///
+
+/// tab | Java
+```java
+    StringName stringName = StringNames.asCachedStringName("myString");
+    NodePath nodePath = NodePaths.asCachedNodePath("myNode/myChildNode");
+    StringName snakeCaseStringName = StringNames.toGodotName("myString");
+```
+///
 
 You can also use the non-cached version of them if you simply want ease of conversion:
 
-- `String.asStringName()`
-- `String.asNodePath()`
-- `StringName.asNodePath()`
+/// tab | Kotlin
+```kotlin
+    val stringName = "myString".asStringName()
+    val nodePath = "myNode/myChildNode".asNodePath()
+```
+///
+
+/// tab | Java
+```java
+    StringName stringName = StringNames.asStringName("myString");
+    NodePath nodePath = NodePaths.asNodePath("myNode/myChildNode");
+```
+///
+
 
 ## Logging
 

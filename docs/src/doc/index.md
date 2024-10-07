@@ -39,7 +39,25 @@ If you don't have Discord or you don't want to use it, please file an issue on G
 
 The main language supported is Kotlin. We do however support Java experimentally. It should be possible to support other JVM-based languages as well but this is not the focus of this project. If you want to have support for other languages, have a look at [support for other JVM-based languages](contribution/support-for-other-jvm-based-languages.md).
 
-## Supported Kotlin version
+## Supported platforms
+
+While Kotlin and Godot supports a wide range of platforms, this module for the moment only supports the following:
+
+- Windows X64
+- Linux X64
+- MacOS X64 / arm64
+- Android (arm64v8)
+- iOS (arm64v8)
+
+## Versioning
+
+The module uses semantic versioning for its own versions but adds a suffix for the supported Godot version:
+
+Full version: `0.10.0-4.3.0`
+
+Module Version: `0.10.0`
+
+Supported Godot Version: `4.3.0`
 
 This module relies on a Kotlin *compiler plugin* for registering your classes and members to Godot. As the compiler API from Kotlin is not stable yet, at the moment we can only support specific Kotlin version per release.
 
