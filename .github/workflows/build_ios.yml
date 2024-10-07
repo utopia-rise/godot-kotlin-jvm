@@ -28,12 +28,12 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
-      - name: Setup Godot build cache
+      - name: Setup Godot build cache (github hosted)
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         continue-on-error: true
         if: contains(inputs.runner-tag, 'self-hosted') == false
 
-      - name: Cache dependencies
+      - name: Setup Godot build cache (self hosted)
         uses: corca-ai/local-cache@v2
         with:
           path: "${{github.workspace}}/.scons-cache/"
