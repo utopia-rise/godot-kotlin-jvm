@@ -6,6 +6,8 @@ on:
         type: string
       godot-version:
         type: string
+      build-version:
+          type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-macos_assemble
@@ -49,8 +51,8 @@ jobs:
       - name: Create ${{ matrix.target }} OSX universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.x86_64
-          arm-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.arm64
+          amd-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.x86_64.jvm.${{ inputs.build-version }}
+          arm-64-binary: godot.macos.editor${{ matrix.editor-target-insert }}.arm64.jvm.${{ inputs.build-version }}
           universal-output-binary: godot.macos.editor.${{ matrix.target }}.universal
 
       - name: Upload ${{ matrix.target }} macos universal artifact
@@ -142,8 +144,8 @@ jobs:
       - name: Create macos universal binary
         uses: ./.github/actions/create-macos-universal-binary
         with:
-          amd-64-binary: godot.macos.template_${{ matrix.target }}.x86_64
-          arm-64-binary: godot.macos.template_${{ matrix.target }}.arm64
+          amd-64-binary: godot.macos.template_${{ matrix.target }}.x86_64.jvm.${{ inputs.build-version }}
+          arm-64-binary: godot.macos.template_${{ matrix.target }}.arm64.jvm.${{ inputs.build-version }}
           universal-output-binary: godot.macos.template_${{ matrix.target }}.universal
 
       - name: Upload ${{ matrix.target }} macos universal artifact

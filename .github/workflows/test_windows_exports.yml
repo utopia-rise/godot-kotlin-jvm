@@ -6,6 +6,8 @@ on:
         type: string
       jvm-version:
         type: string
+      build-version:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-windows_exports_tests
@@ -60,7 +62,7 @@ jobs:
       - name: Prepare export
         run: |
           mkdir -p harness/tests/export
-          mv godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe harness/tests/godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe
+          mv godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }}.exe harness/tests/godot.windows.template_${{ matrix.bootstrap-target }}.x86_64.exe
 
       - name: Build tests project
         run: |

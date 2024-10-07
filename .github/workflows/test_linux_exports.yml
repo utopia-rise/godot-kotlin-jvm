@@ -6,6 +6,8 @@ on:
         type: string
       jvm-version:
         type: string
+      build-version:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_exports_tests
@@ -61,7 +63,7 @@ jobs:
         run: |
           chmod +x harness/tests/bin/godot.*
           mkdir -p harness/tests/export
-          mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64 harness/tests/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64
+          mv godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64.jvm.${{ inputs.build-version }} harness/tests/godot.linuxbsd.template_${{ matrix.bootstrap-target }}.x86_64
 
       - name: Build tests project
         run: |

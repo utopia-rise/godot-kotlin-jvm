@@ -1,6 +1,5 @@
 name: Deploy docs
 
-
 on:
   workflow_call:
 
