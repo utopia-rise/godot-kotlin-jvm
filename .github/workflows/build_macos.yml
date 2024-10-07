@@ -93,6 +93,7 @@ jobs:
         with:
           path: "${{github.workspace}}/.scons-cache/"
           key: ${{ matrix.cache-name }}
+          base: "${{ runner.home }}/.cache"
         if: contains(inputs.runner-tag, 'self-hosted') == true
 
       - name: Setup python and scons
