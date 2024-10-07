@@ -81,6 +81,9 @@ jobs:
         with:
           path: modules/kotlin_jvm
 
+      - name: Create godot cache dir
+        run: mkdir .scons-cache
+
       - name: Setup Godot build cache (github hosted)
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         with:

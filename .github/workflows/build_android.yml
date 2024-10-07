@@ -40,6 +40,9 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
+      - name: Create godot cache dir
+        run: mkdir .scons-cache
+
       - name: Setup Godot build cache (github hosted)
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
         continue-on-error: true
