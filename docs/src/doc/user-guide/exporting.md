@@ -14,7 +14,7 @@ On desktop platforms, this also copies the JRE folder of your project in the exp
 !!!warning
     The official export templates from Godot will not work! You have to use our export templates or build your own!
     Note that because this is not an official build, the template manager will fail to find a link to our templates and display a warning.
-    Downloading our templates from the Godot editor is currently not possible, we opened a [proposal](godotengine/godot-proposals#10894) for it.
+    You can simply ignore it. Downloading our templates from the Godot editor is currently not possible, we opened a [proposal](godotengine/godot-proposals#10894) for it.
 
 
 ## Requirements
