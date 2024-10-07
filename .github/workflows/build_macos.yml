@@ -86,6 +86,14 @@ jobs:
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true
+        if: contains(inputs.runner-tag, 'self-hosted') == false
+
+      - name: Cache dependencies
+        uses: corca-ai/local-cache@v2
+        with:
+          path: "${{github.workspace}}/.scons-cache/"
+          key: ${{ matrix.cache-name }}
+        if: contains(inputs.runner-tag, 'self-hosted') == true
 
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
