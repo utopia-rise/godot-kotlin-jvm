@@ -48,7 +48,7 @@ jobs:
       - name: Setup Godot build cache (self hosted)
         uses: corca-ai/local-cache@v2
         with:
-          path: "${{github.workspace}}/.scons-cache/"
+          path: ".scons-cache/"
           key: "android"
           base: "../.cache"
         if: contains(inputs.runner-tag, 'self-hosted') == true
