@@ -100,7 +100,7 @@ jobs:
   deploy_godot_intellij_plugin:
     strategy:
       matrix:
-        ij_sdk: [ IJ232 ]
+        ij_sdk: [ 2024.2 ]
     runs-on: ubuntu-latest
     steps:
       - name: Clone Godot Engine
