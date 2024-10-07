@@ -36,10 +36,6 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
     if (is_desktop_export) {
         if (export_jvm) {
-            // files for all jvm desktop targets (bootstrap.jar and main.jar)
-            files_to_add.push_back(String(RES_DIRECTORY).path_join(DESKTOP_BOOTSTRAP_FILE));
-            files_to_add.push_back(String(RES_DIRECTORY).path_join(DESKTOP_USER_CODE_FILE));
-
             // add embedded jre
             if (is_macos_export) {
                 // on macos the embedded jre needs to be added as a plugin file
