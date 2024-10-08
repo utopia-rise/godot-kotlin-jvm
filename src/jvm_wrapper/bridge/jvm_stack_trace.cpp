@@ -17,3 +17,4 @@ String JvmStackTrace::get_jvm_stacktrace(jni::Env& p_env) {
     return ret;
 }
 
+JvmStackTrace::~JvmStackTrace() = default;

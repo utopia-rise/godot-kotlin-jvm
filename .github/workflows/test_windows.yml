@@ -68,6 +68,6 @@ jobs:
       - name: Run Tests
         run: |
           cd modules/kotlin_jvm/harness/tests/
-          jlink --add-modules java.base,java.logging --output jre-amd64-windows
+          jlink --add-modules java.base,java.logging --output jvm/jre-amd64-windows
           ./gradlew runGutTests
         timeout-minutes: 30

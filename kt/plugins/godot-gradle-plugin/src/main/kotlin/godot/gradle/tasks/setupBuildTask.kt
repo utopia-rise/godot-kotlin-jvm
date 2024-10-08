@@ -1,40 +1,53 @@
 package godot.gradle.tasks
 
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import godot.gradle.projectExt.godotJvmExtension
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.tasks.TaskProvider
+import org.gradle.jvm.tasks.Jar
 
 fun Project.setupBuildTask(
     packageBootstrapJarTask: TaskProvider<out Task>,
     packageMainJarTask: TaskProvider<out Task>,
-    deleteBuildLockTask: TaskProvider<out Task>,
     packageBootstrapDexJarTask: TaskProvider<out Task>,
     packageMainDexJarTask: TaskProvider<out Task>,
     createGraalNativeImageTask: TaskProvider<out Task>,
     createIOSTask: TaskProvider<out Task>,
-    createBuildLockTask: TaskProvider<out Task>,
     generateGdIgnoreFilesTask: TaskProvider<out Task>,
+    copyJarTask: TaskProvider<out Task>,
 ) {
-    tasks.named("build") {
-        with(it) {
-            dependsOn(
-                createBuildLockTask,
-                packageBootstrapJarTask,
-                packageMainJarTask,
+    tasks
+        .withType(Jar::class.java)
+        .filter { jarTask -> jarTask !is ShadowJar }
+        .forEach { task ->
+            task.dependsOn(
                 generateGdIgnoreFilesTask
             )
 
-            finalizedBy(deleteBuildLockTask)
+            task.finalizedBy(
+                copyJarTask,
+                packageBootstrapJarTask,
+                packageMainJarTask,
+            )
+
             if (godotJvmExtension.isAndroidExportEnabled.get()) {
-                finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
+                copyJarTask.configure { copyTask ->
+                    copyTask.dependsOn(packageBootstrapDexJarTask, packageMainDexJarTask)
+                }
+                task.finalizedBy(packageBootstrapDexJarTask, packageMainDexJarTask)
             }
             if (godotJvmExtension.isGraalNativeImageExportEnabled.get()) {
-                finalizedBy(createGraalNativeImageTask)
+                copyJarTask.configure { copyTask ->
+                    copyTask.dependsOn(createGraalNativeImageTask)
+                }
+                task.finalizedBy(createGraalNativeImageTask)
             }
             if (godotJvmExtension.isIOSExportEnabled.get()) {
-                finalizedBy(createIOSTask)
+                copyJarTask.configure { copyTask ->
+                    copyTask.dependsOn(createIOSTask)
+                }
+                task.finalizedBy(createIOSTask)
             }
         }
-    }
 }
