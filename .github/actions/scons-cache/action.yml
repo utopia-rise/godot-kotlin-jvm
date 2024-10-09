@@ -72,3 +72,16 @@ runs:
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}
 
+    - name: Setup s3 cache
+      if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'false' }}
+      uses: whalemare/minio-cache@v1.1.14
+      with:
+        endpoint: ${{inputs.s3-host}} # optional, default s3.amazonaws.com
+        port: 443 # minio port
+        insecure: false # optional, use http instead of https. default false
+        accessKey: ${{inputs.s3-user}} # required
+        secretKey: ${{inputs.s3-password}} # required
+        bucket: ${{inputs.s3-bucket}} # required
+        key: ${{ inputs.cache-name }}
+        path: ${{ inputs.scons-cache }}
+
