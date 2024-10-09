@@ -1,0 +1,54 @@
+name: Cache cleanup pipeline
+on:
+  push:
+    branches:
+      - master # cleanup old caches on each push to master
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_cleanup
+  cancel-in-progress: true
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup Minio client
+        run: |
+          wget https://dl.min.io/client/mc/release/linux-amd64/mc
+          chmod +x mc
+          sudo mv mc /usr/local/bin/
+
+      - name: Configure Minio client
+        run: |
+          mc alias set s3 ${{ secrets.S3_HOST }} ${{ secrets.S3_USER }} ${{ secrets.S3_PASSWORD }}
+
+      - name: Cleanup old caches
+        env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+        run: |
+          # List all folders in the bucket
+          folders=$(mc ls s3/$S3_BUCKET | awk '{print $5}')
+          
+          for folder in $folders
+          do
+            # If the folder name does not contain 'master'. -> we do never want to clear the master branch cache!
+            if [[ $folder != *"master"* ]]; then
+              # Get the last modified date of the folder
+              last_modified_date=$(mc find s3/$S3_BUCKET/$folder --json | jq -r '.lastModified' | sort | tail -n 1)
+              last_modified_time=$(date -d "$last_modified_date" +%s)
+              current_time=$(date +%s)
+              # Calculate the age of the folder in seconds and convert it to days
+              age_days=$(( (current_time - last_modified_time) / 86400 ))
+          
+              # Check if the folder is older than 7 days
+              if [ $age_days -gt 7 ]; then
+                # Delete the folder
+                mc rm --recursive --force s3/$S3_BUCKET/$folder
+              fi
+            fi
+          done
+
+      - name: Unset Minio alias
+        run: |
+          mc alias rm s3
