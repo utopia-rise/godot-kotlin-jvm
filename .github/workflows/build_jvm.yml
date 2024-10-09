@@ -17,16 +17,8 @@ jobs:
     name: Build Jvm artifacts
 
     steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
-        with:
-          path: modules/kotlin_jvm
 
       - uses: actions/setup-java@v4
         with:
@@ -38,69 +30,85 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
+      - name: Setup gradle build cache
+        uses: ./.github/actions/cache
+        with:
+          key: gradle_build_cache
+          path: |
+            kt/.gradle
+            kt/.kotlin
+            kt/.intellijPlatform
+            kt/build
+            kt/**/build
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+        continue-on-error: true
+
       - name: Compilation
         # we build the release bootstrap jar here. Debug gets its own trigger later
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ build -Prelease
+          kt/gradlew -p kt/ build -Prelease
 
       - name: Upload api-generator artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_api-generator
-          path: modules/kotlin_jvm/kt/api-generator/build/libs/api-generator.jar
+          path: kt/api-generator/build/libs/api-generator.jar
 
       - name: Upload release bootstrap artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_godot-bootstrap_release
-          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          path: kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Upload entry-generator artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_entry-generator
-          path: modules/kotlin_jvm/kt/entry-generation/godot-entry-generator/build/libs/godot-entry-generator-*.jar
+          path: kt/entry-generation/godot-entry-generator/build/libs/godot-entry-generator-*.jar
 
       - name: Upload ksp-symbol-processor artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_ksp-symbol-processor
-          path: modules/kotlin_jvm/kt/entry-generation/godot-kotlin-symbol-processor/build/libs/godot-kotlin-symbol-processor-*.jar
+          path: kt/entry-generation/godot-kotlin-symbol-processor/build/libs/godot-kotlin-symbol-processor-*.jar
 
       - name: Upload gradle-plugin artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_gradle-plugin
-          path: modules/kotlin_jvm/kt/plugins/godot-gradle-plugin/build/libs/godot-gradle-plugin-*.jar
+          path: kt/plugins/godot-gradle-plugin/build/libs/godot-gradle-plugin-*.jar
 
       - name: Upload intellij-plugin artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_intellij-plugin
-          path: modules/kotlin_jvm/kt/plugins/godot-intellij-plugin/build/distributions/godot-jvm-idea-plugin-*.zip
+          path: kt/plugins/godot-intellij-plugin/build/distributions/godot-jvm-idea-plugin-*.zip
 
       - name: Upload plugins-common artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_plugins-common
-          path: modules/kotlin_jvm/kt/plugins/godot-plugins-common/build/libs/godot-plugins-common-*.jar
+          path: kt/plugins/godot-plugins-common/build/libs/godot-plugins-common-*.jar
 
       - name: Upload tools-common artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_tools-common
-          path: modules/kotlin_jvm/kt/tools-common/build/libs/tools-common-*.jar
+          path: kt/tools-common/build/libs/tools-common-*.jar
 
       - name: Bootstrap debug compilation
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ build -Pdebug
+          kt/gradlew -p kt/ build -Pdebug
 
       - name: Upload debug bootstrap artifact
         uses: actions/upload-artifact@v4
         with:
           name: jvm_godot-bootstrap_debug
-          path: modules/kotlin_jvm/kt/godot-library/build/libs/godot-bootstrap.jar
+          path: kt/godot-library/build/libs/godot-bootstrap.jar
 
       - name: Verify ide plugin
         run: |
-          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ verifyPlugin
+          kt/gradlew -p kt/ verifyPlugin
