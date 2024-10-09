@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   create-export-templates-tpz:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: Create export template tpz
     steps:
       - name: Create templates folder

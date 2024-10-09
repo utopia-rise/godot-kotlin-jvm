@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   test-linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}
     strategy:
       matrix:
