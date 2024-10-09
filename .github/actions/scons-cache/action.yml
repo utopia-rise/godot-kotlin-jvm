@@ -22,9 +22,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+
     # Upload cache on completion and check it out now
     - name: Load .scons_cache directory
-      if: ${{ github.ref == 'refs/heads/master' && github.event.repository.fork == 'true' }}
+      if: ${{ github.ref == 'refs/heads/master' && inputs.s3-host == '' }}
       uses: actions/cache@v4
       with:
         path: ${{inputs.scons-cache}}
@@ -49,7 +50,7 @@ runs:
 
     # Check out cache but do not upload it at the end
     - name: Load .scons_cache directory
-      if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'true' }}
+      if: ${{ github.ref != 'refs/heads/master' &&  inputs.s3-host == '' }}
       uses: actions/cache/restore@v4 # only restores the cache but does not upload it
       with:
         path: ${{inputs.scons-cache}}
@@ -73,7 +74,7 @@ runs:
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}
 
     - name: Setup s3 cache
-      if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'false' }}
+      if: ${{ github.ref != 'refs/heads/master'  && inputs.s3-host != '' }}
       uses: philiplehmann/minio-cache@v1.2.10
       with:
         endpoint: ${{inputs.s3-host}} # optional, default s3.amazonaws.com
