@@ -73,6 +73,10 @@ runs:
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}
 
+    - name: Log
+      shell: bash
+      run: echo "Host ${{ inputs.s3-host }}"
+
     - name: Setup s3 cache
       if: ${{ inputs.s3-host != '' }}
       uses: philiplehmann/minio-cache@v1.2.10
