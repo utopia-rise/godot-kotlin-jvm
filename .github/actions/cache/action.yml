@@ -25,7 +25,17 @@ runs:
     #
     # Cache setup for our own repo
     # Stores the cache on a self-hosted S3 instance based on cache name and suffixed by the git ref
-    # example: editor_debug_linux_x86_64-refs/heads/master
+    # example: editor_debug_linux_x86_64-refs_heads_master
+
+    - name: Prepare GitHub ref
+      if: ${{ inputs.s3-host != '' }}
+      id: prepare_ref
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const ref = process.env.GITHUB_REF.replace(/\//g, '_');
+          core.exportVariable('PREPARED_REF', ref);
+
     - name: Setup s3 cache
       if: ${{ inputs.s3-host != '' }}
       uses: philiplehmann/minio-cache@v1.2.10
@@ -36,7 +46,7 @@ runs:
         accessKey: ${{inputs.s3-user}} # required
         secretKey: ${{inputs.s3-password}} # required
         bucket: ${{inputs.s3-bucket}} # required
-        key: ${{ inputs.key }}-${{github.ref}}
+        key: ${{ inputs.key }}-${{ env.PREPARED_REF }}
         path: ${{ inputs.path }}
 
 
