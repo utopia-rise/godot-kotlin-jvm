@@ -4,14 +4,6 @@ on:
     inputs:
       godot-version:
         type: string
-      s3-user:
-        type: string
-      s3-password:
-        type: string
-      s3-host:
-        type: string
-      s3-bucket:
-        type: string
 
 env:
   SCONS_CACHE_MSVC_CONFIG: true
@@ -72,13 +64,14 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
+        uses: ./modules/kotlin_jvm/.github/actions/cache
         with:
-          cache-name: ${{ matrix.cache-name }}
-          s3-host: ${{ inputs.s3-host }}
-          s3-bucket: ${{ inputs.s3-bucket }}
-          s3-user: ${{ inputs.s3-user }}
-          s3-password: ${{ inputs.s3-password }}
+          key: ${{ matrix.cache-name }}
+          path: "${{github.workspace}}/.scons-cache/"
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
         continue-on-error: true
 
       - name: Setup python and scons

@@ -1,0 +1,86 @@
+name: 🐧 Assemble Linux
+on:
+  workflow_call:
+    inputs:
+      godot-version:
+        type: string
+
+concurrency:
+  group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_assemble
+  cancel-in-progress: true
+
+jobs:
+  create-android-export-template:
+    runs-on: ubuntu-20.04
+    name: ${{ matrix.name }}
+    steps:
+      - name: Clone Godot Engine
+        uses: actions/checkout@v4
+        with:
+          repository: godotengine/godot
+          ref: ${{ inputs.godot-version }}
+
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: adopt-hotspot
+          java-version: ${{ inputs.jvm-version }}
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+
+      - name: Download android libs release arm32
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_release_android_arm32
+          path: "platform/android/java/lib/libs/"
+
+      - name: Download android libs debug arm32
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_debug_android_arm32
+          path: "platform/android/java/lib/libs/"
+
+      - name: Download android libs release arm64
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_release_android_arm64
+          path: "platform/android/java/lib/libs/"
+
+      - name: Download android libs debug arm64
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_debug_android_arm64
+          path: "platform/android/java/lib/libs/"
+
+      - name: Download android libs release x86_64
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_release_android_x86_64
+          path: "platform/android/java/lib/libs/"
+
+      - name: Download android libs debug x86_64
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_debug_android_x86_64
+          path: "platform/android/java/lib/libs/"
+
+      - name: Generate Godot templates
+        run: |
+          ls -l platform/android/java/lib/libs/
+          cd platform/android/java
+          ./gradlew generateGodotTemplates
+          cd ../../..
+          ls -l bin/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: export_template_android_all
+          path: "bin/*"

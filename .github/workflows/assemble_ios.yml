@@ -31,10 +31,16 @@ jobs:
         with:
           python-version: 3.11
 
-      - name: Download ios export template binaries
+      - name: Download ios export template binaries debug
         uses: actions/download-artifact@v4
         with:
-          name: export_template_ios_all
+          name: export_template_debug_ios_arm64
+          path: "./"
+
+      - name: Download ios export template binaries release
+        uses: actions/download-artifact@v4
+        with:
+          name: export_template_release_ios_arm64
           path: "./"
 
       - name: Clone MoltenVK
