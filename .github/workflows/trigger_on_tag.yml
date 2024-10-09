@@ -39,6 +39,7 @@ jobs:
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
+    secrets: inherit
 
   build-android:
     name: 🤖 Build and Assemble Android
