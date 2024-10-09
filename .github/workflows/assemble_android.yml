@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   create-android-export-template:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}
     steps:
       - name: Clone Godot Engine

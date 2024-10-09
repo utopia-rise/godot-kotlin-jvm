@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   android-template:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     name: ${{ matrix.name }}
     strategy:
       fail-fast: false
