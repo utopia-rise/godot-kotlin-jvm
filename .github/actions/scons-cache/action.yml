@@ -10,13 +10,21 @@ inputs:
   scons-cache:
     description: The scons cache path.
     default: "${{github.workspace}}/.scons-cache/"
+  s3-user:
+    description: Username of self-hosted s3
+  s3-password:
+    description: Password of self-hosted s3
+  s3-host:
+    description: Host of self-hosted s3
+  s3-bucket:
+    description: Bucket of self-hosted s3
 
 runs:
   using: "composite"
   steps:
     # Upload cache on completion and check it out now
     - name: Load .scons_cache directory
-      if: ${{ github.ref == 'refs/heads/master' }}
+      if: ${{ github.ref == 'refs/heads/master' && github.event.repository.fork == 'true' }}
       uses: actions/cache@v4
       with:
         path: ${{inputs.scons-cache}}
@@ -41,7 +49,7 @@ runs:
 
     # Check out cache but do not upload it at the end
     - name: Load .scons_cache directory
-      if: ${{ github.ref != 'refs/heads/master' }}
+      if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'true' }}
       uses: actions/cache/restore@v4 # only restores the cache but does not upload it
       with:
         path: ${{inputs.scons-cache}}
@@ -63,3 +71,17 @@ runs:
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
           ${{inputs.cache-name}}-${{env.GODOT_BASE_BRANCH}}
+
+    - name: Setup s3 cache
+      if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'false' }}
+      uses: whalemare/minio-cache
+      with:
+        endpoint: ${{inputs.s3-host}} # optional, default s3.amazonaws.com
+        port: 443 # minio port
+        insecure: false # optional, use http instead of https. default false
+        accessKey: ${{inputs.s3-user}} # required
+        secretKey: ${{inputs.s3-password}} # required
+        bucket: ${{inputs.s3-bucket}} # required
+        key: ${{ inputs.cache-name }}
+        path: ${{ inputs.scons-cache }}
+

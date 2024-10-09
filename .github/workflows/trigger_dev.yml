@@ -87,6 +87,10 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      s3-host: ${{ secrets.S3_HOST }}
+      s3-bucket: ${{ secrets.S3_BUCKET }}
+      s3-user: ${{ secrets.S3_USER }}
+      s3-password: ${{ secrets.S3_PASSWORD }}
 
   test-linux:
     name: 🐧 Test Linux
