@@ -64,9 +64,10 @@ jobs:
           path: modules/kotlin_jvm
 
       - name: Setup Godot build cache
-        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
+        uses: ./modules/kotlin_jvm/.github/actions/cache
         with:
-          cache-name: ${{ matrix.cache-name }}
+          key: ${{ matrix.cache-name }}
+          path: "${{github.workspace}}/.scons-cache/"
           s3-host: ${{ secrets.S3_HOST }}
           s3-bucket: ${{ secrets.S3_BUCKET }}
           s3-user: ${{ secrets.S3_USER }}

@@ -1,0 +1,101 @@
+
+name: Setup build cache
+description: Setup build cache using a self-hosted S3 instance if in our repo, or github cache if on a fork.
+inputs:
+  key:
+    description: The cache base key (job name by default). Gets suffixed by the current git ref
+    default: "${{github.job}}"
+  path:
+    description: The cache path.
+  s3-user:
+    description: Username of self-hosted s3
+  s3-password:
+    description: Password of self-hosted s3
+  s3-host:
+    description: Host of self-hosted s3
+  s3-bucket:
+    description: Bucket of self-hosted s3
+
+runs:
+  using: "composite"
+  steps:
+    # ==================================================================================================================
+    # S3 cache setup
+    # ==================================================================================================================
+    #
+    # Cache setup for our own repo
+    # Stores the cache on a self-hosted S3 instance based on cache name and suffixed by the git ref
+    # example: editor_debug_linux_x86_64-refs/heads/master
+    - name: Setup s3 cache
+      if: ${{ inputs.s3-host != '' }}
+      uses: philiplehmann/minio-cache@v1.2.10
+      with:
+        endpoint: ${{inputs.s3-host}} # optional, default s3.amazonaws.com
+        port: 443 # minio port
+        insecure: false # optional, use http instead of https. default false
+        accessKey: ${{inputs.s3-user}} # required
+        secretKey: ${{inputs.s3-password}} # required
+        bucket: ${{inputs.s3-bucket}} # required
+        key: ${{ inputs.key }}-${{github.ref}}
+        path: ${{ inputs.path }}
+
+
+
+    # ==================================================================================================================
+    # fork cache setup
+    # ==================================================================================================================
+    #
+    # Cache setup for forks or pull requests from forks
+    # Stores the cache on github hosted caches
+
+
+    # Upload cache on completion and check it out now
+    - name: Load .scons_cache directory
+      if: ${{ github.ref == 'refs/heads/master' && inputs.s3-host == '' }}
+      uses: actions/cache@v4
+      with:
+        path: ${{inputs.path}}
+        key: ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+
+        # We try to match an existing cache to restore from it. Each potential key is checked against
+        # all existing caches as a prefix. E.g. 'linux-template-minimal' would match any cache that
+        # starts with "linux-template-minimal", such as "linux-template-minimal-master-refs/heads/master-6588a4a29af1621086feac0117d5d4d37af957fd".
+        #
+        # We check these prefixes in this order:
+        #
+        #   1. The exact match, including the base branch, the commit reference, and the SHA hash of the commit.
+        #   2. A partial match for the same base branch and the same commit reference.
+        #   3. A partial match for the same base branch and the base branch commit reference.
+        #   4. A partial match for the same base branch only (not ideal, matches any PR with the same base branch).
+
+        restore-keys: |
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}
+
+    # Check out cache but do not upload it at the end
+    - name: Load .scons_cache directory
+      if: ${{ github.ref != 'refs/heads/master' &&  inputs.s3-host == '' }}
+      uses: actions/cache/restore@v4 # only restores the cache but does not upload it
+      with:
+        path: ${{inputs.path}}
+        key: ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+
+        # We try to match an existing cache to restore from it. Each potential key is checked against
+        # all existing caches as a prefix. E.g. 'linux-template-minimal' would match any cache that
+        # starts with "linux-template-minimal", such as "linux-template-minimal-master-refs/heads/master-6588a4a29af1621086feac0117d5d4d37af957fd".
+        #
+        # We check these prefixes in this order:
+        #
+        #   1. The exact match, including the base branch, the commit reference, and the SHA hash of the commit.
+        #   2. A partial match for the same base branch and the same commit reference.
+        #   3. A partial match for the same base branch and the base branch commit reference.
+        #   4. A partial match for the same base branch only (not ideal, matches any PR with the same base branch).
+
+        restore-keys: |
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}-${{github.sha}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-${{github.ref}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}-refs/heads/${{env.GODOT_BASE_BRANCH}}
+          ${{inputs.key}}-${{env.GODOT_BASE_BRANCH}}
+
