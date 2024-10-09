@@ -74,7 +74,7 @@ runs:
 
     - name: Setup s3 cache
       if: ${{ github.ref != 'refs/heads/master' && github.event.repository.fork == 'false' }}
-      uses: ProxyQB/minio-cache@v1.1.16
+      uses: philiplehmann/minio-cache@v1.2.10
       with:
         endpoint: ${{inputs.s3-host}} # optional, default s3.amazonaws.com
         port: 443 # minio port
