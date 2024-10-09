@@ -1,3 +1,5 @@
+#TODO: ideally this should be implemented using tear functionality of minio: https://min.io/docs/minio/container/administration/object-management/object-lifecycle-management.html
+
 name: Cache cleanup pipeline
 on:
   push:
