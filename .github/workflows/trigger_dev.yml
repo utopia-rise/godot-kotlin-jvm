@@ -70,10 +70,6 @@ jobs:
       godot-version: "4.3-stable"
       build-version: "0.11.0"
       jvm-version: "17"
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
 
   build-jvm:
     name: ☕ Build Jvm
@@ -91,10 +87,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      s3-host: ${{ needs.setup-build-variables.outputs['s3-host'] }}
-      s3-bucket: ${{ needs.setup-build-variables.outputs['s3-bucket'] }}
-      s3-user: ${{ needs.setup-build-variables.outputs['s3-user'] }}
-      s3-password: ${{ needs.setup-build-variables.outputs['s3-password'] }}
+    secrets: inherit
 
   test-linux:
     name: 🐧 Test Linux
