@@ -49,7 +49,7 @@ jobs:
       - name: Compilation
         # we build the release bootstrap jar here. Debug gets its own trigger later
         run: |
-          kt/gradlew -p kt/ build -Prelease
+          kt/gradlew -p kt/ build -Prelease buildPlugin
 
       - name: Upload api-generator artifact
         uses: actions/upload-artifact@v4
