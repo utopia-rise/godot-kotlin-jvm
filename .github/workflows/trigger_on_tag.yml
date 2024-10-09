@@ -49,10 +49,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
+    secrets: inherit
 
   build-ios:
     name: 🍏 Build iOS
@@ -61,10 +58,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
+    secrets: inherit
 
   build-linux:
     name: 🐧 Build Linux
@@ -73,10 +67,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
+    secrets: inherit
 
   build-macos:
     name: 🍎 Build macOS
@@ -85,10 +76,7 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
+    secrets: inherit
 
   build-windows:
     name: 🪟 Build Windows
@@ -97,10 +85,16 @@ jobs:
       - setup-build-variables
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
-      s3-host: ${{ secrets.S3_HOST }}
-      s3-bucket: ${{ secrets.S3_BUCKET }}
-      s3-user: ${{ secrets.S3_USER }}
-      s3-password: ${{ secrets.S3_PASSWORD }}
+    secrets: inherit
+
+  assemble-android:
+    name: 🤖 Assemble android
+    uses: ./.github/workflows/assemble_android.yml
+    needs:
+      - setup-build-variables
+      - build-android
+    with:
+      godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
 
   assemble-macos:
     name: 🍎 Assemble macos
@@ -154,7 +148,7 @@ jobs:
     uses: ./.github/workflows/assemble_export_templates.yml
     needs:
       - setup-build-variables
-      - build-android # uploads finished export template directly
+      - assemble-android
       - assemble-ios # export templates need to be packed into xcode project
       - build-linux # uploads finished export template directly
       - assemble-macos # export templates need to be packed into app
@@ -170,7 +164,7 @@ jobs:
     needs:
       - setup-build-variables
       - build-jvm
-      - build-android
+      - assemble-android
       - assemble-ios
       - assemble-linux
       - assemble-macos
