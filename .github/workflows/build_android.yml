@@ -8,6 +8,14 @@ on:
         type: string
       build-version:
         type: string
+      s3-user:
+        type: string
+      s3-password:
+        type: string
+      s3-host:
+        type: string
+      s3-bucket:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-android_build
@@ -51,6 +59,11 @@ jobs:
 
       - name: Setup Godot build cache
         uses: ./modules/kotlin_jvm/.github/actions/scons-cache
+        with:
+          s3-host: ${{ inputs.s3-host }}
+          s3-bucket: ${{ inputs.s3-bucket }}
+          s3-user: ${{ inputs.s3-user }}
+          s3-password: ${{ inputs.s3-password }}
         continue-on-error: true
 
       - name: Setup python and scons
