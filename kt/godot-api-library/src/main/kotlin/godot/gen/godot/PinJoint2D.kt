@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -98,112 +97,112 @@ public open class PinJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PINJOINT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PINJOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setSoftness(softness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to softness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSoftnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to softness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSoftnessPtr, NIL)
   }
 
   public final fun getSoftness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSoftnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSoftnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitLower(angularLimitLower: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularLimitLower.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitLowerPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularLimitLower.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularLimitLowerPtr, NIL)
   }
 
   public final fun getAngularLimitLower(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularLimitLowerPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularLimitUpper(angularLimitUpper: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularLimitUpper.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitUpperPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularLimitUpper.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularLimitUpperPtr, NIL)
   }
 
   public final fun getAngularLimitUpper(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularLimitUpperPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorTargetVelocity(motorTargetVelocity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to motorTargetVelocity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotorTargetVelocityPtr, NIL)
+    Internals.writeArguments(DOUBLE to motorTargetVelocity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMotorTargetVelocityPtr, NIL)
   }
 
   public final fun getMotorTargetVelocity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMotorTargetVelocityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMotorEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotorEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setMotorEnabledPtr, NIL)
   }
 
   public final fun isMotorEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMotorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMotorEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAngularLimitEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularLimitEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularLimitEnabledPtr, NIL)
   }
 
   public final fun isAngularLimitEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAngularLimitEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSoftnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_softness", 373806689)
+        Internals.getMethodBindPtr("PinJoint2D", "set_softness", 373806689)
 
     public val getSoftnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_softness", 1740695150)
+        Internals.getMethodBindPtr("PinJoint2D", "get_softness", 1740695150)
 
     public val setAngularLimitLowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_lower", 373806689)
+        Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_lower", 373806689)
 
     public val getAngularLimitLowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_lower", 1740695150)
+        Internals.getMethodBindPtr("PinJoint2D", "get_angular_limit_lower", 1740695150)
 
     public val setAngularLimitUpperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_upper", 373806689)
+        Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_upper", 373806689)
 
     public val getAngularLimitUpperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_angular_limit_upper", 1740695150)
+        Internals.getMethodBindPtr("PinJoint2D", "get_angular_limit_upper", 1740695150)
 
     public val setMotorTargetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_target_velocity", 373806689)
+        Internals.getMethodBindPtr("PinJoint2D", "set_motor_target_velocity", 373806689)
 
     public val getMotorTargetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "get_motor_target_velocity", 1740695150)
+        Internals.getMethodBindPtr("PinJoint2D", "get_motor_target_velocity", 1740695150)
 
     public val setMotorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_motor_enabled", 2586408642)
+        Internals.getMethodBindPtr("PinJoint2D", "set_motor_enabled", 2586408642)
 
     public val isMotorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "is_motor_enabled", 36873697)
+        Internals.getMethodBindPtr("PinJoint2D", "is_motor_enabled", 36873697)
 
     public val setAngularLimitEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "set_angular_limit_enabled", 2586408642)
+        Internals.getMethodBindPtr("PinJoint2D", "set_angular_limit_enabled", 2586408642)
 
     public val isAngularLimitEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint2D", "is_angular_limit_enabled", 36873697)
+        Internals.getMethodBindPtr("PinJoint2D", "is_angular_limit_enabled", 36873697)
   }
 }

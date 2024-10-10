@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -102,16 +101,16 @@ private const val ENGINE_CLASS_CRYPTO_INDEX: Int = 198
 @GodotBaseType
 public open class Crypto : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CRYPTO_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CRYPTO_INDEX, scriptIndex)
   }
 
   /**
    * Generates a [PackedByteArray] of cryptographically secure random bytes with given [size].
    */
   public final fun generateRandomBytes(size: Int): PackedByteArray {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.generateRandomBytesPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.generateRandomBytesPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -119,9 +118,9 @@ public open class Crypto : RefCounted() {
    * to [StreamPeerTLS.acceptStream].
    */
   public final fun generateRsa(size: Int): CryptoKey? {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.generateRsaPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CryptoKey?)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.generateRsaPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CryptoKey?)
   }
 
   /**
@@ -157,9 +156,9 @@ public open class Crypto : RefCounted() {
     notBefore: String = "20140101000000",
     notAfter: String = "20340101000000",
   ): X509Certificate? {
-    TransferContext.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateSelfSignedCertificatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as X509Certificate?)
+    Internals.writeArguments(OBJECT to key, STRING to issuerName, STRING to notBefore, STRING to notAfter)
+    Internals.callMethod(rawPtr, MethodBindings.generateSelfSignedCertificatePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as X509Certificate?)
   }
 
   /**
@@ -170,9 +169,9 @@ public open class Crypto : RefCounted() {
     hash: PackedByteArray,
     key: CryptoKey?,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
+    Internals.callMethod(rawPtr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -185,9 +184,9 @@ public open class Crypto : RefCounted() {
     signature: PackedByteArray,
     key: CryptoKey?,
   ): Boolean {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.verifyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
+    Internals.callMethod(rawPtr, MethodBindings.verifyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -195,9 +194,9 @@ public open class Crypto : RefCounted() {
    * **Note:** The maximum size of accepted plaintext is limited by the key size.
    */
   public final fun encrypt(key: CryptoKey?, plaintext: PackedByteArray): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
-    TransferContext.callMethod(rawPtr, MethodBindings.encryptPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to plaintext)
+    Internals.callMethod(rawPtr, MethodBindings.encryptPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -205,9 +204,9 @@ public open class Crypto : RefCounted() {
    * **Note:** The maximum size of accepted ciphertext is limited by the key size.
    */
   public final fun decrypt(key: CryptoKey?, ciphertext: PackedByteArray): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
-    TransferContext.callMethod(rawPtr, MethodBindings.decryptPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(OBJECT to key, PACKED_BYTE_ARRAY to ciphertext)
+    Internals.callMethod(rawPtr, MethodBindings.decryptPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -220,9 +219,9 @@ public open class Crypto : RefCounted() {
     key: PackedByteArray,
     msg: PackedByteArray,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
-    TransferContext.callMethod(rawPtr, MethodBindings.hmacDigestPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
+    Internals.callMethod(rawPtr, MethodBindings.hmacDigestPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -234,35 +233,35 @@ public open class Crypto : RefCounted() {
    */
   public final fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray):
       Boolean {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
-    TransferContext.callMethod(rawPtr, MethodBindings.constantTimeComparePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
+    Internals.callMethod(rawPtr, MethodBindings.constantTimeComparePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val generateRandomBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_random_bytes", 47165747)
+        Internals.getMethodBindPtr("Crypto", "generate_random_bytes", 47165747)
 
     public val generateRsaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_rsa", 1237515462)
+        Internals.getMethodBindPtr("Crypto", "generate_rsa", 1237515462)
 
     public val generateSelfSignedCertificatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_self_signed_certificate", 492266173)
+        Internals.getMethodBindPtr("Crypto", "generate_self_signed_certificate", 492266173)
 
-    public val signPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "sign", 1673662703)
+    public val signPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "sign", 1673662703)
 
-    public val verifyPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "verify", 2805902225)
+    public val verifyPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "verify", 2805902225)
 
-    public val encryptPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "encrypt", 2361793670)
+    public val encryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "encrypt", 2361793670)
 
-    public val decryptPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "decrypt", 2361793670)
+    public val decryptPtr: VoidPtr = Internals.getMethodBindPtr("Crypto", "decrypt", 2361793670)
 
     public val hmacDigestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "hmac_digest", 2368951203)
+        Internals.getMethodBindPtr("Crypto", "hmac_digest", 2368951203)
 
     public val constantTimeComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "constant_time_compare", 1024142237)
+        Internals.getMethodBindPtr("Crypto", "constant_time_compare", 1024142237)
   }
 }

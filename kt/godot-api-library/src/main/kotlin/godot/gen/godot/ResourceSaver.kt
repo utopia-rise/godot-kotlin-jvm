@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +53,7 @@ public operator fun Long.rem(other: godot.ResourceSaver.SaverFlags): Long = this
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_RESOURCESAVER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_RESOURCESAVER_INDEX)
   }
 
   /**
@@ -72,9 +71,9 @@ public object ResourceSaver : Object() {
     path: String = "",
     flags: SaverFlags = ResourceSaver.SaverFlags.FLAG_NONE,
   ): Error {
-    TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -82,10 +81,9 @@ public object ResourceSaver : Object() {
    */
   @JvmStatic
   public final fun getRecognizedExtensions(type: Resource?): PackedStringArray {
-    TransferContext.writeArguments(OBJECT to type)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(OBJECT to type)
+    Internals.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -98,8 +96,8 @@ public object ResourceSaver : Object() {
   @JvmStatic
   public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
       false): Unit {
-    TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
-    TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
+    Internals.writeArguments(OBJECT to formatSaver, BOOL to atFront)
+    Internals.callMethod(rawPtr, MethodBindings.addResourceFormatSaverPtr, NIL)
   }
 
   /**
@@ -107,8 +105,8 @@ public object ResourceSaver : Object() {
    */
   @JvmStatic
   public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
-    TransferContext.writeArguments(OBJECT to formatSaver)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
+    Internals.writeArguments(OBJECT to formatSaver)
+    Internals.callMethod(rawPtr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }
 
   public sealed interface SaverFlags {
@@ -185,15 +183,15 @@ public object ResourceSaver : Object() {
   ) : SaverFlags
 
   internal object MethodBindings {
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceSaver", "save", 2983274697)
+    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ResourceSaver", "save", 2983274697)
 
     public val getRecognizedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)
+        Internals.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)
 
     public val addResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362894272)
+        Internals.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362894272)
 
     public val removeResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
+        Internals.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
   }
 }

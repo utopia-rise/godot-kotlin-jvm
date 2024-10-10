@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
@@ -67,27 +66,27 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCENETREETIMER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCENETREETIMER_INDEX, scriptIndex)
   }
 
   public final fun setTimeLeft(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setTimeLeftPtr, NIL)
   }
 
   public final fun getTimeLeft(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373806689)
+        Internals.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373806689)
 
     public val getTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1740695150)
+        Internals.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1740695150)
   }
 }

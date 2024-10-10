@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -29,7 +28,8 @@ private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX: Int = 391
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -37,8 +37,8 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * compatibility with older action maps.
    */
   public final fun registerProfileRename(oldName: String, newName: String): Unit {
-    TransferContext.writeArguments(STRING to oldName, STRING to newName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerProfileRenamePtr, NIL)
+    Internals.writeArguments(STRING to oldName, STRING to newName)
+    Internals.callMethod(rawPtr, MethodBindings.registerProfileRenamePtr, NIL)
   }
 
   /**
@@ -56,8 +56,8 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrPath: String,
     openxrExtensionName: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerTopLevelPathPtr, NIL)
+    Internals.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
+    Internals.callMethod(rawPtr, MethodBindings.registerTopLevelPathPtr, NIL)
   }
 
   /**
@@ -74,8 +74,8 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrPath: String,
     openxrExtensionName: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerInteractionProfilePtr, NIL)
+    Internals.writeArguments(STRING to displayName, STRING to openxrPath, STRING to openxrExtensionName)
+    Internals.callMethod(rawPtr, MethodBindings.registerInteractionProfilePtr, NIL)
   }
 
   /**
@@ -97,23 +97,23 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrExtensionName: String,
     actionType: OpenXRAction.ActionType,
   ): Unit {
-    TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerIoPathPtr, NIL)
+    Internals.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.id)
+    Internals.callMethod(rawPtr, MethodBindings.registerIoPathPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val registerProfileRenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_profile_rename", 3186203200)
+        Internals.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_profile_rename", 3186203200)
 
     public val registerTopLevelPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_top_level_path", 254767734)
+        Internals.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_top_level_path", 254767734)
 
     public val registerInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_interaction_profile", 254767734)
+        Internals.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_interaction_profile", 254767734)
 
     public val registerIoPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_io_path", 3443511926)
+        Internals.getMethodBindPtr("OpenXRInteractionProfileMetadata", "register_io_path", 3443511926)
   }
 }

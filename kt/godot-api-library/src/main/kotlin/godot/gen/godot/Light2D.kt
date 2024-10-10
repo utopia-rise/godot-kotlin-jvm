@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -208,7 +207,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHT2D_INDEX, scriptIndex)
   }
 
   /**
@@ -260,168 +259,168 @@ public open class Light2D internal constructor() : Node2D() {
 
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorOnly(editorOnly: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to editorOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+    Internals.writeArguments(BOOL to editorOnly)
+    Internals.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
   }
 
   public final fun isEditorOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnergy(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
   }
 
   public final fun getEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZRangeMin(z: Int): Unit {
-    TransferContext.writeArguments(LONG to z.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMinPtr, NIL)
+    Internals.writeArguments(LONG to z.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setZRangeMinPtr, NIL)
   }
 
   public final fun getZRangeMin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZRangeMinPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setZRangeMax(z: Int): Unit {
-    TransferContext.writeArguments(LONG to z.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZRangeMaxPtr, NIL)
+    Internals.writeArguments(LONG to z.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setZRangeMaxPtr, NIL)
   }
 
   public final fun getZRangeMax(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZRangeMaxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLayerRangeMin(layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMinPtr, NIL)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLayerRangeMinPtr, NIL)
   }
 
   public final fun getLayerRangeMin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLayerRangeMinPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLayerRangeMax(layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerRangeMaxPtr, NIL)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLayerRangeMaxPtr, NIL)
   }
 
   public final fun getLayerRangeMax(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLayerRangeMaxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setItemCullMask(itemCullMask: Int): Unit {
-    TransferContext.writeArguments(LONG to itemCullMask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to itemCullMask.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setItemCullMaskPtr, NIL)
   }
 
   public final fun getItemCullMask(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getItemCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setItemShadowCullMask(itemShadowCullMask: Int): Unit {
-    TransferContext.writeArguments(LONG to itemShadowCullMask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemShadowCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to itemShadowCullMask.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setItemShadowCullMaskPtr, NIL)
   }
 
   public final fun getItemShadowCullMask(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getItemShadowCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShadowEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowEnabledPtr, NIL)
   }
 
   public final fun isShadowEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShadowEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShadowSmooth(smooth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to smooth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSmoothPtr, NIL)
+    Internals.writeArguments(DOUBLE to smooth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setShadowSmoothPtr, NIL)
   }
 
   public final fun getShadowSmooth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowSmoothPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShadowFilter(filter: ShadowFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowFilterPtr, NIL)
+    Internals.writeArguments(LONG to filter.id)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowFilterPtr, NIL)
   }
 
   public final fun getShadowFilter(): ShadowFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowFilterPtr, LONG)
-    return Light2D.ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowFilterPtr, LONG)
+    return Light2D.ShadowFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setShadowColor(shadowColor: Color): Unit {
-    TransferContext.writeArguments(COLOR to shadowColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+    Internals.writeArguments(COLOR to shadowColor)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
   }
 
   public final fun getShadowColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-    return Light2D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return Light2D.BlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -429,8 +428,8 @@ public open class Light2D internal constructor() : Node2D() {
    * [DirectionalLight2D.height].
    */
   public final fun setHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   /**
@@ -438,9 +437,9 @@ public open class Light2D internal constructor() : Node2D() {
    * [DirectionalLight2D.height].
    */
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class ShadowFilter(
@@ -507,99 +506,96 @@ public open class Light2D internal constructor() : Node2D() {
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("Light2D", "set_enabled", 2586408642)
 
-    public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_enabled", 36873697)
+    public val isEnabledPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "is_enabled", 36873697)
 
     public val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_editor_only", 2586408642)
+        Internals.getMethodBindPtr("Light2D", "set_editor_only", 2586408642)
 
     public val isEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_editor_only", 36873697)
+        Internals.getMethodBindPtr("Light2D", "is_editor_only", 36873697)
 
-    public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_color", 2920490490)
+    public val setColorPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_color", 3444240500)
+    public val getColorPtr: VoidPtr = Internals.getMethodBindPtr("Light2D", "get_color", 3444240500)
 
     public val setEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_energy", 373806689)
+        Internals.getMethodBindPtr("Light2D", "set_energy", 373806689)
 
     public val getEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_energy", 1740695150)
+        Internals.getMethodBindPtr("Light2D", "get_energy", 1740695150)
 
     public val setZRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_z_range_min", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_z_range_min", 1286410249)
 
     public val getZRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_z_range_min", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_z_range_min", 3905245786)
 
     public val setZRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_z_range_max", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_z_range_max", 1286410249)
 
     public val getZRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_z_range_max", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_z_range_max", 3905245786)
 
     public val setLayerRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_min", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_layer_range_min", 1286410249)
 
     public val getLayerRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_min", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_layer_range_min", 3905245786)
 
     public val setLayerRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_max", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_layer_range_max", 1286410249)
 
     public val getLayerRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_max", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_layer_range_max", 3905245786)
 
     public val setItemCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_item_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_item_cull_mask", 1286410249)
 
     public val getItemCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_item_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_item_cull_mask", 3905245786)
 
     public val setItemShadowCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask", 1286410249)
 
     public val getItemShadowCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask", 3905245786)
 
     public val setShadowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_enabled", 2586408642)
+        Internals.getMethodBindPtr("Light2D", "set_shadow_enabled", 2586408642)
 
     public val isShadowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_shadow_enabled", 36873697)
+        Internals.getMethodBindPtr("Light2D", "is_shadow_enabled", 36873697)
 
     public val setShadowSmoothPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_smooth", 373806689)
+        Internals.getMethodBindPtr("Light2D", "set_shadow_smooth", 373806689)
 
     public val getShadowSmoothPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_smooth", 1740695150)
+        Internals.getMethodBindPtr("Light2D", "get_shadow_smooth", 1740695150)
 
     public val setShadowFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_filter", 3209356555)
+        Internals.getMethodBindPtr("Light2D", "set_shadow_filter", 3209356555)
 
     public val getShadowFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_filter", 1973619177)
+        Internals.getMethodBindPtr("Light2D", "get_shadow_filter", 1973619177)
 
     public val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_color", 2920490490)
+        Internals.getMethodBindPtr("Light2D", "set_shadow_color", 2920490490)
 
     public val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_color", 3444240500)
+        Internals.getMethodBindPtr("Light2D", "get_shadow_color", 3444240500)
 
     public val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_blend_mode", 2916638796)
+        Internals.getMethodBindPtr("Light2D", "set_blend_mode", 2916638796)
 
     public val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_blend_mode", 936255250)
+        Internals.getMethodBindPtr("Light2D", "get_blend_mode", 936255250)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_height", 373806689)
+        Internals.getMethodBindPtr("Light2D", "set_height", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_height", 1740695150)
+        Internals.getMethodBindPtr("Light2D", "get_height", 1740695150)
   }
 }

@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -90,7 +89,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTSCREENTOUCH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTSCREENTOUCH_INDEX, scriptIndex)
   }
 
   /**
@@ -119,73 +118,73 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
 
   public final fun setIndex(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
   }
 
   public final fun getIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    Internals.writeArguments(BOOL to pressed)
+    Internals.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun setCanceled(canceled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to canceled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
+    Internals.writeArguments(BOOL to canceled)
+    Internals.callMethod(rawPtr, MethodBindings.setCanceledPtr, NIL)
   }
 
   public final fun setDoubleTap(doubleTap: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to doubleTap)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
+    Internals.writeArguments(BOOL to doubleTap)
+    Internals.callMethod(rawPtr, MethodBindings.setDoubleTapPtr, NIL)
   }
 
   public final fun isDoubleTap(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDoubleTapPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index", 1286410249)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "set_index", 1286410249)
 
     public val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index", 3905245786)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "get_index", 3905245786)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "get_position", 3341600327)
 
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2586408642)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2586408642)
 
     public val setCanceledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2586408642)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2586408642)
 
     public val setDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2586408642)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2586408642)
 
     public val isDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36873697)
+        Internals.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36873697)
   }
 }

@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -69,25 +68,25 @@ private const val ENGINE_CLASS_XMLPARSER_INDEX: Int = 748
 @GodotBaseType
 public open class XMLParser : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XMLPARSER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XMLPARSER_INDEX, scriptIndex)
   }
 
   /**
    * Parses the next node in the file. This method returns an error code.
    */
   public final fun read(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.readPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.readPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the type of the current node. Compare with [NodeType] constants.
    */
   public final fun getNodeType(): NodeType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeTypePtr, LONG)
-    return XMLParser.NodeType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeTypePtr, LONG)
+    return XMLParser.NodeType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -97,9 +96,9 @@ public open class XMLParser : RefCounted() {
    * are also considered names.
    */
   public final fun getNodeName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -107,9 +106,9 @@ public open class XMLParser : RefCounted() {
    * is of any other type.
    */
   public final fun getNodeData(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeDataPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeDataPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -117,9 +116,9 @@ public open class XMLParser : RefCounted() {
    * This is usually equivalent to the number of characters before the read position.
    */
   public final fun getNodeOffset(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -128,18 +127,18 @@ public open class XMLParser : RefCounted() {
    * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public final fun getAttributeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttributeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAttributeCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the name of an attribute of the currently parsed element, specified by the [idx] index.
    */
   public final fun getAttributeName(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttributeNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAttributeNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -147,18 +146,18 @@ public open class XMLParser : RefCounted() {
    * index.
    */
   public final fun getAttributeValue(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttributeValuePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAttributeValuePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if the currently parsed element has an attribute with the [name].
    */
   public final fun hasAttribute(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAttributePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasAttributePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -166,9 +165,9 @@ public open class XMLParser : RefCounted() {
    * This method will raise an error if the element has no such attribute.
    */
   public final fun getNamedAttributeValue(name: String): String {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamedAttributeValuePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.getNamedAttributeValuePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -176,27 +175,27 @@ public open class XMLParser : RefCounted() {
    * This method will return an empty string if the element has no such attribute.
    */
   public final fun getNamedAttributeValueSafe(name: String): String {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamedAttributeValueSafePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.getNamedAttributeValueSafePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if the currently parsed element is empty, e.g. `<element />`.
    */
   public final fun isEmpty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the current line in the parsed file, counting from 0.
    */
   public final fun getCurrentLine(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentLinePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentLinePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -204,8 +203,8 @@ public open class XMLParser : RefCounted() {
    * ignored and the cursor will go to the closing of the current element.
    */
   public final fun skipSection(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.skipSectionPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.skipSectionPtr, NIL)
   }
 
   /**
@@ -213,27 +212,27 @@ public open class XMLParser : RefCounted() {
    * there. This method returns an error code.
    */
   public final fun seek(position: Long): Error {
-    TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to position)
+    Internals.callMethod(rawPtr, MethodBindings.seekPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Opens an XML [file] for parsing. This method returns an error code.
    */
   public final fun `open`(`file`: String): Error {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to file)
+    Internals.callMethod(rawPtr, MethodBindings.openPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Opens an XML raw [buffer] for parsing. This method returns an error code.
    */
   public final fun openBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.openBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.openBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class NodeType(
@@ -282,51 +281,51 @@ public open class XMLParser : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read", 166280745)
+    public val readPtr: VoidPtr = Internals.getMethodBindPtr("XMLParser", "read", 166280745)
 
     public val getNodeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_type", 2984359541)
+        Internals.getMethodBindPtr("XMLParser", "get_node_type", 2984359541)
 
     public val getNodeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_name", 201670096)
+        Internals.getMethodBindPtr("XMLParser", "get_node_name", 201670096)
 
     public val getNodeDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_data", 201670096)
+        Internals.getMethodBindPtr("XMLParser", "get_node_data", 201670096)
 
     public val getNodeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_offset", 3905245786)
+        Internals.getMethodBindPtr("XMLParser", "get_node_offset", 3905245786)
 
     public val getAttributeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_count", 3905245786)
+        Internals.getMethodBindPtr("XMLParser", "get_attribute_count", 3905245786)
 
     public val getAttributeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_name", 844755477)
+        Internals.getMethodBindPtr("XMLParser", "get_attribute_name", 844755477)
 
     public val getAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_value", 844755477)
+        Internals.getMethodBindPtr("XMLParser", "get_attribute_value", 844755477)
 
     public val hasAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "has_attribute", 3927539163)
+        Internals.getMethodBindPtr("XMLParser", "has_attribute", 3927539163)
 
     public val getNamedAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value", 3135753539)
+        Internals.getMethodBindPtr("XMLParser", "get_named_attribute_value", 3135753539)
 
     public val getNamedAttributeValueSafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe", 3135753539)
+        Internals.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe", 3135753539)
 
-    public val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "is_empty", 36873697)
+    public val isEmptyPtr: VoidPtr = Internals.getMethodBindPtr("XMLParser", "is_empty", 36873697)
 
     public val getCurrentLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_current_line", 3905245786)
+        Internals.getMethodBindPtr("XMLParser", "get_current_line", 3905245786)
 
     public val skipSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "skip_section", 3218959716)
+        Internals.getMethodBindPtr("XMLParser", "skip_section", 3218959716)
 
-    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "seek", 844576869)
+    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("XMLParser", "seek", 844576869)
 
-    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open", 166001499)
+    public val openPtr: VoidPtr = Internals.getMethodBindPtr("XMLParser", "open", 166001499)
 
     public val openBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "open_buffer", 680677267)
+        Internals.getMethodBindPtr("XMLParser", "open_buffer", 680677267)
   }
 }

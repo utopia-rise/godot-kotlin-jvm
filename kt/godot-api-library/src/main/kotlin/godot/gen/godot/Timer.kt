@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -121,40 +120,40 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TIMER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TIMER_INDEX, scriptIndex)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWaitTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to timeSec)
+    Internals.callMethod(rawPtr, MethodBindings.setWaitTimePtr, NIL)
   }
 
   public final fun getWaitTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWaitTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWaitTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun isOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOneShotPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOneShotPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutostart(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutostartPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAutostartPtr, NIL)
   }
 
   public final fun hasAutostart(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAutostartPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasAutostartPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -164,53 +163,53 @@ public open class Timer : Node() {
    */
   @JvmOverloads
   public final fun start(timeSec: Double = -1.0): Unit {
-    TransferContext.writeArguments(DOUBLE to timeSec)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
+    Internals.writeArguments(DOUBLE to timeSec)
+    Internals.callMethod(rawPtr, MethodBindings.startPtr, NIL)
   }
 
   /**
    * Stops the timer.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to paused)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
+    Internals.writeArguments(BOOL to paused)
+    Internals.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the timer is stopped or has not started.
    */
   public final fun isStopped(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStoppedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isStoppedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTimeLeft(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeLeftPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setTimerProcessCallback(callback: TimerProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to callback.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimerProcessCallbackPtr, NIL)
+    Internals.writeArguments(LONG to callback.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTimerProcessCallbackPtr, NIL)
   }
 
   public final fun getTimerProcessCallback(): TimerProcessCallback {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimerProcessCallbackPtr, LONG)
-    return Timer.TimerProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimerProcessCallbackPtr, LONG)
+    return Timer.TimerProcessCallback.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class TimerProcessCallback(
@@ -241,41 +240,39 @@ public open class Timer : Node() {
 
   internal object MethodBindings {
     public val setWaitTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_wait_time", 373806689)
+        Internals.getMethodBindPtr("Timer", "set_wait_time", 373806689)
 
     public val getWaitTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_wait_time", 1740695150)
+        Internals.getMethodBindPtr("Timer", "get_wait_time", 1740695150)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_one_shot", 2586408642)
+        Internals.getMethodBindPtr("Timer", "set_one_shot", 2586408642)
 
-    public val isOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "is_one_shot", 36873697)
+    public val isOneShotPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_one_shot", 36873697)
 
     public val setAutostartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_autostart", 2586408642)
+        Internals.getMethodBindPtr("Timer", "set_autostart", 2586408642)
 
     public val hasAutostartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "has_autostart", 36873697)
+        Internals.getMethodBindPtr("Timer", "has_autostart", 36873697)
 
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "start", 1392008558)
+    public val startPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "start", 1392008558)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "stop", 3218959716)
 
-    public val setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_paused", 2586408642)
+    public val setPausedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "set_paused", 2586408642)
 
-    public val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "is_paused", 36873697)
+    public val isPausedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_paused", 36873697)
 
-    public val isStoppedPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "is_stopped", 36873697)
+    public val isStoppedPtr: VoidPtr = Internals.getMethodBindPtr("Timer", "is_stopped", 36873697)
 
     public val getTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_time_left", 1740695150)
+        Internals.getMethodBindPtr("Timer", "get_time_left", 1740695150)
 
     public val setTimerProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_timer_process_callback", 3469495063)
+        Internals.getMethodBindPtr("Timer", "set_timer_process_callback", 3469495063)
 
     public val getTimerProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_timer_process_callback", 2672570227)
+        Internals.getMethodBindPtr("Timer", "get_timer_process_callback", 2672570227)
   }
 }

@@ -11,7 +11,6 @@ import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -21,7 +20,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -92,36 +91,36 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIPLAYERAPI_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIPLAYERAPI_INDEX, scriptIndex)
   }
 
   /**
    * Returns `true` if there is a [multiplayerPeer] set.
    */
   public final fun hasMultiplayerPeer(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMultiplayerPeerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasMultiplayerPeerPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getMultiplayerPeer(): MultiplayerPeer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MultiplayerPeer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMultiplayerPeerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MultiplayerPeer?)
   }
 
   public final fun setMultiplayerPeer(peer: MultiplayerPeer?): Unit {
-    TransferContext.writeArguments(OBJECT to peer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPeerPtr, NIL)
+    Internals.writeArguments(OBJECT to peer)
+    Internals.callMethod(rawPtr, MethodBindings.setMultiplayerPeerPtr, NIL)
   }
 
   /**
    * Returns the unique peer ID of this MultiplayerAPI's [multiplayerPeer].
    */
   public final fun getUniqueId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -129,9 +128,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * (listening for connections).
    */
   public final fun isServer(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isServerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isServerPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -140,9 +139,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * may be lost when code execution is delayed (such as with GDScript's `await` keyword).
    */
   public final fun getRemoteSenderId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemoteSenderIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRemoteSenderIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -153,9 +152,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * context of this function (e.g. `_process`, `physics`, [Thread]).
    */
   public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -173,9 +172,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     method: StringName,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Error {
-    TransferContext.writeArguments(LONG to peer.toLong(), OBJECT to `object`, STRING_NAME to method, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.rpcPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to peer.toLong(), OBJECT to `object`, STRING_NAME to method, ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.rpcPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -188,9 +187,9 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * behavior via [MultiplayerAPIExtension].
    */
   public final fun objectConfigurationAdd(`object`: Object?, configuration: Any?): Error {
-    TransferContext.writeArguments(OBJECT to `object`, ANY to configuration)
-    TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationAddPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to `object`, ANY to configuration)
+    Internals.callMethod(rawPtr, MethodBindings.objectConfigurationAddPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -203,18 +202,18 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
    * behavior via [MultiplayerAPIExtension].
    */
   public final fun objectConfigurationRemove(`object`: Object?, configuration: Any?): Error {
-    TransferContext.writeArguments(OBJECT to `object`, ANY to configuration)
-    TransferContext.callMethod(rawPtr, MethodBindings.objectConfigurationRemovePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to `object`, ANY to configuration)
+    Internals.callMethod(rawPtr, MethodBindings.objectConfigurationRemovePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the peer IDs of all connected peers of this MultiplayerAPI's [multiplayerPeer].
    */
   public final fun getPeers(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPeersPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public enum class RPCMode(
@@ -255,8 +254,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * extensions to configure which implementation will be used by [SceneTree] when the engine starts.
      */
     public final fun setDefaultInterface(interfaceName: StringName): Unit {
-      TransferContext.writeArguments(STRING_NAME to interfaceName)
-      TransferContext.callMethod(0, MethodBindings.setDefaultInterfacePtr, NIL)
+      Internals.writeArguments(STRING_NAME to interfaceName)
+      Internals.callMethod(0, MethodBindings.setDefaultInterfacePtr, NIL)
     }
 
     /**
@@ -264,60 +263,60 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
      * `"SceneMultiplayer"` when [SceneMultiplayer] is available. See [setDefaultInterface].
      */
     public final fun getDefaultInterface(): StringName {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
-      return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+      Internals.writeArguments()
+      Internals.callMethod(0, MethodBindings.getDefaultInterfacePtr, STRING_NAME)
+      return (Internals.readReturnValue(STRING_NAME) as StringName)
     }
 
     /**
      * Returns a new instance of the default MultiplayerAPI.
      */
     public final fun createDefaultInterface(): MultiplayerAPI? {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
+      Internals.writeArguments()
+      Internals.callMethod(0, MethodBindings.createDefaultInterfacePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as MultiplayerAPI?)
     }
   }
 
   internal object MethodBindings {
     public val hasMultiplayerPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "has_multiplayer_peer", 2240911060)
+        Internals.getMethodBindPtr("MultiplayerAPI", "has_multiplayer_peer", 2240911060)
 
     public val getMultiplayerPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "get_multiplayer_peer", 3223692825)
+        Internals.getMethodBindPtr("MultiplayerAPI", "get_multiplayer_peer", 3223692825)
 
     public val setMultiplayerPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "set_multiplayer_peer", 3694835298)
+        Internals.getMethodBindPtr("MultiplayerAPI", "set_multiplayer_peer", 3694835298)
 
     public val getUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "get_unique_id", 2455072627)
+        Internals.getMethodBindPtr("MultiplayerAPI", "get_unique_id", 2455072627)
 
     public val isServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "is_server", 2240911060)
+        Internals.getMethodBindPtr("MultiplayerAPI", "is_server", 2240911060)
 
     public val getRemoteSenderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "get_remote_sender_id", 2455072627)
+        Internals.getMethodBindPtr("MultiplayerAPI", "get_remote_sender_id", 2455072627)
 
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerAPI", "poll", 166280745)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "poll", 166280745)
 
-    public val rpcPtr: VoidPtr = TypeManager.getMethodBindPtr("MultiplayerAPI", "rpc", 2077486355)
+    public val rpcPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerAPI", "rpc", 2077486355)
 
     public val objectConfigurationAddPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "object_configuration_add", 1171879464)
+        Internals.getMethodBindPtr("MultiplayerAPI", "object_configuration_add", 1171879464)
 
     public val objectConfigurationRemovePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "object_configuration_remove", 1171879464)
+        Internals.getMethodBindPtr("MultiplayerAPI", "object_configuration_remove", 1171879464)
 
     public val getPeersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "get_peers", 969006518)
+        Internals.getMethodBindPtr("MultiplayerAPI", "get_peers", 969006518)
 
     public val setDefaultInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "set_default_interface", 3304788590)
+        Internals.getMethodBindPtr("MultiplayerAPI", "set_default_interface", 3304788590)
 
     public val getDefaultInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "get_default_interface", 2737447660)
+        Internals.getMethodBindPtr("MultiplayerAPI", "get_default_interface", 2737447660)
 
     public val createDefaultInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerAPI", "create_default_interface", 3294156723)
+        Internals.getMethodBindPtr("MultiplayerAPI", "create_default_interface", 3294156723)
   }
 }

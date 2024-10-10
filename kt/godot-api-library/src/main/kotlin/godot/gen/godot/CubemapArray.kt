@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -33,22 +32,22 @@ private const val ENGINE_CLASS_CUBEMAPARRAY_INDEX: Int = 201
 @GodotBaseType
 public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CUBEMAPARRAY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CUBEMAPARRAY_INDEX, scriptIndex)
   }
 
   /**
    * Creates a placeholder version of this resource ([PlaceholderCubemapArray]).
    */
   public final fun createPlaceholder(): Resource? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CubemapArray", "create_placeholder", 121922552)
+        Internals.getMethodBindPtr("CubemapArray", "create_placeholder", 121922552)
   }
 }

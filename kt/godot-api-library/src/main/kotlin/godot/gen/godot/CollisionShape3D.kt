@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -52,37 +51,37 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COLLISIONSHAPE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COLLISIONSHAPE3D_INDEX, scriptIndex)
   }
 
   /**
    * This method does nothing.
    */
   public final fun resourceChanged(resource: Resource?): Unit {
-    TransferContext.writeArguments(OBJECT to resource)
-    TransferContext.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
+    Internals.writeArguments(OBJECT to resource)
+    Internals.callMethod(rawPtr, MethodBindings.resourceChangedPtr, NIL)
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(OBJECT to shape)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape3D?)
   }
 
   public final fun setDisabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -90,29 +89,29 @@ public open class CollisionShape3D : Node3D() {
    * geometry.
    */
   public final fun makeConvexFromSiblings(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.makeConvexFromSiblingsPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val resourceChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "resource_changed", 968641751)
+        Internals.getMethodBindPtr("CollisionShape3D", "resource_changed", 968641751)
 
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_shape", 1549710052)
+        Internals.getMethodBindPtr("CollisionShape3D", "set_shape", 1549710052)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "get_shape", 3214262478)
+        Internals.getMethodBindPtr("CollisionShape3D", "get_shape", 3214262478)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "set_disabled", 2586408642)
+        Internals.getMethodBindPtr("CollisionShape3D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "is_disabled", 36873697)
+        Internals.getMethodBindPtr("CollisionShape3D", "is_disabled", 36873697)
 
     public val makeConvexFromSiblingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
+        Internals.getMethodBindPtr("CollisionShape3D", "make_convex_from_siblings", 3218959716)
   }
 }

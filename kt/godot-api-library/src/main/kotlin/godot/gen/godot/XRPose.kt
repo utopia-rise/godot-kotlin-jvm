@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,7 +18,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -118,7 +117,7 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRPOSE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRPOSE_INDEX, scriptIndex)
   }
 
   /**
@@ -195,36 +194,36 @@ public open class XRPose : RefCounted() {
 
 
   public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hasTrackingData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+    Internals.writeArguments(BOOL to hasTrackingData)
+    Internals.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
   public final fun getHasTrackingData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setName(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
   }
 
   public final fun getName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTransform(transform: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
   public final fun getTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -232,42 +231,42 @@ public open class XRPose : RefCounted() {
    * used to position [XRNode3D] objects.
    */
   public final fun getAdjustedTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdjustedTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setLinearVelocity(velocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(velocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
-    TransferContext.writeArguments(LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
+    Internals.writeArguments(LONG to trackingConfidence.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackingConfidencePtr, NIL)
   }
 
   public final fun getTrackingConfidence(): TrackingConfidence {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackingConfidencePtr, LONG)
-    return XRPose.TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackingConfidencePtr, LONG)
+    return XRPose.TrackingConfidence.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class TrackingConfidence(
@@ -302,40 +301,40 @@ public open class XRPose : RefCounted() {
 
   internal object MethodBindings {
     public val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_has_tracking_data", 2586408642)
+        Internals.getMethodBindPtr("XRPose", "set_has_tracking_data", 2586408642)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_has_tracking_data", 36873697)
+        Internals.getMethodBindPtr("XRPose", "get_has_tracking_data", 36873697)
 
-    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "set_name", 3304788590)
+    public val setNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "set_name", 3304788590)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("XRPose", "get_name", 2002593661)
+    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("XRPose", "get_name", 2002593661)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_transform", 2952846383)
+        Internals.getMethodBindPtr("XRPose", "set_transform", 2952846383)
 
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_transform", 3229777777)
+        Internals.getMethodBindPtr("XRPose", "get_transform", 3229777777)
 
     public val getAdjustedTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_adjusted_transform", 3229777777)
+        Internals.getMethodBindPtr("XRPose", "get_adjusted_transform", 3229777777)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_linear_velocity", 3460891852)
+        Internals.getMethodBindPtr("XRPose", "set_linear_velocity", 3460891852)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_linear_velocity", 3360562783)
+        Internals.getMethodBindPtr("XRPose", "get_linear_velocity", 3360562783)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_angular_velocity", 3460891852)
+        Internals.getMethodBindPtr("XRPose", "set_angular_velocity", 3460891852)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_angular_velocity", 3360562783)
+        Internals.getMethodBindPtr("XRPose", "get_angular_velocity", 3360562783)
 
     public val setTrackingConfidencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_tracking_confidence", 4171656666)
+        Internals.getMethodBindPtr("XRPose", "set_tracking_confidence", 4171656666)
 
     public val getTrackingConfidencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_tracking_confidence", 2064923680)
+        Internals.getMethodBindPtr("XRPose", "get_tracking_confidence", 2064923680)
   }
 }

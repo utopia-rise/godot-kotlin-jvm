@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -80,87 +79,87 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_JOINT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_JOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+    Internals.writeArguments(NODE_PATH to node)
+    Internals.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
   }
 
   public final fun getNodeA(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setNodeB(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+    Internals.writeArguments(NODE_PATH to node)
+    Internals.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
   }
 
   public final fun getNodeB(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
   }
 
   public final fun getBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the joint's internal [RID] from the [PhysicsServer2D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_node_a", 1348162250)
+        Internals.getMethodBindPtr("Joint2D", "set_node_a", 1348162250)
 
     public val getNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_node_a", 4075236667)
+        Internals.getMethodBindPtr("Joint2D", "get_node_a", 4075236667)
 
     public val setNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_node_b", 1348162250)
+        Internals.getMethodBindPtr("Joint2D", "set_node_b", 1348162250)
 
     public val getNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_node_b", 4075236667)
+        Internals.getMethodBindPtr("Joint2D", "get_node_b", 4075236667)
 
-    public val setBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "set_bias", 373806689)
+    public val setBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "set_bias", 373806689)
 
-    public val getBiasPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
+    public val getBiasPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
 
     public val setExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2586408642)
+        Internals.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2586408642)
 
     public val getExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36873697)
+        Internals.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36873697)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
+    public val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
   }
 }

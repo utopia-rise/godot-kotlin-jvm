@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -45,22 +44,22 @@ import kotlin.Unit
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKEDDATACONTAINERREF_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKEDDATACONTAINERREF_INDEX, scriptIndex)
   }
 
   /**
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
   public final fun size(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val sizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainerRef", "size", 3905245786)
+        Internals.getMethodBindPtr("PackedDataContainerRef", "size", 3905245786)
   }
 }

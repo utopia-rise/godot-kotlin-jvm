@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -47,7 +46,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TRANSLATION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TRANSLATION_INDEX, scriptIndex)
   }
 
   /**
@@ -70,14 +69,14 @@ public open class Translation : Resource() {
   }
 
   public final fun setLocale(locale: String): Unit {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+    Internals.writeArguments(STRING to locale)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
   }
 
   public final fun getLocale(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -91,8 +90,8 @@ public open class Translation : Resource() {
     xlatedMessage: StringName,
     context: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMessagePtr, NIL)
+    Internals.writeArguments(STRING_NAME to srcMessage, STRING_NAME to xlatedMessage, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.addMessagePtr, NIL)
   }
 
   /**
@@ -106,8 +105,8 @@ public open class Translation : Resource() {
     xlatedMessages: PackedStringArray,
     context: StringName = StringName(""),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPluralMessagePtr, NIL)
+    Internals.writeArguments(STRING_NAME to srcMessage, PACKED_STRING_ARRAY to xlatedMessages, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.addPluralMessagePtr, NIL)
   }
 
   /**
@@ -116,9 +115,9 @@ public open class Translation : Resource() {
   @JvmOverloads
   public final fun getMessage(srcMessage: StringName, context: StringName = StringName("")):
       StringName {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.getMessagePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -133,9 +132,9 @@ public open class Translation : Resource() {
     n: Int,
     context: StringName = StringName(""),
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPluralMessagePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to srcMessage, STRING_NAME to srcPluralMessage, LONG to n.toLong(), STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.getPluralMessagePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -144,69 +143,68 @@ public open class Translation : Resource() {
   @JvmOverloads
   public final fun eraseMessage(srcMessage: StringName, context: StringName = StringName("")):
       Unit {
-    TransferContext.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseMessagePtr, NIL)
+    Internals.writeArguments(STRING_NAME to srcMessage, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.eraseMessagePtr, NIL)
   }
 
   /**
    * Returns all the messages (keys).
    */
   public final fun getMessageList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMessageListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
    * Returns all the messages (translated text).
    */
   public final fun getTranslatedMessageList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTranslatedMessageListPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTranslatedMessageListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
    * Returns the number of existing messages.
    */
   public final fun getMessageCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessageCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMessageCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "set_locale", 83702148)
+        Internals.getMethodBindPtr("Translation", "set_locale", 83702148)
 
     public val getLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_locale", 201670096)
+        Internals.getMethodBindPtr("Translation", "get_locale", 201670096)
 
     public val addMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_message", 971803314)
+        Internals.getMethodBindPtr("Translation", "add_message", 971803314)
 
     public val addPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "add_plural_message", 360316719)
+        Internals.getMethodBindPtr("Translation", "add_plural_message", 360316719)
 
     public val getMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message", 58037827)
+        Internals.getMethodBindPtr("Translation", "get_message", 58037827)
 
     public val getPluralMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_plural_message", 1333931916)
+        Internals.getMethodBindPtr("Translation", "get_plural_message", 1333931916)
 
     public val eraseMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "erase_message", 3919944288)
+        Internals.getMethodBindPtr("Translation", "erase_message", 3919944288)
 
     public val getMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_list", 1139954409)
+        Internals.getMethodBindPtr("Translation", "get_message_list", 1139954409)
 
     public val getTranslatedMessageListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_translated_message_list", 1139954409)
+        Internals.getMethodBindPtr("Translation", "get_translated_message_list", 1139954409)
 
     public val getMessageCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Translation", "get_message_count", 3905245786)
+        Internals.getMethodBindPtr("Translation", "get_message_count", 3905245786)
   }
 }

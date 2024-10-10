@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -38,27 +37,27 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX, scriptIndex)
   }
 
   public final fun setConstant(constant: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to constant.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(DOUBLE to constant.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "set_constant", 373806689)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatConstant", "set_constant", 373806689)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "get_constant", 1740695150)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatConstant", "get_constant", 1740695150)
   }
 }

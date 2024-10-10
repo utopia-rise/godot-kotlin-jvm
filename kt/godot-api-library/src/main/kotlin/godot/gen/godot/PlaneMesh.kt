@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -94,7 +93,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PLANEMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PLANEMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -146,58 +145,58 @@ public open class PlaneMesh : PrimitiveMesh() {
 
 
   public final fun setSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSubdivideWidth(subdivide: Int): Unit {
-    TransferContext.writeArguments(LONG to subdivide.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+    Internals.writeArguments(LONG to subdivide.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
 
   public final fun getSubdivideWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(subdivide: Int): Unit {
-    TransferContext.writeArguments(LONG to subdivide.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+    Internals.writeArguments(LONG to subdivide.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
 
   public final fun getSubdivideDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCenterOffset(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setCenterOffsetPtr, NIL)
   }
 
   public final fun getCenterOffset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCenterOffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setOrientation(orientation: Orientation): Unit {
-    TransferContext.writeArguments(LONG to orientation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
+    Internals.writeArguments(LONG to orientation.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOrientationPtr, NIL)
   }
 
   public final fun getOrientation(): Orientation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
-    return PlaneMesh.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOrientationPtr, LONG)
+    return PlaneMesh.Orientation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Orientation(
@@ -232,34 +231,32 @@ public open class PlaneMesh : PrimitiveMesh() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
+    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("PlaneMesh", "set_size", 743155724)
 
-    public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("PlaneMesh", "get_size", 3341600327)
 
     public val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1286410249)
+        Internals.getMethodBindPtr("PlaneMesh", "set_subdivide_width", 1286410249)
 
     public val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3905245786)
+        Internals.getMethodBindPtr("PlaneMesh", "get_subdivide_width", 3905245786)
 
     public val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1286410249)
+        Internals.getMethodBindPtr("PlaneMesh", "set_subdivide_depth", 1286410249)
 
     public val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3905245786)
+        Internals.getMethodBindPtr("PlaneMesh", "get_subdivide_depth", 3905245786)
 
     public val setCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_center_offset", 3460891852)
+        Internals.getMethodBindPtr("PlaneMesh", "set_center_offset", 3460891852)
 
     public val getCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_center_offset", 3360562783)
+        Internals.getMethodBindPtr("PlaneMesh", "get_center_offset", 3360562783)
 
     public val setOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "set_orientation", 2751399687)
+        Internals.getMethodBindPtr("PlaneMesh", "set_orientation", 2751399687)
 
     public val getOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaneMesh", "get_orientation", 3227599250)
+        Internals.getMethodBindPtr("PlaneMesh", "get_orientation", 3227599250)
   }
 }

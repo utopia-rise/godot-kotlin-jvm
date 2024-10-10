@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -149,7 +148,7 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDSHADERSPIRV_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDSHADERSPIRV_INDEX, scriptIndex)
   }
 
   /**
@@ -159,8 +158,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
       Unit {
-    TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
+    Internals.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
+    Internals.callMethod(rawPtr, MethodBindings.setStageBytecodePtr, NIL)
   }
 
   /**
@@ -168,9 +167,9 @@ public open class RDShaderSPIRV : Resource() {
    * [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
    */
   public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to stage.id)
+    Internals.callMethod(rawPtr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -180,8 +179,8 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
       Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
+    Internals.writeArguments(LONG to stage.id, STRING to compileError)
+    Internals.callMethod(rawPtr, MethodBindings.setStageCompileErrorPtr, NIL)
   }
 
   /**
@@ -190,24 +189,24 @@ public open class RDShaderSPIRV : Resource() {
    * [compileErrorTesselationEvaluation], [compileErrorVertex].
    */
   public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to stage.id)
+    Internals.callMethod(rawPtr, MethodBindings.getStageCompileErrorPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setStageBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_bytecode", 3514097977)
+        Internals.getMethodBindPtr("RDShaderSPIRV", "set_stage_bytecode", 3514097977)
 
     public val getStageBytecodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_bytecode", 3816765404)
+        Internals.getMethodBindPtr("RDShaderSPIRV", "get_stage_bytecode", 3816765404)
 
     public val setStageCompileErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "set_stage_compile_error", 620821314)
+        Internals.getMethodBindPtr("RDShaderSPIRV", "set_stage_compile_error", 620821314)
 
     public val getStageCompileErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSPIRV", "get_stage_compile_error", 3354920045)
+        Internals.getMethodBindPtr("RDShaderSPIRV", "get_stage_compile_error", 3354920045)
   }
 }

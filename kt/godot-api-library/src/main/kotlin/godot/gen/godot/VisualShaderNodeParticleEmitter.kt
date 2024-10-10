@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -37,27 +36,27 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMITTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMITTER_INDEX, scriptIndex)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setMode2dPtr, NIL)
   }
 
   public final fun isMode2d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMode2dPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMode2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d", 2586408642)
 
     public val isMode2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d", 36873697)
   }
 }

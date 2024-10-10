@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -41,7 +40,7 @@ public object ThemeDB : Object() {
   public val fallbackChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_THEMEDB_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_THEMEDB_INDEX)
   }
 
   /**
@@ -50,9 +49,9 @@ public object ThemeDB : Object() {
    */
   @JvmStatic
   public final fun getDefaultTheme(): Theme? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Theme?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultThemePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Theme?)
   }
 
   /**
@@ -62,111 +61,111 @@ public object ThemeDB : Object() {
    */
   @JvmStatic
   public final fun getProjectTheme(): Theme? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Theme?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProjectThemePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Theme?)
   }
 
   @JvmStatic
   public final fun setFallbackBaseScale(baseScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackBaseScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to baseScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackBaseScalePtr, NIL)
   }
 
   @JvmStatic
   public final fun getFallbackBaseScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackBaseScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   @JvmStatic
   public final fun setFallbackFont(font: Font?): Unit {
-    TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
+    Internals.writeArguments(OBJECT to font)
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackFontPtr, NIL)
   }
 
   @JvmStatic
   public final fun getFallbackFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Font?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackFontPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Font?)
   }
 
   @JvmStatic
   public final fun setFallbackFontSize(fontSize: Int): Unit {
-    TransferContext.writeArguments(LONG to fontSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackFontSizePtr, NIL)
+    Internals.writeArguments(LONG to fontSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackFontSizePtr, NIL)
   }
 
   @JvmStatic
   public final fun getFallbackFontSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackFontSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   @JvmStatic
   public final fun setFallbackIcon(icon: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
+    Internals.writeArguments(OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackIconPtr, NIL)
   }
 
   @JvmStatic
   public final fun getFallbackIcon(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   @JvmStatic
   public final fun setFallbackStylebox(stylebox: StyleBox?): Unit {
-    TransferContext.writeArguments(OBJECT to stylebox)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
+    Internals.writeArguments(OBJECT to stylebox)
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }
 
   @JvmStatic
   public final fun getFallbackStylebox(): StyleBox? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackStyleboxPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as StyleBox?)
   }
 
   internal object MethodBindings {
     public val getDefaultThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_default_theme", 754276358)
+        Internals.getMethodBindPtr("ThemeDB", "get_default_theme", 754276358)
 
     public val getProjectThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_project_theme", 754276358)
+        Internals.getMethodBindPtr("ThemeDB", "get_project_theme", 754276358)
 
     public val setFallbackBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_base_scale", 373806689)
+        Internals.getMethodBindPtr("ThemeDB", "set_fallback_base_scale", 373806689)
 
     public val getFallbackBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_base_scale", 191475506)
+        Internals.getMethodBindPtr("ThemeDB", "get_fallback_base_scale", 191475506)
 
     public val setFallbackFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font", 1262170328)
+        Internals.getMethodBindPtr("ThemeDB", "set_fallback_font", 1262170328)
 
     public val getFallbackFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font", 3656929885)
+        Internals.getMethodBindPtr("ThemeDB", "get_fallback_font", 3656929885)
 
     public val setFallbackFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font_size", 1286410249)
+        Internals.getMethodBindPtr("ThemeDB", "set_fallback_font_size", 1286410249)
 
     public val getFallbackFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font_size", 2455072627)
+        Internals.getMethodBindPtr("ThemeDB", "get_fallback_font_size", 2455072627)
 
     public val setFallbackIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_icon", 4051416890)
+        Internals.getMethodBindPtr("ThemeDB", "set_fallback_icon", 4051416890)
 
     public val getFallbackIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_icon", 255860311)
+        Internals.getMethodBindPtr("ThemeDB", "get_fallback_icon", 255860311)
 
     public val setFallbackStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_stylebox", 2797200388)
+        Internals.getMethodBindPtr("ThemeDB", "set_fallback_stylebox", 2797200388)
 
     public val getFallbackStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_stylebox", 496040854)
+        Internals.getMethodBindPtr("ThemeDB", "get_fallback_stylebox", 496040854)
   }
 }

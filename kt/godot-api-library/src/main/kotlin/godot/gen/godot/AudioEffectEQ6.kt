@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -26,7 +27,7 @@ private const val ENGINE_CLASS_AUDIOEFFECTEQ6_INDEX: Int = 91
 @GodotBaseType
 public open class AudioEffectEQ6 : AudioEffectEQ() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTEQ6_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTEQ6_INDEX, scriptIndex)
   }
 
   public companion object

@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -33,7 +32,7 @@ private const val ENGINE_CLASS_STREAMPEERTLS_INDEX: Int = 557
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STREAMPEERTLS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STREAMPEERTLS_INDEX, scriptIndex)
   }
 
   /**
@@ -41,17 +40,17 @@ public open class StreamPeerTLS : StreamPeer() {
    * [StreamPeer.getAvailableBytes] for it to work properly.
    */
   public final fun poll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
 
   /**
    * Accepts a peer connection as a server using the given [serverOptions]. See [TLSOptions.server].
    */
   public final fun acceptStream(stream: StreamPeer?, serverOptions: TLSOptions?): Error {
-    TransferContext.writeArguments(OBJECT to stream, OBJECT to serverOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to stream, OBJECT to serverOptions)
+    Internals.callMethod(rawPtr, MethodBindings.acceptStreamPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -66,35 +65,35 @@ public open class StreamPeerTLS : StreamPeer() {
     commonName: String,
     clientOptions: TLSOptions? = null,
   ): Error {
-    TransferContext.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectToStreamPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to stream, STRING to commonName, OBJECT to clientOptions)
+    Internals.callMethod(rawPtr, MethodBindings.connectToStreamPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the status of the connection. See [Status] for values.
    */
   public final fun getStatus(): Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
-    return StreamPeerTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
+    return StreamPeerTLS.Status.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the underlying [StreamPeer] connection, used in [acceptStream] or [connectToStream].
    */
   public final fun getStream(): StreamPeer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as StreamPeer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as StreamPeer?)
   }
 
   /**
    * Disconnects from host.
    */
   public final fun disconnectFromStream(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromStreamPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.disconnectFromStreamPtr, NIL)
   }
 
   public enum class Status(
@@ -136,21 +135,21 @@ public open class StreamPeerTLS : StreamPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTLS", "poll", 3218959716)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerTLS", "poll", 3218959716)
 
     public val acceptStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "accept_stream", 4292689651)
+        Internals.getMethodBindPtr("StreamPeerTLS", "accept_stream", 4292689651)
 
     public val connectToStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "connect_to_stream", 57169517)
+        Internals.getMethodBindPtr("StreamPeerTLS", "connect_to_stream", 57169517)
 
     public val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_status", 1128380576)
+        Internals.getMethodBindPtr("StreamPeerTLS", "get_status", 1128380576)
 
     public val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_stream", 2741655269)
+        Internals.getMethodBindPtr("StreamPeerTLS", "get_stream", 2741655269)
 
     public val disconnectFromStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream", 3218959716)
+        Internals.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream", 3218959716)
   }
 }

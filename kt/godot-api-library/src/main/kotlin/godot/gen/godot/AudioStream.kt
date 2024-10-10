@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -39,7 +38,7 @@ public open class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAM_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAM_INDEX, scriptIndex)
   }
 
   /**
@@ -107,9 +106,9 @@ public open class AudioStream : Resource() {
    * Returns the length of the audio stream in seconds.
    */
   public final fun getLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -117,9 +116,9 @@ public open class AudioStream : Resource() {
    * audio stream supports two or more channels (*polyphony*).
    */
   public final fun isMonophonic(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMonophonicPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -129,9 +128,9 @@ public open class AudioStream : Resource() {
    * `AudioStreamRandomPitch::instantiate_playback`.
    */
   public final fun instantiatePlayback(): AudioStreamPlayback? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.instantiatePlaybackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
   /**
@@ -139,48 +138,48 @@ public open class AudioStream : Resource() {
    * sampled.
    */
   public final fun canBeSampled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.canBeSampledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Generates an [AudioSample] based on the current stream.
    */
   public final fun generateSample(): AudioSample? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioSample?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.generateSamplePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioSample?)
   }
 
   /**
    * Returns `true` if the stream is a collection of other streams, `false` otherwise.
    */
   public final fun isMetaStream(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMetaStreamPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "get_length", 1740695150)
+        Internals.getMethodBindPtr("AudioStream", "get_length", 1740695150)
 
     public val isMonophonicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "is_monophonic", 36873697)
+        Internals.getMethodBindPtr("AudioStream", "is_monophonic", 36873697)
 
     public val instantiatePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "instantiate_playback", 210135309)
+        Internals.getMethodBindPtr("AudioStream", "instantiate_playback", 210135309)
 
     public val canBeSampledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "can_be_sampled", 36873697)
+        Internals.getMethodBindPtr("AudioStream", "can_be_sampled", 36873697)
 
     public val generateSamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "generate_sample", 2646048999)
+        Internals.getMethodBindPtr("AudioStream", "generate_sample", 2646048999)
 
     public val isMetaStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStream", "is_meta_stream", 36873697)
+        Internals.getMethodBindPtr("AudioStream", "is_meta_stream", 36873697)
   }
 }

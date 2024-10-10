@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -58,56 +57,56 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SHAPE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCustomSolverBiasPtr, NIL)
   }
 
   public final fun getCustomSolverBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomSolverBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the [ArrayMesh] used to draw the debug collision for this [Shape3D].
    */
   public final fun getDebugMesh(): ArrayMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "set_custom_solver_bias", 373806689)
+        Internals.getMethodBindPtr("Shape3D", "set_custom_solver_bias", 373806689)
 
     public val getCustomSolverBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "get_custom_solver_bias", 1740695150)
+        Internals.getMethodBindPtr("Shape3D", "get_custom_solver_bias", 1740695150)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "set_margin", 373806689)
+        Internals.getMethodBindPtr("Shape3D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "get_margin", 1740695150)
+        Internals.getMethodBindPtr("Shape3D", "get_margin", 1740695150)
 
     public val getDebugMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shape3D", "get_debug_mesh", 1605880883)
+        Internals.getMethodBindPtr("Shape3D", "get_debug_mesh", 1605880883)
   }
 }

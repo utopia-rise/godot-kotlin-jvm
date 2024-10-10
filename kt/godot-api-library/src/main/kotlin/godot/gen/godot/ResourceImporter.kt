@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -19,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RESOURCEIMPORTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RESOURCEIMPORTER_INDEX, scriptIndex)
   }
 
   public enum class ImportOrder(

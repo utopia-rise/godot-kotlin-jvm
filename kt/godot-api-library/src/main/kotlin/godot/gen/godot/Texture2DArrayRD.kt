@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,7 @@ private const val ENGINE_CLASS_TEXTURE2DARRAYRD_INDEX: Int = 581
 @GodotBaseType
 public open class Texture2DArrayRD : TextureLayeredRD() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTURE2DARRAYRD_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTURE2DARRAYRD_INDEX, scriptIndex)
   }
 
   public companion object

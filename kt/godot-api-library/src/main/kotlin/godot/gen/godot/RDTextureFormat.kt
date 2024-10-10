@@ -8,10 +8,9 @@ package godot
 
 import godot.RenderingDevice.TextureUsageBitsValue
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -126,179 +125,179 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDTEXTUREFORMAT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDTEXTUREFORMAT_INDEX, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return RenderingDevice.DataFormat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setWidth(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setHeight(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun getDepth(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setArrayLayers(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setArrayLayersPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setArrayLayersPtr, NIL)
   }
 
   public final fun getArrayLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getArrayLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getArrayLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMipmaps(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMipmapsPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setMipmapsPtr, NIL)
   }
 
   public final fun getMipmaps(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMipmapsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureType(pMember: RenderingDevice.TextureType): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): RenderingDevice.TextureType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-    return RenderingDevice.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return RenderingDevice.TextureType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
-    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
+    return RenderingDevice.TextureSamples.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUsageBits(pMember: RenderingDevice.TextureUsageBits): Unit {
-    TransferContext.writeArguments(LONG to pMember.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsageBitsPtr, NIL)
+    Internals.writeArguments(LONG to pMember.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setUsageBitsPtr, NIL)
   }
 
   public final fun getUsageBits(): RenderingDevice.TextureUsageBits {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUsageBitsPtr, LONG)
-    return TextureUsageBitsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUsageBitsPtr, LONG)
+    return TextureUsageBitsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.addShareableFormatPtr, NIL)
+    Internals.writeArguments(LONG to format.id)
+    Internals.callMethod(rawPtr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
   public final fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeShareableFormatPtr, NIL)
+    Internals.writeArguments(LONG to format.id)
+    Internals.callMethod(rawPtr, MethodBindings.removeShareableFormatPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_format", 565531219)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_format", 565531219)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_format", 2235804183)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_format", 2235804183)
 
     public val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_width", 1286410249)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_width", 1286410249)
 
     public val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_width", 3905245786)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_width", 3905245786)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_height", 1286410249)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_height", 1286410249)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_height", 3905245786)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_height", 3905245786)
 
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_depth", 1286410249)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_depth", 1286410249)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_depth", 3905245786)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_depth", 3905245786)
 
     public val setArrayLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_array_layers", 1286410249)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_array_layers", 1286410249)
 
     public val getArrayLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_array_layers", 3905245786)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_array_layers", 3905245786)
 
     public val setMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_mipmaps", 1286410249)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_mipmaps", 1286410249)
 
     public val getMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_mipmaps", 3905245786)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_mipmaps", 3905245786)
 
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_texture_type", 652343381)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_texture_type", 652343381)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_texture_type", 4036357416)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_texture_type", 4036357416)
 
     public val setSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_samples", 3774171498)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_samples", 3774171498)
 
     public val getSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_samples", 407791724)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_samples", 407791724)
 
     public val setUsageBitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "set_usage_bits", 245642367)
+        Internals.getMethodBindPtr("RDTextureFormat", "set_usage_bits", 245642367)
 
     public val getUsageBitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "get_usage_bits", 1313398998)
+        Internals.getMethodBindPtr("RDTextureFormat", "get_usage_bits", 1313398998)
 
     public val addShareableFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "add_shareable_format", 565531219)
+        Internals.getMethodBindPtr("RDTextureFormat", "add_shareable_format", 565531219)
 
     public val removeShareableFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureFormat", "remove_shareable_format", 565531219)
+        Internals.getMethodBindPtr("RDTextureFormat", "remove_shareable_format", 565531219)
   }
 }

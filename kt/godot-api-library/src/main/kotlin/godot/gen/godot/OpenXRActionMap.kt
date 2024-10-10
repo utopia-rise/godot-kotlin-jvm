@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -61,171 +60,171 @@ public open class OpenXRActionMap : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRACTIONMAP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRACTIONMAP_INDEX, scriptIndex)
   }
 
   public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to actionSets)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionSetsPtr, NIL)
+    Internals.writeArguments(ARRAY to actionSets)
+    Internals.callMethod(rawPtr, MethodBindings.setActionSetsPtr, NIL)
   }
 
   public final fun getActionSets(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Retrieve the number of actions sets in our action map.
    */
   public final fun getActionSetCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionSetCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Retrieve an action set by name.
    */
   public final fun findActionSet(name: String): OpenXRActionSet? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findActionSetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRActionSet?)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.findActionSetPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRActionSet?)
   }
 
   /**
    * Retrieve the action set at this index.
    */
   public final fun getActionSet(idx: Int): OpenXRActionSet? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRActionSet?)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getActionSetPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRActionSet?)
   }
 
   /**
    * Add an action set.
    */
   public final fun addActionSet(actionSet: OpenXRActionSet?): Unit {
-    TransferContext.writeArguments(OBJECT to actionSet)
-    TransferContext.callMethod(rawPtr, MethodBindings.addActionSetPtr, NIL)
+    Internals.writeArguments(OBJECT to actionSet)
+    Internals.callMethod(rawPtr, MethodBindings.addActionSetPtr, NIL)
   }
 
   /**
    * Remove an action set.
    */
   public final fun removeActionSet(actionSet: OpenXRActionSet?): Unit {
-    TransferContext.writeArguments(OBJECT to actionSet)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeActionSetPtr, NIL)
+    Internals.writeArguments(OBJECT to actionSet)
+    Internals.callMethod(rawPtr, MethodBindings.removeActionSetPtr, NIL)
   }
 
   public final fun setInteractionProfiles(interactionProfiles: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to interactionProfiles)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
+    Internals.writeArguments(ARRAY to interactionProfiles)
+    Internals.callMethod(rawPtr, MethodBindings.setInteractionProfilesPtr, NIL)
   }
 
   public final fun getInteractionProfiles(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInteractionProfilesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Retrieve the number of interaction profiles in our action map.
    */
   public final fun getInteractionProfileCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfileCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInteractionProfileCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Find an interaction profile by its name (path).
    */
   public final fun findInteractionProfile(name: String): OpenXRInteractionProfile? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findInteractionProfilePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRInteractionProfile?)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.findInteractionProfilePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRInteractionProfile?)
   }
 
   /**
    * Get the interaction profile at this index.
    */
   public final fun getInteractionProfile(idx: Int): OpenXRInteractionProfile? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRInteractionProfile?)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInteractionProfilePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRInteractionProfile?)
   }
 
   /**
    * Add an interaction profile.
    */
   public final fun addInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
-    TransferContext.writeArguments(OBJECT to interactionProfile)
-    TransferContext.callMethod(rawPtr, MethodBindings.addInteractionProfilePtr, NIL)
+    Internals.writeArguments(OBJECT to interactionProfile)
+    Internals.callMethod(rawPtr, MethodBindings.addInteractionProfilePtr, NIL)
   }
 
   /**
    * Remove an interaction profile.
    */
   public final fun removeInteractionProfile(interactionProfile: OpenXRInteractionProfile?): Unit {
-    TransferContext.writeArguments(OBJECT to interactionProfile)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeInteractionProfilePtr, NIL)
+    Internals.writeArguments(OBJECT to interactionProfile)
+    Internals.callMethod(rawPtr, MethodBindings.removeInteractionProfilePtr, NIL)
   }
 
   /**
    * Setup this action set with our default actions.
    */
   public final fun createDefaultActionSets(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createDefaultActionSetsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createDefaultActionSetsPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setActionSetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "set_action_sets", 381264803)
+        Internals.getMethodBindPtr("OpenXRActionMap", "set_action_sets", 381264803)
 
     public val getActionSetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_action_sets", 3995934104)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_action_sets", 3995934104)
 
     public val getActionSetCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_action_set_count", 3905245786)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_action_set_count", 3905245786)
 
     public val findActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "find_action_set", 1888809267)
+        Internals.getMethodBindPtr("OpenXRActionMap", "find_action_set", 1888809267)
 
     public val getActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_action_set", 1789580336)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_action_set", 1789580336)
 
     public val addActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "add_action_set", 2093310581)
+        Internals.getMethodBindPtr("OpenXRActionMap", "add_action_set", 2093310581)
 
     public val removeActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "remove_action_set", 2093310581)
+        Internals.getMethodBindPtr("OpenXRActionMap", "remove_action_set", 2093310581)
 
     public val setInteractionProfilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "set_interaction_profiles", 381264803)
+        Internals.getMethodBindPtr("OpenXRActionMap", "set_interaction_profiles", 381264803)
 
     public val getInteractionProfilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_interaction_profiles", 3995934104)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profiles", 3995934104)
 
     public val getInteractionProfileCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile_count", 3905245786)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile_count", 3905245786)
 
     public val findInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "find_interaction_profile", 3095875538)
+        Internals.getMethodBindPtr("OpenXRActionMap", "find_interaction_profile", 3095875538)
 
     public val getInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile", 2546151210)
+        Internals.getMethodBindPtr("OpenXRActionMap", "get_interaction_profile", 2546151210)
 
     public val addInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "add_interaction_profile", 2697953512)
+        Internals.getMethodBindPtr("OpenXRActionMap", "add_interaction_profile", 2697953512)
 
     public val removeInteractionProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "remove_interaction_profile", 2697953512)
+        Internals.getMethodBindPtr("OpenXRActionMap", "remove_interaction_profile", 2697953512)
 
     public val createDefaultActionSetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionMap", "create_default_action_sets", 3218959716)
+        Internals.getMethodBindPtr("OpenXRActionMap", "create_default_action_sets", 3218959716)
   }
 }

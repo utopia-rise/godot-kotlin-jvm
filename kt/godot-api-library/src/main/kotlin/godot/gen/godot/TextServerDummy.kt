@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -34,7 +35,7 @@ private const val ENGINE_CLASS_TEXTSERVERDUMMY_INDEX: Int = 576
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTSERVERDUMMY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTSERVERDUMMY_INDEX, scriptIndex)
   }
 
   public companion object

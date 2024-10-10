@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -40,27 +39,27 @@ public open class SphereOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereOccluder3D", "set_radius", 373806689)
+        Internals.getMethodBindPtr("SphereOccluder3D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereOccluder3D", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("SphereOccluder3D", "get_radius", 1740695150)
   }
 }

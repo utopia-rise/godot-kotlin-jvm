@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -39,18 +38,18 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {
-    TransferContext.writeArguments(LONG to opType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+    Internals.writeArguments(LONG to opType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-    return VisualShaderNodeSmoothStep.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeSmoothStep.OpType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(
@@ -104,9 +103,9 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSmoothStep", "set_op_type", 2427426148)
+        Internals.getMethodBindPtr("VisualShaderNodeSmoothStep", "set_op_type", 2427426148)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSmoothStep", "get_op_type", 359640855)
+        Internals.getMethodBindPtr("VisualShaderNodeSmoothStep", "get_op_type", 359640855)
   }
 }

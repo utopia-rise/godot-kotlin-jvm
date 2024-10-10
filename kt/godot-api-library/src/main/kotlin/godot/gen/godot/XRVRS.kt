@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -58,29 +57,29 @@ public open class XRVRS : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRVRS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRVRS_INDEX, scriptIndex)
   }
 
   public final fun getVrsMinRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
 
   public final fun getVrsStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
   }
 
   /**
@@ -90,27 +89,27 @@ public open class XRVRS : Object() {
    * return the cached RID.
    */
   public final fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
-    TransferContext.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
-    TransferContext.callMethod(rawPtr, MethodBindings.makeVrsTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
+    Internals.callMethod(rawPtr, MethodBindings.makeVrsTexturePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_min_radius", 1740695150)
+        Internals.getMethodBindPtr("XRVRS", "get_vrs_min_radius", 1740695150)
 
     public val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_min_radius", 373806689)
+        Internals.getMethodBindPtr("XRVRS", "set_vrs_min_radius", 373806689)
 
     public val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_strength", 1740695150)
+        Internals.getMethodBindPtr("XRVRS", "get_vrs_strength", 1740695150)
 
     public val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength", 373806689)
+        Internals.getMethodBindPtr("XRVRS", "set_vrs_strength", 373806689)
 
     public val makeVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture", 3647044786)
+        Internals.getMethodBindPtr("XRVRS", "make_vrs_texture", 3647044786)
   }
 }

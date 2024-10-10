@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -154,163 +153,163 @@ public open class CameraAttributesPractical : CameraAttributes() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAMERAATTRIBUTESPRACTICAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERAATTRIBUTESPRACTICAL_INDEX, scriptIndex)
   }
 
   public final fun setDofBlurFarEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurFarEnabledPtr, NIL)
   }
 
   public final fun isDofBlurFarEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDofBlurFarEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDofBlurFarDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurFarDistancePtr, NIL)
   }
 
   public final fun getDofBlurFarDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDofBlurFarDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurFarTransition(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurFarTransitionPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurFarTransitionPtr, NIL)
   }
 
   public final fun getDofBlurFarTransition(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDofBlurFarTransitionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurNearEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurNearEnabledPtr, NIL)
   }
 
   public final fun isDofBlurNearEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDofBlurNearEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDofBlurNearDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurNearDistancePtr, NIL)
   }
 
   public final fun getDofBlurNearDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDofBlurNearDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurNearTransition(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurNearTransitionPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurNearTransitionPtr, NIL)
   }
 
   public final fun getDofBlurNearTransition(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDofBlurNearTransitionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDofBlurAmount(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDofBlurAmountPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDofBlurAmountPtr, NIL)
   }
 
   public final fun getDofBlurAmount(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDofBlurAmountPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMaxSensitivity(maxSensitivity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxSensitivity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMaxSensitivityPtr, NIL)
+    Internals.writeArguments(DOUBLE to maxSensitivity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureMaxSensitivityPtr, NIL)
   }
 
   public final fun getAutoExposureMaxSensitivity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureMaxSensitivityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureMinSensitivity(minSensitivity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to minSensitivity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureMinSensitivityPtr, NIL)
+    Internals.writeArguments(DOUBLE to minSensitivity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureMinSensitivityPtr, NIL)
   }
 
   public final fun getAutoExposureMinSensitivity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureMinSensitivityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDofBlurFarEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_enabled", 2586408642)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_enabled", 2586408642)
 
     public val isDofBlurFarEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_far_enabled", 36873697)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_far_enabled", 36873697)
 
     public val setDofBlurFarDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_distance", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_distance", 373806689)
 
     public val getDofBlurFarDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_distance", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_distance", 1740695150)
 
     public val setDofBlurFarTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_transition", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_far_transition", 373806689)
 
     public val getDofBlurFarTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_transition", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_far_transition", 1740695150)
 
     public val setDofBlurNearEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_enabled", 2586408642)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_enabled", 2586408642)
 
     public val isDofBlurNearEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_near_enabled", 36873697)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "is_dof_blur_near_enabled", 36873697)
 
     public val setDofBlurNearDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_distance", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_distance", 373806689)
 
     public val getDofBlurNearDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_distance", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_distance", 1740695150)
 
     public val setDofBlurNearTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_transition", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_near_transition", 373806689)
 
     public val getDofBlurNearTransitionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_transition", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_near_transition", 1740695150)
 
     public val setDofBlurAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_amount", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_dof_blur_amount", 373806689)
 
     public val getDofBlurAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_amount", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_dof_blur_amount", 1740695150)
 
     public val setAutoExposureMaxSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_max_sensitivity", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_max_sensitivity", 373806689)
 
     public val getAutoExposureMaxSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_max_sensitivity", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_max_sensitivity", 1740695150)
 
     public val setAutoExposureMinSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_min_sensitivity", 373806689)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "set_auto_exposure_min_sensitivity", 373806689)
 
     public val getAutoExposureMinSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_min_sensitivity", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributesPractical", "get_auto_exposure_min_sensitivity", 1740695150)
   }
 }

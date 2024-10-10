@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -53,27 +52,27 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SHADER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SHADER_INDEX, scriptIndex)
   }
 
   /**
    * Returns the shader mode for the shader.
    */
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-    return Shader.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return Shader.Mode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCode(code: String): Unit {
-    TransferContext.writeArguments(STRING to code)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
+    Internals.writeArguments(STRING to code)
+    Internals.callMethod(rawPtr, MethodBindings.setCodePtr, NIL)
   }
 
   public final fun getCode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCodePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -88,8 +87,8 @@ public open class Shader : Resource() {
     texture: Texture2D?,
     index: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultTextureParameterPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, OBJECT to texture, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultTextureParameterPtr, NIL)
   }
 
   /**
@@ -99,9 +98,9 @@ public open class Shader : Resource() {
    */
   @JvmOverloads
   public final fun getDefaultTextureParameter(name: StringName, index: Int = 0): Texture2D? {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(STRING_NAME to name, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultTextureParameterPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -113,9 +112,9 @@ public open class Shader : Resource() {
    */
   @JvmOverloads
   public final fun getShaderUniformList(getGroups: Boolean = false): VariantArray<Any?> {
-    TransferContext.writeArguments(BOOL to getGroups)
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderUniformListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(BOOL to getGroups)
+    Internals.callMethod(rawPtr, MethodBindings.getShaderUniformListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class Mode(
@@ -156,19 +155,19 @@ public open class Shader : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val getModePtr: VoidPtr = TypeManager.getMethodBindPtr("Shader", "get_mode", 3392948163)
+    public val getModePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_mode", 3392948163)
 
-    public val setCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Shader", "set_code", 83702148)
+    public val setCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "set_code", 83702148)
 
-    public val getCodePtr: VoidPtr = TypeManager.getMethodBindPtr("Shader", "get_code", 201670096)
+    public val getCodePtr: VoidPtr = Internals.getMethodBindPtr("Shader", "get_code", 201670096)
 
     public val setDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shader", "set_default_texture_parameter", 2750740428)
+        Internals.getMethodBindPtr("Shader", "set_default_texture_parameter", 2750740428)
 
     public val getDefaultTextureParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shader", "get_default_texture_parameter", 3090538643)
+        Internals.getMethodBindPtr("Shader", "get_default_texture_parameter", 3090538643)
 
     public val getShaderUniformListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shader", "get_shader_uniform_list", 1230511656)
+        Internals.getMethodBindPtr("Shader", "get_shader_uniform_list", 1230511656)
   }
 }

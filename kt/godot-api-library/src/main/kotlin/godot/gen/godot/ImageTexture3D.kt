@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -33,7 +32,7 @@ private const val ENGINE_CLASS_IMAGETEXTURE3D_INDEX: Int = 287
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGETEXTURE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGETEXTURE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -48,9 +47,9 @@ public open class ImageTexture3D : Texture3D() {
     useMipmaps: Boolean,
     `data`: VariantArray<Image>,
   ): Error {
-    TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.createPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.createPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -59,17 +58,17 @@ public open class ImageTexture3D : Texture3D() {
    * resized or have its format changed by calling [update].
    */
   public final fun update(`data`: VariantArray<Image>): Unit {
-    TransferContext.writeArguments(ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
+    Internals.writeArguments(ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture3D", "create", 1130379827)
+        Internals.getMethodBindPtr("ImageTexture3D", "create", 1130379827)
 
     public val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture3D", "update", 381264803)
+        Internals.getMethodBindPtr("ImageTexture3D", "update", 381264803)
   }
 }

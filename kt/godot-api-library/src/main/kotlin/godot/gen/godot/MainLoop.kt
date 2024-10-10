@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal2
+import godot.util.Internals
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -87,7 +88,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MAINLOOP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MAINLOOP_INDEX, scriptIndex)
   }
 
   /**

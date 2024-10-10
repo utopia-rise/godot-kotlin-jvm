@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -176,150 +175,150 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX, scriptIndex)
   }
 
   public final fun setMaxConcavity(maxConcavity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxConcavity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxConcavityPtr, NIL)
+    Internals.writeArguments(DOUBLE to maxConcavity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxConcavityPtr, NIL)
   }
 
   public final fun getMaxConcavity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxConcavityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxConcavityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSymmetryPlanesClippingBias(symmetryPlanesClippingBias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to symmetryPlanesClippingBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSymmetryPlanesClippingBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to symmetryPlanesClippingBias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSymmetryPlanesClippingBiasPtr, NIL)
   }
 
   public final fun getSymmetryPlanesClippingBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSymmetryPlanesClippingBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSymmetryPlanesClippingBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRevolutionAxesClippingBias(revolutionAxesClippingBias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to revolutionAxesClippingBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRevolutionAxesClippingBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to revolutionAxesClippingBias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRevolutionAxesClippingBiasPtr, NIL)
   }
 
   public final fun getRevolutionAxesClippingBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRevolutionAxesClippingBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRevolutionAxesClippingBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMinVolumePerConvexHull(minVolumePerConvexHull: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to minVolumePerConvexHull.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinVolumePerConvexHullPtr, NIL)
+    Internals.writeArguments(DOUBLE to minVolumePerConvexHull.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinVolumePerConvexHullPtr, NIL)
   }
 
   public final fun getMinVolumePerConvexHull(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinVolumePerConvexHullPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinVolumePerConvexHullPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setResolution(minVolumePerConvexHull: Long): Unit {
-    TransferContext.writeArguments(LONG to minVolumePerConvexHull)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+    Internals.writeArguments(LONG to minVolumePerConvexHull)
+    Internals.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
   }
 
   public final fun getResolution(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaxNumVerticesPerConvexHull(maxNumVerticesPerConvexHull: Long): Unit {
-    TransferContext.writeArguments(LONG to maxNumVerticesPerConvexHull)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxNumVerticesPerConvexHullPtr, NIL)
+    Internals.writeArguments(LONG to maxNumVerticesPerConvexHull)
+    Internals.callMethod(rawPtr, MethodBindings.setMaxNumVerticesPerConvexHullPtr, NIL)
   }
 
   public final fun getMaxNumVerticesPerConvexHull(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxNumVerticesPerConvexHullPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxNumVerticesPerConvexHullPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlaneDownsampling(planeDownsampling: Long): Unit {
-    TransferContext.writeArguments(LONG to planeDownsampling)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlaneDownsamplingPtr, NIL)
+    Internals.writeArguments(LONG to planeDownsampling)
+    Internals.callMethod(rawPtr, MethodBindings.setPlaneDownsamplingPtr, NIL)
   }
 
   public final fun getPlaneDownsampling(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaneDownsamplingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlaneDownsamplingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setConvexHullDownsampling(convexHullDownsampling: Long): Unit {
-    TransferContext.writeArguments(LONG to convexHullDownsampling)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConvexHullDownsamplingPtr, NIL)
+    Internals.writeArguments(LONG to convexHullDownsampling)
+    Internals.callMethod(rawPtr, MethodBindings.setConvexHullDownsamplingPtr, NIL)
   }
 
   public final fun getConvexHullDownsampling(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConvexHullDownsamplingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConvexHullDownsamplingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setNormalizeMesh(normalizeMesh: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalizeMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalizeMeshPtr, NIL)
+    Internals.writeArguments(BOOL to normalizeMesh)
+    Internals.callMethod(rawPtr, MethodBindings.setNormalizeMeshPtr, NIL)
   }
 
   public final fun getNormalizeMesh(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalizeMeshPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalizeMeshPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-    return MeshConvexDecompositionSettings.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return MeshConvexDecompositionSettings.Mode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setConvexHullApproximation(convexHullApproximation: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to convexHullApproximation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConvexHullApproximationPtr, NIL)
+    Internals.writeArguments(BOOL to convexHullApproximation)
+    Internals.callMethod(rawPtr, MethodBindings.setConvexHullApproximationPtr, NIL)
   }
 
   public final fun getConvexHullApproximation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConvexHullApproximationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConvexHullApproximationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaxConvexHulls(maxConvexHulls: Long): Unit {
-    TransferContext.writeArguments(LONG to maxConvexHulls)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxConvexHullsPtr, NIL)
+    Internals.writeArguments(LONG to maxConvexHulls)
+    Internals.callMethod(rawPtr, MethodBindings.setMaxConvexHullsPtr, NIL)
   }
 
   public final fun getMaxConvexHulls(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxConvexHullsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxConvexHullsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setProjectHullVertices(projectHullVertices: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to projectHullVertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProjectHullVerticesPtr, NIL)
+    Internals.writeArguments(BOOL to projectHullVertices)
+    Internals.callMethod(rawPtr, MethodBindings.setProjectHullVerticesPtr, NIL)
   }
 
   public final fun getProjectHullVertices(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectHullVerticesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProjectHullVerticesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Mode(
@@ -349,81 +348,81 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
 
   internal object MethodBindings {
     public val setMaxConcavityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_concavity", 373806689)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_concavity", 373806689)
 
     public val getMaxConcavityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_concavity", 1740695150)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_concavity", 1740695150)
 
     public val setSymmetryPlanesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_symmetry_planes_clipping_bias", 373806689)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_symmetry_planes_clipping_bias", 373806689)
 
     public val getSymmetryPlanesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_symmetry_planes_clipping_bias", 1740695150)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_symmetry_planes_clipping_bias", 1740695150)
 
     public val setRevolutionAxesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_revolution_axes_clipping_bias", 373806689)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_revolution_axes_clipping_bias", 373806689)
 
     public val getRevolutionAxesClippingBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_revolution_axes_clipping_bias", 1740695150)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_revolution_axes_clipping_bias", 1740695150)
 
     public val setMinVolumePerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_min_volume_per_convex_hull", 373806689)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_min_volume_per_convex_hull", 373806689)
 
     public val getMinVolumePerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_min_volume_per_convex_hull", 1740695150)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_min_volume_per_convex_hull", 1740695150)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_resolution", 1286410249)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_resolution", 1286410249)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_resolution", 3905245786)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_resolution", 3905245786)
 
     public val setMaxNumVerticesPerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_num_vertices_per_convex_hull", 1286410249)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_num_vertices_per_convex_hull", 1286410249)
 
     public val getMaxNumVerticesPerConvexHullPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_num_vertices_per_convex_hull", 3905245786)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_num_vertices_per_convex_hull", 3905245786)
 
     public val setPlaneDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_plane_downsampling", 1286410249)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_plane_downsampling", 1286410249)
 
     public val getPlaneDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_plane_downsampling", 3905245786)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_plane_downsampling", 3905245786)
 
     public val setConvexHullDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_downsampling", 1286410249)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_downsampling", 1286410249)
 
     public val getConvexHullDownsamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_downsampling", 3905245786)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_downsampling", 3905245786)
 
     public val setNormalizeMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_normalize_mesh", 2586408642)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_normalize_mesh", 2586408642)
 
     public val getNormalizeMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_normalize_mesh", 36873697)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_normalize_mesh", 36873697)
 
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_mode", 1668072869)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_mode", 1668072869)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_mode", 23479454)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_mode", 23479454)
 
     public val setConvexHullApproximationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_approximation", 2586408642)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_convex_hull_approximation", 2586408642)
 
     public val getConvexHullApproximationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_approximation", 36873697)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_convex_hull_approximation", 36873697)
 
     public val setMaxConvexHullsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_convex_hulls", 1286410249)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_max_convex_hulls", 1286410249)
 
     public val getMaxConvexHullsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_convex_hulls", 3905245786)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_max_convex_hulls", 3905245786)
 
     public val setProjectHullVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "set_project_hull_vertices", 2586408642)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "set_project_hull_vertices", 2586408642)
 
     public val getProjectHullVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshConvexDecompositionSettings", "get_project_hull_vertices", 36873697)
+        Internals.getMethodBindPtr("MeshConvexDecompositionSettings", "get_project_hull_vertices", 36873697)
   }
 }

@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -48,29 +47,29 @@ public open class GLTFAnimation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFANIMATION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFANIMATION_INDEX, scriptIndex)
   }
 
   public final fun getOriginalName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
-    TransferContext.writeArguments(STRING to originalName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+    Internals.writeArguments(STRING to originalName)
+    Internals.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
   public final fun getLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
   /**
@@ -82,9 +81,9 @@ public open class GLTFAnimation : Resource() {
    * return value is null.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to extensionName)
+    Internals.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -95,29 +94,29 @@ public open class GLTFAnimation : Resource() {
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+    Internals.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
+    Internals.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "get_original_name", 2841200299)
+        Internals.getMethodBindPtr("GLTFAnimation", "get_original_name", 2841200299)
 
     public val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "set_original_name", 83702148)
+        Internals.getMethodBindPtr("GLTFAnimation", "set_original_name", 83702148)
 
     public val getLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "get_loop", 36873697)
+        Internals.getMethodBindPtr("GLTFAnimation", "get_loop", 36873697)
 
     public val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "set_loop", 2586408642)
+        Internals.getMethodBindPtr("GLTFAnimation", "set_loop", 2586408642)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "get_additional_data", 2138907829)
+        Internals.getMethodBindPtr("GLTFAnimation", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAnimation", "set_additional_data", 3776071444)
+        Internals.getMethodBindPtr("GLTFAnimation", "set_additional_data", 3776071444)
   }
 }

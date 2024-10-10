@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -32,7 +31,7 @@ private const val ENGINE_CLASS_PHYSICALBONESIMULATOR3D_INDEX: Int = 415
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICALBONESIMULATOR3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICALBONESIMULATOR3D_INDEX, scriptIndex)
   }
 
   /**
@@ -40,17 +39,17 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * simulating.
    */
   public final fun isSimulatingPhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
   public final fun physicalBonesStopSimulation(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
   }
 
   /**
@@ -62,8 +61,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   @JvmOverloads
   public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
       godot.core.variantArrayOf()): Unit {
-    TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
+    Internals.writeArguments(ARRAY to bones)
+    Internals.callMethod(rawPtr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
   }
 
   /**
@@ -71,8 +70,8 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesAddCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
+    Internals.writeArguments(_RID to exception)
+    Internals.callMethod(rawPtr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
   }
 
   /**
@@ -80,26 +79,26 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    * Works just like the [RigidBody3D] node.
    */
   public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
-    TransferContext.writeArguments(_RID to exception)
-    TransferContext.callMethod(rawPtr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
+    Internals.writeArguments(_RID to exception)
+    Internals.callMethod(rawPtr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "is_simulating_physics", 36873697)
+        Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "is_simulating_physics", 36873697)
 
     public val physicalBonesStopSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_stop_simulation", 3218959716)
+        Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_stop_simulation", 3218959716)
 
     public val physicalBonesStartSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_start_simulation", 2787316981)
+        Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_start_simulation", 2787316981)
 
     public val physicalBonesAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_add_collision_exception", 2722037293)
+        Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_add_collision_exception", 2722037293)
 
     public val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_remove_collision_exception", 2722037293)
+        Internals.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_remove_collision_exception", 2722037293)
   }
 }

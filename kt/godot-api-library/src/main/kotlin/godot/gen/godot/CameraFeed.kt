@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM2D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -61,7 +60,7 @@ public open class CameraFeed : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAMERAFEED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERAFEED_INDEX, scriptIndex)
   }
 
   /**
@@ -93,58 +92,58 @@ public open class CameraFeed : RefCounted() {
    * Returns the unique ID for this feed.
    */
   public final fun getId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
 
   /**
    * Returns the camera's name.
    */
   public final fun getName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the position of camera on the device.
    */
   public final fun getPosition(): FeedPosition {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
-    return CameraFeed.FeedPosition.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
+    return CameraFeed.FeedPosition.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun getTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setTransform(transform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
   /**
    * Returns feed image data type.
    */
   public final fun getDatatype(): FeedDataType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatatypePtr, LONG)
-    return CameraFeed.FeedDataType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDatatypePtr, LONG)
+    return CameraFeed.FeedDataType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class FeedDataType(
@@ -208,27 +207,26 @@ public open class CameraFeed : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val getIdPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraFeed", "get_id", 3905245786)
+    public val getIdPtr: VoidPtr = Internals.getMethodBindPtr("CameraFeed", "get_id", 3905245786)
 
     public val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "is_active", 36873697)
+        Internals.getMethodBindPtr("CameraFeed", "is_active", 36873697)
 
     public val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_active", 2586408642)
+        Internals.getMethodBindPtr("CameraFeed", "set_active", 2586408642)
 
-    public val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_name", 201670096)
+    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("CameraFeed", "get_name", 201670096)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_position", 2711679033)
+        Internals.getMethodBindPtr("CameraFeed", "get_position", 2711679033)
 
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_transform", 3814499831)
+        Internals.getMethodBindPtr("CameraFeed", "get_transform", 3814499831)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "set_transform", 2761652528)
+        Internals.getMethodBindPtr("CameraFeed", "set_transform", 2761652528)
 
     public val getDatatypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraFeed", "get_datatype", 1477782850)
+        Internals.getMethodBindPtr("CameraFeed", "get_datatype", 1477782850)
   }
 }

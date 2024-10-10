@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -25,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERSCENEBUFFERS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERSCENEBUFFERS_INDEX, scriptIndex)
   }
 
   /**
@@ -33,14 +32,14 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
    * changed. It will discard the old buffers and recreate the internal buffers used.
    */
   public final fun configure(config: RenderSceneBuffersConfiguration?): Unit {
-    TransferContext.writeArguments(OBJECT to config)
-    TransferContext.callMethod(rawPtr, MethodBindings.configurePtr, NIL)
+    Internals.writeArguments(OBJECT to config)
+    Internals.callMethod(rawPtr, MethodBindings.configurePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val configurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffers", "configure", 3072623270)
+        Internals.getMethodBindPtr("RenderSceneBuffers", "configure", 3072623270)
   }
 }

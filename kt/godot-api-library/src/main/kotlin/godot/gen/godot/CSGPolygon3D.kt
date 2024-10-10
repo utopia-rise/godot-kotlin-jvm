@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -232,183 +231,183 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CSGPOLYGON3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CSGPOLYGON3D_INDEX, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-    return CSGPolygon3D.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return CSGPolygon3D.Mode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepth(depth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to depth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(DOUBLE to depth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun getDepth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpinDegrees(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpinDegreesPtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpinDegreesPtr, NIL)
   }
 
   public final fun getSpinDegrees(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpinDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpinDegreesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpinSides(spinSides: Int): Unit {
-    TransferContext.writeArguments(LONG to spinSides.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpinSidesPtr, NIL)
+    Internals.writeArguments(LONG to spinSides.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSpinSidesPtr, NIL)
   }
 
   public final fun getSpinSides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpinSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpinSidesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPathNode(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setPathNodePtr, NIL)
   }
 
   public final fun getPathNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setPathIntervalType(intervalType: PathIntervalType): Unit {
-    TransferContext.writeArguments(LONG to intervalType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathIntervalTypePtr, NIL)
+    Internals.writeArguments(LONG to intervalType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathIntervalTypePtr, NIL)
   }
 
   public final fun getPathIntervalType(): PathIntervalType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathIntervalTypePtr, LONG)
-    return CSGPolygon3D.PathIntervalType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathIntervalTypePtr, LONG)
+    return CSGPolygon3D.PathIntervalType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathInterval(interval: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to interval.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathIntervalPtr, NIL)
+    Internals.writeArguments(DOUBLE to interval.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPathIntervalPtr, NIL)
   }
 
   public final fun getPathInterval(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathIntervalPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathSimplifyAngle(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathSimplifyAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPathSimplifyAnglePtr, NIL)
   }
 
   public final fun getPathSimplifyAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathSimplifyAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathSimplifyAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathRotation(pathRotation: PathRotation): Unit {
-    TransferContext.writeArguments(LONG to pathRotation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathRotationPtr, NIL)
+    Internals.writeArguments(LONG to pathRotation.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathRotationPtr, NIL)
   }
 
   public final fun getPathRotation(): PathRotation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathRotationPtr, LONG)
-    return CSGPolygon3D.PathRotation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathRotationPtr, LONG)
+    return CSGPolygon3D.PathRotation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathLocal(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathLocalPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPathLocalPtr, NIL)
   }
 
   public final fun isPathLocal(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPathLocalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPathLocalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathContinuousU(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathContinuousUPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPathContinuousUPtr, NIL)
   }
 
   public final fun isPathContinuousU(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPathContinuousUPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPathContinuousUPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathUDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathUDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPathUDistancePtr, NIL)
   }
 
   public final fun getPathUDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathUDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathUDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathJoined(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathJoinedPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPathJoinedPtr, NIL)
   }
 
   public final fun isPathJoined(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPathJoinedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPathJoinedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to smoothFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+    Internals.writeArguments(BOOL to smoothFaces)
+    Internals.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Mode(
@@ -495,99 +494,99 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
 
   internal object MethodBindings {
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1509147220)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2961356807)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_polygon", 2961356807)
 
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_mode", 3158377035)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_mode", 3158377035)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_mode", 1201612222)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_mode", 1201612222)
 
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_depth", 373806689)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_depth", 373806689)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_depth", 1740695150)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_depth", 1740695150)
 
     public val setSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373806689)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_spin_degrees", 373806689)
 
     public val getSpinDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1740695150)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_spin_degrees", 1740695150)
 
     public val setSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1286410249)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_spin_sides", 1286410249)
 
     public val getSpinSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3905245786)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_spin_sides", 3905245786)
 
     public val setPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1348162250)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_node", 1348162250)
 
     public val getPathNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4075236667)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_node", 4075236667)
 
     public val setPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3744240707)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_interval_type", 3744240707)
 
     public val getPathIntervalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3434618397)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_interval_type", 3434618397)
 
     public val setPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373806689)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_interval", 373806689)
 
     public val getPathIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1740695150)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_interval", 1740695150)
 
     public val setPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373806689)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_simplify_angle", 373806689)
 
     public val getPathSimplifyAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1740695150)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_simplify_angle", 1740695150)
 
     public val setPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1412947288)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_rotation", 1412947288)
 
     public val getPathRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_rotation", 647219346)
 
     public val setPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_local", 2586408642)
 
     public val isPathLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36873697)
+        Internals.getMethodBindPtr("CSGPolygon3D", "is_path_local", 36873697)
 
     public val setPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2586408642)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_continuous_u", 2586408642)
 
     public val isPathContinuousUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36873697)
+        Internals.getMethodBindPtr("CSGPolygon3D", "is_path_continuous_u", 36873697)
 
     public val setPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373806689)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_u_distance", 373806689)
 
     public val getPathUDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1740695150)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_path_u_distance", 1740695150)
 
     public val setPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2586408642)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_path_joined", 2586408642)
 
     public val isPathJoinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36873697)
+        Internals.getMethodBindPtr("CSGPolygon3D", "is_path_joined", 36873697)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_material", 2757459619)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_material", 5934680)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_material", 5934680)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2586408642)
+        Internals.getMethodBindPtr("CSGPolygon3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36873697)
+        Internals.getMethodBindPtr("CSGPolygon3D", "get_smooth_faces", 36873697)
   }
 }

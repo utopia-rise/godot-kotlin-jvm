@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,7 +29,7 @@ private const val ENGINE_CLASS_ANIMATIONNODESUB2_INDEX: Int = 64
 @GodotBaseType
 public open class AnimationNodeSub2 : AnimationNodeSync() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONNODESUB2_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONNODESUB2_INDEX, scriptIndex)
   }
 
   public companion object

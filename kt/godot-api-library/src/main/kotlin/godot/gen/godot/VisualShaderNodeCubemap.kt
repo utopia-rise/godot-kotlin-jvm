@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -61,40 +60,40 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    Internals.writeArguments(LONG to value.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeCubemap.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    return VisualShaderNodeCubemap.Source.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCubeMap(`value`: Cubemap?): Unit {
-    TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
+    Internals.writeArguments(OBJECT to value)
+    Internals.callMethod(rawPtr, MethodBindings.setCubeMapPtr, NIL)
   }
 
   public final fun getCubeMap(): Cubemap? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Cubemap?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCubeMapPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Cubemap?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
-    TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    Internals.writeArguments(LONG to value.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): TextureType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeCubemap.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return VisualShaderNodeCubemap.TextureType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -162,21 +161,21 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_source", 1625400621)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_source", 1625400621)
 
     public val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2222048781)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2222048781)
 
     public val setCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 2219800736)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 2219800736)
 
     public val getCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 1772111058)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 1772111058)
 
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1899718876)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1899718876)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type", 3356498888)
+        Internals.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type", 3356498888)
   }
 }

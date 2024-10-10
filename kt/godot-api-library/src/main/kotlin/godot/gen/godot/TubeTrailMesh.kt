@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -131,146 +130,146 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TUBETRAILMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TUBETRAILMESH_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSteps(radialSteps: Int): Unit {
-    TransferContext.writeArguments(LONG to radialSteps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialStepsPtr, NIL)
+    Internals.writeArguments(LONG to radialSteps.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRadialStepsPtr, NIL)
   }
 
   public final fun getRadialSteps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialStepsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialStepsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSections(sections: Int): Unit {
-    TransferContext.writeArguments(LONG to sections.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
+    Internals.writeArguments(LONG to sections.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSectionsPtr, NIL)
   }
 
   public final fun getSections(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSectionsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSectionLength(sectionLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to sectionLength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSectionLengthPtr, NIL)
   }
 
   public final fun getSectionLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSectionLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSectionRings(sectionRings: Int): Unit {
-    TransferContext.writeArguments(LONG to sectionRings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSectionRingsPtr, NIL)
+    Internals.writeArguments(LONG to sectionRings.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSectionRingsPtr, NIL)
   }
 
   public final fun getSectionRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSectionRingsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCapTop(capTop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capTop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+    Internals.writeArguments(BOOL to capTop)
+    Internals.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
   }
 
   public final fun isCapTop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCapBottom(capBottom: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capBottom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+    Internals.writeArguments(BOOL to capBottom)
+    Internals.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
   }
 
   public final fun isCapBottom(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radius", 373806689)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_radius", 1740695150)
 
     public val setRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radial_steps", 1286410249)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_radial_steps", 1286410249)
 
     public val getRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radial_steps", 3905245786)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_radial_steps", 3905245786)
 
     public val setSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_sections", 1286410249)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_sections", 1286410249)
 
     public val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_sections", 3905245786)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_sections", 3905245786)
 
     public val setSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_length", 373806689)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_section_length", 373806689)
 
     public val getSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_length", 1740695150)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_section_length", 1740695150)
 
     public val setSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_rings", 1286410249)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_section_rings", 1286410249)
 
     public val getSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_rings", 3905245786)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_section_rings", 3905245786)
 
     public val setCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_top", 2586408642)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_cap_top", 2586408642)
 
     public val isCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_top", 36873697)
+        Internals.getMethodBindPtr("TubeTrailMesh", "is_cap_top", 36873697)
 
     public val setCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom", 2586408642)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom", 2586408642)
 
     public val isCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom", 36873697)
+        Internals.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom", 36873697)
 
     public val setCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_curve", 270443179)
+        Internals.getMethodBindPtr("TubeTrailMesh", "set_curve", 270443179)
 
     public val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_curve", 2460114913)
+        Internals.getMethodBindPtr("TubeTrailMesh", "get_curve", 2460114913)
   }
 }

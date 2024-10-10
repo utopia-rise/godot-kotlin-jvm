@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -66,61 +65,61 @@ public open class MissingNode : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MISSINGNODE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MISSINGNODE_INDEX, scriptIndex)
   }
 
   public final fun setOriginalClass(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setOriginalClassPtr, NIL)
   }
 
   public final fun getOriginalClass(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOriginalClassPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalScene(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalScenePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setOriginalScenePtr, NIL)
   }
 
   public final fun getOriginalScene(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalScenePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOriginalScenePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setRecordingProperties(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setRecordingPropertiesPtr, NIL)
   }
 
   public final fun isRecordingProperties(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRecordingPropertiesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_original_class", 83702148)
+        Internals.getMethodBindPtr("MissingNode", "set_original_class", 83702148)
 
     public val getOriginalClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "get_original_class", 201670096)
+        Internals.getMethodBindPtr("MissingNode", "get_original_class", 201670096)
 
     public val setOriginalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_original_scene", 83702148)
+        Internals.getMethodBindPtr("MissingNode", "set_original_scene", 83702148)
 
     public val getOriginalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "get_original_scene", 201670096)
+        Internals.getMethodBindPtr("MissingNode", "get_original_scene", 201670096)
 
     public val setRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "set_recording_properties", 2586408642)
+        Internals.getMethodBindPtr("MissingNode", "set_recording_properties", 2586408642)
 
     public val isRecordingPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MissingNode", "is_recording_properties", 36873697)
+        Internals.getMethodBindPtr("MissingNode", "is_recording_properties", 36873697)
   }
 }

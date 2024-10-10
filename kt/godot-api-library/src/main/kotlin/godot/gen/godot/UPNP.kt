@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -144,57 +143,57 @@ public open class UPNP : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_UPNP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_UPNP_INDEX, scriptIndex)
   }
 
   /**
    * Returns the number of discovered [UPNPDevice]s.
    */
   public final fun getDeviceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDeviceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDeviceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the [UPNPDevice] at the given [index].
    */
   public final fun getDevice(index: Int): UPNPDevice? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as UPNPDevice?)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getDevicePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as UPNPDevice?)
   }
 
   /**
    * Adds the given [UPNPDevice] to the list of discovered devices.
    */
   public final fun addDevice(device: UPNPDevice?): Unit {
-    TransferContext.writeArguments(OBJECT to device)
-    TransferContext.callMethod(rawPtr, MethodBindings.addDevicePtr, NIL)
+    Internals.writeArguments(OBJECT to device)
+    Internals.callMethod(rawPtr, MethodBindings.addDevicePtr, NIL)
   }
 
   /**
    * Sets the device at [index] from the list of discovered devices to [device].
    */
   public final fun setDevice(index: Int, device: UPNPDevice?): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), OBJECT to device)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+    Internals.writeArguments(LONG to index.toLong(), OBJECT to device)
+    Internals.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
   }
 
   /**
    * Removes the device at [index] from the list of discovered devices.
    */
   public final fun removeDevice(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeDevicePtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeDevicePtr, NIL)
   }
 
   /**
    * Clears the list of discovered devices.
    */
   public final fun clearDevices(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearDevicesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearDevicesPtr, NIL)
   }
 
   /**
@@ -202,9 +201,9 @@ public open class UPNP : RefCounted() {
    * (InternetGatewayDevice).
    */
   public final fun getGateway(): UPNPDevice? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGatewayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as UPNPDevice?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGatewayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as UPNPDevice?)
   }
 
   /**
@@ -220,9 +219,9 @@ public open class UPNP : RefCounted() {
     ttl: Int = 2,
     deviceFilter: String = "InternetGatewayDevice",
   ): Int {
-    TransferContext.writeArguments(LONG to timeout.toLong(), LONG to ttl.toLong(), STRING to deviceFilter)
-    TransferContext.callMethod(rawPtr, MethodBindings.discoverPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to timeout.toLong(), LONG to ttl.toLong(), STRING to deviceFilter)
+    Internals.callMethod(rawPtr, MethodBindings.discoverPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -230,9 +229,9 @@ public open class UPNP : RefCounted() {
    * an empty string on error.
    */
   public final fun queryExternalAddress(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -268,9 +267,9 @@ public open class UPNP : RefCounted() {
     proto: String = "UDP",
     duration: Int = 0,
   ): Int {
-    TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -282,42 +281,42 @@ public open class UPNP : RefCounted() {
    */
   @JvmOverloads
   public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
-    TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to port.toLong(), STRING to proto)
+    Internals.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDiscoverMulticastIf(mIf: String): Unit {
-    TransferContext.writeArguments(STRING to mIf)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
+    Internals.writeArguments(STRING to mIf)
+    Internals.callMethod(rawPtr, MethodBindings.setDiscoverMulticastIfPtr, NIL)
   }
 
   public final fun getDiscoverMulticastIf(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiscoverMulticastIfPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setDiscoverLocalPort(port: Int): Unit {
-    TransferContext.writeArguments(LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
+    Internals.writeArguments(LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDiscoverLocalPortPtr, NIL)
   }
 
   public final fun getDiscoverLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiscoverLocalPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDiscoverIpv6(ipv6: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ipv6)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
+    Internals.writeArguments(BOOL to ipv6)
+    Internals.callMethod(rawPtr, MethodBindings.setDiscoverIpv6Ptr, NIL)
   }
 
   public final fun isDiscoverIpv6(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDiscoverIpv6Ptr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class UPNPResult(
@@ -462,52 +461,50 @@ public open class UPNP : RefCounted() {
 
   internal object MethodBindings {
     public val getDeviceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_device_count", 3905245786)
+        Internals.getMethodBindPtr("UPNP", "get_device_count", 3905245786)
 
-    public val getDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_device", 2193290270)
+    public val getDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "get_device", 2193290270)
 
-    public val addDevicePtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "add_device", 986715920)
+    public val addDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "add_device", 986715920)
 
-    public val setDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_device", 3015133723)
+    public val setDevicePtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "set_device", 3015133723)
 
     public val removeDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "remove_device", 1286410249)
+        Internals.getMethodBindPtr("UPNP", "remove_device", 1286410249)
 
     public val clearDevicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "clear_devices", 3218959716)
+        Internals.getMethodBindPtr("UPNP", "clear_devices", 3218959716)
 
     public val getGatewayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_gateway", 2276800779)
+        Internals.getMethodBindPtr("UPNP", "get_gateway", 2276800779)
 
-    public val discoverPtr: VoidPtr = TypeManager.getMethodBindPtr("UPNP", "discover", 1575334765)
+    public val discoverPtr: VoidPtr = Internals.getMethodBindPtr("UPNP", "discover", 1575334765)
 
     public val queryExternalAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "query_external_address", 201670096)
+        Internals.getMethodBindPtr("UPNP", "query_external_address", 201670096)
 
     public val addPortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "add_port_mapping", 818314583)
+        Internals.getMethodBindPtr("UPNP", "add_port_mapping", 818314583)
 
     public val deletePortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "delete_port_mapping", 3444187325)
+        Internals.getMethodBindPtr("UPNP", "delete_port_mapping", 3444187325)
 
     public val setDiscoverMulticastIfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_multicast_if", 83702148)
+        Internals.getMethodBindPtr("UPNP", "set_discover_multicast_if", 83702148)
 
     public val getDiscoverMulticastIfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_discover_multicast_if", 201670096)
+        Internals.getMethodBindPtr("UPNP", "get_discover_multicast_if", 201670096)
 
     public val setDiscoverLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_local_port", 1286410249)
+        Internals.getMethodBindPtr("UPNP", "set_discover_local_port", 1286410249)
 
     public val getDiscoverLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "get_discover_local_port", 3905245786)
+        Internals.getMethodBindPtr("UPNP", "get_discover_local_port", 3905245786)
 
     public val setDiscoverIpv6Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "set_discover_ipv6", 2586408642)
+        Internals.getMethodBindPtr("UPNP", "set_discover_ipv6", 2586408642)
 
     public val isDiscoverIpv6Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNP", "is_discover_ipv6", 36873697)
+        Internals.getMethodBindPtr("UPNP", "is_discover_ipv6", 36873697)
   }
 }

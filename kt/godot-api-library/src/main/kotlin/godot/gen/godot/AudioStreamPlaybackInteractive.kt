@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -25,32 +24,32 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKINTERACTIVE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPLAYBACKINTERACTIVE_INDEX, scriptIndex)
   }
 
   /**
    * Switch to a clip (by name).
    */
   public final fun switchToClipByName(clipName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to clipName)
-    TransferContext.callMethod(rawPtr, MethodBindings.switchToClipByNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to clipName)
+    Internals.callMethod(rawPtr, MethodBindings.switchToClipByNamePtr, NIL)
   }
 
   /**
    * Switch to a clip (by index).
    */
   public final fun switchToClip(clipIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to clipIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.switchToClipPtr, NIL)
+    Internals.writeArguments(LONG to clipIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.switchToClipPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val switchToClipByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name", 3304788590)
+        Internals.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip_by_name", 3304788590)
 
     public val switchToClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip", 1286410249)
+        Internals.getMethodBindPtr("AudioStreamPlaybackInteractive", "switch_to_clip", 1286410249)
   }
 }

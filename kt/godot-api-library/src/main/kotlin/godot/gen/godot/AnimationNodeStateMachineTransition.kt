@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -167,106 +166,107 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX,
+        scriptIndex)
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSwitchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSwitchModePtr, NIL)
   }
 
   public final fun getSwitchMode(): SwitchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwitchModePtr, LONG)
-    return AnimationNodeStateMachineTransition.SwitchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSwitchModePtr, LONG)
+    return AnimationNodeStateMachineTransition.SwitchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceMode(mode: AdvanceMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAdvanceModePtr, NIL)
   }
 
   public final fun getAdvanceMode(): AdvanceMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceModePtr, LONG)
-    return AnimationNodeStateMachineTransition.AdvanceMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdvanceModePtr, LONG)
+    return AnimationNodeStateMachineTransition.AdvanceMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAdvanceCondition(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceConditionPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setAdvanceConditionPtr, NIL)
   }
 
   public final fun getAdvanceCondition(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdvanceConditionPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setXfadeTime(secs: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to secs.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
   }
 
   public final fun getXfadeTime(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setXfadeCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
   }
 
   public final fun getXfadeCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
   }
 
   public final fun isLoopBrokenAtEnd(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setReset(reset: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to reset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResetPtr, NIL)
+    Internals.writeArguments(BOOL to reset)
+    Internals.callMethod(rawPtr, MethodBindings.setResetPtr, NIL)
   }
 
   public final fun isReset(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isResetPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
   }
 
   public final fun getPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAdvanceExpression(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setAdvanceExpressionPtr, NIL)
   }
 
   public final fun getAdvanceExpression(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdvanceExpressionPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public enum class SwitchMode(
@@ -331,57 +331,57 @@ public open class AnimationNodeStateMachineTransition : Resource() {
 
   internal object MethodBindings {
     public val setSwitchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_switch_mode", 2074906633)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_switch_mode", 2074906633)
 
     public val getSwitchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_switch_mode", 2138562085)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_switch_mode", 2138562085)
 
     public val setAdvanceModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_mode", 1210869868)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_mode", 1210869868)
 
     public val getAdvanceModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_mode", 61101689)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_mode", 61101689)
 
     public val setAdvanceConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_condition", 3304788590)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_condition", 3304788590)
 
     public val getAdvanceConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_condition", 2002593661)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_condition", 2002593661)
 
     public val setXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_time", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_time", 373806689)
 
     public val getXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_time", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_time", 1740695150)
 
     public val setXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_curve", 270443179)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_xfade_curve", 270443179)
 
     public val getXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve", 2460114913)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_xfade_curve", 2460114913)
 
     public val setBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end", 2586408642)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_break_loop_at_end", 2586408642)
 
     public val isLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end", 36873697)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_loop_broken_at_end", 36873697)
 
     public val setResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset", 2586408642)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_reset", 2586408642)
 
     public val isResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_reset", 36873697)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "is_reset", 36873697)
 
     public val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_priority", 1286410249)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_priority", 1286410249)
 
     public val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_priority", 3905245786)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_priority", 3905245786)
 
     public val setAdvanceExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_expression", 83702148)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "set_advance_expression", 83702148)
 
     public val getAdvanceExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_expression", 201670096)
+        Internals.getMethodBindPtr("AnimationNodeStateMachineTransition", "get_advance_expression", 201670096)
   }
 }

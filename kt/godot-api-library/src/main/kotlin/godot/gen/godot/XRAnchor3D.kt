@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
-import godot.core.TypeManager
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -35,7 +34,7 @@ private const val ENGINE_CLASS_XRANCHOR3D_INDEX: Int = 749
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRANCHOR3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRANCHOR3D_INDEX, scriptIndex)
   }
 
   /**
@@ -43,27 +42,27 @@ public open class XRAnchor3D : XRNode3D() {
    * table in the real world, this is the estimated size of the surface of that table.
    */
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Returns a plane aligned with our anchor; handy for intersection testing.
    */
   public final fun getPlane(): Plane {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
-    return (TransferContext.readReturnValue(PLANE) as Plane)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
+    return (Internals.readReturnValue(PLANE) as Plane)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRAnchor3D", "get_size", 3360562783)
+        Internals.getMethodBindPtr("XRAnchor3D", "get_size", 3360562783)
 
     public val getPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRAnchor3D", "get_plane", 2753500971)
+        Internals.getMethodBindPtr("XRAnchor3D", "get_plane", 2753500971)
   }
 }

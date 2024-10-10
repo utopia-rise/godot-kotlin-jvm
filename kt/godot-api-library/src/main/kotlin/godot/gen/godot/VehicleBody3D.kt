@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -84,61 +83,61 @@ public open class VehicleBody3D : RigidBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VEHICLEBODY3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VEHICLEBODY3D_INDEX, scriptIndex)
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+    Internals.writeArguments(DOUBLE to engineForce.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
   }
 
   public final fun getEngineForce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to brake.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+    Internals.writeArguments(DOUBLE to brake.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
   }
 
   public final fun getBrake(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to steering.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+    Internals.writeArguments(DOUBLE to steering.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
   }
 
   public final fun getSteering(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "set_engine_force", 373806689)
+        Internals.getMethodBindPtr("VehicleBody3D", "set_engine_force", 373806689)
 
     public val getEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "get_engine_force", 1740695150)
+        Internals.getMethodBindPtr("VehicleBody3D", "get_engine_force", 1740695150)
 
     public val setBrakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "set_brake", 373806689)
+        Internals.getMethodBindPtr("VehicleBody3D", "set_brake", 373806689)
 
     public val getBrakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "get_brake", 1740695150)
+        Internals.getMethodBindPtr("VehicleBody3D", "get_brake", 1740695150)
 
     public val setSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "set_steering", 373806689)
+        Internals.getMethodBindPtr("VehicleBody3D", "set_steering", 373806689)
 
     public val getSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleBody3D", "get_steering", 1740695150)
+        Internals.getMethodBindPtr("VehicleBody3D", "get_steering", 1740695150)
   }
 }

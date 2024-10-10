@@ -10,14 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -402,7 +401,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHT3D_INDEX, scriptIndex)
   }
 
   /**
@@ -431,163 +430,163 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
 
   public final fun setEditorOnly(editorOnly: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to editorOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
+    Internals.writeArguments(BOOL to editorOnly)
+    Internals.callMethod(rawPtr, MethodBindings.setEditorOnlyPtr, NIL)
   }
 
   public final fun isEditorOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditorOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the value of the specified [Light3D.Param] parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    Internals.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
   /**
    * Returns the value of the specified [Light3D.Param] parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShadow(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowPtr, NIL)
   }
 
   public final fun hasShadow(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasShadowPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasShadowPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNegative(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNegativePtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setNegativePtr, NIL)
   }
 
   public final fun isNegative(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isNegativePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isNegativePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMask(cullMask: Long): Unit {
-    TransferContext.writeArguments(LONG to cullMask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to cullMask)
+    Internals.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableDistanceFade(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
   }
 
   public final fun isDistanceFadeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDistanceFadeBegin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
   }
 
   public final fun getDistanceFadeBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeShadow(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeShadowPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeShadowPtr, NIL)
   }
 
   public final fun getDistanceFadeShadow(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeShadowPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeLength(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
   }
 
   public final fun getDistanceFadeLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowReverseCullFace(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowReverseCullFacePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowReverseCullFacePtr, NIL)
   }
 
   public final fun getShadowReverseCullFace(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowReverseCullFacePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeMode(bakeMode: BakeMode): Unit {
-    TransferContext.writeArguments(LONG to bakeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeModePtr, NIL)
+    Internals.writeArguments(LONG to bakeMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeModePtr, NIL)
   }
 
   public final fun getBakeMode(): BakeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeModePtr, LONG)
-    return Light3D.BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeModePtr, LONG)
+    return Light3D.BakeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setProjector(projector: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to projector)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProjectorPtr, NIL)
+    Internals.writeArguments(OBJECT to projector)
+    Internals.callMethod(rawPtr, MethodBindings.setProjectorPtr, NIL)
   }
 
   public final fun getProjector(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProjectorPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTemperature(temperature: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to temperature.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTemperaturePtr, NIL)
+    Internals.writeArguments(DOUBLE to temperature.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTemperaturePtr, NIL)
   }
 
   public final fun getTemperature(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTemperaturePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTemperaturePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -596,9 +595,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * before being sent to the [RenderingServer].
    */
   public final fun getCorrelatedColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCorrelatedColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCorrelatedColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public enum class Param(
@@ -749,90 +748,85 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_editor_only", 2586408642)
+        Internals.getMethodBindPtr("Light3D", "set_editor_only", 2586408642)
 
     public val isEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_editor_only", 36873697)
+        Internals.getMethodBindPtr("Light3D", "is_editor_only", 36873697)
 
-    public val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_param", 1722734213)
+    public val setParamPtr: VoidPtr = Internals.getMethodBindPtr("Light3D", "set_param", 1722734213)
 
-    public val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_param", 1844084987)
+    public val getParamPtr: VoidPtr = Internals.getMethodBindPtr("Light3D", "get_param", 1844084987)
 
     public val setShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow", 2586408642)
+        Internals.getMethodBindPtr("Light3D", "set_shadow", 2586408642)
 
-    public val hasShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "has_shadow", 36873697)
+    public val hasShadowPtr: VoidPtr = Internals.getMethodBindPtr("Light3D", "has_shadow", 36873697)
 
     public val setNegativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_negative", 2586408642)
+        Internals.getMethodBindPtr("Light3D", "set_negative", 2586408642)
 
     public val isNegativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_negative", 36873697)
+        Internals.getMethodBindPtr("Light3D", "is_negative", 36873697)
 
     public val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("Light3D", "set_cull_mask", 1286410249)
 
     public val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("Light3D", "get_cull_mask", 3905245786)
 
     public val setEnableDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_enable_distance_fade", 2586408642)
+        Internals.getMethodBindPtr("Light3D", "set_enable_distance_fade", 2586408642)
 
     public val isDistanceFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_distance_fade_enabled", 36873697)
+        Internals.getMethodBindPtr("Light3D", "is_distance_fade_enabled", 36873697)
 
     public val setDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_begin", 373806689)
+        Internals.getMethodBindPtr("Light3D", "set_distance_fade_begin", 373806689)
 
     public val getDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_begin", 1740695150)
+        Internals.getMethodBindPtr("Light3D", "get_distance_fade_begin", 1740695150)
 
     public val setDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_shadow", 373806689)
+        Internals.getMethodBindPtr("Light3D", "set_distance_fade_shadow", 373806689)
 
     public val getDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_shadow", 1740695150)
+        Internals.getMethodBindPtr("Light3D", "get_distance_fade_shadow", 1740695150)
 
     public val setDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_length", 373806689)
+        Internals.getMethodBindPtr("Light3D", "set_distance_fade_length", 373806689)
 
     public val getDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_length", 1740695150)
+        Internals.getMethodBindPtr("Light3D", "get_distance_fade_length", 1740695150)
 
-    public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_color", 2920490490)
+    public val setColorPtr: VoidPtr = Internals.getMethodBindPtr("Light3D", "set_color", 2920490490)
 
-    public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_color", 3444240500)
+    public val getColorPtr: VoidPtr = Internals.getMethodBindPtr("Light3D", "get_color", 3444240500)
 
     public val setShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face", 2586408642)
+        Internals.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face", 2586408642)
 
     public val getShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36873697)
+        Internals.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36873697)
 
     public val setBakeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_bake_mode", 37739303)
+        Internals.getMethodBindPtr("Light3D", "set_bake_mode", 37739303)
 
     public val getBakeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_bake_mode", 371737608)
+        Internals.getMethodBindPtr("Light3D", "get_bake_mode", 371737608)
 
     public val setProjectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_projector", 4051416890)
+        Internals.getMethodBindPtr("Light3D", "set_projector", 4051416890)
 
     public val getProjectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_projector", 3635182373)
+        Internals.getMethodBindPtr("Light3D", "get_projector", 3635182373)
 
     public val setTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_temperature", 373806689)
+        Internals.getMethodBindPtr("Light3D", "set_temperature", 373806689)
 
     public val getTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_temperature", 1740695150)
+        Internals.getMethodBindPtr("Light3D", "get_temperature", 1740695150)
 
     public val getCorrelatedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_correlated_color", 3444240500)
+        Internals.getMethodBindPtr("Light3D", "get_correlated_color", 3444240500)
   }
 }

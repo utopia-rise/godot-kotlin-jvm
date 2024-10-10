@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -64,18 +63,18 @@ public open class Curve2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CURVE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CURVE2D_INDEX, scriptIndex)
   }
 
   public final fun getPointCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPointCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPointCountPtr, NIL)
   }
 
   /**
@@ -93,8 +92,8 @@ public open class Curve2D : Resource() {
     `out`: Vector2 = Vector2(0, 0),
     index: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, VECTOR2 to `in`, VECTOR2 to out, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position, VECTOR2 to `in`, VECTOR2 to out, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
 
   /**
@@ -102,8 +101,8 @@ public open class Curve2D : Resource() {
    * error to the console.
    */
   public final fun setPointPosition(idx: Int, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
 
   /**
@@ -111,9 +110,9 @@ public open class Curve2D : Resource() {
    * error to the console, and returns `(0, 0)`.
    */
   public final fun getPointPosition(idx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -121,8 +120,8 @@ public open class Curve2D : Resource() {
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public final fun setPointIn(idx: Int, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointInPtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPointInPtr, NIL)
   }
 
   /**
@@ -131,9 +130,9 @@ public open class Curve2D : Resource() {
    * console, and returns `(0, 0)`.
    */
   public final fun getPointIn(idx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointInPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPointInPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -141,8 +140,8 @@ public open class Curve2D : Resource() {
    * bounds, the function sends an error to the console. The position is relative to the vertex.
    */
   public final fun setPointOut(idx: Int, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointOutPtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong(), VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPointOutPtr, NIL)
   }
 
   /**
@@ -151,9 +150,9 @@ public open class Curve2D : Resource() {
    * error to the console, and returns `(0, 0)`.
    */
   public final fun getPointOut(idx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointOutPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPointOutPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -161,16 +160,16 @@ public open class Curve2D : Resource() {
    * bounds.
    */
   public final fun removePoint(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
 
   /**
    * Removes all points from the curve.
    */
   public final fun clearPoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
   }
 
   /**
@@ -181,9 +180,9 @@ public open class Curve2D : Resource() {
    * the curve has no points, the function sends an error to the console, and returns `(0, 0)`.
    */
   public final fun sample(idx: Int, t: Float): Vector2 {
-    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.samplePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to idx.toLong(), DOUBLE to t.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.samplePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -191,20 +190,20 @@ public open class Curve2D : Resource() {
    * as `idx`, and its fractional part as `t`.
    */
   public final fun samplef(fofs: Float): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fofs.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.samplefPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(DOUBLE to fofs.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.samplefPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setBakeInterval(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeIntervalPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBakeIntervalPtr, NIL)
   }
 
   public final fun getBakeInterval(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeIntervalPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -212,9 +211,9 @@ public open class Curve2D : Resource() {
    * [bakeInterval]), it should be approximate enough.
    */
   public final fun getBakedLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakedLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakedLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -227,9 +226,9 @@ public open class Curve2D : Resource() {
    */
   @JvmOverloads
   public final fun sampleBaked(offset: Float = 0.0f, cubic: Boolean = false): Vector2 {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
-    TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
+    Internals.callMethod(rawPtr, MethodBindings.sampleBakedPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -248,18 +247,18 @@ public open class Curve2D : Resource() {
   @JvmOverloads
   public final fun sampleBakedWithRotation(offset: Float = 0.0f, cubic: Boolean = false):
       Transform2D {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
-    TransferContext.callMethod(rawPtr, MethodBindings.sampleBakedWithRotationPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments(DOUBLE to offset.toDouble(), BOOL to cubic)
+    Internals.callMethod(rawPtr, MethodBindings.sampleBakedWithRotationPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
    * Returns the cache of points as a [PackedVector2Array].
    */
   public final fun getBakedPoints(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakedPointsPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -267,9 +266,9 @@ public open class Curve2D : Resource() {
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestPoint(toPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(VECTOR2 to toPoint)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPointPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -277,9 +276,9 @@ public open class Curve2D : Resource() {
    * [toPoint] must be in this curve's local space.
    */
   public final fun getClosestOffset(toPoint: Vector2): Float {
-    TransferContext.writeArguments(VECTOR2 to toPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(VECTOR2 to toPoint)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -296,9 +295,9 @@ public open class Curve2D : Resource() {
   @JvmOverloads
   public final fun tessellate(maxStages: Int = 5, toleranceDegrees: Float = 4.0f):
       PackedVector2Array {
-    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.tessellatePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceDegrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.tessellatePtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -312,79 +311,78 @@ public open class Curve2D : Resource() {
   @JvmOverloads
   public final fun tessellateEvenLength(maxStages: Int = 5, toleranceLength: Float = 20.0f):
       PackedVector2Array {
-    TransferContext.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.tessellateEvenLengthPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(LONG to maxStages.toLong(), DOUBLE to toleranceLength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.tessellateEvenLengthPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_point_count", 3905245786)
+        Internals.getMethodBindPtr("Curve2D", "get_point_count", 3905245786)
 
     public val setPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "set_point_count", 1286410249)
+        Internals.getMethodBindPtr("Curve2D", "set_point_count", 1286410249)
 
-    public val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "add_point", 4175465202)
+    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "add_point", 4175465202)
 
     public val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "set_point_position", 163021252)
+        Internals.getMethodBindPtr("Curve2D", "set_point_position", 163021252)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_point_position", 2299179447)
+        Internals.getMethodBindPtr("Curve2D", "get_point_position", 2299179447)
 
     public val setPointInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "set_point_in", 163021252)
+        Internals.getMethodBindPtr("Curve2D", "set_point_in", 163021252)
 
     public val getPointInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_point_in", 2299179447)
+        Internals.getMethodBindPtr("Curve2D", "get_point_in", 2299179447)
 
     public val setPointOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "set_point_out", 163021252)
+        Internals.getMethodBindPtr("Curve2D", "set_point_out", 163021252)
 
     public val getPointOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_point_out", 2299179447)
+        Internals.getMethodBindPtr("Curve2D", "get_point_out", 2299179447)
 
     public val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "remove_point", 1286410249)
+        Internals.getMethodBindPtr("Curve2D", "remove_point", 1286410249)
 
     public val clearPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "clear_points", 3218959716)
+        Internals.getMethodBindPtr("Curve2D", "clear_points", 3218959716)
 
-    public val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve2D", "sample", 26514310)
+    public val samplePtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "sample", 26514310)
 
-    public val samplefPtr: VoidPtr = TypeManager.getMethodBindPtr("Curve2D", "samplef", 3588506812)
+    public val samplefPtr: VoidPtr = Internals.getMethodBindPtr("Curve2D", "samplef", 3588506812)
 
     public val setBakeIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "set_bake_interval", 373806689)
+        Internals.getMethodBindPtr("Curve2D", "set_bake_interval", 373806689)
 
     public val getBakeIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_bake_interval", 1740695150)
+        Internals.getMethodBindPtr("Curve2D", "get_bake_interval", 1740695150)
 
     public val getBakedLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_baked_length", 1740695150)
+        Internals.getMethodBindPtr("Curve2D", "get_baked_length", 1740695150)
 
     public val sampleBakedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "sample_baked", 3464257706)
+        Internals.getMethodBindPtr("Curve2D", "sample_baked", 3464257706)
 
     public val sampleBakedWithRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "sample_baked_with_rotation", 3296056341)
+        Internals.getMethodBindPtr("Curve2D", "sample_baked_with_rotation", 3296056341)
 
     public val getBakedPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_baked_points", 2961356807)
+        Internals.getMethodBindPtr("Curve2D", "get_baked_points", 2961356807)
 
     public val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_closest_point", 2656412154)
+        Internals.getMethodBindPtr("Curve2D", "get_closest_point", 2656412154)
 
     public val getClosestOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "get_closest_offset", 2276447920)
+        Internals.getMethodBindPtr("Curve2D", "get_closest_offset", 2276447920)
 
     public val tessellatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "tessellate", 958145977)
+        Internals.getMethodBindPtr("Curve2D", "tessellate", 958145977)
 
     public val tessellateEvenLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve2D", "tessellate_even_length", 2319761637)
+        Internals.getMethodBindPtr("Curve2D", "tessellate_even_length", 2319761637)
   }
 }

@@ -12,12 +12,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -76,7 +75,7 @@ public open class ColorPickerButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COLORPICKERBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COLORPICKERBUTTON_INDEX, scriptIndex)
   }
 
   /**
@@ -104,14 +103,14 @@ public open class ColorPickerButton : Button() {
 
 
   public final fun setPickColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setPickColorPtr, NIL)
   }
 
   public final fun getPickColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPickColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -120,9 +119,9 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getPicker(): ColorPicker? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ColorPicker?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPickerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ColorPicker?)
   }
 
   /**
@@ -132,41 +131,41 @@ public open class ColorPickerButton : Button() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupPanel? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPopupPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PopupPanel?)
   }
 
   public final fun setEditAlpha(show: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
+    Internals.writeArguments(BOOL to show)
+    Internals.callMethod(rawPtr, MethodBindings.setEditAlphaPtr, NIL)
   }
 
   public final fun isEditingAlpha(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditingAlphaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color", 2920490490)
+        Internals.getMethodBindPtr("ColorPickerButton", "set_pick_color", 2920490490)
 
     public val getPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color", 3444240500)
+        Internals.getMethodBindPtr("ColorPickerButton", "get_pick_color", 3444240500)
 
     public val getPickerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker", 331835996)
+        Internals.getMethodBindPtr("ColorPickerButton", "get_picker", 331835996)
 
     public val getPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup", 1322440207)
+        Internals.getMethodBindPtr("ColorPickerButton", "get_popup", 1322440207)
 
     public val setEditAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha", 2586408642)
+        Internals.getMethodBindPtr("ColorPickerButton", "set_edit_alpha", 2586408642)
 
     public val isEditingAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36873697)
+        Internals.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36873697)
   }
 }

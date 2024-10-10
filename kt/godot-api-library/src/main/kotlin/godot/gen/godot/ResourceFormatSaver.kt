@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
+import godot.util.Internals
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
@@ -31,7 +32,7 @@ private const val ENGINE_CLASS_RESOURCEFORMATSAVER_INDEX: Int = 495
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RESOURCEFORMATSAVER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RESOURCEFORMATSAVER_INDEX, scriptIndex)
   }
 
   /**

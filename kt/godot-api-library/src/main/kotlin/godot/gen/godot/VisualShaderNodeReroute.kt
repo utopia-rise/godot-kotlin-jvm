@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -30,22 +29,22 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
     get() = getPortType()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the port type of the reroute node.
    */
   public final fun getPortType(): VisualShaderNode.PortType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
-    return VisualShaderNode.PortType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPortTypePtr, LONG)
+    return VisualShaderNode.PortType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeReroute", "get_port_type", 1287173294)
+        Internals.getMethodBindPtr("VisualShaderNodeReroute", "get_port_type", 1287173294)
   }
 }

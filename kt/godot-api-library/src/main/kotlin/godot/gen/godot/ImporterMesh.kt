@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -21,7 +20,7 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
@@ -47,7 +46,7 @@ private const val ENGINE_CLASS_IMPORTERMESH_INDEX: Int = 289
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMPORTERMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMPORTERMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -55,43 +54,43 @@ public open class ImporterMesh : Resource() {
    * is added.
    */
   public final fun addBlendShape(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBlendShapePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.addBlendShapePtr, NIL)
   }
 
   /**
    * Returns the number of blend shapes that the mesh holds.
    */
   public final fun getBlendShapeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the name of the blend shape at this index.
    */
   public final fun getBlendShapeName(blendShapeIdx: Int): String {
-    TransferContext.writeArguments(LONG to blendShapeIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to blendShapeIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
    */
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
   }
 
   /**
    * Returns the blend shape mode for this Mesh.
    */
   public final fun getBlendShapeMode(): Mesh.BlendShapeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
-    return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
+    return Mesh.BlendShapeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -132,35 +131,35 @@ public open class ImporterMesh : Resource() {
     name: String = "",
     flags: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSurfacePtr, NIL)
+    Internals.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
+    Internals.callMethod(rawPtr, MethodBindings.addSurfacePtr, NIL)
   }
 
   /**
    * Returns the number of surfaces that the mesh holds.
    */
   public final fun getSurfaceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the primitive type of the requested surface (see [addSurface]).
    */
   public final fun getSurfacePrimitiveType(surfaceIdx: Int): Mesh.PrimitiveType {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfacePrimitiveTypePtr, LONG)
-    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfacePrimitiveTypePtr, LONG)
+    return Mesh.PrimitiveType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Gets the name assigned to this surface.
    */
   public final fun getSurfaceName(surfaceIdx: Int): String {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -168,9 +167,9 @@ public open class ImporterMesh : Resource() {
    * [addSurface].
    */
   public final fun getSurfaceArrays(surfaceIdx: Int): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceArraysPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -178,70 +177,70 @@ public open class ImporterMesh : Resource() {
    */
   public final fun getSurfaceBlendShapeArrays(surfaceIdx: Int, blendShapeIdx: Int):
       VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to blendShapeIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceBlendShapeArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to surfaceIdx.toLong(), LONG to blendShapeIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceBlendShapeArraysPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Returns the number of lods that the mesh holds on a given surface.
    */
   public final fun getSurfaceLodCount(surfaceIdx: Int): Int {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceLodCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the screen ratio which activates a lod for a surface.
    */
   public final fun getSurfaceLodSize(surfaceIdx: Int, lodIdx: Int): Float {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceLodSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the index buffer of a lod for a surface.
    */
   public final fun getSurfaceLodIndices(surfaceIdx: Int, lodIdx: Int): PackedInt32Array {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceLodIndicesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments(LONG to surfaceIdx.toLong(), LONG to lodIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceLodIndicesPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
    * Returns a [Material] in a given surface. Surface is rendered using this material.
    */
   public final fun getSurfaceMaterial(surfaceIdx: Int): Material? {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   /**
    * Returns the format of the surface that the mesh holds.
    */
   public final fun getSurfaceFormat(surfaceIdx: Int): Long {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceFormatPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to surfaceIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceFormatPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets a name for a given surface.
    */
   public final fun setSurfaceName(surfaceIdx: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceNamePtr, NIL)
+    Internals.writeArguments(LONG to surfaceIdx.toLong(), STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setSurfaceNamePtr, NIL)
   }
 
   /**
    * Sets a [Material] for a given surface. Surface will be rendered using this material.
    */
   public final fun setSurfaceMaterial(surfaceIdx: Int, material: Material?): Unit {
-    TransferContext.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceMaterialPtr, NIL)
+    Internals.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setSurfaceMaterialPtr, NIL)
   }
 
   /**
@@ -260,8 +259,8 @@ public open class ImporterMesh : Resource() {
     normalSplitAngle: Float,
     boneTransformArray: VariantArray<Any?>,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to normalMergeAngle.toDouble(), DOUBLE to normalSplitAngle.toDouble(), ARRAY to boneTransformArray)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateLodsPtr, NIL)
+    Internals.writeArguments(DOUBLE to normalMergeAngle.toDouble(), DOUBLE to normalSplitAngle.toDouble(), ARRAY to boneTransformArray)
+    Internals.callMethod(rawPtr, MethodBindings.generateLodsPtr, NIL)
   }
 
   /**
@@ -272,105 +271,105 @@ public open class ImporterMesh : Resource() {
    */
   @JvmOverloads
   public final fun getMesh(baseMesh: ArrayMesh? = null): ArrayMesh? {
-    TransferContext.writeArguments(OBJECT to baseMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+    Internals.writeArguments(OBJECT to baseMesh)
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   /**
    * Removes all surfaces and blend shapes from this [ImporterMesh].
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
    * Sets the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
   public final fun setLightmapSizeHint(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
 
   /**
    * Returns the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
   public final fun getLightmapSizeHint(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
+        Internals.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
 
     public val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3905245786)
+        Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3905245786)
 
     public val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844755477)
+        Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844755477)
 
     public val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227983991)
+        Internals.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227983991)
 
     public val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836485024)
+        Internals.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836485024)
 
     public val addSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "add_surface", 1740448849)
+        Internals.getMethodBindPtr("ImporterMesh", "add_surface", 1740448849)
 
     public val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_count", 3905245786)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_count", 3905245786)
 
     public val getSurfacePrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3552571330)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3552571330)
 
     public val getSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_name", 844755477)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_name", 844755477)
 
     public val getSurfaceArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663333327)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663333327)
 
     public val getSurfaceBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2345056839)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2345056839)
 
     public val getSurfaceLodCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923996154)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923996154)
 
     public val getSurfaceLodSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3085491603)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3085491603)
 
     public val getSurfaceLodIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1265128013)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1265128013)
 
     public val getSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_material", 2897466400)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_material", 2897466400)
 
     public val getSurfaceFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_format", 923996154)
+        Internals.getMethodBindPtr("ImporterMesh", "get_surface_format", 923996154)
 
     public val setSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_name", 501894301)
+        Internals.getMethodBindPtr("ImporterMesh", "set_surface_name", 501894301)
 
     public val setSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_material", 3671737478)
+        Internals.getMethodBindPtr("ImporterMesh", "set_surface_material", 3671737478)
 
     public val generateLodsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "generate_lods", 2491878677)
+        Internals.getMethodBindPtr("ImporterMesh", "generate_lods", 2491878677)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
+        Internals.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
 
     public val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1130785943)
+        Internals.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1130785943)
 
     public val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3690982128)
+        Internals.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3690982128)
   }
 }

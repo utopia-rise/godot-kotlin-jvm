@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -93,62 +92,62 @@ public open class OpenXRHand : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRHAND_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRHAND_INDEX, scriptIndex)
   }
 
   public final fun setHand(hand: Hands): Unit {
-    TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
+    Internals.writeArguments(LONG to hand.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHandPtr, NIL)
   }
 
   public final fun getHand(): Hands {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
-    return OpenXRHand.Hands.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHandPtr, LONG)
+    return OpenXRHand.Hands.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setHandSkeleton(handSkeleton: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to handSkeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
+    Internals.writeArguments(NODE_PATH to handSkeleton)
+    Internals.callMethod(rawPtr, MethodBindings.setHandSkeletonPtr, NIL)
   }
 
   public final fun getHandSkeleton(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHandSkeletonPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setMotionRange(motionRange: MotionRange): Unit {
-    TransferContext.writeArguments(LONG to motionRange.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
+    Internals.writeArguments(LONG to motionRange.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
 
   public final fun getMotionRange(): MotionRange {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
-    return OpenXRHand.MotionRange.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
+    return OpenXRHand.MotionRange.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
-    TransferContext.writeArguments(LONG to skeletonRig.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
+    Internals.writeArguments(LONG to skeletonRig.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonRigPtr, NIL)
   }
 
   public final fun getSkeletonRig(): SkeletonRig {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
-    return OpenXRHand.SkeletonRig.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonRigPtr, LONG)
+    return OpenXRHand.SkeletonRig.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    Internals.writeArguments(LONG to boneUpdate.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-    return OpenXRHand.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return OpenXRHand.BoneUpdate.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Hands(
@@ -264,33 +263,33 @@ public open class OpenXRHand : Node3D() {
 
   internal object MethodBindings {
     public val setHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand", 1849328560)
+        Internals.getMethodBindPtr("OpenXRHand", "set_hand", 1849328560)
 
     public val getHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand", 2850644561)
+        Internals.getMethodBindPtr("OpenXRHand", "get_hand", 2850644561)
 
     public val setHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1348162250)
+        Internals.getMethodBindPtr("OpenXRHand", "set_hand_skeleton", 1348162250)
 
     public val getHandSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4075236667)
+        Internals.getMethodBindPtr("OpenXRHand", "get_hand_skeleton", 4075236667)
 
     public val setMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_motion_range", 3326516003)
+        Internals.getMethodBindPtr("OpenXRHand", "set_motion_range", 3326516003)
 
     public val getMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_motion_range", 2191822314)
+        Internals.getMethodBindPtr("OpenXRHand", "get_motion_range", 2191822314)
 
     public val setSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1528072213)
+        Internals.getMethodBindPtr("OpenXRHand", "set_skeleton_rig", 1528072213)
 
     public val getSkeletonRigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968409338)
+        Internals.getMethodBindPtr("OpenXRHand", "get_skeleton_rig", 968409338)
 
     public val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "set_bone_update", 3144625444)
+        Internals.getMethodBindPtr("OpenXRHand", "set_bone_update", 3144625444)
 
     public val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHand", "get_bone_update", 1310695248)
+        Internals.getMethodBindPtr("OpenXRHand", "get_bone_update", 1310695248)
   }
 }

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -20,7 +19,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -39,15 +38,15 @@ private const val ENGINE_CLASS_BITMAP_INDEX: Int = 131
 @GodotBaseType
 public open class BitMap : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BITMAP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BITMAP_INDEX, scriptIndex)
   }
 
   /**
    * Creates a bitmap with the specified size, filled with `false`.
    */
   public final fun create(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.createPtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.createPtr, NIL)
   }
 
   /**
@@ -57,16 +56,16 @@ public open class BitMap : Resource() {
    */
   @JvmOverloads
   public final fun createFromImageAlpha(image: Image?, threshold: Float = 0.1f): Unit {
-    TransferContext.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromImageAlphaPtr, NIL)
+    Internals.writeArguments(OBJECT to image, DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.createFromImageAlphaPtr, NIL)
   }
 
   /**
    * Sets the bitmap's element at the specified position, to the specified value.
    */
   public final fun setBitv(position: Vector2i, bit: Boolean): Unit {
-    TransferContext.writeArguments(VECTOR2I to position, BOOL to bit)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBitvPtr, NIL)
+    Internals.writeArguments(VECTOR2I to position, BOOL to bit)
+    Internals.callMethod(rawPtr, MethodBindings.setBitvPtr, NIL)
   }
 
   /**
@@ -77,60 +76,60 @@ public open class BitMap : Resource() {
     y: Int,
     bit: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), BOOL to bit)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBitPtr, NIL)
+    Internals.writeArguments(LONG to x.toLong(), LONG to y.toLong(), BOOL to bit)
+    Internals.callMethod(rawPtr, MethodBindings.setBitPtr, NIL)
   }
 
   /**
    * Returns bitmap's value at the specified position.
    */
   public final fun getBitv(position: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBitvPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2I to position)
+    Internals.callMethod(rawPtr, MethodBindings.getBitvPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns bitmap's value at the specified position.
    */
   public final fun getBit(x: Int, y: Int): Boolean {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBitPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to x.toLong(), LONG to y.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBitPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets a rectangular portion of the bitmap to the specified value.
    */
   public final fun setBitRect(rect: Rect2i, bit: Boolean): Unit {
-    TransferContext.writeArguments(RECT2I to rect, BOOL to bit)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBitRectPtr, NIL)
+    Internals.writeArguments(RECT2I to rect, BOOL to bit)
+    Internals.callMethod(rawPtr, MethodBindings.setBitRectPtr, NIL)
   }
 
   /**
    * Returns the number of bitmap elements that are set to `true`.
    */
   public final fun getTrueBitCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrueBitCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrueBitCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns bitmap's dimensions.
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
    * Resizes the image to [newSize].
    */
   public final fun resize(newSize: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to newSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to newSize)
+    Internals.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
   }
 
   /**
@@ -140,8 +139,8 @@ public open class BitMap : Resource() {
    * unaffected by [growMask].
    */
   public final fun growMask(pixels: Int, rect: Rect2i): Unit {
-    TransferContext.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.growMaskPtr, NIL)
+    Internals.writeArguments(LONG to pixels.toLong(), RECT2I to rect)
+    Internals.callMethod(rawPtr, MethodBindings.growMaskPtr, NIL)
   }
 
   /**
@@ -150,9 +149,9 @@ public open class BitMap : Resource() {
    * bits into black.
    */
   public final fun convertToImage(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.convertToImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.convertToImagePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -169,44 +168,43 @@ public open class BitMap : Resource() {
   @JvmOverloads
   public final fun opaqueToPolygons(rect: Rect2i, epsilon: Float = 2.0f):
       VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.opaqueToPolygonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
+    Internals.writeArguments(RECT2I to rect, DOUBLE to epsilon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.opaqueToPolygonsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val createPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "create", 1130785943)
+    public val createPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "create", 1130785943)
 
     public val createFromImageAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "create_from_image_alpha", 106271684)
+        Internals.getMethodBindPtr("BitMap", "create_from_image_alpha", 106271684)
 
-    public val setBitvPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "set_bitv", 4153096796)
+    public val setBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bitv", 4153096796)
 
-    public val setBitPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "set_bit", 1383440665)
+    public val setBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "set_bit", 1383440665)
 
-    public val getBitvPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "get_bitv", 3900751641)
+    public val getBitvPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bitv", 3900751641)
 
-    public val getBitPtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "get_bit", 2522259332)
+    public val getBitPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_bit", 2522259332)
 
     public val setBitRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "set_bit_rect", 472162941)
+        Internals.getMethodBindPtr("BitMap", "set_bit_rect", 472162941)
 
     public val getTrueBitCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "get_true_bit_count", 3905245786)
+        Internals.getMethodBindPtr("BitMap", "get_true_bit_count", 3905245786)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "get_size", 3690982128)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "get_size", 3690982128)
 
-    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("BitMap", "resize", 1130785943)
+    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "resize", 1130785943)
 
-    public val growMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "grow_mask", 3317281434)
+    public val growMaskPtr: VoidPtr = Internals.getMethodBindPtr("BitMap", "grow_mask", 3317281434)
 
     public val convertToImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "convert_to_image", 4190603485)
+        Internals.getMethodBindPtr("BitMap", "convert_to_image", 4190603485)
 
     public val opaqueToPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BitMap", "opaque_to_polygons", 48478126)
+        Internals.getMethodBindPtr("BitMap", "opaque_to_polygons", 48478126)
   }
 }

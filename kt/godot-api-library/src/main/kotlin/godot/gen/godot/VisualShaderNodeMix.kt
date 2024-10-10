@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -37,18 +36,18 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEMIX_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEMIX_INDEX, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {
-    TransferContext.writeArguments(LONG to opType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+    Internals.writeArguments(LONG to opType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-    return VisualShaderNodeMix.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeMix.OpType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(
@@ -102,9 +101,9 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeMix", "set_op_type", 3397501671)
+        Internals.getMethodBindPtr("VisualShaderNodeMix", "set_op_type", 3397501671)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeMix", "get_op_type", 4013957297)
+        Internals.getMethodBindPtr("VisualShaderNodeMix", "get_op_type", 4013957297)
   }
 }

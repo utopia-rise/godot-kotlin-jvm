@@ -11,7 +11,6 @@ import godot.core.AABB
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -20,7 +19,7 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -142,7 +141,7 @@ public open class VoxelGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VOXELGIDATA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VOXELGIDATA_INDEX, scriptIndex)
   }
 
   public final fun allocate(
@@ -154,8 +153,8 @@ public open class VoxelGIData : Resource() {
     distanceField: PackedByteArray,
     levelCounts: PackedInt32Array,
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
-    TransferContext.callMethod(rawPtr, MethodBindings.allocatePtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to toCellXform, godot.core.VariantParser.AABB to aabb, VECTOR3 to octreeSize, PACKED_BYTE_ARRAY to octreeCells, PACKED_BYTE_ARRAY to dataCells, PACKED_BYTE_ARRAY to distanceField, PACKED_INT_32_ARRAY to levelCounts)
+    Internals.callMethod(rawPtr, MethodBindings.allocatePtr, NIL)
   }
 
   /**
@@ -165,182 +164,182 @@ public open class VoxelGIData : Resource() {
    * [getBounds] and [VoxelGI.size] will not match.
    */
   public final fun getBounds(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoundsPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getOctreeSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOctreeSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOctreeSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun getToCellXform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getToCellXformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun getOctreeCells(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOctreeCellsPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getDataCells(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataCellsPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getLevelCounts(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLevelCountsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setDynamicRange(dynamicRange: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to dynamicRange.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDynamicRangePtr, NIL)
+    Internals.writeArguments(DOUBLE to dynamicRange.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDynamicRangePtr, NIL)
   }
 
   public final fun getDynamicRange(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDynamicRangePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDynamicRangePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnergy(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnergyPtr, NIL)
   }
 
   public final fun getEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
   }
 
   public final fun getBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setNormalBiasPtr, NIL)
   }
 
   public final fun getNormalBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPropagation(propagation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to propagation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPropagationPtr, NIL)
+    Internals.writeArguments(DOUBLE to propagation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPropagationPtr, NIL)
   }
 
   public final fun getPropagation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropagationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPropagationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInterior(interior: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to interior)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+    Internals.writeArguments(BOOL to interior)
+    Internals.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
   }
 
   public final fun isInterior(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseTwoBounces(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTwoBouncesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseTwoBouncesPtr, NIL)
   }
 
   public final fun isUsingTwoBounces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingTwoBouncesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val allocatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "allocate", 4041601946)
+        Internals.getMethodBindPtr("VoxelGIData", "allocate", 4041601946)
 
     public val getBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_bounds", 1068685055)
+        Internals.getMethodBindPtr("VoxelGIData", "get_bounds", 1068685055)
 
     public val getOctreeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_size", 3360562783)
+        Internals.getMethodBindPtr("VoxelGIData", "get_octree_size", 3360562783)
 
     public val getToCellXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_to_cell_xform", 3229777777)
+        Internals.getMethodBindPtr("VoxelGIData", "get_to_cell_xform", 3229777777)
 
     public val getOctreeCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_octree_cells", 2362200018)
+        Internals.getMethodBindPtr("VoxelGIData", "get_octree_cells", 2362200018)
 
     public val getDataCellsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_data_cells", 2362200018)
+        Internals.getMethodBindPtr("VoxelGIData", "get_data_cells", 2362200018)
 
     public val getLevelCountsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_level_counts", 1930428628)
+        Internals.getMethodBindPtr("VoxelGIData", "get_level_counts", 1930428628)
 
     public val setDynamicRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_dynamic_range", 373806689)
+        Internals.getMethodBindPtr("VoxelGIData", "set_dynamic_range", 373806689)
 
     public val getDynamicRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_dynamic_range", 1740695150)
+        Internals.getMethodBindPtr("VoxelGIData", "get_dynamic_range", 1740695150)
 
     public val setEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_energy", 373806689)
+        Internals.getMethodBindPtr("VoxelGIData", "set_energy", 373806689)
 
     public val getEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_energy", 1740695150)
+        Internals.getMethodBindPtr("VoxelGIData", "get_energy", 1740695150)
 
     public val setBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_bias", 373806689)
+        Internals.getMethodBindPtr("VoxelGIData", "set_bias", 373806689)
 
     public val getBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_bias", 1740695150)
+        Internals.getMethodBindPtr("VoxelGIData", "get_bias", 1740695150)
 
     public val setNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_normal_bias", 373806689)
+        Internals.getMethodBindPtr("VoxelGIData", "set_normal_bias", 373806689)
 
     public val getNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_normal_bias", 1740695150)
+        Internals.getMethodBindPtr("VoxelGIData", "get_normal_bias", 1740695150)
 
     public val setPropagationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_propagation", 373806689)
+        Internals.getMethodBindPtr("VoxelGIData", "set_propagation", 373806689)
 
     public val getPropagationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "get_propagation", 1740695150)
+        Internals.getMethodBindPtr("VoxelGIData", "get_propagation", 1740695150)
 
     public val setInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_interior", 2586408642)
+        Internals.getMethodBindPtr("VoxelGIData", "set_interior", 2586408642)
 
     public val isInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "is_interior", 36873697)
+        Internals.getMethodBindPtr("VoxelGIData", "is_interior", 36873697)
 
     public val setUseTwoBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "set_use_two_bounces", 2586408642)
+        Internals.getMethodBindPtr("VoxelGIData", "set_use_two_bounces", 2586408642)
 
     public val isUsingTwoBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGIData", "is_using_two_bounces", 36873697)
+        Internals.getMethodBindPtr("VoxelGIData", "is_using_two_bounces", 36873697)
   }
 }

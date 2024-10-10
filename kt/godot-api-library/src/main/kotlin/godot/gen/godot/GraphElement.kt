@@ -12,12 +12,11 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -135,7 +134,7 @@ public open class GraphElement : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRAPHELEMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRAPHELEMENT_INDEX, scriptIndex)
   }
 
   /**
@@ -163,91 +162,91 @@ public open class GraphElement : Container() {
 
 
   public final fun setResizable(resizable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to resizable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
+    Internals.writeArguments(BOOL to resizable)
+    Internals.callMethod(rawPtr, MethodBindings.setResizablePtr, NIL)
   }
 
   public final fun isResizable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isResizablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggable(draggable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to draggable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
+    Internals.writeArguments(BOOL to draggable)
+    Internals.callMethod(rawPtr, MethodBindings.setDraggablePtr, NIL)
   }
 
   public final fun isDraggable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDraggablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectable(selectable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to selectable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
+    Internals.writeArguments(BOOL to selectable)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectablePtr, NIL)
   }
 
   public final fun isSelectable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelected(selected: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to selected)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+    Internals.writeArguments(BOOL to selected)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
 
   public final fun isSelected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPositionOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionOffsetPtr, NIL)
   }
 
   public final fun getPositionOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_resizable", 2586408642)
+        Internals.getMethodBindPtr("GraphElement", "set_resizable", 2586408642)
 
     public val isResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_resizable", 36873697)
+        Internals.getMethodBindPtr("GraphElement", "is_resizable", 36873697)
 
     public val setDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_draggable", 2586408642)
+        Internals.getMethodBindPtr("GraphElement", "set_draggable", 2586408642)
 
     public val isDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_draggable", 2240911060)
+        Internals.getMethodBindPtr("GraphElement", "is_draggable", 2240911060)
 
     public val setSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selectable", 2586408642)
+        Internals.getMethodBindPtr("GraphElement", "set_selectable", 2586408642)
 
     public val isSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_selectable", 2240911060)
+        Internals.getMethodBindPtr("GraphElement", "is_selectable", 2240911060)
 
     public val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selected", 2586408642)
+        Internals.getMethodBindPtr("GraphElement", "set_selected", 2586408642)
 
     public val isSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
+        Internals.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
 
     public val setPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)
+        Internals.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)
 
     public val getPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset", 3341600327)
+        Internals.getMethodBindPtr("GraphElement", "get_position_offset", 3341600327)
   }
 }

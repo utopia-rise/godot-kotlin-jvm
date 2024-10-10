@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -201,106 +200,106 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONNODEONESHOT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONNODEONESHOT_INDEX, scriptIndex)
   }
 
   public final fun setFadeinTime(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeinTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setFadeinTimePtr, NIL)
   }
 
   public final fun getFadeinTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeinTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFadeinTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setFadeinCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeinCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setFadeinCurvePtr, NIL)
   }
 
   public final fun getFadeinCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeinCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFadeinCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setFadeoutTime(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setFadeoutTimePtr, NIL)
   }
 
   public final fun getFadeoutTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFadeoutTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setFadeoutCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setFadeoutCurvePtr, NIL)
   }
 
   public final fun getFadeoutCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeoutCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFadeoutCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setBreakLoopAtEndPtr, NIL)
   }
 
   public final fun isLoopBrokenAtEnd(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLoopBrokenAtEndPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutorestart(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartPtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setAutorestartPtr, NIL)
   }
 
   public final fun hasAutorestart(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAutorestartPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasAutorestartPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutorestartDelay(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartDelayPtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setAutorestartDelayPtr, NIL)
   }
 
   public final fun getAutorestartDelay(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutorestartDelayPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutorestartRandomDelay(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
   }
 
   public final fun getAutorestartRandomDelay(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutorestartRandomDelayPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setMixMode(mode: MixMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMixModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMixModePtr, NIL)
   }
 
   public final fun getMixMode(): MixMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMixModePtr, LONG)
-    return AnimationNodeOneShot.MixMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMixModePtr, LONG)
+    return AnimationNodeOneShot.MixMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class OneShotRequest(
@@ -361,57 +360,57 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   internal object MethodBindings {
     public val setFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373806689)
 
     public val getFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1740695150)
 
     public val setFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270443179)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270443179)
 
     public val getFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2460114913)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2460114913)
 
     public val setFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373806689)
 
     public val getFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1740695150)
 
     public val setFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270443179)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270443179)
 
     public val getFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2460114913)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2460114913)
 
     public val setBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2586408642)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2586408642)
 
     public val isLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
 
     public val setAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)
 
     public val hasAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36873697)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36873697)
 
     public val setAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373806689)
 
     public val getAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1740695150)
 
     public val setAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373806689)
 
     public val getAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1740695150)
 
     public val setMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1018899799)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1018899799)
 
     public val getMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3076550526)
+        Internals.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3076550526)
   }
 }

@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -130,7 +129,7 @@ public open class CanvasTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CANVASTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CANVASTEXTURE_INDEX, scriptIndex)
   }
 
   /**
@@ -160,125 +159,125 @@ public open class CanvasTexture : Texture2D() {
 
 
   public final fun setDiffuseTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setDiffuseTexturePtr, NIL)
   }
 
   public final fun getDiffuseTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiffuseTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setNormalTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setNormalTexturePtr, NIL)
   }
 
   public final fun getNormalTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSpecularTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularTexturePtr, NIL)
   }
 
   public final fun getSpecularTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSpecularColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularColorPtr, NIL)
   }
 
   public final fun getSpecularColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSpecularShininess(shininess: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to shininess.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularShininessPtr, NIL)
+    Internals.writeArguments(DOUBLE to shininess.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularShininessPtr, NIL)
   }
 
   public final fun getSpecularShininess(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularShininessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularShininessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to filter.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): CanvasItem.TextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-    return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return CanvasItem.TextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureRepeat(repeat: CanvasItem.TextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+    Internals.writeArguments(LONG to repeat.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
   public final fun getTextureRepeat(): CanvasItem.TextureRepeat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
-    return CanvasItem.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
+    return CanvasItem.TextureRepeat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDiffuseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_diffuse_texture", 4051416890)
+        Internals.getMethodBindPtr("CanvasTexture", "set_diffuse_texture", 4051416890)
 
     public val getDiffuseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_diffuse_texture", 3635182373)
+        Internals.getMethodBindPtr("CanvasTexture", "get_diffuse_texture", 3635182373)
 
     public val setNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_normal_texture", 4051416890)
+        Internals.getMethodBindPtr("CanvasTexture", "set_normal_texture", 4051416890)
 
     public val getNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_normal_texture", 3635182373)
+        Internals.getMethodBindPtr("CanvasTexture", "get_normal_texture", 3635182373)
 
     public val setSpecularTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_texture", 4051416890)
+        Internals.getMethodBindPtr("CanvasTexture", "set_specular_texture", 4051416890)
 
     public val getSpecularTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_texture", 3635182373)
+        Internals.getMethodBindPtr("CanvasTexture", "get_specular_texture", 3635182373)
 
     public val setSpecularColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_color", 2920490490)
+        Internals.getMethodBindPtr("CanvasTexture", "set_specular_color", 2920490490)
 
     public val getSpecularColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_color", 3444240500)
+        Internals.getMethodBindPtr("CanvasTexture", "get_specular_color", 3444240500)
 
     public val setSpecularShininessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_shininess", 373806689)
+        Internals.getMethodBindPtr("CanvasTexture", "set_specular_shininess", 373806689)
 
     public val getSpecularShininessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_shininess", 1740695150)
+        Internals.getMethodBindPtr("CanvasTexture", "get_specular_shininess", 1740695150)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_filter", 1037999706)
+        Internals.getMethodBindPtr("CanvasTexture", "set_texture_filter", 1037999706)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_filter", 121960042)
+        Internals.getMethodBindPtr("CanvasTexture", "get_texture_filter", 121960042)
 
     public val setTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_repeat", 1716472974)
+        Internals.getMethodBindPtr("CanvasTexture", "set_texture_repeat", 1716472974)
 
     public val getTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_repeat", 2667158319)
+        Internals.getMethodBindPtr("CanvasTexture", "get_texture_repeat", 2667158319)
   }
 }

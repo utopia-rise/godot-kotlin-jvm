@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -18,7 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -112,180 +111,179 @@ public open class GLTFSkin : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFSKIN_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFSKIN_INDEX, scriptIndex)
   }
 
   public final fun getSkinRoot(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinRootPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkinRootPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkinRoot(skinRoot: Int): Unit {
-    TransferContext.writeArguments(LONG to skinRoot.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkinRootPtr, NIL)
+    Internals.writeArguments(LONG to skinRoot.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSkinRootPtr, NIL)
   }
 
   public final fun getJointsOriginal(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointsOriginalPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointsOriginalPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setJointsOriginal(jointsOriginal: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to jointsOriginal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointsOriginalPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to jointsOriginal)
+    Internals.callMethod(rawPtr, MethodBindings.setJointsOriginalPtr, NIL)
   }
 
   public final fun getInverseBinds(): VariantArray<Transform3D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInverseBindsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Transform3D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInverseBindsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Transform3D>)
   }
 
   public final fun setInverseBinds(inverseBinds: VariantArray<Transform3D>): Unit {
-    TransferContext.writeArguments(ARRAY to inverseBinds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInverseBindsPtr, NIL)
+    Internals.writeArguments(ARRAY to inverseBinds)
+    Internals.callMethod(rawPtr, MethodBindings.setInverseBindsPtr, NIL)
   }
 
   public final fun getJoints(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setJoints(joints: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to joints)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to joints)
+    Internals.callMethod(rawPtr, MethodBindings.setJointsPtr, NIL)
   }
 
   public final fun getNonJoints(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNonJointsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNonJointsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setNonJoints(nonJoints: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to nonJoints)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNonJointsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to nonJoints)
+    Internals.callMethod(rawPtr, MethodBindings.setNonJointsPtr, NIL)
   }
 
   public final fun getRoots(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setRoots(roots: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to roots)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to roots)
+    Internals.callMethod(rawPtr, MethodBindings.setRootsPtr, NIL)
   }
 
   public final fun getSkeleton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkeleton(skeleton: Int): Unit {
-    TransferContext.writeArguments(LONG to skeleton.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
+    Internals.writeArguments(LONG to skeleton.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
   }
 
   public final fun getJointIToBoneI(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointIToBoneIPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointIToBoneIPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setJointIToBoneI(jointIToBoneI: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to jointIToBoneI)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointIToBoneIPtr, NIL)
+    Internals.writeArguments(DICTIONARY to jointIToBoneI)
+    Internals.callMethod(rawPtr, MethodBindings.setJointIToBoneIPtr, NIL)
   }
 
   public final fun getJointIToName(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointIToNamePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointIToNamePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setJointIToName(jointIToName: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to jointIToName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointIToNamePtr, NIL)
+    Internals.writeArguments(DICTIONARY to jointIToName)
+    Internals.callMethod(rawPtr, MethodBindings.setJointIToNamePtr, NIL)
   }
 
   public final fun getGodotSkin(): Skin? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGodotSkinPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skin?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGodotSkinPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skin?)
   }
 
   public final fun setGodotSkin(godotSkin: Skin?): Unit {
-    TransferContext.writeArguments(OBJECT to godotSkin)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGodotSkinPtr, NIL)
+    Internals.writeArguments(OBJECT to godotSkin)
+    Internals.callMethod(rawPtr, MethodBindings.setGodotSkinPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSkinRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_skin_root", 2455072627)
+        Internals.getMethodBindPtr("GLTFSkin", "get_skin_root", 2455072627)
 
     public val setSkinRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_skin_root", 1286410249)
+        Internals.getMethodBindPtr("GLTFSkin", "set_skin_root", 1286410249)
 
     public val getJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints_original", 969006518)
+        Internals.getMethodBindPtr("GLTFSkin", "get_joints_original", 969006518)
 
     public val setJointsOriginalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints_original", 3614634198)
+        Internals.getMethodBindPtr("GLTFSkin", "set_joints_original", 3614634198)
 
     public val getInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_inverse_binds", 2915620761)
+        Internals.getMethodBindPtr("GLTFSkin", "get_inverse_binds", 2915620761)
 
     public val setInverseBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_inverse_binds", 381264803)
+        Internals.getMethodBindPtr("GLTFSkin", "set_inverse_binds", 381264803)
 
     public val getJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joints", 969006518)
+        Internals.getMethodBindPtr("GLTFSkin", "get_joints", 969006518)
 
     public val setJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joints", 3614634198)
+        Internals.getMethodBindPtr("GLTFSkin", "set_joints", 3614634198)
 
     public val getNonJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_non_joints", 969006518)
+        Internals.getMethodBindPtr("GLTFSkin", "get_non_joints", 969006518)
 
     public val setNonJointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_non_joints", 3614634198)
+        Internals.getMethodBindPtr("GLTFSkin", "set_non_joints", 3614634198)
 
-    public val getRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_roots", 969006518)
+    public val getRootsPtr: VoidPtr = Internals.getMethodBindPtr("GLTFSkin", "get_roots", 969006518)
 
     public val setRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_roots", 3614634198)
+        Internals.getMethodBindPtr("GLTFSkin", "set_roots", 3614634198)
 
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_skeleton", 2455072627)
+        Internals.getMethodBindPtr("GLTFSkin", "get_skeleton", 2455072627)
 
     public val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_skeleton", 1286410249)
+        Internals.getMethodBindPtr("GLTFSkin", "set_skeleton", 1286410249)
 
     public val getJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i", 2382534195)
+        Internals.getMethodBindPtr("GLTFSkin", "get_joint_i_to_bone_i", 2382534195)
 
     public val setJointIToBoneIPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i", 4155329257)
+        Internals.getMethodBindPtr("GLTFSkin", "set_joint_i_to_bone_i", 4155329257)
 
     public val getJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name", 2382534195)
+        Internals.getMethodBindPtr("GLTFSkin", "get_joint_i_to_name", 2382534195)
 
     public val setJointIToNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name", 4155329257)
+        Internals.getMethodBindPtr("GLTFSkin", "set_joint_i_to_name", 4155329257)
 
     public val getGodotSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "get_godot_skin", 1032037385)
+        Internals.getMethodBindPtr("GLTFSkin", "get_godot_skin", 1032037385)
 
     public val setGodotSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSkin", "set_godot_skin", 3971435618)
+        Internals.getMethodBindPtr("GLTFSkin", "set_godot_skin", 3971435618)
   }
 }

@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -587,77 +586,77 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYLIST_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPLAYLIST_INDEX, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
-    TransferContext.writeArguments(LONG to streamCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+    Internals.writeArguments(LONG to streamCount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
   }
 
   public final fun getStreamCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the BPM of the playlist, which can vary depending on the clip being played.
    */
   public final fun getBpm(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBpmPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
    * Sets the stream at playback position index.
    */
   public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
+    Internals.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
+    Internals.callMethod(rawPtr, MethodBindings.setListStreamPtr, NIL)
   }
 
   /**
    * Returns the stream at playback position index.
    */
   public final fun getListStream(streamIndex: Int): AudioStream? {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
+    Internals.writeArguments(LONG to streamIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getListStreamPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioStream?)
   }
 
   public final fun setShuffle(shuffle: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to shuffle)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
+    Internals.writeArguments(BOOL to shuffle)
+    Internals.callMethod(rawPtr, MethodBindings.setShufflePtr, NIL)
   }
 
   public final fun getShuffle(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShufflePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFadeTime(dec: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to dec.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to dec.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFadeTimePtr, NIL)
   }
 
   public final fun getFadeTime(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFadeTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object {
@@ -669,36 +668,36 @@ public open class AudioStreamPlaylist : AudioStream() {
 
   internal object MethodBindings {
     public val setStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1286410249)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1286410249)
 
     public val getStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3905245786)
 
     public val getBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1740695150)
 
     public val setListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111075094)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111075094)
 
     public val getListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2739380747)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2739380747)
 
     public val setShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2586408642)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2586408642)
 
     public val getShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36873697)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36873697)
 
     public val setFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373806689)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373806689)
 
     public val getFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1740695150)
 
     public val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2586408642)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2586408642)
 
     public val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36873697)
+        Internals.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36873697)
   }
 }

@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat64Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_64_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -209,172 +208,172 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFACCESSOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFACCESSOR_INDEX, scriptIndex)
   }
 
   public final fun getBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferViewPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferViewPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBufferView(bufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to bufferView.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferViewPtr, NIL)
+    Internals.writeArguments(LONG to bufferView.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferViewPtr, NIL)
   }
 
   public final fun getByteOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteOffset(byteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to byteOffset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
+    Internals.writeArguments(LONG to byteOffset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
   public final fun getComponentType(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getComponentTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getComponentTypePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setComponentType(componentType: Int): Unit {
-    TransferContext.writeArguments(LONG to componentType.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setComponentTypePtr, NIL)
+    Internals.writeArguments(LONG to componentType.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setComponentTypePtr, NIL)
   }
 
   public final fun getNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalizedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNormalized(normalized: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalized)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalizedPtr, NIL)
+    Internals.writeArguments(BOOL to normalized)
+    Internals.callMethod(rawPtr, MethodBindings.setNormalizedPtr, NIL)
   }
 
   public final fun getCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCountPtr, NIL)
   }
 
   public final fun getAccessorType(): GLTFAccessorType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAccessorTypePtr, LONG)
-    return GLTFAccessor.GLTFAccessorType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAccessorTypePtr, LONG)
+    return GLTFAccessor.GLTFAccessorType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
-    TransferContext.writeArguments(LONG to accessorType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAccessorTypePtr, NIL)
+    Internals.writeArguments(LONG to accessorType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAccessorTypePtr, NIL)
   }
 
   public final fun getType(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTypePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTypePtr, NIL)
+    Internals.writeArguments(LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTypePtr, NIL)
   }
 
   public final fun getMin(): PackedFloat64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, PACKED_FLOAT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinPtr, PACKED_FLOAT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
   public final fun setMin(min: PackedFloat64Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to min)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_64_ARRAY to min)
+    Internals.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun getMax(): PackedFloat64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, PACKED_FLOAT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPtr, PACKED_FLOAT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_64_ARRAY) as PackedFloat64Array)
   }
 
   public final fun setMax(max: PackedFloat64Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_64_ARRAY to max)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_64_ARRAY to max)
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun getSparseCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseCount(sparseCount: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseCountPtr, NIL)
+    Internals.writeArguments(LONG to sparseCount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseCountPtr, NIL)
   }
 
   public final fun getSparseIndicesBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesBufferViewPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseIndicesBufferViewPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseIndicesBufferView(sparseIndicesBufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesBufferView.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
+    Internals.writeArguments(LONG to sparseIndicesBufferView.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
   }
 
   public final fun getSparseIndicesByteOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesByteOffset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
+    Internals.writeArguments(LONG to sparseIndicesByteOffset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
   }
 
   public final fun getSparseIndicesComponentType(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseIndicesComponentType(sparseIndicesComponentType: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesComponentType.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
+    Internals.writeArguments(LONG to sparseIndicesComponentType.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
   }
 
   public final fun getSparseValuesBufferView(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseValuesBufferViewPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseValuesBufferViewPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseValuesBufferView(sparseValuesBufferView: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseValuesBufferView.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
+    Internals.writeArguments(LONG to sparseValuesBufferView.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
   }
 
   public final fun getSparseValuesByteOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseValuesByteOffset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
+    Internals.writeArguments(LONG to sparseValuesByteOffset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
   }
 
   public enum class GLTFAccessorType(
@@ -431,93 +430,91 @@ public open class GLTFAccessor : Resource() {
 
   internal object MethodBindings {
     public val getBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
 
     public val setBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
 
     public val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
 
     public val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
 
     public val getComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
 
     public val setComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
 
     public val getNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
 
     public val setNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
 
     public val getCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
 
     public val setCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
 
     public val getAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
 
     public val setAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
 
     public val getTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
 
     public val setTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
 
-    public val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
+    public val getMinPtr: VoidPtr = Internals.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
 
     public val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
 
-    public val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
+    public val getMaxPtr: VoidPtr = Internals.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
 
     public val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
 
     public val getSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
 
     public val setSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
 
     public val getSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
 
     public val setSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
 
     public val getSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
 
     public val setSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
 
     public val getSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
 
     public val setSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
 
     public val getSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
 
     public val setSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
 
     public val getSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
+        Internals.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
 
     public val setSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)
+        Internals.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)
   }
 }

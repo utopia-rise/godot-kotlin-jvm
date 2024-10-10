@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -98,7 +97,7 @@ public open class CollisionShape2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COLLISIONSHAPE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COLLISIONSHAPE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -129,91 +128,91 @@ public open class CollisionShape2D : Node2D() {
 
 
   public final fun setShape(shape: Shape2D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(OBJECT to shape)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    Internals.writeArguments(BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollision(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
   }
 
   public final fun isOneWayCollisionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollisionMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
   }
 
   public final fun getOneWayCollisionMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDebugColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugColorPtr, NIL)
   }
 
   public final fun getDebugColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_shape", 771364740)
+        Internals.getMethodBindPtr("CollisionShape2D", "set_shape", 771364740)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_shape", 522005891)
+        Internals.getMethodBindPtr("CollisionShape2D", "get_shape", 522005891)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_disabled", 2586408642)
+        Internals.getMethodBindPtr("CollisionShape2D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_disabled", 36873697)
+        Internals.getMethodBindPtr("CollisionShape2D", "is_disabled", 36873697)
 
     public val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2586408642)
+        Internals.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2586408642)
 
     public val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36873697)
+        Internals.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36873697)
 
     public val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373806689)
+        Internals.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373806689)
 
     public val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
+        Internals.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
 
     public val setDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)
+        Internals.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)
 
     public val getDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3444240500)
+        Internals.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3444240500)
   }
 }

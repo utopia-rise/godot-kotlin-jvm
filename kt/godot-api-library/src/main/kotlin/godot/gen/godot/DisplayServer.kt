@@ -17,7 +17,6 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -42,7 +41,7 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -111,7 +110,7 @@ public object DisplayServer : Object() {
   public final const val INVALID_INDICATOR_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_DISPLAYSERVER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_DISPLAYSERVER_INDEX)
   }
 
   /**
@@ -120,9 +119,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to feature.id)
+    Internals.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -135,9 +134,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -152,8 +151,8 @@ public object DisplayServer : Object() {
   @JvmStatic
   public final fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable):
       Unit {
-    TransferContext.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.helpSetSearchCallbacksPtr, NIL)
+    Internals.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
+    Internals.callMethod(rawPtr, MethodBindings.helpSetSearchCallbacksPtr, NIL)
   }
 
   /**
@@ -166,8 +165,8 @@ public object DisplayServer : Object() {
     openCallback: Callable,
     closeCallback: Callable,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetPopupCallbacksPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetPopupCallbacksPtr, NIL)
   }
 
   /**
@@ -192,9 +191,9 @@ public object DisplayServer : Object() {
     submenu: String,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSubmenuItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to label, STRING to submenu, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddSubmenuItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -227,9 +226,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -262,9 +261,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddCheckItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -298,9 +297,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddIconItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -335,9 +334,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddIconCheckItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -373,9 +372,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddRadioCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddRadioCheckItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -413,9 +412,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddIconRadioCheckItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddIconRadioCheckItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -455,9 +454,9 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.KEY_NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddMultistateItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddMultistateItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -477,9 +476,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun globalMenuAddSeparator(menuRoot: String, index: Int = -1): Int {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuAddSeparatorPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuAddSeparatorPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -489,9 +488,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemIndexFromText(menuRoot: String, text: String): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTextPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTextPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -501,9 +500,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemIndexFromTag(menuRoot: String, tag: Any?): Int {
-    TransferContext.writeArguments(STRING to menuRoot, ANY to tag)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTagPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, ANY to tag)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndexFromTagPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -512,9 +511,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuIsItemChecked(menuRoot: String, idx: Int): Boolean {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -524,9 +523,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuIsItemCheckable(menuRoot: String, idx: Int): Boolean {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuIsItemCheckablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -537,9 +536,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuIsItemRadioCheckable(menuRoot: String, idx: Int): Boolean {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemRadioCheckablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuIsItemRadioCheckablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -548,9 +547,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemCallback(menuRoot: String, idx: Int): Callable {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCallbackPtr, CALLABLE)
-    return (TransferContext.readReturnValue(CALLABLE) as Callable)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemCallbackPtr, CALLABLE)
+    return (Internals.readReturnValue(CALLABLE) as Callable)
   }
 
   /**
@@ -559,9 +558,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemKeyCallback(menuRoot: String, idx: Int): Callable {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemKeyCallbackPtr, CALLABLE)
-    return (TransferContext.readReturnValue(CALLABLE) as Callable)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemKeyCallbackPtr, CALLABLE)
+    return (Internals.readReturnValue(CALLABLE) as Callable)
   }
 
   /**
@@ -571,9 +570,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemTag(menuRoot: String, idx: Int): Any? {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTagPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemTagPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -582,9 +581,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemText(menuRoot: String, idx: Int): String {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -594,9 +593,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemSubmenu(menuRoot: String, idx: Int): String {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemSubmenuPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemSubmenuPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -606,9 +605,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemAccelerator(menuRoot: String, idx: Int): Key {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemAcceleratorPtr, LONG)
-    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemAcceleratorPtr, LONG)
+    return Key.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -619,9 +618,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuIsItemDisabled(menuRoot: String, idx: Int): Boolean {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuIsItemDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -631,9 +630,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuIsItemHidden(menuRoot: String, idx: Int): Boolean {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuIsItemHiddenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -642,9 +641,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemTooltip(menuRoot: String, idx: Int): String {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemTooltipPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -653,9 +652,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemState(menuRoot: String, idx: Int): Int {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemStatePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemStatePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -664,9 +663,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemMaxStates(menuRoot: String, idx: Int): Int {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemMaxStatesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemMaxStatesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -675,9 +674,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemIcon(menuRoot: String, idx: Int): Texture2D? {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -686,9 +685,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemIndentationLevel(menuRoot: String, idx: Int): Int {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndentationLevelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemIndentationLevelPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -701,8 +700,8 @@ public object DisplayServer : Object() {
     idx: Int,
     checked: Boolean,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checked)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemCheckedPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checked)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemCheckedPtr, NIL)
   }
 
   /**
@@ -716,8 +715,8 @@ public object DisplayServer : Object() {
     idx: Int,
     checkable: Boolean,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemCheckablePtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemCheckablePtr, NIL)
   }
 
   /**
@@ -733,8 +732,8 @@ public object DisplayServer : Object() {
     idx: Int,
     checkable: Boolean,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemRadioCheckablePtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemRadioCheckablePtr, NIL)
   }
 
   /**
@@ -750,8 +749,8 @@ public object DisplayServer : Object() {
     idx: Int,
     callback: Callable,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemCallbackPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemCallbackPtr, NIL)
   }
 
   /**
@@ -767,8 +766,8 @@ public object DisplayServer : Object() {
     idx: Int,
     callback: Callable,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHoverCallbacksPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemHoverCallbacksPtr, NIL)
   }
 
   /**
@@ -785,8 +784,8 @@ public object DisplayServer : Object() {
     idx: Int,
     keyCallback: Callable,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to keyCallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemKeyCallbackPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to keyCallback)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemKeyCallbackPtr, NIL)
   }
 
   /**
@@ -800,8 +799,8 @@ public object DisplayServer : Object() {
     idx: Int,
     tag: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), ANY to tag)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemTagPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), ANY to tag)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemTagPtr, NIL)
   }
 
   /**
@@ -814,8 +813,8 @@ public object DisplayServer : Object() {
     idx: Int,
     text: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemTextPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemTextPtr, NIL)
   }
 
   /**
@@ -829,8 +828,8 @@ public object DisplayServer : Object() {
     idx: Int,
     submenu: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to submenu)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemSubmenuPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to submenu)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemSubmenuPtr, NIL)
   }
 
   /**
@@ -845,8 +844,8 @@ public object DisplayServer : Object() {
     idx: Int,
     keycode: Key,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemAcceleratorPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to keycode.id)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemAcceleratorPtr, NIL)
   }
 
   /**
@@ -860,8 +859,8 @@ public object DisplayServer : Object() {
     idx: Int,
     disabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemDisabledPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemDisabledPtr, NIL)
   }
 
   /**
@@ -875,8 +874,8 @@ public object DisplayServer : Object() {
     idx: Int,
     hidden: Boolean,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemHiddenPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemHiddenPtr, NIL)
   }
 
   /**
@@ -889,8 +888,8 @@ public object DisplayServer : Object() {
     idx: Int,
     tooltip: String,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemTooltipPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to tooltip)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemTooltipPtr, NIL)
   }
 
   /**
@@ -903,8 +902,8 @@ public object DisplayServer : Object() {
     idx: Int,
     state: Int,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to state.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemStatePtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to state.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemStatePtr, NIL)
   }
 
   /**
@@ -917,8 +916,8 @@ public object DisplayServer : Object() {
     idx: Int,
     maxStates: Int,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to maxStates.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemMaxStatesPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to maxStates.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemMaxStatesPtr, NIL)
   }
 
   /**
@@ -932,8 +931,8 @@ public object DisplayServer : Object() {
     idx: Int,
     icon: Texture2D?,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemIconPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemIconPtr, NIL)
   }
 
   /**
@@ -946,8 +945,8 @@ public object DisplayServer : Object() {
     idx: Int,
     level: Int,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to level.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuSetItemIndentationLevelPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to level.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuSetItemIndentationLevelPtr, NIL)
   }
 
   /**
@@ -956,9 +955,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetItemCount(menuRoot: String): Int {
-    TransferContext.writeArguments(STRING to menuRoot)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetItemCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to menuRoot)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetItemCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -968,8 +967,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuRemoveItem(menuRoot: String, idx: Int): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuRemoveItemPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot, LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuRemoveItemPtr, NIL)
   }
 
   /**
@@ -986,8 +985,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuClear(menuRoot: String): Unit {
-    TransferContext.writeArguments(STRING to menuRoot)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuClearPtr, NIL)
+    Internals.writeArguments(STRING to menuRoot)
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuClearPtr, NIL)
   }
 
   /**
@@ -996,9 +995,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun globalMenuGetSystemMenuRoots(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.globalMenuGetSystemMenuRootsPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1009,9 +1008,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsIsSpeaking(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsIsSpeakingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsIsSpeakingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1022,9 +1021,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsIsPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsIsPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsIsPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1045,9 +1044,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsGetVoicesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1058,10 +1057,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsGetVoicesForLanguagePtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.ttsGetVoicesForLanguagePtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -1094,8 +1092,8 @@ public object DisplayServer : Object() {
     utteranceId: Int = 0,
     interrupt: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume.toLong(), DOUBLE to pitch.toDouble(), DOUBLE to rate.toDouble(), LONG to utteranceId.toLong(), BOOL to interrupt)
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsSpeakPtr, NIL)
+    Internals.writeArguments(STRING to text, STRING to voice, LONG to volume.toLong(), DOUBLE to pitch.toDouble(), DOUBLE to rate.toDouble(), LONG to utteranceId.toLong(), BOOL to interrupt)
+    Internals.callMethod(rawPtr, MethodBindings.ttsSpeakPtr, NIL)
   }
 
   /**
@@ -1106,8 +1104,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsPause(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsPausePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsPausePtr, NIL)
   }
 
   /**
@@ -1118,8 +1116,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsResume(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsResumePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsResumePtr, NIL)
   }
 
   /**
@@ -1130,8 +1128,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsStop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsStopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ttsStopPtr, NIL)
   }
 
   /**
@@ -1148,8 +1146,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
-    TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
+    Internals.writeArguments(LONG to event.id, CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
   }
 
   /**
@@ -1158,9 +1156,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isDarkModeSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDarkModeSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDarkModeSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1169,9 +1167,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isDarkMode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDarkModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDarkModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1180,9 +1178,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getAccentColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAccentColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1192,9 +1190,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getBaseColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBaseColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1204,8 +1202,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun setSystemThemeChangeCallback(callable: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
   }
 
   /**
@@ -1213,8 +1211,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseSetMode(mouseMode: MouseMode): Unit {
-    TransferContext.writeArguments(LONG to mouseMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.mouseSetModePtr, NIL)
+    Internals.writeArguments(LONG to mouseMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.mouseSetModePtr, NIL)
   }
 
   /**
@@ -1222,9 +1220,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetMode(): MouseMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.mouseGetModePtr, LONG)
-    return DisplayServer.MouseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.mouseGetModePtr, LONG)
+    return DisplayServer.MouseMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1235,8 +1233,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun warpMouse(position: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
+    Internals.writeArguments(VECTOR2I to position)
+    Internals.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
   }
 
   /**
@@ -1244,9 +1242,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetPosition(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.mouseGetPositionPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1256,9 +1254,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseGetButtonState(): MouseButtonMask {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.mouseGetButtonStatePtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.mouseGetButtonStatePtr, LONG)
+    return MouseButtonMaskValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1266,8 +1264,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardSet(clipboard: String): Unit {
-    TransferContext.writeArguments(STRING to clipboard)
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPtr, NIL)
+    Internals.writeArguments(STRING to clipboard)
+    Internals.callMethod(rawPtr, MethodBindings.clipboardSetPtr, NIL)
   }
 
   /**
@@ -1275,9 +1273,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGet(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clipboardGetPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1287,9 +1285,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGetImage(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clipboardGetImagePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -1297,9 +1295,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardHas(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clipboardHasPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1307,9 +1305,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardHasImage(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clipboardHasImagePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1323,8 +1321,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardSetPrimary(clipboardPrimary: String): Unit {
-    TransferContext.writeArguments(STRING to clipboardPrimary)
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardSetPrimaryPtr, NIL)
+    Internals.writeArguments(STRING to clipboardPrimary)
+    Internals.callMethod(rawPtr, MethodBindings.clipboardSetPrimaryPtr, NIL)
   }
 
   /**
@@ -1338,9 +1336,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun clipboardGetPrimary(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clipboardGetPrimaryPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clipboardGetPrimaryPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1352,9 +1350,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getDisplayCutouts(): VariantArray<Rect2> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Rect2>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDisplayCutoutsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Rect2>)
   }
 
   /**
@@ -1363,9 +1361,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getDisplaySafeArea(): Rect2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDisplaySafeAreaPtr, RECT2I)
+    return (Internals.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1373,9 +1371,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getScreenCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1383,9 +1381,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getPrimaryScreen(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPrimaryScreenPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1394,9 +1392,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getKeyboardFocusScreen(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getKeyboardFocusScreenPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1404,9 +1402,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getScreenFromRect(rect: Rect2): Int {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenFromRectPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.getScreenFromRectPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1427,9 +1425,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetPosition(screen: Int = -1): Vector2i {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetPositionPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1438,9 +1436,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetSize(screen: Int = -1): Vector2i {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1450,9 +1448,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetUsableRect(screen: Int = -1): Rect2i {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetUsableRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetUsableRectPtr, RECT2I)
+    return (Internals.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1475,9 +1473,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetDpi(screen: Int = -1): Int {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetDpiPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetDpiPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1492,9 +1490,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetScale(screen: Int = -1): Float {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1503,9 +1501,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isTouchscreenAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTouchscreenAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1516,9 +1514,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenGetMaxScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.screenGetMaxScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1537,9 +1535,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetRefreshRate(screen: Int = -1): Float {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetRefreshRatePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1550,9 +1548,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenGetPixel(position: Vector2i): Color {
-    TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetPixelPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(VECTOR2I to position)
+    Internals.callMethod(rawPtr, MethodBindings.screenGetPixelPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -1564,9 +1562,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetImage(screen: Int = -1): Image? {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetImagePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetImagePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -1577,8 +1575,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to orientation.id, LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenSetOrientationPtr, NIL)
+    Internals.writeArguments(LONG to orientation.id, LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenSetOrientationPtr, NIL)
   }
 
   /**
@@ -1588,9 +1586,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenGetOrientation(screen: Int = -1): ScreenOrientation {
-    TransferContext.writeArguments(LONG to screen.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.screenGetOrientationPtr, LONG)
-    return DisplayServer.ScreenOrientation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to screen.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.screenGetOrientationPtr, LONG)
+    return DisplayServer.ScreenOrientation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1599,8 +1597,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenSetKeepOn(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.screenSetKeepOnPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.screenSetKeepOnPtr, NIL)
   }
 
   /**
@@ -1609,9 +1607,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun screenIsKeptOn(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.screenIsKeptOnPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.screenIsKeptOnPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1620,9 +1618,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getWindowList(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWindowListPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -1641,9 +1639,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getWindowAtScreenPosition(position: Vector2i): Int {
-    TransferContext.writeArguments(VECTOR2I to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindowAtScreenPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2I to position)
+    Internals.callMethod(rawPtr, MethodBindings.getWindowAtScreenPositionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1653,9 +1651,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
-    TransferContext.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetNativeHandlePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetNativeHandlePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1663,9 +1661,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowGetActivePopup(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetActivePopupPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.windowGetActivePopupPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1674,8 +1672,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowSetPopupSafeRect(window: Int, rect: Rect2i): Unit {
-    TransferContext.writeArguments(LONG to window.toLong(), RECT2I to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetPopupSafeRectPtr, NIL)
+    Internals.writeArguments(LONG to window.toLong(), RECT2I to rect)
+    Internals.callMethod(rawPtr, MethodBindings.windowSetPopupSafeRectPtr, NIL)
   }
 
   /**
@@ -1684,9 +1682,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowGetPopupSafeRect(window: Int): Rect2i {
-    TransferContext.writeArguments(LONG to window.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetPopupSafeRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+    Internals.writeArguments(LONG to window.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetPopupSafeRectPtr, RECT2I)
+    return (Internals.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1698,8 +1696,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetTitle(title: String, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetTitlePtr, NIL)
+    Internals.writeArguments(STRING to title, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetTitlePtr, NIL)
   }
 
   /**
@@ -1710,9 +1708,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetTitleSize(title: String, windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(STRING to title, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetTitleSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1751,8 +1749,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetMousePassthroughPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetMousePassthroughPtr, NIL)
   }
 
   /**
@@ -1763,9 +1761,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetCurrentScreen(windowId: Int = 0): Int {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetCurrentScreenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetCurrentScreenPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1775,8 +1773,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetCurrentScreen(screen: Int, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to screen.toLong(), LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetCurrentScreenPtr, NIL)
+    Internals.writeArguments(LONG to screen.toLong(), LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetCurrentScreenPtr, NIL)
   }
 
   /**
@@ -1785,9 +1783,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetPosition(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetPositionPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1797,9 +1795,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetPositionWithDecorations(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetPositionWithDecorationsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetPositionWithDecorationsPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1821,8 +1819,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetPositionPtr, NIL)
   }
 
   /**
@@ -1833,9 +1831,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetSize(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1846,8 +1844,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetSize(size: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to size, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetSizePtr, NIL)
   }
 
   /**
@@ -1859,8 +1857,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetRectChangedCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetRectChangedCallbackPtr, NIL)
   }
 
   /**
@@ -1872,8 +1870,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowEventCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetWindowEventCallbackPtr, NIL)
   }
 
   /**
@@ -1885,8 +1883,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputEventCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetInputEventCallbackPtr, NIL)
   }
 
   /**
@@ -1898,8 +1896,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetInputTextCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetInputTextCallbackPtr, NIL)
   }
 
   /**
@@ -1913,8 +1911,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetDropFilesCallbackPtr, NIL)
+    Internals.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetDropFilesCallbackPtr, NIL)
   }
 
   /**
@@ -1923,9 +1921,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetAttachedInstanceId(windowId: Int = 0): Long {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetAttachedInstanceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetAttachedInstanceIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1934,9 +1932,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetMaxSize(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetMaxSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetMaxSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1950,8 +1948,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetMaxSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to maxSize, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetMaxSizePtr, NIL)
   }
 
   /**
@@ -1960,9 +1958,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetMinSize(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetMinSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetMinSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -1978,8 +1976,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetMinSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to minSize, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetMinSizePtr, NIL)
   }
 
   /**
@@ -1989,9 +1987,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetSizeWithDecorations(windowId: Int = 0): Vector2i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetSizeWithDecorationsPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetSizeWithDecorationsPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -2000,9 +1998,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetMode(windowId: Int = 0): WindowMode {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetModePtr, LONG)
-    return DisplayServer.WindowMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetModePtr, LONG)
+    return DisplayServer.WindowMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2014,8 +2012,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to mode.id, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetModePtr, NIL)
   }
 
   /**
@@ -2029,8 +2027,8 @@ public object DisplayServer : Object() {
     enabled: Boolean,
     windowId: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetFlagPtr, NIL)
+    Internals.writeArguments(LONG to flag.id, BOOL to enabled, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetFlagPtr, NIL)
   }
 
   /**
@@ -2039,9 +2037,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
-    TransferContext.writeArguments(LONG to flag.id, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to flag.id, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetFlagPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2052,8 +2050,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetWindowButtonsOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2I to offset, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetWindowButtonsOffsetPtr, NIL)
   }
 
   /**
@@ -2063,9 +2061,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetSafeTitleMargins(windowId: Int = 0): Vector3i {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetSafeTitleMarginsPtr, VECTOR3I)
-    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetSafeTitleMarginsPtr, VECTOR3I)
+    return (Internals.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   /**
@@ -2076,8 +2074,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowRequestAttention(windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowRequestAttentionPtr, NIL)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowRequestAttentionPtr, NIL)
   }
 
   /**
@@ -2087,8 +2085,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowMoveToForeground(windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowMoveToForegroundPtr, NIL)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowMoveToForegroundPtr, NIL)
   }
 
   /**
@@ -2097,9 +2095,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowIsFocused(windowId: Int = 0): Boolean {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowIsFocusedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowIsFocusedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2110,9 +2108,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowCanDraw(windowId: Int = 0): Boolean {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowCanDrawPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowCanDrawPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2124,8 +2122,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowSetTransient(windowId: Int, parentWindowId: Int): Unit {
-    TransferContext.writeArguments(LONG to windowId.toLong(), LONG to parentWindowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetTransientPtr, NIL)
+    Internals.writeArguments(LONG to windowId.toLong(), LONG to parentWindowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetTransientPtr, NIL)
   }
 
   /**
@@ -2137,8 +2135,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowSetExclusive(windowId: Int, exclusive: Boolean): Unit {
-    TransferContext.writeArguments(LONG to windowId.toLong(), BOOL to exclusive)
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetExclusivePtr, NIL)
+    Internals.writeArguments(LONG to windowId.toLong(), BOOL to exclusive)
+    Internals.callMethod(rawPtr, MethodBindings.windowSetExclusivePtr, NIL)
   }
 
   /**
@@ -2148,8 +2146,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(BOOL to active, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetImeActivePtr, NIL)
+    Internals.writeArguments(BOOL to active, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetImeActivePtr, NIL)
   }
 
   /**
@@ -2160,8 +2158,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetImePositionPtr, NIL)
+    Internals.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetImePositionPtr, NIL)
   }
 
   /**
@@ -2177,8 +2175,8 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowSetVsyncModePtr, NIL)
+    Internals.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowSetVsyncModePtr, NIL)
   }
 
   /**
@@ -2187,9 +2185,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetVsyncMode(windowId: Int = 0): VSyncMode {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowGetVsyncModePtr, LONG)
-    return DisplayServer.VSyncMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowGetVsyncModePtr, LONG)
+    return DisplayServer.VSyncMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2198,9 +2196,9 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowIsMaximizeAllowed(windowId: Int = 0): Boolean {
-    TransferContext.writeArguments(LONG to windowId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.windowIsMaximizeAllowedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to windowId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.windowIsMaximizeAllowedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2209,9 +2207,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowMaximizeOnTitleDblClick(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.windowMaximizeOnTitleDblClickPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2220,9 +2218,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun windowMinimizeOnTitleDblClick(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.windowMinimizeOnTitleDblClickPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2233,9 +2231,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun imeGetSelection(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.imeGetSelectionPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -2245,9 +2243,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun imeGetText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.imeGetTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.imeGetTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2272,8 +2270,8 @@ public object DisplayServer : Object() {
     cursorStart: Int = -1,
     cursorEnd: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength.toLong(), LONG to cursorStart.toLong(), LONG to cursorEnd.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardShowPtr, NIL)
+    Internals.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength.toLong(), LONG to cursorStart.toLong(), LONG to cursorEnd.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.virtualKeyboardShowPtr, NIL)
   }
 
   /**
@@ -2281,8 +2279,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun virtualKeyboardHide(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardHidePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.virtualKeyboardHidePtr, NIL)
   }
 
   /**
@@ -2291,9 +2289,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun virtualKeyboardGetHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.virtualKeyboardGetHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2302,8 +2300,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun cursorSetShape(shape: CursorShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.cursorSetShapePtr, NIL)
+    Internals.writeArguments(LONG to shape.id)
+    Internals.callMethod(rawPtr, MethodBindings.cursorSetShapePtr, NIL)
   }
 
   /**
@@ -2311,9 +2309,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun cursorGetShape(): CursorShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cursorGetShapePtr, LONG)
-    return DisplayServer.CursorShape.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.cursorGetShapePtr, LONG)
+    return DisplayServer.CursorShape.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2331,8 +2329,8 @@ public object DisplayServer : Object() {
     shape: CursorShape = DisplayServer.CursorShape.CURSOR_ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
-    TransferContext.callMethod(rawPtr, MethodBindings.cursorSetCustomImagePtr, NIL)
+    Internals.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
+    Internals.callMethod(rawPtr, MethodBindings.cursorSetCustomImagePtr, NIL)
   }
 
   /**
@@ -2344,9 +2342,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun getSwapCancelOk(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwapCancelOkPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSwapCancelOkPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2356,8 +2354,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun enableForStealingFocus(processId: Long): Unit {
-    TransferContext.writeArguments(LONG to processId)
-    TransferContext.callMethod(rawPtr, MethodBindings.enableForStealingFocusPtr, NIL)
+    Internals.writeArguments(LONG to processId)
+    Internals.callMethod(rawPtr, MethodBindings.enableForStealingFocusPtr, NIL)
   }
 
   /**
@@ -2373,9 +2371,9 @@ public object DisplayServer : Object() {
     buttons: PackedStringArray,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.dialogShowPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to title, STRING to description, PACKED_STRING_ARRAY to buttons, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.dialogShowPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2391,9 +2389,9 @@ public object DisplayServer : Object() {
     existingText: String,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.dialogInputTextPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to title, STRING to description, STRING to existingText, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.dialogInputTextPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2422,9 +2420,9 @@ public object DisplayServer : Object() {
     filters: PackedStringArray,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.fileDialogShowPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2460,9 +2458,9 @@ public object DisplayServer : Object() {
     options: VariantArray<Dictionary<Any?, Any?>>,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2471,9 +2469,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLayoutCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetLayoutCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2482,9 +2480,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetCurrentLayout(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetCurrentLayoutPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2493,8 +2491,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardSetCurrentLayout(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardSetCurrentLayoutPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.keyboardSetCurrentLayoutPtr, NIL)
   }
 
   /**
@@ -2503,9 +2501,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLayoutLanguage(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetLayoutLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2514,9 +2512,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLayoutName(index: Int): String {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLayoutNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetLayoutNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2525,9 +2523,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
-    TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
-    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to keycode.id)
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
+    return Key.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2537,9 +2535,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLabelFromPhysical(keycode: Key): Key {
-    TransferContext.writeArguments(LONG to keycode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
-    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to keycode.id)
+    Internals.callMethod(rawPtr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
+    return Key.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2548,8 +2546,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun processEvents(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.processEventsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.processEventsPtr, NIL)
   }
 
   /**
@@ -2558,8 +2556,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun forceProcessAndDropEvents(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
   }
 
   /**
@@ -2573,8 +2571,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun setNativeIcon(filename: String): Unit {
-    TransferContext.writeArguments(STRING to filename)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNativeIconPtr, NIL)
+    Internals.writeArguments(STRING to filename)
+    Internals.callMethod(rawPtr, MethodBindings.setNativeIconPtr, NIL)
   }
 
   /**
@@ -2584,8 +2582,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun setIcon(image: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
+    Internals.writeArguments(OBJECT to image)
+    Internals.callMethod(rawPtr, MethodBindings.setIconPtr, NIL)
   }
 
   /**
@@ -2600,9 +2598,9 @@ public object DisplayServer : Object() {
     tooltip: String,
     callback: Callable,
   ): Int {
-    TransferContext.writeArguments(OBJECT to icon, STRING to tooltip, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.createStatusIndicatorPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(OBJECT to icon, STRING to tooltip, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.createStatusIndicatorPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2611,8 +2609,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.statusIndicatorSetIconPtr, NIL)
   }
 
   /**
@@ -2621,8 +2619,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), STRING to tooltip)
+    Internals.callMethod(rawPtr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
   }
 
   /**
@@ -2637,8 +2635,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), _RID to menuRid)
-    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), _RID to menuRid)
+    Internals.callMethod(rawPtr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
   }
 
   /**
@@ -2649,8 +2647,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
   }
 
   /**
@@ -2660,9 +2658,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun statusIndicatorGetRect(id: Int): Rect2 {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.statusIndicatorGetRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -2670,8 +2668,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun deleteStatusIndicator(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.deleteStatusIndicatorPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.deleteStatusIndicatorPtr, NIL)
   }
 
   /**
@@ -2680,9 +2678,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletGetDriverCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.tabletGetDriverCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -2691,9 +2689,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletGetDriverName(idx: Int): String {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.tabletGetDriverNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.tabletGetDriverNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2702,9 +2700,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletGetCurrentDriver(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.tabletGetCurrentDriverPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -2717,8 +2715,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun tabletSetCurrentDriver(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
   }
 
   /**
@@ -2728,9 +2726,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun isWindowTransparencyAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isWindowTransparencyAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -2741,8 +2739,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun registerAdditionalOutput(`object`: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to `object`)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
+    Internals.writeArguments(OBJECT to `object`)
+    Internals.callMethod(rawPtr, MethodBindings.registerAdditionalOutputPtr, NIL)
   }
 
   /**
@@ -2751,8 +2749,8 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun unregisterAdditionalOutput(`object`: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to `object`)
-    TransferContext.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
+    Internals.writeArguments(OBJECT to `object`)
+    Internals.callMethod(rawPtr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
   }
 
   /**
@@ -2760,9 +2758,9 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun hasAdditionalOutputs(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasAdditionalOutputsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Feature(
@@ -3480,555 +3478,555 @@ public object DisplayServer : Object() {
 
   internal object MethodBindings {
     public val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_feature", 334065950)
+        Internals.getMethodBindPtr("DisplayServer", "has_feature", 334065950)
 
     public val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_name", 201670096)
+        Internals.getMethodBindPtr("DisplayServer", "get_name", 201670096)
 
     public val helpSetSearchCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks", 1687350599)
+        Internals.getMethodBindPtr("DisplayServer", "help_set_search_callbacks", 1687350599)
 
     public val globalMenuSetPopupCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks", 3893727526)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks", 3893727526)
 
     public val globalMenuAddSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2828985934)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2828985934)
 
     public val globalMenuAddItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3401266716)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3401266716)
 
     public val globalMenuAddCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3401266716)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3401266716)
 
     public val globalMenuAddIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 4245856523)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 4245856523)
 
     public val globalMenuAddIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 4245856523)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 4245856523)
 
     public val globalMenuAddRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3401266716)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3401266716)
 
     public val globalMenuAddIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 4245856523)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 4245856523)
 
     public val globalMenuAddMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3431222859)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3431222859)
 
     public val globalMenuAddSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3214812433)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3214812433)
 
     public val globalMenuGetItemIndexFromTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text", 2878152881)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text", 2878152881)
 
     public val globalMenuGetItemIndexFromTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag", 2941063483)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag", 2941063483)
 
     public val globalMenuIsItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked", 3511468594)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked", 3511468594)
 
     public val globalMenuIsItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable", 3511468594)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable", 3511468594)
 
     public val globalMenuIsItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable", 3511468594)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable", 3511468594)
 
     public val globalMenuGetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback", 748666903)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback", 748666903)
 
     public val globalMenuGetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback", 748666903)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback", 748666903)
 
     public val globalMenuGetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag", 330672633)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag", 330672633)
 
     public val globalMenuGetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_text", 591067909)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_text", 591067909)
 
     public val globalMenuGetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu", 591067909)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu", 591067909)
 
     public val globalMenuGetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator", 936065394)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator", 936065394)
 
     public val globalMenuIsItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled", 3511468594)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled", 3511468594)
 
     public val globalMenuIsItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden", 3511468594)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden", 3511468594)
 
     public val globalMenuGetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip", 591067909)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip", 591067909)
 
     public val globalMenuGetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_state", 3422818498)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_state", 3422818498)
 
     public val globalMenuGetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states", 3422818498)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states", 3422818498)
 
     public val globalMenuGetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon", 3591713183)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon", 3591713183)
 
     public val globalMenuGetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level", 3422818498)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level", 3422818498)
 
     public val globalMenuSetItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked", 4108344793)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked", 4108344793)
 
     public val globalMenuSetItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable", 4108344793)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable", 4108344793)
 
     public val globalMenuSetItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable", 4108344793)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable", 4108344793)
 
     public val globalMenuSetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback", 3809915389)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback", 3809915389)
 
     public val globalMenuSetItemHoverCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks", 3809915389)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks", 3809915389)
 
     public val globalMenuSetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback", 3809915389)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback", 3809915389)
 
     public val globalMenuSetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag", 453659863)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag", 453659863)
 
     public val globalMenuSetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_text", 965966136)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_text", 965966136)
 
     public val globalMenuSetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu", 965966136)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu", 965966136)
 
     public val globalMenuSetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator", 566943293)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator", 566943293)
 
     public val globalMenuSetItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled", 4108344793)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled", 4108344793)
 
     public val globalMenuSetItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden", 4108344793)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden", 4108344793)
 
     public val globalMenuSetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip", 965966136)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip", 965966136)
 
     public val globalMenuSetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_state", 3474840532)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_state", 3474840532)
 
     public val globalMenuSetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states", 3474840532)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states", 3474840532)
 
     public val globalMenuSetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon", 3201338066)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon", 3201338066)
 
     public val globalMenuSetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level", 3474840532)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level", 3474840532)
 
     public val globalMenuGetItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_count", 1321353865)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_item_count", 1321353865)
 
     public val globalMenuRemoveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_remove_item", 2956805083)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_remove_item", 2956805083)
 
     public val globalMenuClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear", 83702148)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_clear", 83702148)
 
     public val globalMenuGetSystemMenuRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots", 3102165223)
+        Internals.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots", 3102165223)
 
     public val ttsIsSpeakingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "tts_is_speaking", 36873697)
 
     public val ttsIsPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_paused", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "tts_is_paused", 36873697)
 
     public val ttsGetVoicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices", 3995934104)
+        Internals.getMethodBindPtr("DisplayServer", "tts_get_voices", 3995934104)
 
     public val ttsGetVoicesForLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language", 4291131558)
+        Internals.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language", 4291131558)
 
     public val ttsSpeakPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_speak", 903992738)
+        Internals.getMethodBindPtr("DisplayServer", "tts_speak", 903992738)
 
     public val ttsPausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_pause", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "tts_pause", 3218959716)
 
     public val ttsResumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_resume", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "tts_resume", 3218959716)
 
     public val ttsStopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_stop", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "tts_stop", 3218959716)
 
     public val ttsSetUtteranceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback", 109679083)
+        Internals.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback", 109679083)
 
     public val isDarkModeSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode_supported", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "is_dark_mode_supported", 36873697)
 
     public val isDarkModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "is_dark_mode", 36873697)
 
     public val getAccentColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color", 3444240500)
+        Internals.getMethodBindPtr("DisplayServer", "get_accent_color", 3444240500)
 
     public val getBaseColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color", 3444240500)
+        Internals.getMethodBindPtr("DisplayServer", "get_base_color", 3444240500)
 
     public val setSystemThemeChangeCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback", 1611583062)
+        Internals.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback", 1611583062)
 
     public val mouseSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode", 348288463)
+        Internals.getMethodBindPtr("DisplayServer", "mouse_set_mode", 348288463)
 
     public val mouseGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_mode", 1353961651)
+        Internals.getMethodBindPtr("DisplayServer", "mouse_get_mode", 1353961651)
 
     public val warpMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "warp_mouse", 1130785943)
+        Internals.getMethodBindPtr("DisplayServer", "warp_mouse", 1130785943)
 
     public val mouseGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_position", 3690982128)
+        Internals.getMethodBindPtr("DisplayServer", "mouse_get_position", 3690982128)
 
     public val mouseGetButtonStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_button_state", 2512161324)
+        Internals.getMethodBindPtr("DisplayServer", "mouse_get_button_state", 2512161324)
 
     public val clipboardSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set", 83702148)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_set", 83702148)
 
     public val clipboardGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get", 201670096)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_get", 201670096)
 
     public val clipboardGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image", 4190603485)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_get_image", 4190603485)
 
     public val clipboardHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_has", 36873697)
 
     public val clipboardHasImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_has_image", 36873697)
 
     public val clipboardSetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary", 83702148)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_set_primary", 83702148)
 
     public val clipboardGetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_primary", 201670096)
+        Internals.getMethodBindPtr("DisplayServer", "clipboard_get_primary", 201670096)
 
     public val getDisplayCutoutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_cutouts", 3995934104)
+        Internals.getMethodBindPtr("DisplayServer", "get_display_cutouts", 3995934104)
 
     public val getDisplaySafeAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_safe_area", 410525958)
+        Internals.getMethodBindPtr("DisplayServer", "get_display_safe_area", 410525958)
 
     public val getScreenCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_count", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "get_screen_count", 3905245786)
 
     public val getPrimaryScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_primary_screen", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "get_primary_screen", 3905245786)
 
     public val getKeyboardFocusScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen", 3905245786)
 
     public val getScreenFromRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_from_rect", 741354659)
+        Internals.getMethodBindPtr("DisplayServer", "get_screen_from_rect", 741354659)
 
     public val screenGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_position", 1725937825)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_position", 1725937825)
 
     public val screenGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_size", 1725937825)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_size", 1725937825)
 
     public val screenGetUsableRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_usable_rect", 2439012528)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_usable_rect", 2439012528)
 
     public val screenGetDpiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_dpi", 181039630)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_dpi", 181039630)
 
     public val screenGetScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale", 909105437)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_scale", 909105437)
 
     public val isTouchscreenAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 3323674545)
+        Internals.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 3323674545)
 
     public val screenGetMaxScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1740695150)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1740695150)
 
     public val screenGetRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate", 909105437)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate", 909105437)
 
     public val screenGetPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_pixel", 1532707496)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_pixel", 1532707496)
 
     public val screenGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image", 3813388802)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_image", 3813388802)
 
     public val screenSetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2211511631)
+        Internals.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2211511631)
 
     public val screenGetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_orientation", 133818562)
+        Internals.getMethodBindPtr("DisplayServer", "screen_get_orientation", 133818562)
 
     public val screenSetKeepOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_keep_on", 2586408642)
+        Internals.getMethodBindPtr("DisplayServer", "screen_set_keep_on", 2586408642)
 
     public val screenIsKeptOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_is_kept_on", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "screen_is_kept_on", 36873697)
 
     public val getWindowListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_list", 1930428628)
+        Internals.getMethodBindPtr("DisplayServer", "get_window_list", 1930428628)
 
     public val getWindowAtScreenPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_at_screen_position", 2485466453)
+        Internals.getMethodBindPtr("DisplayServer", "get_window_at_screen_position", 2485466453)
 
     public val windowGetNativeHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_native_handle", 1096425680)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_native_handle", 1096425680)
 
     public val windowGetActivePopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_active_popup", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_active_popup", 3905245786)
 
     public val windowSetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect", 3317281434)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect", 3317281434)
 
     public val windowGetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect", 2161169500)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect", 2161169500)
 
     public val windowSetTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_title", 441246282)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_title", 441246282)
 
     public val windowGetTitleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size", 2925301799)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_title_size", 2925301799)
 
     public val windowSetMousePassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough", 1993637420)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough", 1993637420)
 
     public val windowGetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_current_screen", 1591665591)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_current_screen", 1591665591)
 
     public val windowSetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_current_screen", 2230941749)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_current_screen", 2230941749)
 
     public val windowGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_position", 763922886)
 
     public val windowGetPositionWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations", 763922886)
 
     public val windowSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_position", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_position", 2019273902)
 
     public val windowGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_size", 763922886)
 
     public val windowSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_size", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_size", 2019273902)
 
     public val windowSetRectChangedCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback", 1091192925)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback", 1091192925)
 
     public val windowSetWindowEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_event_callback", 1091192925)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_window_event_callback", 1091192925)
 
     public val windowSetInputEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_event_callback", 1091192925)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_input_event_callback", 1091192925)
 
     public val windowSetInputTextCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_text_callback", 1091192925)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_input_text_callback", 1091192925)
 
     public val windowSetDropFilesCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback", 1091192925)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback", 1091192925)
 
     public val windowGetAttachedInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id", 1591665591)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id", 1591665591)
 
     public val windowGetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_max_size", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_max_size", 763922886)
 
     public val windowSetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_max_size", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_max_size", 2019273902)
 
     public val windowGetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_min_size", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_min_size", 763922886)
 
     public val windowSetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_min_size", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_min_size", 2019273902)
 
     public val windowGetSizeWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations", 763922886)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations", 763922886)
 
     public val windowGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_mode", 2185728461)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_mode", 2185728461)
 
     public val windowSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mode", 1319965401)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_mode", 1319965401)
 
     public val windowSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_flag", 254894155)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_flag", 254894155)
 
     public val windowGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag", 802816991)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_flag", 802816991)
 
     public val windowSetWindowButtonsOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2019273902)
 
     public val windowGetSafeTitleMarginsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins", 2295066620)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins", 2295066620)
 
     public val windowRequestAttentionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention", 1995695955)
+        Internals.getMethodBindPtr("DisplayServer", "window_request_attention", 1995695955)
 
     public val windowMoveToForegroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1995695955)
+        Internals.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1995695955)
 
     public val windowIsFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_focused", 1051549951)
+        Internals.getMethodBindPtr("DisplayServer", "window_is_focused", 1051549951)
 
     public val windowCanDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_can_draw", 1051549951)
+        Internals.getMethodBindPtr("DisplayServer", "window_can_draw", 1051549951)
 
     public val windowSetTransientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_transient", 3937882851)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_transient", 3937882851)
 
     public val windowSetExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_exclusive", 300928843)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_exclusive", 300928843)
 
     public val windowSetImeActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_active", 1661950165)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_ime_active", 1661950165)
 
     public val windowSetImePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_position", 2019273902)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_ime_position", 2019273902)
 
     public val windowSetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_vsync_mode", 2179333492)
+        Internals.getMethodBindPtr("DisplayServer", "window_set_vsync_mode", 2179333492)
 
     public val windowGetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578873795)
+        Internals.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578873795)
 
     public val windowIsMaximizeAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1051549951)
+        Internals.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1051549951)
 
     public val windowMaximizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click", 36873697)
 
     public val windowMinimizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36873697)
 
     public val imeGetSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
+        Internals.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
 
     public val imeGetTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_text", 201670096)
+        Internals.getMethodBindPtr("DisplayServer", "ime_get_text", 201670096)
 
     public val virtualKeyboardShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_show", 3042891259)
+        Internals.getMethodBindPtr("DisplayServer", "virtual_keyboard_show", 3042891259)
 
     public val virtualKeyboardHidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide", 3218959716)
 
     public val virtualKeyboardGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3905245786)
 
     public val cursorSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
+        Internals.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
 
     public val cursorGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_get_shape", 1087724927)
+        Internals.getMethodBindPtr("DisplayServer", "cursor_get_shape", 1087724927)
 
     public val cursorSetCustomImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_custom_image", 1816663697)
+        Internals.getMethodBindPtr("DisplayServer", "cursor_set_custom_image", 1816663697)
 
     public val getSwapCancelOkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok", 2240911060)
+        Internals.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok", 2240911060)
 
     public val enableForStealingFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus", 1286410249)
+        Internals.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus", 1286410249)
 
     public val dialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "dialog_show", 4115553226)
+        Internals.getMethodBindPtr("DisplayServer", "dialog_show", 4115553226)
 
     public val dialogInputTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text", 3088703427)
+        Internals.getMethodBindPtr("DisplayServer", "dialog_input_text", 3088703427)
 
     public val fileDialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1531299078)
+        Internals.getMethodBindPtr("DisplayServer", "file_dialog_show", 1531299078)
 
     public val fileDialogWithOptionsShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
+        Internals.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
 
     public val keyboardGetLayoutCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3905245786)
 
     public val keyboardGetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout", 3905245786)
 
     public val keyboardSetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout", 1286410249)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout", 1286410249)
 
     public val keyboardGetLayoutLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language", 844755477)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language", 844755477)
 
     public val keyboardGetLayoutNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name", 844755477)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name", 844755477)
 
     public val keyboardGetKeycodeFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical", 3447613187)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical", 3447613187)
 
     public val keyboardGetLabelFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3447613187)
+        Internals.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3447613187)
 
     public val processEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "process_events", 3218959716)
 
     public val forceProcessAndDropEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "force_process_and_drop_events", 3218959716)
+        Internals.getMethodBindPtr("DisplayServer", "force_process_and_drop_events", 3218959716)
 
     public val setNativeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_native_icon", 83702148)
+        Internals.getMethodBindPtr("DisplayServer", "set_native_icon", 83702148)
 
     public val setIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_icon", 532598488)
+        Internals.getMethodBindPtr("DisplayServer", "set_icon", 532598488)
 
     public val createStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator", 1904285171)
+        Internals.getMethodBindPtr("DisplayServer", "create_status_indicator", 1904285171)
 
     public val statusIndicatorSetIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon", 666127730)
+        Internals.getMethodBindPtr("DisplayServer", "status_indicator_set_icon", 666127730)
 
     public val statusIndicatorSetTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip", 501894301)
+        Internals.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip", 501894301)
 
     public val statusIndicatorSetMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu", 4040184819)
+        Internals.getMethodBindPtr("DisplayServer", "status_indicator_set_menu", 4040184819)
 
     public val statusIndicatorSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback", 957362965)
+        Internals.getMethodBindPtr("DisplayServer", "status_indicator_set_callback", 957362965)
 
     public val statusIndicatorGetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect", 3327874267)
+        Internals.getMethodBindPtr("DisplayServer", "status_indicator_get_rect", 3327874267)
 
     public val deleteStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator", 1286410249)
+        Internals.getMethodBindPtr("DisplayServer", "delete_status_indicator", 1286410249)
 
     public val tabletGetDriverCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count", 3905245786)
+        Internals.getMethodBindPtr("DisplayServer", "tablet_get_driver_count", 3905245786)
 
     public val tabletGetDriverNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_name", 844755477)
+        Internals.getMethodBindPtr("DisplayServer", "tablet_get_driver_name", 844755477)
 
     public val tabletGetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_current_driver", 201670096)
+        Internals.getMethodBindPtr("DisplayServer", "tablet_get_current_driver", 201670096)
 
     public val tabletSetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver", 83702148)
+        Internals.getMethodBindPtr("DisplayServer", "tablet_set_current_driver", 83702148)
 
     public val isWindowTransparencyAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "is_window_transparency_available", 36873697)
 
     public val registerAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output", 3975164845)
+        Internals.getMethodBindPtr("DisplayServer", "register_additional_output", 3975164845)
 
     public val unregisterAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output", 3975164845)
+        Internals.getMethodBindPtr("DisplayServer", "unregister_additional_output", 3975164845)
 
     public val hasAdditionalOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36873697)
+        Internals.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36873697)
   }
 }

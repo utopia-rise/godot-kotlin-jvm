@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -27,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTextureLayered internal constructor() : TextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGETEXTURELAYERED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGETEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**
@@ -37,9 +36,9 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * Each [Image] represents one `layer`.
    */
   public final fun createFromImages(images: VariantArray<Image>): Error {
-    TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(ARRAY to images)
+    Internals.callMethod(rawPtr, MethodBindings.createFromImagesPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -51,17 +50,17 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
    * The update is immediate: it's synchronized with drawing.
    */
   public final fun updateLayer(image: Image?, layer: Int): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
+    Internals.writeArguments(OBJECT to image, LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.updateLayerPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createFromImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTextureLayered", "create_from_images", 2785773503)
+        Internals.getMethodBindPtr("ImageTextureLayered", "create_from_images", 2785773503)
 
     public val updateLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTextureLayered", "update_layer", 3331733361)
+        Internals.getMethodBindPtr("ImageTextureLayered", "update_layer", 3331733361)
   }
 }

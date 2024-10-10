@@ -15,7 +15,6 @@ import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -27,7 +26,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Float
@@ -132,7 +131,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ARRAYMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ARRAYMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -165,53 +164,53 @@ public open class ArrayMesh : Mesh() {
    * before surface is added.
    */
   public final fun addBlendShape(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBlendShapePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.addBlendShapePtr, NIL)
   }
 
   /**
    * Returns the number of blend shapes that the [ArrayMesh] holds.
    */
   public final fun getBlendShapeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the name of the blend shape at this index.
    */
   public final fun getBlendShapeName(index: Int): StringName {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
    * Sets the name of the blend shape at this index.
    */
   public final fun setBlendShapeName(index: Int, name: StringName): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeNamePtr, NIL)
+    Internals.writeArguments(LONG to index.toLong(), STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendShapeNamePtr, NIL)
   }
 
   /**
    * Removes all blend shapes from this [ArrayMesh].
    */
   public final fun clearBlendShapes(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBlendShapesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearBlendShapesPtr, NIL)
   }
 
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendShapeModePtr, NIL)
   }
 
   public final fun getBlendShapeMode(): Mesh.BlendShapeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
-    return Mesh.BlendShapeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapeModePtr, LONG)
+    return Mesh.BlendShapeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -250,16 +249,16 @@ public open class ArrayMesh : Mesh() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     flags: Mesh.ArrayFormat = Mesh.ArrayFormatValue(0),
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSurfaceFromArraysPtr, NIL)
+    Internals.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.addSurfaceFromArraysPtr, NIL)
   }
 
   /**
    * Removes all surfaces from this [ArrayMesh].
    */
   public final fun clearSurfaces(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearSurfacesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
   public final fun surfaceUpdateVertexRegion(
@@ -267,8 +266,8 @@ public open class ArrayMesh : Mesh() {
     offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceUpdateVertexRegionPtr, NIL)
+    Internals.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceUpdateVertexRegionPtr, NIL)
   }
 
   public final fun surfaceUpdateAttributeRegion(
@@ -276,8 +275,8 @@ public open class ArrayMesh : Mesh() {
     offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceUpdateAttributeRegionPtr, NIL)
+    Internals.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceUpdateAttributeRegionPtr, NIL)
   }
 
   public final fun surfaceUpdateSkinRegion(
@@ -285,8 +284,8 @@ public open class ArrayMesh : Mesh() {
     offset: Int,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceUpdateSkinRegionPtr, NIL)
+    Internals.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceUpdateSkinRegionPtr, NIL)
   }
 
   /**
@@ -294,9 +293,9 @@ public open class ArrayMesh : Mesh() {
    * [addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrayLen(surfIdx: Int): Int {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArrayLenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetArrayLenPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -304,27 +303,27 @@ public open class ArrayMesh : Mesh() {
    * [addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrayIndexLen(surfIdx: Int): Int {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArrayIndexLenPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetArrayIndexLenPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the format mask of the requested surface (see [addSurfaceFromArrays]).
    */
   public final fun surfaceGetFormat(surfIdx: Int): Mesh.ArrayFormat {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetFormatPtr, LONG)
-    return ArrayFormatValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetFormatPtr, LONG)
+    return ArrayFormatValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the primitive type of the requested surface (see [addSurfaceFromArrays]).
    */
   public final fun surfaceGetPrimitiveType(surfIdx: Int): Mesh.PrimitiveType {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetPrimitiveTypePtr, LONG)
-    return Mesh.PrimitiveType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetPrimitiveTypePtr, LONG)
+    return Mesh.PrimitiveType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -332,144 +331,143 @@ public open class ArrayMesh : Mesh() {
    * found, -1 is returned.
    */
   public final fun surfaceFindByName(name: String): Int {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceFindByNamePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceFindByNamePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets a name for a given surface.
    */
   public final fun surfaceSetName(surfIdx: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to surfIdx.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetNamePtr, NIL)
+    Internals.writeArguments(LONG to surfIdx.toLong(), STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceSetNamePtr, NIL)
   }
 
   /**
    * Gets the name assigned to this surface.
    */
   public final fun surfaceGetName(surfIdx: Int): String {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Regenerates tangents for each of the [ArrayMesh]'s surfaces.
    */
   public final fun regenNormalMaps(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.regenNormalMapsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.regenNormalMapsPtr, NIL)
   }
 
   /**
    * Performs a UV unwrap on the [ArrayMesh] to prepare the mesh for lightmapping.
    */
   public final fun lightmapUnwrap(transform: Transform3D, texelSize: Float): Error {
-    TransferContext.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.lightmapUnwrapPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(TRANSFORM3D to transform, DOUBLE to texelSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.lightmapUnwrapPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setShadowMesh(mesh: ArrayMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowMeshPtr, NIL)
   }
 
   public final fun getShadowMesh(): ArrayMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ArrayMesh?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3304788590)
+        Internals.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3304788590)
 
     public val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3905245786)
+        Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3905245786)
 
     public val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659327637)
+        Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659327637)
 
     public val setBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3780747571)
+        Internals.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3780747571)
 
     public val clearBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3218959716)
+        Internals.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3218959716)
 
     public val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227983991)
+        Internals.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227983991)
 
     public val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836485024)
+        Internals.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836485024)
 
     public val addSurfaceFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1796411378)
+        Internals.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1796411378)
 
     public val clearSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
+        Internals.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
 
     public val surfaceUpdateVertexRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)
 
     public val surfaceUpdateAttributeRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3837166854)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3837166854)
 
     public val surfaceUpdateSkinRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3837166854)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3837166854)
 
     public val surfaceGetArrayLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923996154)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923996154)
 
     public val surfaceGetArrayIndexLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923996154)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923996154)
 
     public val surfaceGetFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_format", 3718287884)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_get_format", 3718287884)
 
     public val surfaceGetPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4141943888)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4141943888)
 
     public val surfaceFindByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1321353865)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1321353865)
 
     public val surfaceSetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_set_name", 501894301)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_set_name", 501894301)
 
     public val surfaceGetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_name", 844755477)
+        Internals.getMethodBindPtr("ArrayMesh", "surface_get_name", 844755477)
 
     public val regenNormalMapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3218959716)
+        Internals.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3218959716)
 
     public val lightmapUnwrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1476641071)
+        Internals.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1476641071)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259215842)
+        Internals.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1068685055)
+        Internals.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1068685055)
 
     public val setShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3377897901)
+        Internals.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3377897901)
 
     public val getShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3206942465)
+        Internals.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3206942465)
   }
 }

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -205,146 +204,146 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTMIDI_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTMIDI_INDEX, scriptIndex)
   }
 
   public final fun setChannel(channel: Int): Unit {
-    TransferContext.writeArguments(LONG to channel.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setChannelPtr, NIL)
   }
 
   public final fun getChannel(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getChannelPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMessage(message: MIDIMessage): Unit {
-    TransferContext.writeArguments(LONG to message.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMessagePtr, NIL)
+    Internals.writeArguments(LONG to message.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMessagePtr, NIL)
   }
 
   public final fun getMessage(): MIDIMessage {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMessagePtr, LONG)
-    return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMessagePtr, LONG)
+    return MIDIMessage.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPitch(pitch: Int): Unit {
-    TransferContext.writeArguments(LONG to pitch.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPitchPtr, NIL)
+    Internals.writeArguments(LONG to pitch.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPitchPtr, NIL)
   }
 
   public final fun getPitch(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPitchPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVelocity(velocity: Int): Unit {
-    TransferContext.writeArguments(LONG to velocity.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+    Internals.writeArguments(LONG to velocity.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
   public final fun getVelocity(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVelocityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInstrument(instrument: Int): Unit {
-    TransferContext.writeArguments(LONG to instrument.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstrumentPtr, NIL)
+    Internals.writeArguments(LONG to instrument.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setInstrumentPtr, NIL)
   }
 
   public final fun getInstrument(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstrumentPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPressure(pressure: Int): Unit {
-    TransferContext.writeArguments(LONG to pressure.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+    Internals.writeArguments(LONG to pressure.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
   }
 
   public final fun getPressure(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPressurePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setControllerNumber(controllerNumber: Int): Unit {
-    TransferContext.writeArguments(LONG to controllerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setControllerNumberPtr, NIL)
+    Internals.writeArguments(LONG to controllerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setControllerNumberPtr, NIL)
   }
 
   public final fun getControllerNumber(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getControllerNumberPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setControllerValue(controllerValue: Int): Unit {
-    TransferContext.writeArguments(LONG to controllerValue.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setControllerValuePtr, NIL)
+    Internals.writeArguments(LONG to controllerValue.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setControllerValuePtr, NIL)
   }
 
   public final fun getControllerValue(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getControllerValuePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_channel", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_channel", 1286410249)
 
     public val getChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_channel", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_channel", 3905245786)
 
     public val setMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_message", 1064271510)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_message", 1064271510)
 
     public val getMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_message", 1936512097)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_message", 1936512097)
 
     public val setPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pitch", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_pitch", 1286410249)
 
     public val getPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pitch", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_pitch", 3905245786)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_velocity", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_velocity", 1286410249)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_velocity", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_velocity", 3905245786)
 
     public val setInstrumentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_instrument", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_instrument", 1286410249)
 
     public val getInstrumentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_instrument", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_instrument", 3905245786)
 
     public val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pressure", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_pressure", 1286410249)
 
     public val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pressure", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_pressure", 3905245786)
 
     public val setControllerNumberPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_number", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_controller_number", 1286410249)
 
     public val getControllerNumberPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_number", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_controller_number", 3905245786)
 
     public val setControllerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_value", 1286410249)
+        Internals.getMethodBindPtr("InputEventMIDI", "set_controller_value", 1286410249)
 
     public val getControllerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_value", 3905245786)
+        Internals.getMethodBindPtr("InputEventMIDI", "get_controller_value", 3905245786)
   }
 }

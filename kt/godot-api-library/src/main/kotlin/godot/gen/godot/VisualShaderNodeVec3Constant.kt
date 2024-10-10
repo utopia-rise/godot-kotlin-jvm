@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -40,7 +39,7 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC3CONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEVEC3CONSTANT_INDEX, scriptIndex)
   }
 
   /**
@@ -68,23 +67,23 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
 
 
   public final fun setConstant(constant: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(VECTOR3 to constant)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "set_constant", 3460891852)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Constant", "set_constant", 3460891852)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "get_constant", 3360562783)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Constant", "get_constant", 3360562783)
   }
 }

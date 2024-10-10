@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -128,85 +127,84 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LINKBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LINKBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setUri(uri: String): Unit {
-    TransferContext.writeArguments(STRING to uri)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUriPtr, NIL)
+    Internals.writeArguments(STRING to uri)
+    Internals.callMethod(rawPtr, MethodBindings.setUriPtr, NIL)
   }
 
   public final fun getUri(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUriPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUriPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setUnderlineMode(underlineMode: UnderlineMode): Unit {
-    TransferContext.writeArguments(LONG to underlineMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUnderlineModePtr, NIL)
+    Internals.writeArguments(LONG to underlineMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setUnderlineModePtr, NIL)
   }
 
   public final fun getUnderlineMode(): UnderlineMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnderlineModePtr, LONG)
-    return LinkButton.UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUnderlineModePtr, LONG)
+    return LinkButton.UnderlineMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    Internals.writeArguments(LONG to parser.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    Internals.writeArguments(ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class UnderlineMode(
@@ -240,44 +238,42 @@ public open class LinkButton : BaseButton() {
   public companion object
 
   internal object MethodBindings {
-    public val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_text", 83702148)
+    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_text", 201670096)
+    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "get_text", 201670096)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)
+        Internals.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_text_direction", 797257663)
+        Internals.getMethodBindPtr("LinkButton", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_language", 83702148)
+        Internals.getMethodBindPtr("LinkButton", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_language", 201670096)
+        Internals.getMethodBindPtr("LinkButton", "get_language", 201670096)
 
-    public val setUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "set_uri", 83702148)
+    public val setUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "set_uri", 83702148)
 
-    public val getUriPtr: VoidPtr = TypeManager.getMethodBindPtr("LinkButton", "get_uri", 201670096)
+    public val getUriPtr: VoidPtr = Internals.getMethodBindPtr("LinkButton", "get_uri", 201670096)
 
     public val setUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_underline_mode", 4032947085)
+        Internals.getMethodBindPtr("LinkButton", "set_underline_mode", 4032947085)
 
     public val getUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_underline_mode", 568343738)
+        Internals.getMethodBindPtr("LinkButton", "get_underline_mode", 568343738)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55961453)
+        Internals.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3385126229)
+        Internals.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381264803)
+        Internals.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3995934104)
+        Internals.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3995934104)
   }
 }

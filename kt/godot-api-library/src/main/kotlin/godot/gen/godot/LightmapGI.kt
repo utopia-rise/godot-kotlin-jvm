@@ -10,14 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -315,7 +314,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHTMAPGI_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHTMAPGI_INDEX, scriptIndex)
   }
 
   /**
@@ -345,212 +344,212 @@ public open class LightmapGI : VisualInstance3D() {
 
 
   public final fun setLightData(`data`: LightmapGIData?): Unit {
-    TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
+    Internals.writeArguments(OBJECT to data)
+    Internals.callMethod(rawPtr, MethodBindings.setLightDataPtr, NIL)
   }
 
   public final fun getLightData(): LightmapGIData? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as LightmapGIData?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightDataPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as LightmapGIData?)
   }
 
   public final fun setBakeQuality(bakeQuality: BakeQuality): Unit {
-    TransferContext.writeArguments(LONG to bakeQuality.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
+    Internals.writeArguments(LONG to bakeQuality.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeQualityPtr, NIL)
   }
 
   public final fun getBakeQuality(): BakeQuality {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
-    return LightmapGI.BakeQuality.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeQualityPtr, LONG)
+    return LightmapGI.BakeQuality.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBounces(bounces: Int): Unit {
-    TransferContext.writeArguments(LONG to bounces.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
+    Internals.writeArguments(LONG to bounces.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBouncesPtr, NIL)
   }
 
   public final fun getBounces(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBouncesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBounceIndirectEnergy(bounceIndirectEnergy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bounceIndirectEnergy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to bounceIndirectEnergy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBounceIndirectEnergyPtr, NIL)
   }
 
   public final fun getBounceIndirectEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBounceIndirectEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGenerateProbes(subdivision: GenerateProbes): Unit {
-    TransferContext.writeArguments(LONG to subdivision.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
+    Internals.writeArguments(LONG to subdivision.id)
+    Internals.callMethod(rawPtr, MethodBindings.setGenerateProbesPtr, NIL)
   }
 
   public final fun getGenerateProbes(): GenerateProbes {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
-    return LightmapGI.GenerateProbes.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGenerateProbesPtr, LONG)
+    return LightmapGI.GenerateProbes.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBiasPtr, NIL)
   }
 
   public final fun getBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnvironmentMode(mode: EnvironmentMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentModePtr, NIL)
   }
 
   public final fun getEnvironmentMode(): EnvironmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
-    return LightmapGI.EnvironmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentModePtr, LONG)
+    return LightmapGI.EnvironmentMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnvironmentCustomSky(sky: Sky?): Unit {
-    TransferContext.writeArguments(OBJECT to sky)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
+    Internals.writeArguments(OBJECT to sky)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentCustomSkyPtr, NIL)
   }
 
   public final fun getEnvironmentCustomSky(): Sky? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Sky?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentCustomSkyPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Sky?)
   }
 
   public final fun setEnvironmentCustomColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentCustomColorPtr, NIL)
   }
 
   public final fun getEnvironmentCustomColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentCustomColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnvironmentCustomEnergy(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentCustomEnergyPtr, NIL)
   }
 
   public final fun getEnvironmentCustomEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentCustomEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTexelScale(texelScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to texelScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to texelScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTexelScalePtr, NIL)
   }
 
   public final fun getTexelScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexelScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxTextureSize(maxTextureSize: Int): Unit {
-    TransferContext.writeArguments(LONG to maxTextureSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
+    Internals.writeArguments(LONG to maxTextureSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxTextureSizePtr, NIL)
   }
 
   public final fun getMaxTextureSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxTextureSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setUseDenoiser(useDenoiser: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useDenoiser)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
+    Internals.writeArguments(BOOL to useDenoiser)
+    Internals.callMethod(rawPtr, MethodBindings.setUseDenoiserPtr, NIL)
   }
 
   public final fun isUsingDenoiser(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingDenoiserPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDenoiserStrength(denoiserStrength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to denoiserStrength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to denoiserStrength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDenoiserStrengthPtr, NIL)
   }
 
   public final fun getDenoiserStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDenoiserStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDenoiserRange(denoiserRange: Int): Unit {
-    TransferContext.writeArguments(LONG to denoiserRange.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
+    Internals.writeArguments(LONG to denoiserRange.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDenoiserRangePtr, NIL)
   }
 
   public final fun getDenoiserRange(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDenoiserRangePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInterior(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setInteriorPtr, NIL)
   }
 
   public final fun isInterior(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInteriorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDirectional(directional: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to directional)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
+    Internals.writeArguments(BOOL to directional)
+    Internals.callMethod(rawPtr, MethodBindings.setDirectionalPtr, NIL)
   }
 
   public final fun isDirectional(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDirectionalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseTextureForBounces(useTextureForBounces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useTextureForBounces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
+    Internals.writeArguments(BOOL to useTextureForBounces)
+    Internals.callMethod(rawPtr, MethodBindings.setUseTextureForBouncesPtr, NIL)
   }
 
   public final fun isUsingTextureForBounces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingTextureForBouncesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
-    TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    Internals.writeArguments(OBJECT to cameraAttributes)
+    Internals.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public enum class BakeQuality(
@@ -736,117 +735,116 @@ public open class LightmapGI : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_light_data", 1790597277)
+        Internals.getMethodBindPtr("LightmapGI", "set_light_data", 1790597277)
 
     public val getLightDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_light_data", 290354153)
+        Internals.getMethodBindPtr("LightmapGI", "get_light_data", 290354153)
 
     public val setBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bake_quality", 1192215803)
+        Internals.getMethodBindPtr("LightmapGI", "set_bake_quality", 1192215803)
 
     public val getBakeQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bake_quality", 688832735)
+        Internals.getMethodBindPtr("LightmapGI", "get_bake_quality", 688832735)
 
     public val setBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bounces", 1286410249)
+        Internals.getMethodBindPtr("LightmapGI", "set_bounces", 1286410249)
 
     public val getBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bounces", 3905245786)
+        Internals.getMethodBindPtr("LightmapGI", "get_bounces", 3905245786)
 
     public val setBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373806689)
+        Internals.getMethodBindPtr("LightmapGI", "set_bounce_indirect_energy", 373806689)
 
     public val getBounceIndirectEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1740695150)
+        Internals.getMethodBindPtr("LightmapGI", "get_bounce_indirect_energy", 1740695150)
 
     public val setGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_generate_probes", 549981046)
+        Internals.getMethodBindPtr("LightmapGI", "set_generate_probes", 549981046)
 
     public val getGenerateProbesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_generate_probes", 3930596226)
+        Internals.getMethodBindPtr("LightmapGI", "get_generate_probes", 3930596226)
 
-    public val setBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
+    public val setBiasPtr: VoidPtr = Internals.getMethodBindPtr("LightmapGI", "set_bias", 373806689)
 
     public val getBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_bias", 1740695150)
+        Internals.getMethodBindPtr("LightmapGI", "get_bias", 1740695150)
 
     public val setEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_mode", 2282650285)
+        Internals.getMethodBindPtr("LightmapGI", "set_environment_mode", 2282650285)
 
     public val getEnvironmentModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_mode", 4128646479)
+        Internals.getMethodBindPtr("LightmapGI", "get_environment_mode", 4128646479)
 
     public val setEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3336722921)
+        Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_sky", 3336722921)
 
     public val getEnvironmentCustomSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1177136966)
+        Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_sky", 1177136966)
 
     public val setEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2920490490)
+        Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_color", 2920490490)
 
     public val getEnvironmentCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3444240500)
+        Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_color", 3444240500)
 
     public val setEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373806689)
+        Internals.getMethodBindPtr("LightmapGI", "set_environment_custom_energy", 373806689)
 
     public val getEnvironmentCustomEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1740695150)
+        Internals.getMethodBindPtr("LightmapGI", "get_environment_custom_energy", 1740695150)
 
     public val setTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_texel_scale", 373806689)
+        Internals.getMethodBindPtr("LightmapGI", "set_texel_scale", 373806689)
 
     public val getTexelScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_texel_scale", 1740695150)
+        Internals.getMethodBindPtr("LightmapGI", "get_texel_scale", 1740695150)
 
     public val setMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1286410249)
+        Internals.getMethodBindPtr("LightmapGI", "set_max_texture_size", 1286410249)
 
     public val getMaxTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
+        Internals.getMethodBindPtr("LightmapGI", "get_max_texture_size", 3905245786)
 
     public val setUseDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
+        Internals.getMethodBindPtr("LightmapGI", "set_use_denoiser", 2586408642)
 
     public val isUsingDenoiserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36873697)
+        Internals.getMethodBindPtr("LightmapGI", "is_using_denoiser", 36873697)
 
     public val setDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373806689)
+        Internals.getMethodBindPtr("LightmapGI", "set_denoiser_strength", 373806689)
 
     public val getDenoiserStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1740695150)
+        Internals.getMethodBindPtr("LightmapGI", "get_denoiser_strength", 1740695150)
 
     public val setDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1286410249)
+        Internals.getMethodBindPtr("LightmapGI", "set_denoiser_range", 1286410249)
 
     public val getDenoiserRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3905245786)
+        Internals.getMethodBindPtr("LightmapGI", "get_denoiser_range", 3905245786)
 
     public val setInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_interior", 2586408642)
+        Internals.getMethodBindPtr("LightmapGI", "set_interior", 2586408642)
 
     public val isInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_interior", 36873697)
+        Internals.getMethodBindPtr("LightmapGI", "is_interior", 36873697)
 
     public val setDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_directional", 2586408642)
+        Internals.getMethodBindPtr("LightmapGI", "set_directional", 2586408642)
 
     public val isDirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
+        Internals.getMethodBindPtr("LightmapGI", "is_directional", 36873697)
 
     public val setUseTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)
+        Internals.getMethodBindPtr("LightmapGI", "set_use_texture_for_bounces", 2586408642)
 
     public val isUsingTextureForBouncesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36873697)
+        Internals.getMethodBindPtr("LightmapGI", "is_using_texture_for_bounces", 36873697)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2817810567)
+        Internals.getMethodBindPtr("LightmapGI", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3921283215)
+        Internals.getMethodBindPtr("LightmapGI", "get_camera_attributes", 3921283215)
   }
 }

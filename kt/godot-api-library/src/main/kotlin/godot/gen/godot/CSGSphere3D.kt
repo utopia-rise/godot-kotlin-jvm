@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -92,95 +91,95 @@ public open class CSGSphere3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CSGSPHERE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CSGSPHERE3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(radialSegments: Int): Unit {
-    TransferContext.writeArguments(LONG to radialSegments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+    Internals.writeArguments(LONG to radialSegments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
   public final fun getRadialSegments(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
-    TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+    Internals.writeArguments(LONG to rings.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
   public final fun getRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to smoothFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+    Internals.writeArguments(BOOL to smoothFaces)
+    Internals.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radius", 373806689)
+        Internals.getMethodBindPtr("CSGSphere3D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("CSGSphere3D", "get_radius", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1286410249)
+        Internals.getMethodBindPtr("CSGSphere3D", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3905245786)
+        Internals.getMethodBindPtr("CSGSphere3D", "get_radial_segments", 3905245786)
 
     public val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_rings", 1286410249)
+        Internals.getMethodBindPtr("CSGSphere3D", "set_rings", 1286410249)
 
     public val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_rings", 3905245786)
+        Internals.getMethodBindPtr("CSGSphere3D", "get_rings", 3905245786)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2586408642)
+        Internals.getMethodBindPtr("CSGSphere3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36873697)
+        Internals.getMethodBindPtr("CSGSphere3D", "get_smooth_faces", 36873697)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "set_material", 2757459619)
+        Internals.getMethodBindPtr("CSGSphere3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGSphere3D", "get_material", 5934680)
+        Internals.getMethodBindPtr("CSGSphere3D", "get_material", 5934680)
   }
 }

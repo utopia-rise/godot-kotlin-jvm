@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -176,7 +175,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX, scriptIndex)
   }
 
   /**
@@ -257,193 +256,193 @@ public open class PhysicalSkyMaterial : Material() {
 
 
   public final fun setRayleighCoefficient(rayleigh: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rayleigh.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
+    Internals.writeArguments(DOUBLE to rayleigh.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRayleighCoefficientPtr, NIL)
   }
 
   public final fun getRayleighCoefficient(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRayleighCoefficientPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRayleighColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setRayleighColorPtr, NIL)
   }
 
   public final fun getRayleighColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRayleighColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setMieCoefficient(mie: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mie.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
+    Internals.writeArguments(DOUBLE to mie.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMieCoefficientPtr, NIL)
   }
 
   public final fun getMieCoefficient(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMieCoefficientPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMieEccentricity(eccentricity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to eccentricity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
+    Internals.writeArguments(DOUBLE to eccentricity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMieEccentricityPtr, NIL)
   }
 
   public final fun getMieEccentricity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMieEccentricityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMieColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setMieColorPtr, NIL)
   }
 
   public final fun getMieColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMieColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTurbidity(turbidity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to turbidity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
+    Internals.writeArguments(DOUBLE to turbidity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTurbidityPtr, NIL)
   }
 
   public final fun getTurbidity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTurbidityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunDiskScale(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSunDiskScalePtr, NIL)
   }
 
   public final fun getSunDiskScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSunDiskScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGroundColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setGroundColorPtr, NIL)
   }
 
   public final fun getGroundColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroundColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseDebanding(useDebanding: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useDebanding)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+    Internals.writeArguments(BOOL to useDebanding)
+    Internals.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
   }
 
   public final fun getUseDebanding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNightSky(nightSky: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to nightSky)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
+    Internals.writeArguments(OBJECT to nightSky)
+    Internals.callMethod(rawPtr, MethodBindings.setNightSkyPtr, NIL)
   }
 
   public final fun getNightSky(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNightSkyPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_coefficient", 373806689)
 
     public val getRayleighCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_coefficient", 1740695150)
 
     public val setRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color", 2920490490)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_rayleigh_color", 2920490490)
 
     public val getRayleighColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color", 3444240500)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_rayleigh_color", 3444240500)
 
     public val setMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_coefficient", 373806689)
 
     public val getMieCoefficientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_coefficient", 1740695150)
 
     public val setMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_eccentricity", 373806689)
 
     public val getMieEccentricityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_eccentricity", 1740695150)
 
     public val setMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color", 2920490490)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_mie_color", 2920490490)
 
     public val getMieColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color", 3444240500)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_mie_color", 3444240500)
 
     public val setTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_turbidity", 373806689)
 
     public val getTurbidityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_turbidity", 1740695150)
 
     public val setSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_sun_disk_scale", 373806689)
 
     public val getSunDiskScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_sun_disk_scale", 1740695150)
 
     public val setGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color", 2920490490)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_ground_color", 2920490490)
 
     public val getGroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color", 3444240500)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_ground_color", 3444240500)
 
     public val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_energy_multiplier", 373806689)
 
     public val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_energy_multiplier", 1740695150)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding", 2586408642)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_use_debanding", 2586408642)
 
     public val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding", 36873697)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_use_debanding", 36873697)
 
     public val setNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky", 4051416890)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "set_night_sky", 4051416890)
 
     public val getNightSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky", 3635182373)
+        Internals.getMethodBindPtr("PhysicalSkyMaterial", "get_night_sky", 3635182373)
   }
 }

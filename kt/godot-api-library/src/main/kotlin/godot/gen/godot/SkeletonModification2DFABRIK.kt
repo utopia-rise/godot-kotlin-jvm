@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -71,46 +70,46 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to targetNodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to targetNodepath)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setFabrikDataChainLength(length: Int): Unit {
-    TransferContext.writeArguments(LONG to length.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
+    Internals.writeArguments(LONG to length.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFabrikDataChainLengthPtr, NIL)
   }
 
   public final fun getFabrikDataChainLength(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFabrikDataChainLengthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
   public final fun setFabrikJointBone2dNode(jointIdx: Int, bone2dNodepath: NodePath): Unit {
-    TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointBone2dNodePtr, NIL)
+    Internals.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to bone2dNodepath)
+    Internals.callMethod(rawPtr, MethodBindings.setFabrikJointBone2dNodePtr, NIL)
   }
 
   /**
    * Returns the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
   public final fun getFabrikJointBone2dNode(jointIdx: Int): NodePath {
-    TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointBone2dNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments(LONG to jointIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFabrikJointBone2dNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -118,34 +117,34 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * also update the `bone2d_node` of the FABRIK joint based on data provided by the linked skeleton.
    */
   public final fun setFabrikJointBoneIndex(jointIdx: Int, boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointBoneIndexPtr, NIL)
+    Internals.writeArguments(LONG to jointIdx.toLong(), LONG to boneIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFabrikJointBoneIndexPtr, NIL)
   }
 
   /**
    * Returns the index of the [Bone2D] node assigned to the FABRIK joint at [jointIdx].
    */
   public final fun getFabrikJointBoneIndex(jointIdx: Int): Int {
-    TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointBoneIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to jointIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFabrikJointBoneIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the magnet position vector for the joint at [jointIdx].
    */
   public final fun setFabrikJointMagnetPosition(jointIdx: Int, magnetPosition: Vector2): Unit {
-    TransferContext.writeArguments(LONG to jointIdx.toLong(), VECTOR2 to magnetPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointMagnetPositionPtr, NIL)
+    Internals.writeArguments(LONG to jointIdx.toLong(), VECTOR2 to magnetPosition)
+    Internals.callMethod(rawPtr, MethodBindings.setFabrikJointMagnetPositionPtr, NIL)
   }
 
   /**
    * Returns the magnet position vector for the joint at [jointIdx].
    */
   public final fun getFabrikJointMagnetPosition(jointIdx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointMagnetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to jointIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFabrikJointMagnetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -156,8 +155,8 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    */
   public final fun setFabrikJointUseTargetRotation(jointIdx: Int, useTargetRotation: Boolean):
       Unit {
-    TransferContext.writeArguments(LONG to jointIdx.toLong(), BOOL to useTargetRotation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFabrikJointUseTargetRotationPtr, NIL)
+    Internals.writeArguments(LONG to jointIdx.toLong(), BOOL to useTargetRotation)
+    Internals.callMethod(rawPtr, MethodBindings.setFabrikJointUseTargetRotationPtr, NIL)
   }
 
   /**
@@ -165,48 +164,48 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
    * the joint. This option only applies to the tip/final joint in the chain.
    */
   public final fun getFabrikJointUseTargetRotation(jointIdx: Int): Boolean {
-    TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFabrikJointUseTargetRotationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to jointIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFabrikJointUseTargetRotationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_target_node", 1348162250)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_target_node", 1348162250)
 
     public val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_target_node", 4075236667)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_target_node", 4075236667)
 
     public val setFabrikDataChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_data_chain_length", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_data_chain_length", 1286410249)
 
     public val getFabrikDataChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_data_chain_length", 2455072627)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_data_chain_length", 2455072627)
 
     public val setFabrikJointBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone2d_node", 2761262315)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone2d_node", 2761262315)
 
     public val getFabrikJointBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone2d_node", 408788394)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone2d_node", 408788394)
 
     public val setFabrikJointBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone_index", 3937882851)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_bone_index", 3937882851)
 
     public val getFabrikJointBoneIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone_index", 923996154)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_bone_index", 923996154)
 
     public val setFabrikJointMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_magnet_position", 163021252)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_magnet_position", 163021252)
 
     public val getFabrikJointMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_magnet_position", 2299179447)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_magnet_position", 2299179447)
 
     public val setFabrikJointUseTargetRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_use_target_rotation", 300928843)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "set_fabrik_joint_use_target_rotation", 300928843)
 
     public val getFabrikJointUseTargetRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_use_target_rotation", 1116898809)
+        Internals.getMethodBindPtr("SkeletonModification2DFABRIK", "get_fabrik_joint_use_target_rotation", 1116898809)
   }
 }

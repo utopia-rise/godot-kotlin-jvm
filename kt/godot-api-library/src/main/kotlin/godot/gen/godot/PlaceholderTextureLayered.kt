@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -57,7 +56,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PLACEHOLDERTEXTURELAYERED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PLACEHOLDERTEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**
@@ -85,31 +84,31 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
 
 
   public final fun setSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setLayers(layers: Int): Unit {
-    TransferContext.writeArguments(LONG to layers.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayersPtr, NIL)
+    Internals.writeArguments(LONG to layers.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLayersPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_size", 1130785943)
+        Internals.getMethodBindPtr("PlaceholderTextureLayered", "set_size", 1130785943)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "get_size", 3690982128)
+        Internals.getMethodBindPtr("PlaceholderTextureLayered", "get_size", 3690982128)
 
     public val setLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTextureLayered", "set_layers", 1286410249)
+        Internals.getMethodBindPtr("PlaceholderTextureLayered", "set_layers", 1286410249)
   }
 }

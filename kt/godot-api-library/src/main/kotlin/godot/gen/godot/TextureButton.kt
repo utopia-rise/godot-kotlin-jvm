@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -153,117 +152,117 @@ public open class TextureButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTUREBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTUREBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
   }
 
   public final fun setTexturePressed(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
   }
 
   public final fun setTextureHover(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureHoverPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureHoverPtr, NIL)
   }
 
   public final fun setTextureDisabled(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureDisabledPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureDisabledPtr, NIL)
   }
 
   public final fun setTextureFocused(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFocusedPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFocusedPtr, NIL)
   }
 
   public final fun setClickMask(mask: BitMap?): Unit {
-    TransferContext.writeArguments(OBJECT to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClickMaskPtr, NIL)
+    Internals.writeArguments(OBJECT to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setClickMaskPtr, NIL)
   }
 
   public final fun setIgnoreTextureSize(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTextureSizePtr, NIL)
+    Internals.writeArguments(BOOL to ignore)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreTextureSizePtr, NIL)
   }
 
   public final fun setStretchMode(mode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
   }
 
   public final fun setFlipH(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTextureNormal(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTexturePressed(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureHover(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureHoverPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureHoverPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureDisabled(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureDisabledPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureDisabledPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getTextureFocused(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFocusedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFocusedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun getClickMask(): BitMap? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClickMaskPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as BitMap?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClickMaskPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as BitMap?)
   }
 
   public final fun getIgnoreTextureSize(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIgnoreTextureSizePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getStretchMode(): StretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
-    return TextureButton.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
+    return TextureButton.StretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class StretchMode(
@@ -316,63 +315,63 @@ public open class TextureButton : BaseButton() {
 
   internal object MethodBindings {
     public val setTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_texture_normal", 4051416890)
+        Internals.getMethodBindPtr("TextureButton", "set_texture_normal", 4051416890)
 
     public val setTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_texture_pressed", 4051416890)
+        Internals.getMethodBindPtr("TextureButton", "set_texture_pressed", 4051416890)
 
     public val setTextureHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_texture_hover", 4051416890)
+        Internals.getMethodBindPtr("TextureButton", "set_texture_hover", 4051416890)
 
     public val setTextureDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_texture_disabled", 4051416890)
+        Internals.getMethodBindPtr("TextureButton", "set_texture_disabled", 4051416890)
 
     public val setTextureFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_texture_focused", 4051416890)
+        Internals.getMethodBindPtr("TextureButton", "set_texture_focused", 4051416890)
 
     public val setClickMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_click_mask", 698588216)
+        Internals.getMethodBindPtr("TextureButton", "set_click_mask", 698588216)
 
     public val setIgnoreTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_ignore_texture_size", 2586408642)
+        Internals.getMethodBindPtr("TextureButton", "set_ignore_texture_size", 2586408642)
 
     public val setStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_stretch_mode", 252530840)
+        Internals.getMethodBindPtr("TextureButton", "set_stretch_mode", 252530840)
 
     public val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_flip_h", 2586408642)
+        Internals.getMethodBindPtr("TextureButton", "set_flip_h", 2586408642)
 
     public val isFlippedHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "is_flipped_h", 36873697)
+        Internals.getMethodBindPtr("TextureButton", "is_flipped_h", 36873697)
 
     public val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "set_flip_v", 2586408642)
+        Internals.getMethodBindPtr("TextureButton", "set_flip_v", 2586408642)
 
     public val isFlippedVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "is_flipped_v", 36873697)
+        Internals.getMethodBindPtr("TextureButton", "is_flipped_v", 36873697)
 
     public val getTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_texture_normal", 3635182373)
+        Internals.getMethodBindPtr("TextureButton", "get_texture_normal", 3635182373)
 
     public val getTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_texture_pressed", 3635182373)
+        Internals.getMethodBindPtr("TextureButton", "get_texture_pressed", 3635182373)
 
     public val getTextureHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_texture_hover", 3635182373)
+        Internals.getMethodBindPtr("TextureButton", "get_texture_hover", 3635182373)
 
     public val getTextureDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_texture_disabled", 3635182373)
+        Internals.getMethodBindPtr("TextureButton", "get_texture_disabled", 3635182373)
 
     public val getTextureFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_texture_focused", 3635182373)
+        Internals.getMethodBindPtr("TextureButton", "get_texture_focused", 3635182373)
 
     public val getClickMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_click_mask", 2459671998)
+        Internals.getMethodBindPtr("TextureButton", "get_click_mask", 2459671998)
 
     public val getIgnoreTextureSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_ignore_texture_size", 36873697)
+        Internals.getMethodBindPtr("TextureButton", "get_ignore_texture_size", 36873697)
 
     public val getStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureButton", "get_stretch_mode", 33815122)
+        Internals.getMethodBindPtr("TextureButton", "get_stretch_mode", 33815122)
   }
 }

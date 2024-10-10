@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,7 @@ private const val ENGINE_CLASS_STREAMPEERTCP_INDEX: Int = 556
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STREAMPEERTCP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STREAMPEERTCP_INDEX, scriptIndex)
   }
 
   /**
@@ -45,9 +44,9 @@ public open class StreamPeerTCP : StreamPeer() {
    */
   @JvmOverloads
   public final fun bind(port: Int, host: String = "*"): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to host)
-    TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to port.toLong(), STRING to host)
+    Internals.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -55,62 +54,62 @@ public open class StreamPeerTCP : StreamPeer() {
    * on success.
    */
   public final fun connectToHost(host: String, port: Int): Error {
-    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to host, LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Poll the socket, updating its state. See [getStatus].
    */
   public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the status of the connection, see [Status].
    */
   public final fun getStatus(): Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
-    return StreamPeerTCP.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
+    return StreamPeerTCP.Status.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the IP of this peer.
    */
   public final fun getConnectedHost(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedHostPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectedHostPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the port of this peer.
    */
   public final fun getConnectedPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectedPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the local port to which this peer is bound.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Disconnects from host.
    */
   public final fun disconnectFromHost(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromHostPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.disconnectFromHostPtr, NIL)
   }
 
   /**
@@ -121,8 +120,8 @@ public open class StreamPeerTCP : StreamPeer() {
    * need to transfer a lot of data, as enabling this can decrease the total available bandwidth.
    */
   public final fun setNoDelay(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNoDelayPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setNoDelayPtr, NIL)
   }
 
   public enum class Status(
@@ -159,29 +158,29 @@ public open class StreamPeerTCP : StreamPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "bind", 3167955072)
+    public val bindPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerTCP", "bind", 3167955072)
 
     public val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993915709)
+        Internals.getMethodBindPtr("StreamPeerTCP", "connect_to_host", 993915709)
 
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeerTCP", "poll", 166280745)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerTCP", "poll", 166280745)
 
     public val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_status", 859471121)
+        Internals.getMethodBindPtr("StreamPeerTCP", "get_status", 859471121)
 
     public val getConnectedHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201670096)
+        Internals.getMethodBindPtr("StreamPeerTCP", "get_connected_host", 201670096)
 
     public val getConnectedPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_connected_port", 3905245786)
+        Internals.getMethodBindPtr("StreamPeerTCP", "get_connected_port", 3905245786)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3905245786)
+        Internals.getMethodBindPtr("StreamPeerTCP", "get_local_port", 3905245786)
 
     public val disconnectFromHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3218959716)
+        Internals.getMethodBindPtr("StreamPeerTCP", "disconnect_from_host", 3218959716)
 
     public val setNoDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2586408642)
+        Internals.getMethodBindPtr("StreamPeerTCP", "set_no_delay", 2586408642)
   }
 }

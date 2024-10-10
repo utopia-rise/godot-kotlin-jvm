@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal2
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -19,7 +18,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -334,7 +333,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WEBXRINTERFACE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WEBXRINTERFACE_INDEX, scriptIndex)
   }
 
   /**
@@ -346,73 +345,73 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * result.
    */
   public final fun isSessionSupported(sessionMode: String): Unit {
-    TransferContext.writeArguments(STRING to sessionMode)
-    TransferContext.callMethod(rawPtr, MethodBindings.isSessionSupportedPtr, NIL)
+    Internals.writeArguments(STRING to sessionMode)
+    Internals.callMethod(rawPtr, MethodBindings.isSessionSupportedPtr, NIL)
   }
 
   public final fun setSessionMode(sessionMode: String): Unit {
-    TransferContext.writeArguments(STRING to sessionMode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
+    Internals.writeArguments(STRING to sessionMode)
+    Internals.callMethod(rawPtr, MethodBindings.setSessionModePtr, NIL)
   }
 
   public final fun getSessionMode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSessionModePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setRequiredFeatures(requiredFeatures: String): Unit {
-    TransferContext.writeArguments(STRING to requiredFeatures)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
+    Internals.writeArguments(STRING to requiredFeatures)
+    Internals.callMethod(rawPtr, MethodBindings.setRequiredFeaturesPtr, NIL)
   }
 
   public final fun getRequiredFeatures(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRequiredFeaturesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setOptionalFeatures(optionalFeatures: String): Unit {
-    TransferContext.writeArguments(STRING to optionalFeatures)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
+    Internals.writeArguments(STRING to optionalFeatures)
+    Internals.callMethod(rawPtr, MethodBindings.setOptionalFeaturesPtr, NIL)
   }
 
   public final fun getOptionalFeatures(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOptionalFeaturesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun getReferenceSpaceType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReferenceSpaceTypePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun getEnabledFeatures(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnabledFeaturesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setRequestedReferenceSpaceTypes(requestedReferenceSpaceTypes: String): Unit {
-    TransferContext.writeArguments(STRING to requestedReferenceSpaceTypes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
+    Internals.writeArguments(STRING to requestedReferenceSpaceTypes)
+    Internals.callMethod(rawPtr, MethodBindings.setRequestedReferenceSpaceTypesPtr, NIL)
   }
 
   public final fun getRequestedReferenceSpaceTypes(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRequestedReferenceSpaceTypesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if there is an active input source with the given [inputSourceId].
    */
   public final fun isInputSourceActive(inputSourceId: Int): Boolean {
-    TransferContext.writeArguments(LONG to inputSourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputSourceActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to inputSourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isInputSourceActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -430,9 +429,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * - [signal squeezestart]
    */
   public final fun getInputSourceTracker(inputSourceId: Int): XRControllerTracker? {
-    TransferContext.writeArguments(LONG to inputSourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTrackerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as XRControllerTracker?)
+    Internals.writeArguments(LONG to inputSourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputSourceTrackerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as XRControllerTracker?)
   }
 
   /**
@@ -442,15 +441,15 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * for more information.
    */
   public final fun getInputSourceTargetRayMode(inputSourceId: Int): TargetRayMode {
-    TransferContext.writeArguments(LONG to inputSourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputSourceTargetRayModePtr, LONG)
-    return WebXRInterface.TargetRayMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to inputSourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputSourceTargetRayModePtr, LONG)
+    return WebXRInterface.TargetRayMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun getVisibilityState(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityStatePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -458,9 +457,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * It may not report an accurate value until after using [setDisplayRefreshRate].
    */
   public final fun getDisplayRefreshRate(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -468,8 +467,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * won't take effect right away until after [signal display_refresh_rate_changed] is emitted.
    */
   public final fun setDisplayRefreshRate(refreshRate: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
+    Internals.writeArguments(DOUBLE to refreshRate.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
   }
 
   /**
@@ -477,9 +476,9 @@ public open class WebXRInterface internal constructor() : XRInterface() {
    * supported by the web browser and after the interface has been initialized.
    */
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public enum class TargetRayMode(
@@ -517,57 +516,57 @@ public open class WebXRInterface internal constructor() : XRInterface() {
 
   internal object MethodBindings {
     public val isSessionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "is_session_supported", 83702148)
+        Internals.getMethodBindPtr("WebXRInterface", "is_session_supported", 83702148)
 
     public val setSessionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_session_mode", 83702148)
+        Internals.getMethodBindPtr("WebXRInterface", "set_session_mode", 83702148)
 
     public val getSessionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_session_mode", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_session_mode", 201670096)
 
     public val setRequiredFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_required_features", 83702148)
+        Internals.getMethodBindPtr("WebXRInterface", "set_required_features", 83702148)
 
     public val getRequiredFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_required_features", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_required_features", 201670096)
 
     public val setOptionalFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_optional_features", 83702148)
+        Internals.getMethodBindPtr("WebXRInterface", "set_optional_features", 83702148)
 
     public val getOptionalFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_optional_features", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_optional_features", 201670096)
 
     public val getReferenceSpaceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_reference_space_type", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_reference_space_type", 201670096)
 
     public val getEnabledFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_enabled_features", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_enabled_features", 201670096)
 
     public val setRequestedReferenceSpaceTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types", 83702148)
+        Internals.getMethodBindPtr("WebXRInterface", "set_requested_reference_space_types", 83702148)
 
     public val getRequestedReferenceSpaceTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_requested_reference_space_types", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_requested_reference_space_types", 201670096)
 
     public val isInputSourceActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "is_input_source_active", 1116898809)
+        Internals.getMethodBindPtr("WebXRInterface", "is_input_source_active", 1116898809)
 
     public val getInputSourceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_tracker", 399776966)
+        Internals.getMethodBindPtr("WebXRInterface", "get_input_source_tracker", 399776966)
 
     public val getInputSourceTargetRayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_input_source_target_ray_mode", 2852387453)
+        Internals.getMethodBindPtr("WebXRInterface", "get_input_source_target_ray_mode", 2852387453)
 
     public val getVisibilityStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_visibility_state", 201670096)
+        Internals.getMethodBindPtr("WebXRInterface", "get_visibility_state", 201670096)
 
     public val getDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_display_refresh_rate", 1740695150)
+        Internals.getMethodBindPtr("WebXRInterface", "get_display_refresh_rate", 1740695150)
 
     public val setDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "set_display_refresh_rate", 373806689)
+        Internals.getMethodBindPtr("WebXRInterface", "set_display_refresh_rate", 373806689)
 
     public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebXRInterface", "get_available_display_refresh_rates", 3995934104)
+        Internals.getMethodBindPtr("WebXRInterface", "get_available_display_refresh_rates", 3995934104)
   }
 }

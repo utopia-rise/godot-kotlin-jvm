@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -39,25 +38,25 @@ public open class Path2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PATH2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PATH2D_INDEX, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve2D?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path2D", "set_curve", 659985499)
+    public val setCurvePtr: VoidPtr = Internals.getMethodBindPtr("Path2D", "set_curve", 659985499)
 
-    public val getCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path2D", "get_curve", 660369445)
+    public val getCurvePtr: VoidPtr = Internals.getMethodBindPtr("Path2D", "get_curve", 660369445)
   }
 }

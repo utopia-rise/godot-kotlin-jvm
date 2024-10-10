@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -39,18 +38,18 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX, scriptIndex)
   }
 
   public final fun setFlags(flags: EmitFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFlagsPtr, NIL)
   }
 
   public final fun getFlags(): EmitFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
-    return VisualShaderNodeParticleEmit.EmitFlags.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFlagsPtr, LONG)
+    return VisualShaderNodeParticleEmit.EmitFlags.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class EmitFlags(
@@ -92,9 +91,9 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3960756792)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3960756792)
 
     public val getFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171277835)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171277835)
   }
 }

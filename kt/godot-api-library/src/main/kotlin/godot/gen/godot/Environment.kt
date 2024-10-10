@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -1262,7 +1261,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ENVIRONMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ENVIRONMENT_INDEX, scriptIndex)
   }
 
   /**
@@ -1419,542 +1418,542 @@ public open class Environment : Resource() {
 
 
   public final fun setBackground(mode: BGMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackgroundPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBackgroundPtr, NIL)
   }
 
   public final fun getBackground(): BGMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackgroundPtr, LONG)
-    return Environment.BGMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackgroundPtr, LONG)
+    return Environment.BGMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSky(sky: Sky?): Unit {
-    TransferContext.writeArguments(OBJECT to sky)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyPtr, NIL)
+    Internals.writeArguments(OBJECT to sky)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyPtr, NIL)
   }
 
   public final fun getSky(): Sky? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Sky?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Sky?)
   }
 
   public final fun setSkyCustomFov(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyCustomFovPtr, NIL)
+    Internals.writeArguments(DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSkyCustomFovPtr, NIL)
   }
 
   public final fun getSkyCustomFov(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyCustomFovPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyCustomFovPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSkyRotation(eulerRadians: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to eulerRadians)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyRotationPtr, NIL)
+    Internals.writeArguments(VECTOR3 to eulerRadians)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyRotationPtr, NIL)
   }
 
   public final fun getSkyRotation(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyRotationPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyRotationPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setBgColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
   }
 
   public final fun getBgColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBgEnergyMultiplier(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBgEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBgEnergyMultiplierPtr, NIL)
   }
 
   public final fun getBgEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBgEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBgEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBgIntensity(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBgIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBgIntensityPtr, NIL)
   }
 
   public final fun getBgIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBgIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBgIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCanvasMaxLayer(layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanvasMaxLayerPtr, NIL)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCanvasMaxLayerPtr, NIL)
   }
 
   public final fun getCanvasMaxLayer(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasMaxLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCanvasMaxLayerPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCameraFeedId(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
 
   public final fun getCameraFeedId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAmbientLightColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientLightColorPtr, NIL)
   }
 
   public final fun getAmbientLightColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientLightColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAmbientSource(source: AmbientSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientSourcePtr, NIL)
+    Internals.writeArguments(LONG to source.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientSourcePtr, NIL)
   }
 
   public final fun getAmbientSource(): AmbientSource {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientSourcePtr, LONG)
-    return Environment.AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientSourcePtr, LONG)
+    return Environment.AmbientSource.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientLightEnergy(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientLightEnergyPtr, NIL)
   }
 
   public final fun getAmbientLightEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientLightEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAmbientLightSkyContribution(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientLightSkyContributionPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientLightSkyContributionPtr, NIL)
   }
 
   public final fun getAmbientLightSkyContribution(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientLightSkyContributionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientLightSkyContributionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setReflectionSource(source: ReflectionSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReflectionSourcePtr, NIL)
+    Internals.writeArguments(LONG to source.id)
+    Internals.callMethod(rawPtr, MethodBindings.setReflectionSourcePtr, NIL)
   }
 
   public final fun getReflectionSource(): ReflectionSource {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReflectionSourcePtr, LONG)
-    return Environment.ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReflectionSourcePtr, LONG)
+    return Environment.ReflectionSource.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapper(mode: ToneMapper): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTonemapperPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTonemapperPtr, NIL)
   }
 
   public final fun getTonemapper(): ToneMapper {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTonemapperPtr, LONG)
-    return Environment.ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTonemapperPtr, LONG)
+    return Environment.ToneMapper.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTonemapExposure(exposure: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to exposure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTonemapExposurePtr, NIL)
+    Internals.writeArguments(DOUBLE to exposure.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTonemapExposurePtr, NIL)
   }
 
   public final fun getTonemapExposure(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTonemapExposurePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTonemapExposurePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTonemapWhite(white: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to white.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTonemapWhitePtr, NIL)
+    Internals.writeArguments(DOUBLE to white.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTonemapWhitePtr, NIL)
   }
 
   public final fun getTonemapWhite(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTonemapWhitePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTonemapWhitePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsrEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsrEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSsrEnabledPtr, NIL)
   }
 
   public final fun isSsrEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSsrEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSsrEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSsrMaxSteps(maxSteps: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSteps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsrMaxStepsPtr, NIL)
+    Internals.writeArguments(LONG to maxSteps.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSsrMaxStepsPtr, NIL)
   }
 
   public final fun getSsrMaxSteps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsrMaxStepsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsrMaxStepsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSsrFadeIn(fadeIn: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fadeIn.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeInPtr, NIL)
+    Internals.writeArguments(DOUBLE to fadeIn.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsrFadeInPtr, NIL)
   }
 
   public final fun getSsrFadeIn(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeInPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsrFadeInPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsrFadeOut(fadeOut: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fadeOut.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsrFadeOutPtr, NIL)
+    Internals.writeArguments(DOUBLE to fadeOut.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsrFadeOutPtr, NIL)
   }
 
   public final fun getSsrFadeOut(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsrFadeOutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsrFadeOutPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsrDepthTolerance(depthTolerance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to depthTolerance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsrDepthTolerancePtr, NIL)
+    Internals.writeArguments(DOUBLE to depthTolerance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsrDepthTolerancePtr, NIL)
   }
 
   public final fun getSsrDepthTolerance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsrDepthTolerancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsrDepthTolerancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoEnabledPtr, NIL)
   }
 
   public final fun isSsaoEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSsaoEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSsaoEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSsaoRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoRadiusPtr, NIL)
   }
 
   public final fun getSsaoRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoIntensity(intensity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to intensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoIntensityPtr, NIL)
   }
 
   public final fun getSsaoIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoPower(power: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to power.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoPowerPtr, NIL)
+    Internals.writeArguments(DOUBLE to power.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoPowerPtr, NIL)
   }
 
   public final fun getSsaoPower(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoPowerPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoPowerPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoDetail(detail: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to detail.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDetailPtr, NIL)
+    Internals.writeArguments(DOUBLE to detail.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoDetailPtr, NIL)
   }
 
   public final fun getSsaoDetail(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDetailPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoDetailPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoHorizon(horizon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to horizon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoHorizonPtr, NIL)
+    Internals.writeArguments(DOUBLE to horizon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoHorizonPtr, NIL)
   }
 
   public final fun getSsaoHorizon(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoHorizonPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoHorizonPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoSharpness(sharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to sharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoSharpnessPtr, NIL)
   }
 
   public final fun getSsaoSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoDirectLightAffect(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoDirectLightAffectPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoDirectLightAffectPtr, NIL)
   }
 
   public final fun getSsaoDirectLightAffect(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoDirectLightAffectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoDirectLightAffectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsaoAoChannelAffect(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsaoAoChannelAffectPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsaoAoChannelAffectPtr, NIL)
   }
 
   public final fun getSsaoAoChannelAffect(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsaoAoChannelAffectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsaoAoChannelAffectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsilEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsilEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSsilEnabledPtr, NIL)
   }
 
   public final fun isSsilEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSsilEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSsilEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSsilRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsilRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsilRadiusPtr, NIL)
   }
 
   public final fun getSsilRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsilRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsilRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsilIntensity(intensity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsilIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to intensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsilIntensityPtr, NIL)
   }
 
   public final fun getSsilIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsilIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsilIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsilSharpness(sharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsilSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to sharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsilSharpnessPtr, NIL)
   }
 
   public final fun getSsilSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsilSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsilSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSsilNormalRejection(normalRejection: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to normalRejection.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSsilNormalRejectionPtr, NIL)
+    Internals.writeArguments(DOUBLE to normalRejection.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSsilNormalRejectionPtr, NIL)
   }
 
   public final fun getSsilNormalRejection(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSsilNormalRejectionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSsilNormalRejectionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiEnabledPtr, NIL)
   }
 
   public final fun isSdfgiEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSdfgiEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSdfgiCascades(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascadesPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiCascadesPtr, NIL)
   }
 
   public final fun getSdfgiCascades(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascadesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiCascadesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSdfgiMinCellSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMinCellSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiMinCellSizePtr, NIL)
   }
 
   public final fun getSdfgiMinCellSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMinCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiMinCellSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiMaxDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiMaxDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiMaxDistancePtr, NIL)
   }
 
   public final fun getSdfgiMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiMaxDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiMaxDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiCascade0Distance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiCascade0DistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiCascade0DistancePtr, NIL)
   }
 
   public final fun getSdfgiCascade0Distance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiCascade0DistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiCascade0DistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiYScale(scale: SDFGIYScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiYScalePtr, NIL)
+    Internals.writeArguments(LONG to scale.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiYScalePtr, NIL)
   }
 
   public final fun getSdfgiYScale(): SDFGIYScale {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiYScalePtr, LONG)
-    return Environment.SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiYScalePtr, LONG)
+    return Environment.SDFGIYScale.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfgiUseOcclusion(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiUseOcclusionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiUseOcclusionPtr, NIL)
   }
 
   public final fun isSdfgiUsingOcclusion(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiUsingOcclusionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSdfgiUsingOcclusionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSdfgiBounceFeedback(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiBounceFeedbackPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiBounceFeedbackPtr, NIL)
   }
 
   public final fun getSdfgiBounceFeedback(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiBounceFeedbackPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiBounceFeedbackPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiReadSkyLight(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiReadSkyLightPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiReadSkyLightPtr, NIL)
   }
 
   public final fun isSdfgiReadingSkyLight(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSdfgiReadingSkyLightPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSdfgiReadingSkyLightPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSdfgiEnergy(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiEnergyPtr, NIL)
   }
 
   public final fun getSdfgiEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiNormalBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiNormalBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiNormalBiasPtr, NIL)
   }
 
   public final fun getSdfgiNormalBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiNormalBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiNormalBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSdfgiProbeBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfgiProbeBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSdfgiProbeBiasPtr, NIL)
   }
 
   public final fun getSdfgiProbeBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfgiProbeBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfgiProbeBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setGlowEnabledPtr, NIL)
   }
 
   public final fun isGlowEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGlowEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isGlowEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1963,484 +1962,481 @@ public open class Environment : Resource() {
    * effect rendering, even if previous levels aren't enabled.
    */
   public final fun setGlowLevel(idx: Int, intensity: Float): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowLevelPtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowLevelPtr, NIL)
   }
 
   /**
    * Returns the intensity of the glow level [idx].
    */
   public final fun getGlowLevel(idx: Int): Float {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowLevelPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getGlowLevelPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowNormalized(normalize: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowNormalizedPtr, NIL)
+    Internals.writeArguments(BOOL to normalize)
+    Internals.callMethod(rawPtr, MethodBindings.setGlowNormalizedPtr, NIL)
   }
 
   public final fun isGlowNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGlowNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isGlowNormalizedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGlowIntensity(intensity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to intensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowIntensityPtr, NIL)
   }
 
   public final fun getGlowIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowStrengthPtr, NIL)
   }
 
   public final fun getGlowStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowMix(mix: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mix.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowMixPtr, NIL)
+    Internals.writeArguments(DOUBLE to mix.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowMixPtr, NIL)
   }
 
   public final fun getGlowMix(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowMixPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowBloom(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowBloomPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowBloomPtr, NIL)
   }
 
   public final fun getGlowBloom(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowBloomPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowBloomPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowBlendMode(mode: GlowBlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowBlendModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setGlowBlendModePtr, NIL)
   }
 
   public final fun getGlowBlendMode(): GlowBlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowBlendModePtr, LONG)
-    return Environment.GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowBlendModePtr, LONG)
+    return Environment.GlowBlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setGlowHdrBleedThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowHdrBleedThresholdPtr, NIL)
   }
 
   public final fun getGlowHdrBleedThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowHdrBleedThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowHdrBleedScale(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrBleedScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowHdrBleedScalePtr, NIL)
   }
 
   public final fun getGlowHdrBleedScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrBleedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowHdrBleedScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowHdrLuminanceCap(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowHdrLuminanceCapPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowHdrLuminanceCapPtr, NIL)
   }
 
   public final fun getGlowHdrLuminanceCap(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowHdrLuminanceCapPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowHdrLuminanceCapPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowMapStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlowMapStrengthPtr, NIL)
   }
 
   public final fun getGlowMapStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowMapStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlowMap(mode: Texture?): Unit {
-    TransferContext.writeArguments(OBJECT to mode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlowMapPtr, NIL)
+    Internals.writeArguments(OBJECT to mode)
+    Internals.callMethod(rawPtr, MethodBindings.setGlowMapPtr, NIL)
   }
 
   public final fun getGlowMap(): Texture? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlowMapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlowMapPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture?)
   }
 
   public final fun setFogEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFogEnabledPtr, NIL)
   }
 
   public final fun isFogEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFogEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFogEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFogMode(mode: FogMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFogModePtr, NIL)
   }
 
   public final fun getFogMode(): FogMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogModePtr, LONG)
-    return Environment.FogMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogModePtr, LONG)
+    return Environment.FogMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFogLightColor(lightColor: Color): Unit {
-    TransferContext.writeArguments(COLOR to lightColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogLightColorPtr, NIL)
+    Internals.writeArguments(COLOR to lightColor)
+    Internals.callMethod(rawPtr, MethodBindings.setFogLightColorPtr, NIL)
   }
 
   public final fun getFogLightColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogLightColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogLightColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setFogLightEnergy(lightEnergy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to lightEnergy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogLightEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to lightEnergy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogLightEnergyPtr, NIL)
   }
 
   public final fun getFogLightEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogLightEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogLightEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogSunScatter(sunScatter: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sunScatter.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogSunScatterPtr, NIL)
+    Internals.writeArguments(DOUBLE to sunScatter.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogSunScatterPtr, NIL)
   }
 
   public final fun getFogSunScatter(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogSunScatterPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogSunScatterPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogDensity(density: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to density.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogDensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to density.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogDensityPtr, NIL)
   }
 
   public final fun getFogDensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogDensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogDensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogHeightPtr, NIL)
   }
 
   public final fun getFogHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogHeightDensity(heightDensity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to heightDensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogHeightDensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to heightDensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogHeightDensityPtr, NIL)
   }
 
   public final fun getFogHeightDensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogHeightDensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogHeightDensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogAerialPerspective(aerialPerspective: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to aerialPerspective.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogAerialPerspectivePtr, NIL)
+    Internals.writeArguments(DOUBLE to aerialPerspective.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogAerialPerspectivePtr, NIL)
   }
 
   public final fun getFogAerialPerspective(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogAerialPerspectivePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogAerialPerspectivePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogSkyAffect(skyAffect: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogSkyAffectPtr, NIL)
+    Internals.writeArguments(DOUBLE to skyAffect.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogSkyAffectPtr, NIL)
   }
 
   public final fun getFogSkyAffect(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogSkyAffectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogSkyAffectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogDepthCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthCurvePtr, NIL)
+    Internals.writeArguments(DOUBLE to curve.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogDepthCurvePtr, NIL)
   }
 
   public final fun getFogDepthCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthCurvePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogDepthCurvePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogDepthBegin(begin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to begin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthBeginPtr, NIL)
+    Internals.writeArguments(DOUBLE to begin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogDepthBeginPtr, NIL)
   }
 
   public final fun getFogDepthBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogDepthBeginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFogDepthEnd(end: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to end.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFogDepthEndPtr, NIL)
+    Internals.writeArguments(DOUBLE to end.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFogDepthEndPtr, NIL)
   }
 
   public final fun getFogDepthEnd(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFogDepthEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFogDepthEndPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogEnabledPtr, NIL)
   }
 
   public final fun isVolumetricFogEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVolumetricFogEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVolumetricFogEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolumetricFogEmission(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionPtr, NIL)
   }
 
   public final fun getVolumetricFogEmission(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setVolumetricFogAlbedo(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAlbedoPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogAlbedoPtr, NIL)
   }
 
   public final fun getVolumetricFogAlbedo(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAlbedoPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogAlbedoPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setVolumetricFogDensity(density: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to density.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to density.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogDensityPtr, NIL)
   }
 
   public final fun getVolumetricFogDensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogDensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogEmissionEnergy(begin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to begin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to begin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogEmissionEnergyPtr, NIL)
   }
 
   public final fun getVolumetricFogEmissionEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogEmissionEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogAnisotropy(anisotropy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAnisotropyPtr, NIL)
+    Internals.writeArguments(DOUBLE to anisotropy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogAnisotropyPtr, NIL)
   }
 
   public final fun getVolumetricFogAnisotropy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAnisotropyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogAnisotropyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogLengthPtr, NIL)
   }
 
   public final fun getVolumetricFogLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogDetailSpread(detailSpread: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to detailSpread.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogDetailSpreadPtr, NIL)
+    Internals.writeArguments(DOUBLE to detailSpread.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogDetailSpreadPtr, NIL)
   }
 
   public final fun getVolumetricFogDetailSpread(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogDetailSpreadPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogDetailSpreadPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogGiInject(giInject: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to giInject.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogGiInjectPtr, NIL)
+    Internals.writeArguments(DOUBLE to giInject.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogGiInjectPtr, NIL)
   }
 
   public final fun getVolumetricFogGiInject(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogGiInjectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogGiInjectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogAmbientInject(enabled: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to enabled.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogAmbientInjectPtr, NIL)
+    Internals.writeArguments(DOUBLE to enabled.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogAmbientInjectPtr, NIL)
   }
 
   public final fun getVolumetricFogAmbientInject(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogAmbientInjectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogAmbientInjectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogSkyAffect(skyAffect: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogSkyAffectPtr, NIL)
+    Internals.writeArguments(DOUBLE to skyAffect.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogSkyAffectPtr, NIL)
   }
 
   public final fun getVolumetricFogSkyAffect(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogSkyAffectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogSkyAffectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr,
-        MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
   }
 
   public final fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr,
-        BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float):
       Unit {
-    TransferContext.writeArguments(DOUBLE to temporalReprojectionAmount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr,
-        NIL)
+    Internals.writeArguments(DOUBLE to temporalReprojectionAmount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr, NIL)
   }
 
   public final fun getVolumetricFogTemporalReprojectionAmount(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
         DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAdjustmentEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAdjustmentEnabledPtr, NIL)
   }
 
   public final fun isAdjustmentEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAdjustmentEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAdjustmentEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAdjustmentBrightness(brightness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to brightness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentBrightnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to brightness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAdjustmentBrightnessPtr, NIL)
   }
 
   public final fun getAdjustmentBrightness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentBrightnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdjustmentBrightnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAdjustmentContrast(contrast: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to contrast.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentContrastPtr, NIL)
+    Internals.writeArguments(DOUBLE to contrast.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAdjustmentContrastPtr, NIL)
   }
 
   public final fun getAdjustmentContrast(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentContrastPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdjustmentContrastPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAdjustmentSaturation(saturation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to saturation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentSaturationPtr, NIL)
+    Internals.writeArguments(DOUBLE to saturation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAdjustmentSaturationPtr, NIL)
   }
 
   public final fun getAdjustmentSaturation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentSaturationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdjustmentSaturationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAdjustmentColorCorrection(colorCorrection: Texture?): Unit {
-    TransferContext.writeArguments(OBJECT to colorCorrection)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
+    Internals.writeArguments(OBJECT to colorCorrection)
+    Internals.callMethod(rawPtr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
   }
 
   public final fun getAdjustmentColorCorrection(): Texture? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAdjustmentColorCorrectionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture?)
   }
 
   public enum class BGMode(
@@ -2689,555 +2685,553 @@ public open class Environment : Resource() {
 
   internal object MethodBindings {
     public val setBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_background", 4071623990)
+        Internals.getMethodBindPtr("Environment", "set_background", 4071623990)
 
     public val getBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_background", 1843210413)
+        Internals.getMethodBindPtr("Environment", "get_background", 1843210413)
 
-    public val setSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky", 3336722921)
+    public val setSkyPtr: VoidPtr = Internals.getMethodBindPtr("Environment", "set_sky", 3336722921)
 
-    public val getSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky", 1177136966)
+    public val getSkyPtr: VoidPtr = Internals.getMethodBindPtr("Environment", "get_sky", 1177136966)
 
     public val setSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sky_custom_fov", 373806689)
 
     public val getSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sky_custom_fov", 1740695150)
 
     public val setSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation", 3460891852)
+        Internals.getMethodBindPtr("Environment", "set_sky_rotation", 3460891852)
 
     public val getSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation", 3360562783)
+        Internals.getMethodBindPtr("Environment", "get_sky_rotation", 3360562783)
 
     public val setBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_color", 2920490490)
+        Internals.getMethodBindPtr("Environment", "set_bg_color", 2920490490)
 
     public val getBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_color", 3444240500)
+        Internals.getMethodBindPtr("Environment", "get_bg_color", 3444240500)
 
     public val setBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373806689)
 
     public val getBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1740695150)
 
     public val setBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_bg_intensity", 373806689)
 
     public val getBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_bg_intensity", 1740695150)
 
     public val setCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer", 1286410249)
+        Internals.getMethodBindPtr("Environment", "set_canvas_max_layer", 1286410249)
 
     public val getCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer", 3905245786)
+        Internals.getMethodBindPtr("Environment", "get_canvas_max_layer", 3905245786)
 
     public val setCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id", 1286410249)
+        Internals.getMethodBindPtr("Environment", "set_camera_feed_id", 1286410249)
 
     public val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id", 3905245786)
+        Internals.getMethodBindPtr("Environment", "get_camera_feed_id", 3905245786)
 
     public val setAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color", 2920490490)
+        Internals.getMethodBindPtr("Environment", "set_ambient_light_color", 2920490490)
 
     public val getAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color", 3444240500)
+        Internals.getMethodBindPtr("Environment", "get_ambient_light_color", 3444240500)
 
     public val setAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_source", 2607780160)
+        Internals.getMethodBindPtr("Environment", "set_ambient_source", 2607780160)
 
     public val getAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_source", 67453933)
+        Internals.getMethodBindPtr("Environment", "get_ambient_source", 67453933)
 
     public val setAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ambient_light_energy", 373806689)
 
     public val getAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ambient_light_energy", 1740695150)
 
     public val setAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373806689)
 
     public val getAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1740695150)
 
     public val setReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_reflection_source", 299673197)
+        Internals.getMethodBindPtr("Environment", "set_reflection_source", 299673197)
 
     public val getReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_reflection_source", 777700713)
+        Internals.getMethodBindPtr("Environment", "get_reflection_source", 777700713)
 
     public val setTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemapper", 1509116664)
+        Internals.getMethodBindPtr("Environment", "set_tonemapper", 1509116664)
 
     public val getTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemapper", 2908408137)
+        Internals.getMethodBindPtr("Environment", "get_tonemapper", 2908408137)
 
     public val setTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_tonemap_exposure", 373806689)
 
     public val getTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_tonemap_exposure", 1740695150)
 
     public val setTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_tonemap_white", 373806689)
 
     public val getTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
 
     public val setSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)
 
     public val isSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_ssr_enabled", 36873697)
 
     public val setSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps", 1286410249)
+        Internals.getMethodBindPtr("Environment", "set_ssr_max_steps", 1286410249)
 
     public val getSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps", 3905245786)
+        Internals.getMethodBindPtr("Environment", "get_ssr_max_steps", 3905245786)
 
     public val setSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssr_fade_in", 373806689)
 
     public val getSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssr_fade_in", 1740695150)
 
     public val setSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssr_fade_out", 373806689)
 
     public val getSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssr_fade_out", 1740695150)
 
     public val setSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373806689)
 
     public val getSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1740695150)
 
     public val setSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_ssao_enabled", 2586408642)
 
     public val isSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_ssao_enabled", 36873697)
 
     public val setSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_radius", 373806689)
 
     public val getSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_radius", 1740695150)
 
     public val setSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_intensity", 373806689)
 
     public val getSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_intensity", 1740695150)
 
     public val setSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_power", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_power", 373806689)
 
     public val getSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_power", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_power", 1740695150)
 
     public val setSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_detail", 373806689)
 
     public val getSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_detail", 1740695150)
 
     public val setSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_horizon", 373806689)
 
     public val getSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_horizon", 1740695150)
 
     public val setSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_sharpness", 373806689)
 
     public val getSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_sharpness", 1740695150)
 
     public val setSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373806689)
 
     public val getSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1740695150)
 
     public val setSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373806689)
 
     public val getSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1740695150)
 
     public val setSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_ssil_enabled", 2586408642)
 
     public val isSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_ssil_enabled", 36873697)
 
     public val setSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssil_radius", 373806689)
 
     public val getSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssil_radius", 1740695150)
 
     public val setSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssil_intensity", 373806689)
 
     public val getSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssil_intensity", 1740695150)
 
     public val setSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssil_sharpness", 373806689)
 
     public val getSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssil_sharpness", 1740695150)
 
     public val setSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373806689)
 
     public val getSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1740695150)
 
     public val setSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2586408642)
 
     public val isSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36873697)
 
     public val setSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1286410249)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1286410249)
 
     public val getSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3905245786)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3905245786)
 
     public val setSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373806689)
 
     public val getSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1740695150)
 
     public val setSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373806689)
 
     public val getSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1740695150)
 
     public val setSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373806689)
 
     public val getSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1740695150)
 
     public val setSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3608608372)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3608608372)
 
     public val getSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2568002245)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2568002245)
 
     public val setSdfgiUseOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2586408642)
 
     public val isSdfgiUsingOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36873697)
 
     public val setSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373806689)
 
     public val getSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1740695150)
 
     public val setSdfgiReadSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2586408642)
 
     public val isSdfgiReadingSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36873697)
 
     public val setSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_energy", 373806689)
 
     public val getSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_energy", 1740695150)
 
     public val setSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373806689)
 
     public val getSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1740695150)
 
     public val setSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373806689)
 
     public val getSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1740695150)
 
     public val setGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_glow_enabled", 2586408642)
 
     public val isGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_glow_enabled", 36873697)
 
     public val setGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_level", 1602489585)
+        Internals.getMethodBindPtr("Environment", "set_glow_level", 1602489585)
 
     public val getGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_level", 2339986948)
+        Internals.getMethodBindPtr("Environment", "get_glow_level", 2339986948)
 
     public val setGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_glow_normalized", 2586408642)
 
     public val isGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_glow_normalized", 36873697)
 
     public val setGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_intensity", 373806689)
 
     public val getGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_intensity", 1740695150)
 
     public val setGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_strength", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_strength", 373806689)
 
     public val getGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_strength", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_strength", 1740695150)
 
     public val setGlowMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_mix", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_mix", 373806689)
 
     public val getGlowMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_mix", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_mix", 1740695150)
 
     public val setGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_bloom", 373806689)
 
     public val getGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_bloom", 1740695150)
 
     public val setGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode", 2561587761)
+        Internals.getMethodBindPtr("Environment", "set_glow_blend_mode", 2561587761)
 
     public val getGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode", 1529667332)
+        Internals.getMethodBindPtr("Environment", "get_glow_blend_mode", 1529667332)
 
     public val setGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373806689)
 
     public val getGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1740695150)
 
     public val setGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373806689)
 
     public val getGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1740695150)
 
     public val setGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373806689)
 
     public val getGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1740695150)
 
     public val setGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_glow_map_strength", 373806689)
 
     public val getGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_glow_map_strength", 1740695150)
 
     public val setGlowMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_map", 1790811099)
+        Internals.getMethodBindPtr("Environment", "set_glow_map", 1790811099)
 
     public val getGlowMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_map", 4037048985)
+        Internals.getMethodBindPtr("Environment", "get_glow_map", 4037048985)
 
     public val setFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_fog_enabled", 2586408642)
 
     public val isFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_fog_enabled", 36873697)
 
     public val setFogModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_mode", 3059806579)
+        Internals.getMethodBindPtr("Environment", "set_fog_mode", 3059806579)
 
     public val getFogModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_mode", 2456062483)
+        Internals.getMethodBindPtr("Environment", "get_fog_mode", 2456062483)
 
     public val setFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color", 2920490490)
+        Internals.getMethodBindPtr("Environment", "set_fog_light_color", 2920490490)
 
     public val getFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color", 3444240500)
+        Internals.getMethodBindPtr("Environment", "get_fog_light_color", 3444240500)
 
     public val setFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_light_energy", 373806689)
 
     public val getFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_light_energy", 1740695150)
 
     public val setFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373806689)
 
     public val getFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1740695150)
 
     public val setFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_density", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_density", 373806689)
 
     public val getFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_density", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_density", 1740695150)
 
     public val setFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_height", 373806689)
 
     public val getFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_height", 1740695150)
 
     public val setFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_height_density", 373806689)
 
     public val getFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_height_density", 1740695150)
 
     public val setFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373806689)
 
     public val getFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1740695150)
 
     public val setFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_sky_affect", 373806689)
 
     public val getFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_sky_affect", 1740695150)
 
     public val setFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_depth_curve", 373806689)
 
     public val getFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_depth_curve", 1740695150)
 
     public val setFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_depth_begin", 373806689)
 
     public val getFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_depth_begin", 1740695150)
 
     public val setFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_fog_depth_end", 373806689)
 
     public val getFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_fog_depth_end", 1740695150)
 
     public val setVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2586408642)
 
     public val isVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36873697)
 
     public val setVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2920490490)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2920490490)
 
     public val getVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3444240500)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3444240500)
 
     public val setVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2920490490)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2920490490)
 
     public val getVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3444240500)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3444240500)
 
     public val setVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373806689)
 
     public val getVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1740695150)
 
     public val setVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373806689)
 
     public val getVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1740695150)
 
     public val setVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373806689)
 
     public val getVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1740695150)
 
     public val setVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373806689)
 
     public val getVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1740695150)
 
     public val setVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373806689)
 
     public val getVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1740695150)
 
     public val setVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373806689)
 
     public val getVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1740695150)
 
     public val setVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373806689)
 
     public val getVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1740695150)
 
     public val setVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373806689)
 
     public val getVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1740695150)
 
     public val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2586408642)
 
     public val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36873697)
 
     public val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373806689)
 
     public val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1740695150)
 
     public val setAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled", 2586408642)
+        Internals.getMethodBindPtr("Environment", "set_adjustment_enabled", 2586408642)
 
     public val isAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled", 36873697)
+        Internals.getMethodBindPtr("Environment", "is_adjustment_enabled", 36873697)
 
     public val setAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_adjustment_brightness", 373806689)
 
     public val getAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_adjustment_brightness", 1740695150)
 
     public val setAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_adjustment_contrast", 373806689)
 
     public val getAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_adjustment_contrast", 1740695150)
 
     public val setAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation", 373806689)
+        Internals.getMethodBindPtr("Environment", "set_adjustment_saturation", 373806689)
 
     public val getAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation", 1740695150)
+        Internals.getMethodBindPtr("Environment", "get_adjustment_saturation", 1740695150)
 
     public val setAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1790811099)
+        Internals.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1790811099)
 
     public val getAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4037048985)
+        Internals.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4037048985)
   }
 }

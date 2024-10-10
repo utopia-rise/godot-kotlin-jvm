@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -64,7 +63,7 @@ public open class MeshTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MESHTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MESHTEXTURE_INDEX, scriptIndex)
   }
 
   /**
@@ -92,57 +91,57 @@ public open class MeshTexture : Texture2D() {
 
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setImageSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setImageSizePtr, NIL)
   }
 
   public final fun getImageSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getImageSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setBaseTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setBaseTexturePtr, NIL)
   }
 
   public final fun getBaseTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBaseTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_mesh", 194775623)
+        Internals.getMethodBindPtr("MeshTexture", "set_mesh", 194775623)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_mesh", 1808005922)
+        Internals.getMethodBindPtr("MeshTexture", "get_mesh", 1808005922)
 
     public val setImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_image_size", 743155724)
+        Internals.getMethodBindPtr("MeshTexture", "set_image_size", 743155724)
 
     public val getImageSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_image_size", 3341600327)
+        Internals.getMethodBindPtr("MeshTexture", "get_image_size", 3341600327)
 
     public val setBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "set_base_texture", 4051416890)
+        Internals.getMethodBindPtr("MeshTexture", "set_base_texture", 4051416890)
 
     public val getBaseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshTexture", "get_base_texture", 3635182373)
+        Internals.getMethodBindPtr("MeshTexture", "get_base_texture", 3635182373)
   }
 }

@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -31,7 +30,7 @@ private const val ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX: Int = 622
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX, scriptIndex)
   }
 
   /**
@@ -136,15 +135,15 @@ public open class VideoStreamPlayback : Resource() {
     buffer: PackedFloat32Array = PackedFloat32Array(),
     offset: Int = 0,
   ): Int {
-    TransferContext.writeArguments(LONG to numFrames.toLong(), PACKED_FLOAT_32_ARRAY to buffer, LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.mixAudioPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to numFrames.toLong(), PACKED_FLOAT_32_ARRAY to buffer, LONG to offset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.mixAudioPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val mixAudioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
+        Internals.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
   }
 }

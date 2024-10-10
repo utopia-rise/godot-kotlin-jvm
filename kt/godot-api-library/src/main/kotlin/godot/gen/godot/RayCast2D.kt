@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,7 +17,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -126,7 +125,7 @@ public open class RayCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RAYCAST2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RAYCAST2D_INDEX, scriptIndex)
   }
 
   /**
@@ -154,25 +153,25 @@ public open class RayCast2D : Node2D() {
 
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTargetPosition(localPoint: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to localPoint)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -180,9 +179,9 @@ public open class RayCast2D : Node2D() {
    * length).
    */
   public final fun isColliding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -192,8 +191,8 @@ public open class RayCast2D : Node2D() {
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
   public final fun forceRaycastUpdate(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceRaycastUpdatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceRaycastUpdatePtr, NIL)
   }
 
   /**
@@ -201,9 +200,9 @@ public open class RayCast2D : Node2D() {
    * ray (i.e. [isColliding] returns `false`).
    */
   public final fun getCollider(): Object? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Object?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -211,9 +210,9 @@ public open class RayCast2D : Node2D() {
    * is intersecting the ray (i.e. [isColliding] returns `false`).
    */
   public final fun getColliderRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -237,9 +236,9 @@ public open class RayCast2D : Node2D() {
    * ```
    */
   public final fun getColliderShape(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -250,9 +249,9 @@ public open class RayCast2D : Node2D() {
    * returned point is valid and up-to-date.
    */
   public final fun getCollisionPoint(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -262,17 +261,17 @@ public open class RayCast2D : Node2D() {
    * returned normal is valid and up-to-date.
    */
   public final fun getCollisionNormal(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
   public final fun addExceptionRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
+    Internals.writeArguments(_RID to rid)
+    Internals.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
   }
 
   /**
@@ -280,16 +279,16 @@ public open class RayCast2D : Node2D() {
    * [CollisionObject2D] node.
    */
   public final fun addException(node: CollisionObject2D?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
   }
 
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
   public final fun removeExceptionRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
+    Internals.writeArguments(_RID to rid)
+    Internals.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
   }
 
   /**
@@ -297,27 +296,27 @@ public open class RayCast2D : Node2D() {
    * [CollisionObject2D] node.
    */
   public final fun removeException(node: CollisionObject2D?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
   }
 
   /**
    * Removes all collision exceptions for this ray.
    */
   public final fun clearExceptions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -325,8 +324,8 @@ public open class RayCast2D : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -334,140 +333,140 @@ public open class RayCast2D : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExcludeParentBody(mask: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
+    Internals.writeArguments(BOOL to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
 
   public final fun getExcludeParentBody(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHitFromInside(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setHitFromInsidePtr, NIL)
   }
 
   public final fun isHitFromInsideEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHitFromInsideEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("RayCast2D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_enabled", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "is_enabled", 36873697)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_target_position", 743155724)
+        Internals.getMethodBindPtr("RayCast2D", "set_target_position", 743155724)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_target_position", 3341600327)
+        Internals.getMethodBindPtr("RayCast2D", "get_target_position", 3341600327)
 
     public val isCollidingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_colliding", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "is_colliding", 36873697)
 
     public val forceRaycastUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "force_raycast_update", 3218959716)
+        Internals.getMethodBindPtr("RayCast2D", "force_raycast_update", 3218959716)
 
     public val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider", 1981248198)
+        Internals.getMethodBindPtr("RayCast2D", "get_collider", 1981248198)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_rid", 2944877500)
+        Internals.getMethodBindPtr("RayCast2D", "get_collider_rid", 2944877500)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_shape", 3905245786)
+        Internals.getMethodBindPtr("RayCast2D", "get_collider_shape", 3905245786)
 
     public val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_point", 3341600327)
+        Internals.getMethodBindPtr("RayCast2D", "get_collision_point", 3341600327)
 
     public val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_normal", 3341600327)
+        Internals.getMethodBindPtr("RayCast2D", "get_collision_normal", 3341600327)
 
     public val addExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "add_exception_rid", 2722037293)
+        Internals.getMethodBindPtr("RayCast2D", "add_exception_rid", 2722037293)
 
     public val addExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "add_exception", 3090941106)
+        Internals.getMethodBindPtr("RayCast2D", "add_exception", 3090941106)
 
     public val removeExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception_rid", 2722037293)
+        Internals.getMethodBindPtr("RayCast2D", "remove_exception_rid", 2722037293)
 
     public val removeExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception", 3090941106)
+        Internals.getMethodBindPtr("RayCast2D", "remove_exception", 3090941106)
 
     public val clearExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "clear_exceptions", 3218959716)
+        Internals.getMethodBindPtr("RayCast2D", "clear_exceptions", 3218959716)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("RayCast2D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask", 3905245786)
+        Internals.getMethodBindPtr("RayCast2D", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask_value", 300928843)
+        Internals.getMethodBindPtr("RayCast2D", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask_value", 1116898809)
+        Internals.getMethodBindPtr("RayCast2D", "get_collision_mask_value", 1116898809)
 
     public val setExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_exclude_parent_body", 2586408642)
+        Internals.getMethodBindPtr("RayCast2D", "set_exclude_parent_body", 2586408642)
 
     public val getExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_exclude_parent_body", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "get_exclude_parent_body", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_areas", 2586408642)
+        Internals.getMethodBindPtr("RayCast2D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_areas_enabled", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "is_collide_with_areas_enabled", 36873697)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_bodies", 2586408642)
+        Internals.getMethodBindPtr("RayCast2D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_bodies_enabled", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setHitFromInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_hit_from_inside", 2586408642)
+        Internals.getMethodBindPtr("RayCast2D", "set_hit_from_inside", 2586408642)
 
     public val isHitFromInsideEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_hit_from_inside_enabled", 36873697)
+        Internals.getMethodBindPtr("RayCast2D", "is_hit_from_inside_enabled", 36873697)
   }
 }

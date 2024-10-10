@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -213,7 +212,8 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -225,201 +225,201 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
    * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
    */
   public final fun setAsMix(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsMixPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.setAsMixPtr, NIL)
   }
 
   public final fun setEnableBlend(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableBlendPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableBlendPtr, NIL)
   }
 
   public final fun getEnableBlend(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableBlendPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableBlendPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSrcColorBlendFactorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSrcColorBlendFactorPtr, NIL)
   }
 
   public final fun getSrcColorBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSrcColorBlendFactorPtr, LONG)
-    return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSrcColorBlendFactorPtr, LONG)
+    return RenderingDevice.BlendFactor.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDstColorBlendFactorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDstColorBlendFactorPtr, NIL)
   }
 
   public final fun getDstColorBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDstColorBlendFactorPtr, LONG)
-    return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDstColorBlendFactorPtr, LONG)
+    return RenderingDevice.BlendFactor.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setColorBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorBlendOpPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setColorBlendOpPtr, NIL)
   }
 
   public final fun getColorBlendOp(): RenderingDevice.BlendOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorBlendOpPtr, LONG)
-    return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorBlendOpPtr, LONG)
+    return RenderingDevice.BlendOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSrcAlphaBlendFactorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSrcAlphaBlendFactorPtr, NIL)
   }
 
   public final fun getSrcAlphaBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSrcAlphaBlendFactorPtr, LONG)
-    return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSrcAlphaBlendFactorPtr, LONG)
+    return RenderingDevice.BlendFactor.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDstAlphaBlendFactorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDstAlphaBlendFactorPtr, NIL)
   }
 
   public final fun getDstAlphaBlendFactor(): RenderingDevice.BlendFactor {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDstAlphaBlendFactorPtr, LONG)
-    return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDstAlphaBlendFactorPtr, LONG)
+    return RenderingDevice.BlendFactor.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendOpPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaBlendOpPtr, NIL)
   }
 
   public final fun getAlphaBlendOp(): RenderingDevice.BlendOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendOpPtr, LONG)
-    return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaBlendOpPtr, LONG)
+    return RenderingDevice.BlendOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setWriteR(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWriteRPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWriteRPtr, NIL)
   }
 
   public final fun getWriteR(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWriteRPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWriteRPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteG(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWriteGPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWriteGPtr, NIL)
   }
 
   public final fun getWriteG(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWriteGPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWriteGPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteB(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWriteBPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWriteBPtr, NIL)
   }
 
   public final fun getWriteB(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWriteBPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWriteBPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWriteA(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWriteAPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWriteAPtr, NIL)
   }
 
   public final fun getWriteA(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWriteAPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWriteAPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setAsMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix", 3218959716)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix", 3218959716)
 
     public val setEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend", 2586408642)
 
     public val getEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend", 36873697)
 
     public val setSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor", 2251019273)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor", 2251019273)
 
     public val getSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor", 3691288359)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor", 3691288359)
 
     public val setDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor", 2251019273)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor", 2251019273)
 
     public val getDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor", 3691288359)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor", 3691288359)
 
     public val setColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op", 3073022720)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op", 3073022720)
 
     public val getColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op", 1385093561)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op", 1385093561)
 
     public val setSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor", 2251019273)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor", 2251019273)
 
     public val getSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor", 3691288359)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor", 3691288359)
 
     public val setDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor", 2251019273)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor", 2251019273)
 
     public val getDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor", 3691288359)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor", 3691288359)
 
     public val setAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op", 3073022720)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op", 3073022720)
 
     public val getAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op", 1385093561)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op", 1385093561)
 
     public val setWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r", 2586408642)
 
     public val getWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r", 36873697)
 
     public val setWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g", 2586408642)
 
     public val getWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g", 36873697)
 
     public val setWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b", 2586408642)
 
     public val getWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b", 36873697)
 
     public val setWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a", 2586408642)
 
     public val getWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a", 36873697)
   }
 }

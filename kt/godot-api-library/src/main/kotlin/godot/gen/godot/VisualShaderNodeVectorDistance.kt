@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,7 @@ private const val ENGINE_CLASS_VISUALSHADERNODEVECTORDISTANCE_INDEX: Int = 726
 @GodotBaseType
 public open class VisualShaderNodeVectorDistance : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVECTORDISTANCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEVECTORDISTANCE_INDEX, scriptIndex)
   }
 
   public companion object

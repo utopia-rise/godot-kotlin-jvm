@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -86,18 +85,18 @@ public open class RemoteTransform2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_REMOTETRANSFORM2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_REMOTETRANSFORM2D_INDEX, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRemoteNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setRemoteNodePtr, NIL)
   }
 
   public final fun getRemoteNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemoteNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRemoteNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -105,88 +104,88 @@ public open class RemoteTransform2D : Node2D() {
    * [forceUpdateCache] forces it to update the cache again.
    */
   public final fun forceUpdateCache(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateCachePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceUpdateCachePtr, NIL)
   }
 
   public final fun setUseGlobalCoordinates(useGlobalCoordinates: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useGlobalCoordinates)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseGlobalCoordinatesPtr, NIL)
+    Internals.writeArguments(BOOL to useGlobalCoordinates)
+    Internals.callMethod(rawPtr, MethodBindings.setUseGlobalCoordinatesPtr, NIL)
   }
 
   public final fun getUseGlobalCoordinates(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseGlobalCoordinatesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdatePosition(updateRemotePosition: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to updateRemotePosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdatePositionPtr, NIL)
+    Internals.writeArguments(BOOL to updateRemotePosition)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdatePositionPtr, NIL)
   }
 
   public final fun getUpdatePosition(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdatePositionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdatePositionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateRotation(updateRemoteRotation: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to updateRemoteRotation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateRotationPtr, NIL)
+    Internals.writeArguments(BOOL to updateRemoteRotation)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateRotationPtr, NIL)
   }
 
   public final fun getUpdateRotation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateRotationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateRotationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateScale(updateRemoteScale: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to updateRemoteScale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateScalePtr, NIL)
+    Internals.writeArguments(BOOL to updateRemoteScale)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateScalePtr, NIL)
   }
 
   public final fun getUpdateScale(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateScalePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "set_remote_node", 1348162250)
+        Internals.getMethodBindPtr("RemoteTransform2D", "set_remote_node", 1348162250)
 
     public val getRemoteNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "get_remote_node", 4075236667)
+        Internals.getMethodBindPtr("RemoteTransform2D", "get_remote_node", 4075236667)
 
     public val forceUpdateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "force_update_cache", 3218959716)
+        Internals.getMethodBindPtr("RemoteTransform2D", "force_update_cache", 3218959716)
 
     public val setUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "set_use_global_coordinates", 2586408642)
+        Internals.getMethodBindPtr("RemoteTransform2D", "set_use_global_coordinates", 2586408642)
 
     public val getUseGlobalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "get_use_global_coordinates", 36873697)
+        Internals.getMethodBindPtr("RemoteTransform2D", "get_use_global_coordinates", 36873697)
 
     public val setUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "set_update_position", 2586408642)
+        Internals.getMethodBindPtr("RemoteTransform2D", "set_update_position", 2586408642)
 
     public val getUpdatePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "get_update_position", 36873697)
+        Internals.getMethodBindPtr("RemoteTransform2D", "get_update_position", 36873697)
 
     public val setUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "set_update_rotation", 2586408642)
+        Internals.getMethodBindPtr("RemoteTransform2D", "set_update_rotation", 2586408642)
 
     public val getUpdateRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "get_update_rotation", 36873697)
+        Internals.getMethodBindPtr("RemoteTransform2D", "get_update_rotation", 36873697)
 
     public val setUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "set_update_scale", 2586408642)
+        Internals.getMethodBindPtr("RemoteTransform2D", "set_update_scale", 2586408642)
 
     public val getUpdateScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RemoteTransform2D", "get_update_scale", 36873697)
+        Internals.getMethodBindPtr("RemoteTransform2D", "get_update_scale", 36873697)
   }
 }

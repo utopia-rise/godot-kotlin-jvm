@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -80,7 +79,7 @@ private const val ENGINE_CLASS_HASHINGCONTEXT_INDEX: Int = 281
 @GodotBaseType
 public open class HashingContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_HASHINGCONTEXT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_HASHINGCONTEXT_INDEX, scriptIndex)
   }
 
   /**
@@ -88,27 +87,27 @@ public open class HashingContext : RefCounted() {
    * an SHA-256).
    */
   public final fun start(type: HashType): Error {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.startPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Updates the computation with the given [chunk] of data.
    */
   public final fun update(chunk: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to chunk)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to chunk)
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Closes the current context, and return the computed hash.
    */
   public final fun finish(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public enum class HashType(
@@ -141,13 +140,12 @@ public open class HashingContext : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val startPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "start", 3940338335)
+    public val startPtr: VoidPtr = Internals.getMethodBindPtr("HashingContext", "start", 3940338335)
 
     public val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "update", 680677267)
+        Internals.getMethodBindPtr("HashingContext", "update", 680677267)
 
     public val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HashingContext", "finish", 2115431945)
+        Internals.getMethodBindPtr("HashingContext", "finish", 2115431945)
   }
 }

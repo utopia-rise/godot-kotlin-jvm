@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -90,47 +89,47 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RANDOMNUMBERGENERATOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RANDOMNUMBERGENERATOR_INDEX, scriptIndex)
   }
 
   public final fun setSeed(seed: Long): Unit {
-    TransferContext.writeArguments(LONG to seed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
+    Internals.writeArguments(LONG to seed)
+    Internals.callMethod(rawPtr, MethodBindings.setSeedPtr, NIL)
   }
 
   public final fun getSeed(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSeedPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setState(state: Long): Unit {
-    TransferContext.writeArguments(LONG to state)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
+    Internals.writeArguments(LONG to state)
+    Internals.callMethod(rawPtr, MethodBindings.setStatePtr, NIL)
   }
 
   public final fun getState(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns a pseudo-random 32-bit unsigned integer between `0` and `4294967295` (inclusive).
    */
   public final fun randi(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.randiPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.randiPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns a pseudo-random float between `0.0` and `1.0` (inclusive).
    */
   public final fun randf(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.randfPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.randfPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -143,27 +142,27 @@ public open class RandomNumberGenerator : RefCounted() {
    */
   @JvmOverloads
   public final fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
-    TransferContext.writeArguments(DOUBLE to mean.toDouble(), DOUBLE to deviation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.randfnPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(DOUBLE to mean.toDouble(), DOUBLE to deviation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.randfnPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns a pseudo-random float between [from] and [to] (inclusive).
    */
   public final fun randfRange(from: Float, to: Float): Float {
-    TransferContext.writeArguments(DOUBLE to from.toDouble(), DOUBLE to to.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.randfRangePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(DOUBLE to from.toDouble(), DOUBLE to to.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.randfRangePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns a pseudo-random 32-bit signed integer between [from] and [to] (inclusive).
    */
   public final fun randiRange(from: Int, to: Int): Int {
-    TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.randiRangePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to from.toLong(), LONG to to.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.randiRangePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -183,9 +182,9 @@ public open class RandomNumberGenerator : RefCounted() {
    * ```
    */
   public final fun randWeighted(weights: PackedFloat32Array): Long {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, MethodBindings.randWeightedPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
+    Internals.callMethod(rawPtr, MethodBindings.randWeightedPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -194,44 +193,44 @@ public open class RandomNumberGenerator : RefCounted() {
    * seeds.
    */
   public final fun randomize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.randomizePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.randomizePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1286410249)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1286410249)
 
     public val getSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2455072627)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2455072627)
 
     public val setStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state", 1286410249)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "set_state", 1286410249)
 
     public val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state", 3905245786)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "get_state", 3905245786)
 
     public val randiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi", 2455072627)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randi", 2455072627)
 
     public val randfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf", 191475506)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randf", 191475506)
 
     public val randfnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn", 837325100)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randfn", 837325100)
 
     public val randfRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4269894367)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4269894367)
 
     public val randiRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50157827)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50157827)
 
     public val randWeightedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4189642986)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4189642986)
 
     public val randomizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize", 3218959716)
+        Internals.getMethodBindPtr("RandomNumberGenerator", "randomize", 3218959716)
   }
 }

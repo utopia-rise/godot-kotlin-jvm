@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -90,68 +89,68 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DTWOBONEIK_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATION2DTWOBONEIK_INDEX, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to targetNodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to targetNodepath)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setTargetMinimumDistance(minimumDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to minimumDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMinimumDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to minimumDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTargetMinimumDistancePtr, NIL)
   }
 
   public final fun getTargetMinimumDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetMinimumDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTargetMaximumDistance(maximumDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maximumDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetMaximumDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to maximumDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTargetMaximumDistancePtr, NIL)
   }
 
   public final fun getTargetMaximumDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetMaximumDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlipBendDirection(flipDirection: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipDirection)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
+    Internals.writeArguments(BOOL to flipDirection)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipBendDirectionPtr, NIL)
   }
 
   public final fun getFlipBendDirection(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFlipBendDirectionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
   public final fun setJointOneBone2dNode(bone2dNode: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointOneBone2dNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to bone2dNode)
+    Internals.callMethod(rawPtr, MethodBindings.setJointOneBone2dNodePtr, NIL)
   }
 
   /**
    * Returns the [Bone2D] node that is being used as the first bone in the TwoBoneIK modification.
    */
   public final fun getJointOneBone2dNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointOneBone2dNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -159,8 +158,8 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun setJointOneBoneIdx(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointOneBoneIdxPtr, NIL)
+    Internals.writeArguments(LONG to boneIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setJointOneBoneIdxPtr, NIL)
   }
 
   /**
@@ -168,26 +167,26 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun getJointOneBoneIdx(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointOneBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointOneBoneIdxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
   public final fun setJointTwoBone2dNode(bone2dNode: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to bone2dNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTwoBone2dNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to bone2dNode)
+    Internals.callMethod(rawPtr, MethodBindings.setJointTwoBone2dNodePtr, NIL)
   }
 
   /**
    * Returns the [Bone2D] node that is being used as the second bone in the TwoBoneIK modification.
    */
   public final fun getJointTwoBone2dNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointTwoBone2dNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -195,8 +194,8 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun setJointTwoBoneIdx(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTwoBoneIdxPtr, NIL)
+    Internals.writeArguments(LONG to boneIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setJointTwoBoneIdxPtr, NIL)
   }
 
   /**
@@ -204,60 +203,60 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
    * modification.
    */
   public final fun getJointTwoBoneIdx(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointTwoBoneIdxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_node", 1348162250)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_node", 1348162250)
 
     public val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_node", 4075236667)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_node", 4075236667)
 
     public val setTargetMinimumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_minimum_distance", 373806689)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_minimum_distance", 373806689)
 
     public val getTargetMinimumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_minimum_distance", 1740695150)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_minimum_distance", 1740695150)
 
     public val setTargetMaximumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_maximum_distance", 373806689)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_target_maximum_distance", 373806689)
 
     public val getTargetMaximumDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_maximum_distance", 1740695150)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_target_maximum_distance", 1740695150)
 
     public val setFlipBendDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_flip_bend_direction", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_flip_bend_direction", 2586408642)
 
     public val getFlipBendDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_flip_bend_direction", 36873697)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_flip_bend_direction", 36873697)
 
     public val setJointOneBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone2d_node", 1348162250)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone2d_node", 1348162250)
 
     public val getJointOneBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone2d_node", 4075236667)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone2d_node", 4075236667)
 
     public val setJointOneBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone_idx", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_one_bone_idx", 1286410249)
 
     public val getJointOneBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone_idx", 3905245786)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_one_bone_idx", 3905245786)
 
     public val setJointTwoBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone2d_node", 1348162250)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone2d_node", 1348162250)
 
     public val getJointTwoBone2dNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone2d_node", 4075236667)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone2d_node", 4075236667)
 
     public val setJointTwoBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone_idx", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "set_joint_two_bone_idx", 1286410249)
 
     public val getJointTwoBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone_idx", 3905245786)
+        Internals.getMethodBindPtr("SkeletonModification2DTwoBoneIK", "get_joint_two_bone_idx", 3905245786)
   }
 }

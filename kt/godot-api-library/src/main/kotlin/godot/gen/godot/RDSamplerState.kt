@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -215,265 +214,265 @@ public open class RDSamplerState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDSAMPLERSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDSAMPLERSTATE_INDEX, scriptIndex)
   }
 
   public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
   }
 
   public final fun getMagFilter(): RenderingDevice.SamplerFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
-    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMinFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
   }
 
   public final fun getMinFilter(): RenderingDevice.SamplerFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
-    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMipFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMipFilterPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMipFilterPtr, NIL)
   }
 
   public final fun getMipFilter(): RenderingDevice.SamplerFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMipFilterPtr, LONG)
-    return RenderingDevice.SamplerFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMipFilterPtr, LONG)
+    return RenderingDevice.SamplerFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRepeatU(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatUPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatUPtr, NIL)
   }
 
   public final fun getRepeatU(): RenderingDevice.SamplerRepeatMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatUPtr, LONG)
-    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatUPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRepeatV(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatVPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatVPtr, NIL)
   }
 
   public final fun getRepeatV(): RenderingDevice.SamplerRepeatMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatVPtr, LONG)
-    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatVPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRepeatW(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatWPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatWPtr, NIL)
   }
 
   public final fun getRepeatW(): RenderingDevice.SamplerRepeatMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatWPtr, LONG)
-    return RenderingDevice.SamplerRepeatMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatWPtr, LONG)
+    return RenderingDevice.SamplerRepeatMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLodBias(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
   }
 
   public final fun getLodBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseAnisotropy(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAnisotropyPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setUseAnisotropyPtr, NIL)
   }
 
   public final fun getUseAnisotropy(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseAnisotropyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAnisotropyMax(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAnisotropyMaxPtr, NIL)
   }
 
   public final fun getAnisotropyMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnisotropyMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableCompare(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableComparePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableComparePtr, NIL)
   }
 
   public final fun getEnableCompare(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableComparePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCompareOpPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCompareOpPtr, NIL)
   }
 
   public final fun getCompareOp(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompareOpPtr, LONG)
-    return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCompareOpPtr, LONG)
+    return RenderingDevice.CompareOperator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMinLod(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinLodPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinLodPtr, NIL)
   }
 
   public final fun getMinLod(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinLodPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxLod(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLodPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxLodPtr, NIL)
   }
 
   public final fun getMaxLod(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxLodPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
   }
 
   public final fun getBorderColor(): RenderingDevice.SamplerBorderColor {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, LONG)
-    return RenderingDevice.SamplerBorderColor.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderColorPtr, LONG)
+    return RenderingDevice.SamplerBorderColor.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUnnormalizedUvw(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setUnnormalizedUvwPtr, NIL)
   }
 
   public final fun getUnnormalizedUvw(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUnnormalizedUvwPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_mag_filter", 1493420382)
+        Internals.getMethodBindPtr("RDSamplerState", "set_mag_filter", 1493420382)
 
     public val getMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_mag_filter", 2209202801)
+        Internals.getMethodBindPtr("RDSamplerState", "get_mag_filter", 2209202801)
 
     public val setMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_min_filter", 1493420382)
+        Internals.getMethodBindPtr("RDSamplerState", "set_min_filter", 1493420382)
 
     public val getMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_min_filter", 2209202801)
+        Internals.getMethodBindPtr("RDSamplerState", "get_min_filter", 2209202801)
 
     public val setMipFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_mip_filter", 1493420382)
+        Internals.getMethodBindPtr("RDSamplerState", "set_mip_filter", 1493420382)
 
     public val getMipFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_mip_filter", 2209202801)
+        Internals.getMethodBindPtr("RDSamplerState", "get_mip_filter", 2209202801)
 
     public val setRepeatUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_u", 246127626)
+        Internals.getMethodBindPtr("RDSamplerState", "set_repeat_u", 246127626)
 
     public val getRepeatUPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_u", 3227895872)
+        Internals.getMethodBindPtr("RDSamplerState", "get_repeat_u", 3227895872)
 
     public val setRepeatVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_v", 246127626)
+        Internals.getMethodBindPtr("RDSamplerState", "set_repeat_v", 246127626)
 
     public val getRepeatVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_v", 3227895872)
+        Internals.getMethodBindPtr("RDSamplerState", "get_repeat_v", 3227895872)
 
     public val setRepeatWPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_repeat_w", 246127626)
+        Internals.getMethodBindPtr("RDSamplerState", "set_repeat_w", 246127626)
 
     public val getRepeatWPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_repeat_w", 3227895872)
+        Internals.getMethodBindPtr("RDSamplerState", "get_repeat_w", 3227895872)
 
     public val setLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_lod_bias", 373806689)
+        Internals.getMethodBindPtr("RDSamplerState", "set_lod_bias", 373806689)
 
     public val getLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_lod_bias", 1740695150)
+        Internals.getMethodBindPtr("RDSamplerState", "get_lod_bias", 1740695150)
 
     public val setUseAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_use_anisotropy", 2586408642)
+        Internals.getMethodBindPtr("RDSamplerState", "set_use_anisotropy", 2586408642)
 
     public val getUseAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_use_anisotropy", 36873697)
+        Internals.getMethodBindPtr("RDSamplerState", "get_use_anisotropy", 36873697)
 
     public val setAnisotropyMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_anisotropy_max", 373806689)
+        Internals.getMethodBindPtr("RDSamplerState", "set_anisotropy_max", 373806689)
 
     public val getAnisotropyMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_anisotropy_max", 1740695150)
+        Internals.getMethodBindPtr("RDSamplerState", "get_anisotropy_max", 1740695150)
 
     public val setEnableComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_enable_compare", 2586408642)
+        Internals.getMethodBindPtr("RDSamplerState", "set_enable_compare", 2586408642)
 
     public val getEnableComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_enable_compare", 36873697)
+        Internals.getMethodBindPtr("RDSamplerState", "get_enable_compare", 36873697)
 
     public val setCompareOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_compare_op", 2573711505)
+        Internals.getMethodBindPtr("RDSamplerState", "set_compare_op", 2573711505)
 
     public val getCompareOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_compare_op", 269730778)
+        Internals.getMethodBindPtr("RDSamplerState", "get_compare_op", 269730778)
 
     public val setMinLodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_min_lod", 373806689)
+        Internals.getMethodBindPtr("RDSamplerState", "set_min_lod", 373806689)
 
     public val getMinLodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_min_lod", 1740695150)
+        Internals.getMethodBindPtr("RDSamplerState", "get_min_lod", 1740695150)
 
     public val setMaxLodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_max_lod", 373806689)
+        Internals.getMethodBindPtr("RDSamplerState", "set_max_lod", 373806689)
 
     public val getMaxLodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_max_lod", 1740695150)
+        Internals.getMethodBindPtr("RDSamplerState", "get_max_lod", 1740695150)
 
     public val setBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_border_color", 1115869595)
+        Internals.getMethodBindPtr("RDSamplerState", "set_border_color", 1115869595)
 
     public val getBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_border_color", 3514246478)
+        Internals.getMethodBindPtr("RDSamplerState", "get_border_color", 3514246478)
 
     public val setUnnormalizedUvwPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "set_unnormalized_uvw", 2586408642)
+        Internals.getMethodBindPtr("RDSamplerState", "set_unnormalized_uvw", 2586408642)
 
     public val getUnnormalizedUvwPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDSamplerState", "get_unnormalized_uvw", 36873697)
+        Internals.getMethodBindPtr("RDSamplerState", "get_unnormalized_uvw", 36873697)
   }
 }

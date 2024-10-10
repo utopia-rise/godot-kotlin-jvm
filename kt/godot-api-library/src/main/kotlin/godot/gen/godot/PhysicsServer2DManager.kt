@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.TypeManager
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -32,7 +31,7 @@ private const val ENGINE_CLASS_PHYSICSSERVER2DMANAGER_INDEX: Int = 4
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_PHYSICSSERVER2DMANAGER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_PHYSICSSERVER2DMANAGER_INDEX)
   }
 
   /**
@@ -41,8 +40,8 @@ public object PhysicsServer2DManager : Object() {
    */
   @JvmStatic
   public final fun registerServer(name: String, createCallback: Callable): Unit {
-    TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
+    Internals.writeArguments(STRING to name, CALLABLE to createCallback)
+    Internals.callMethod(rawPtr, MethodBindings.registerServerPtr, NIL)
   }
 
   /**
@@ -51,15 +50,15 @@ public object PhysicsServer2DManager : Object() {
    */
   @JvmStatic
   public final fun setDefaultServer(name: String, priority: Int): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
+    Internals.writeArguments(STRING to name, LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultServerPtr, NIL)
   }
 
   internal object MethodBindings {
     public val registerServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "register_server", 2137474292)
+        Internals.getMethodBindPtr("PhysicsServer2DManager", "register_server", 2137474292)
 
     public val setDefaultServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "set_default_server", 2956805083)
+        Internals.getMethodBindPtr("PhysicsServer2DManager", "set_default_server", 2956805083)
   }
 }

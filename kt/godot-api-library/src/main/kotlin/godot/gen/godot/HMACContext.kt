@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -72,7 +71,7 @@ private const val ENGINE_CLASS_HMACCONTEXT_INDEX: Int = 274
 @GodotBaseType
 public open class HMACContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_HMACCONTEXT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_HMACCONTEXT_INDEX, scriptIndex)
   }
 
   /**
@@ -80,9 +79,9 @@ public open class HMACContext : RefCounted() {
    * [finish] has been called.
    */
   public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): Error {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
+    Internals.callMethod(rawPtr, MethodBindings.startPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -90,28 +89,27 @@ public open class HMACContext : RefCounted() {
    * to append [data] to the message, but cannot be called until [start] has been called.
    */
   public final fun update(`data`: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the resulting HMAC. If the HMAC failed, an empty [PackedByteArray] is returned.
    */
   public final fun finish(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.finishPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("HMACContext", "start", 3537364598)
+    public val startPtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "start", 3537364598)
 
-    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("HMACContext", "update", 680677267)
+    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "update", 680677267)
 
-    public val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HMACContext", "finish", 2115431945)
+    public val finishPtr: VoidPtr = Internals.getMethodBindPtr("HMACContext", "finish", 2115431945)
   }
 }

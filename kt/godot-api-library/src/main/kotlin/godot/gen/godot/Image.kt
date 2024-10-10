@@ -11,7 +11,6 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.Rect2i
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
@@ -24,7 +23,7 @@ import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -50,78 +49,78 @@ private const val ENGINE_CLASS_IMAGE_INDEX: Int = 284
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the image's width.
    */
   public final fun getWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the image's height.
    */
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the image's size (width and height).
    */
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
    * Returns `true` if the image has generated mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the image's format. See [Format] constants.
    */
   public final fun getFormat(): Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return Image.Format.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns a copy of the image's raw data.
    */
   public final fun getData(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
    * Returns size (in bytes) of the image's raw data.
    */
   public final fun getDataSize(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Converts the image's format. See [Format] constants.
    */
   public final fun convert(format: Format): Unit {
-    TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.convertPtr, NIL)
+    Internals.writeArguments(LONG to format.id)
+    Internals.callMethod(rawPtr, MethodBindings.convertPtr, NIL)
   }
 
   /**
@@ -130,9 +129,9 @@ public open class Image : Resource() {
    * to this count.
    */
   public final fun getMipmapCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMipmapCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -140,9 +139,9 @@ public open class Image : Resource() {
    * dictionary.
    */
   public final fun getMipmapOffset(mipmap: Int): Long {
-    TransferContext.writeArguments(LONG to mipmap.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getMipmapOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to mipmap.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getMipmapOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -153,8 +152,8 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
-    TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.resizeToPo2Ptr, NIL)
+    Internals.writeArguments(BOOL to square, LONG to interpolation.id)
+    Internals.callMethod(rawPtr, MethodBindings.resizeToPo2Ptr, NIL)
   }
 
   /**
@@ -167,16 +166,16 @@ public open class Image : Resource() {
     height: Int,
     interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR,
   ): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to interpolation.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
+    Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to interpolation.id)
+    Internals.callMethod(rawPtr, MethodBindings.resizePtr, NIL)
   }
 
   /**
    * Shrinks the image by a factor of 2 on each axis (this divides the pixel count by 4).
    */
   public final fun shrinkX2(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.shrinkX2Ptr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.shrinkX2Ptr, NIL)
   }
 
   /**
@@ -184,24 +183,24 @@ public open class Image : Resource() {
    * current size, the extra area is filled with black pixels.
    */
   public final fun crop(width: Int, height: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.cropPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.cropPtr, NIL)
   }
 
   /**
    * Flips the image horizontally.
    */
   public final fun flipX(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.flipXPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.flipXPtr, NIL)
   }
 
   /**
    * Flips the image vertically.
    */
   public final fun flipY(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.flipYPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.flipYPtr, NIL)
   }
 
   /**
@@ -217,17 +216,17 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun generateMipmaps(renormalize: Boolean = false): Error {
-    TransferContext.writeArguments(BOOL to renormalize)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateMipmapsPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(BOOL to renormalize)
+    Internals.callMethod(rawPtr, MethodBindings.generateMipmapsPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Removes the image's mipmaps.
    */
   public final fun clearMipmaps(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearMipmapsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearMipmapsPtr, NIL)
   }
 
   /**
@@ -240,17 +239,17 @@ public open class Image : Resource() {
     format: Format,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
   }
 
   /**
    * Returns `true` if the image has no data.
    */
   public final fun isEmpty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEmptyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -263,27 +262,27 @@ public open class Image : Resource() {
    * See also [ImageTexture] description for usage examples.
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Saves the image as a PNG file to the file at [path].
    */
   public final fun savePng(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePngPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.savePngPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Saves the image as a PNG file to a byte array.
    */
   public final fun savePngToBuffer(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.savePngToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.savePngToBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -296,9 +295,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun saveJpg(path: String, quality: Float = 0.75f): Error {
-    TransferContext.writeArguments(STRING to path, DOUBLE to quality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.saveJpgPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, DOUBLE to quality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.saveJpgPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -311,9 +310,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun saveJpgToBuffer(quality: Float = 0.75f): PackedByteArray {
-    TransferContext.writeArguments(DOUBLE to quality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.saveJpgToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(DOUBLE to quality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.saveJpgToBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -325,9 +324,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun saveExr(path: String, grayscale: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to grayscale)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveExrPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, BOOL to grayscale)
+    Internals.callMethod(rawPtr, MethodBindings.saveExrPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -339,9 +338,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
-    TransferContext.writeArguments(BOOL to grayscale)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveExrToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(BOOL to grayscale)
+    Internals.callMethod(rawPtr, MethodBindings.saveExrToBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -357,9 +356,9 @@ public open class Image : Resource() {
     lossy: Boolean = false,
     quality: Float = 0.75f,
   ): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to lossy, DOUBLE to quality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.saveWebpPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, BOOL to lossy, DOUBLE to quality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.saveWebpPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -372,9 +371,9 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun saveWebpToBuffer(lossy: Boolean = false, quality: Float = 0.75f):
       PackedByteArray {
-    TransferContext.writeArguments(BOOL to lossy, DOUBLE to quality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.saveWebpToBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(BOOL to lossy, DOUBLE to quality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.saveWebpToBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -383,9 +382,9 @@ public open class Image : Resource() {
    * found.
    */
   public final fun detectAlpha(): AlphaMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.detectAlphaPtr, LONG)
-    return Image.AlphaMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.detectAlphaPtr, LONG)
+    return Image.AlphaMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -393,9 +392,9 @@ public open class Image : Resource() {
    * has an alpha value higher than 0.
    */
   public final fun isInvisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInvisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInvisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -405,9 +404,9 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun detectUsedChannels(source: CompressSource =
       Image.CompressSource.COMPRESS_SOURCE_GENERIC): UsedChannels {
-    TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.detectUsedChannelsPtr, LONG)
-    return Image.UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to source.id)
+    Internals.callMethod(rawPtr, MethodBindings.detectUsedChannelsPtr, LONG)
+    return Image.UsedChannels.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -423,9 +422,9 @@ public open class Image : Resource() {
     source: CompressSource = Image.CompressSource.COMPRESS_SOURCE_GENERIC,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.compressPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
+    Internals.callMethod(rawPtr, MethodBindings.compressPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -442,9 +441,9 @@ public open class Image : Resource() {
     channels: UsedChannels,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.compressFromChannelsPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
+    Internals.callMethod(rawPtr, MethodBindings.compressFromChannelsPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -454,18 +453,18 @@ public open class Image : Resource() {
    * are not supported.
    */
   public final fun decompress(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.decompressPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.decompressPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns `true` if the image is compressed.
    */
   public final fun isCompressed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCompressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCompressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -473,24 +472,24 @@ public open class Image : Resource() {
    * image must be greater than `1`. If the width and height are not equal, the image will be resized.
    */
   public final fun rotate90(direction: ClockDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.rotate90Ptr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.rotate90Ptr, NIL)
   }
 
   /**
    * Rotates the image by `180` degrees. The width and height of the image must be greater than `1`.
    */
   public final fun rotate180(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.rotate180Ptr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.rotate180Ptr, NIL)
   }
 
   /**
    * Blends low-alpha pixels with nearby pixels.
    */
   public final fun fixAlphaEdges(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.fixAlphaEdgesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.fixAlphaEdgesPtr, NIL)
   }
 
   /**
@@ -498,16 +497,16 @@ public open class Image : Resource() {
    * alpha)/256`. See also [CanvasItemMaterial.blendMode].
    */
   public final fun premultiplyAlpha(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.premultiplyAlphaPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.premultiplyAlphaPtr, NIL)
   }
 
   /**
    * Converts the raw data from the sRGB colorspace to a linear scale.
    */
   public final fun srgbToLinear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.srgbToLinearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.srgbToLinearPtr, NIL)
   }
 
   /**
@@ -516,17 +515,17 @@ public open class Image : Resource() {
    * the polygon count.
    */
   public final fun normalMapToXy(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.normalMapToXyPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.normalMapToXyPtr, NIL)
   }
 
   /**
    * Converts a standard RGBE (Red Green Blue Exponent) image to an sRGB image.
    */
   public final fun rgbeToSrgb(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.rgbeToSrgbPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.rgbeToSrgbPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   /**
@@ -535,8 +534,8 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun bumpMapToNormalMap(bumpScale: Float = 1.0f): Unit {
-    TransferContext.writeArguments(DOUBLE to bumpScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.bumpMapToNormalMapPtr, NIL)
+    Internals.writeArguments(DOUBLE to bumpScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.bumpMapToNormalMapPtr, NIL)
   }
 
   /**
@@ -545,9 +544,9 @@ public open class Image : Resource() {
    */
   public final fun computeImageMetrics(comparedImage: Image?, useLuma: Boolean):
       Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
-    TransferContext.callMethod(rawPtr, MethodBindings.computeImageMetricsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(OBJECT to comparedImage, BOOL to useLuma)
+    Internals.callMethod(rawPtr, MethodBindings.computeImageMetricsPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -560,8 +559,8 @@ public open class Image : Resource() {
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
-    TransferContext.callMethod(rawPtr, MethodBindings.blitRectPtr, NIL)
+    Internals.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
+    Internals.callMethod(rawPtr, MethodBindings.blitRectPtr, NIL)
   }
 
   /**
@@ -577,8 +576,8 @@ public open class Image : Resource() {
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
-    TransferContext.callMethod(rawPtr, MethodBindings.blitRectMaskPtr, NIL)
+    Internals.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
+    Internals.callMethod(rawPtr, MethodBindings.blitRectMaskPtr, NIL)
   }
 
   /**
@@ -591,8 +590,8 @@ public open class Image : Resource() {
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
-    TransferContext.callMethod(rawPtr, MethodBindings.blendRectPtr, NIL)
+    Internals.writeArguments(OBJECT to src, RECT2I to srcRect, VECTOR2I to dst)
+    Internals.callMethod(rawPtr, MethodBindings.blendRectPtr, NIL)
   }
 
   /**
@@ -609,24 +608,24 @@ public open class Image : Resource() {
     srcRect: Rect2i,
     dst: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
-    TransferContext.callMethod(rawPtr, MethodBindings.blendRectMaskPtr, NIL)
+    Internals.writeArguments(OBJECT to src, OBJECT to mask, RECT2I to srcRect, VECTOR2I to dst)
+    Internals.callMethod(rawPtr, MethodBindings.blendRectMaskPtr, NIL)
   }
 
   /**
    * Fills the image with [color].
    */
   public final fun fill(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.fillPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.fillPtr, NIL)
   }
 
   /**
    * Fills [rect] with [color].
    */
   public final fun fillRect(rect: Rect2i, color: Color): Unit {
-    TransferContext.writeArguments(RECT2I to rect, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.fillRectPtr, NIL)
+    Internals.writeArguments(RECT2I to rect, COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.fillRectPtr, NIL)
   }
 
   /**
@@ -634,26 +633,26 @@ public open class Image : Resource() {
    * non-zero alpha channel as visible.
    */
   public final fun getUsedRect(): Rect2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUsedRectPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUsedRectPtr, RECT2I)
+    return (Internals.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
    * Returns a new [Image] that is a copy of this [Image]'s area specified with [region].
    */
   public final fun getRegion(region: Rect2i): Image? {
-    TransferContext.writeArguments(RECT2I to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments(RECT2I to region)
+    Internals.callMethod(rawPtr, MethodBindings.getRegionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   /**
    * Copies [src] image to this image.
    */
   public final fun copyFrom(src: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to src)
-    TransferContext.callMethod(rawPtr, MethodBindings.copyFromPtr, NIL)
+    Internals.writeArguments(OBJECT to src)
+    Internals.callMethod(rawPtr, MethodBindings.copyFromPtr, NIL)
   }
 
   /**
@@ -662,9 +661,9 @@ public open class Image : Resource() {
    * arguments.
    */
   public final fun getPixelv(point: Vector2i): Color {
-    TransferContext.writeArguments(VECTOR2I to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPixelvPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(VECTOR2I to point)
+    Internals.callMethod(rawPtr, MethodBindings.getPixelvPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -673,9 +672,9 @@ public open class Image : Resource() {
    * argument.
    */
   public final fun getPixel(x: Int, y: Int): Color {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPixelPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to x.toLong(), LONG to y.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPixelPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -703,8 +702,8 @@ public open class Image : Resource() {
    * arguments.
    */
   public final fun setPixelv(point: Vector2i, color: Color): Unit {
-    TransferContext.writeArguments(VECTOR2I to point, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPixelvPtr, NIL)
+    Internals.writeArguments(VECTOR2I to point, COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setPixelvPtr, NIL)
   }
 
   /**
@@ -736,8 +735,8 @@ public open class Image : Resource() {
     y: Int,
     color: Color,
   ): Unit {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPixelPtr, NIL)
+    Internals.writeArguments(LONG to x.toLong(), LONG to y.toLong(), COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setPixelPtr, NIL)
   }
 
   /**
@@ -749,35 +748,35 @@ public open class Image : Resource() {
     contrast: Float,
     saturation: Float,
   ): Unit {
-    TransferContext.writeArguments(DOUBLE to brightness.toDouble(), DOUBLE to contrast.toDouble(), DOUBLE to saturation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.adjustBcsPtr, NIL)
+    Internals.writeArguments(DOUBLE to brightness.toDouble(), DOUBLE to contrast.toDouble(), DOUBLE to saturation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.adjustBcsPtr, NIL)
   }
 
   /**
    * Loads an image from the binary contents of a PNG file.
    */
   public final fun loadPngFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPngFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadPngFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads an image from the binary contents of a JPEG file.
    */
   public final fun loadJpgFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadJpgFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadJpgFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads an image from the binary contents of a WebP file.
    */
   public final fun loadWebpFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadWebpFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadWebpFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -787,9 +786,9 @@ public open class Image : Resource() {
    * `module_tga_enabled=no` SCons option.
    */
   public final fun loadTgaFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadTgaFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadTgaFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -801,9 +800,9 @@ public open class Image : Resource() {
    * `module_bmp_enabled=no` SCons option.
    */
   public final fun loadBmpFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadBmpFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadBmpFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -817,9 +816,9 @@ public open class Image : Resource() {
    * `module_ktx_enabled=no` SCons option.
    */
   public final fun loadKtxFromBuffer(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadKtxFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.loadKtxFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -832,9 +831,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun loadSvgFromBuffer(buffer: PackedByteArray, scale: Float = 1.0f): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer, DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.loadSvgFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -845,9 +844,9 @@ public open class Image : Resource() {
    */
   @JvmOverloads
   public final fun loadSvgFromString(svgStr: String, scale: Float = 1.0f): Error {
-    TransferContext.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.loadSvgFromStringPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to svgStr, DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.loadSvgFromStringPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Format(
@@ -1316,9 +1315,9 @@ public open class Image : Resource() {
       useMipmaps: Boolean,
       format: Format,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
-      TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as Image?)
+      Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      Internals.callMethod(0, MethodBindings.createPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as Image?)
     }
 
     /**
@@ -1331,9 +1330,9 @@ public open class Image : Resource() {
       useMipmaps: Boolean,
       format: Format,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
-      TransferContext.callMethod(0, MethodBindings.createEmptyPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as Image?)
+      Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      Internals.callMethod(0, MethodBindings.createEmptyPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as Image?)
     }
 
     /**
@@ -1348,208 +1347,198 @@ public open class Image : Resource() {
       format: Format,
       `data`: PackedByteArray,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
-      TransferContext.callMethod(0, MethodBindings.createFromDataPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as Image?)
+      Internals.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
+      Internals.callMethod(0, MethodBindings.createFromDataPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as Image?)
     }
 
     /**
      * Creates a new [Image] and loads data from the specified file.
      */
     public final fun loadFromFile(path: String): Image? {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as Image?)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as Image?)
     }
   }
 
   internal object MethodBindings {
-    public val getWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_width", 3905245786)
+    public val getWidthPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_width", 3905245786)
 
-    public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_height", 3905245786)
+    public val getHeightPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_height", 3905245786)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_size", 3690982128)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_size", 3690982128)
 
-    public val hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "has_mipmaps", 36873697)
+    public val hasMipmapsPtr: VoidPtr = Internals.getMethodBindPtr("Image", "has_mipmaps", 36873697)
 
-    public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_format", 3847873762)
+    public val getFormatPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_format", 3847873762)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_data", 2362200018)
+    public val getDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_data", 2362200018)
 
     public val getDataSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_data_size", 3905245786)
+        Internals.getMethodBindPtr("Image", "get_data_size", 3905245786)
 
-    public val convertPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "convert", 2120693146)
+    public val convertPtr: VoidPtr = Internals.getMethodBindPtr("Image", "convert", 2120693146)
 
     public val getMipmapCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_mipmap_count", 3905245786)
+        Internals.getMethodBindPtr("Image", "get_mipmap_count", 3905245786)
 
     public val getMipmapOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_mipmap_offset", 923996154)
+        Internals.getMethodBindPtr("Image", "get_mipmap_offset", 923996154)
 
     public val resizeToPo2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "resize_to_po2", 4189212329)
+        Internals.getMethodBindPtr("Image", "resize_to_po2", 4189212329)
 
-    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "resize", 994498151)
+    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("Image", "resize", 994498151)
 
-    public val shrinkX2Ptr: VoidPtr = TypeManager.getMethodBindPtr("Image", "shrink_x2", 3218959716)
+    public val shrinkX2Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "shrink_x2", 3218959716)
 
-    public val cropPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "crop", 3937882851)
+    public val cropPtr: VoidPtr = Internals.getMethodBindPtr("Image", "crop", 3937882851)
 
-    public val flipXPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "flip_x", 3218959716)
+    public val flipXPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_x", 3218959716)
 
-    public val flipYPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "flip_y", 3218959716)
+    public val flipYPtr: VoidPtr = Internals.getMethodBindPtr("Image", "flip_y", 3218959716)
 
     public val generateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "generate_mipmaps", 1633102583)
+        Internals.getMethodBindPtr("Image", "generate_mipmaps", 1633102583)
 
     public val clearMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
+        Internals.getMethodBindPtr("Image", "clear_mipmaps", 3218959716)
 
-    public val createPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "create", 986942177)
+    public val createPtr: VoidPtr = Internals.getMethodBindPtr("Image", "create", 986942177)
 
     public val createEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_empty", 986942177)
+        Internals.getMethodBindPtr("Image", "create_empty", 986942177)
 
     public val createFromDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "create_from_data", 299398494)
+        Internals.getMethodBindPtr("Image", "create_from_data", 299398494)
 
-    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "set_data", 2740482212)
+    public val setDataPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_data", 2740482212)
 
-    public val isEmptyPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "is_empty", 36873697)
+    public val isEmptyPtr: VoidPtr = Internals.getMethodBindPtr("Image", "is_empty", 36873697)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "load", 166001499)
+    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("Image", "load", 166001499)
 
     public val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_from_file", 736337515)
+        Internals.getMethodBindPtr("Image", "load_from_file", 736337515)
 
-    public val savePngPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_png", 2113323047)
+    public val savePngPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_png", 2113323047)
 
     public val savePngToBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "save_png_to_buffer", 2362200018)
+        Internals.getMethodBindPtr("Image", "save_png_to_buffer", 2362200018)
 
-    public val saveJpgPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_jpg", 2800019068)
+    public val saveJpgPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_jpg", 2800019068)
 
     public val saveJpgToBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "save_jpg_to_buffer", 592235273)
+        Internals.getMethodBindPtr("Image", "save_jpg_to_buffer", 592235273)
 
-    public val saveExrPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_exr", 3108122999)
+    public val saveExrPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_exr", 3108122999)
 
     public val saveExrToBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "save_exr_to_buffer", 3178917920)
+        Internals.getMethodBindPtr("Image", "save_exr_to_buffer", 3178917920)
 
-    public val saveWebpPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_webp", 2781156876)
+    public val saveWebpPtr: VoidPtr = Internals.getMethodBindPtr("Image", "save_webp", 2781156876)
 
     public val saveWebpToBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "save_webp_to_buffer", 1214628238)
+        Internals.getMethodBindPtr("Image", "save_webp_to_buffer", 1214628238)
 
     public val detectAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "detect_alpha", 2030116505)
+        Internals.getMethodBindPtr("Image", "detect_alpha", 2030116505)
 
     public val isInvisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "is_invisible", 36873697)
+        Internals.getMethodBindPtr("Image", "is_invisible", 36873697)
 
     public val detectUsedChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "detect_used_channels", 2703139984)
+        Internals.getMethodBindPtr("Image", "detect_used_channels", 2703139984)
 
-    public val compressPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "compress", 2975424957)
+    public val compressPtr: VoidPtr = Internals.getMethodBindPtr("Image", "compress", 2975424957)
 
     public val compressFromChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "compress_from_channels", 4212890953)
+        Internals.getMethodBindPtr("Image", "compress_from_channels", 4212890953)
 
-    public val decompressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "decompress", 166280745)
+    public val decompressPtr: VoidPtr = Internals.getMethodBindPtr("Image", "decompress", 166280745)
 
     public val isCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "is_compressed", 36873697)
+        Internals.getMethodBindPtr("Image", "is_compressed", 36873697)
 
-    public val rotate90Ptr: VoidPtr = TypeManager.getMethodBindPtr("Image", "rotate_90", 1901204267)
+    public val rotate90Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "rotate_90", 1901204267)
 
-    public val rotate180Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "rotate_180", 3218959716)
+    public val rotate180Ptr: VoidPtr = Internals.getMethodBindPtr("Image", "rotate_180", 3218959716)
 
     public val fixAlphaEdgesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "fix_alpha_edges", 3218959716)
+        Internals.getMethodBindPtr("Image", "fix_alpha_edges", 3218959716)
 
     public val premultiplyAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "premultiply_alpha", 3218959716)
+        Internals.getMethodBindPtr("Image", "premultiply_alpha", 3218959716)
 
     public val srgbToLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "srgb_to_linear", 3218959716)
+        Internals.getMethodBindPtr("Image", "srgb_to_linear", 3218959716)
 
     public val normalMapToXyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "normal_map_to_xy", 3218959716)
+        Internals.getMethodBindPtr("Image", "normal_map_to_xy", 3218959716)
 
     public val rgbeToSrgbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "rgbe_to_srgb", 564927088)
+        Internals.getMethodBindPtr("Image", "rgbe_to_srgb", 564927088)
 
     public val bumpMapToNormalMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "bump_map_to_normal_map", 3423495036)
+        Internals.getMethodBindPtr("Image", "bump_map_to_normal_map", 3423495036)
 
     public val computeImageMetricsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "compute_image_metrics", 3080961247)
+        Internals.getMethodBindPtr("Image", "compute_image_metrics", 3080961247)
 
-    public val blitRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "blit_rect", 2903928755)
+    public val blitRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "blit_rect", 2903928755)
 
     public val blitRectMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "blit_rect_mask", 3383581145)
+        Internals.getMethodBindPtr("Image", "blit_rect_mask", 3383581145)
 
-    public val blendRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "blend_rect", 2903928755)
+    public val blendRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "blend_rect", 2903928755)
 
     public val blendRectMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "blend_rect_mask", 3383581145)
+        Internals.getMethodBindPtr("Image", "blend_rect_mask", 3383581145)
 
-    public val fillPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "fill", 2920490490)
+    public val fillPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill", 2920490490)
 
-    public val fillRectPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "fill_rect", 514693913)
+    public val fillRectPtr: VoidPtr = Internals.getMethodBindPtr("Image", "fill_rect", 514693913)
 
     public val getUsedRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_used_rect", 410525958)
+        Internals.getMethodBindPtr("Image", "get_used_rect", 410525958)
 
-    public val getRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_region", 2601441065)
+    public val getRegionPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_region", 2601441065)
 
-    public val copyFromPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "copy_from", 532598488)
+    public val copyFromPtr: VoidPtr = Internals.getMethodBindPtr("Image", "copy_from", 532598488)
 
-    public val getPixelvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "get_pixelv", 1532707496)
+    public val getPixelvPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_pixelv", 1532707496)
 
-    public val getPixelPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "get_pixel", 2165839948)
+    public val getPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "get_pixel", 2165839948)
 
-    public val setPixelvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "set_pixelv", 287851464)
+    public val setPixelvPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_pixelv", 287851464)
 
-    public val setPixelPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "set_pixel", 3733378741)
+    public val setPixelPtr: VoidPtr = Internals.getMethodBindPtr("Image", "set_pixel", 3733378741)
 
-    public val adjustBcsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "adjust_bcs", 2385087082)
+    public val adjustBcsPtr: VoidPtr = Internals.getMethodBindPtr("Image", "adjust_bcs", 2385087082)
 
     public val loadPngFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_png_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_png_from_buffer", 680677267)
 
     public val loadJpgFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_jpg_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_jpg_from_buffer", 680677267)
 
     public val loadWebpFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_webp_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_webp_from_buffer", 680677267)
 
     public val loadTgaFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_tga_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_tga_from_buffer", 680677267)
 
     public val loadBmpFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_bmp_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_bmp_from_buffer", 680677267)
 
     public val loadKtxFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_ktx_from_buffer", 680677267)
+        Internals.getMethodBindPtr("Image", "load_ktx_from_buffer", 680677267)
 
     public val loadSvgFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_svg_from_buffer", 311853421)
+        Internals.getMethodBindPtr("Image", "load_svg_from_buffer", 311853421)
 
     public val loadSvgFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
+        Internals.getMethodBindPtr("Image", "load_svg_from_string", 3254053600)
   }
 }

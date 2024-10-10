@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -20,7 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -45,7 +44,7 @@ private const val ENGINE_CLASS_OS_INDEX: Int = 13
 @GodotBaseType
 public object OS : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_OS_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_OS_INDEX)
   }
 
   /**
@@ -56,9 +55,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getEntropy(size: Int): PackedByteArray {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getEntropyPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getEntropyPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -67,9 +66,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getSystemCaCertificates(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemCaCertificatesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSystemCaCertificatesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -80,10 +79,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getConnectedMidiInputs(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectedMidiInputsPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectedMidiInputsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -93,8 +91,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun openMidiInputs(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.openMidiInputsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.openMidiInputsPtr, NIL)
   }
 
   /**
@@ -104,8 +102,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun closeMidiInputs(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closeMidiInputsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closeMidiInputsPtr, NIL)
   }
 
   /**
@@ -115,8 +113,8 @@ public object OS : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun alert(text: String, title: String = "Alert!"): Unit {
-    TransferContext.writeArguments(STRING to text, STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.alertPtr, NIL)
+    Internals.writeArguments(STRING to text, STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.alertPtr, NIL)
   }
 
   /**
@@ -127,47 +125,47 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun crash(message: String): Unit {
-    TransferContext.writeArguments(STRING to message)
-    TransferContext.callMethod(rawPtr, MethodBindings.crashPtr, NIL)
+    Internals.writeArguments(STRING to message)
+    Internals.callMethod(rawPtr, MethodBindings.crashPtr, NIL)
   }
 
   @JvmStatic
   public final fun setLowProcessorUsageMode(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModePtr, NIL)
   }
 
   @JvmStatic
   public final fun isInLowProcessorUsageMode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInLowProcessorUsageModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInLowProcessorUsageModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   @JvmStatic
   public final fun setLowProcessorUsageModeSleepUsec(usec: Int): Unit {
-    TransferContext.writeArguments(LONG to usec.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModeSleepUsecPtr, NIL)
+    Internals.writeArguments(LONG to usec.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLowProcessorUsageModeSleepUsecPtr, NIL)
   }
 
   @JvmStatic
   public final fun getLowProcessorUsageModeSleepUsec(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLowProcessorUsageModeSleepUsecPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLowProcessorUsageModeSleepUsecPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   @JvmStatic
   public final fun setDeltaSmoothing(deltaSmoothingEnabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to deltaSmoothingEnabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaSmoothingPtr, NIL)
+    Internals.writeArguments(BOOL to deltaSmoothingEnabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDeltaSmoothingPtr, NIL)
   }
 
   @JvmStatic
   public final fun isDeltaSmoothingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDeltaSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDeltaSmoothingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -176,9 +174,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessorCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessorCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessorCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -189,9 +187,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessorName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessorNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessorNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -200,9 +198,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getSystemFonts(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSystemFontsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -221,9 +219,9 @@ public object OS : Object() {
     stretch: Int = 100,
     italic: Boolean = false,
   ): String {
-    TransferContext.writeArguments(STRING to fontName, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to fontName, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
+    Internals.callMethod(rawPtr, MethodBindings.getSystemFontPathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -250,10 +248,9 @@ public object OS : Object() {
     stretch: Int = 100,
     italic: Boolean = false,
   ): PackedStringArray {
-    TransferContext.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemFontPathForTextPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to fontName, STRING to text, STRING to locale, STRING to script, LONG to weight.toLong(), LONG to stretch.toLong(), BOOL to italic)
+    Internals.callMethod(rawPtr, MethodBindings.getSystemFontPathForTextPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -263,9 +260,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getExecutablePath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExecutablePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExecutablePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -280,9 +277,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun readStringFromStdin(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.readStringFromStdinPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.readStringFromStdinPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -345,9 +342,9 @@ public object OS : Object() {
     readStderr: Boolean = false,
     openConsole: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, ARRAY to output, BOOL to readStderr, BOOL to openConsole)
+    Internals.callMethod(rawPtr, MethodBindings.executePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -374,9 +371,9 @@ public object OS : Object() {
   @JvmStatic
   public final fun executeWithPipe(path: String, arguments: PackedStringArray):
       Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.executeWithPipePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.executeWithPipePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -412,9 +409,9 @@ public object OS : Object() {
     arguments: PackedStringArray,
     openConsole: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
-    TransferContext.callMethod(rawPtr, MethodBindings.createProcessPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to path, PACKED_STRING_ARRAY to arguments, BOOL to openConsole)
+    Internals.callMethod(rawPtr, MethodBindings.createProcessPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -428,9 +425,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun createInstance(arguments: PackedStringArray): Int {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(PACKED_STRING_ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.createInstancePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -441,9 +438,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun kill(pid: Int): Error {
-    TransferContext.writeArguments(LONG to pid.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.killPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to pid.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.killPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -465,9 +462,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun shellOpen(uri: String): Error {
-    TransferContext.writeArguments(STRING to uri)
-    TransferContext.callMethod(rawPtr, MethodBindings.shellOpenPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to uri)
+    Internals.callMethod(rawPtr, MethodBindings.shellOpenPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -484,9 +481,9 @@ public object OS : Object() {
   @JvmStatic
   public final fun shellShowInFileManager(fileOrDirPath: String, openFolder: Boolean = true):
       Error {
-    TransferContext.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
-    TransferContext.callMethod(rawPtr, MethodBindings.shellShowInFileManagerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to fileOrDirPath, BOOL to openFolder)
+    Internals.callMethod(rawPtr, MethodBindings.shellShowInFileManagerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -496,9 +493,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isProcessRunning(pid: Int): Boolean {
-    TransferContext.writeArguments(LONG to pid.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isProcessRunningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to pid.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isProcessRunningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -511,9 +508,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessExitCode(pid: Int): Int {
-    TransferContext.writeArguments(LONG to pid.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessExitCodePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to pid.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getProcessExitCodePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -522,9 +519,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getProcessId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -534,9 +531,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun hasEnvironment(variable: String): Boolean {
-    TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasEnvironmentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to variable)
+    Internals.callMethod(rawPtr, MethodBindings.hasEnvironmentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -548,9 +545,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getEnvironment(variable: String): String {
-    TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to variable)
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -565,8 +562,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun setEnvironment(variable: String, `value`: String): Unit {
-    TransferContext.writeArguments(STRING to variable, STRING to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+    Internals.writeArguments(STRING to variable, STRING to value)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
   /**
@@ -579,8 +576,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun unsetEnvironment(variable: String): Unit {
-    TransferContext.writeArguments(STRING to variable)
-    TransferContext.callMethod(rawPtr, MethodBindings.unsetEnvironmentPtr, NIL)
+    Internals.writeArguments(STRING to variable)
+    Internals.callMethod(rawPtr, MethodBindings.unsetEnvironmentPtr, NIL)
   }
 
   /**
@@ -646,9 +643,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -661,9 +658,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getDistributionName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistributionNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistributionNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -681,9 +678,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getVersion(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVersionPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -734,9 +731,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCmdlineArgs(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineArgsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCmdlineArgsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -754,9 +751,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCmdlineUserArgs(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCmdlineUserArgsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCmdlineUserArgsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -771,10 +768,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getVideoAdapterDriverInfo(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoAdapterDriverInfoPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVideoAdapterDriverInfoPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -794,8 +790,8 @@ public object OS : Object() {
   @JvmStatic
   public final fun setRestartOnExit(restart: Boolean, arguments: PackedStringArray =
       PackedStringArray()): Unit {
-    TransferContext.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRestartOnExitPtr, NIL)
+    Internals.writeArguments(BOOL to restart, PACKED_STRING_ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.setRestartOnExitPtr, NIL)
   }
 
   /**
@@ -804,9 +800,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isRestartOnExitSet(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRestartOnExitSetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRestartOnExitSetPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -815,10 +811,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getRestartOnExitArguments(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRestartOnExitArgumentsPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRestartOnExitArgumentsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -835,8 +830,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun delayUsec(usec: Int): Unit {
-    TransferContext.writeArguments(LONG to usec.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.delayUsecPtr, NIL)
+    Internals.writeArguments(LONG to usec.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.delayUsecPtr, NIL)
   }
 
   /**
@@ -853,8 +848,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun delayMsec(msec: Int): Unit {
-    TransferContext.writeArguments(LONG to msec.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.delayMsecPtr, NIL)
+    Internals.writeArguments(LONG to msec.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.delayMsecPtr, NIL)
   }
 
   /**
@@ -875,9 +870,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getLocale(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -891,9 +886,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getLocaleLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocaleLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocaleLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -903,9 +898,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getModelName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModelNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModelNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -915,9 +910,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isUserfsPersistent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUserfsPersistentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUserfsPersistentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -927,9 +922,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isStdoutVerbose(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStdoutVerbosePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isStdoutVerbosePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -941,9 +936,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isDebugBuild(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDebugBuildPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDebugBuildPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -952,9 +947,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStaticMemoryUsage(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryUsagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStaticMemoryUsagePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -962,9 +957,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getStaticMemoryPeakUsage(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStaticMemoryPeakUsagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStaticMemoryPeakUsagePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -983,9 +978,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getMemoryInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMemoryInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMemoryInfoPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -1013,9 +1008,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun moveToTrash(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveToTrashPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.moveToTrashPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1038,9 +1033,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getUserDataDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUserDataDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUserDataDirPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1054,9 +1049,9 @@ public object OS : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
-    TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to dir.id, BOOL to sharedStorage)
+    Internals.callMethod(rawPtr, MethodBindings.getSystemDirPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1070,9 +1065,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getConfigDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConfigDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConfigDirPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1085,9 +1080,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getDataDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataDirPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1100,9 +1095,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getCacheDir(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCacheDirPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCacheDirPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1117,9 +1112,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getUniqueId(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1143,9 +1138,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getKeycodeString(code: Key): String {
-    TransferContext.writeArguments(LONG to code.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeycodeStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to code.id)
+    Internals.callMethod(rawPtr, MethodBindings.getKeycodeStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1169,9 +1164,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isKeycodeUnicode(code: Long): Boolean {
-    TransferContext.writeArguments(LONG to code)
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeycodeUnicodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to code)
+    Internals.callMethod(rawPtr, MethodBindings.isKeycodeUnicodePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1198,9 +1193,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun findKeycodeFromString(string: String): Key {
-    TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, MethodBindings.findKeycodeFromStringPtr, LONG)
-    return Key.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to string)
+    Internals.callMethod(rawPtr, MethodBindings.findKeycodeFromStringPtr, LONG)
+    return Key.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1211,8 +1206,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun setUseFileAccessSaveAndSwap(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseFileAccessSaveAndSwapPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setUseFileAccessSaveAndSwapPtr, NIL)
   }
 
   /**
@@ -1221,9 +1216,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun setThreadName(name: String): Error {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setThreadNamePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setThreadNamePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1233,9 +1228,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getThreadCallerId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThreadCallerIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThreadCallerIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1244,9 +1239,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getMainThreadId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMainThreadIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMainThreadIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1261,9 +1256,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun hasFeature(tagName: String): Boolean {
-    TransferContext.writeArguments(STRING to tagName)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to tagName)
+    Internals.callMethod(rawPtr, MethodBindings.hasFeaturePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1272,9 +1267,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun isSandboxed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSandboxedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSandboxedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1285,9 +1280,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun requestPermission(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.requestPermissionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1298,9 +1293,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun requestPermissions(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.requestPermissionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.requestPermissionsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1310,9 +1305,9 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getGrantedPermissions(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGrantedPermissionsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -1321,8 +1316,8 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun revokeGrantedPermissions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.revokeGrantedPermissionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.revokeGrantedPermissionsPtr, NIL)
   }
 
   public enum class RenderingDriver(
@@ -1402,215 +1397,212 @@ public object OS : Object() {
   }
 
   internal object MethodBindings {
-    public val getEntropyPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_entropy", 47165747)
+    public val getEntropyPtr: VoidPtr = Internals.getMethodBindPtr("OS", "get_entropy", 47165747)
 
     public val getSystemCaCertificatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_ca_certificates", 2841200299)
+        Internals.getMethodBindPtr("OS", "get_system_ca_certificates", 2841200299)
 
     public val getConnectedMidiInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_connected_midi_inputs", 2981934095)
+        Internals.getMethodBindPtr("OS", "get_connected_midi_inputs", 2981934095)
 
     public val openMidiInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "open_midi_inputs", 3218959716)
+        Internals.getMethodBindPtr("OS", "open_midi_inputs", 3218959716)
 
     public val closeMidiInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "close_midi_inputs", 3218959716)
+        Internals.getMethodBindPtr("OS", "close_midi_inputs", 3218959716)
 
-    public val alertPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "alert", 1783970740)
+    public val alertPtr: VoidPtr = Internals.getMethodBindPtr("OS", "alert", 1783970740)
 
-    public val crashPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "crash", 83702148)
+    public val crashPtr: VoidPtr = Internals.getMethodBindPtr("OS", "crash", 83702148)
 
     public val setLowProcessorUsageModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode", 2586408642)
+        Internals.getMethodBindPtr("OS", "set_low_processor_usage_mode", 2586408642)
 
     public val isInLowProcessorUsageModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_in_low_processor_usage_mode", 36873697)
+        Internals.getMethodBindPtr("OS", "is_in_low_processor_usage_mode", 36873697)
 
     public val setLowProcessorUsageModeSleepUsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_low_processor_usage_mode_sleep_usec", 1286410249)
+        Internals.getMethodBindPtr("OS", "set_low_processor_usage_mode_sleep_usec", 1286410249)
 
     public val getLowProcessorUsageModeSleepUsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_low_processor_usage_mode_sleep_usec", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_low_processor_usage_mode_sleep_usec", 3905245786)
 
     public val setDeltaSmoothingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_delta_smoothing", 2586408642)
+        Internals.getMethodBindPtr("OS", "set_delta_smoothing", 2586408642)
 
     public val isDeltaSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_delta_smoothing_enabled", 36873697)
+        Internals.getMethodBindPtr("OS", "is_delta_smoothing_enabled", 36873697)
 
     public val getProcessorCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_processor_count", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_processor_count", 3905245786)
 
     public val getProcessorNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_processor_name", 201670096)
+        Internals.getMethodBindPtr("OS", "get_processor_name", 201670096)
 
     public val getSystemFontsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_fonts", 1139954409)
+        Internals.getMethodBindPtr("OS", "get_system_fonts", 1139954409)
 
     public val getSystemFontPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_font_path", 626580860)
+        Internals.getMethodBindPtr("OS", "get_system_font_path", 626580860)
 
     public val getSystemFontPathForTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_font_path_for_text", 197317981)
+        Internals.getMethodBindPtr("OS", "get_system_font_path_for_text", 197317981)
 
     public val getExecutablePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_executable_path", 201670096)
+        Internals.getMethodBindPtr("OS", "get_executable_path", 201670096)
 
     public val readStringFromStdinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 2841200299)
+        Internals.getMethodBindPtr("OS", "read_string_from_stdin", 2841200299)
 
-    public val executePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "execute", 1488299882)
+    public val executePtr: VoidPtr = Internals.getMethodBindPtr("OS", "execute", 1488299882)
 
     public val executeWithPipePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "execute_with_pipe", 3845631403)
+        Internals.getMethodBindPtr("OS", "execute_with_pipe", 3845631403)
 
     public val createProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "create_process", 2903767230)
+        Internals.getMethodBindPtr("OS", "create_process", 2903767230)
 
     public val createInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "create_instance", 1080601263)
+        Internals.getMethodBindPtr("OS", "create_instance", 1080601263)
 
-    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "kill", 844576869)
+    public val killPtr: VoidPtr = Internals.getMethodBindPtr("OS", "kill", 844576869)
 
-    public val shellOpenPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "shell_open", 166001499)
+    public val shellOpenPtr: VoidPtr = Internals.getMethodBindPtr("OS", "shell_open", 166001499)
 
     public val shellShowInFileManagerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "shell_show_in_file_manager", 3565188097)
+        Internals.getMethodBindPtr("OS", "shell_show_in_file_manager", 3565188097)
 
     public val isProcessRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_process_running", 1116898809)
+        Internals.getMethodBindPtr("OS", "is_process_running", 1116898809)
 
     public val getProcessExitCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_process_exit_code", 923996154)
+        Internals.getMethodBindPtr("OS", "get_process_exit_code", 923996154)
 
     public val getProcessIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_process_id", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_process_id", 3905245786)
 
     public val hasEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "has_environment", 3927539163)
+        Internals.getMethodBindPtr("OS", "has_environment", 3927539163)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_environment", 3135753539)
+        Internals.getMethodBindPtr("OS", "get_environment", 3135753539)
 
     public val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_environment", 3605043004)
+        Internals.getMethodBindPtr("OS", "set_environment", 3605043004)
 
     public val unsetEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "unset_environment", 3089850668)
+        Internals.getMethodBindPtr("OS", "unset_environment", 3089850668)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_name", 201670096)
+    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("OS", "get_name", 201670096)
 
     public val getDistributionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_distribution_name", 201670096)
+        Internals.getMethodBindPtr("OS", "get_distribution_name", 201670096)
 
-    public val getVersionPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_version", 201670096)
+    public val getVersionPtr: VoidPtr = Internals.getMethodBindPtr("OS", "get_version", 201670096)
 
     public val getCmdlineArgsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_cmdline_args", 2981934095)
+        Internals.getMethodBindPtr("OS", "get_cmdline_args", 2981934095)
 
     public val getCmdlineUserArgsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_cmdline_user_args", 2981934095)
+        Internals.getMethodBindPtr("OS", "get_cmdline_user_args", 2981934095)
 
     public val getVideoAdapterDriverInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_video_adapter_driver_info", 1139954409)
+        Internals.getMethodBindPtr("OS", "get_video_adapter_driver_info", 1139954409)
 
     public val setRestartOnExitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_restart_on_exit", 3331453935)
+        Internals.getMethodBindPtr("OS", "set_restart_on_exit", 3331453935)
 
     public val isRestartOnExitSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_restart_on_exit_set", 36873697)
+        Internals.getMethodBindPtr("OS", "is_restart_on_exit_set", 36873697)
 
     public val getRestartOnExitArgumentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_restart_on_exit_arguments", 1139954409)
+        Internals.getMethodBindPtr("OS", "get_restart_on_exit_arguments", 1139954409)
 
-    public val delayUsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_usec", 998575451)
+    public val delayUsecPtr: VoidPtr = Internals.getMethodBindPtr("OS", "delay_usec", 998575451)
 
-    public val delayMsecPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "delay_msec", 998575451)
+    public val delayMsecPtr: VoidPtr = Internals.getMethodBindPtr("OS", "delay_msec", 998575451)
 
-    public val getLocalePtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "get_locale", 201670096)
+    public val getLocalePtr: VoidPtr = Internals.getMethodBindPtr("OS", "get_locale", 201670096)
 
     public val getLocaleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_locale_language", 201670096)
+        Internals.getMethodBindPtr("OS", "get_locale_language", 201670096)
 
     public val getModelNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_model_name", 201670096)
+        Internals.getMethodBindPtr("OS", "get_model_name", 201670096)
 
     public val isUserfsPersistentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_userfs_persistent", 36873697)
+        Internals.getMethodBindPtr("OS", "is_userfs_persistent", 36873697)
 
     public val isStdoutVerbosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_stdout_verbose", 36873697)
+        Internals.getMethodBindPtr("OS", "is_stdout_verbose", 36873697)
 
     public val isDebugBuildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_debug_build", 36873697)
+        Internals.getMethodBindPtr("OS", "is_debug_build", 36873697)
 
     public val getStaticMemoryUsagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_static_memory_usage", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_static_memory_usage", 3905245786)
 
     public val getStaticMemoryPeakUsagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_static_memory_peak_usage", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_static_memory_peak_usage", 3905245786)
 
     public val getMemoryInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_memory_info", 3102165223)
+        Internals.getMethodBindPtr("OS", "get_memory_info", 3102165223)
 
     public val moveToTrashPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "move_to_trash", 2113323047)
+        Internals.getMethodBindPtr("OS", "move_to_trash", 2113323047)
 
     public val getUserDataDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_user_data_dir", 201670096)
+        Internals.getMethodBindPtr("OS", "get_user_data_dir", 201670096)
 
     public val getSystemDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_system_dir", 3073895123)
+        Internals.getMethodBindPtr("OS", "get_system_dir", 3073895123)
 
     public val getConfigDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_config_dir", 201670096)
+        Internals.getMethodBindPtr("OS", "get_config_dir", 201670096)
 
-    public val getDataDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_data_dir", 201670096)
+    public val getDataDirPtr: VoidPtr = Internals.getMethodBindPtr("OS", "get_data_dir", 201670096)
 
     public val getCacheDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_cache_dir", 201670096)
+        Internals.getMethodBindPtr("OS", "get_cache_dir", 201670096)
 
     public val getUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_unique_id", 201670096)
+        Internals.getMethodBindPtr("OS", "get_unique_id", 201670096)
 
     public val getKeycodeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_keycode_string", 2261993717)
+        Internals.getMethodBindPtr("OS", "get_keycode_string", 2261993717)
 
     public val isKeycodeUnicodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_keycode_unicode", 1116898809)
+        Internals.getMethodBindPtr("OS", "is_keycode_unicode", 1116898809)
 
     public val findKeycodeFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "find_keycode_from_string", 1084858572)
+        Internals.getMethodBindPtr("OS", "find_keycode_from_string", 1084858572)
 
     public val setUseFileAccessSaveAndSwapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_use_file_access_save_and_swap", 2586408642)
+        Internals.getMethodBindPtr("OS", "set_use_file_access_save_and_swap", 2586408642)
 
     public val setThreadNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "set_thread_name", 166001499)
+        Internals.getMethodBindPtr("OS", "set_thread_name", 166001499)
 
     public val getThreadCallerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_thread_caller_id", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_thread_caller_id", 3905245786)
 
     public val getMainThreadIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_main_thread_id", 3905245786)
+        Internals.getMethodBindPtr("OS", "get_main_thread_id", 3905245786)
 
-    public val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "has_feature", 3927539163)
+    public val hasFeaturePtr: VoidPtr = Internals.getMethodBindPtr("OS", "has_feature", 3927539163)
 
-    public val isSandboxedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "is_sandboxed", 36873697)
+    public val isSandboxedPtr: VoidPtr = Internals.getMethodBindPtr("OS", "is_sandboxed", 36873697)
 
     public val requestPermissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "request_permission", 2323990056)
+        Internals.getMethodBindPtr("OS", "request_permission", 2323990056)
 
     public val requestPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "request_permissions", 2240911060)
+        Internals.getMethodBindPtr("OS", "request_permissions", 2240911060)
 
     public val getGrantedPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "get_granted_permissions", 1139954409)
+        Internals.getMethodBindPtr("OS", "get_granted_permissions", 1139954409)
 
     public val revokeGrantedPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "revoke_granted_permissions", 3218959716)
+        Internals.getMethodBindPtr("OS", "revoke_granted_permissions", 3218959716)
   }
 }

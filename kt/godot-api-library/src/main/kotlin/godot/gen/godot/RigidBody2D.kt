@@ -13,7 +13,6 @@ import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Signal4
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,7 +22,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -438,7 +437,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RIGIDBODY2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RIGIDBODY2D_INDEX, scriptIndex)
   }
 
   /**
@@ -531,146 +530,146 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setMass(mass: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+    Internals.writeArguments(DOUBLE to mass.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInertia(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInertiaPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInertia(inertia: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to inertia.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
+    Internals.writeArguments(DOUBLE to inertia.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInertiaPtr, NIL)
   }
 
   public final fun setCenterOfMassMode(mode: CenterOfMassMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCenterOfMassModePtr, NIL)
   }
 
   public final fun getCenterOfMassMode(): CenterOfMassMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
-    return RigidBody2D.CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCenterOfMassModePtr, LONG)
+    return RigidBody2D.CenterOfMassMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCenterOfMass(centerOfMass: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to centerOfMass)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+    Internals.writeArguments(VECTOR2 to centerOfMass)
+    Internals.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
   }
 
   public final fun getCenterOfMass(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
-    TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+    Internals.writeArguments(OBJECT to physicsMaterialOverride)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
 
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   public final fun setGravityScale(gravityScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to gravityScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
   }
 
   public final fun getGravityScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+    Internals.writeArguments(LONG to linearDampMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
   }
 
   public final fun getLinearDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
-    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
+    return RigidBody2D.DampMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+    Internals.writeArguments(LONG to angularDampMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
   }
 
   public final fun getAngularDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
-    return RigidBody2D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
+    return RigidBody2D.DampMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to linearDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
   }
 
   public final fun getLinearDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
   }
 
   public final fun getAngularDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to linearVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to linearVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAngularVelocity(angularVelocity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularVelocity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularVelocity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxContactsReported(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxContactsReportedPtr, NIL)
   }
 
   public final fun getMaxContactsReported(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxContactsReportedPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -679,42 +678,42 @@ public open class RigidBody2D : PhysicsBody2D() {
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
   public final fun getContactCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getContactCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setUseCustomIntegrator(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
   }
 
   public final fun isUsingCustomIntegrator(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setContactMonitor(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setContactMonitorPtr, NIL)
   }
 
   public final fun isContactMonitorEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isContactMonitorEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setContinuousCollisionDetectionMode(mode: CCDMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
   }
 
   public final fun getContinuousCollisionDetectionMode(): CCDMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContinuousCollisionDetectionModePtr, LONG)
-    return RigidBody2D.CCDMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getContinuousCollisionDetectionModePtr, LONG)
+    return RigidBody2D.CCDMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -722,8 +721,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    * as the given vector length. This is useful for jumping behavior.
    */
   public final fun setAxisVelocity(axisVelocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to axisVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to axisVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setAxisVelocityPtr, NIL)
   }
 
   /**
@@ -735,8 +734,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   @JvmOverloads
   public final fun applyCentralImpulse(impulse: Vector2 = Vector2(0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR2 to impulse)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
+    Internals.writeArguments(VECTOR2 to impulse)
+    Internals.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
 
   /**
@@ -748,8 +747,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   @JvmOverloads
   public final fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
+    Internals.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
   }
 
   /**
@@ -761,8 +760,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [CollisionShape2D] must be a child of the node, or you can manually set [inertia].
    */
   public final fun applyTorqueImpulse(torque: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.applyTorqueImpulsePtr, NIL)
+    Internals.writeArguments(DOUBLE to torque.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.applyTorqueImpulsePtr, NIL)
   }
 
   /**
@@ -771,8 +770,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
   public final fun applyCentralForce(force: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralForcePtr, NIL)
+    Internals.writeArguments(VECTOR2 to force)
+    Internals.callMethod(rawPtr, MethodBindings.applyCentralForcePtr, NIL)
   }
 
   /**
@@ -782,8 +781,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   @JvmOverloads
   public final fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyForcePtr, NIL)
+    Internals.writeArguments(VECTOR2 to force, VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.applyForcePtr, NIL)
   }
 
   /**
@@ -793,8 +792,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    * [CollisionShape2D] must be a child of the node, or you can manually set [inertia].
    */
   public final fun applyTorque(torque: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.applyTorquePtr, NIL)
+    Internals.writeArguments(DOUBLE to torque.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.applyTorquePtr, NIL)
   }
 
   /**
@@ -803,8 +802,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
   public final fun addConstantCentralForce(force: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantCentralForcePtr, NIL)
+    Internals.writeArguments(VECTOR2 to force)
+    Internals.callMethod(rawPtr, MethodBindings.addConstantCentralForcePtr, NIL)
   }
 
   /**
@@ -814,8 +813,8 @@ public open class RigidBody2D : PhysicsBody2D() {
    */
   @JvmOverloads
   public final fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantForcePtr, NIL)
+    Internals.writeArguments(VECTOR2 to force, VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.addConstantForcePtr, NIL)
   }
 
   /**
@@ -823,85 +822,85 @@ public open class RigidBody2D : PhysicsBody2D() {
    * until cleared with `constant_torque = 0`.
    */
   public final fun addConstantTorque(torque: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addConstantTorquePtr, NIL)
+    Internals.writeArguments(DOUBLE to torque.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.addConstantTorquePtr, NIL)
   }
 
   public final fun setConstantForce(force: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
+    Internals.writeArguments(VECTOR2 to force)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantForcePtr, NIL)
   }
 
   public final fun getConstantForce(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantForcePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setConstantTorque(torque: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to torque.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
+    Internals.writeArguments(DOUBLE to torque.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConstantTorquePtr, NIL)
   }
 
   public final fun getConstantTorque(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantTorquePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSleeping(sleeping: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to sleeping)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
+    Internals.writeArguments(BOOL to sleeping)
+    Internals.callMethod(rawPtr, MethodBindings.setSleepingPtr, NIL)
   }
 
   public final fun isSleeping(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSleepingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCanSleep(ableToSleep: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ableToSleep)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+    Internals.writeArguments(BOOL to ableToSleep)
+    Internals.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
   }
 
   public final fun isAbleToSleep(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLockRotationEnabled(lockRotation: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to lockRotation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to lockRotation)
+    Internals.callMethod(rawPtr, MethodBindings.setLockRotationEnabledPtr, NIL)
   }
 
   public final fun isLockRotationEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLockRotationEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFreezeEnabled(freezeMode: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to freezeMode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to freezeMode)
+    Internals.callMethod(rawPtr, MethodBindings.setFreezeEnabledPtr, NIL)
   }
 
   public final fun isFreezeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFreezeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFreezeMode(freezeMode: FreezeMode): Unit {
-    TransferContext.writeArguments(LONG to freezeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
+    Internals.writeArguments(LONG to freezeMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFreezeModePtr, NIL)
   }
 
   public final fun getFreezeMode(): FreezeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
-    return RigidBody2D.FreezeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFreezeModePtr, LONG)
+    return RigidBody2D.FreezeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -912,9 +911,9 @@ public open class RigidBody2D : PhysicsBody2D() {
    * instead.
    */
   public final fun getCollidingBodies(): VariantArray<Node2D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollidingBodiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node2D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollidingBodiesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Node2D>)
   }
 
   public enum class FreezeMode(
@@ -1025,177 +1024,177 @@ public open class RigidBody2D : PhysicsBody2D() {
 
   internal object MethodBindings {
     public val setMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_mass", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_mass", 373806689)
 
     public val getMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_mass", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_mass", 1740695150)
 
     public val getInertiaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_inertia", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_inertia", 1740695150)
 
     public val setInertiaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_inertia", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_inertia", 373806689)
 
     public val setCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass_mode", 1757235706)
+        Internals.getMethodBindPtr("RigidBody2D", "set_center_of_mass_mode", 1757235706)
 
     public val getCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass_mode", 3277132817)
+        Internals.getMethodBindPtr("RigidBody2D", "get_center_of_mass_mode", 3277132817)
 
     public val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_center_of_mass", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "set_center_of_mass", 743155724)
 
     public val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_center_of_mass", 3341600327)
+        Internals.getMethodBindPtr("RigidBody2D", "get_center_of_mass", 3341600327)
 
     public val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_physics_material_override", 1784508650)
+        Internals.getMethodBindPtr("RigidBody2D", "set_physics_material_override", 1784508650)
 
     public val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_physics_material_override", 2521850424)
+        Internals.getMethodBindPtr("RigidBody2D", "get_physics_material_override", 2521850424)
 
     public val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_gravity_scale", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_gravity_scale", 373806689)
 
     public val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_gravity_scale", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_gravity_scale", 1740695150)
 
     public val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp_mode", 3406533708)
+        Internals.getMethodBindPtr("RigidBody2D", "set_linear_damp_mode", 3406533708)
 
     public val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp_mode", 2970511462)
+        Internals.getMethodBindPtr("RigidBody2D", "get_linear_damp_mode", 2970511462)
 
     public val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp_mode", 3406533708)
+        Internals.getMethodBindPtr("RigidBody2D", "set_angular_damp_mode", 3406533708)
 
     public val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp_mode", 2970511462)
+        Internals.getMethodBindPtr("RigidBody2D", "get_angular_damp_mode", 2970511462)
 
     public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_damp", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_linear_damp", 373806689)
 
     public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_damp", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_linear_damp", 1740695150)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_damp", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_damp", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_angular_damp", 1740695150)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_linear_velocity", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "set_linear_velocity", 743155724)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_linear_velocity", 3341600327)
+        Internals.getMethodBindPtr("RigidBody2D", "get_linear_velocity", 3341600327)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_angular_velocity", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_angular_velocity", 373806689)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_angular_velocity", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_angular_velocity", 1740695150)
 
     public val setMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_max_contacts_reported", 1286410249)
+        Internals.getMethodBindPtr("RigidBody2D", "set_max_contacts_reported", 1286410249)
 
     public val getMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_max_contacts_reported", 3905245786)
+        Internals.getMethodBindPtr("RigidBody2D", "get_max_contacts_reported", 3905245786)
 
     public val getContactCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_contact_count", 3905245786)
+        Internals.getMethodBindPtr("RigidBody2D", "get_contact_count", 3905245786)
 
     public val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_use_custom_integrator", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_use_custom_integrator", 2586408642)
 
     public val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_using_custom_integrator", 2240911060)
+        Internals.getMethodBindPtr("RigidBody2D", "is_using_custom_integrator", 2240911060)
 
     public val setContactMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_contact_monitor", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_contact_monitor", 2586408642)
 
     public val isContactMonitorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_contact_monitor_enabled", 36873697)
+        Internals.getMethodBindPtr("RigidBody2D", "is_contact_monitor_enabled", 36873697)
 
     public val setContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_continuous_collision_detection_mode", 1000241384)
+        Internals.getMethodBindPtr("RigidBody2D", "set_continuous_collision_detection_mode", 1000241384)
 
     public val getContinuousCollisionDetectionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_continuous_collision_detection_mode", 815214376)
+        Internals.getMethodBindPtr("RigidBody2D", "get_continuous_collision_detection_mode", 815214376)
 
     public val setAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_axis_velocity", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "set_axis_velocity", 743155724)
 
     public val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_impulse", 3862383994)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_central_impulse", 3862383994)
 
     public val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_impulse", 4288681949)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_impulse", 4288681949)
 
     public val applyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque_impulse", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_torque_impulse", 373806689)
 
     public val applyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_central_force", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_central_force", 743155724)
 
     public val applyForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_force", 4288681949)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_force", 4288681949)
 
     public val applyTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "apply_torque", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "apply_torque", 373806689)
 
     public val addConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_central_force", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "add_constant_central_force", 743155724)
 
     public val addConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_force", 4288681949)
+        Internals.getMethodBindPtr("RigidBody2D", "add_constant_force", 4288681949)
 
     public val addConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "add_constant_torque", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "add_constant_torque", 373806689)
 
     public val setConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_force", 743155724)
+        Internals.getMethodBindPtr("RigidBody2D", "set_constant_force", 743155724)
 
     public val getConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_force", 3341600327)
+        Internals.getMethodBindPtr("RigidBody2D", "get_constant_force", 3341600327)
 
     public val setConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_constant_torque", 373806689)
+        Internals.getMethodBindPtr("RigidBody2D", "set_constant_torque", 373806689)
 
     public val getConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_constant_torque", 1740695150)
+        Internals.getMethodBindPtr("RigidBody2D", "get_constant_torque", 1740695150)
 
     public val setSleepingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_sleeping", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_sleeping", 2586408642)
 
     public val isSleepingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_sleeping", 36873697)
+        Internals.getMethodBindPtr("RigidBody2D", "is_sleeping", 36873697)
 
     public val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_can_sleep", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_can_sleep", 2586408642)
 
     public val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_able_to_sleep", 36873697)
+        Internals.getMethodBindPtr("RigidBody2D", "is_able_to_sleep", 36873697)
 
     public val setLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_lock_rotation_enabled", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_lock_rotation_enabled", 2586408642)
 
     public val isLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_lock_rotation_enabled", 36873697)
+        Internals.getMethodBindPtr("RigidBody2D", "is_lock_rotation_enabled", 36873697)
 
     public val setFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_enabled", 2586408642)
+        Internals.getMethodBindPtr("RigidBody2D", "set_freeze_enabled", 2586408642)
 
     public val isFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "is_freeze_enabled", 36873697)
+        Internals.getMethodBindPtr("RigidBody2D", "is_freeze_enabled", 36873697)
 
     public val setFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "set_freeze_mode", 1705112154)
+        Internals.getMethodBindPtr("RigidBody2D", "set_freeze_mode", 1705112154)
 
     public val getFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_freeze_mode", 2016872314)
+        Internals.getMethodBindPtr("RigidBody2D", "get_freeze_mode", 2016872314)
 
     public val getCollidingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody2D", "get_colliding_bodies", 3995934104)
+        Internals.getMethodBindPtr("RigidBody2D", "get_colliding_bodies", 3995934104)
   }
 }

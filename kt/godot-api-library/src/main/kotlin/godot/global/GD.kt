@@ -11,8 +11,8 @@ import godot.core.PackedInt32Array
 import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
-import godot.core.memory.MemoryManager
 import godot.Object
+import godot.util.Internals
 
 import godot.util.nullptr
 
@@ -30,7 +30,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
     @JvmStatic
     fun isInstanceValid(instance: Object?): Boolean {
         if (instance != null) {
-            return instance.rawPtr != nullptr && MemoryManager.isInstanceValid(instance)
+            return instance.rawPtr != nullptr && Internals.isInstanceValid(instance)
         }
         return false
     }
@@ -81,7 +81,7 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * You can use that method to manually trigger it if you want memory to be quickly freed.
      * */
     fun syncMemory() {
-        MemoryManager.querySync()
+        Internals.querySync()
     }
 
 
@@ -90,6 +90,6 @@ object GD : GDMath, GDCore, GDRandom, GDPrint {
      * Useful when you have to free third party resources or terminate non-daemon threads.
      * */
     fun callWhenClosing(callback: () -> Unit) {
-        MemoryManager.registerCallback(callback)
+        Internals.registerCallback(callback)
     }
 }

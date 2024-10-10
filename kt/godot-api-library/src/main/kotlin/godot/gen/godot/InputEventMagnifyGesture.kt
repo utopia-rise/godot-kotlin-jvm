@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -43,27 +42,27 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX, scriptIndex)
   }
 
   public final fun setFactor(factor: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to factor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
+    Internals.writeArguments(DOUBLE to factor.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFactorPtr, NIL)
   }
 
   public final fun getFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFactorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "set_factor", 373806689)
+        Internals.getMethodBindPtr("InputEventMagnifyGesture", "set_factor", 373806689)
 
     public val getFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "get_factor", 1740695150)
+        Internals.getMethodBindPtr("InputEventMagnifyGesture", "get_factor", 1740695150)
   }
 }

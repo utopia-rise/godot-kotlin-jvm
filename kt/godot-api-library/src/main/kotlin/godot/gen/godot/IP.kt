@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -48,7 +47,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_IP_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_IP_INDEX)
   }
 
   /**
@@ -58,9 +57,9 @@ public object IP : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun resolveHostname(host: String, ipType: Type = IP.Type.TYPE_ANY): String {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.resolveHostnamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to host, LONG to ipType.id)
+    Internals.callMethod(rawPtr, MethodBindings.resolveHostnamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -71,10 +70,9 @@ public object IP : Object() {
   @JvmStatic
   public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.TYPE_ANY):
       PackedStringArray {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.resolveHostnameAddressesPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to host, LONG to ipType.id)
+    Internals.callMethod(rawPtr, MethodBindings.resolveHostnameAddressesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -84,9 +82,9 @@ public object IP : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.TYPE_ANY): Int {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.resolveHostnameQueueItemPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to host, LONG to ipType.id)
+    Internals.callMethod(rawPtr, MethodBindings.resolveHostnameQueueItemPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -94,9 +92,9 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getResolveItemStatus(id: Int): ResolverStatus {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemStatusPtr, LONG)
-    return IP.ResolverStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getResolveItemStatusPtr, LONG)
+    return IP.ResolverStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -105,9 +103,9 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getResolveItemAddress(id: Int): String {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getResolveItemAddressPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -116,9 +114,9 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getResolveItemAddresses(id: Int): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolveItemAddressesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getResolveItemAddressesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -127,8 +125,8 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun eraseResolveItem(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseResolveItemPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.eraseResolveItemPtr, NIL)
   }
 
   /**
@@ -136,9 +134,9 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getLocalAddresses(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalAddressesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalAddressesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -155,9 +153,9 @@ public object IP : Object() {
    */
   @JvmStatic
   public final fun getLocalInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalInterfacesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalInterfacesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -167,8 +165,8 @@ public object IP : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun clearCache(hostname: String = ""): Unit {
-    TransferContext.writeArguments(STRING to hostname)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCachePtr, NIL)
+    Internals.writeArguments(STRING to hostname)
+    Internals.callMethod(rawPtr, MethodBindings.clearCachePtr, NIL)
   }
 
   public enum class ResolverStatus(
@@ -235,33 +233,32 @@ public object IP : Object() {
 
   internal object MethodBindings {
     public val resolveHostnamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname", 4283295457)
+        Internals.getMethodBindPtr("IP", "resolve_hostname", 4283295457)
 
     public val resolveHostnameAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_addresses", 773767525)
+        Internals.getMethodBindPtr("IP", "resolve_hostname_addresses", 773767525)
 
     public val resolveHostnameQueueItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1749894742)
+        Internals.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1749894742)
 
     public val getResolveItemStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_status", 3812250196)
+        Internals.getMethodBindPtr("IP", "get_resolve_item_status", 3812250196)
 
     public val getResolveItemAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_address", 844755477)
+        Internals.getMethodBindPtr("IP", "get_resolve_item_address", 844755477)
 
     public val getResolveItemAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_addresses", 663333327)
+        Internals.getMethodBindPtr("IP", "get_resolve_item_addresses", 663333327)
 
     public val eraseResolveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "erase_resolve_item", 1286410249)
+        Internals.getMethodBindPtr("IP", "erase_resolve_item", 1286410249)
 
     public val getLocalAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_addresses", 1139954409)
+        Internals.getMethodBindPtr("IP", "get_local_addresses", 1139954409)
 
     public val getLocalInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_interfaces", 3995934104)
+        Internals.getMethodBindPtr("IP", "get_local_interfaces", 3995934104)
 
-    public val clearCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "clear_cache", 3005725572)
+    public val clearCachePtr: VoidPtr = Internals.getMethodBindPtr("IP", "clear_cache", 3005725572)
   }
 }

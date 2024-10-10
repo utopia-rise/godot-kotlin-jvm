@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -39,27 +38,27 @@ public open class InputEventShortcut : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX, scriptIndex)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {
-    TransferContext.writeArguments(OBJECT to shortcut)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
+    Internals.writeArguments(OBJECT to shortcut)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
   }
 
   public final fun getShortcut(): Shortcut? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shortcut?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventShortcut", "set_shortcut", 857163497)
+        Internals.getMethodBindPtr("InputEventShortcut", "set_shortcut", 857163497)
 
     public val getShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventShortcut", "get_shortcut", 3766804753)
+        Internals.getMethodBindPtr("InputEventShortcut", "get_shortcut", 3766804753)
   }
 }

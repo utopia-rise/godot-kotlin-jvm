@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -48,7 +47,7 @@ private const val ENGINE_CLASS_PCKPACKER_INDEX: Int = 395
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PCKPACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PCKPACKER_INDEX, scriptIndex)
   }
 
   /**
@@ -62,9 +61,9 @@ public open class PCKPacker : RefCounted() {
     key: String = "0000000000000000000000000000000000000000000000000000000000000000",
     encryptDirectory: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to pckName, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
-    TransferContext.callMethod(rawPtr, MethodBindings.pckStartPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to pckName, LONG to alignment.toLong(), STRING to key, BOOL to encryptDirectory)
+    Internals.callMethod(rawPtr, MethodBindings.pckStartPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -77,9 +76,9 @@ public open class PCKPacker : RefCounted() {
     sourcePath: String,
     encrypt: Boolean = false,
   ): Error {
-    TransferContext.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
-    TransferContext.callMethod(rawPtr, MethodBindings.addFilePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to pckPath, STRING to sourcePath, BOOL to encrypt)
+    Internals.callMethod(rawPtr, MethodBindings.addFilePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -88,20 +87,19 @@ public open class PCKPacker : RefCounted() {
    */
   @JvmOverloads
   public final fun flush(verbose: Boolean = false): Error {
-    TransferContext.writeArguments(BOOL to verbose)
-    TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(BOOL to verbose)
+    Internals.callMethod(rawPtr, MethodBindings.flushPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val pckStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PCKPacker", "pck_start", 508410629)
+        Internals.getMethodBindPtr("PCKPacker", "pck_start", 508410629)
 
-    public val addFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
+    public val addFilePtr: VoidPtr = Internals.getMethodBindPtr("PCKPacker", "add_file", 2215643711)
 
-    public val flushPtr: VoidPtr = TypeManager.getMethodBindPtr("PCKPacker", "flush", 1633102583)
+    public val flushPtr: VoidPtr = Internals.getMethodBindPtr("PCKPacker", "flush", 1633102583)
   }
 }

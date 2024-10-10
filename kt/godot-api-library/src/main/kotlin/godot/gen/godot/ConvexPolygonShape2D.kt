@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -54,7 +53,7 @@ public open class ConvexPolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONVEXPOLYGONSHAPE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONVEXPOLYGONSHAPE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -62,31 +61,31 @@ public open class ConvexPolygonShape2D : Shape2D() {
    * algorithm, removing all unneeded points. See [Geometry2D.convexHull] for details.
    */
   public final fun setPointCloud(pointCloud: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointCloudPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to pointCloud)
+    Internals.callMethod(rawPtr, MethodBindings.setPointCloudPtr, NIL)
   }
 
   public final fun setPoints(points: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to points)
+    Internals.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
   }
 
   public final fun getPoints(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPointCloudPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_point_cloud", 1509147220)
+        Internals.getMethodBindPtr("ConvexPolygonShape2D", "set_point_cloud", 1509147220)
 
     public val setPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "set_points", 1509147220)
+        Internals.getMethodBindPtr("ConvexPolygonShape2D", "set_points", 1509147220)
 
     public val getPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConvexPolygonShape2D", "get_points", 2961356807)
+        Internals.getMethodBindPtr("ConvexPolygonShape2D", "get_points", 2961356807)
   }
 }

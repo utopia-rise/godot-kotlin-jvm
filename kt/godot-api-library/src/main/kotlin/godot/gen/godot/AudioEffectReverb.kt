@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -121,146 +120,146 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTREVERB_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTREVERB_INDEX, scriptIndex)
   }
 
   public final fun setPredelayMsec(msec: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to msec.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
+    Internals.writeArguments(DOUBLE to msec.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPredelayMsecPtr, NIL)
   }
 
   public final fun getPredelayMsec(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPredelayMsecPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPredelayFeedback(feedback: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to feedback.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
+    Internals.writeArguments(DOUBLE to feedback.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPredelayFeedbackPtr, NIL)
   }
 
   public final fun getPredelayFeedback(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPredelayFeedbackPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRoomSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRoomSizePtr, NIL)
   }
 
   public final fun getRoomSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRoomSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDamping(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
   }
 
   public final fun getDamping(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSpread(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
   }
 
   public final fun getSpread(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDry(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
   }
 
   public final fun getDry(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWet(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWetPtr, NIL)
   }
 
   public final fun getWet(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHpf(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHpfPtr, NIL)
   }
 
   public final fun getHpf(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHpfPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPredelayMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_predelay_msec", 373806689)
 
     public val getPredelayMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_predelay_msec", 1740695150)
 
     public val setPredelayFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_predelay_feedback", 373806689)
 
     public val getPredelayFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_predelay_feedback", 1740695150)
 
     public val setRoomSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_room_size", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_room_size", 373806689)
 
     public val getRoomSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_room_size", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_room_size", 1740695150)
 
     public val setDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_damping", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_damping", 373806689)
 
     public val getDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_damping", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_damping", 1740695150)
 
     public val setSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_spread", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_spread", 373806689)
 
     public val getSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_spread", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_spread", 1740695150)
 
     public val setDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_dry", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_dry", 373806689)
 
     public val getDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_dry", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_dry", 1740695150)
 
     public val setWetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_wet", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_wet", 373806689)
 
     public val getWetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_wet", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_wet", 1740695150)
 
     public val setHpfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "set_hpf", 373806689)
+        Internals.getMethodBindPtr("AudioEffectReverb", "set_hpf", 373806689)
 
     public val getHpfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectReverb", "get_hpf", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectReverb", "get_hpf", 1740695150)
   }
 }

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -31,16 +30,16 @@ private const val ENGINE_CLASS_GDEXTENSION_INDEX: Int = 230
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GDEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GDEXTENSION_INDEX, scriptIndex)
   }
 
   /**
    * Returns `true` if this extension's library has been opened.
    */
   public final fun isLibraryOpen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLibraryOpenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLibraryOpenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -48,9 +47,9 @@ public open class GDExtension : Resource() {
    * [InitializationLevel] enum).
    */
   public final fun getMinimumLibraryInitializationLevel(): InitializationLevel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
-    return GDExtension.InitializationLevel.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinimumLibraryInitializationLevelPtr, LONG)
+    return GDExtension.InitializationLevel.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class InitializationLevel(
@@ -90,9 +89,9 @@ public open class GDExtension : Resource() {
 
   internal object MethodBindings {
     public val isLibraryOpenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "is_library_open", 36873697)
+        Internals.getMethodBindPtr("GDExtension", "is_library_open", 36873697)
 
     public val getMinimumLibraryInitializationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level", 964858755)
+        Internals.getMethodBindPtr("GDExtension", "get_minimum_library_initialization_level", 964858755)
   }
 }

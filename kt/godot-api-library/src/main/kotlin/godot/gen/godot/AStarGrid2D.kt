@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -24,7 +23,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -189,7 +188,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ASTARGRID2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ASTARGRID2D_INDEX, scriptIndex)
   }
 
   /**
@@ -309,58 +308,58 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setRegion(region: Rect2i): Unit {
-    TransferContext.writeArguments(RECT2I to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
+    Internals.writeArguments(RECT2I to region)
+    Internals.callMethod(rawPtr, MethodBindings.setRegionPtr, NIL)
   }
 
   public final fun getRegion(): Rect2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2I)
-    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRegionPtr, RECT2I)
+    return (Internals.readReturnValue(RECT2I) as Rect2i)
   }
 
   public final fun setSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCellSize(cellSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to cellSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to cellSize)
+    Internals.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
   public final fun getCellSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCellShape(cellShape: CellShape): Unit {
-    TransferContext.writeArguments(LONG to cellShape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
+    Internals.writeArguments(LONG to cellShape.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCellShapePtr, NIL)
   }
 
   public final fun getCellShape(): CellShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
-    return AStarGrid2D.CellShape.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellShapePtr, LONG)
+    return AStarGrid2D.CellShape.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -368,9 +367,9 @@ public open class AStarGrid2D : RefCounted() {
    * [region]. Equivalent to `region.has_point(Vector2i(x, y))`.
    */
   public final fun isInBounds(x: Int, y: Int): Boolean {
-    TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isInBoundsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to x.toLong(), LONG to y.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isInBoundsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -378,18 +377,18 @@ public open class AStarGrid2D : RefCounted() {
    * Equivalent to `region.has_point(id)`.
    */
   public final fun isInBoundsv(id: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.isInBoundsvPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2I to id)
+    Internals.callMethod(rawPtr, MethodBindings.isInBoundsvPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Indicates that the grid parameters were changed and [update] needs to be called.
    */
   public final fun isDirty(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDirtyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDirtyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -399,52 +398,52 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** All point data (solidity and weight scale) will be cleared.
    */
   public final fun update(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
   public final fun setJumpingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJumpingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setJumpingEnabledPtr, NIL)
   }
 
   public final fun isJumpingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isJumpingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isJumpingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDiagonalMode(mode: DiagonalMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDiagonalModePtr, NIL)
   }
 
   public final fun getDiagonalMode(): DiagonalMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiagonalModePtr, LONG)
-    return AStarGrid2D.DiagonalMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiagonalModePtr, LONG)
+    return AStarGrid2D.DiagonalMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
+    Internals.writeArguments(LONG to heuristic.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
   }
 
   public final fun getDefaultComputeHeuristic(): Heuristic {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultComputeHeuristicPtr, LONG)
+    return AStarGrid2D.Heuristic.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
+    Internals.writeArguments(LONG to heuristic.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
   }
 
   public final fun getDefaultEstimateHeuristic(): Heuristic {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
-    return AStarGrid2D.Heuristic.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultEstimateHeuristicPtr, LONG)
+    return AStarGrid2D.Heuristic.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -454,17 +453,17 @@ public open class AStarGrid2D : RefCounted() {
    */
   @JvmOverloads
   public final fun setPointSolid(id: Vector2i, solid: Boolean = true): Unit {
-    TransferContext.writeArguments(VECTOR2I to id, BOOL to solid)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointSolidPtr, NIL)
+    Internals.writeArguments(VECTOR2I to id, BOOL to solid)
+    Internals.callMethod(rawPtr, MethodBindings.setPointSolidPtr, NIL)
   }
 
   /**
    * Returns `true` if a point is disabled for pathfinding. By default, all points are enabled.
    */
   public final fun isPointSolid(id: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.isPointSolidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2I to id)
+    Internals.callMethod(rawPtr, MethodBindings.isPointSolidPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -474,17 +473,17 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun setPointWeightScale(id: Vector2i, weightScale: Float): Unit {
-    TransferContext.writeArguments(VECTOR2I to id, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
+    Internals.writeArguments(VECTOR2I to id, DOUBLE to weightScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
   }
 
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
   public final fun getPointWeightScale(id: Vector2i): Float {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(VECTOR2I to id)
+    Internals.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -493,8 +492,8 @@ public open class AStarGrid2D : RefCounted() {
    */
   @JvmOverloads
   public final fun fillSolidRegion(region: Rect2i, solid: Boolean = true): Unit {
-    TransferContext.writeArguments(RECT2I to region, BOOL to solid)
-    TransferContext.callMethod(rawPtr, MethodBindings.fillSolidRegionPtr, NIL)
+    Internals.writeArguments(RECT2I to region, BOOL to solid)
+    Internals.callMethod(rawPtr, MethodBindings.fillSolidRegionPtr, NIL)
   }
 
   /**
@@ -502,25 +501,25 @@ public open class AStarGrid2D : RefCounted() {
    * **Note:** Calling [update] is not needed after the call of this function.
    */
   public final fun fillWeightScaleRegion(region: Rect2i, weightScale: Float): Unit {
-    TransferContext.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.fillWeightScaleRegionPtr, NIL)
+    Internals.writeArguments(RECT2I to region, DOUBLE to weightScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.fillWeightScaleRegionPtr, NIL)
   }
 
   /**
    * Clears the grid and sets the [region] to `Rect2i(0, 0, 0, 0)`.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
    * Returns the position of the point associated with the given [id].
    */
   public final fun getPointPosition(id: Vector2i): Vector2 {
-    TransferContext.writeArguments(VECTOR2I to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(VECTOR2I to id)
+    Internals.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -537,9 +536,9 @@ public open class AStarGrid2D : RefCounted() {
     toId: Vector2i,
     allowPartialPath: Boolean = false,
   ): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
+    Internals.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -554,9 +553,9 @@ public open class AStarGrid2D : RefCounted() {
     toId: Vector2i,
     allowPartialPath: Boolean = false,
   ): VariantArray<Vector2i> {
-    TransferContext.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector2i>)
+    Internals.writeArguments(VECTOR2I to fromId, VECTOR2I to toId, BOOL to allowPartialPath)
+    Internals.callMethod(rawPtr, MethodBindings.getIdPathPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Vector2i>)
   }
 
   public enum class Heuristic(
@@ -697,98 +696,96 @@ public open class AStarGrid2D : RefCounted() {
 
   internal object MethodBindings {
     public val setRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_region", 1763793166)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_region", 1763793166)
 
     public val getRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_region", 410525958)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_region", 410525958)
 
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_size", 1130785943)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_size", 1130785943)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_size", 3690982128)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_size", 3690982128)
 
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_offset", 743155724)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_offset", 743155724)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_offset", 3341600327)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_size", 743155724)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_cell_size", 743155724)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_size", 3341600327)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_cell_size", 3341600327)
 
     public val setCellShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_cell_shape", 4130591146)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_cell_shape", 4130591146)
 
     public val getCellShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_cell_shape", 3293463634)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_cell_shape", 3293463634)
 
     public val isInBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_bounds", 2522259332)
+        Internals.getMethodBindPtr("AStarGrid2D", "is_in_bounds", 2522259332)
 
     public val isInBoundsvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_in_boundsv", 3900751641)
+        Internals.getMethodBindPtr("AStarGrid2D", "is_in_boundsv", 3900751641)
 
-    public val isDirtyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_dirty", 36873697)
+    public val isDirtyPtr: VoidPtr = Internals.getMethodBindPtr("AStarGrid2D", "is_dirty", 36873697)
 
-    public val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "update", 3218959716)
+    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("AStarGrid2D", "update", 3218959716)
 
     public val setJumpingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_jumping_enabled", 2586408642)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_jumping_enabled", 2586408642)
 
     public val isJumpingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_jumping_enabled", 36873697)
+        Internals.getMethodBindPtr("AStarGrid2D", "is_jumping_enabled", 36873697)
 
     public val setDiagonalModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_diagonal_mode", 1017829798)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_diagonal_mode", 1017829798)
 
     public val getDiagonalModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_diagonal_mode", 3129282674)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_diagonal_mode", 3129282674)
 
     public val setDefaultComputeHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_compute_heuristic", 1044375519)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_default_compute_heuristic", 1044375519)
 
     public val getDefaultComputeHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_compute_heuristic", 2074731422)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_default_compute_heuristic", 2074731422)
 
     public val setDefaultEstimateHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_default_estimate_heuristic", 1044375519)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_default_estimate_heuristic", 1044375519)
 
     public val getDefaultEstimateHeuristicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_default_estimate_heuristic", 2074731422)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_default_estimate_heuristic", 2074731422)
 
     public val setPointSolidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_solid", 1765703753)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_point_solid", 1765703753)
 
     public val isPointSolidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "is_point_solid", 3900751641)
+        Internals.getMethodBindPtr("AStarGrid2D", "is_point_solid", 3900751641)
 
     public val setPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "set_point_weight_scale", 2262553149)
+        Internals.getMethodBindPtr("AStarGrid2D", "set_point_weight_scale", 2262553149)
 
     public val getPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_weight_scale", 719993801)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_point_weight_scale", 719993801)
 
     public val fillSolidRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_solid_region", 2261970063)
+        Internals.getMethodBindPtr("AStarGrid2D", "fill_solid_region", 2261970063)
 
     public val fillWeightScaleRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "fill_weight_scale_region", 2793244083)
+        Internals.getMethodBindPtr("AStarGrid2D", "fill_weight_scale_region", 2793244083)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStarGrid2D", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("AStarGrid2D", "clear", 3218959716)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_position", 108438297)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_point_position", 108438297)
 
     public val getPointPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_point_path", 1641925693)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_point_path", 1641925693)
 
     public val getIdPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStarGrid2D", "get_id_path", 1918132273)
+        Internals.getMethodBindPtr("AStarGrid2D", "get_id_path", 1918132273)
   }
 }

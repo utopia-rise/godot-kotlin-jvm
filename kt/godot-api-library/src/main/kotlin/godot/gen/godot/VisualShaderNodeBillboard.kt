@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -52,29 +51,29 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEBILLBOARD_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEBILLBOARD_INDEX, scriptIndex)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {
-    TransferContext.writeArguments(LONG to billboardType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardTypePtr, NIL)
+    Internals.writeArguments(LONG to billboardType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBillboardTypePtr, NIL)
   }
 
   public final fun getBillboardType(): BillboardType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardTypePtr, LONG)
-    return VisualShaderNodeBillboard.BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBillboardTypePtr, LONG)
+    return VisualShaderNodeBillboard.BillboardType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepScaleEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setKeepScaleEnabledPtr, NIL)
   }
 
   public final fun isKeepScaleEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isKeepScaleEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class BillboardType(
@@ -116,15 +115,15 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setBillboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_billboard_type", 1227463289)
+        Internals.getMethodBindPtr("VisualShaderNodeBillboard", "set_billboard_type", 1227463289)
 
     public val getBillboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "get_billboard_type", 3724188517)
+        Internals.getMethodBindPtr("VisualShaderNodeBillboard", "get_billboard_type", 3724188517)
 
     public val setKeepScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_keep_scale_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeBillboard", "set_keep_scale_enabled", 2586408642)
 
     public val isKeepScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "is_keep_scale_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeBillboard", "is_keep_scale_enabled", 36873697)
   }
 }

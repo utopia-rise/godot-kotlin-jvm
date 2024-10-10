@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -49,16 +48,16 @@ public open class ButtonGroup : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BUTTONGROUP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BUTTONGROUP_INDEX, scriptIndex)
   }
 
   /**
    * Returns the current pressed button.
    */
   public final fun getPressedButton(): BaseButton? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as BaseButton?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as BaseButton?)
   }
 
   /**
@@ -66,35 +65,35 @@ public open class ButtonGroup : Resource() {
    * [BaseButton.buttonGroup]).
    */
   public final fun getButtons(): VariantArray<BaseButton> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
 
   public final fun setAllowUnpress(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowUnpressPtr, NIL)
   }
 
   public final fun isAllowUnpress(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAllowUnpressPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getPressedButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "get_pressed_button", 3886434893)
+        Internals.getMethodBindPtr("ButtonGroup", "get_pressed_button", 3886434893)
 
     public val getButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "get_buttons", 2915620761)
+        Internals.getMethodBindPtr("ButtonGroup", "get_buttons", 2915620761)
 
     public val setAllowUnpressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "set_allow_unpress", 2586408642)
+        Internals.getMethodBindPtr("ButtonGroup", "set_allow_unpress", 2586408642)
 
     public val isAllowUnpressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "is_allow_unpress", 2240911060)
+        Internals.getMethodBindPtr("ButtonGroup", "is_allow_unpress", 2240911060)
   }
 }

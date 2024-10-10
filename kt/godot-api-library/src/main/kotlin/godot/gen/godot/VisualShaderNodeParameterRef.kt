@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -38,27 +37,27 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
   }
 
   public final fun getParameterName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83702148)
 
     public val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201670096)
   }
 }

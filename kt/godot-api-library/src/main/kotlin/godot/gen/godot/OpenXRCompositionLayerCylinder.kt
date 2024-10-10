@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -74,78 +73,78 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAspectRatio(aspectRatio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to aspectRatio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAspectRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to aspectRatio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAspectRatioPtr, NIL)
   }
 
   public final fun getAspectRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAspectRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAspectRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCentralAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCentralAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCentralAnglePtr, NIL)
   }
 
   public final fun getCentralAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCentralAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCentralAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackSegments(segments: Long): Unit {
-    TransferContext.writeArguments(LONG to segments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+    Internals.writeArguments(LONG to segments)
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
 
   public final fun getFallbackSegments(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_radius", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_radius", 1740695150)
 
     public val setAspectRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_aspect_ratio", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_aspect_ratio", 373806689)
 
     public val getAspectRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_aspect_ratio", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_aspect_ratio", 1740695150)
 
     public val setCentralAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_central_angle", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_central_angle", 373806689)
 
     public val getCentralAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_central_angle", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_central_angle", 1740695150)
 
     public val setFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_fallback_segments", 1286410249)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "set_fallback_segments", 1286410249)
 
     public val getFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_fallback_segments", 3905245786)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerCylinder", "get_fallback_segments", 3905245786)
   }
 }

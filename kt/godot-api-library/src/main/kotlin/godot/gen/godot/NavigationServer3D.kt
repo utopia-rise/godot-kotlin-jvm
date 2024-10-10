@@ -13,7 +13,6 @@ import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -27,7 +26,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -84,7 +83,7 @@ public object NavigationServer3D : Object() {
   public val avoidanceDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_NAVIGATIONSERVER3D_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_NAVIGATIONSERVER3D_INDEX)
   }
 
   /**
@@ -93,9 +92,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun getMaps(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMapsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -103,9 +102,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.mapCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.mapCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -113,8 +112,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetActive(map: RID, active: Boolean): Unit {
-    TransferContext.writeArguments(_RID to map, BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetActivePtr, NIL)
+    Internals.writeArguments(_RID to map, BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.mapSetActivePtr, NIL)
   }
 
   /**
@@ -122,9 +121,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapIsActive(map: RID): Boolean {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapIsActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapIsActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -132,8 +131,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetUp(map: RID, up: Vector3): Unit {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to up)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetUpPtr, NIL)
+    Internals.writeArguments(_RID to map, VECTOR3 to up)
+    Internals.callMethod(rawPtr, MethodBindings.mapSetUpPtr, NIL)
   }
 
   /**
@@ -141,9 +140,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetUp(map: RID): Vector3 {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetUpPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetUpPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -152,8 +151,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetCellSize(map: RID, cellSize: Float): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to cellSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetCellSizePtr, NIL)
+    Internals.writeArguments(_RID to map, DOUBLE to cellSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.mapSetCellSizePtr, NIL)
   }
 
   /**
@@ -161,9 +160,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetCellSize(map: RID): Float {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetCellSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -172,8 +171,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetCellHeight(map: RID, cellHeight: Float): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to cellHeight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetCellHeightPtr, NIL)
+    Internals.writeArguments(_RID to map, DOUBLE to cellHeight.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.mapSetCellHeightPtr, NIL)
   }
 
   /**
@@ -181,9 +180,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetCellHeight(map: RID): Float {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetCellHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetCellHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -191,8 +190,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetMergeRasterizerCellScale(map: RID, scale: Float): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetMergeRasterizerCellScalePtr, NIL)
+    Internals.writeArguments(_RID to map, DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.mapSetMergeRasterizerCellScalePtr, NIL)
   }
 
   /**
@@ -200,9 +199,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetMergeRasterizerCellScale(map: RID): Float {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetMergeRasterizerCellScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetMergeRasterizerCellScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -212,8 +211,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetUseEdgeConnections(map: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to map, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetUseEdgeConnectionsPtr, NIL)
+    Internals.writeArguments(_RID to map, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.mapSetUseEdgeConnectionsPtr, NIL)
   }
 
   /**
@@ -223,9 +222,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetUseEdgeConnections(map: RID): Boolean {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetUseEdgeConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetUseEdgeConnectionsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -233,8 +232,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetEdgeConnectionMargin(map: RID, margin: Float): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetEdgeConnectionMarginPtr, NIL)
+    Internals.writeArguments(_RID to map, DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.mapSetEdgeConnectionMarginPtr, NIL)
   }
 
   /**
@@ -243,9 +242,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetEdgeConnectionMargin(map: RID): Float {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetEdgeConnectionMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetEdgeConnectionMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -253,8 +252,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapSetLinkConnectionRadius(map: RID, radius: Float): Unit {
-    TransferContext.writeArguments(_RID to map, DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapSetLinkConnectionRadiusPtr, NIL)
+    Internals.writeArguments(_RID to map, DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.mapSetLinkConnectionRadiusPtr, NIL)
   }
 
   /**
@@ -263,9 +262,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetLinkConnectionRadius(map: RID): Float {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinkConnectionRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetLinkConnectionRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -281,9 +280,9 @@ public object NavigationServer3D : Object() {
     optimize: Boolean,
     navigationLayers: Long = 1,
   ): PackedVector3Array {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(_RID to map, VECTOR3 to origin, VECTOR3 to destination, BOOL to optimize, LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetPathPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -297,9 +296,9 @@ public object NavigationServer3D : Object() {
     end: Vector3,
     useCollision: Boolean = false,
   ): Vector3 {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointToSegmentPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to map, VECTOR3 to start, VECTOR3 to end, BOOL to useCollision)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetClosestPointToSegmentPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -307,9 +306,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetClosestPoint(map: RID, toPoint: Vector3): Vector3 {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to map, VECTOR3 to toPoint)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetClosestPointPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -317,9 +316,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetClosestPointNormal(map: RID, toPoint: Vector3): Vector3 {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to map, VECTOR3 to toPoint)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetClosestPointNormalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -327,9 +326,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetClosestPointOwner(map: RID, toPoint: Vector3): RID {
-    TransferContext.writeArguments(_RID to map, VECTOR3 to toPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetClosestPointOwnerPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to map, VECTOR3 to toPoint)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetClosestPointOwnerPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -338,9 +337,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetLinks(map: RID): VariantArray<RID> {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetLinksPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetLinksPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -349,9 +348,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetRegions(map: RID): VariantArray<RID> {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetRegionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetRegionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -360,9 +359,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetAgents(map: RID): VariantArray<RID> {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetAgentsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetAgentsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -371,9 +370,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetObstacles(map: RID): VariantArray<RID> {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetObstaclesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetObstaclesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   /**
@@ -399,8 +398,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapForceUpdate(map: RID): Unit {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapForceUpdatePtr, NIL)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapForceUpdatePtr, NIL)
   }
 
   /**
@@ -411,9 +410,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun mapGetIterationId(map: RID): Long {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetIterationIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetIterationIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -428,9 +427,9 @@ public object NavigationServer3D : Object() {
     navigationLayers: Long,
     uniformly: Boolean,
   ): Vector3 {
-    TransferContext.writeArguments(_RID to map, LONG to navigationLayers, BOOL to uniformly)
-    TransferContext.callMethod(rawPtr, MethodBindings.mapGetRandomPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to map, LONG to navigationLayers, BOOL to uniformly)
+    Internals.callMethod(rawPtr, MethodBindings.mapGetRandomPointPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -442,8 +441,8 @@ public object NavigationServer3D : Object() {
   @JvmStatic
   public final fun queryPath(parameters: NavigationPathQueryParameters3D?,
       result: NavigationPathQueryResult3D?): Unit {
-    TransferContext.writeArguments(OBJECT to parameters, OBJECT to result)
-    TransferContext.callMethod(rawPtr, MethodBindings.queryPathPtr, NIL)
+    Internals.writeArguments(OBJECT to parameters, OBJECT to result)
+    Internals.callMethod(rawPtr, MethodBindings.queryPathPtr, NIL)
   }
 
   /**
@@ -451,9 +450,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.regionCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.regionCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -461,8 +460,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetEnabled(region: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to region, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
+    Internals.writeArguments(_RID to region, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetEnabledPtr, NIL)
   }
 
   /**
@@ -470,9 +469,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetEnabled(region: RID): Boolean {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -481,8 +480,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetUseEdgeConnections(region: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to region, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetUseEdgeConnectionsPtr, NIL)
+    Internals.writeArguments(_RID to region, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetUseEdgeConnectionsPtr, NIL)
   }
 
   /**
@@ -491,9 +490,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetUseEdgeConnections(region: RID): Boolean {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetUseEdgeConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetUseEdgeConnectionsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -501,8 +500,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetEnterCost(region: RID, enterCost: Float): Unit {
-    TransferContext.writeArguments(_RID to region, DOUBLE to enterCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetEnterCostPtr, NIL)
+    Internals.writeArguments(_RID to region, DOUBLE to enterCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.regionSetEnterCostPtr, NIL)
   }
 
   /**
@@ -510,9 +509,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetEnterCost(region: RID): Float {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetEnterCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -520,8 +519,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetTravelCost(region: RID, travelCost: Float): Unit {
-    TransferContext.writeArguments(_RID to region, DOUBLE to travelCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetTravelCostPtr, NIL)
+    Internals.writeArguments(_RID to region, DOUBLE to travelCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.regionSetTravelCostPtr, NIL)
   }
 
   /**
@@ -529,9 +528,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetTravelCost(region: RID): Float {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetTravelCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -539,8 +538,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetOwnerId(region: RID, ownerId: Long): Unit {
-    TransferContext.writeArguments(_RID to region, LONG to ownerId)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetOwnerIdPtr, NIL)
+    Internals.writeArguments(_RID to region, LONG to ownerId)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetOwnerIdPtr, NIL)
   }
 
   /**
@@ -548,9 +547,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetOwnerId(region: RID): Long {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetOwnerIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetOwnerIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -567,9 +566,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionOwnsPoint(region: RID, point: Vector3): Boolean {
-    TransferContext.writeArguments(_RID to region, VECTOR3 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionOwnsPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to region, VECTOR3 to point)
+    Internals.callMethod(rawPtr, MethodBindings.regionOwnsPointPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -577,8 +576,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetMap(region: RID, map: RID): Unit {
-    TransferContext.writeArguments(_RID to region, _RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetMapPtr, NIL)
+    Internals.writeArguments(_RID to region, _RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetMapPtr, NIL)
   }
 
   /**
@@ -586,9 +585,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetMap(region: RID): RID {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -597,8 +596,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetNavigationLayers(region: RID, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(_RID to region, LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetNavigationLayersPtr, NIL)
+    Internals.writeArguments(_RID to region, LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetNavigationLayersPtr, NIL)
   }
 
   /**
@@ -606,9 +605,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetNavigationLayers(region: RID): Long {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -616,8 +615,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetTransform(region: RID, transform: Transform3D): Unit {
-    TransferContext.writeArguments(_RID to region, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetTransformPtr, NIL)
+    Internals.writeArguments(_RID to region, TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetTransformPtr, NIL)
   }
 
   /**
@@ -625,9 +624,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetTransform(region: RID): Transform3D {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -635,8 +634,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionSetNavigationMesh(region: RID, navigationMesh: NavigationMesh?): Unit {
-    TransferContext.writeArguments(_RID to region, OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionSetNavigationMeshPtr, NIL)
+    Internals.writeArguments(_RID to region, OBJECT to navigationMesh)
+    Internals.callMethod(rawPtr, MethodBindings.regionSetNavigationMeshPtr, NIL)
   }
 
   /**
@@ -645,8 +644,8 @@ public object NavigationServer3D : Object() {
   @JvmStatic
   public final fun regionBakeNavigationMesh(navigationMesh: NavigationMesh?, rootNode: Node?):
       Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionBakeNavigationMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
+    Internals.callMethod(rawPtr, MethodBindings.regionBakeNavigationMeshPtr, NIL)
   }
 
   /**
@@ -654,9 +653,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetConnectionsCount(region: RID): Int {
-    TransferContext.writeArguments(_RID to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(_RID to region)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetConnectionsCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -665,9 +664,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetConnectionPathwayStart(region: RID, connection: Int): Vector3 {
-    TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayStartPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to region, LONG to connection.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayStartPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -676,9 +675,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun regionGetConnectionPathwayEnd(region: RID, connection: Int): Vector3 {
-    TransferContext.writeArguments(_RID to region, LONG to connection.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayEndPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to region, LONG to connection.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.regionGetConnectionPathwayEndPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -693,9 +692,9 @@ public object NavigationServer3D : Object() {
     navigationLayers: Long,
     uniformly: Boolean,
   ): Vector3 {
-    TransferContext.writeArguments(_RID to region, LONG to navigationLayers, BOOL to uniformly)
-    TransferContext.callMethod(rawPtr, MethodBindings.regionGetRandomPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to region, LONG to navigationLayers, BOOL to uniformly)
+    Internals.callMethod(rawPtr, MethodBindings.regionGetRandomPointPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -703,9 +702,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.linkCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.linkCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -713,8 +712,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetMap(link: RID, map: RID): Unit {
-    TransferContext.writeArguments(_RID to link, _RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetMapPtr, NIL)
+    Internals.writeArguments(_RID to link, _RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetMapPtr, NIL)
   }
 
   /**
@@ -722,9 +721,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetMap(link: RID): RID {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -732,8 +731,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetEnabled(link: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to link, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
+    Internals.writeArguments(_RID to link, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetEnabledPtr, NIL)
   }
 
   /**
@@ -741,9 +740,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetEnabled(link: RID): Boolean {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -751,8 +750,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetBidirectional(link: RID, bidirectional: Boolean): Unit {
-    TransferContext.writeArguments(_RID to link, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetBidirectionalPtr, NIL)
+    Internals.writeArguments(_RID to link, BOOL to bidirectional)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetBidirectionalPtr, NIL)
   }
 
   /**
@@ -760,9 +759,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkIsBidirectional(link: RID): Boolean {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkIsBidirectionalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkIsBidirectionalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -771,8 +770,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetNavigationLayers(link: RID, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(_RID to link, LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetNavigationLayersPtr, NIL)
+    Internals.writeArguments(_RID to link, LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetNavigationLayersPtr, NIL)
   }
 
   /**
@@ -780,9 +779,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetNavigationLayers(link: RID): Long {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -790,8 +789,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetStartPosition(link: RID, position: Vector3): Unit {
-    TransferContext.writeArguments(_RID to link, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetStartPositionPtr, NIL)
+    Internals.writeArguments(_RID to link, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetStartPositionPtr, NIL)
   }
 
   /**
@@ -799,9 +798,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetStartPosition(link: RID): Vector3 {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetStartPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetStartPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -809,8 +808,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetEndPosition(link: RID, position: Vector3): Unit {
-    TransferContext.writeArguments(_RID to link, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEndPositionPtr, NIL)
+    Internals.writeArguments(_RID to link, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetEndPositionPtr, NIL)
   }
 
   /**
@@ -818,9 +817,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetEndPosition(link: RID): Vector3 {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEndPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetEndPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -828,8 +827,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetEnterCost(link: RID, enterCost: Float): Unit {
-    TransferContext.writeArguments(_RID to link, DOUBLE to enterCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetEnterCostPtr, NIL)
+    Internals.writeArguments(_RID to link, DOUBLE to enterCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.linkSetEnterCostPtr, NIL)
   }
 
   /**
@@ -837,9 +836,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetEnterCost(link: RID): Float {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetEnterCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -847,8 +846,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetTravelCost(link: RID, travelCost: Float): Unit {
-    TransferContext.writeArguments(_RID to link, DOUBLE to travelCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetTravelCostPtr, NIL)
+    Internals.writeArguments(_RID to link, DOUBLE to travelCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.linkSetTravelCostPtr, NIL)
   }
 
   /**
@@ -856,9 +855,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetTravelCost(link: RID): Float {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetTravelCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -866,8 +865,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkSetOwnerId(link: RID, ownerId: Long): Unit {
-    TransferContext.writeArguments(_RID to link, LONG to ownerId)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkSetOwnerIdPtr, NIL)
+    Internals.writeArguments(_RID to link, LONG to ownerId)
+    Internals.callMethod(rawPtr, MethodBindings.linkSetOwnerIdPtr, NIL)
   }
 
   /**
@@ -875,9 +874,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun linkGetOwnerId(link: RID): Long {
-    TransferContext.writeArguments(_RID to link)
-    TransferContext.callMethod(rawPtr, MethodBindings.linkGetOwnerIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to link)
+    Internals.callMethod(rawPtr, MethodBindings.linkGetOwnerIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -885,9 +884,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.agentCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.agentCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -895,8 +894,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetAvoidanceEnabled(agent: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to agent, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceEnabledPtr, NIL)
+    Internals.writeArguments(_RID to agent, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetAvoidanceEnabledPtr, NIL)
   }
 
   /**
@@ -904,9 +903,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetAvoidanceEnabled(agent: RID): Boolean {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetAvoidanceEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -924,8 +923,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetUse3dAvoidance(agent: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to agent, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetUse3dAvoidancePtr, NIL)
+    Internals.writeArguments(_RID to agent, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetUse3dAvoidancePtr, NIL)
   }
 
   /**
@@ -934,9 +933,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetUse3dAvoidance(agent: RID): Boolean {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetUse3dAvoidancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetUse3dAvoidancePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -944,8 +943,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetMap(agent: RID, map: RID): Unit {
-    TransferContext.writeArguments(_RID to agent, _RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetMapPtr, NIL)
+    Internals.writeArguments(_RID to agent, _RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetMapPtr, NIL)
   }
 
   /**
@@ -953,9 +952,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetMap(agent: RID): RID {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -964,8 +963,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetPaused(agent: RID, paused: Boolean): Unit {
-    TransferContext.writeArguments(_RID to agent, BOOL to paused)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetPausedPtr, NIL)
+    Internals.writeArguments(_RID to agent, BOOL to paused)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetPausedPtr, NIL)
   }
 
   /**
@@ -973,9 +972,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetPaused(agent: RID): Boolean {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -985,8 +984,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetNeighborDistance(agent: RID, distance: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetNeighborDistancePtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetNeighborDistancePtr, NIL)
   }
 
   /**
@@ -995,9 +994,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetNeighborDistance(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetNeighborDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetNeighborDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1007,8 +1006,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetMaxNeighbors(agent: RID, count: Int): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetMaxNeighborsPtr, NIL)
+    Internals.writeArguments(_RID to agent, LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetMaxNeighborsPtr, NIL)
   }
 
   /**
@@ -1017,9 +1016,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetMaxNeighbors(agent: RID): Int {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxNeighborsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetMaxNeighborsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1030,8 +1029,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetTimeHorizonAgents(agent: RID, timeHorizon: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonAgentsPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonAgentsPtr, NIL)
   }
 
   /**
@@ -1040,9 +1039,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetTimeHorizonAgents(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonAgentsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonAgentsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1054,8 +1053,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetTimeHorizonObstacles(agent: RID, timeHorizon: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonObstaclesPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to timeHorizon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetTimeHorizonObstaclesPtr, NIL)
   }
 
   /**
@@ -1064,9 +1063,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetTimeHorizonObstacles(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonObstaclesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetTimeHorizonObstaclesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1074,8 +1073,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetRadius(agent: RID, radius: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetRadiusPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetRadiusPtr, NIL)
   }
 
   /**
@@ -1083,9 +1082,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetRadius(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1093,8 +1092,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetHeight(agent: RID, height: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetHeightPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetHeightPtr, NIL)
   }
 
   /**
@@ -1102,9 +1101,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetHeight(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1112,8 +1111,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetMaxSpeed(agent: RID, maxSpeed: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to maxSpeed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetMaxSpeedPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to maxSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetMaxSpeedPtr, NIL)
   }
 
   /**
@@ -1121,9 +1120,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetMaxSpeed(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetMaxSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetMaxSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1133,8 +1132,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetVelocityForced(agent: RID, velocity: Vector3): Unit {
-    TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetVelocityForcedPtr, NIL)
+    Internals.writeArguments(_RID to agent, VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetVelocityForcedPtr, NIL)
   }
 
   /**
@@ -1145,8 +1144,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetVelocity(agent: RID, velocity: Vector3): Unit {
-    TransferContext.writeArguments(_RID to agent, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetVelocityPtr, NIL)
+    Internals.writeArguments(_RID to agent, VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetVelocityPtr, NIL)
   }
 
   /**
@@ -1154,9 +1153,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetVelocity(agent: RID): Vector3 {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1164,8 +1163,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetPosition(agent: RID, position: Vector3): Unit {
-    TransferContext.writeArguments(_RID to agent, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetPositionPtr, NIL)
+    Internals.writeArguments(_RID to agent, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetPositionPtr, NIL)
   }
 
   /**
@@ -1173,9 +1172,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetPosition(agent: RID): Vector3 {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1183,9 +1182,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentIsMapChanged(agent: RID): Boolean {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentIsMapChangedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentIsMapChangedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1198,8 +1197,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetAvoidanceCallback(agent: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to agent, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceCallbackPtr, NIL)
+    Internals.writeArguments(_RID to agent, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetAvoidanceCallbackPtr, NIL)
   }
 
   /**
@@ -1207,9 +1206,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentHasAvoidanceCallback(agent: RID): Boolean {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentHasAvoidanceCallbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentHasAvoidanceCallbackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1217,8 +1216,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetAvoidanceLayers(agent: RID, layers: Long): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceLayersPtr, NIL)
+    Internals.writeArguments(_RID to agent, LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetAvoidanceLayersPtr, NIL)
   }
 
   /**
@@ -1226,9 +1225,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetAvoidanceLayers(agent: RID): Long {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetAvoidanceLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1236,8 +1235,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetAvoidanceMask(agent: RID, mask: Long): Unit {
-    TransferContext.writeArguments(_RID to agent, LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidanceMaskPtr, NIL)
+    Internals.writeArguments(_RID to agent, LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.agentSetAvoidanceMaskPtr, NIL)
   }
 
   /**
@@ -1245,9 +1244,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetAvoidanceMask(agent: RID): Long {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidanceMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetAvoidanceMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1259,8 +1258,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentSetAvoidancePriority(agent: RID, priority: Float): Unit {
-    TransferContext.writeArguments(_RID to agent, DOUBLE to priority.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.agentSetAvoidancePriorityPtr, NIL)
+    Internals.writeArguments(_RID to agent, DOUBLE to priority.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.agentSetAvoidancePriorityPtr, NIL)
   }
 
   /**
@@ -1268,9 +1267,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun agentGetAvoidancePriority(agent: RID): Float {
-    TransferContext.writeArguments(_RID to agent)
-    TransferContext.callMethod(rawPtr, MethodBindings.agentGetAvoidancePriorityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to agent)
+    Internals.callMethod(rawPtr, MethodBindings.agentGetAvoidancePriorityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1278,9 +1277,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.obstacleCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1288,8 +1287,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetAvoidanceEnabled(obstacle: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceEnabledPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceEnabledPtr, NIL)
   }
 
   /**
@@ -1297,9 +1296,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetAvoidanceEnabled(obstacle: RID): Boolean {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1307,8 +1306,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetUse3dAvoidance(obstacle: RID, enabled: Boolean): Unit {
-    TransferContext.writeArguments(_RID to obstacle, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetUse3dAvoidancePtr, NIL)
+    Internals.writeArguments(_RID to obstacle, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetUse3dAvoidancePtr, NIL)
   }
 
   /**
@@ -1317,9 +1316,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetUse3dAvoidance(obstacle: RID): Boolean {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetUse3dAvoidancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetUse3dAvoidancePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1327,8 +1326,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetMap(obstacle: RID, map: RID): Unit {
-    TransferContext.writeArguments(_RID to obstacle, _RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetMapPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, _RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetMapPtr, NIL)
   }
 
   /**
@@ -1336,9 +1335,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetMap(obstacle: RID): RID {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1347,8 +1346,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
-    TransferContext.writeArguments(_RID to obstacle, BOOL to paused)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetPausedPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, BOOL to paused)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetPausedPtr, NIL)
   }
 
   /**
@@ -1356,9 +1355,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetPaused(obstacle: RID): Boolean {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1366,8 +1365,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetRadius(obstacle: RID, radius: Float): Unit {
-    TransferContext.writeArguments(_RID to obstacle, DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetRadiusPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetRadiusPtr, NIL)
   }
 
   /**
@@ -1375,9 +1374,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetRadius(obstacle: RID): Float {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1386,8 +1385,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetHeight(obstacle: RID, height: Float): Unit {
-    TransferContext.writeArguments(_RID to obstacle, DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetHeightPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetHeightPtr, NIL)
   }
 
   /**
@@ -1395,9 +1394,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetHeight(obstacle: RID): Float {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1406,8 +1405,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetVelocity(obstacle: RID, velocity: Vector3): Unit {
-    TransferContext.writeArguments(_RID to obstacle, VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetVelocityPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetVelocityPtr, NIL)
   }
 
   /**
@@ -1415,9 +1414,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetVelocity(obstacle: RID): Vector3 {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1425,8 +1424,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetPosition(obstacle: RID, position: Vector3): Unit {
-    TransferContext.writeArguments(_RID to obstacle, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetPositionPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetPositionPtr, NIL)
   }
 
   /**
@@ -1434,9 +1433,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetPosition(obstacle: RID): Vector3 {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -1445,8 +1444,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetVertices(obstacle: RID, vertices: PackedVector3Array): Unit {
-    TransferContext.writeArguments(_RID to obstacle, PACKED_VECTOR3_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetVerticesPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, PACKED_VECTOR3_ARRAY to vertices)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetVerticesPtr, NIL)
   }
 
   /**
@@ -1454,9 +1453,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetVertices(obstacle: RID): PackedVector3Array {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetVerticesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetVerticesPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -1464,8 +1463,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleSetAvoidanceLayers(obstacle: RID, layers: Long): Unit {
-    TransferContext.writeArguments(_RID to obstacle, LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceLayersPtr, NIL)
+    Internals.writeArguments(_RID to obstacle, LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleSetAvoidanceLayersPtr, NIL)
   }
 
   /**
@@ -1473,9 +1472,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun obstacleGetAvoidanceLayers(obstacle: RID): Long {
-    TransferContext.writeArguments(_RID to obstacle)
-    TransferContext.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(_RID to obstacle)
+    Internals.callMethod(rawPtr, MethodBindings.obstacleGetAvoidanceLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1498,8 +1497,8 @@ public object NavigationServer3D : Object() {
     rootNode: Node?,
     callback: Callable = Callable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -1513,8 +1512,8 @@ public object NavigationServer3D : Object() {
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -1529,8 +1528,8 @@ public object NavigationServer3D : Object() {
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataAsyncPtr, NIL)
   }
 
   /**
@@ -1538,9 +1537,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun isBakingNavigationMesh(navigationMesh: NavigationMesh?): Boolean {
-    TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.isBakingNavigationMeshPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to navigationMesh)
+    Internals.callMethod(rawPtr, MethodBindings.isBakingNavigationMeshPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1550,9 +1549,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun sourceGeometryParserCreate(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.sourceGeometryParserCreatePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.sourceGeometryParserCreatePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1566,8 +1565,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun sourceGeometryParserSetCallback(parser: RID, callback: Callable): Unit {
-    TransferContext.writeArguments(_RID to parser, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.sourceGeometryParserSetCallbackPtr, NIL)
+    Internals.writeArguments(_RID to parser, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.sourceGeometryParserSetCallbackPtr, NIL)
   }
 
   /**
@@ -1580,9 +1579,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun simplifyPath(path: PackedVector3Array, epsilon: Float): PackedVector3Array {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to path, DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.simplifyPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to path, DOUBLE to epsilon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.simplifyPathPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -1590,8 +1589,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun freeRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
+    Internals.writeArguments(_RID to rid)
+    Internals.callMethod(rawPtr, MethodBindings.freeRidPtr, NIL)
   }
 
   /**
@@ -1599,8 +1598,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
 
   /**
@@ -1608,8 +1607,8 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun setDebugEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
   }
 
   /**
@@ -1617,9 +1616,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun getDebugEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1628,9 +1627,9 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
-    TransferContext.writeArguments(LONG to processInfo.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessInfoPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to processInfo.id)
+    Internals.callMethod(rawPtr, MethodBindings.getProcessInfoPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class ProcessInfo(
@@ -1689,435 +1688,435 @@ public object NavigationServer3D : Object() {
 
   internal object MethodBindings {
     public val getMapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "get_maps", 3995934104)
+        Internals.getMethodBindPtr("NavigationServer3D", "get_maps", 3995934104)
 
     public val mapCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_create", 529393457)
 
     public val mapSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_active", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_active", 1265174801)
 
     public val mapIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_is_active", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_is_active", 4155700596)
 
     public val mapSetUpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_up", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_up", 3227306858)
 
     public val mapGetUpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_up", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_up", 531438156)
 
     public val mapSetCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_size", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_cell_size", 1794382983)
 
     public val mapGetCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_size", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_cell_size", 866169185)
 
     public val mapSetCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_cell_height", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_cell_height", 1794382983)
 
     public val mapGetCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_cell_height", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_cell_height", 866169185)
 
     public val mapSetMergeRasterizerCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_merge_rasterizer_cell_scale", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_merge_rasterizer_cell_scale", 1794382983)
 
     public val mapGetMergeRasterizerCellScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_merge_rasterizer_cell_scale", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_merge_rasterizer_cell_scale", 866169185)
 
     public val mapSetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_use_edge_connections", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_use_edge_connections", 1265174801)
 
     public val mapGetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_use_edge_connections", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_use_edge_connections", 4155700596)
 
     public val mapSetEdgeConnectionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_edge_connection_margin", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_edge_connection_margin", 1794382983)
 
     public val mapGetEdgeConnectionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_edge_connection_margin", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_edge_connection_margin", 866169185)
 
     public val mapSetLinkConnectionRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_set_link_connection_radius", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_set_link_connection_radius", 1794382983)
 
     public val mapGetLinkConnectionRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_link_connection_radius", 866169185)
 
     public val mapGetPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_path", 1187418690)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_path", 1187418690)
 
     public val mapGetClosestPointToSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment", 3830095642)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_to_segment", 3830095642)
 
     public val mapGetClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point", 2056183332)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point", 2056183332)
 
     public val mapGetClosestPointNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_normal", 2056183332)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_normal", 2056183332)
 
     public val mapGetClosestPointOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_owner", 553364610)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_closest_point_owner", 553364610)
 
     public val mapGetLinksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_links", 2684255073)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_links", 2684255073)
 
     public val mapGetRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_regions", 2684255073)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_regions", 2684255073)
 
     public val mapGetAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_agents", 2684255073)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_agents", 2684255073)
 
     public val mapGetObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_obstacles", 2684255073)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_obstacles", 2684255073)
 
     public val mapForceUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_force_update", 2722037293)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_force_update", 2722037293)
 
     public val mapGetIterationIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_iteration_id", 2198884583)
 
     public val mapGetRandomPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "map_get_random_point", 722801526)
+        Internals.getMethodBindPtr("NavigationServer3D", "map_get_random_point", 722801526)
 
     public val queryPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "query_path", 3415008901)
+        Internals.getMethodBindPtr("NavigationServer3D", "query_path", 3415008901)
 
     public val regionCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
 
     public val regionSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_enabled", 1265174801)
 
     public val regionGetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enabled", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_enabled", 4155700596)
 
     public val regionSetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_use_edge_connections", 1265174801)
 
     public val regionGetUseEdgeConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_use_edge_connections", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_use_edge_connections", 4155700596)
 
     public val regionSetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enter_cost", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_enter_cost", 1794382983)
 
     public val regionGetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_enter_cost", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_enter_cost", 866169185)
 
     public val regionSetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_travel_cost", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_travel_cost", 1794382983)
 
     public val regionGetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_travel_cost", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_travel_cost", 866169185)
 
     public val regionSetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_owner_id", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_owner_id", 3411492887)
 
     public val regionGetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_owner_id", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_owner_id", 2198884583)
 
     public val regionOwnsPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_owns_point", 2360011153)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_owns_point", 2360011153)
 
     public val regionSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_map", 395945892)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_map", 395945892)
 
     public val regionGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_map", 3814569979)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_map", 3814569979)
 
     public val regionSetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_layers", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_navigation_layers", 3411492887)
 
     public val regionGetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_navigation_layers", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_navigation_layers", 2198884583)
 
     public val regionSetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_transform", 3935195649)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_transform", 3935195649)
 
     public val regionGetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_transform", 1128465797)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_transform", 1128465797)
 
     public val regionSetNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_navigation_mesh", 2764952978)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_set_navigation_mesh", 2764952978)
 
     public val regionBakeNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_bake_navigation_mesh", 1401173477)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_bake_navigation_mesh", 1401173477)
 
     public val regionGetConnectionsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connections_count", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_connections_count", 2198884583)
 
     public val regionGetConnectionPathwayStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_start", 3440143363)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_start", 3440143363)
 
     public val regionGetConnectionPathwayEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end", 3440143363)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_connection_pathway_end", 3440143363)
 
     public val regionGetRandomPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_random_point", 722801526)
+        Internals.getMethodBindPtr("NavigationServer3D", "region_get_random_point", 722801526)
 
     public val linkCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
 
     public val linkSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_map", 395945892)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_map", 395945892)
 
     public val linkGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_map", 3814569979)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_map", 3814569979)
 
     public val linkSetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enabled", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_enabled", 1265174801)
 
     public val linkGetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enabled", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_enabled", 4155700596)
 
     public val linkSetBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_bidirectional", 1265174801)
 
     public val linkIsBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_is_bidirectional", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_is_bidirectional", 4155700596)
 
     public val linkSetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_navigation_layers", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_navigation_layers", 3411492887)
 
     public val linkGetNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_navigation_layers", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_navigation_layers", 2198884583)
 
     public val linkSetStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_start_position", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_start_position", 3227306858)
 
     public val linkGetStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_start_position", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_start_position", 531438156)
 
     public val linkSetEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_end_position", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_end_position", 3227306858)
 
     public val linkGetEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_end_position", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_end_position", 531438156)
 
     public val linkSetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_enter_cost", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_enter_cost", 1794382983)
 
     public val linkGetEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_enter_cost", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_enter_cost", 866169185)
 
     public val linkSetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_travel_cost", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_travel_cost", 1794382983)
 
     public val linkGetTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_travel_cost", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_travel_cost", 866169185)
 
     public val linkSetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_owner_id", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_set_owner_id", 3411492887)
 
     public val linkGetOwnerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_owner_id", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "link_get_owner_id", 2198884583)
 
     public val agentCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_create", 529393457)
 
     public val agentSetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_enabled", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_enabled", 1265174801)
 
     public val agentGetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_enabled", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_enabled", 4155700596)
 
     public val agentSetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_use_3d_avoidance", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_use_3d_avoidance", 1265174801)
 
     public val agentGetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_use_3d_avoidance", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_use_3d_avoidance", 4155700596)
 
     public val agentSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_map", 395945892)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_map", 395945892)
 
     public val agentGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_map", 3814569979)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_map", 3814569979)
 
     public val agentSetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_paused", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_paused", 1265174801)
 
     public val agentGetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_paused", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_paused", 4155700596)
 
     public val agentSetNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_neighbor_distance", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_neighbor_distance", 1794382983)
 
     public val agentGetNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_neighbor_distance", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_neighbor_distance", 866169185)
 
     public val agentSetMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_neighbors", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_max_neighbors", 3411492887)
 
     public val agentGetMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_neighbors", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_max_neighbors", 2198884583)
 
     public val agentSetTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_agents", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_agents", 1794382983)
 
     public val agentGetTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_agents", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_agents", 866169185)
 
     public val agentSetTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_obstacles", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_time_horizon_obstacles", 1794382983)
 
     public val agentGetTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_obstacles", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_time_horizon_obstacles", 866169185)
 
     public val agentSetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_radius", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_radius", 1794382983)
 
     public val agentGetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_radius", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_radius", 866169185)
 
     public val agentSetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_height", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_height", 1794382983)
 
     public val agentGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_height", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_height", 866169185)
 
     public val agentSetMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_max_speed", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_max_speed", 1794382983)
 
     public val agentGetMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_max_speed", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_max_speed", 866169185)
 
     public val agentSetVelocityForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity_forced", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_velocity_forced", 3227306858)
 
     public val agentSetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_velocity", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_velocity", 3227306858)
 
     public val agentGetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_velocity", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_velocity", 531438156)
 
     public val agentSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_position", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_position", 3227306858)
 
     public val agentGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_position", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_position", 531438156)
 
     public val agentIsMapChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_is_map_changed", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_is_map_changed", 4155700596)
 
     public val agentSetAvoidanceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_callback", 3379118538)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_callback", 3379118538)
 
     public val agentHasAvoidanceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_has_avoidance_callback", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_has_avoidance_callback", 4155700596)
 
     public val agentSetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_layers", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_layers", 3411492887)
 
     public val agentGetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_layers", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_layers", 2198884583)
 
     public val agentSetAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_mask", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_mask", 3411492887)
 
     public val agentGetAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_mask", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_mask", 2198884583)
 
     public val agentSetAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_priority", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_set_avoidance_priority", 1794382983)
 
     public val agentGetAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_priority", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "agent_get_avoidance_priority", 866169185)
 
     public val obstacleCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_create", 529393457)
 
     public val obstacleSetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_enabled", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_enabled", 1265174801)
 
     public val obstacleGetAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_enabled", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_enabled", 4155700596)
 
     public val obstacleSetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_use_3d_avoidance", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_use_3d_avoidance", 1265174801)
 
     public val obstacleGetUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_use_3d_avoidance", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_use_3d_avoidance", 4155700596)
 
     public val obstacleSetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_map", 395945892)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_map", 395945892)
 
     public val obstacleGetMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_map", 3814569979)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_map", 3814569979)
 
     public val obstacleSetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_paused", 1265174801)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_paused", 1265174801)
 
     public val obstacleGetPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_paused", 4155700596)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_paused", 4155700596)
 
     public val obstacleSetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_radius", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_radius", 1794382983)
 
     public val obstacleGetRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_radius", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_radius", 866169185)
 
     public val obstacleSetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_height", 1794382983)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_height", 1794382983)
 
     public val obstacleGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_height", 866169185)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_height", 866169185)
 
     public val obstacleSetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_velocity", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_velocity", 3227306858)
 
     public val obstacleGetVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_velocity", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_velocity", 531438156)
 
     public val obstacleSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_position", 3227306858)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_position", 3227306858)
 
     public val obstacleGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_position", 531438156)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_position", 531438156)
 
     public val obstacleSetVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_vertices", 4030257846)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_vertices", 4030257846)
 
     public val obstacleGetVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_vertices", 808965560)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_vertices", 808965560)
 
     public val obstacleSetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_layers", 3411492887)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_set_avoidance_layers", 3411492887)
 
     public val obstacleGetAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers", 2198884583)
+        Internals.getMethodBindPtr("NavigationServer3D", "obstacle_get_avoidance_layers", 2198884583)
 
     public val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 685862123)
+        Internals.getMethodBindPtr("NavigationServer3D", "parse_source_geometry_data", 685862123)
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 2469318639)
+        Internals.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data", 2469318639)
 
     public val bakeFromSourceGeometryDataAsyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 2469318639)
+        Internals.getMethodBindPtr("NavigationServer3D", "bake_from_source_geometry_data_async", 2469318639)
 
     public val isBakingNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh", 3142026141)
+        Internals.getMethodBindPtr("NavigationServer3D", "is_baking_navigation_mesh", 3142026141)
 
     public val sourceGeometryParserCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_create", 529393457)
+        Internals.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_create", 529393457)
 
     public val sourceGeometryParserSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_set_callback", 3379118538)
+        Internals.getMethodBindPtr("NavigationServer3D", "source_geometry_parser_set_callback", 3379118538)
 
     public val simplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "simplify_path", 2344122170)
+        Internals.getMethodBindPtr("NavigationServer3D", "simplify_path", 2344122170)
 
     public val freeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "free_rid", 2722037293)
+        Internals.getMethodBindPtr("NavigationServer3D", "free_rid", 2722037293)
 
     public val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "set_active", 2586408642)
+        Internals.getMethodBindPtr("NavigationServer3D", "set_active", 2586408642)
 
     public val setDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "set_debug_enabled", 2586408642)
+        Internals.getMethodBindPtr("NavigationServer3D", "set_debug_enabled", 2586408642)
 
     public val getDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "get_debug_enabled", 36873697)
+        Internals.getMethodBindPtr("NavigationServer3D", "get_debug_enabled", 36873697)
 
     public val getProcessInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationServer3D", "get_process_info", 1938440894)
+        Internals.getMethodBindPtr("NavigationServer3D", "get_process_info", 1938440894)
   }
 }

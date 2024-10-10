@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -16,7 +15,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -80,37 +79,37 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRHANDTRACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRHANDTRACKER_INDEX, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hasData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+    Internals.writeArguments(BOOL to hasData)
+    Internals.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
   public final fun getHasTrackingData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHandTrackingSource(source: HandTrackingSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
+    Internals.writeArguments(LONG to source.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHandTrackingSourcePtr, NIL)
   }
 
   public final fun getHandTrackingSource(): HandTrackingSource {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
-    return XRHandTracker.HandTrackingSource.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
+    return XRHandTracker.HandTrackingSource.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets flags about the validity of the tracking data for the given hand joint.
    */
   public final fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags): Unit {
-    TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandJointFlagsPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setHandJointFlagsPtr, NIL)
   }
 
   /**
@@ -118,77 +117,77 @@ public open class XRHandTracker : XRPositionalTracker() {
    * [XRHandTracker.HandJointFlags]).
    */
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
-    return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
+    return HandJointFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the transform for the given hand joint.
    */
   public final fun setHandJointTransform(joint: HandJoint, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandJointTransformPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setHandJointTransformPtr, NIL)
   }
 
   /**
    * Returns the transform for the given hand joint.
    */
   public final fun getHandJointTransform(joint: HandJoint): Transform3D {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
    * Sets the radius of the given hand joint.
    */
   public final fun setHandJointRadius(joint: HandJoint, radius: Float): Unit {
-    TransferContext.writeArguments(LONG to joint.id, DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandJointRadiusPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHandJointRadiusPtr, NIL)
   }
 
   /**
    * Returns the radius of the given hand joint.
    */
   public final fun getHandJointRadius(joint: HandJoint): Float {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets the linear velocity for the given hand joint.
    */
   public final fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3): Unit {
-    TransferContext.writeArguments(LONG to joint.id, VECTOR3 to linearVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandJointLinearVelocityPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, VECTOR3 to linearVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setHandJointLinearVelocityPtr, NIL)
   }
 
   /**
    * Returns the linear velocity for the given hand joint.
    */
   public final fun getHandJointLinearVelocity(joint: HandJoint): Vector3 {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Sets the angular velocity for the given hand joint.
    */
   public final fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3): Unit {
-    TransferContext.writeArguments(LONG to joint.id, VECTOR3 to angularVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandJointAngularVelocityPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, VECTOR3 to angularVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setHandJointAngularVelocityPtr, NIL)
   }
 
   /**
    * Returns the angular velocity for the given hand joint.
    */
   public final fun getHandJointAngularVelocity(joint: HandJoint): Vector3 {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public enum class HandTrackingSource(
@@ -426,45 +425,45 @@ public open class XRHandTracker : XRPositionalTracker() {
 
   internal object MethodBindings {
     public val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2586408642)
+        Internals.getMethodBindPtr("XRHandTracker", "set_has_tracking_data", 2586408642)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36873697)
+        Internals.getMethodBindPtr("XRHandTracker", "get_has_tracking_data", 36873697)
 
     public val setHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2958308861)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_tracking_source", 2958308861)
 
     public val getHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2475045250)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_tracking_source", 2475045250)
 
     public val setHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3028437365)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_flags", 3028437365)
 
     public val getHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1730972401)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_flags", 1730972401)
 
     public val setHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2529959613)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_transform", 2529959613)
 
     public val getHandJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1090840196)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_transform", 1090840196)
 
     public val setHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2723659615)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_radius", 2723659615)
 
     public val getHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3400025734)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_radius", 3400025734)
 
     public val setHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1978646737)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_linear_velocity", 1978646737)
 
     public val getHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547240792)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_linear_velocity", 547240792)
 
     public val setHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1978646737)
+        Internals.getMethodBindPtr("XRHandTracker", "set_hand_joint_angular_velocity", 1978646737)
 
     public val getHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
+        Internals.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
   }
 }

@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -98,7 +97,7 @@ public open class SubViewport : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SUBVIEWPORT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SUBVIEWPORT_INDEX, scriptIndex)
   }
 
   /**
@@ -155,58 +154,58 @@ public open class SubViewport : Viewport() {
 
 
   public final fun setSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverride(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSize2dOverridePtr, NIL)
   }
 
   public final fun getSize2dOverride(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSize2dOverridePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setSize2dOverrideStretch(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
   }
 
   public final fun isSize2dOverrideStretchEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSize2dOverrideStretchEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
-    return SubViewport.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    return SubViewport.UpdateMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearMode(mode: ClearMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setClearModePtr, NIL)
   }
 
   public final fun getClearMode(): ClearMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
-    return SubViewport.ClearMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClearModePtr, LONG)
+    return SubViewport.ClearMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ClearMode(
@@ -275,33 +274,33 @@ public open class SubViewport : Viewport() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size", 1130785943)
+        Internals.getMethodBindPtr("SubViewport", "set_size", 1130785943)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_size", 3690982128)
+        Internals.getMethodBindPtr("SubViewport", "get_size", 3690982128)
 
     public val setSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override", 1130785943)
+        Internals.getMethodBindPtr("SubViewport", "set_size_2d_override", 1130785943)
 
     public val getSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override", 3690982128)
+        Internals.getMethodBindPtr("SubViewport", "get_size_2d_override", 3690982128)
 
     public val setSize2dOverrideStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2586408642)
+        Internals.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2586408642)
 
     public val isSize2dOverrideStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
+        Internals.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)
+        Internals.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode", 2980171553)
+        Internals.getMethodBindPtr("SubViewport", "get_update_mode", 2980171553)
 
     public val setClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode", 2834454712)
+        Internals.getMethodBindPtr("SubViewport", "set_clear_mode", 2834454712)
 
     public val getClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode", 331324495)
+        Internals.getMethodBindPtr("SubViewport", "get_clear_mode", 331324495)
   }
 }

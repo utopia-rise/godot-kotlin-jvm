@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -44,7 +43,7 @@ public open class InputEventPanGesture : InputEventGesture() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTPANGESTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTPANGESTURE_INDEX, scriptIndex)
   }
 
   /**
@@ -72,23 +71,23 @@ public open class InputEventPanGesture : InputEventGesture() {
 
 
   public final fun setDelta(delta: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to delta)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
+    Internals.writeArguments(VECTOR2 to delta)
+    Internals.callMethod(rawPtr, MethodBindings.setDeltaPtr, NIL)
   }
 
   public final fun getDelta(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDeltaPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventPanGesture", "set_delta", 743155724)
+        Internals.getMethodBindPtr("InputEventPanGesture", "set_delta", 743155724)
 
     public val getDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventPanGesture", "get_delta", 3341600327)
+        Internals.getMethodBindPtr("InputEventPanGesture", "get_delta", 3341600327)
   }
 }

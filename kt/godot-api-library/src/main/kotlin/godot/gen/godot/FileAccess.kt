@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -122,7 +121,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FILEACCESS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FILEACCESS_INDEX, scriptIndex)
   }
 
   /**
@@ -131,9 +130,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * end file to the original length of the file is lost.
    */
   public final fun resize(length: Long): Error {
-    TransferContext.writeArguments(LONG to length)
-    TransferContext.callMethod(rawPtr, MethodBindings.resizePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to length)
+    Internals.callMethod(rawPtr, MethodBindings.resizePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -145,35 +144,35 @@ public open class FileAccess internal constructor() : RefCounted() {
    * due to constant disk writes.
    */
   public final fun flush(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.flushPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.flushPtr, NIL)
   }
 
   /**
    * Returns the path as a [String] for the current open file.
    */
   public final fun getPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the absolute path as a [String] for the current open file.
    */
   public final fun getPathAbsolute(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathAbsolutePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathAbsolutePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if the file is currently opened.
    */
   public final fun isOpen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOpenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOpenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -181,8 +180,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * of the file).
    */
   public final fun seek(position: Long): Unit {
-    TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
+    Internals.writeArguments(LONG to position)
+    Internals.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
 
   /**
@@ -193,26 +192,26 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun seekEnd(position: Long = 0): Unit {
-    TransferContext.writeArguments(LONG to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.seekEndPtr, NIL)
+    Internals.writeArguments(LONG to position)
+    Internals.callMethod(rawPtr, MethodBindings.seekEndPtr, NIL)
   }
 
   /**
    * Returns the file cursor's position.
    */
   public final fun getPosition(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the size of the file in bytes.
    */
   public final fun getLength(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -234,9 +233,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * ```
    */
   public final fun eofReached(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.eofReachedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.eofReachedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -244,9 +243,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * can be stored and retrieved this way.
    */
   public final fun get8(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.get8Ptr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.get8Ptr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -254,9 +253,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * can be stored and retrieved this way.
    */
   public final fun get16(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.get16Ptr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.get16Ptr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -264,9 +263,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * can be stored and retrieved this way.
    */
   public final fun get32(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.get32Ptr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.get32Ptr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -274,45 +273,45 @@ public open class FileAccess internal constructor() : RefCounted() {
    * can be stored and retrieved this way.
    */
   public final fun get64(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.get64Ptr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.get64Ptr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the next 32 bits from the file as a floating-point number.
    */
   public final fun getFloat(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the next 64 bits from the file as a floating-point number.
    */
   public final fun getDouble(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDoublePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDoublePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
    * Returns the next bits from the file as a floating-point number.
    */
   public final fun getReal(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRealPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRealPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns next [length] bytes of the file as a [PackedByteArray].
    */
   public final fun getBuffer(length: Long): PackedByteArray {
-    TransferContext.writeArguments(LONG to length)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(LONG to length)
+    Internals.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -322,9 +321,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Text is interpreted as being UTF-8 encoded.
    */
   public final fun getLine(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -347,9 +346,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getCsvLine(delim: String = ","): PackedStringArray {
-    TransferContext.writeArguments(STRING to delim)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCsvLinePtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to delim)
+    Internals.callMethod(rawPtr, MethodBindings.getCsvLinePtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -359,20 +358,20 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getAsText(skipCr: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to skipCr)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(BOOL to skipCr)
+    Internals.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun isBigEndian(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBigEndianPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBigEndianPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBigEndian(bigEndian: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to bigEndian)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
+    Internals.writeArguments(BOOL to bigEndian)
+    Internals.callMethod(rawPtr, MethodBindings.setBigEndianPtr, NIL)
   }
 
   /**
@@ -380,9 +379,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * `ERR_FILE_*` constants from [Error].
    */
   public final fun getError(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getErrorPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -395,9 +394,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getVar(allowObjects: Boolean = false): Any? {
-    TransferContext.writeArguments(BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(BOOL to allowObjects)
+    Internals.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -408,8 +407,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * example).
    */
   public final fun store8(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.store8Ptr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.store8Ptr, NIL)
   }
 
   /**
@@ -454,8 +453,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * ```
    */
   public final fun store16(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.store16Ptr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.store16Ptr, NIL)
   }
 
   /**
@@ -466,8 +465,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * example).
    */
   public final fun store32(`value`: Long): Unit {
-    TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.store32Ptr, NIL)
+    Internals.writeArguments(LONG to value)
+    Internals.callMethod(rawPtr, MethodBindings.store32Ptr, NIL)
   }
 
   /**
@@ -476,40 +475,40 @@ public open class FileAccess internal constructor() : RefCounted() {
    * value).
    */
   public final fun store64(`value`: Long): Unit {
-    TransferContext.writeArguments(LONG to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.store64Ptr, NIL)
+    Internals.writeArguments(LONG to value)
+    Internals.callMethod(rawPtr, MethodBindings.store64Ptr, NIL)
   }
 
   /**
    * Stores a floating-point number as 32 bits in the file.
    */
   public final fun storeFloat(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.storeFloatPtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.storeFloatPtr, NIL)
   }
 
   /**
    * Stores a floating-point number as 64 bits in the file.
    */
   public final fun storeDouble(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeDoublePtr, NIL)
+    Internals.writeArguments(DOUBLE to value)
+    Internals.callMethod(rawPtr, MethodBindings.storeDoublePtr, NIL)
   }
 
   /**
    * Stores a floating-point number in the file.
    */
   public final fun storeReal(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.storeRealPtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.storeRealPtr, NIL)
   }
 
   /**
    * Stores the given array of bytes in the file.
    */
   public final fun storeBuffer(buffer: PackedByteArray): Unit {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeBufferPtr, NIL)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.storeBufferPtr, NIL)
   }
 
   /**
@@ -517,8 +516,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * UTF-8.
    */
   public final fun storeLine(line: String): Unit {
-    TransferContext.writeArguments(STRING to line)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeLinePtr, NIL)
+    Internals.writeArguments(STRING to line)
+    Internals.callMethod(rawPtr, MethodBindings.storeLinePtr, NIL)
   }
 
   /**
@@ -529,8 +528,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun storeCsvLine(values: PackedStringArray, delim: String = ","): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeCsvLinePtr, NIL)
+    Internals.writeArguments(PACKED_STRING_ARRAY to values, STRING to delim)
+    Internals.callMethod(rawPtr, MethodBindings.storeCsvLinePtr, NIL)
   }
 
   /**
@@ -542,8 +541,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
    */
   public final fun storeString(string: String): Unit {
-    TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeStringPtr, NIL)
+    Internals.writeArguments(STRING to string)
+    Internals.callMethod(rawPtr, MethodBindings.storeStringPtr, NIL)
   }
 
   /**
@@ -558,8 +557,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun storeVar(`value`: Any?, fullObjects: Boolean = false): Unit {
-    TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, MethodBindings.storeVarPtr, NIL)
+    Internals.writeArguments(ANY to value, BOOL to fullObjects)
+    Internals.callMethod(rawPtr, MethodBindings.storeVarPtr, NIL)
   }
 
   /**
@@ -568,8 +567,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Text will be encoded as UTF-8.
    */
   public final fun storePascalString(string: String): Unit {
-    TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, MethodBindings.storePascalStringPtr, NIL)
+    Internals.writeArguments(STRING to string)
+    Internals.callMethod(rawPtr, MethodBindings.storePascalStringPtr, NIL)
   }
 
   /**
@@ -577,9 +576,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Text is interpreted as being UTF-8 encoded.
    */
   public final fun getPascalString(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPascalStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPascalStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -591,8 +590,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    * directly.
    */
   public final fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   public enum class ModeFlags(
@@ -771,9 +770,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * occurred.
      */
     public final fun `open`(path: String, flags: ModeFlags): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to flags.id)
-      TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
+      Internals.writeArguments(STRING to path, LONG to flags.id)
+      Internals.callMethod(0, MethodBindings.openPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as FileAccess?)
     }
 
     /**
@@ -788,9 +787,9 @@ public open class FileAccess internal constructor() : RefCounted() {
       modeFlags: ModeFlags,
       key: PackedByteArray,
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key)
-      TransferContext.callMethod(0, MethodBindings.openEncryptedPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
+      Internals.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key)
+      Internals.callMethod(0, MethodBindings.openEncryptedPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as FileAccess?)
     }
 
     /**
@@ -804,9 +803,9 @@ public open class FileAccess internal constructor() : RefCounted() {
       modeFlags: ModeFlags,
       pass: String,
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
-      TransferContext.callMethod(0, MethodBindings.openEncryptedWithPassPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
+      Internals.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
+      Internals.callMethod(0, MethodBindings.openEncryptedWithPassPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as FileAccess?)
     }
 
     /**
@@ -823,18 +822,18 @@ public open class FileAccess internal constructor() : RefCounted() {
       modeFlags: ModeFlags,
       compressionMode: CompressionMode = FileAccess.CompressionMode.COMPRESSION_FASTLZ,
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
-      TransferContext.callMethod(0, MethodBindings.openCompressedPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
+      Internals.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
+      Internals.callMethod(0, MethodBindings.openCompressedPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as FileAccess?)
     }
 
     /**
      * Returns the result of the last [open] call in the current thread.
      */
     public final fun getOpenError(): Error {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
-      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments()
+      Internals.callMethod(0, MethodBindings.getOpenErrorPtr, LONG)
+      return Error.from(Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -843,9 +842,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * [getOpenError] to check the error that occurred.
      */
     public final fun getFileAsBytes(path: String): PackedByteArray {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getFileAsBytesPtr, PACKED_BYTE_ARRAY)
-      return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.getFileAsBytesPtr, PACKED_BYTE_ARRAY)
+      return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
     }
 
     /**
@@ -855,9 +854,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * [getOpenError] to check the error that occurred.
      */
     public final fun getFileAsString(path: String): String {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getFileAsStringPtr, STRING)
-      return (TransferContext.readReturnValue(STRING) as String)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.getFileAsStringPtr, STRING)
+      return (Internals.readReturnValue(STRING) as String)
     }
 
     /**
@@ -865,9 +864,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * failure.
      */
     public final fun getMd5(path: String): String {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getMd5Ptr, STRING)
-      return (TransferContext.readReturnValue(STRING) as String)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.getMd5Ptr, STRING)
+      return (Internals.readReturnValue(STRING) as String)
     }
 
     /**
@@ -875,9 +874,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * failure.
      */
     public final fun getSha256(path: String): String {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.getSha256Ptr, STRING)
-      return (TransferContext.readReturnValue(STRING) as String)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.getSha256Ptr, STRING)
+      return (Internals.readReturnValue(STRING) as String)
     }
 
     /**
@@ -888,9 +887,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * For a non-static, relative equivalent, use [DirAccess.fileExists].
      */
     public final fun fileExists(path: String): Boolean {
-      TransferContext.writeArguments(STRING to path)
-      TransferContext.callMethod(0, MethodBindings.fileExistsPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL) as Boolean)
+      Internals.writeArguments(STRING to path)
+      Internals.callMethod(0, MethodBindings.fileExistsPtr, BOOL)
+      return (Internals.readReturnValue(BOOL) as Boolean)
     }
 
     /**
@@ -898,9 +897,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * Unix timestamp can be converted to another format using the [Time] singleton.
      */
     public final fun getModifiedTime(`file`: String): Long {
-      TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, MethodBindings.getModifiedTimePtr, LONG)
-      return (TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments(STRING to file)
+      Internals.callMethod(0, MethodBindings.getModifiedTimePtr, LONG)
+      return (Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -908,9 +907,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
     public final fun getUnixPermissions(`file`: String): UnixPermissionFlags {
-      TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
-      return UnixPermissionFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments(STRING to file)
+      Internals.callMethod(0, MethodBindings.getUnixPermissionsPtr, LONG)
+      return UnixPermissionFlagsValue(Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -918,9 +917,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
      */
     public final fun setUnixPermissions(`file`: String, permissions: UnixPermissionFlags): Error {
-      TransferContext.writeArguments(STRING to file, LONG to permissions.flag)
-      TransferContext.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
-      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments(STRING to file, LONG to permissions.flag)
+      Internals.callMethod(0, MethodBindings.setUnixPermissionsPtr, LONG)
+      return Error.from(Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -928,9 +927,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public final fun getHiddenAttribute(`file`: String): Boolean {
-      TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL) as Boolean)
+      Internals.writeArguments(STRING to file)
+      Internals.callMethod(0, MethodBindings.getHiddenAttributePtr, BOOL)
+      return (Internals.readReturnValue(BOOL) as Boolean)
     }
 
     /**
@@ -938,9 +937,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public final fun setHiddenAttribute(`file`: String, hidden: Boolean): Error {
-      TransferContext.writeArguments(STRING to file, BOOL to hidden)
-      TransferContext.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
-      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments(STRING to file, BOOL to hidden)
+      Internals.callMethod(0, MethodBindings.setHiddenAttributePtr, LONG)
+      return Error.from(Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -948,9 +947,9 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public final fun setReadOnlyAttribute(`file`: String, ro: Boolean): Error {
-      TransferContext.writeArguments(STRING to file, BOOL to ro)
-      TransferContext.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
-      return Error.from(TransferContext.readReturnValue(LONG) as Long)
+      Internals.writeArguments(STRING to file, BOOL to ro)
+      Internals.callMethod(0, MethodBindings.setReadOnlyAttributePtr, LONG)
+      return Error.from(Internals.readReturnValue(LONG) as Long)
     }
 
     /**
@@ -958,171 +957,167 @@ public open class FileAccess internal constructor() : RefCounted() {
      * **Note:** This method is implemented on iOS, BSD, macOS, and Windows.
      */
     public final fun getReadOnlyAttribute(`file`: String): Boolean {
-      TransferContext.writeArguments(STRING to file)
-      TransferContext.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL) as Boolean)
+      Internals.writeArguments(STRING to file)
+      Internals.callMethod(0, MethodBindings.getReadOnlyAttributePtr, BOOL)
+      return (Internals.readReturnValue(BOOL) as Boolean)
     }
   }
 
   internal object MethodBindings {
-    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
+    public val openPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "open", 1247358404)
 
     public val openEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 1482131466)
+        Internals.getMethodBindPtr("FileAccess", "open_encrypted", 1482131466)
 
     public val openEncryptedWithPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
+        Internals.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
 
     public val openCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
+        Internals.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
 
     public val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
+        Internals.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
 
     public val getFileAsBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
+        Internals.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
 
     public val getFileAsStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
+        Internals.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
 
-    public val resizePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "resize", 844576869)
+    public val resizePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "resize", 844576869)
 
-    public val flushPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "flush", 3218959716)
+    public val flushPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "flush", 3218959716)
 
-    public val getPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_path", 201670096)
+    public val getPathPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_path", 201670096)
 
     public val getPathAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_path_absolute", 201670096)
+        Internals.getMethodBindPtr("FileAccess", "get_path_absolute", 201670096)
 
-    public val isOpenPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "is_open", 36873697)
+    public val isOpenPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "is_open", 36873697)
 
-    public val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "seek", 1286410249)
+    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "seek", 1286410249)
 
     public val seekEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "seek_end", 1995695955)
+        Internals.getMethodBindPtr("FileAccess", "seek_end", 1995695955)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_position", 3905245786)
+        Internals.getMethodBindPtr("FileAccess", "get_position", 3905245786)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_length", 3905245786)
+        Internals.getMethodBindPtr("FileAccess", "get_length", 3905245786)
 
     public val eofReachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "eof_reached", 36873697)
+        Internals.getMethodBindPtr("FileAccess", "eof_reached", 36873697)
 
-    public val get8Ptr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_8", 3905245786)
+    public val get8Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_8", 3905245786)
 
-    public val get16Ptr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_16", 3905245786)
+    public val get16Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_16", 3905245786)
 
-    public val get32Ptr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_32", 3905245786)
+    public val get32Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_32", 3905245786)
 
-    public val get64Ptr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_64", 3905245786)
+    public val get64Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_64", 3905245786)
 
     public val getFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_float", 1740695150)
+        Internals.getMethodBindPtr("FileAccess", "get_float", 1740695150)
 
     public val getDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_double", 1740695150)
+        Internals.getMethodBindPtr("FileAccess", "get_double", 1740695150)
 
     public val getRealPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_real", 1740695150)
+        Internals.getMethodBindPtr("FileAccess", "get_real", 1740695150)
 
     public val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_buffer", 4131300905)
+        Internals.getMethodBindPtr("FileAccess", "get_buffer", 4131300905)
 
-    public val getLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_line", 201670096)
+    public val getLinePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_line", 201670096)
 
     public val getCsvLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_csv_line", 2358116058)
+        Internals.getMethodBindPtr("FileAccess", "get_csv_line", 2358116058)
 
     public val getAsTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
+        Internals.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
 
-    public val getMd5Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
+    public val getMd5Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
 
     public val getSha256Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
+        Internals.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
 
     public val isBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
+        Internals.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
 
     public val setBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_big_endian", 2586408642)
+        Internals.getMethodBindPtr("FileAccess", "set_big_endian", 2586408642)
 
     public val getErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_error", 3185525595)
+        Internals.getMethodBindPtr("FileAccess", "get_error", 3185525595)
 
-    public val getVarPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_var", 189129690)
+    public val getVarPtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "get_var", 189129690)
 
-    public val store8Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_8", 1286410249)
+    public val store8Ptr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "store_8", 1286410249)
 
     public val store16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_16", 1286410249)
+        Internals.getMethodBindPtr("FileAccess", "store_16", 1286410249)
 
     public val store32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_32", 1286410249)
+        Internals.getMethodBindPtr("FileAccess", "store_32", 1286410249)
 
     public val store64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_64", 1286410249)
+        Internals.getMethodBindPtr("FileAccess", "store_64", 1286410249)
 
     public val storeFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_float", 373806689)
+        Internals.getMethodBindPtr("FileAccess", "store_float", 373806689)
 
     public val storeDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_double", 373806689)
+        Internals.getMethodBindPtr("FileAccess", "store_double", 373806689)
 
     public val storeRealPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_real", 373806689)
+        Internals.getMethodBindPtr("FileAccess", "store_real", 373806689)
 
     public val storeBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_buffer", 2971499966)
+        Internals.getMethodBindPtr("FileAccess", "store_buffer", 2971499966)
 
     public val storeLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_line", 83702148)
+        Internals.getMethodBindPtr("FileAccess", "store_line", 83702148)
 
     public val storeCsvLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_csv_line", 2173791505)
+        Internals.getMethodBindPtr("FileAccess", "store_csv_line", 2173791505)
 
     public val storeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_string", 83702148)
+        Internals.getMethodBindPtr("FileAccess", "store_string", 83702148)
 
     public val storeVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_var", 738511890)
+        Internals.getMethodBindPtr("FileAccess", "store_var", 738511890)
 
     public val storePascalStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_pascal_string", 83702148)
+        Internals.getMethodBindPtr("FileAccess", "store_pascal_string", 83702148)
 
     public val getPascalStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
+        Internals.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
 
-    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "close", 3218959716)
+    public val closePtr: VoidPtr = Internals.getMethodBindPtr("FileAccess", "close", 3218959716)
 
     public val fileExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "file_exists", 2323990056)
+        Internals.getMethodBindPtr("FileAccess", "file_exists", 2323990056)
 
     public val getModifiedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_modified_time", 1597066294)
+        Internals.getMethodBindPtr("FileAccess", "get_modified_time", 1597066294)
 
     public val getUnixPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions", 524341837)
+        Internals.getMethodBindPtr("FileAccess", "get_unix_permissions", 524341837)
 
     public val setUnixPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_unix_permissions", 846038644)
+        Internals.getMethodBindPtr("FileAccess", "set_unix_permissions", 846038644)
 
     public val getHiddenAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_hidden_attribute", 2323990056)
+        Internals.getMethodBindPtr("FileAccess", "get_hidden_attribute", 2323990056)
 
     public val setHiddenAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_hidden_attribute", 2892558115)
+        Internals.getMethodBindPtr("FileAccess", "set_hidden_attribute", 2892558115)
 
     public val setReadOnlyAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_read_only_attribute", 2892558115)
+        Internals.getMethodBindPtr("FileAccess", "set_read_only_attribute", 2892558115)
 
     public val getReadOnlyAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
+        Internals.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
   }
 }

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -37,27 +36,27 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAY_INDEX, scriptIndex)
   }
 
   public final fun setTextureArray(`value`: Texture2DArray?): Unit {
-    TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
+    Internals.writeArguments(OBJECT to value)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureArrayPtr, NIL)
   }
 
   public final fun getTextureArray(): Texture2DArray? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2DArray?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureArrayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2DArray?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTextureArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array", 2206200446)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture2DArray", "set_texture_array", 2206200446)
 
     public val getTextureArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array", 146117123)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture2DArray", "get_texture_array", 146117123)
   }
 }

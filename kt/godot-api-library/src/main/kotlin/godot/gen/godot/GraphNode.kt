@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -19,7 +18,7 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -81,7 +80,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRAPHNODE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRAPHNODE_INDEX, scriptIndex)
   }
 
   public open fun _drawPort(
@@ -93,14 +92,14 @@ public open class GraphNode : GraphElement() {
   }
 
   public final fun setTitle(title: String): Unit {
-    TransferContext.writeArguments(STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+    Internals.writeArguments(STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -109,9 +108,9 @@ public open class GraphNode : GraphElement() {
    * close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   /**
@@ -145,8 +144,8 @@ public open class GraphNode : GraphElement() {
     customIconRight: Texture2D? = null,
     drawStylebox: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enableLeftPort, LONG to typeLeft.toLong(), COLOR to colorLeft, BOOL to enableRightPort, LONG to typeRight.toLong(), COLOR to colorRight, OBJECT to customIconLeft, OBJECT to customIconRight, BOOL to drawStylebox)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), BOOL to enableLeftPort, LONG to typeLeft.toLong(), COLOR to colorLeft, BOOL to enableRightPort, LONG to typeRight.toLong(), COLOR to colorRight, OBJECT to customIconLeft, OBJECT to customIconRight, BOOL to drawStylebox)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotPtr, NIL)
   }
 
   /**
@@ -154,8 +153,8 @@ public open class GraphNode : GraphElement() {
    * output port from the GraphNode.
    */
   public final fun clearSlot(slotIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.clearSlotPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.clearSlotPtr, NIL)
   }
 
   /**
@@ -163,17 +162,17 @@ public open class GraphNode : GraphElement() {
    * GraphNode.
    */
   public final fun clearAllSlots(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearAllSlotsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearAllSlotsPtr, NIL)
   }
 
   /**
    * Returns `true` if left (input) side of the slot with the given [slotIndex] is enabled.
    */
   public final fun isSlotEnabledLeft(slotIndex: Int): Boolean {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledLeftPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isSlotEnabledLeftPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -181,8 +180,8 @@ public open class GraphNode : GraphElement() {
    * port will appear on the left side and the slot will be able to be connected from this side.
    */
   public final fun setSlotEnabledLeft(slotIndex: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotEnabledLeftPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotEnabledLeftPtr, NIL)
   }
 
   /**
@@ -190,34 +189,34 @@ public open class GraphNode : GraphElement() {
    * negative, all connections will be disallowed to be created via user inputs.
    */
   public final fun setSlotTypeLeft(slotIndex: Int, type: Int): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotTypeLeftPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSlotTypeLeftPtr, NIL)
   }
 
   /**
    * Returns the left (input) type of the slot with the given [slotIndex].
    */
   public final fun getSlotTypeLeft(slotIndex: Int): Int {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeLeftPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotTypeLeftPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the [Color] of the left (input) side of the slot with the given [slotIndex] to [color].
    */
   public final fun setSlotColorLeft(slotIndex: Int, color: Color): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotColorLeftPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotColorLeftPtr, NIL)
   }
 
   /**
    * Returns the left (input) [Color] of the slot with the given [slotIndex].
    */
   public final fun getSlotColorLeft(slotIndex: Int): Color {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorLeftPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotColorLeftPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -225,26 +224,26 @@ public open class GraphNode : GraphElement() {
    * [customIcon].
    */
   public final fun setSlotCustomIconLeft(slotIndex: Int, customIcon: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconLeftPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotCustomIconLeftPtr, NIL)
   }
 
   /**
    * Returns the left (input) custom [Texture2D] of the slot with the given [slotIndex].
    */
   public final fun getSlotCustomIconLeft(slotIndex: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconLeftPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotCustomIconLeftPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * Returns `true` if right (output) side of the slot with the given [slotIndex] is enabled.
    */
   public final fun isSlotEnabledRight(slotIndex: Int): Boolean {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isSlotEnabledRightPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isSlotEnabledRightPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -252,8 +251,8 @@ public open class GraphNode : GraphElement() {
    * a port will appear on the right side and the slot will be able to be connected from this side.
    */
   public final fun setSlotEnabledRight(slotIndex: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotEnabledRightPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotEnabledRightPtr, NIL)
   }
 
   /**
@@ -261,34 +260,34 @@ public open class GraphNode : GraphElement() {
    * negative, all connections will be disallowed to be created via user inputs.
    */
   public final fun setSlotTypeRight(slotIndex: Int, type: Int): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotTypeRightPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSlotTypeRightPtr, NIL)
   }
 
   /**
    * Returns the right (output) type of the slot with the given [slotIndex].
    */
   public final fun getSlotTypeRight(slotIndex: Int): Int {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotTypeRightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotTypeRightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the [Color] of the right (output) side of the slot with the given [slotIndex] to [color].
    */
   public final fun setSlotColorRight(slotIndex: Int, color: Color): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotColorRightPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotColorRightPtr, NIL)
   }
 
   /**
    * Returns the right (output) [Color] of the slot with the given [slotIndex].
    */
   public final fun getSlotColorRight(slotIndex: Int): Color {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotColorRightPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotColorRightPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -296,246 +295,244 @@ public open class GraphNode : GraphElement() {
    * to [customIcon].
    */
   public final fun setSlotCustomIconRight(slotIndex: Int, customIcon: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotCustomIconRightPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), OBJECT to customIcon)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotCustomIconRightPtr, NIL)
   }
 
   /**
    * Returns the right (output) custom [Texture2D] of the slot with the given [slotIndex].
    */
   public final fun getSlotCustomIconRight(slotIndex: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlotCustomIconRightPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlotCustomIconRightPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * Returns true if the background [StyleBox] of the slot with the given [slotIndex] is drawn.
    */
   public final fun isSlotDrawStylebox(slotIndex: Int): Boolean {
-    TransferContext.writeArguments(LONG to slotIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isSlotDrawStyleboxPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to slotIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isSlotDrawStyleboxPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Toggles the background [StyleBox] of the slot with the given [slotIndex].
    */
   public final fun setSlotDrawStylebox(slotIndex: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlotDrawStyleboxPtr, NIL)
+    Internals.writeArguments(LONG to slotIndex.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSlotDrawStyleboxPtr, NIL)
   }
 
   public final fun setIgnoreInvalidConnectionType(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
+    Internals.writeArguments(BOOL to ignore)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreInvalidConnectionTypePtr, NIL)
   }
 
   public final fun isIgnoringValidConnectionType(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIgnoringValidConnectionTypePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the number of slots with an enabled input port.
    */
   public final fun getInputPortCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInputPortCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the position of the input port with the given [portIdx].
    */
   public final fun getInputPortPosition(portIdx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputPortPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the type of the input port with the given [portIdx].
    */
   public final fun getInputPortType(portIdx: Int): Int {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputPortTypePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the [Color] of the input port with the given [portIdx].
    */
   public final fun getInputPortColor(portIdx: Int): Color {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputPortColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
    * Returns the corresponding slot index of the input port with the given [portIdx].
    */
   public final fun getInputPortSlot(portIdx: Int): Int {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPortSlotPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInputPortSlotPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the number of slots with an enabled output port.
    */
   public final fun getOutputPortCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutputPortCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the position of the output port with the given [portIdx].
    */
   public final fun getOutputPortPosition(portIdx: Int): Vector2 {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOutputPortPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the type of the output port with the given [portIdx].
    */
   public final fun getOutputPortType(portIdx: Int): Int {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOutputPortTypePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the [Color] of the output port with the given [portIdx].
    */
   public final fun getOutputPortColor(portIdx: Int): Color {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOutputPortColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
    * Returns the corresponding slot index of the output port with the given [portIdx].
    */
   public final fun getOutputPortSlot(portIdx: Int): Int {
-    TransferContext.writeArguments(LONG to portIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutputPortSlotPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to portIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOutputPortSlotPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_title", 83702148)
+    public val setTitlePtr: VoidPtr = Internals.getMethodBindPtr("GraphNode", "set_title", 83702148)
 
     public val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_title", 201670096)
+        Internals.getMethodBindPtr("GraphNode", "get_title", 201670096)
 
     public val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_titlebar_hbox", 3590609951)
+        Internals.getMethodBindPtr("GraphNode", "get_titlebar_hbox", 3590609951)
 
-    public val setSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot", 2873310869)
+    public val setSlotPtr: VoidPtr = Internals.getMethodBindPtr("GraphNode", "set_slot", 2873310869)
 
     public val clearSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "clear_slot", 1286410249)
+        Internals.getMethodBindPtr("GraphNode", "clear_slot", 1286410249)
 
     public val clearAllSlotsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "clear_all_slots", 3218959716)
+        Internals.getMethodBindPtr("GraphNode", "clear_all_slots", 3218959716)
 
     public val isSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_left", 1116898809)
+        Internals.getMethodBindPtr("GraphNode", "is_slot_enabled_left", 1116898809)
 
     public val setSlotEnabledLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_left", 300928843)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_enabled_left", 300928843)
 
     public val setSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_left", 3937882851)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_type_left", 3937882851)
 
     public val getSlotTypeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_left", 923996154)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_type_left", 923996154)
 
     public val setSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_left", 2878471219)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_color_left", 2878471219)
 
     public val getSlotColorLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_left", 3457211756)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_color_left", 3457211756)
 
     public val setSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left", 666127730)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_custom_icon_left", 666127730)
 
     public val getSlotCustomIconLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3536238170)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_custom_icon_left", 3536238170)
 
     public val isSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1116898809)
+        Internals.getMethodBindPtr("GraphNode", "is_slot_enabled_right", 1116898809)
 
     public val setSlotEnabledRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_enabled_right", 300928843)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_enabled_right", 300928843)
 
     public val setSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_type_right", 3937882851)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_type_right", 3937882851)
 
     public val getSlotTypeRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_type_right", 923996154)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_type_right", 923996154)
 
     public val setSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_color_right", 2878471219)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_color_right", 2878471219)
 
     public val getSlotColorRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_color_right", 3457211756)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_color_right", 3457211756)
 
     public val setSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right", 666127730)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_custom_icon_right", 666127730)
 
     public val getSlotCustomIconRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3536238170)
+        Internals.getMethodBindPtr("GraphNode", "get_slot_custom_icon_right", 3536238170)
 
     public val isSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1116898809)
+        Internals.getMethodBindPtr("GraphNode", "is_slot_draw_stylebox", 1116898809)
 
     public val setSlotDrawStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox", 300928843)
+        Internals.getMethodBindPtr("GraphNode", "set_slot_draw_stylebox", 300928843)
 
     public val setIgnoreInvalidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type", 2586408642)
+        Internals.getMethodBindPtr("GraphNode", "set_ignore_invalid_connection_type", 2586408642)
 
     public val isIgnoringValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36873697)
+        Internals.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36873697)
 
     public val getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count", 2455072627)
+        Internals.getMethodBindPtr("GraphNode", "get_input_port_count", 2455072627)
 
     public val getInputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_position", 3114997196)
+        Internals.getMethodBindPtr("GraphNode", "get_input_port_position", 3114997196)
 
     public val getInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_type", 3744713108)
+        Internals.getMethodBindPtr("GraphNode", "get_input_port_type", 3744713108)
 
     public val getInputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_color", 2624840992)
+        Internals.getMethodBindPtr("GraphNode", "get_input_port_color", 2624840992)
 
     public val getInputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_input_port_slot", 3744713108)
+        Internals.getMethodBindPtr("GraphNode", "get_input_port_slot", 3744713108)
 
     public val getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_count", 2455072627)
+        Internals.getMethodBindPtr("GraphNode", "get_output_port_count", 2455072627)
 
     public val getOutputPortPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_position", 3114997196)
+        Internals.getMethodBindPtr("GraphNode", "get_output_port_position", 3114997196)
 
     public val getOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_type", 3744713108)
+        Internals.getMethodBindPtr("GraphNode", "get_output_port_type", 3744713108)
 
     public val getOutputPortColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_color", 2624840992)
+        Internals.getMethodBindPtr("GraphNode", "get_output_port_color", 2624840992)
 
     public val getOutputPortSlotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphNode", "get_output_port_slot", 3744713108)
+        Internals.getMethodBindPtr("GraphNode", "get_output_port_slot", 3744713108)
   }
 }

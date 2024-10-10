@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -83,58 +82,58 @@ public open class HeightMapShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_HEIGHTMAPSHAPE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_HEIGHTMAPSHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setMapWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMapWidthPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMapWidthPtr, NIL)
   }
 
   public final fun getMapWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMapWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMapDepth(height: Int): Unit {
-    TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMapDepthPtr, NIL)
+    Internals.writeArguments(LONG to height.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMapDepthPtr, NIL)
   }
 
   public final fun getMapDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMapDepthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMapData(`data`: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMapDataPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.setMapDataPtr, NIL)
   }
 
   public final fun getMapData(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMapDataPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
    * Returns the smallest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
   public final fun getMinHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the largest height value found in [mapData]. Recalculates only when [mapData] changes.
    */
   public final fun getMaxHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -151,38 +150,38 @@ public open class HeightMapShape3D : Shape3D() {
     heightMin: Float,
     heightMax: Float,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, DOUBLE to heightMin.toDouble(), DOUBLE to heightMax.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.updateMapDataFromImagePtr, NIL)
+    Internals.writeArguments(OBJECT to image, DOUBLE to heightMin.toDouble(), DOUBLE to heightMax.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.updateMapDataFromImagePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1286410249)
+        Internals.getMethodBindPtr("HeightMapShape3D", "set_map_width", 1286410249)
 
     public val getMapWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3905245786)
+        Internals.getMethodBindPtr("HeightMapShape3D", "get_map_width", 3905245786)
 
     public val setMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1286410249)
+        Internals.getMethodBindPtr("HeightMapShape3D", "set_map_depth", 1286410249)
 
     public val getMapDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3905245786)
+        Internals.getMethodBindPtr("HeightMapShape3D", "get_map_depth", 3905245786)
 
     public val setMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2899603908)
+        Internals.getMethodBindPtr("HeightMapShape3D", "set_map_data", 2899603908)
 
     public val getMapDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675695659)
+        Internals.getMethodBindPtr("HeightMapShape3D", "get_map_data", 675695659)
 
     public val getMinHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1740695150)
+        Internals.getMethodBindPtr("HeightMapShape3D", "get_min_height", 1740695150)
 
     public val getMaxHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1740695150)
+        Internals.getMethodBindPtr("HeightMapShape3D", "get_max_height", 1740695150)
 
     public val updateMapDataFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2636652979)
+        Internals.getMethodBindPtr("HeightMapShape3D", "update_map_data_from_image", 2636652979)
   }
 }

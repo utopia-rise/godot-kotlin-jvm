@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -19,7 +18,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -49,7 +48,7 @@ private const val ENGINE_CLASS_PERFORMANCE_INDEX: Int = 2
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_PERFORMANCE_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_PERFORMANCE_INDEX)
   }
 
   /**
@@ -70,9 +69,9 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitor(monitor: Monitor): Double {
-    TransferContext.writeArguments(LONG to monitor.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments(LONG to monitor.id)
+    Internals.callMethod(rawPtr, MethodBindings.getMonitorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -144,8 +143,8 @@ public object Performance : Object() {
     callable: Callable,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.addCustomMonitorPtr, NIL)
+    Internals.writeArguments(STRING_NAME to id, CALLABLE to callable, ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.addCustomMonitorPtr, NIL)
   }
 
   /**
@@ -154,8 +153,8 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun removeCustomMonitor(id: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
+    Internals.writeArguments(STRING_NAME to id)
+    Internals.callMethod(rawPtr, MethodBindings.removeCustomMonitorPtr, NIL)
   }
 
   /**
@@ -163,9 +162,9 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun hasCustomMonitor(id: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to id)
+    Internals.callMethod(rawPtr, MethodBindings.hasCustomMonitorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -174,9 +173,9 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitor(id: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to id)
+    Internals.callMethod(rawPtr, MethodBindings.getCustomMonitorPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -185,9 +184,9 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitorModificationTime(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMonitorModificationTimePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -195,9 +194,9 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getCustomMonitorNames(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomMonitorNamesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public enum class Monitor(
@@ -371,24 +370,24 @@ public object Performance : Object() {
 
   internal object MethodBindings {
     public val getMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_monitor", 1943275655)
+        Internals.getMethodBindPtr("Performance", "get_monitor", 1943275655)
 
     public val addCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "add_custom_monitor", 4099036814)
+        Internals.getMethodBindPtr("Performance", "add_custom_monitor", 4099036814)
 
     public val removeCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "remove_custom_monitor", 3304788590)
+        Internals.getMethodBindPtr("Performance", "remove_custom_monitor", 3304788590)
 
     public val hasCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "has_custom_monitor", 2041966384)
+        Internals.getMethodBindPtr("Performance", "has_custom_monitor", 2041966384)
 
     public val getCustomMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor", 2138907829)
+        Internals.getMethodBindPtr("Performance", "get_custom_monitor", 2138907829)
 
     public val getMonitorModificationTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_monitor_modification_time", 2455072627)
+        Internals.getMethodBindPtr("Performance", "get_monitor_modification_time", 2455072627)
 
     public val getCustomMonitorNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Performance", "get_custom_monitor_names", 2915620761)
+        Internals.getMethodBindPtr("Performance", "get_custom_monitor_names", 2915620761)
   }
 }

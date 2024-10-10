@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -35,18 +34,18 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODESAMPLE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODESAMPLE3D_INDEX, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    Internals.writeArguments(LONG to value.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeSample3D.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    return VisualShaderNodeSample3D.Source.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -80,9 +79,9 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   internal object MethodBindings {
     public val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3315130991)
+        Internals.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3315130991)
 
     public val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1079494121)
+        Internals.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1079494121)
   }
 }

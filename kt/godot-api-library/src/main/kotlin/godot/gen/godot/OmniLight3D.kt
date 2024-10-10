@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -48,18 +47,18 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OMNILIGHT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OMNILIGHT3D_INDEX, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
   }
 
   public final fun getShadowMode(): ShadowMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
-    return OmniLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    return OmniLight3D.ShadowMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ShadowMode(
@@ -90,9 +89,9 @@ public open class OmniLight3D : Light3D() {
 
   internal object MethodBindings {
     public val setShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OmniLight3D", "set_shadow_mode", 121862228)
+        Internals.getMethodBindPtr("OmniLight3D", "set_shadow_mode", 121862228)
 
     public val getShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OmniLight3D", "get_shadow_mode", 4181586331)
+        Internals.getMethodBindPtr("OmniLight3D", "get_shadow_mode", 4181586331)
   }
 }

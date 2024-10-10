@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -59,7 +58,7 @@ private const val ENGINE_CLASS_MOVIEWRITER_INDEX: Int = 342
 @GodotBaseType
 public open class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MOVIEWRITER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MOVIEWRITER_INDEX, scriptIndex)
   }
 
   /**
@@ -127,13 +126,13 @@ public open class MovieWriter : Object() {
      * movie writing is designed to start at the same time as the rest of the engine.
      */
     public final fun addWriter(writer: MovieWriter?): Unit {
-      TransferContext.writeArguments(OBJECT to writer)
-      TransferContext.callMethod(0, MethodBindings.addWriterPtr, NIL)
+      Internals.writeArguments(OBJECT to writer)
+      Internals.callMethod(0, MethodBindings.addWriterPtr, NIL)
     }
   }
 
   internal object MethodBindings {
     public val addWriterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MovieWriter", "add_writer", 4023702871)
+        Internals.getMethodBindPtr("MovieWriter", "add_writer", 4023702871)
   }
 }

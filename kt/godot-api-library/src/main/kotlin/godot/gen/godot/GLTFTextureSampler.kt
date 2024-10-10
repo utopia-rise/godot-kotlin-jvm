@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -73,78 +72,78 @@ public open class GLTFTextureSampler : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX, scriptIndex)
   }
 
   public final fun getMagFilter(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMagFilterPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMagFilter(filterMode: Int): Unit {
-    TransferContext.writeArguments(LONG to filterMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
+    Internals.writeArguments(LONG to filterMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMagFilterPtr, NIL)
   }
 
   public final fun getMinFilter(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinFilterPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMinFilter(filterMode: Int): Unit {
-    TransferContext.writeArguments(LONG to filterMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
+    Internals.writeArguments(LONG to filterMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMinFilterPtr, NIL)
   }
 
   public final fun getWrapS(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWrapSPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapS(wrapMode: Int): Unit {
-    TransferContext.writeArguments(LONG to wrapMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
+    Internals.writeArguments(LONG to wrapMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setWrapSPtr, NIL)
   }
 
   public final fun getWrapT(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWrapTPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWrapT(wrapMode: Int): Unit {
-    TransferContext.writeArguments(LONG to wrapMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
+    Internals.writeArguments(LONG to wrapMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setWrapTPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter", 3905245786)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter", 3905245786)
 
     public val setMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter", 1286410249)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter", 1286410249)
 
     public val getMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter", 3905245786)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "get_min_filter", 3905245786)
 
     public val setMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter", 1286410249)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "set_min_filter", 1286410249)
 
     public val getWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s", 3905245786)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s", 3905245786)
 
     public val setWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s", 1286410249)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s", 1286410249)
 
     public val getWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t", 3905245786)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t", 3905245786)
 
     public val setWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t", 1286410249)
+        Internals.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t", 1286410249)
   }
 }

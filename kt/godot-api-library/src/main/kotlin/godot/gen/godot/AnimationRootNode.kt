@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -27,7 +28,7 @@ private const val ENGINE_CLASS_ANIMATIONROOTNODE_INDEX: Int = 70
 @GodotBaseType
 public open class AnimationRootNode : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONROOTNODE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONROOTNODE_INDEX, scriptIndex)
   }
 
   public companion object

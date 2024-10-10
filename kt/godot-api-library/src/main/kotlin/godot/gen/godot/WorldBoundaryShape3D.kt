@@ -10,10 +10,9 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Plane
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PLANE
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -43,7 +42,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -71,23 +70,23 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
 
   public final fun setPlane(plane: Plane): Unit {
-    TransferContext.writeArguments(PLANE to plane)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
+    Internals.writeArguments(PLANE to plane)
+    Internals.callMethod(rawPtr, MethodBindings.setPlanePtr, NIL)
   }
 
   public final fun getPlane(): Plane {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
-    return (TransferContext.readReturnValue(PLANE) as Plane)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlanePtr, PLANE)
+    return (Internals.readReturnValue(PLANE) as Plane)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3505987427)
+        Internals.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3505987427)
 
     public val getPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2753500971)
+        Internals.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2753500971)
   }
 }

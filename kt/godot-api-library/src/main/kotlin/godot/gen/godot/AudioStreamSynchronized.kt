@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -43,52 +42,52 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {
-    TransferContext.writeArguments(LONG to streamCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
+    Internals.writeArguments(LONG to streamCount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setStreamCountPtr, NIL)
   }
 
   public final fun getStreamCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Set one of the synchronized streams, by index.
    */
   public final fun setSyncStream(streamIndex: Int, audioStream: AudioStream?): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSyncStreamPtr, NIL)
+    Internals.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
+    Internals.callMethod(rawPtr, MethodBindings.setSyncStreamPtr, NIL)
   }
 
   /**
    * Get one of the synchronized streams, by index.
    */
   public final fun getSyncStream(streamIndex: Int): AudioStream? {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
+    Internals.writeArguments(LONG to streamIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSyncStreamPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioStream?)
   }
 
   /**
    * Set the volume of one of the synchronized streams, by index.
    */
   public final fun setSyncStreamVolume(streamIndex: Int, volumeDb: Float): Unit {
-    TransferContext.writeArguments(LONG to streamIndex.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSyncStreamVolumePtr, NIL)
+    Internals.writeArguments(LONG to streamIndex.toLong(), DOUBLE to volumeDb.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSyncStreamVolumePtr, NIL)
   }
 
   /**
    * Get the volume of one of the synchronized streams, by index.
    */
   public final fun getSyncStreamVolume(streamIndex: Int): Float {
-    TransferContext.writeArguments(LONG to streamIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to streamIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSyncStreamVolumePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object {
@@ -100,21 +99,21 @@ public open class AudioStreamSynchronized : AudioStream() {
 
   internal object MethodBindings {
     public val setStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_stream_count", 1286410249)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "set_stream_count", 1286410249)
 
     public val getStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_stream_count", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "get_stream_count", 3905245786)
 
     public val setSyncStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream", 111075094)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream", 111075094)
 
     public val getSyncStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream", 2739380747)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream", 2739380747)
 
     public val setSyncStreamVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream_volume", 1602489585)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "set_sync_stream_volume", 1602489585)
 
     public val getSyncStreamVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream_volume", 2339986948)
+        Internals.getMethodBindPtr("AudioStreamSynchronized", "get_sync_stream_volume", 2339986948)
   }
 }

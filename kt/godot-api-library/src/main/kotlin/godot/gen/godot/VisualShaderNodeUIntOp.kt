@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -37,18 +36,18 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEUINTOP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEUINTOP_INDEX, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {
-    TransferContext.writeArguments(LONG to op.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+    Internals.writeArguments(LONG to op.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
   }
 
   public final fun getOperator(): Operator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
-    return VisualShaderNodeUIntOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
+    return VisualShaderNodeUIntOp.Operator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(
@@ -127,9 +126,9 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "set_operator", 3463048345)
+        Internals.getMethodBindPtr("VisualShaderNodeUIntOp", "set_operator", 3463048345)
 
     public val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "get_operator", 256631461)
+        Internals.getMethodBindPtr("VisualShaderNodeUIntOp", "get_operator", 256631461)
   }
 }

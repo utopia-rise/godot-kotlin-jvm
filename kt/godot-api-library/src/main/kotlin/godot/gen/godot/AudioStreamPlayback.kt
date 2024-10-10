@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -30,7 +29,7 @@ private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX: Int = 118
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX, scriptIndex)
   }
 
   /**
@@ -103,8 +102,8 @@ public open class AudioStreamPlayback : RefCounted() {
    * sample of this stream.
    */
   public final fun setSamplePlayback(playbackSample: AudioSamplePlayback?): Unit {
-    TransferContext.writeArguments(OBJECT to playbackSample)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
+    Internals.writeArguments(OBJECT to playbackSample)
+    Internals.callMethod(rawPtr, MethodBindings.setSamplePlaybackPtr, NIL)
   }
 
   /**
@@ -112,18 +111,18 @@ public open class AudioStreamPlayback : RefCounted() {
    * the audio sample of this stream.
    */
   public final fun getSamplePlayback(): AudioSamplePlayback? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioSamplePlayback?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplePlaybackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioSamplePlayback?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSamplePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayback", "set_sample_playback", 3195455091)
+        Internals.getMethodBindPtr("AudioStreamPlayback", "set_sample_playback", 3195455091)
 
     public val getSamplePlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayback", "get_sample_playback", 3482738536)
+        Internals.getMethodBindPtr("AudioStreamPlayback", "get_sample_playback", 3482738536)
   }
 }

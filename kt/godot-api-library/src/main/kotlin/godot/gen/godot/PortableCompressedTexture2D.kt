@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -69,7 +68,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PORTABLECOMPRESSEDTEXTURE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PORTABLECOMPRESSEDTEXTURE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -110,48 +109,48 @@ public open class PortableCompressedTexture2D : Texture2D() {
     normalMap: Boolean = false,
     lossyQuality: Float = 0.8f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromImagePtr, NIL)
+    Internals.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.createFromImagePtr, NIL)
   }
 
   /**
    * Return the image format used (valid after initialized).
    */
   public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return Image.Format.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Return the compression mode used (valid after initialized).
    */
   public final fun getCompressionMode(): CompressionMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompressionModePtr, LONG)
-    return PortableCompressedTexture2D.CompressionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCompressionModePtr, LONG)
+    return PortableCompressedTexture2D.CompressionMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSizeOverride(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+    Internals.writeArguments(VECTOR2 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
   }
 
   public final fun getSizeOverride(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizeOverridePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setKeepCompressedBuffer(keep: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to keep)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepCompressedBufferPtr, NIL)
+    Internals.writeArguments(BOOL to keep)
+    Internals.callMethod(rawPtr, MethodBindings.setKeepCompressedBufferPtr, NIL)
   }
 
   public final fun isKeepingCompressedBuffer(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isKeepingCompressedBufferPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class CompressionMode(
@@ -181,46 +180,46 @@ public open class PortableCompressedTexture2D : Texture2D() {
      * editor.
      */
     public final fun setKeepAllCompressedBuffers(keep: Boolean): Unit {
-      TransferContext.writeArguments(BOOL to keep)
-      TransferContext.callMethod(0, MethodBindings.setKeepAllCompressedBuffersPtr, NIL)
+      Internals.writeArguments(BOOL to keep)
+      Internals.callMethod(0, MethodBindings.setKeepAllCompressedBuffersPtr, NIL)
     }
 
     /**
      * Return whether the flag is overridden for all textures of this type.
      */
     public final fun isKeepingAllCompressedBuffers(): Boolean {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL) as Boolean)
+      Internals.writeArguments()
+      Internals.callMethod(0, MethodBindings.isKeepingAllCompressedBuffersPtr, BOOL)
+      return (Internals.readReturnValue(BOOL) as Boolean)
     }
   }
 
   internal object MethodBindings {
     public val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3679243433)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "create_from_image", 3679243433)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3847873762)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "get_format", 3847873762)
 
     public val getCompressionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3265612739)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "get_compression_mode", 3265612739)
 
     public val setSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override", 743155724)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "set_size_override", 743155724)
 
     public val getSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override", 3341600327)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "get_size_override", 3341600327)
 
     public val setKeepCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer", 2586408642)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_compressed_buffer", 2586408642)
 
     public val isKeepingCompressedBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36873697)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36873697)
 
     public val setKeepAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2586408642)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2586408642)
 
     public val isKeepingAllCompressedBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers", 2240911060)
+        Internals.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_all_compressed_buffers", 2240911060)
   }
 }

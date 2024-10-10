@@ -12,14 +12,13 @@ import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -67,7 +66,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX, scriptIndex)
   }
 
   /**
@@ -92,9 +91,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    */
   @JvmOverloads
   public final fun initialize(configuration: Dictionary<Any?, Any?> = Dictionary()): Error {
-    TransferContext.writeArguments(DICTIONARY to configuration)
-    TransferContext.callMethod(rawPtr, MethodBindings.initializePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(DICTIONARY to configuration)
+    Internals.callMethod(rawPtr, MethodBindings.initializePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -131,9 +130,9 @@ public open class WebRTCPeerConnection : RefCounted() {
   @JvmOverloads
   public final fun createDataChannel(label: String, options: Dictionary<Any?, Any?> = Dictionary()):
       WebRTCDataChannel? {
-    TransferContext.writeArguments(STRING to label, DICTIONARY to options)
-    TransferContext.callMethod(rawPtr, MethodBindings.createDataChannelPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as WebRTCDataChannel?)
+    Internals.writeArguments(STRING to label, DICTIONARY to options)
+    Internals.callMethod(rawPtr, MethodBindings.createDataChannelPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as WebRTCDataChannel?)
   }
 
   /**
@@ -143,9 +142,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * session is ready to be sent.
    */
   public final fun createOffer(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createOfferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createOfferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,9 +154,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * an [Error] different from [OK] is returned).
    */
   public final fun setLocalDescription(type: String, sdp: String): Error {
-    TransferContext.writeArguments(STRING to type, STRING to sdp)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalDescriptionPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to type, STRING to sdp)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalDescriptionPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -168,9 +167,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * If [type] is `"answer"` the peer will start emitting [signal ice_candidate_created].
    */
   public final fun setRemoteDescription(type: String, sdp: String): Error {
-    TransferContext.writeArguments(STRING to type, STRING to sdp)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRemoteDescriptionPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to type, STRING to sdp)
+    Internals.callMethod(rawPtr, MethodBindings.setRemoteDescriptionPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -182,9 +181,9 @@ public open class WebRTCPeerConnection : RefCounted() {
     index: Int,
     name: String,
   ): Error {
-    TransferContext.writeArguments(STRING to media, LONG to index.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.addIceCandidatePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to media, LONG to index.toLong(), STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.addIceCandidatePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -192,9 +191,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * receive signals.
    */
   public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -202,17 +201,17 @@ public open class WebRTCPeerConnection : RefCounted() {
    * **Note:** You cannot reuse this object for a new connection unless you call [initialize].
    */
   public final fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   /**
    * Returns the connection state. See [ConnectionState].
    */
   public final fun getConnectionState(): ConnectionState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionStatePtr, LONG)
-    return WebRTCPeerConnection.ConnectionState.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionStatePtr, LONG)
+    return WebRTCPeerConnection.ConnectionState.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -220,9 +219,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * collection of ICE candidates has finished.
    */
   public final fun getGatheringState(): GatheringState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGatheringStatePtr, LONG)
-    return WebRTCPeerConnection.GatheringState.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGatheringStatePtr, LONG)
+    return WebRTCPeerConnection.GatheringState.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -230,9 +229,9 @@ public open class WebRTCPeerConnection : RefCounted() {
    * to another peer.
    */
   public final fun getSignalingState(): SignalingState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSignalingStatePtr, LONG)
-    return WebRTCPeerConnection.SignalingState.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSignalingStatePtr, LONG)
+    return WebRTCPeerConnection.SignalingState.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ConnectionState(
@@ -356,46 +355,46 @@ public open class WebRTCPeerConnection : RefCounted() {
      * creating a new [WebRTCPeerConnection].
      */
     public final fun setDefaultExtension(extensionClass: StringName): Unit {
-      TransferContext.writeArguments(STRING_NAME to extensionClass)
-      TransferContext.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
+      Internals.writeArguments(STRING_NAME to extensionClass)
+      Internals.callMethod(0, MethodBindings.setDefaultExtensionPtr, NIL)
     }
   }
 
   internal object MethodBindings {
     public val setDefaultExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "set_default_extension", 3304788590)
 
     public val initializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "initialize", 2625064318)
 
     public val createDataChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "create_data_channel", 1288557393)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "create_data_channel", 1288557393)
 
     public val createOfferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "create_offer", 166280745)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "create_offer", 166280745)
 
     public val setLocalDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_local_description", 852856452)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "set_local_description", 852856452)
 
     public val setRemoteDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "set_remote_description", 852856452)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "set_remote_description", 852856452)
 
     public val addIceCandidatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "add_ice_candidate", 3958950400)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "add_ice_candidate", 3958950400)
 
     public val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "poll", 166280745)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "poll", 166280745)
 
     public val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "close", 3218959716)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "close", 3218959716)
 
     public val getConnectionStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_connection_state", 2275710506)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "get_connection_state", 2275710506)
 
     public val getGatheringStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_gathering_state", 4262591401)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "get_gathering_state", 4262591401)
 
     public val getSignalingStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
+        Internals.getMethodBindPtr("WebRTCPeerConnection", "get_signaling_state", 3342956226)
   }
 }

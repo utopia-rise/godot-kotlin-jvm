@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -16,7 +15,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -87,40 +86,40 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFDOCUMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFDOCUMENT_INDEX, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
-    TransferContext.writeArguments(STRING to imageFormat)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImageFormatPtr, NIL)
+    Internals.writeArguments(STRING to imageFormat)
+    Internals.callMethod(rawPtr, MethodBindings.setImageFormatPtr, NIL)
   }
 
   public final fun getImageFormat(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getImageFormatPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setLossyQuality(lossyQuality: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to lossyQuality.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLossyQualityPtr, NIL)
+    Internals.writeArguments(DOUBLE to lossyQuality.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLossyQualityPtr, NIL)
   }
 
   public final fun getLossyQuality(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLossyQualityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
-    TransferContext.writeArguments(LONG to rootNodeMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
+    Internals.writeArguments(LONG to rootNodeMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRootNodeModePtr, NIL)
   }
 
   public final fun getRootNodeMode(): RootNodeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootNodeModePtr, LONG)
-    return GLTFDocument.RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootNodeModePtr, LONG)
+    return GLTFDocument.RootNodeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -135,9 +134,9 @@ public open class GLTFDocument : Resource() {
     flags: Long = 0,
     basePath: String = "",
   ): Error {
-    TransferContext.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromFilePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, OBJECT to state, LONG to flags, STRING to basePath)
+    Internals.callMethod(rawPtr, MethodBindings.appendFromFilePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -152,9 +151,9 @@ public open class GLTFDocument : Resource() {
     state: GLTFState?,
     flags: Long = 0,
   ): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromBufferPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to bytes, STRING to basePath, OBJECT to state, LONG to flags)
+    Internals.callMethod(rawPtr, MethodBindings.appendFromBufferPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -167,9 +166,9 @@ public open class GLTFDocument : Resource() {
     state: GLTFState?,
     flags: Long = 0,
   ): Error {
-    TransferContext.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendFromScenePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to node, OBJECT to state, LONG to flags)
+    Internals.callMethod(rawPtr, MethodBindings.appendFromScenePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -183,18 +182,18 @@ public open class GLTFDocument : Resource() {
     trimming: Boolean = false,
     removeImmutableTracks: Boolean = true,
   ): Node? {
-    TransferContext.writeArguments(OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments(OBJECT to state, DOUBLE to bakeFps.toDouble(), BOOL to trimming, BOOL to removeImmutableTracks)
+    Internals.callMethod(rawPtr, MethodBindings.generateScenePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
    * Takes a [GLTFState] object through the [state] parameter and returns a GLTF [PackedByteArray].
    */
   public final fun generateBuffer(state: GLTFState?): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(OBJECT to state)
+    Internals.callMethod(rawPtr, MethodBindings.generateBufferPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -204,9 +203,9 @@ public open class GLTFDocument : Resource() {
    * file.
    */
   public final fun writeToFilesystem(state: GLTFState?, path: String): Error {
-    TransferContext.writeArguments(OBJECT to state, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.writeToFilesystemPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to state, STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.writeToFilesystemPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class RootNodeMode(
@@ -254,60 +253,60 @@ public open class GLTFDocument : Resource() {
     @JvmOverloads
     public final fun registerGltfDocumentExtension(extension: GLTFDocumentExtension?,
         firstPriority: Boolean = false): Unit {
-      TransferContext.writeArguments(OBJECT to extension, BOOL to firstPriority)
-      TransferContext.callMethod(0, MethodBindings.registerGltfDocumentExtensionPtr, NIL)
+      Internals.writeArguments(OBJECT to extension, BOOL to firstPriority)
+      Internals.callMethod(0, MethodBindings.registerGltfDocumentExtensionPtr, NIL)
     }
 
     /**
      * Unregisters the given [GLTFDocumentExtension] instance.
      */
     public final fun unregisterGltfDocumentExtension(extension: GLTFDocumentExtension?): Unit {
-      TransferContext.writeArguments(OBJECT to extension)
-      TransferContext.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
+      Internals.writeArguments(OBJECT to extension)
+      Internals.callMethod(0, MethodBindings.unregisterGltfDocumentExtensionPtr, NIL)
     }
   }
 
   internal object MethodBindings {
     public val setImageFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "set_image_format", 83702148)
+        Internals.getMethodBindPtr("GLTFDocument", "set_image_format", 83702148)
 
     public val getImageFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "get_image_format", 201670096)
+        Internals.getMethodBindPtr("GLTFDocument", "get_image_format", 201670096)
 
     public val setLossyQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "set_lossy_quality", 373806689)
+        Internals.getMethodBindPtr("GLTFDocument", "set_lossy_quality", 373806689)
 
     public val getLossyQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "get_lossy_quality", 1740695150)
+        Internals.getMethodBindPtr("GLTFDocument", "get_lossy_quality", 1740695150)
 
     public val setRootNodeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "set_root_node_mode", 463633402)
+        Internals.getMethodBindPtr("GLTFDocument", "set_root_node_mode", 463633402)
 
     public val getRootNodeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "get_root_node_mode", 948057992)
+        Internals.getMethodBindPtr("GLTFDocument", "get_root_node_mode", 948057992)
 
     public val appendFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_file", 866380864)
+        Internals.getMethodBindPtr("GLTFDocument", "append_from_file", 866380864)
 
     public val appendFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_buffer", 1616081266)
+        Internals.getMethodBindPtr("GLTFDocument", "append_from_buffer", 1616081266)
 
     public val appendFromScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "append_from_scene", 1622574258)
+        Internals.getMethodBindPtr("GLTFDocument", "append_from_scene", 1622574258)
 
     public val generateScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "generate_scene", 596118388)
+        Internals.getMethodBindPtr("GLTFDocument", "generate_scene", 596118388)
 
     public val generateBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "generate_buffer", 741783455)
+        Internals.getMethodBindPtr("GLTFDocument", "generate_buffer", 741783455)
 
     public val writeToFilesystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "write_to_filesystem", 1784551478)
+        Internals.getMethodBindPtr("GLTFDocument", "write_to_filesystem", 1784551478)
 
     public val registerGltfDocumentExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension", 3752678331)
+        Internals.getMethodBindPtr("GLTFDocument", "register_gltf_document_extension", 3752678331)
 
     public val unregisterGltfDocumentExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFDocument", "unregister_gltf_document_extension", 2684415758)
+        Internals.getMethodBindPtr("GLTFDocument", "unregister_gltf_document_extension", 2684415758)
   }
 }

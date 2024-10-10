@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -41,7 +40,7 @@ public object GDExtensionManager : Object() {
   public val extensionsReloaded: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_GDEXTENSIONMANAGER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_GDEXTENSIONMANAGER_INDEX)
   }
 
   /**
@@ -50,9 +49,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun loadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadExtensionPtr, LONG)
+    return GDExtensionManager.LoadStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -64,9 +63,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun reloadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.reloadExtensionPtr, LONG)
+    return GDExtensionManager.LoadStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -75,9 +74,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun unloadExtension(path: String): LoadStatus {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.unloadExtensionPtr, LONG)
-    return GDExtensionManager.LoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.unloadExtensionPtr, LONG)
+    return GDExtensionManager.LoadStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -86,9 +85,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun isExtensionLoaded(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.isExtensionLoadedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -96,9 +95,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun getLoadedExtensions(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoadedExtensionsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -107,9 +106,9 @@ public object GDExtensionManager : Object() {
    */
   @JvmStatic
   public final fun getExtension(path: String): GDExtension? {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as GDExtension?)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.getExtensionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as GDExtension?)
   }
 
   public enum class LoadStatus(
@@ -150,21 +149,21 @@ public object GDExtensionManager : Object() {
 
   internal object MethodBindings {
     public val loadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension", 4024158731)
+        Internals.getMethodBindPtr("GDExtensionManager", "load_extension", 4024158731)
 
     public val reloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension", 4024158731)
+        Internals.getMethodBindPtr("GDExtensionManager", "reload_extension", 4024158731)
 
     public val unloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "unload_extension", 4024158731)
+        Internals.getMethodBindPtr("GDExtensionManager", "unload_extension", 4024158731)
 
     public val isExtensionLoadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "is_extension_loaded", 3927539163)
+        Internals.getMethodBindPtr("GDExtensionManager", "is_extension_loaded", 3927539163)
 
     public val getLoadedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions", 1139954409)
+        Internals.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions", 1139954409)
 
     public val getExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_extension", 49743343)
+        Internals.getMethodBindPtr("GDExtensionManager", "get_extension", 49743343)
   }
 }

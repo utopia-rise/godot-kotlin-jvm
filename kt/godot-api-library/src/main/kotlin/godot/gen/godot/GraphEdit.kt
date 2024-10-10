@@ -18,7 +18,6 @@ import godot.core.Signal2
 import godot.core.Signal3
 import godot.core.Signal4
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -32,7 +31,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -428,7 +427,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRAPHEDIT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRAPHEDIT_INDEX, scriptIndex)
   }
 
   /**
@@ -578,9 +577,9 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.connectNodePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.connectNodePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -593,9 +592,9 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isNodeConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isNodeConnectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -608,8 +607,8 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectNodePtr, NIL)
+    Internals.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.disconnectNodePtr, NIL)
   }
 
   /**
@@ -624,8 +623,8 @@ public open class GraphEdit : Control() {
     toPort: Int,
     amount: Float,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionActivityPtr, NIL)
+    Internals.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConnectionActivityPtr, NIL)
   }
 
   /**
@@ -634,9 +633,9 @@ public open class GraphEdit : Control() {
    * }`.
    */
   public final fun getConnectionList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -654,9 +653,9 @@ public open class GraphEdit : Control() {
   @JvmOverloads
   public final fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f):
       Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -666,17 +665,17 @@ public open class GraphEdit : Control() {
    */
   public final fun getConnectionsIntersectingWithRect(rect: Rect2):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Removes all connections between nodes.
    */
   public final fun clearConnections(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearConnectionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearConnectionsPtr, NIL)
   }
 
   /**
@@ -688,19 +687,19 @@ public open class GraphEdit : Control() {
    * connection_drag_ended].
    */
   public final fun forceConnectionDragEnd(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceConnectionDragEndPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceConnectionDragEndPtr, NIL)
   }
 
   public final fun getScrollOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
   /**
@@ -708,8 +707,8 @@ public open class GraphEdit : Control() {
    * has the specified type. See also [removeValidRightDisconnectType].
    */
   public final fun addValidRightDisconnectType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addValidRightDisconnectTypePtr, NIL)
+    Internals.writeArguments(LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addValidRightDisconnectTypePtr, NIL)
   }
 
   /**
@@ -718,8 +717,8 @@ public open class GraphEdit : Control() {
    * [addValidRightDisconnectType].
    */
   public final fun removeValidRightDisconnectType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeValidRightDisconnectTypePtr, NIL)
+    Internals.writeArguments(LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeValidRightDisconnectTypePtr, NIL)
   }
 
   /**
@@ -727,8 +726,8 @@ public open class GraphEdit : Control() {
    * the specified type. See also [removeValidLeftDisconnectType].
    */
   public final fun addValidLeftDisconnectType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addValidLeftDisconnectTypePtr, NIL)
+    Internals.writeArguments(LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
@@ -737,8 +736,8 @@ public open class GraphEdit : Control() {
    * [addValidLeftDisconnectType].
    */
   public final fun removeValidLeftDisconnectType(type: Int): Unit {
-    TransferContext.writeArguments(LONG to type.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeValidLeftDisconnectTypePtr, NIL)
+    Internals.writeArguments(LONG to type.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
@@ -747,8 +746,8 @@ public open class GraphEdit : Control() {
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
   public final fun addValidConnectionType(fromType: Int, toType: Int): Unit {
-    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addValidConnectionTypePtr, NIL)
+    Internals.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addValidConnectionTypePtr, NIL)
   }
 
   /**
@@ -758,8 +757,8 @@ public open class GraphEdit : Control() {
    * See also [isValidConnectionType].
    */
   public final fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
-    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeValidConnectionTypePtr, NIL)
+    Internals.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeValidConnectionTypePtr, NIL)
   }
 
   /**
@@ -769,294 +768,294 @@ public open class GraphEdit : Control() {
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
   public final fun isValidConnectionType(fromType: Int, toType: Int): Boolean {
-    TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isValidConnectionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isValidConnectionTypePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the points which would make up a connection between [fromNode] and [toNode].
    */
   public final fun getConnectionLine(fromNode: Vector2, toNode: Vector2): PackedVector2Array {
-    TransferContext.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(VECTOR2 to fromNode, VECTOR2 to toNode)
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionLinePtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
    */
   public final fun attachGraphElementToFrame(element: StringName, frame: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to element, STRING_NAME to frame)
-    TransferContext.callMethod(rawPtr, MethodBindings.attachGraphElementToFramePtr, NIL)
+    Internals.writeArguments(STRING_NAME to element, STRING_NAME to frame)
+    Internals.callMethod(rawPtr, MethodBindings.attachGraphElementToFramePtr, NIL)
   }
 
   /**
    * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
    */
   public final fun detachGraphElementFromFrame(element: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to element)
-    TransferContext.callMethod(rawPtr, MethodBindings.detachGraphElementFromFramePtr, NIL)
+    Internals.writeArguments(STRING_NAME to element)
+    Internals.callMethod(rawPtr, MethodBindings.detachGraphElementFromFramePtr, NIL)
   }
 
   /**
    * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
    */
   public final fun getElementFrame(element: StringName): GraphFrame? {
-    TransferContext.writeArguments(STRING_NAME to element)
-    TransferContext.callMethod(rawPtr, MethodBindings.getElementFramePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as GraphFrame?)
+    Internals.writeArguments(STRING_NAME to element)
+    Internals.callMethod(rawPtr, MethodBindings.getElementFramePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as GraphFrame?)
   }
 
   /**
    * Returns an array of node names that are attached to the [GraphFrame] with the given name.
    */
   public final fun getAttachedNodesOfFrame(frame: StringName): VariantArray<StringName> {
-    TransferContext.writeArguments(STRING_NAME to frame)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesOfFramePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+    Internals.writeArguments(STRING_NAME to frame)
+    Internals.callMethod(rawPtr, MethodBindings.getAttachedNodesOfFramePtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   public final fun setPanningScheme(scheme: PanningScheme): Unit {
-    TransferContext.writeArguments(LONG to scheme.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanningSchemePtr, NIL)
+    Internals.writeArguments(LONG to scheme.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPanningSchemePtr, NIL)
   }
 
   public final fun getPanningScheme(): PanningScheme {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanningSchemePtr, LONG)
-    return GraphEdit.PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPanningSchemePtr, LONG)
+    return GraphEdit.PanningScheme.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setZoom(zoom: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zoom.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
+    Internals.writeArguments(DOUBLE to zoom.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
   }
 
   public final fun getZoom(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZoomPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomMin(zoomMin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zoomMin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZoomMinPtr, NIL)
+    Internals.writeArguments(DOUBLE to zoomMin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setZoomMinPtr, NIL)
   }
 
   public final fun getZoomMin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZoomMinPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomMax(zoomMax: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zoomMax.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZoomMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to zoomMax.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setZoomMaxPtr, NIL)
   }
 
   public final fun getZoomMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZoomMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZoomStep(zoomStep: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zoomStep.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setZoomStepPtr, NIL)
+    Internals.writeArguments(DOUBLE to zoomStep.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setZoomStepPtr, NIL)
   }
 
   public final fun getZoomStep(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZoomStepPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShowGrid(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowGridPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setShowGridPtr, NIL)
   }
 
   public final fun isShowingGrid(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingGridPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGridPattern(pattern: GridPattern): Unit {
-    TransferContext.writeArguments(LONG to pattern.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGridPatternPtr, NIL)
+    Internals.writeArguments(LONG to pattern.id)
+    Internals.callMethod(rawPtr, MethodBindings.setGridPatternPtr, NIL)
   }
 
   public final fun getGridPattern(): GridPattern {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGridPatternPtr, LONG)
-    return GraphEdit.GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGridPatternPtr, LONG)
+    return GraphEdit.GridPattern.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSnappingEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnappingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSnappingEnabledPtr, NIL)
   }
 
   public final fun isSnappingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSnappingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSnappingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSnappingDistance(pixels: Int): Unit {
-    TransferContext.writeArguments(LONG to pixels.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnappingDistancePtr, NIL)
+    Internals.writeArguments(LONG to pixels.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSnappingDistancePtr, NIL)
   }
 
   public final fun getSnappingDistance(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSnappingDistancePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSnappingDistancePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setConnectionLinesCurvature(curvature: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curvature.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesCurvaturePtr, NIL)
+    Internals.writeArguments(DOUBLE to curvature.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConnectionLinesCurvaturePtr, NIL)
   }
 
   public final fun getConnectionLinesCurvature(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionLinesCurvaturePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setConnectionLinesThickness(pixels: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixels.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesThicknessPtr, NIL)
+    Internals.writeArguments(DOUBLE to pixels.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConnectionLinesThicknessPtr, NIL)
   }
 
   public final fun getConnectionLinesThickness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionLinesThicknessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setConnectionLinesAntialiased(pixels: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pixels)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConnectionLinesAntialiasedPtr, NIL)
+    Internals.writeArguments(BOOL to pixels)
+    Internals.callMethod(rawPtr, MethodBindings.setConnectionLinesAntialiasedPtr, NIL)
   }
 
   public final fun isConnectionLinesAntialiased(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isConnectionLinesAntialiasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinimapSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinimapSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setMinimapSizePtr, NIL)
   }
 
   public final fun getMinimapSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinimapSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinimapSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMinimapOpacity(opacity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to opacity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinimapOpacityPtr, NIL)
+    Internals.writeArguments(DOUBLE to opacity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinimapOpacityPtr, NIL)
   }
 
   public final fun getMinimapOpacity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinimapOpacityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMinimapEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinimapEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMinimapEnabledPtr, NIL)
   }
 
   public final fun isMinimapEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMinimapEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMinimapEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowMenu(hidden: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowMenuPtr, NIL)
+    Internals.writeArguments(BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setShowMenuPtr, NIL)
   }
 
   public final fun isShowingMenu(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingMenuPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingMenuPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowZoomLabel(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setShowZoomLabelPtr, NIL)
   }
 
   public final fun isShowingZoomLabel(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingZoomLabelPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowGridButtons(hidden: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowGridButtonsPtr, NIL)
+    Internals.writeArguments(BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setShowGridButtonsPtr, NIL)
   }
 
   public final fun isShowingGridButtons(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingGridButtonsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingGridButtonsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowZoomButtons(hidden: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowZoomButtonsPtr, NIL)
+    Internals.writeArguments(BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setShowZoomButtonsPtr, NIL)
   }
 
   public final fun isShowingZoomButtons(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingZoomButtonsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowMinimapButton(hidden: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowMinimapButtonPtr, NIL)
+    Internals.writeArguments(BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setShowMinimapButtonPtr, NIL)
   }
 
   public final fun isShowingMinimapButton(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingMinimapButtonPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShowArrangeButton(hidden: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowArrangeButtonPtr, NIL)
+    Internals.writeArguments(BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setShowArrangeButtonPtr, NIL)
   }
 
   public final fun isShowingArrangeButton(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShowingArrangeButtonPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRightDisconnects(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setRightDisconnectsPtr, NIL)
   }
 
   public final fun isRightDisconnectsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRightDisconnectsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1067,9 +1066,9 @@ public open class GraphEdit : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getMenuHbox(): HBoxContainer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMenuHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMenuHboxPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   /**
@@ -1077,16 +1076,16 @@ public open class GraphEdit : Control() {
    * horizontal and vertical gap between nodes.
    */
   public final fun arrangeNodes(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.arrangeNodesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.arrangeNodesPtr, NIL)
   }
 
   /**
    * Sets the specified [node] as the one selected.
    */
   public final fun setSelected(node: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
 
   public enum class PanningScheme(
@@ -1139,213 +1138,211 @@ public open class GraphEdit : Control() {
 
   internal object MethodBindings {
     public val connectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "connect_node", 195065850)
+        Internals.getMethodBindPtr("GraphEdit", "connect_node", 195065850)
 
     public val isNodeConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_node_connected", 4216241294)
+        Internals.getMethodBindPtr("GraphEdit", "is_node_connected", 4216241294)
 
     public val disconnectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "disconnect_node", 1933654315)
+        Internals.getMethodBindPtr("GraphEdit", "disconnect_node", 1933654315)
 
     public val setConnectionActivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_activity", 1141899943)
+        Internals.getMethodBindPtr("GraphEdit", "set_connection_activity", 1141899943)
 
     public val getConnectionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list", 3995934104)
+        Internals.getMethodBindPtr("GraphEdit", "get_connection_list", 3995934104)
 
     public val getClosestConnectionAtPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)
+        Internals.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)
 
     public val getConnectionsIntersectingWithRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2709748719)
+        Internals.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2709748719)
 
     public val clearConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "clear_connections", 3218959716)
+        Internals.getMethodBindPtr("GraphEdit", "clear_connections", 3218959716)
 
     public val forceConnectionDragEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "force_connection_drag_end", 3218959716)
+        Internals.getMethodBindPtr("GraphEdit", "force_connection_drag_end", 3218959716)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_offset", 3341600327)
+        Internals.getMethodBindPtr("GraphEdit", "get_scroll_offset", 3341600327)
 
     public val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_offset", 743155724)
+        Internals.getMethodBindPtr("GraphEdit", "set_scroll_offset", 743155724)
 
     public val addValidRightDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type", 1286410249)
+        Internals.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type", 1286410249)
 
     public val removeValidRightDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type", 1286410249)
+        Internals.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type", 1286410249)
 
     public val addValidLeftDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type", 1286410249)
+        Internals.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type", 1286410249)
 
     public val removeValidLeftDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type", 1286410249)
+        Internals.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type", 1286410249)
 
     public val addValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_connection_type", 3937882851)
+        Internals.getMethodBindPtr("GraphEdit", "add_valid_connection_type", 3937882851)
 
     public val removeValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_connection_type", 3937882851)
+        Internals.getMethodBindPtr("GraphEdit", "remove_valid_connection_type", 3937882851)
 
     public val isValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_valid_connection_type", 2522259332)
+        Internals.getMethodBindPtr("GraphEdit", "is_valid_connection_type", 2522259332)
 
     public val getConnectionLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_line", 3932192302)
+        Internals.getMethodBindPtr("GraphEdit", "get_connection_line", 3932192302)
 
     public val attachGraphElementToFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame", 3740211285)
+        Internals.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame", 3740211285)
 
     public val detachGraphElementFromFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame", 3304788590)
+        Internals.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame", 3304788590)
 
     public val getElementFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_element_frame", 988084372)
+        Internals.getMethodBindPtr("GraphEdit", "get_element_frame", 988084372)
 
     public val getAttachedNodesOfFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame", 689397652)
+        Internals.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame", 689397652)
 
     public val setPanningSchemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_panning_scheme", 18893313)
+        Internals.getMethodBindPtr("GraphEdit", "set_panning_scheme", 18893313)
 
     public val getPanningSchemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_panning_scheme", 549924446)
+        Internals.getMethodBindPtr("GraphEdit", "get_panning_scheme", 549924446)
 
-    public val setZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom", 373806689)
+    public val setZoomPtr: VoidPtr = Internals.getMethodBindPtr("GraphEdit", "set_zoom", 373806689)
 
-    public val getZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom", 1740695150)
+    public val getZoomPtr: VoidPtr = Internals.getMethodBindPtr("GraphEdit", "get_zoom", 1740695150)
 
     public val setZoomMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_min", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_zoom_min", 373806689)
 
     public val getZoomMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_min", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_zoom_min", 1740695150)
 
     public val setZoomMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_max", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_zoom_max", 373806689)
 
     public val getZoomMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_max", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_zoom_max", 1740695150)
 
     public val setZoomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_step", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_zoom_step", 373806689)
 
     public val getZoomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_step", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_zoom_step", 1740695150)
 
     public val setShowGridPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_grid", 2586408642)
 
     public val isShowingGridPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_grid", 36873697)
 
     public val setGridPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_grid_pattern", 1074098205)
+        Internals.getMethodBindPtr("GraphEdit", "set_grid_pattern", 1074098205)
 
     public val getGridPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_grid_pattern", 1286127528)
+        Internals.getMethodBindPtr("GraphEdit", "get_grid_pattern", 1286127528)
 
     public val setSnappingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_enabled", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_snapping_enabled", 2586408642)
 
     public val isSnappingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_snapping_enabled", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_snapping_enabled", 36873697)
 
     public val setSnappingDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_distance", 1286410249)
+        Internals.getMethodBindPtr("GraphEdit", "set_snapping_distance", 1286410249)
 
     public val getSnappingDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_snapping_distance", 3905245786)
+        Internals.getMethodBindPtr("GraphEdit", "get_snapping_distance", 3905245786)
 
     public val setConnectionLinesCurvaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature", 373806689)
 
     public val getConnectionLinesCurvaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature", 1740695150)
 
     public val setConnectionLinesThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness", 373806689)
 
     public val getConnectionLinesThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness", 1740695150)
 
     public val setConnectionLinesAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased", 2586408642)
 
     public val isConnectionLinesAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased", 36873697)
 
     public val setMinimapSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_size", 743155724)
+        Internals.getMethodBindPtr("GraphEdit", "set_minimap_size", 743155724)
 
     public val getMinimapSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_size", 3341600327)
+        Internals.getMethodBindPtr("GraphEdit", "get_minimap_size", 3341600327)
 
     public val setMinimapOpacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_opacity", 373806689)
+        Internals.getMethodBindPtr("GraphEdit", "set_minimap_opacity", 373806689)
 
     public val getMinimapOpacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_opacity", 1740695150)
+        Internals.getMethodBindPtr("GraphEdit", "get_minimap_opacity", 1740695150)
 
     public val setMinimapEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_enabled", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_minimap_enabled", 2586408642)
 
     public val isMinimapEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_minimap_enabled", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_minimap_enabled", 36873697)
 
     public val setShowMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_menu", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_menu", 2586408642)
 
     public val isShowingMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_menu", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_menu", 36873697)
 
     public val setShowZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_zoom_label", 2586408642)
 
     public val isShowingZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_zoom_label", 36873697)
 
     public val setShowGridButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid_buttons", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_grid_buttons", 2586408642)
 
     public val isShowingGridButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons", 36873697)
 
     public val setShowZoomButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons", 2586408642)
 
     public val isShowingZoomButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons", 36873697)
 
     public val setShowMinimapButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_minimap_button", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_minimap_button", 2586408642)
 
     public val isShowingMinimapButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_minimap_button", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_minimap_button", 36873697)
 
     public val setShowArrangeButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_arrange_button", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_show_arrange_button", 2586408642)
 
     public val isShowingArrangeButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_arrange_button", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_showing_arrange_button", 36873697)
 
     public val setRightDisconnectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_right_disconnects", 2586408642)
+        Internals.getMethodBindPtr("GraphEdit", "set_right_disconnects", 2586408642)
 
     public val isRightDisconnectsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36873697)
+        Internals.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36873697)
 
     public val getMenuHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3590609951)
+        Internals.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3590609951)
 
     public val arrangeNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "arrange_nodes", 3218959716)
+        Internals.getMethodBindPtr("GraphEdit", "arrange_nodes", 3218959716)
 
     public val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_selected", 1078189570)
+        Internals.getMethodBindPtr("GraphEdit", "set_selected", 1078189570)
   }
 }

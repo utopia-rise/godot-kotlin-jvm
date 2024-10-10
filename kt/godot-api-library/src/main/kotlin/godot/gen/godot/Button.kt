@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -208,210 +207,210 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BUTTON_INDEX, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+    Internals.writeArguments(LONG to overrunBehavior.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    Internals.writeArguments(LONG to autowrapMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setButtonIcon(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIconPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setButtonIconPtr, NIL)
   }
 
   public final fun getButtonIcon(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFlat(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
   }
 
   public final fun isFlat(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setClipText(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
   }
 
   public final fun getClipText(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClipTextPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClipTextPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTextAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextAlignmentPtr, NIL)
   }
 
   public final fun getTextAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setIconAlignment(iconAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to iconAlignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIconAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to iconAlignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setIconAlignmentPtr, NIL)
   }
 
   public final fun getIconAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIconAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIconAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalIconAlignment(verticalIconAlignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to verticalIconAlignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to verticalIconAlignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
   }
 
   public final fun getVerticalIconAlignment(): VerticalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalIconAlignmentPtr, LONG)
-    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticalIconAlignmentPtr, LONG)
+    return VerticalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setExpandIcon(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandIconPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setExpandIconPtr, NIL)
   }
 
   public final fun isExpandIcon(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isExpandIconPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isExpandIconPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_text", 83702148)
+    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "get_text", 201670096)
+    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Button", "get_text", 201670096)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_overrun_behavior", 1008890932)
+        Internals.getMethodBindPtr("Button", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_overrun_behavior", 3779142101)
+        Internals.getMethodBindPtr("Button", "get_text_overrun_behavior", 3779142101)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_autowrap_mode", 3289138044)
+        Internals.getMethodBindPtr("Button", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
+        Internals.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_direction", 119160795)
+        Internals.getMethodBindPtr("Button", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_direction", 797257663)
+        Internals.getMethodBindPtr("Button", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_language", 83702148)
+        Internals.getMethodBindPtr("Button", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_language", 201670096)
+        Internals.getMethodBindPtr("Button", "get_language", 201670096)
 
     public val setButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_button_icon", 4051416890)
+        Internals.getMethodBindPtr("Button", "set_button_icon", 4051416890)
 
     public val getButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_button_icon", 3635182373)
+        Internals.getMethodBindPtr("Button", "get_button_icon", 3635182373)
 
-    public val setFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "set_flat", 2586408642)
+    public val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "set_flat", 2586408642)
 
-    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("Button", "is_flat", 36873697)
+    public val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("Button", "is_flat", 36873697)
 
     public val setClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_clip_text", 2586408642)
+        Internals.getMethodBindPtr("Button", "set_clip_text", 2586408642)
 
     public val getClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_clip_text", 36873697)
+        Internals.getMethodBindPtr("Button", "get_clip_text", 36873697)
 
     public val setTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_text_alignment", 2312603777)
+        Internals.getMethodBindPtr("Button", "set_text_alignment", 2312603777)
 
     public val getTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_text_alignment", 341400642)
+        Internals.getMethodBindPtr("Button", "get_text_alignment", 341400642)
 
     public val setIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_icon_alignment", 2312603777)
+        Internals.getMethodBindPtr("Button", "set_icon_alignment", 2312603777)
 
     public val getIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_icon_alignment", 341400642)
+        Internals.getMethodBindPtr("Button", "get_icon_alignment", 341400642)
 
     public val setVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1796458609)
+        Internals.getMethodBindPtr("Button", "set_vertical_icon_alignment", 1796458609)
 
     public val getVerticalIconAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3274884059)
+        Internals.getMethodBindPtr("Button", "get_vertical_icon_alignment", 3274884059)
 
     public val setExpandIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "set_expand_icon", 2586408642)
+        Internals.getMethodBindPtr("Button", "set_expand_icon", 2586408642)
 
     public val isExpandIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Button", "is_expand_icon", 36873697)
+        Internals.getMethodBindPtr("Button", "is_expand_icon", 36873697)
   }
 }

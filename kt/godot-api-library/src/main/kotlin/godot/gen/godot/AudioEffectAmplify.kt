@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -39,27 +38,27 @@ public open class AudioEffectAmplify : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX, scriptIndex)
   }
 
   public final fun setVolumeDb(volume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volume.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to volume.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectAmplify", "set_volume_db", 373806689)
 
     public val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectAmplify", "get_volume_db", 1740695150)
   }
 }

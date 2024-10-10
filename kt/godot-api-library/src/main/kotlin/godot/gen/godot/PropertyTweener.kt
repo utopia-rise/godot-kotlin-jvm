@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
@@ -33,7 +32,7 @@ private const val ENGINE_CLASS_PROPERTYTWEENER_INDEX: Int = 456
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PROPERTYTWEENER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PROPERTYTWEENER_INDEX, scriptIndex)
   }
 
   /**
@@ -46,9 +45,9 @@ public open class PropertyTweener : Tweener() {
    * [/codeblock]
    */
   public final fun from(`value`: Any?): PropertyTweener? {
-    TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.fromPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.fromPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -61,9 +60,9 @@ public open class PropertyTweener : Tweener() {
    * [/codeblock]
    */
   public final fun fromCurrent(): PropertyTweener? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.fromCurrentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.fromCurrentPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -76,9 +75,9 @@ public open class PropertyTweener : Tweener() {
    * [/codeblock]
    */
   public final fun asRelative(): PropertyTweener? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asRelativePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.asRelativePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -86,9 +85,9 @@ public open class PropertyTweener : Tweener() {
    * transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
-    TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(LONG to trans.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -96,9 +95,9 @@ public open class PropertyTweener : Tweener() {
    * the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
-    TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(LONG to ease.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -122,9 +121,9 @@ public open class PropertyTweener : Tweener() {
    * [/codeblock]
    */
   public final fun setCustomInterpolator(interpolatorMethod: Callable): PropertyTweener? {
-    TransferContext.writeArguments(CALLABLE to interpolatorMethod)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(CALLABLE to interpolatorMethod)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomInterpolatorPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -132,33 +131,32 @@ public open class PropertyTweener : Tweener() {
    * there's no delay.
    */
   public final fun setDelay(delay: Double): PropertyTweener? {
-    TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(DOUBLE to delay)
+    Internals.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val fromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "from", 4190193059)
+    public val fromPtr: VoidPtr = Internals.getMethodBindPtr("PropertyTweener", "from", 4190193059)
 
     public val fromCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "from_current", 4279177709)
+        Internals.getMethodBindPtr("PropertyTweener", "from_current", 4279177709)
 
     public val asRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "as_relative", 4279177709)
+        Internals.getMethodBindPtr("PropertyTweener", "as_relative", 4279177709)
 
     public val setTransPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_trans", 1899107404)
+        Internals.getMethodBindPtr("PropertyTweener", "set_trans", 1899107404)
 
     public val setEasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_ease", 1080455622)
+        Internals.getMethodBindPtr("PropertyTweener", "set_ease", 1080455622)
 
     public val setCustomInterpolatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_custom_interpolator", 3174170268)
+        Internals.getMethodBindPtr("PropertyTweener", "set_custom_interpolator", 3174170268)
 
     public val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PropertyTweener", "set_delay", 2171559331)
+        Internals.getMethodBindPtr("PropertyTweener", "set_delay", 2171559331)
   }
 }

@@ -11,6 +11,7 @@ import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
 import godot.core.Vector3
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -25,7 +26,7 @@ private const val ENGINE_CLASS_RENDERSCENEDATAEXTENSION_INDEX: Int = 491
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERSCENEDATAEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERSCENEDATAEXTENSION_INDEX, scriptIndex)
   }
 
   /**

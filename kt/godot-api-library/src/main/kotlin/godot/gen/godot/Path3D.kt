@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -45,26 +44,25 @@ public open class Path3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PATH3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PATH3D_INDEX, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve3D?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve3D?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Path3D", "set_curve", 408955118)
+    public val setCurvePtr: VoidPtr = Internals.getMethodBindPtr("Path3D", "set_curve", 408955118)
 
-    public val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Path3D", "get_curve", 4244715212)
+    public val getCurvePtr: VoidPtr = Internals.getMethodBindPtr("Path3D", "get_curve", 4244715212)
   }
 }

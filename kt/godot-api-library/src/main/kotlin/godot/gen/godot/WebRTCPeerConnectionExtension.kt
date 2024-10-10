@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -20,7 +21,7 @@ private const val ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX: Int = 738
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {

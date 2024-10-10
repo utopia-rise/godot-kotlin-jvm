@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3I
 import godot.core.Vector3i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -47,7 +46,7 @@ public open class PlaceholderTexture3D : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PLACEHOLDERTEXTURE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PLACEHOLDERTEXTURE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -75,23 +74,23 @@ public open class PlaceholderTexture3D : Texture3D() {
 
 
   public final fun setSize(size: Vector3i): Unit {
-    TransferContext.writeArguments(VECTOR3I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3I)
-    return (TransferContext.readReturnValue(VECTOR3I) as Vector3i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3I)
+    return (Internals.readReturnValue(VECTOR3I) as Vector3i)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560364750)
+        Internals.getMethodBindPtr("PlaceholderTexture3D", "set_size", 560364750)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2785653706)
+        Internals.getMethodBindPtr("PlaceholderTexture3D", "get_size", 2785653706)
   }
 }

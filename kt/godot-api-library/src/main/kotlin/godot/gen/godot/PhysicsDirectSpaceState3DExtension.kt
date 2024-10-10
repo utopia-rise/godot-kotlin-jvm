@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -32,7 +31,8 @@ private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION_INDEX: Int = 4
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION_INDEX,
+        scriptIndex)
   }
 
   public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {
@@ -40,15 +40,15 @@ public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {
-    TransferContext.writeArguments(_RID to body)
-    TransferContext.callMethod(rawPtr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to body)
+    Internals.callMethod(rawPtr, MethodBindings.isBodyExcludedFromQueryPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val isBodyExcludedFromQueryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "is_body_excluded_from_query", 4155700596)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3DExtension", "is_body_excluded_from_query", 4155700596)
   }
 }

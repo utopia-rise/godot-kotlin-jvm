@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -38,27 +37,27 @@ public open class FBXState : GLTFState() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FBXSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FBXSTATE_INDEX, scriptIndex)
   }
 
   public final fun getAllowGeometryHelperNodes(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllowGeometryHelperNodesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowGeometryHelperNodes(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowGeometryHelperNodesPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getAllowGeometryHelperNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FBXState", "get_allow_geometry_helper_nodes", 2240911060)
+        Internals.getMethodBindPtr("FBXState", "get_allow_geometry_helper_nodes", 2240911060)
 
     public val setAllowGeometryHelperNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FBXState", "set_allow_geometry_helper_nodes", 2586408642)
+        Internals.getMethodBindPtr("FBXState", "set_allow_geometry_helper_nodes", 2586408642)
   }
 }

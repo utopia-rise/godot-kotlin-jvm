@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -35,34 +34,34 @@ import kotlin.Unit
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TILESETSOURCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TILESETSOURCE_INDEX, scriptIndex)
   }
 
   /**
    * Returns how many tiles this atlas source defines (not including alternative tiles).
    */
   public final fun getTilesCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTilesCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTilesCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the tile coordinates ID of the tile with index [index].
    */
   public final fun getTileId(index: Int): Vector2i {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileIdPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTileIdPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
    * Returns if this atlas has a tile with coordinates ID [atlasCoords].
    */
   public final fun hasTile(atlasCoords: Vector2i): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasTilePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2I to atlasCoords)
+    Internals.callMethod(rawPtr, MethodBindings.hasTilePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -72,18 +71,18 @@ public open class TileSetSource internal constructor() : Resource() {
    * Returns -1 if there is not tile at the given coords.
    */
   public final fun getAlternativeTilesCount(atlasCoords: Vector2i): Int {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlternativeTilesCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2I to atlasCoords)
+    Internals.callMethod(rawPtr, MethodBindings.getAlternativeTilesCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the alternative ID for the tile with coordinates ID [atlasCoords] at index [index].
    */
   public final fun getAlternativeTileId(atlasCoords: Vector2i, index: Int): Int {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlternativeTileIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2I to atlasCoords, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAlternativeTileIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -91,30 +90,30 @@ public open class TileSetSource internal constructor() : Resource() {
    * [alternativeTile].
    */
   public final fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAlternativeTilePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasAlternativeTilePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_tiles_count", 3905245786)
+        Internals.getMethodBindPtr("TileSetSource", "get_tiles_count", 3905245786)
 
     public val getTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_tile_id", 880721226)
+        Internals.getMethodBindPtr("TileSetSource", "get_tile_id", 880721226)
 
     public val hasTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "has_tile", 3900751641)
+        Internals.getMethodBindPtr("TileSetSource", "has_tile", 3900751641)
 
     public val getAlternativeTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tiles_count", 2485466453)
+        Internals.getMethodBindPtr("TileSetSource", "get_alternative_tiles_count", 2485466453)
 
     public val getAlternativeTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tile_id", 89881719)
+        Internals.getMethodBindPtr("TileSetSource", "get_alternative_tile_id", 89881719)
 
     public val hasAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "has_alternative_tile", 1073731340)
+        Internals.getMethodBindPtr("TileSetSource", "has_alternative_tile", 1073731340)
   }
 }

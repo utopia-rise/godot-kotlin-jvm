@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -102,7 +101,7 @@ private const val ENGINE_CLASS_PACKEDSCENE_INDEX: Int = 397
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKEDSCENE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKEDSCENE_INDEX, scriptIndex)
   }
 
   /**
@@ -110,9 +109,9 @@ public open class PackedScene : Resource() {
    * be cleared. See [Node.owner].
    */
   public final fun pack(path: Node?): Error {
-    TransferContext.writeArguments(OBJECT to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to path)
+    Internals.callMethod(rawPtr, MethodBindings.packPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -122,27 +121,27 @@ public open class PackedScene : Resource() {
   @JvmOverloads
   public final fun instantiate(editState: GenEditState =
       PackedScene.GenEditState.GEN_EDIT_STATE_DISABLED): Node? {
-    TransferContext.writeArguments(LONG to editState.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments(LONG to editState.id)
+    Internals.callMethod(rawPtr, MethodBindings.instantiatePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
    * Returns `true` if the scene file has nodes.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the [SceneState] representing the scene file contents.
    */
   public final fun getState(): SceneState? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SceneState?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SceneState?)
   }
 
   public enum class GenEditState(
@@ -184,15 +183,15 @@ public open class PackedScene : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val packPtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "pack", 2584678054)
+    public val packPtr: VoidPtr = Internals.getMethodBindPtr("PackedScene", "pack", 2584678054)
 
     public val instantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "instantiate", 2628778455)
+        Internals.getMethodBindPtr("PackedScene", "instantiate", 2628778455)
 
     public val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "can_instantiate", 36873697)
+        Internals.getMethodBindPtr("PackedScene", "can_instantiate", 36873697)
 
     public val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "get_state", 3479783971)
+        Internals.getMethodBindPtr("PackedScene", "get_state", 3479783971)
   }
 }

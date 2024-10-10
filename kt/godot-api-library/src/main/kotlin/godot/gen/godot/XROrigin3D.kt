@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -64,44 +63,44 @@ public open class XROrigin3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRORIGIN3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRORIGIN3D_INDEX, scriptIndex)
   }
 
   public final fun setWorldScale(worldScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to worldScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to worldScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWorldScalePtr, NIL)
   }
 
   public final fun getWorldScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWorldScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCurrent(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setCurrentPtr, NIL)
   }
 
   public final fun isCurrent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XROrigin3D", "set_world_scale", 373806689)
+        Internals.getMethodBindPtr("XROrigin3D", "set_world_scale", 373806689)
 
     public val getWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XROrigin3D", "get_world_scale", 1740695150)
+        Internals.getMethodBindPtr("XROrigin3D", "get_world_scale", 1740695150)
 
     public val setCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XROrigin3D", "set_current", 2586408642)
+        Internals.getMethodBindPtr("XROrigin3D", "set_current", 2586408642)
 
     public val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XROrigin3D", "is_current", 36873697)
+        Internals.getMethodBindPtr("XROrigin3D", "is_current", 36873697)
   }
 }

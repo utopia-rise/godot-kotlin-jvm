@@ -10,14 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser._RID
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -138,7 +137,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX, scriptIndex)
   }
 
   /**
@@ -190,159 +189,159 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
 
   public final fun getRenderTarget(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderTargetPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setRenderTarget(renderTarget: RID): Unit {
-    TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetPtr, NIL)
+    Internals.writeArguments(_RID to renderTarget)
+    Internals.callMethod(rawPtr, MethodBindings.setRenderTargetPtr, NIL)
   }
 
   public final fun getInternalSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInternalSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInternalSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setInternalSize(internalSize: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to internalSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInternalSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to internalSize)
+    Internals.callMethod(rawPtr, MethodBindings.setInternalSizePtr, NIL)
   }
 
   public final fun getTargetSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setTargetSize(targetSize: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to targetSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to targetSize)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetSizePtr, NIL)
   }
 
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setViewCount(viewCount: Long): Unit {
-    TransferContext.writeArguments(LONG to viewCount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setViewCountPtr, NIL)
+    Internals.writeArguments(LONG to viewCount)
+    Internals.callMethod(rawPtr, MethodBindings.setViewCountPtr, NIL)
   }
 
   public final fun getScaling3dMode(): RenderingServer.ViewportScaling3DMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
-    return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
+    return RenderingServer.ViewportScaling3DMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setScaling3dMode(scaling3dMode: RenderingServer.ViewportScaling3DMode): Unit {
-    TransferContext.writeArguments(LONG to scaling3dMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
+    Internals.writeArguments(LONG to scaling3dMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
   }
 
   public final fun getMsaa3d(): RenderingServer.ViewportMSAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
-    return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
+    return RenderingServer.ViewportMSAA.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMsaa3d(msaa3d: RenderingServer.ViewportMSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa3d.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
+    Internals.writeArguments(LONG to msaa3d.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
   }
 
   public final fun getScreenSpaceAa(): RenderingServer.ViewportScreenSpaceAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
-    return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
+    return RenderingServer.ViewportScreenSpaceAA.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: RenderingServer.ViewportScreenSpaceAA): Unit {
-    TransferContext.writeArguments(LONG to screenSpaceAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
+    Internals.writeArguments(LONG to screenSpaceAa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
 
   public final fun getFsrSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFsrSharpness(fsrSharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fsrSharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to fsrSharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
   }
 
   public final fun getTextureMipmapBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to textureMipmapBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to textureMipmapBias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2944877500)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2944877500)
 
     public val setRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2722037293)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2722037293)
 
     public val getInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3690982128)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3690982128)
 
     public val setInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1130785943)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1130785943)
 
     public val getTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3690982128)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3690982128)
 
     public val setTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1130785943)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1130785943)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3905245786)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3905245786)
 
     public val setViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1286410249)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1286410249)
 
     public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976778074)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976778074)
 
     public val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447477857)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447477857)
 
     public val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3109158617)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3109158617)
 
     public val setMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3952630748)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3952630748)
 
     public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641513172)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641513172)
 
     public val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139543108)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139543108)
 
     public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1740695150)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1740695150)
 
     public val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373806689)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373806689)
 
     public val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1740695150)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1740695150)
 
     public val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
+        Internals.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
   }
 }

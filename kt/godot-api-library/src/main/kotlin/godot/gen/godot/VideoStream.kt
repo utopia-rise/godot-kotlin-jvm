@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -41,7 +40,7 @@ public open class VideoStream : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VIDEOSTREAM_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VIDEOSTREAM_INDEX, scriptIndex)
   }
 
   /**
@@ -53,23 +52,22 @@ public open class VideoStream : Resource() {
   }
 
   public final fun setFile(`file`: String): Unit {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
+    Internals.writeArguments(STRING to file)
+    Internals.callMethod(rawPtr, MethodBindings.setFilePtr, NIL)
   }
 
   public final fun getFile(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStream", "set_file", 83702148)
+    public val setFilePtr: VoidPtr = Internals.getMethodBindPtr("VideoStream", "set_file", 83702148)
 
     public val getFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStream", "get_file", 2841200299)
+        Internals.getMethodBindPtr("VideoStream", "get_file", 2841200299)
   }
 }

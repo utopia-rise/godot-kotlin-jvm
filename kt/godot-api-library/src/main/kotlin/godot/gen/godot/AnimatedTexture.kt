@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -104,62 +103,62 @@ public open class AnimatedTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATEDTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATEDTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setFrames(frames: Int): Unit {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFramesPtr, NIL)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFramesPtr, NIL)
   }
 
   public final fun getFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurrentFrame(frame: Int): Unit {
-    TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentFramePtr, NIL)
+    Internals.writeArguments(LONG to frame.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCurrentFramePtr, NIL)
   }
 
   public final fun getCurrentFrame(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentFramePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPause(pause: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pause)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+    Internals.writeArguments(BOOL to pause)
+    Internals.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
   }
 
   public final fun getPause(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPausePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPausePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneShot(oneShot: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to oneShot)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    Internals.writeArguments(BOOL to oneShot)
+    Internals.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun getOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSpeedScale(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun getSpeedScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -169,17 +168,17 @@ public open class AnimatedTexture : Texture2D() {
    * from 0 to [frames] - 1 will be part of the animation.
    */
   public final fun setFrameTexture(frame: Int, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to frame.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameTexturePtr, NIL)
+    Internals.writeArguments(LONG to frame.toLong(), OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setFrameTexturePtr, NIL)
   }
 
   /**
    * Returns the given frame's [Texture2D].
    */
   public final fun getFrameTexture(frame: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to frame.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFrameTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -187,17 +186,17 @@ public open class AnimatedTexture : Texture2D() {
    * set to `0`, the frame is skipped during playback.
    */
   public final fun setFrameDuration(frame: Int, duration: Float): Unit {
-    TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to duration.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameDurationPtr, NIL)
+    Internals.writeArguments(LONG to frame.toLong(), DOUBLE to duration.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrameDurationPtr, NIL)
   }
 
   /**
    * Returns the given [frame]'s duration, in seconds.
    */
   public final fun getFrameDuration(frame: Int): Float {
-    TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameDurationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to frame.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFrameDurationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object {
@@ -210,45 +209,45 @@ public open class AnimatedTexture : Texture2D() {
 
   internal object MethodBindings {
     public val setFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frames", 1286410249)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_frames", 1286410249)
 
     public val getFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frames", 3905245786)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_frames", 3905245786)
 
     public val setCurrentFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_current_frame", 1286410249)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_current_frame", 1286410249)
 
     public val getCurrentFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_current_frame", 3905245786)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_current_frame", 3905245786)
 
     public val setPausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_pause", 2586408642)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_pause", 2586408642)
 
     public val getPausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_pause", 36873697)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_pause", 36873697)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_one_shot", 2586408642)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_one_shot", 2586408642)
 
     public val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_one_shot", 36873697)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_one_shot", 36873697)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_speed_scale", 373806689)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_speed_scale", 373806689)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_speed_scale", 1740695150)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_speed_scale", 1740695150)
 
     public val setFrameTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_texture", 666127730)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_frame_texture", 666127730)
 
     public val getFrameTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_texture", 3536238170)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_frame_texture", 3536238170)
 
     public val setFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "set_frame_duration", 1602489585)
+        Internals.getMethodBindPtr("AnimatedTexture", "set_frame_duration", 1602489585)
 
     public val getFrameDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedTexture", "get_frame_duration", 2339986948)
+        Internals.getMethodBindPtr("AnimatedTexture", "get_frame_duration", 2339986948)
   }
 }

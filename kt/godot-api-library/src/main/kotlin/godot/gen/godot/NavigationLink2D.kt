@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -130,7 +129,7 @@ public open class NavigationLink2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONLINK2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONLINK2D_INDEX, scriptIndex)
   }
 
   /**
@@ -191,42 +190,42 @@ public open class NavigationLink2D : Node2D() {
    * Returns the [RID] of this link on the [NavigationServer2D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBidirectional(bidirectional: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBidirectionalPtr, NIL)
+    Internals.writeArguments(BOOL to bidirectional)
+    Internals.callMethod(rawPtr, MethodBindings.setBidirectionalPtr, NIL)
   }
 
   public final fun isBidirectional(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBidirectionalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBidirectionalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+    Internals.writeArguments(LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
   public final fun getNavigationLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -234,8 +233,8 @@ public open class NavigationLink2D : Node2D() {
    * given a [layerNumber] between 1 and 32.
    */
   public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
@@ -243,153 +242,153 @@ public open class NavigationLink2D : Node2D() {
    * a [layerNumber] between 1 and 32.
    */
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStartPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
   }
 
   public final fun getStartPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setEndPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEndPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setEndPositionPtr, NIL)
   }
 
   public final fun getEndPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEndPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEndPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Sets the [startPosition] that is relative to the link from a global [position].
    */
   public final fun setGlobalStartPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalStartPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalStartPositionPtr, NIL)
   }
 
   /**
    * Returns the [startPosition] that is relative to the link as a global position.
    */
   public final fun getGlobalStartPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalStartPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Sets the [endPosition] that is relative to the link from a global [position].
    */
   public final fun setGlobalEndPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalEndPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalEndPositionPtr, NIL)
   }
 
   /**
    * Returns the [endPosition] that is relative to the link as a global position.
    */
   public final fun getGlobalEndPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalEndPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalEndPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setEnterCost(enterCost: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
+    Internals.writeArguments(DOUBLE to enterCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnterCostPtr, NIL)
   }
 
   public final fun getEnterCost(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnterCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTravelCost(travelCost: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
+    Internals.writeArguments(DOUBLE to travelCost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTravelCostPtr, NIL)
   }
 
   public final fun getTravelCost(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTravelCostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_rid", 2944877500)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_rid", 2944877500)
 
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "is_enabled", 36873697)
+        Internals.getMethodBindPtr("NavigationLink2D", "is_enabled", 36873697)
 
     public val setBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_bidirectional", 2586408642)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_bidirectional", 2586408642)
 
     public val isBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "is_bidirectional", 36873697)
+        Internals.getMethodBindPtr("NavigationLink2D", "is_bidirectional", 36873697)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_navigation_layers", 1286410249)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_navigation_layers", 3905245786)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_navigation_layers", 3905245786)
 
     public val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_navigation_layer_value", 300928843)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_navigation_layer_value", 300928843)
 
     public val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_navigation_layer_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_navigation_layer_value", 1116898809)
 
     public val setStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_start_position", 743155724)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_start_position", 743155724)
 
     public val getStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_start_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_start_position", 3341600327)
 
     public val setEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_end_position", 743155724)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_end_position", 743155724)
 
     public val getEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_end_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_end_position", 3341600327)
 
     public val setGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_global_start_position", 743155724)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_global_start_position", 743155724)
 
     public val getGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_global_start_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_global_start_position", 3341600327)
 
     public val setGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_global_end_position", 743155724)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_global_end_position", 743155724)
 
     public val getGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_global_end_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_global_end_position", 3341600327)
 
     public val setEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_enter_cost", 373806689)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_enter_cost", 373806689)
 
     public val getEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_enter_cost", 1740695150)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_enter_cost", 1740695150)
 
     public val setTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "set_travel_cost", 373806689)
+        Internals.getMethodBindPtr("NavigationLink2D", "set_travel_cost", 373806689)
 
     public val getTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink2D", "get_travel_cost", 1740695150)
+        Internals.getMethodBindPtr("NavigationLink2D", "get_travel_cost", 1740695150)
   }
 }

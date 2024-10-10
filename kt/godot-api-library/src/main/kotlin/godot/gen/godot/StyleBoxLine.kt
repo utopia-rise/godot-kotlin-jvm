@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -94,7 +93,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STYLEBOXLINE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STYLEBOXLINE_INDEX, scriptIndex)
   }
 
   /**
@@ -122,91 +121,91 @@ public open class StyleBoxLine : StyleBox() {
 
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setThickness(thickness: Int): Unit {
-    TransferContext.writeArguments(LONG to thickness.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+    Internals.writeArguments(LONG to thickness.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
   }
 
   public final fun getThickness(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThicknessPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setGrowBegin(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGrowBeginPtr, NIL)
   }
 
   public final fun getGrowBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGrowBeginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGrowEnd(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGrowEndPtr, NIL)
   }
 
   public final fun getGrowEnd(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGrowEndPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    Internals.writeArguments(BOOL to vertical)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_color", 2920490490)
+        Internals.getMethodBindPtr("StyleBoxLine", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_color", 3444240500)
+        Internals.getMethodBindPtr("StyleBoxLine", "get_color", 3444240500)
 
     public val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness", 1286410249)
+        Internals.getMethodBindPtr("StyleBoxLine", "set_thickness", 1286410249)
 
     public val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness", 3905245786)
+        Internals.getMethodBindPtr("StyleBoxLine", "get_thickness", 3905245786)
 
     public val setGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373806689)
+        Internals.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373806689)
 
     public val getGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1740695150)
+        Internals.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1740695150)
 
     public val setGrowEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373806689)
+        Internals.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373806689)
 
     public val getGrowEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1740695150)
+        Internals.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1740695150)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical", 2586408642)
+        Internals.getMethodBindPtr("StyleBoxLine", "set_vertical", 2586408642)
 
     public val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical", 36873697)
+        Internals.getMethodBindPtr("StyleBoxLine", "is_vertical", 36873697)
   }
 }

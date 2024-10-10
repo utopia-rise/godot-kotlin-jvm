@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -90,62 +89,62 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-    return AudioEffectDistortion.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return AudioEffectDistortion.Mode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPreGain(preGain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to preGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
+    Internals.writeArguments(DOUBLE to preGain.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPreGainPtr, NIL)
   }
 
   public final fun getPreGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreGainPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setKeepHfHz(keepHfHz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to keepHfHz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
+    Internals.writeArguments(DOUBLE to keepHfHz.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setKeepHfHzPtr, NIL)
   }
 
   public final fun getKeepHfHz(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getKeepHfHzPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDrive(drive: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to drive.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
+    Internals.writeArguments(DOUBLE to drive.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDrivePtr, NIL)
   }
 
   public final fun getDrive(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrivePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPostGain(postGain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to postGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
+    Internals.writeArguments(DOUBLE to postGain.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPostGainPtr, NIL)
   }
 
   public final fun getPostGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPostGainPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Mode(
@@ -187,33 +186,33 @@ public open class AudioEffectDistortion : AudioEffect() {
 
   internal object MethodBindings {
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1314744793)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "set_mode", 1314744793)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809118343)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "get_mode", 809118343)
 
     public val setPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "set_pre_gain", 373806689)
 
     public val getPreGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "get_pre_gain", 1740695150)
 
     public val setKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "set_keep_hf_hz", 373806689)
 
     public val getKeepHfHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "get_keep_hf_hz", 1740695150)
 
     public val setDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "set_drive", 373806689)
 
     public val getDrivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "get_drive", 1740695150)
 
     public val setPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "set_post_gain", 373806689)
 
     public val getPostGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDistortion", "get_post_gain", 1740695150)
   }
 }

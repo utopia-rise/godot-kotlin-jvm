@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -111,7 +110,7 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PARALLAXBACKGROUND_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PARALLAXBACKGROUND_INDEX, scriptIndex)
   }
 
   /**
@@ -241,108 +240,108 @@ public open class ParallaxBackground : CanvasLayer() {
 
 
   public final fun setScrollOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
   public final fun getScrollOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollBaseOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollBaseOffsetPtr, NIL)
   }
 
   public final fun getScrollBaseOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollBaseOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollBaseScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollBaseScalePtr, NIL)
   }
 
   public final fun getScrollBaseScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollBaseScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitBegin(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
   }
 
   public final fun getLimitBegin(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitEnd(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
   }
 
   public final fun getLimitEnd(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setIgnoreCameraZoom(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
+    Internals.writeArguments(BOOL to ignore)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
   }
 
   public final fun isIgnoreCameraZoom(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIgnoreCameraZoomPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743155724)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743155724)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3341600327)
+        Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3341600327)
 
     public val setScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743155724)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743155724)
 
     public val getScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3341600327)
+        Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3341600327)
 
     public val setScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743155724)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743155724)
 
     public val getScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3341600327)
+        Internals.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3341600327)
 
     public val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743155724)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743155724)
 
     public val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3341600327)
+        Internals.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3341600327)
 
     public val setLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743155724)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743155724)
 
     public val getLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3341600327)
+        Internals.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3341600327)
 
     public val setIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2586408642)
+        Internals.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2586408642)
 
     public val isIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2240911060)
+        Internals.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2240911060)
   }
 }

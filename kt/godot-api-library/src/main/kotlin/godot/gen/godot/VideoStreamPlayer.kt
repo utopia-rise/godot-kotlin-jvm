@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -170,18 +169,18 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {
-    TransferContext.writeArguments(OBJECT to stream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+    Internals.writeArguments(OBJECT to stream)
+    Internals.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
   }
 
   public final fun getStream(): VideoStream? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as VideoStream?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as VideoStream?)
   }
 
   /**
@@ -189,8 +188,8 @@ public open class VideoStreamPlayer : Control() {
    * video.
    */
   public final fun play(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -199,8 +198,8 @@ public open class VideoStreamPlayer : Control() {
    * won't become the current frame.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -208,73 +207,73 @@ public open class VideoStreamPlayer : Control() {
    * **Note:** The video is still considered playing if paused during playback.
    */
   public final fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPaused(paused: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to paused)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
+    Internals.writeArguments(BOOL to paused)
+    Internals.callMethod(rawPtr, MethodBindings.setPausedPtr, NIL)
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVolume(volume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volume.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
+    Internals.writeArguments(DOUBLE to volume.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumePtr, NIL)
   }
 
   public final fun getVolume(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVolumeDb(db: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to db.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to db.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAudioTrack(track: Int): Unit {
-    TransferContext.writeArguments(LONG to track.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
+    Internals.writeArguments(LONG to track.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAudioTrackPtr, NIL)
   }
 
   public final fun getAudioTrack(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAudioTrackPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the video stream's name, or `"<No Stream>"` if no video stream is assigned.
    */
   public final fun getStreamName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -284,160 +283,160 @@ public open class VideoStreamPlayer : Control() {
    * supported by video formats implemented by a GDExtension add-on.
    */
   public final fun getStreamLength(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setStreamPosition(position: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
+    Internals.writeArguments(DOUBLE to position)
+    Internals.callMethod(rawPtr, MethodBindings.setStreamPositionPtr, NIL)
   }
 
   public final fun getStreamPosition(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPositionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setAutoplay(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
   public final fun hasAutoplay(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasAutoplayPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExpand(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setExpandPtr, NIL)
   }
 
   public final fun hasExpand(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasExpandPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBufferingMsec(msec: Int): Unit {
-    TransferContext.writeArguments(LONG to msec.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
+    Internals.writeArguments(LONG to msec.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferingMsecPtr, NIL)
   }
 
   public final fun getBufferingMsec(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferingMsecPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBus(bus: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to bus)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+    Internals.writeArguments(STRING_NAME to bus)
+    Internals.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
   }
 
   public final fun getBus(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
    * Returns the current frame as a [Texture2D].
    */
   public final fun getVideoTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVideoTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVideoTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream", 2317102564)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_stream", 2317102564)
 
     public val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream", 438621487)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_stream", 438621487)
 
     public val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "play", 3218959716)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "play", 3218959716)
 
     public val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "stop", 3218959716)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "stop", 3218959716)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_playing", 36873697)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "is_playing", 36873697)
 
     public val setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_paused", 2586408642)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_paused", 2586408642)
 
     public val isPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "is_paused", 36873697)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "is_paused", 36873697)
 
     public val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_loop", 2586408642)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_loop", 2586408642)
 
     public val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_loop", 36873697)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "has_loop", 36873697)
 
     public val setVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume", 373806689)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_volume", 373806689)
 
     public val getVolumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume", 1740695150)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_volume", 1740695150)
 
     public val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_volume_db", 373806689)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_volume_db", 373806689)
 
     public val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1740695150)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1740695150)
 
     public val setAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1286410249)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1286410249)
 
     public val getAudioTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_audio_track", 3905245786)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_audio_track", 3905245786)
 
     public val getStreamNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_name", 201670096)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_stream_name", 201670096)
 
     public val getStreamLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_length", 1740695150)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_stream_length", 1740695150)
 
     public val setStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_stream_position", 373806689)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_stream_position", 373806689)
 
     public val getStreamPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_stream_position", 1740695150)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_stream_position", 1740695150)
 
     public val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_autoplay", 2586408642)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_autoplay", 2586408642)
 
     public val hasAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_autoplay", 36873697)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "has_autoplay", 36873697)
 
     public val setExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_expand", 2586408642)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_expand", 2586408642)
 
     public val hasExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "has_expand", 36873697)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "has_expand", 36873697)
 
     public val setBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec", 1286410249)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_buffering_msec", 1286410249)
 
     public val getBufferingMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec", 3905245786)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_buffering_msec", 3905245786)
 
     public val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_bus", 3304788590)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "set_bus", 3304788590)
 
     public val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_bus", 2002593661)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_bus", 2002593661)
 
     public val getVideoTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_video_texture", 3635182373)
+        Internals.getMethodBindPtr("VideoStreamPlayer", "get_video_texture", 3635182373)
   }
 }

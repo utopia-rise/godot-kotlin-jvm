@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -44,25 +43,25 @@ private const val ENGINE_CLASS_ZIPREADER_INDEX: Int = 766
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ZIPREADER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ZIPREADER_INDEX, scriptIndex)
   }
 
   /**
    * Opens the zip archive at the given [path] and reads its file index.
    */
   public final fun `open`(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.openPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.openPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Closes the underlying resources used by this instance.
    */
   public final fun close(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -70,9 +69,9 @@ public open class ZIPReader : RefCounted() {
    * Must be called after [open].
    */
   public final fun getFiles(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -81,9 +80,9 @@ public open class ZIPReader : RefCounted() {
    */
   @JvmOverloads
   public final fun readFile(path: String, caseSensitive: Boolean = true): PackedByteArray {
-    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(rawPtr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(STRING to path, BOOL to caseSensitive)
+    Internals.callMethod(rawPtr, MethodBindings.readFilePtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -92,25 +91,25 @@ public open class ZIPReader : RefCounted() {
    */
   @JvmOverloads
   public final fun fileExists(path: String, caseSensitive: Boolean = true): Boolean {
-    TransferContext.writeArguments(STRING to path, BOOL to caseSensitive)
-    TransferContext.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to path, BOOL to caseSensitive)
+    Internals.callMethod(rawPtr, MethodBindings.fileExistsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "open", 166001499)
+    public val openPtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "open", 166001499)
 
-    public val closePtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPReader", "close", 166280745)
+    public val closePtr: VoidPtr = Internals.getMethodBindPtr("ZIPReader", "close", 166280745)
 
     public val getFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "get_files", 2981934095)
+        Internals.getMethodBindPtr("ZIPReader", "get_files", 2981934095)
 
     public val readFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "read_file", 740857591)
+        Internals.getMethodBindPtr("ZIPReader", "read_file", 740857591)
 
     public val fileExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ZIPReader", "file_exists", 35364943)
+        Internals.getMethodBindPtr("ZIPReader", "file_exists", 35364943)
   }
 }

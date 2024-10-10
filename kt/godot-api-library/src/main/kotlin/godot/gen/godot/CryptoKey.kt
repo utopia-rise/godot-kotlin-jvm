@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -33,7 +32,7 @@ private const val ENGINE_CLASS_CRYPTOKEY_INDEX: Int = 199
 @GodotBaseType
 public open class CryptoKey : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CRYPTOKEY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CRYPTOKEY_INDEX, scriptIndex)
   }
 
   /**
@@ -42,9 +41,9 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun save(path: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, BOOL to publicOnly)
+    Internals.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -53,18 +52,18 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun load(path: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to path, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, BOOL to publicOnly)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns `true` if this CryptoKey only has the public part, and not the private one.
    */
   public final fun isPublicOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPublicOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPublicOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -73,9 +72,9 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun saveToString(publicOnly: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(BOOL to publicOnly)
+    Internals.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -84,25 +83,25 @@ public open class CryptoKey : Resource() {
    */
   @JvmOverloads
   public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to stringKey, BOOL to publicOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to stringKey, BOOL to publicOnly)
+    Internals.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "save", 885841341)
+    public val savePtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "save", 885841341)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "load", 885841341)
+    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("CryptoKey", "load", 885841341)
 
     public val isPublicOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "is_public_only", 36873697)
+        Internals.getMethodBindPtr("CryptoKey", "is_public_only", 36873697)
 
     public val saveToStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "save_to_string", 32795936)
+        Internals.getMethodBindPtr("CryptoKey", "save_to_string", 32795936)
 
     public val loadFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "load_from_string", 885841341)
+        Internals.getMethodBindPtr("CryptoKey", "load_from_string", 885841341)
   }
 }

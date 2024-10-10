@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -48,63 +47,63 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SHORTCUT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SHORTCUT_INDEX, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to events)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
+    Internals.writeArguments(ARRAY to events)
+    Internals.callMethod(rawPtr, MethodBindings.setEventsPtr, NIL)
   }
 
   public final fun getEvents(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEventsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Returns whether [events] contains an [InputEvent] which is valid.
    */
   public final fun hasValidEvent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasValidEventPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns whether any [InputEvent] in [events] equals [event].
    */
   public final fun matchesEvent(event: InputEvent?): Boolean {
-    TransferContext.writeArguments(OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to event)
+    Internals.callMethod(rawPtr, MethodBindings.matchesEventPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the shortcut's first valid [InputEvent] as a [String].
    */
   public final fun getAsText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAsTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "set_events", 381264803)
+        Internals.getMethodBindPtr("Shortcut", "set_events", 381264803)
 
     public val getEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "get_events", 3995934104)
+        Internals.getMethodBindPtr("Shortcut", "get_events", 3995934104)
 
     public val hasValidEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event", 36873697)
+        Internals.getMethodBindPtr("Shortcut", "has_valid_event", 36873697)
 
     public val matchesEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "matches_event", 3738334489)
+        Internals.getMethodBindPtr("Shortcut", "matches_event", 3738334489)
 
     public val getAsTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "get_as_text", 201670096)
+        Internals.getMethodBindPtr("Shortcut", "get_as_text", 201670096)
   }
 }

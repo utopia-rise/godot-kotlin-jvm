@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -29,7 +28,7 @@ private const val ENGINE_CLASS_AUDIOLISTENER2D_INDEX: Int = 108
 @GodotBaseType
 public open class AudioListener2D : Node2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOLISTENER2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOLISTENER2D_INDEX, scriptIndex)
   }
 
   /**
@@ -38,37 +37,37 @@ public open class AudioListener2D : Node2D() {
    * This method will have no effect if the [AudioListener2D] is not added to [SceneTree].
    */
   public final fun makeCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
 
   /**
    * Disables the [AudioListener2D]. If it's not set as current, this method will have no effect.
    */
   public final fun clearCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
   }
 
   /**
    * Returns `true` if this [AudioListener2D] is currently active.
    */
   public final fun isCurrent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener2D", "make_current", 3218959716)
+        Internals.getMethodBindPtr("AudioListener2D", "make_current", 3218959716)
 
     public val clearCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener2D", "clear_current", 3218959716)
+        Internals.getMethodBindPtr("AudioListener2D", "clear_current", 3218959716)
 
     public val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener2D", "is_current", 36873697)
+        Internals.getMethodBindPtr("AudioListener2D", "is_current", 36873697)
   }
 }

@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -80,78 +79,78 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COLLISIONPOLYGON3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COLLISIONPOLYGON3D_INDEX, scriptIndex)
   }
 
   public final fun setDepth(depth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to depth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(DOUBLE to depth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun getDepth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    Internals.writeArguments(BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_depth", 373806689)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "set_depth", 373806689)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_depth", 1740695150)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "get_depth", 1740695150)
 
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_polygon", 1509147220)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_polygon", 2961356807)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "get_polygon", 2961356807)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_disabled", 2586408642)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "is_disabled", 36873697)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "is_disabled", 36873697)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "set_margin", 373806689)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon3D", "get_margin", 1740695150)
+        Internals.getMethodBindPtr("CollisionPolygon3D", "get_margin", 1740695150)
   }
 }

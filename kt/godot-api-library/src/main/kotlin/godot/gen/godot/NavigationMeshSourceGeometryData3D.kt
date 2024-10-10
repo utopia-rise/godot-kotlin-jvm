@@ -11,7 +11,6 @@ import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -22,7 +21,7 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -64,7 +63,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -74,17 +74,17 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * libraries.
    */
   public final fun setVertices(vertices: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to vertices)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
 
   /**
    * Returns the parsed source geometry data vertices array.
    */
   public final fun getVertices(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -94,17 +94,17 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * libraries.
    */
   public final fun setIndices(indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to indices)
+    Internals.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
   }
 
   /**
    * Returns the parsed source geometry data indices array.
    */
   public final fun getIndices(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIndicesPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
@@ -112,25 +112,25 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * index as an offset to the appended indices.
    */
   public final fun appendArrays(vertices: PackedFloat32Array, indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendArraysPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
+    Internals.callMethod(rawPtr, MethodBindings.appendArraysPtr, NIL)
   }
 
   /**
    * Clears the internal data.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
    * Returns `true` when parsed source geometry data exists.
    */
   public final fun hasData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -139,8 +139,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * transform, all vertex positions need to be offset by the node's transform using [xform].
    */
   public final fun addMesh(mesh: Mesh?, xform: Transform3D): Unit {
-    TransferContext.writeArguments(OBJECT to mesh, TRANSFORM3D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh, TRANSFORM3D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.addMeshPtr, NIL)
   }
 
   /**
@@ -150,8 +150,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * vertex positions need to be offset by the node's transform using [xform].
    */
   public final fun addMeshArray(meshArray: VariantArray<Any?>, xform: Transform3D): Unit {
-    TransferContext.writeArguments(ARRAY to meshArray, TRANSFORM3D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMeshArrayPtr, NIL)
+    Internals.writeArguments(ARRAY to meshArray, TRANSFORM3D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.addMeshArrayPtr, NIL)
   }
 
   /**
@@ -161,8 +161,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * by the node's transform using [xform].
    */
   public final fun addFaces(faces: PackedVector3Array, xform: Transform3D): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces, TRANSFORM3D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.addFacesPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to faces, TRANSFORM3D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.addFacesPtr, NIL)
   }
 
   /**
@@ -170,8 +170,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * baking data.
    */
   public final fun merge(otherGeometry: NavigationMeshSourceGeometryData3D?): Unit {
-    TransferContext.writeArguments(OBJECT to otherGeometry)
-    TransferContext.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
+    Internals.writeArguments(OBJECT to otherGeometry)
+    Internals.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
   }
 
   /**
@@ -186,16 +186,16 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     height: Float,
     carve: Boolean,
   ): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, DOUBLE to elevation.toDouble(), DOUBLE to height.toDouble(), BOOL to carve)
-    TransferContext.callMethod(rawPtr, MethodBindings.addProjectedObstructionPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to vertices, DOUBLE to elevation.toDouble(), DOUBLE to height.toDouble(), BOOL to carve)
+    Internals.callMethod(rawPtr, MethodBindings.addProjectedObstructionPtr, NIL)
   }
 
   /**
    * Clears all projected obstructions.
    */
   public final fun clearProjectedObstructions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
   }
 
   /**
@@ -211,8 +211,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * ```
    */
   public final fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to projectedObstructions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+    Internals.writeArguments(ARRAY to projectedObstructions)
+    Internals.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
   }
 
   /**
@@ -225,57 +225,57 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
    * `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
   public final fun getProjectedObstructions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_vertices", 2899603908)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_vertices", 2899603908)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_vertices", 675695659)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_vertices", 675695659)
 
     public val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_indices", 3614634198)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_indices", 3614634198)
 
     public val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_indices", 1930428628)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_indices", 1930428628)
 
     public val appendArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "append_arrays", 3117535015)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "append_arrays", 3117535015)
 
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear", 3218959716)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear", 3218959716)
 
     public val hasDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "has_data", 2240911060)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "has_data", 2240911060)
 
     public val addMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh", 975462459)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh", 975462459)
 
     public val addMeshArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh_array", 4235710913)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_mesh_array", 4235710913)
 
     public val addFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_faces", 1440358797)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_faces", 1440358797)
 
     public val mergePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "merge", 655828145)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "merge", 655828145)
 
     public val addProjectedObstructionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_projected_obstruction", 3351846707)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "add_projected_obstruction", 3351846707)
 
     public val clearProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear_projected_obstructions", 3218959716)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "clear_projected_obstructions", 3218959716)
 
     public val setProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_projected_obstructions", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "set_projected_obstructions", 381264803)
 
     public val getProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_projected_obstructions", 3995934104)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData3D", "get_projected_obstructions", 3995934104)
   }
 }

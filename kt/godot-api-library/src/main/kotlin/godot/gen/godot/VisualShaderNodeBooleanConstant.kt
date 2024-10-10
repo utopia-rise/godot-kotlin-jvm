@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -38,27 +37,27 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX, scriptIndex)
   }
 
   public final fun setConstant(constant: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(BOOL to constant)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant", 2586408642)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant", 36873697)
   }
 }

@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Float
 import kotlin.Int
@@ -22,7 +21,7 @@ private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX: Int = 120
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX, scriptIndex)
   }
 
   public open fun _getStreamSamplingRate(): Float {
@@ -30,14 +29,14 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   }
 
   public final fun beginResample(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.beginResamplePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.beginResamplePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val beginResamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaybackResampled", "begin_resample", 3218959716)
+        Internals.getMethodBindPtr("AudioStreamPlaybackResampled", "begin_resample", 3218959716)
   }
 }

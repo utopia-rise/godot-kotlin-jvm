@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -19,7 +18,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -229,38 +228,38 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TABBAR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TABBAR_INDEX, scriptIndex)
   }
 
   public final fun setTabCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTabCountPtr, NIL)
   }
 
   public final fun getTabCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurrentTab(tabIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCurrentTabPtr, NIL)
   }
 
   public final fun getCurrentTab(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentTabPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the previously active tab index.
    */
   public final fun getPreviousTab(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreviousTabPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreviousTabPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -268,9 +267,9 @@ public open class TabBar : Control() {
    * tab selection changed.
    */
   public final fun selectPreviousAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.selectPreviousAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.selectPreviousAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -278,26 +277,26 @@ public open class TabBar : Control() {
    * if tab selection changed.
    */
   public final fun selectNextAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.selectNextAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.selectNextAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets a [title] for the tab at index [tabIdx].
    */
   public final fun setTabTitle(tabIdx: Int, title: String): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabTitlePtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.setTabTitlePtr, NIL)
   }
 
   /**
    * Returns the title of the tab at index [tabIdx].
    */
   public final fun getTabTitle(tabIdx: Int): String {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabTitlePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -307,34 +306,34 @@ public open class TabBar : Control() {
    * assign `" "` as the [tooltip] text.
    */
   public final fun setTabTooltip(tabIdx: Int, tooltip: String): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to tooltip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabTooltipPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), STRING to tooltip)
+    Internals.callMethod(rawPtr, MethodBindings.setTabTooltipPtr, NIL)
   }
 
   /**
    * Returns the tooltip text of the tab at index [tabIdx].
    */
   public final fun getTabTooltip(tabIdx: Int): String {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabTooltipPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabTooltipPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Sets tab title base writing direction.
    */
   public final fun setTabTextDirection(tabIdx: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTabTextDirectionPtr, NIL)
   }
 
   /**
    * Returns tab title text base writing direction.
    */
   public final fun getTabTextDirection(tabIdx: Int): Control.TextDirection {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -342,34 +341,34 @@ public open class TabBar : Control() {
    * empty current locale is used instead.
    */
   public final fun setTabLanguage(tabIdx: Int, language: String): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabLanguagePtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setTabLanguagePtr, NIL)
   }
 
   /**
    * Returns tab title language code.
    */
   public final fun getTabLanguage(tabIdx: Int): String {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Sets an [icon] for the tab at index [tabIdx].
    */
   public final fun setTabIcon(tabIdx: Int, icon: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabIconPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.setTabIconPtr, NIL)
   }
 
   /**
    * Returns the icon for the tab at index [tabIdx] or `null` if the tab has no icon.
    */
   public final fun getTabIcon(tabIdx: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
@@ -378,17 +377,17 @@ public open class TabBar : Control() {
    * adjusted according to the icon's ratio.
    */
   public final fun setTabIconMaxWidth(tabIdx: Int, width: Int): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabIconMaxWidthPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTabIconMaxWidthPtr, NIL)
   }
 
   /**
    * Returns the maximum allowed width of the icon for the tab at index [tabIdx].
    */
   public final fun getTabIconMaxWidth(tabIdx: Int): Int {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabIconMaxWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabIconMaxWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -397,8 +396,8 @@ public open class TabBar : Control() {
    * `null` value will hide the button.
    */
   public final fun setTabButtonIcon(tabIdx: Int, icon: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabButtonIconPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.setTabButtonIconPtr, NIL)
   }
 
   /**
@@ -406,43 +405,43 @@ public open class TabBar : Control() {
    * button has no icon.
    */
   public final fun getTabButtonIcon(tabIdx: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabButtonIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabButtonIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * If [disabled] is `true`, disables the tab at index [tabIdx], making it non-interactable.
    */
   public final fun setTabDisabled(tabIdx: Int, disabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabDisabledPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setTabDisabledPtr, NIL)
   }
 
   /**
    * Returns `true` if the tab at index [tabIdx] is disabled.
    */
   public final fun isTabDisabled(tabIdx: Int): Boolean {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isTabDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isTabDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * If [hidden] is `true`, hides the tab at index [tabIdx], making it disappear from the tab area.
    */
   public final fun setTabHidden(tabIdx: Int, hidden: Boolean): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabHiddenPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), BOOL to hidden)
+    Internals.callMethod(rawPtr, MethodBindings.setTabHiddenPtr, NIL)
   }
 
   /**
    * Returns `true` if the tab at index [tabIdx] is hidden.
    */
   public final fun isTabHidden(tabIdx: Int): Boolean {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isTabHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isTabHiddenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -450,8 +449,8 @@ public open class TabBar : Control() {
    * [getTabMetadata].
    */
   public final fun setTabMetadata(tabIdx: Int, metadata: Any?): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabMetadataPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong(), ANY to metadata)
+    Internals.callMethod(rawPtr, MethodBindings.setTabMetadataPtr, NIL)
   }
 
   /**
@@ -459,17 +458,17 @@ public open class TabBar : Control() {
    * metadata was previously set, returns `null` by default.
    */
   public final fun getTabMetadata(tabIdx: Int): Any? {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabMetadataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabMetadataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
    * Removes the tab at index [tabIdx].
    */
   public final fun removeTab(tabIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeTabPtr, NIL)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeTabPtr, NIL)
   }
 
   /**
@@ -477,8 +476,8 @@ public open class TabBar : Control() {
    */
   @JvmOverloads
   public final fun addTab(title: String = "", icon: Texture2D? = null): Unit {
-    TransferContext.writeArguments(STRING to title, OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.addTabPtr, NIL)
+    Internals.writeArguments(STRING to title, OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.addTabPtr, NIL)
   }
 
   /**
@@ -486,40 +485,40 @@ public open class TabBar : Control() {
    * the control boundaries or if there's no tab at the queried position.
    */
   public final fun getTabIdxAtPoint(point: Vector2): Int {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabIdxAtPointPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2 to point)
+    Internals.callMethod(rawPtr, MethodBindings.getTabIdxAtPointPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTabAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTabAlignmentPtr, NIL)
   }
 
   public final fun getTabAlignment(): AlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
-    return TabBar.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabAlignmentPtr, LONG)
+    return TabBar.AlignmentMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipTabs(clipTabs: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to clipTabs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
+    Internals.writeArguments(BOOL to clipTabs)
+    Internals.callMethod(rawPtr, MethodBindings.setClipTabsPtr, NIL)
   }
 
   public final fun getClipTabs(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClipTabsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the number of hidden tabs offsetted to the left.
    */
   public final fun getTabOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -527,130 +526,130 @@ public open class TabBar : Control() {
    * all tabs) are visible.
    */
   public final fun getOffsetButtonsVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetButtonsVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetButtonsVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Moves the scroll view to make the tab visible.
    */
   public final fun ensureTabVisible(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.ensureTabVisiblePtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.ensureTabVisiblePtr, NIL)
   }
 
   /**
    * Returns tab [Rect2] with local position and size.
    */
   public final fun getTabRect(tabIdx: Int): Rect2 {
-    TransferContext.writeArguments(LONG to tabIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments(LONG to tabIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTabRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
    * Moves a tab from [from] to [to].
    */
   public final fun moveTab(from: Int, to: Int): Unit {
-    TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveTabPtr, NIL)
+    Internals.writeArguments(LONG to from.toLong(), LONG to to.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveTabPtr, NIL)
   }
 
   public final fun setTabCloseDisplayPolicy(policy: CloseButtonDisplayPolicy): Unit {
-    TransferContext.writeArguments(LONG to policy.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
+    Internals.writeArguments(LONG to policy.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
   }
 
   public final fun getTabCloseDisplayPolicy(): CloseButtonDisplayPolicy {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
-    return TabBar.CloseButtonDisplayPolicy.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabCloseDisplayPolicyPtr, LONG)
+    return TabBar.CloseButtonDisplayPolicy.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaxTabWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxTabWidthPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxTabWidthPtr, NIL)
   }
 
   public final fun getMaxTabWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxTabWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxTabWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setScrollingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollingEnabledPtr, NIL)
   }
 
   public final fun getScrollingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragToRearrangeEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDragToRearrangeEnabledPtr, NIL)
   }
 
   public final fun getDragToRearrangeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDragToRearrangeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTabsRearrangeGroup(groupId: Int): Unit {
-    TransferContext.writeArguments(LONG to groupId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
+    Internals.writeArguments(LONG to groupId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTabsRearrangeGroupPtr, NIL)
   }
 
   public final fun getTabsRearrangeGroup(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabsRearrangeGroupPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setScrollToSelected(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollToSelectedPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollToSelectedPtr, NIL)
   }
 
   public final fun getScrollToSelected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollToSelectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollToSelectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectWithRmb(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectWithRmbPtr, NIL)
   }
 
   public final fun getSelectWithRmb(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectWithRmbPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectWithRmbPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDeselectEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDeselectEnabledPtr, NIL)
   }
 
   public final fun getDeselectEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDeselectEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Clears all tabs.
    */
   public final fun clearTabs(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearTabsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearTabsPtr, NIL)
   }
 
   public enum class AlignmentMode(
@@ -719,169 +718,169 @@ public open class TabBar : Control() {
 
   internal object MethodBindings {
     public val setTabCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_count", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "set_tab_count", 1286410249)
 
     public val getTabCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_count", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_tab_count", 3905245786)
 
     public val setCurrentTabPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_current_tab", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "set_current_tab", 1286410249)
 
     public val getCurrentTabPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_current_tab", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_current_tab", 3905245786)
 
     public val getPreviousTabPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_previous_tab", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_previous_tab", 3905245786)
 
     public val selectPreviousAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "select_previous_available", 2240911060)
+        Internals.getMethodBindPtr("TabBar", "select_previous_available", 2240911060)
 
     public val selectNextAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "select_next_available", 2240911060)
+        Internals.getMethodBindPtr("TabBar", "select_next_available", 2240911060)
 
     public val setTabTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_title", 501894301)
+        Internals.getMethodBindPtr("TabBar", "set_tab_title", 501894301)
 
     public val getTabTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_title", 844755477)
+        Internals.getMethodBindPtr("TabBar", "get_tab_title", 844755477)
 
     public val setTabTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_tooltip", 501894301)
+        Internals.getMethodBindPtr("TabBar", "set_tab_tooltip", 501894301)
 
     public val getTabTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_tooltip", 844755477)
+        Internals.getMethodBindPtr("TabBar", "get_tab_tooltip", 844755477)
 
     public val setTabTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_text_direction", 1707680378)
+        Internals.getMethodBindPtr("TabBar", "set_tab_text_direction", 1707680378)
 
     public val getTabTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_text_direction", 4235602388)
+        Internals.getMethodBindPtr("TabBar", "get_tab_text_direction", 4235602388)
 
     public val setTabLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_language", 501894301)
+        Internals.getMethodBindPtr("TabBar", "set_tab_language", 501894301)
 
     public val getTabLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_language", 844755477)
+        Internals.getMethodBindPtr("TabBar", "get_tab_language", 844755477)
 
     public val setTabIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_icon", 666127730)
+        Internals.getMethodBindPtr("TabBar", "set_tab_icon", 666127730)
 
     public val getTabIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_icon", 3536238170)
+        Internals.getMethodBindPtr("TabBar", "get_tab_icon", 3536238170)
 
     public val setTabIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_icon_max_width", 3937882851)
+        Internals.getMethodBindPtr("TabBar", "set_tab_icon_max_width", 3937882851)
 
     public val getTabIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_icon_max_width", 923996154)
+        Internals.getMethodBindPtr("TabBar", "get_tab_icon_max_width", 923996154)
 
     public val setTabButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_button_icon", 666127730)
+        Internals.getMethodBindPtr("TabBar", "set_tab_button_icon", 666127730)
 
     public val getTabButtonIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_button_icon", 3536238170)
+        Internals.getMethodBindPtr("TabBar", "get_tab_button_icon", 3536238170)
 
     public val setTabDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_disabled", 300928843)
+        Internals.getMethodBindPtr("TabBar", "set_tab_disabled", 300928843)
 
     public val isTabDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "is_tab_disabled", 1116898809)
+        Internals.getMethodBindPtr("TabBar", "is_tab_disabled", 1116898809)
 
     public val setTabHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_hidden", 300928843)
+        Internals.getMethodBindPtr("TabBar", "set_tab_hidden", 300928843)
 
     public val isTabHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "is_tab_hidden", 1116898809)
+        Internals.getMethodBindPtr("TabBar", "is_tab_hidden", 1116898809)
 
     public val setTabMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_metadata", 2152698145)
+        Internals.getMethodBindPtr("TabBar", "set_tab_metadata", 2152698145)
 
     public val getTabMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_metadata", 4227898402)
+        Internals.getMethodBindPtr("TabBar", "get_tab_metadata", 4227898402)
 
     public val removeTabPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "remove_tab", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "remove_tab", 1286410249)
 
-    public val addTabPtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "add_tab", 1465444425)
+    public val addTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "add_tab", 1465444425)
 
     public val getTabIdxAtPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_idx_at_point", 3820158470)
+        Internals.getMethodBindPtr("TabBar", "get_tab_idx_at_point", 3820158470)
 
     public val setTabAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_alignment", 2413632353)
+        Internals.getMethodBindPtr("TabBar", "set_tab_alignment", 2413632353)
 
     public val getTabAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_alignment", 2178122193)
+        Internals.getMethodBindPtr("TabBar", "get_tab_alignment", 2178122193)
 
     public val setClipTabsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_clip_tabs", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_clip_tabs", 2586408642)
 
     public val getClipTabsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_clip_tabs", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_clip_tabs", 36873697)
 
     public val getTabOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_offset", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_tab_offset", 3905245786)
 
     public val getOffsetButtonsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_offset_buttons_visible", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_offset_buttons_visible", 36873697)
 
     public val ensureTabVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "ensure_tab_visible", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "ensure_tab_visible", 1286410249)
 
     public val getTabRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_rect", 3327874267)
+        Internals.getMethodBindPtr("TabBar", "get_tab_rect", 3327874267)
 
-    public val moveTabPtr: VoidPtr = TypeManager.getMethodBindPtr("TabBar", "move_tab", 3937882851)
+    public val moveTabPtr: VoidPtr = Internals.getMethodBindPtr("TabBar", "move_tab", 3937882851)
 
     public val setTabCloseDisplayPolicyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tab_close_display_policy", 2212906737)
+        Internals.getMethodBindPtr("TabBar", "set_tab_close_display_policy", 2212906737)
 
     public val getTabCloseDisplayPolicyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tab_close_display_policy", 2956568028)
+        Internals.getMethodBindPtr("TabBar", "get_tab_close_display_policy", 2956568028)
 
     public val setMaxTabWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_max_tab_width", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "set_max_tab_width", 1286410249)
 
     public val getMaxTabWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_max_tab_width", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_max_tab_width", 3905245786)
 
     public val setScrollingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_scrolling_enabled", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_scrolling_enabled", 2586408642)
 
     public val getScrollingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_scrolling_enabled", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_scrolling_enabled", 36873697)
 
     public val setDragToRearrangeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_drag_to_rearrange_enabled", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_drag_to_rearrange_enabled", 2586408642)
 
     public val getDragToRearrangeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_drag_to_rearrange_enabled", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_drag_to_rearrange_enabled", 36873697)
 
     public val setTabsRearrangeGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_tabs_rearrange_group", 1286410249)
+        Internals.getMethodBindPtr("TabBar", "set_tabs_rearrange_group", 1286410249)
 
     public val getTabsRearrangeGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_tabs_rearrange_group", 3905245786)
+        Internals.getMethodBindPtr("TabBar", "get_tabs_rearrange_group", 3905245786)
 
     public val setScrollToSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_scroll_to_selected", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_scroll_to_selected", 2586408642)
 
     public val getScrollToSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_scroll_to_selected", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_scroll_to_selected", 36873697)
 
     public val setSelectWithRmbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_select_with_rmb", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_select_with_rmb", 2586408642)
 
     public val getSelectWithRmbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_select_with_rmb", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_select_with_rmb", 36873697)
 
     public val setDeselectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "set_deselect_enabled", 2586408642)
+        Internals.getMethodBindPtr("TabBar", "set_deselect_enabled", 2586408642)
 
     public val getDeselectEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "get_deselect_enabled", 36873697)
+        Internals.getMethodBindPtr("TabBar", "get_deselect_enabled", 36873697)
 
     public val clearTabsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TabBar", "clear_tabs", 3218959716)
+        Internals.getMethodBindPtr("TabBar", "clear_tabs", 3218959716)
   }
 }

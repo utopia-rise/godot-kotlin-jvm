@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -62,52 +61,52 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTJOYPADBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTJOYPADBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
-    TransferContext.writeArguments(LONG to buttonIndex.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
+    Internals.writeArguments(LONG to buttonIndex.id)
+    Internals.callMethod(rawPtr, MethodBindings.setButtonIndexPtr, NIL)
   }
 
   public final fun getButtonIndex(): JoyButton {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
-    return JoyButton.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonIndexPtr, LONG)
+    return JoyButton.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPressure(pressure: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pressure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+    Internals.writeArguments(DOUBLE to pressure.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
   }
 
   public final fun getPressure(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    Internals.writeArguments(BOOL to pressed)
+    Internals.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_button_index", 1466368136)
+        Internals.getMethodBindPtr("InputEventJoypadButton", "set_button_index", 1466368136)
 
     public val getButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_button_index", 595588182)
+        Internals.getMethodBindPtr("InputEventJoypadButton", "get_button_index", 595588182)
 
     public val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressure", 373806689)
+        Internals.getMethodBindPtr("InputEventJoypadButton", "set_pressure", 373806689)
 
     public val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "get_pressure", 1740695150)
+        Internals.getMethodBindPtr("InputEventJoypadButton", "get_pressure", 1740695150)
 
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadButton", "set_pressed", 2586408642)
+        Internals.getMethodBindPtr("InputEventJoypadButton", "set_pressed", 2586408642)
   }
 }

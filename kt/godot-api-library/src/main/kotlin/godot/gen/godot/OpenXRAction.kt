@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -75,40 +74,40 @@ public open class OpenXRAction : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRACTION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRACTION_INDEX, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {
-    TransferContext.writeArguments(STRING to localizedName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+    Internals.writeArguments(STRING to localizedName)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
   }
 
   public final fun getLocalizedName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setActionType(actionType: ActionType): Unit {
-    TransferContext.writeArguments(LONG to actionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionTypePtr, NIL)
+    Internals.writeArguments(LONG to actionType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setActionTypePtr, NIL)
   }
 
   public final fun getActionType(): ActionType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionTypePtr, LONG)
-    return OpenXRAction.ActionType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionTypePtr, LONG)
+    return OpenXRAction.ActionType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setToplevelPaths(toplevelPaths: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to toplevelPaths)
-    TransferContext.callMethod(rawPtr, MethodBindings.setToplevelPathsPtr, NIL)
+    Internals.writeArguments(PACKED_STRING_ARRAY to toplevelPaths)
+    Internals.callMethod(rawPtr, MethodBindings.setToplevelPathsPtr, NIL)
   }
 
   public final fun getToplevelPaths(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getToplevelPathsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public enum class ActionType(
@@ -144,21 +143,21 @@ public open class OpenXRAction : Resource() {
 
   internal object MethodBindings {
     public val setLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_localized_name", 83702148)
+        Internals.getMethodBindPtr("OpenXRAction", "set_localized_name", 83702148)
 
     public val getLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_localized_name", 201670096)
+        Internals.getMethodBindPtr("OpenXRAction", "get_localized_name", 201670096)
 
     public val setActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_action_type", 1675238366)
+        Internals.getMethodBindPtr("OpenXRAction", "set_action_type", 1675238366)
 
     public val getActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_action_type", 3536542431)
+        Internals.getMethodBindPtr("OpenXRAction", "get_action_type", 3536542431)
 
     public val setToplevelPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "set_toplevel_paths", 4015028928)
+        Internals.getMethodBindPtr("OpenXRAction", "set_toplevel_paths", 4015028928)
 
     public val getToplevelPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAction", "get_toplevel_paths", 1139954409)
+        Internals.getMethodBindPtr("OpenXRAction", "get_toplevel_paths", 1139954409)
   }
 }

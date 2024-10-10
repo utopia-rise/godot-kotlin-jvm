@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -36,7 +35,7 @@ private const val ENGINE_CLASS_PACKETPEERDTLS_INDEX: Int = 398
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKETPEERDTLS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKETPEERDTLS_INDEX, scriptIndex)
   }
 
   /**
@@ -44,8 +43,8 @@ public open class PacketPeerDTLS : PacketPeer() {
    * and keep the connection working.
    */
   public final fun poll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
 
   /**
@@ -60,26 +59,26 @@ public open class PacketPeerDTLS : PacketPeer() {
     hostname: String,
     clientOptions: TLSOptions? = null,
   ): Error {
-    TransferContext.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectToPeerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to packetPeer, STRING to hostname, OBJECT to clientOptions)
+    Internals.callMethod(rawPtr, MethodBindings.connectToPeerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the status of the connection. See [Status] for values.
    */
   public final fun getStatus(): Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
-    return PacketPeerDTLS.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatusPtr, LONG)
+    return PacketPeerDTLS.Status.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Disconnects this peer, terminating the DTLS session.
    */
   public final fun disconnectFromPeer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectFromPeerPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.disconnectFromPeerPtr, NIL)
   }
 
   public enum class Status(
@@ -122,15 +121,15 @@ public open class PacketPeerDTLS : PacketPeer() {
   public companion object
 
   internal object MethodBindings {
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("PacketPeerDTLS", "poll", 3218959716)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerDTLS", "poll", 3218959716)
 
     public val connectToPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "connect_to_peer", 2880188099)
+        Internals.getMethodBindPtr("PacketPeerDTLS", "connect_to_peer", 2880188099)
 
     public val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "get_status", 3248654679)
+        Internals.getMethodBindPtr("PacketPeerDTLS", "get_status", 3248654679)
 
     public val disconnectFromPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "disconnect_from_peer", 3218959716)
+        Internals.getMethodBindPtr("PacketPeerDTLS", "disconnect_from_peer", 3218959716)
   }
 }

@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -62,7 +61,7 @@ public open class SubViewportContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX, scriptIndex)
   }
 
   /**
@@ -75,40 +74,40 @@ public open class SubViewportContainer : Container() {
   }
 
   public final fun setStretch(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setStretchPtr, NIL)
   }
 
   public final fun isStretchEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isStretchEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStretchShrink(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setStretchShrinkPtr, NIL)
   }
 
   public final fun getStretchShrink(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStretchShrinkPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch", 2586408642)
+        Internals.getMethodBindPtr("SubViewportContainer", "set_stretch", 2586408642)
 
     public val isStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled", 36873697)
+        Internals.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled", 36873697)
 
     public val setStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink", 1286410249)
+        Internals.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink", 1286410249)
 
     public val getStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3905245786)
+        Internals.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3905245786)
   }
 }

@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -87,62 +86,62 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTURERECT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTURERECT_INDEX, scriptIndex)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setExpandMode(expandMode: ExpandMode): Unit {
-    TransferContext.writeArguments(LONG to expandMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandModePtr, NIL)
+    Internals.writeArguments(LONG to expandMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setExpandModePtr, NIL)
   }
 
   public final fun getExpandMode(): ExpandMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpandModePtr, LONG)
-    return TextureRect.ExpandMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExpandModePtr, LONG)
+    return TextureRect.ExpandMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFlipH(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to stretchMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
+    Internals.writeArguments(LONG to stretchMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStretchModePtr, NIL)
   }
 
   public final fun getStretchMode(): StretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
-    return TextureRect.StretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStretchModePtr, LONG)
+    return TextureRect.StretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ExpandMode(
@@ -238,33 +237,33 @@ public open class TextureRect : Control() {
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("TextureRect", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("TextureRect", "get_texture", 3635182373)
 
     public val setExpandModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_expand_mode", 1870766882)
+        Internals.getMethodBindPtr("TextureRect", "set_expand_mode", 1870766882)
 
     public val getExpandModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "get_expand_mode", 3863824733)
+        Internals.getMethodBindPtr("TextureRect", "get_expand_mode", 3863824733)
 
     public val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_flip_h", 2586408642)
+        Internals.getMethodBindPtr("TextureRect", "set_flip_h", 2586408642)
 
     public val isFlippedHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "is_flipped_h", 36873697)
+        Internals.getMethodBindPtr("TextureRect", "is_flipped_h", 36873697)
 
     public val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_flip_v", 2586408642)
+        Internals.getMethodBindPtr("TextureRect", "set_flip_v", 2586408642)
 
     public val isFlippedVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "is_flipped_v", 36873697)
+        Internals.getMethodBindPtr("TextureRect", "is_flipped_v", 36873697)
 
     public val setStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "set_stretch_mode", 58788729)
+        Internals.getMethodBindPtr("TextureRect", "set_stretch_mode", 58788729)
 
     public val getStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureRect", "get_stretch_mode", 346396079)
+        Internals.getMethodBindPtr("TextureRect", "get_stretch_mode", 346396079)
   }
 }

@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -59,34 +58,34 @@ public open class RegExMatch : RefCounted() {
     get() = getStrings()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_REGEXMATCH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_REGEXMATCH_INDEX, scriptIndex)
   }
 
   public final fun getSubject(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubjectPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubjectPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the number of capturing groups.
    */
   public final fun getGroupCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getNames(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamesPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getStrings(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStringsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -97,9 +96,9 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getString(name: Any? = 0): String {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(ANY to name)
+    Internals.callMethod(rawPtr, MethodBindings.getStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -110,9 +109,9 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getStart(name: Any? = 0): Int {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStartPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(ANY to name)
+    Internals.callMethod(rawPtr, MethodBindings.getStartPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -123,32 +122,32 @@ public open class RegExMatch : RefCounted() {
    */
   @JvmOverloads
   public final fun getEnd(name: Any? = 0): Int {
-    TransferContext.writeArguments(ANY to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getEndPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(ANY to name)
+    Internals.callMethod(rawPtr, MethodBindings.getEndPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSubjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_subject", 201670096)
+        Internals.getMethodBindPtr("RegExMatch", "get_subject", 201670096)
 
     public val getGroupCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_group_count", 3905245786)
+        Internals.getMethodBindPtr("RegExMatch", "get_group_count", 3905245786)
 
     public val getNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_names", 3102165223)
+        Internals.getMethodBindPtr("RegExMatch", "get_names", 3102165223)
 
     public val getStringsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_strings", 1139954409)
+        Internals.getMethodBindPtr("RegExMatch", "get_strings", 1139954409)
 
     public val getStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_string", 687115856)
+        Internals.getMethodBindPtr("RegExMatch", "get_string", 687115856)
 
     public val getStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegExMatch", "get_start", 490464691)
+        Internals.getMethodBindPtr("RegExMatch", "get_start", 490464691)
 
-    public val getEndPtr: VoidPtr = TypeManager.getMethodBindPtr("RegExMatch", "get_end", 490464691)
+    public val getEndPtr: VoidPtr = Internals.getMethodBindPtr("RegExMatch", "get_end", 490464691)
   }
 }

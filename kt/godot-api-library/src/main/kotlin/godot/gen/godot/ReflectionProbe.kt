@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -18,7 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -246,7 +245,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_REFLECTIONPROBE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_REFLECTIONPROBE_INDEX, scriptIndex)
   }
 
   /**
@@ -329,157 +328,157 @@ public open class ReflectionProbe : VisualInstance3D() {
 
 
   public final fun setIntensity(intensity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to intensity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to intensity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setIntensityPtr, NIL)
   }
 
   public final fun getIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAmbientMode(ambient: AmbientMode): Unit {
-    TransferContext.writeArguments(LONG to ambient.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientModePtr, NIL)
+    Internals.writeArguments(LONG to ambient.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientModePtr, NIL)
   }
 
   public final fun getAmbientMode(): AmbientMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientModePtr, LONG)
-    return ReflectionProbe.AmbientMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientModePtr, LONG)
+    return ReflectionProbe.AmbientMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAmbientColor(ambient: Color): Unit {
-    TransferContext.writeArguments(COLOR to ambient)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorPtr, NIL)
+    Internals.writeArguments(COLOR to ambient)
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientColorPtr, NIL)
   }
 
   public final fun getAmbientColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAmbientColorEnergy(ambientEnergy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ambientEnergy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmbientColorEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to ambientEnergy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAmbientColorEnergyPtr, NIL)
   }
 
   public final fun getAmbientColorEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmbientColorEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmbientColorEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxDistance(maxDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to maxDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
   }
 
   public final fun getMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMeshLodThreshold(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
   }
 
   public final fun getMeshLodThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setOriginOffset(originOffset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to originOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR3 to originOffset)
+    Internals.callMethod(rawPtr, MethodBindings.setOriginOffsetPtr, NIL)
   }
 
   public final fun getOriginOffset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOriginOffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAsInterior(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsInteriorPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAsInteriorPtr, NIL)
   }
 
   public final fun isSetAsInterior(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsInteriorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSetAsInteriorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableBoxProjection(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableBoxProjectionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableBoxProjectionPtr, NIL)
   }
 
   public final fun isBoxProjectionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBoxProjectionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBoxProjectionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableShadows(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableShadowsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableShadowsPtr, NIL)
   }
 
   public final fun areShadowsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.areShadowsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.areShadowsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMask(layers: Long): Unit {
-    TransferContext.writeArguments(LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setReflectionMask(layers: Long): Unit {
-    TransferContext.writeArguments(LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReflectionMaskPtr, NIL)
+    Internals.writeArguments(LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.setReflectionMaskPtr, NIL)
   }
 
   public final fun getReflectionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReflectionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReflectionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
-    return ReflectionProbe.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    return ReflectionProbe.UpdateMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class UpdateMode(
@@ -546,87 +545,87 @@ public open class ReflectionProbe : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_intensity", 373806689)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_intensity", 373806689)
 
     public val getIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_intensity", 1740695150)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_intensity", 1740695150)
 
     public val setAmbientModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_mode", 1748981278)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_ambient_mode", 1748981278)
 
     public val getAmbientModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_mode", 1014607621)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_ambient_mode", 1014607621)
 
     public val setAmbientColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color", 2920490490)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_ambient_color", 2920490490)
 
     public val getAmbientColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color", 3444240500)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_ambient_color", 3444240500)
 
     public val setAmbientColorEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_ambient_color_energy", 373806689)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_ambient_color_energy", 373806689)
 
     public val getAmbientColorEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_ambient_color_energy", 1740695150)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_ambient_color_energy", 1740695150)
 
     public val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_max_distance", 373806689)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_max_distance", 373806689)
 
     public val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_max_distance", 1740695150)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_max_distance", 1740695150)
 
     public val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_mesh_lod_threshold", 373806689)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_mesh_lod_threshold", 373806689)
 
     public val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_mesh_lod_threshold", 1740695150)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_mesh_lod_threshold", 1740695150)
 
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_size", 3460891852)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_size", 3360562783)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_size", 3360562783)
 
     public val setOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_origin_offset", 3460891852)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_origin_offset", 3460891852)
 
     public val getOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_origin_offset", 3360562783)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_origin_offset", 3360562783)
 
     public val setAsInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_as_interior", 2586408642)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_as_interior", 2586408642)
 
     public val isSetAsInteriorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "is_set_as_interior", 36873697)
+        Internals.getMethodBindPtr("ReflectionProbe", "is_set_as_interior", 36873697)
 
     public val setEnableBoxProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_box_projection", 2586408642)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_enable_box_projection", 2586408642)
 
     public val isBoxProjectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "is_box_projection_enabled", 36873697)
+        Internals.getMethodBindPtr("ReflectionProbe", "is_box_projection_enabled", 36873697)
 
     public val setEnableShadowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_enable_shadows", 2586408642)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_enable_shadows", 2586408642)
 
     public val areShadowsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "are_shadows_enabled", 36873697)
+        Internals.getMethodBindPtr("ReflectionProbe", "are_shadows_enabled", 36873697)
 
     public val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_cull_mask", 1286410249)
 
     public val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_cull_mask", 3905245786)
 
     public val setReflectionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_reflection_mask", 1286410249)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_reflection_mask", 1286410249)
 
     public val getReflectionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_reflection_mask", 3905245786)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_reflection_mask", 3905245786)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "set_update_mode", 4090221187)
+        Internals.getMethodBindPtr("ReflectionProbe", "set_update_mode", 4090221187)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ReflectionProbe", "get_update_mode", 2367550552)
+        Internals.getMethodBindPtr("ReflectionProbe", "get_update_mode", 2367550552)
   }
 }

@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM2D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -55,7 +54,7 @@ public open class Bone2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BONE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BONE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -84,22 +83,22 @@ public open class Bone2D : Node2D() {
 
 
   public final fun setRest(rest: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to rest)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRestPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to rest)
+    Internals.callMethod(rawPtr, MethodBindings.setRestPtr, NIL)
   }
 
   public final fun getRest(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRestPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRestPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
    * Resets the bone to the rest pose. This is equivalent to setting [Node2D.transform] to [rest].
    */
   public final fun applyRest(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.applyRestPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.applyRestPtr, NIL)
   }
 
   /**
@@ -107,18 +106,18 @@ public open class Bone2D : Node2D() {
    * to its parent.
    */
   public final fun getSkeletonRest(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonRestPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonRestPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
    * Returns the node's index as part of the entire skeleton. See [Skeleton2D].
    */
   public final fun getIndexInSkeleton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexInSkeletonPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIndexInSkeletonPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -127,8 +126,8 @@ public open class Bone2D : Node2D() {
    * automatically calculate these values and will print a warning.
    */
   public final fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to autoCalculate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutocalculateLengthAndAnglePtr, NIL)
+    Internals.writeArguments(BOOL to autoCalculate)
+    Internals.callMethod(rawPtr, MethodBindings.setAutocalculateLengthAndAnglePtr, NIL)
   }
 
   /**
@@ -137,26 +136,26 @@ public open class Bone2D : Node2D() {
    * autocalculate these values and will print a warning.
    */
   public final fun getAutocalculateLengthAndAngle(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutocalculateLengthAndAnglePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutocalculateLengthAndAnglePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the length of the bone in the [Bone2D].
    */
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
   /**
    * Returns the length of the bone in the [Bone2D] node.
    */
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -166,8 +165,8 @@ public open class Bone2D : Node2D() {
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public final fun setBoneAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBoneAnglePtr, NIL)
   }
 
   /**
@@ -176,43 +175,42 @@ public open class Bone2D : Node2D() {
    * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public final fun getBoneAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
+    public val setRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
 
-    public val getRestPtr: VoidPtr = TypeManager.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
+    public val getRestPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
 
     public val applyRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "apply_rest", 3218959716)
+        Internals.getMethodBindPtr("Bone2D", "apply_rest", 3218959716)
 
     public val getSkeletonRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3814499831)
+        Internals.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3814499831)
 
     public val getIndexInSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3905245786)
+        Internals.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3905245786)
 
     public val setAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2586408642)
+        Internals.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2586408642)
 
     public val getAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36873697)
+        Internals.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36873697)
 
-    public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_length", 373806689)
+    public val setLengthPtr: VoidPtr = Internals.getMethodBindPtr("Bone2D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_length", 1740695150)
+        Internals.getMethodBindPtr("Bone2D", "get_length", 1740695150)
 
     public val setBoneAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle", 373806689)
+        Internals.getMethodBindPtr("Bone2D", "set_bone_angle", 373806689)
 
     public val getBoneAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle", 1740695150)
+        Internals.getMethodBindPtr("Bone2D", "get_bone_angle", 1740695150)
   }
 }

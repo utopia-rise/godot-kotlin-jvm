@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -91,78 +90,78 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GPUPARTICLESATTRACTOR3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GPUPARTICLESATTRACTOR3D_INDEX, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
   public final fun getStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttenuation(attenuation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to attenuation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
+    Internals.writeArguments(DOUBLE to attenuation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAttenuationPtr, NIL)
   }
 
   public final fun getAttenuation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAttenuationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDirectionality(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDirectionalityPtr, NIL)
   }
 
   public final fun getDirectionality(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDirectionalityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "set_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_cull_mask", 1286410249)
 
     public val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "get_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_cull_mask", 3905245786)
 
     public val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "set_strength", 373806689)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_strength", 373806689)
 
     public val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "get_strength", 1740695150)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_strength", 1740695150)
 
     public val setAttenuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "set_attenuation", 373806689)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_attenuation", 373806689)
 
     public val getAttenuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "get_attenuation", 1740695150)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_attenuation", 1740695150)
 
     public val setDirectionalityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "set_directionality", 373806689)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "set_directionality", 373806689)
 
     public val getDirectionalityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesAttractor3D", "get_directionality", 1740695150)
+        Internals.getMethodBindPtr("GPUParticlesAttractor3D", "get_directionality", 1740695150)
   }
 }

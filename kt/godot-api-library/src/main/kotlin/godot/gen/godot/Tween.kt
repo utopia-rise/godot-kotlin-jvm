@@ -11,7 +11,6 @@ import godot.core.Callable
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -20,7 +19,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -184,7 +183,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TWEEN_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TWEEN_INDEX, scriptIndex)
   }
 
   /**
@@ -238,9 +237,9 @@ public open class Tween : RefCounted() {
     finalVal: Any?,
     duration: Double,
   ): PropertyTweener? {
-    TransferContext.writeArguments(OBJECT to `object`, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
-    TransferContext.callMethod(rawPtr, MethodBindings.tweenPropertyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
+    Internals.writeArguments(OBJECT to `object`, NODE_PATH to property, ANY to finalVal, DOUBLE to duration)
+    Internals.callMethod(rawPtr, MethodBindings.tweenPropertyPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PropertyTweener?)
   }
 
   /**
@@ -286,9 +285,9 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun tweenInterval(time: Double): IntervalTweener? {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.tweenIntervalPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as IntervalTweener?)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.tweenIntervalPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as IntervalTweener?)
   }
 
   /**
@@ -324,9 +323,9 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun tweenCallback(callback: Callable): CallbackTweener? {
-    TransferContext.writeArguments(CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.tweenCallbackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CallbackTweener?)
+    Internals.writeArguments(CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.tweenCallbackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CallbackTweener?)
   }
 
   /**
@@ -385,9 +384,9 @@ public open class Tween : RefCounted() {
     to: Any?,
     duration: Double,
   ): MethodTweener? {
-    TransferContext.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
-    TransferContext.callMethod(rawPtr, MethodBindings.tweenMethodPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
+    Internals.writeArguments(CALLABLE to method, ANY to from, ANY to to, DOUBLE to duration)
+    Internals.callMethod(rawPtr, MethodBindings.tweenMethodPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   /**
@@ -397,9 +396,9 @@ public open class Tween : RefCounted() {
    * Returns `true` if the [Tween] still has [Tweener]s that haven't finished.
    */
   public final fun customStep(delta: Double): Boolean {
-    TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(rawPtr, MethodBindings.customStepPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(DOUBLE to delta)
+    Internals.callMethod(rawPtr, MethodBindings.customStepPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -410,8 +409,8 @@ public open class Tween : RefCounted() {
    * [SceneTree.getProcessedTweens].
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   /**
@@ -421,24 +420,24 @@ public open class Tween : RefCounted() {
    * [SceneTree.getProcessedTweens].
    */
   public final fun pause(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
 
   /**
    * Resumes a paused or stopped [Tween].
    */
   public final fun play(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
    * Aborts all tweening operations and invalidates the [Tween].
    */
   public final fun kill(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.killPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.killPtr, NIL)
   }
 
   /**
@@ -449,18 +448,18 @@ public open class Tween : RefCounted() {
    * finished animating will be slightly greater than the actual [Tween] duration.
    */
   public final fun getTotalElapsedTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTotalElapsedTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
    * Returns whether the [Tween] is currently running, i.e. it wasn't paused and it's not finished.
    */
   public final fun isRunning(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -470,9 +469,9 @@ public open class Tween : RefCounted() {
    * Invalid [Tween]s can't have [Tweener]s appended.
    */
   public final fun isValid(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -484,9 +483,9 @@ public open class Tween : RefCounted() {
    * For a shorter way to create and bind a [Tween], you can use [Node.createTween].
    */
   public final fun bindNode(node: Node?): Tween? {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.bindNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.bindNodePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -495,9 +494,9 @@ public open class Tween : RefCounted() {
    * Default value is [TWEEN_PROCESS_IDLE].
    */
   public final fun setProcessMode(mode: TweenProcessMode): Tween? {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setProcessModePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -506,9 +505,9 @@ public open class Tween : RefCounted() {
    * Default value is [TWEEN_PAUSE_BOUND].
    */
   public final fun setPauseMode(mode: TweenPauseMode): Tween? {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPauseModePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPauseModePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -525,9 +524,9 @@ public open class Tween : RefCounted() {
    */
   @JvmOverloads
   public final fun setParallel(parallel: Boolean = true): Tween? {
-    TransferContext.writeArguments(BOOL to parallel)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParallelPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(BOOL to parallel)
+    Internals.callMethod(rawPtr, MethodBindings.setParallelPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -543,9 +542,9 @@ public open class Tween : RefCounted() {
    */
   @JvmOverloads
   public final fun setLoops(loops: Int = 0): Tween? {
-    TransferContext.writeArguments(LONG to loops.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopsPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(LONG to loops.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLoopsPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -554,18 +553,18 @@ public open class Tween : RefCounted() {
    * already finished.
    */
   public final fun getLoopsLeft(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoopsLeftPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoopsLeftPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Scales the speed of tweening. This affects all [Tweener]s and their delays.
    */
   public final fun setSpeedScale(speed: Float): Tween? {
-    TransferContext.writeArguments(DOUBLE to speed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(DOUBLE to speed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -574,9 +573,9 @@ public open class Tween : RefCounted() {
    * If not specified, the default value is [TRANS_LINEAR].
    */
   public final fun setTrans(trans: TransitionType): Tween? {
-    TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(LONG to trans.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -585,9 +584,9 @@ public open class Tween : RefCounted() {
    * If not specified, the default value is [EASE_IN_OUT].
    */
   public final fun setEase(ease: EaseType): Tween? {
-    TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments(LONG to ease.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -613,9 +612,9 @@ public open class Tween : RefCounted() {
    * You can make the [Tween] parallel by default by using [setParallel].
    */
   public final fun parallel(): Tween? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.parallelPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.parallelPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
@@ -637,9 +636,9 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun chain(): Tween? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.chainPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.chainPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   public enum class TweenProcessMode(
@@ -811,72 +810,71 @@ public open class Tween : RefCounted() {
       transType: TransitionType,
       easeType: EaseType,
     ): Any? {
-      TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
-      TransferContext.callMethod(0, MethodBindings.interpolateValuePtr, ANY)
-      return (TransferContext.readReturnValue(ANY) as Any?)
+      Internals.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+      Internals.callMethod(0, MethodBindings.interpolateValuePtr, ANY)
+      return (Internals.readReturnValue(ANY) as Any?)
     }
   }
 
   internal object MethodBindings {
     public val tweenPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_property", 4049770449)
+        Internals.getMethodBindPtr("Tween", "tween_property", 4049770449)
 
     public val tweenIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_interval", 413360199)
+        Internals.getMethodBindPtr("Tween", "tween_interval", 413360199)
 
     public val tweenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_callback", 1540176488)
+        Internals.getMethodBindPtr("Tween", "tween_callback", 1540176488)
 
     public val tweenMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_method", 2337877153)
+        Internals.getMethodBindPtr("Tween", "tween_method", 2337877153)
 
     public val customStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "custom_step", 330693286)
+        Internals.getMethodBindPtr("Tween", "custom_step", 330693286)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "stop", 3218959716)
 
-    public val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause", 3218959716)
+    public val pausePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "pause", 3218959716)
 
-    public val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play", 3218959716)
+    public val playPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "play", 3218959716)
 
-    public val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill", 3218959716)
+    public val killPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "kill", 3218959716)
 
     public val getTotalElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
+        Internals.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
 
-    public val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "is_running", 2240911060)
+    public val isRunningPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "is_running", 2240911060)
 
-    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_valid", 2240911060)
+    public val isValidPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "is_valid", 2240911060)
 
-    public val bindNodePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "bind_node", 2946786331)
+    public val bindNodePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "bind_node", 2946786331)
 
     public val setProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_process_mode", 855258840)
+        Internals.getMethodBindPtr("Tween", "set_process_mode", 855258840)
 
     public val setPauseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
+        Internals.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
 
     public val setParallelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_parallel", 1942052223)
+        Internals.getMethodBindPtr("Tween", "set_parallel", 1942052223)
 
-    public val setLoopsPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_loops", 2670836414)
+    public val setLoopsPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_loops", 2670836414)
 
     public val getLoopsLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "get_loops_left", 3905245786)
+        Internals.getMethodBindPtr("Tween", "get_loops_left", 3905245786)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_speed_scale", 3961971106)
+        Internals.getMethodBindPtr("Tween", "set_speed_scale", 3961971106)
 
-    public val setTransPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_trans", 3965963875)
+    public val setTransPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_trans", 3965963875)
 
-    public val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_ease", 1208117252)
+    public val setEasePtr: VoidPtr = Internals.getMethodBindPtr("Tween", "set_ease", 1208117252)
 
-    public val parallelPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "parallel", 3426978995)
+    public val parallelPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "parallel", 3426978995)
 
-    public val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain", 3426978995)
+    public val chainPtr: VoidPtr = Internals.getMethodBindPtr("Tween", "chain", 3426978995)
 
     public val interpolateValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "interpolate_value", 3452526450)
+        Internals.getMethodBindPtr("Tween", "interpolate_value", 3452526450)
   }
 }

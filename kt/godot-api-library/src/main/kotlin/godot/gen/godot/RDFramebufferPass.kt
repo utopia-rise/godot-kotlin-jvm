@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -91,63 +90,62 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDFRAMEBUFFERPASS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDFRAMEBUFFERPASS_INDEX, scriptIndex)
   }
 
   public final fun setColorAttachments(pMember: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorAttachmentsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setColorAttachmentsPtr, NIL)
   }
 
   public final fun getColorAttachments(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setInputAttachments(pMember: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputAttachmentsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setInputAttachmentsPtr, NIL)
   }
 
   public final fun getInputAttachments(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInputAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setResolveAttachments(pMember: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResolveAttachmentsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setResolveAttachmentsPtr, NIL)
   }
 
   public final fun getResolveAttachments(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getResolveAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setPreserveAttachments(pMember: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreserveAttachmentsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setPreserveAttachmentsPtr, NIL)
   }
 
   public final fun getPreserveAttachments(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr,
-        PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreserveAttachmentsPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setDepthAttachment(pMember: Int): Unit {
-    TransferContext.writeArguments(LONG to pMember.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthAttachmentPtr, NIL)
+    Internals.writeArguments(LONG to pMember.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthAttachmentPtr, NIL)
   }
 
   public final fun getDepthAttachment(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthAttachmentPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object {
@@ -159,33 +157,33 @@ public open class RDFramebufferPass : RefCounted() {
 
   internal object MethodBindings {
     public val setColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments", 3614634198)
+        Internals.getMethodBindPtr("RDFramebufferPass", "set_color_attachments", 3614634198)
 
     public val getColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments", 1930428628)
+        Internals.getMethodBindPtr("RDFramebufferPass", "get_color_attachments", 1930428628)
 
     public val setInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments", 3614634198)
+        Internals.getMethodBindPtr("RDFramebufferPass", "set_input_attachments", 3614634198)
 
     public val getInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments", 1930428628)
+        Internals.getMethodBindPtr("RDFramebufferPass", "get_input_attachments", 1930428628)
 
     public val setResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments", 3614634198)
+        Internals.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments", 3614634198)
 
     public val getResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments", 1930428628)
+        Internals.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments", 1930428628)
 
     public val setPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments", 3614634198)
+        Internals.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments", 3614634198)
 
     public val getPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments", 1930428628)
+        Internals.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments", 1930428628)
 
     public val setDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment", 1286410249)
+        Internals.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment", 1286410249)
 
     public val getDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment", 3905245786)
+        Internals.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment", 3905245786)
   }
 }

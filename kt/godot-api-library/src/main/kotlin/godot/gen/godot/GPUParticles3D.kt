@@ -14,7 +14,6 @@ import godot.core.Color
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -25,7 +24,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -415,7 +414,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GPUPARTICLES3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GPUPARTICLES3D_INDEX, scriptIndex)
   }
 
   /**
@@ -449,230 +448,229 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
 
   public final fun setEmitting(emitting: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to emitting)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
+    Internals.writeArguments(BOOL to emitting)
+    Internals.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
   }
 
   public final fun setAmount(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
   }
 
   public final fun setLifetime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs)
+    Internals.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun setPreProcessTime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs)
+    Internals.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
   }
 
   public final fun setExplosivenessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
   }
 
   public final fun setRandomnessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
   }
 
   public final fun setVisibilityAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
   }
 
   public final fun setUseLocalCoordinates(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
   }
 
   public final fun setFixedFps(fps: Int): Unit {
-    TransferContext.writeArguments(LONG to fps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
+    Internals.writeArguments(LONG to fps.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
   }
 
   public final fun setFractionalDelta(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
   }
 
   public final fun setInterpolate(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolatePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setInterpolatePtr, NIL)
   }
 
   public final fun setProcessMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setProcessMaterialPtr, NIL)
   }
 
   public final fun setSpeedScale(scale: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun setCollisionBaseSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionBaseSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionBaseSizePtr, NIL)
   }
 
   public final fun setInterpToEnd(interp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to interp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
+    Internals.writeArguments(DOUBLE to interp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInterpToEndPtr, NIL)
   }
 
   public final fun isEmitting(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getVisibilityAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getInterpolate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInterpolatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getProcessMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun getSpeedScale(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getCollisionBaseSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionBaseSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getInterpToEnd(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInterpToEndPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
+    Internals.writeArguments(LONG to order.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
   }
 
   public final fun getDrawOrder(): DrawOrder {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
-    return GPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
+    return GPUParticles3D.DrawOrder.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDrawPasses(passes: Int): Unit {
-    TransferContext.writeArguments(LONG to passes.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassesPtr, NIL)
+    Internals.writeArguments(LONG to passes.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDrawPassesPtr, NIL)
   }
 
   /**
    * Sets the [Mesh] that is drawn at index [pass].
    */
   public final fun setDrawPassMesh(pass: Int, mesh: Mesh?): Unit {
-    TransferContext.writeArguments(LONG to pass.toLong(), OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
+    Internals.writeArguments(LONG to pass.toLong(), OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawPassMeshPtr, NIL)
   }
 
   public final fun getDrawPasses(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrawPassesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the [Mesh] that is drawn at index [pass].
    */
   public final fun getDrawPassMesh(pass: Int): Mesh? {
-    TransferContext.writeArguments(LONG to pass.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments(LONG to pass.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getDrawPassMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setSkin(skin: Skin?): Unit {
-    TransferContext.writeArguments(OBJECT to skin)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+    Internals.writeArguments(OBJECT to skin)
+    Internals.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
   }
 
   public final fun getSkin(): Skin? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skin?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skin?)
   }
 
   /**
@@ -681,8 +679,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * **Note:** The [signal finished] signal is only emitted by [oneShot] emitters.
    */
   public final fun restart(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
   }
 
   /**
@@ -690,20 +688,20 @@ public open class GPUParticles3D : GeometryInstance3D() {
    * current frame.
    */
   public final fun captureAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.captureAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setSubEmitter(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubEmitterPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setSubEmitterPtr, NIL)
   }
 
   public final fun getSubEmitter(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubEmitterPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubEmitterPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -719,60 +717,60 @@ public open class GPUParticles3D : GeometryInstance3D() {
     custom: Color,
     flags: Long,
   ): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.emitParticlePtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to xform, VECTOR3 to velocity, COLOR to color, COLOR to custom, LONG to flags)
+    Internals.callMethod(rawPtr, MethodBindings.emitParticlePtr, NIL)
   }
 
   public final fun setTrailEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrailEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setTrailEnabledPtr, NIL)
   }
 
   public final fun setTrailLifetime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrailLifetimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs)
+    Internals.callMethod(rawPtr, MethodBindings.setTrailLifetimePtr, NIL)
   }
 
   public final fun isTrailEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTrailEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTrailEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getTrailLifetime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrailLifetimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrailLifetimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setTransformAlign(align: TransformAlign): Unit {
-    TransferContext.writeArguments(LONG to align.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformAlignPtr, NIL)
+    Internals.writeArguments(LONG to align.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformAlignPtr, NIL)
   }
 
   public final fun getTransformAlign(): TransformAlign {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformAlignPtr, LONG)
-    return GPUParticles3D.TransformAlign.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransformAlignPtr, LONG)
+    return GPUParticles3D.TransformAlign.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets this node's properties to match a given [CPUParticles3D] node.
    */
   public final fun convertFromParticles(particles: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
+    Internals.writeArguments(OBJECT to particles)
+    Internals.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
   }
 
   public final fun setAmountRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAmountRatioPtr, NIL)
   }
 
   public final fun getAmountRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmountRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class DrawOrder(
@@ -872,165 +870,165 @@ public open class GPUParticles3D : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_emitting", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_emitting", 2586408642)
 
     public val setAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_amount", 1286410249)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_amount", 1286410249)
 
     public val setLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_lifetime", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_lifetime", 373806689)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_one_shot", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_one_shot", 2586408642)
 
     public val setPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_pre_process_time", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_pre_process_time", 373806689)
 
     public val setExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_explosiveness_ratio", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_explosiveness_ratio", 373806689)
 
     public val setRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_randomness_ratio", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_randomness_ratio", 373806689)
 
     public val setVisibilityAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_visibility_aabb", 259215842)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_visibility_aabb", 259215842)
 
     public val setUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_use_local_coordinates", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_use_local_coordinates", 2586408642)
 
     public val setFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_fixed_fps", 1286410249)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_fixed_fps", 1286410249)
 
     public val setFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_fractional_delta", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_fractional_delta", 2586408642)
 
     public val setInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_interpolate", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_interpolate", 2586408642)
 
     public val setProcessMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_process_material", 2757459619)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_process_material", 2757459619)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_speed_scale", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_speed_scale", 373806689)
 
     public val setCollisionBaseSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_collision_base_size", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_collision_base_size", 373806689)
 
     public val setInterpToEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_interp_to_end", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_interp_to_end", 373806689)
 
     public val isEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "is_emitting", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "is_emitting", 36873697)
 
     public val getAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount", 3905245786)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_amount", 3905245786)
 
     public val getLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_lifetime", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_lifetime", 1740695150)
 
     public val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_one_shot", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_one_shot", 36873697)
 
     public val getPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_pre_process_time", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_pre_process_time", 1740695150)
 
     public val getExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_explosiveness_ratio", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_explosiveness_ratio", 1740695150)
 
     public val getRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_randomness_ratio", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_randomness_ratio", 1740695150)
 
     public val getVisibilityAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_visibility_aabb", 1068685055)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_visibility_aabb", 1068685055)
 
     public val getUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_use_local_coordinates", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_use_local_coordinates", 36873697)
 
     public val getFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_fixed_fps", 3905245786)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_fixed_fps", 3905245786)
 
     public val getFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_fractional_delta", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_fractional_delta", 36873697)
 
     public val getInterpolatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_interpolate", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_interpolate", 36873697)
 
     public val getProcessMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_process_material", 5934680)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_process_material", 5934680)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_speed_scale", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_speed_scale", 1740695150)
 
     public val getCollisionBaseSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_collision_base_size", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_collision_base_size", 1740695150)
 
     public val getInterpToEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_interp_to_end", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_interp_to_end", 1740695150)
 
     public val setDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_order", 1208074815)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_draw_order", 1208074815)
 
     public val getDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_order", 3770381780)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_draw_order", 3770381780)
 
     public val setDrawPassesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_passes", 1286410249)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_draw_passes", 1286410249)
 
     public val setDrawPassMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_draw_pass_mesh", 969122797)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_draw_pass_mesh", 969122797)
 
     public val getDrawPassesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_passes", 3905245786)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_draw_passes", 3905245786)
 
     public val getDrawPassMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_draw_pass_mesh", 1576363275)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_draw_pass_mesh", 1576363275)
 
     public val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_skin", 3971435618)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_skin", 3971435618)
 
     public val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_skin", 2074563878)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_skin", 2074563878)
 
     public val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "restart", 3218959716)
+        Internals.getMethodBindPtr("GPUParticles3D", "restart", 3218959716)
 
     public val captureAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "capture_aabb", 1068685055)
+        Internals.getMethodBindPtr("GPUParticles3D", "capture_aabb", 1068685055)
 
     public val setSubEmitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_sub_emitter", 1348162250)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_sub_emitter", 1348162250)
 
     public val getSubEmitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_sub_emitter", 4075236667)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_sub_emitter", 4075236667)
 
     public val emitParticlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "emit_particle", 992173727)
+        Internals.getMethodBindPtr("GPUParticles3D", "emit_particle", 992173727)
 
     public val setTrailEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_trail_enabled", 2586408642)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_trail_enabled", 2586408642)
 
     public val setTrailLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_trail_lifetime", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_trail_lifetime", 373806689)
 
     public val isTrailEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "is_trail_enabled", 36873697)
+        Internals.getMethodBindPtr("GPUParticles3D", "is_trail_enabled", 36873697)
 
     public val getTrailLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_trail_lifetime", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_trail_lifetime", 1740695150)
 
     public val setTransformAlignPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_transform_align", 3892425954)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_transform_align", 3892425954)
 
     public val getTransformAlignPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_transform_align", 2100992166)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_transform_align", 2100992166)
 
     public val convertFromParticlesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "convert_from_particles", 1078189570)
+        Internals.getMethodBindPtr("GPUParticles3D", "convert_from_particles", 1078189570)
 
     public val setAmountRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "set_amount_ratio", 373806689)
+        Internals.getMethodBindPtr("GPUParticles3D", "set_amount_ratio", 373806689)
 
     public val getAmountRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticles3D", "get_amount_ratio", 1740695150)
+        Internals.getMethodBindPtr("GPUParticles3D", "get_amount_ratio", 1740695150)
   }
 }

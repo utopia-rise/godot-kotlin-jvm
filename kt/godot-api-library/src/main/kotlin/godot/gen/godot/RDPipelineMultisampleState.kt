@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -113,112 +112,112 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX, scriptIndex)
   }
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSampleCountPtr, NIL)
   }
 
   public final fun getSampleCount(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
-    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSampleCountPtr, LONG)
+    return RenderingDevice.TextureSamples.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableSampleShading(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableSampleShadingPtr, NIL)
   }
 
   public final fun getEnableSampleShading(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableSampleShadingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinSampleShading(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinSampleShadingPtr, NIL)
   }
 
   public final fun getMinSampleShading(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinSampleShadingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableAlphaToCoverage(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
   }
 
   public final fun getEnableAlphaToCoverage(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableAlphaToCoveragePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableAlphaToOne(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableAlphaToOnePtr, NIL)
   }
 
   public final fun getEnableAlphaToOne(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableAlphaToOnePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSampleMasks(masks: VariantArray<Long>): Unit {
-    TransferContext.writeArguments(ARRAY to masks)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
+    Internals.writeArguments(ARRAY to masks)
+    Internals.callMethod(rawPtr, MethodBindings.setSampleMasksPtr, NIL)
   }
 
   public final fun getSampleMasks(): VariantArray<Long> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSampleMasksPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count", 3774171498)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count", 3774171498)
 
     public val getSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count", 407791724)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count", 407791724)
 
     public val setEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading", 2586408642)
 
     public val getEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading", 36873697)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading", 36873697)
 
     public val setMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading", 373806689)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading", 373806689)
 
     public val getMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading", 1740695150)
 
     public val setEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage", 2586408642)
 
     public val getEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage", 36873697)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage", 36873697)
 
     public val setEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one", 2586408642)
 
     public val getEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one", 36873697)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one", 36873697)
 
     public val setSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks", 381264803)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks", 381264803)
 
     public val getSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks", 3995934104)
+        Internals.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks", 3995934104)
   }
 }

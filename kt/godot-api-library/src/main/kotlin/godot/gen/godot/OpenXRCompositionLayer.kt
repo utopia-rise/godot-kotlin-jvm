@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -16,7 +15,7 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -87,51 +86,51 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRCOMPOSITIONLAYER_INDEX, scriptIndex)
   }
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {
-    TransferContext.writeArguments(OBJECT to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
+    Internals.writeArguments(OBJECT to viewport)
+    Internals.callMethod(rawPtr, MethodBindings.setLayerViewportPtr, NIL)
   }
 
   public final fun getLayerViewport(): SubViewport? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SubViewport?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLayerViewportPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SubViewport?)
   }
 
   public final fun setEnableHolePunch(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableHolePunchPtr, NIL)
   }
 
   public final fun getEnableHolePunch(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableHolePunchPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSortOrder(order: Int): Unit {
-    TransferContext.writeArguments(LONG to order.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
+    Internals.writeArguments(LONG to order.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSortOrderPtr, NIL)
   }
 
   public final fun getSortOrder(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSortOrderPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAlphaBlend(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaBlendPtr, NIL)
   }
 
   public final fun getAlphaBlend(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaBlendPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -139,9 +138,9 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * **Note:** This will only return an accurate result after the OpenXR session has started.
    */
   public final fun isNativelySupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isNativelySupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isNativelySupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -150,42 +149,42 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * Returns `Vector2(-1.0, -1.0)` if the ray doesn't intersect.
    */
   public final fun intersectsRay(origin: Vector3, direction: Vector3): Vector2 {
-    TransferContext.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectsRayPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
+    Internals.callMethod(rawPtr, MethodBindings.intersectsRayPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3888077664)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3888077664)
 
     public val getLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3750751911)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3750751911)
 
     public val setEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2586408642)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2586408642)
 
     public val getEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36873697)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36873697)
 
     public val setSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1286410249)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1286410249)
 
     public val getSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3905245786)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3905245786)
 
     public val setAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2586408642)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2586408642)
 
     public val getAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36873697)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36873697)
 
     public val isNativelySupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
 
     public val intersectsRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)
+        Internals.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)
   }
 }

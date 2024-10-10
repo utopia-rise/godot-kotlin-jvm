@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -56,61 +55,61 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTSTEREOENHANCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTSTEREOENHANCE_INDEX, scriptIndex)
   }
 
   public final fun setPanPullout(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPanPulloutPtr, NIL)
   }
 
   public final fun getPanPullout(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPanPulloutPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTimePullout(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTimePulloutPtr, NIL)
   }
 
   public final fun getTimePullout(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimePulloutPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSurround(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSurroundPtr, NIL)
   }
 
   public final fun getSurround(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSurroundPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373806689)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_pan_pullout", 373806689)
 
     public val getPanPulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_pan_pullout", 1740695150)
 
     public val setTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373806689)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_time_pullout", 373806689)
 
     public val getTimePulloutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_time_pullout", 1740695150)
 
     public val setSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373806689)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "set_surround", 373806689)
 
     public val getSurroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectStereoEnhance", "get_surround", 1740695150)
   }
 }

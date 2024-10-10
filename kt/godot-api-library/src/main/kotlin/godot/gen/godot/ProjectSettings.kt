@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -20,7 +19,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -59,7 +58,7 @@ public object ProjectSettings : Object() {
   public val settingsChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_PROJECTSETTINGS_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_PROJECTSETTINGS_INDEX)
   }
 
   /**
@@ -67,9 +66,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun hasSetting(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasSettingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -90,8 +89,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setSetting(name: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
+    Internals.writeArguments(STRING to name, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setSettingPtr, NIL)
   }
 
   /**
@@ -119,9 +118,9 @@ public object ProjectSettings : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getSetting(name: String, defaultValue: Any? = null): Any? {
-    TransferContext.writeArguments(STRING to name, ANY to defaultValue)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING to name, ANY to defaultValue)
+    Internals.callMethod(rawPtr, MethodBindings.getSettingPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -144,9 +143,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun getSettingWithOverride(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSettingWithOverridePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getSettingWithOverridePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -162,9 +161,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalClassListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalClassListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -172,8 +171,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setOrder(name: String, position: Int): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOrderPtr, NIL)
+    Internals.writeArguments(STRING to name, LONG to position.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOrderPtr, NIL)
   }
 
   /**
@@ -181,9 +180,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun getOrder(name: String): Int {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getOrderPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.getOrderPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -191,8 +190,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setInitialValue(name: String, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
+    Internals.writeArguments(STRING to name, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setInitialValuePtr, NIL)
   }
 
   /**
@@ -202,8 +201,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setAsBasic(name: String, basic: Boolean): Unit {
-    TransferContext.writeArguments(STRING to name, BOOL to basic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsBasicPtr, NIL)
+    Internals.writeArguments(STRING to name, BOOL to basic)
+    Internals.callMethod(rawPtr, MethodBindings.setAsBasicPtr, NIL)
   }
 
   /**
@@ -213,8 +212,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setAsInternal(name: String, `internal`: Boolean): Unit {
-    TransferContext.writeArguments(STRING to name, BOOL to internal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsInternalPtr, NIL)
+    Internals.writeArguments(STRING to name, BOOL to internal)
+    Internals.callMethod(rawPtr, MethodBindings.setAsInternalPtr, NIL)
   }
 
   /**
@@ -254,8 +253,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to hint)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
+    Internals.writeArguments(DICTIONARY to hint)
+    Internals.callMethod(rawPtr, MethodBindings.addPropertyInfoPtr, NIL)
   }
 
   /**
@@ -266,8 +265,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun setRestartIfChanged(name: String, restart: Boolean): Unit {
-    TransferContext.writeArguments(STRING to name, BOOL to restart)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRestartIfChangedPtr, NIL)
+    Internals.writeArguments(STRING to name, BOOL to restart)
+    Internals.callMethod(rawPtr, MethodBindings.setRestartIfChangedPtr, NIL)
   }
 
   /**
@@ -275,8 +274,8 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun clear(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -285,9 +284,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun localizePath(path: String): String {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.localizePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.localizePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -313,9 +312,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun globalizePath(path: String): String {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalizePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.globalizePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -326,9 +325,9 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun save(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -347,9 +346,9 @@ public object ProjectSettings : Object() {
     replaceFiles: Boolean = true,
     offset: Int = 0,
   ): Boolean {
-    TransferContext.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.loadResourcePackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to pack, BOOL to replaceFiles, LONG to offset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.loadResourcePackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -360,63 +359,62 @@ public object ProjectSettings : Object() {
    */
   @JvmStatic
   public final fun saveCustom(`file`: String): Error {
-    TransferContext.writeArguments(STRING to file)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to file)
+    Internals.callMethod(rawPtr, MethodBindings.saveCustomPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   internal object MethodBindings {
     public val hasSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "has_setting", 3927539163)
+        Internals.getMethodBindPtr("ProjectSettings", "has_setting", 3927539163)
 
     public val setSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_setting", 402577236)
+        Internals.getMethodBindPtr("ProjectSettings", "set_setting", 402577236)
 
     public val getSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting", 223050753)
+        Internals.getMethodBindPtr("ProjectSettings", "get_setting", 223050753)
 
     public val getSettingWithOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting_with_override", 2760726917)
+        Internals.getMethodBindPtr("ProjectSettings", "get_setting_with_override", 2760726917)
 
     public val getGlobalClassListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2915620761)
+        Internals.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2915620761)
 
     public val setOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_order", 2956805083)
+        Internals.getMethodBindPtr("ProjectSettings", "set_order", 2956805083)
 
     public val getOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_order", 1321353865)
+        Internals.getMethodBindPtr("ProjectSettings", "get_order", 1321353865)
 
     public val setInitialValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_initial_value", 402577236)
+        Internals.getMethodBindPtr("ProjectSettings", "set_initial_value", 402577236)
 
     public val setAsBasicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_basic", 2678287736)
+        Internals.getMethodBindPtr("ProjectSettings", "set_as_basic", 2678287736)
 
     public val setAsInternalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_internal", 2678287736)
+        Internals.getMethodBindPtr("ProjectSettings", "set_as_internal", 2678287736)
 
     public val addPropertyInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "add_property_info", 4155329257)
+        Internals.getMethodBindPtr("ProjectSettings", "add_property_info", 4155329257)
 
     public val setRestartIfChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_restart_if_changed", 2678287736)
+        Internals.getMethodBindPtr("ProjectSettings", "set_restart_if_changed", 2678287736)
 
-    public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "clear", 83702148)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ProjectSettings", "clear", 83702148)
 
     public val localizePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "localize_path", 3135753539)
+        Internals.getMethodBindPtr("ProjectSettings", "localize_path", 3135753539)
 
     public val globalizePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "globalize_path", 3135753539)
+        Internals.getMethodBindPtr("ProjectSettings", "globalize_path", 3135753539)
 
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ProjectSettings", "save", 166280745)
+    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ProjectSettings", "save", 166280745)
 
     public val loadResourcePackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "load_resource_pack", 708980503)
+        Internals.getMethodBindPtr("ProjectSettings", "load_resource_pack", 708980503)
 
     public val saveCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "save_custom", 166001499)
+        Internals.getMethodBindPtr("ProjectSettings", "save_custom", 166001499)
   }
 }

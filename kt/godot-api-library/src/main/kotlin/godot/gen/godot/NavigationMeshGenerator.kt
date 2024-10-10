@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.TypeManager
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -56,7 +55,7 @@ private const val ENGINE_CLASS_NAVIGATIONMESHGENERATOR_INDEX: Int = 6
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_NAVIGATIONMESHGENERATOR_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_NAVIGATIONMESHGENERATOR_INDEX)
   }
 
   /**
@@ -64,8 +63,8 @@ public object NavigationMeshGenerator : Object() {
    */
   @JvmStatic
   public final fun bake(navigationMesh: NavigationMesh?, rootNode: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to rootNode)
+    Internals.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
   }
 
   /**
@@ -73,8 +72,8 @@ public object NavigationMeshGenerator : Object() {
    */
   @JvmStatic
   public final fun clear(navigationMesh: NavigationMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh)
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -97,8 +96,8 @@ public object NavigationMeshGenerator : Object() {
     rootNode: Node?,
     callback: Callable = Callable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, OBJECT to rootNode, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.parseSourceGeometryDataPtr, NIL)
   }
 
   /**
@@ -112,21 +111,21 @@ public object NavigationMeshGenerator : Object() {
     sourceGeometryData: NavigationMeshSourceGeometryData3D?,
     callback: Callable = Callable(),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
+    Internals.writeArguments(OBJECT to navigationMesh, OBJECT to sourceGeometryData, CALLABLE to callback)
+    Internals.callMethod(rawPtr, MethodBindings.bakeFromSourceGeometryDataPtr, NIL)
   }
 
   internal object MethodBindings {
     public val bakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake", 1401173477)
+        Internals.getMethodBindPtr("NavigationMeshGenerator", "bake", 1401173477)
 
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "clear", 2923361153)
+        Internals.getMethodBindPtr("NavigationMeshGenerator", "clear", 2923361153)
 
     public val parseSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data", 685862123)
+        Internals.getMethodBindPtr("NavigationMeshGenerator", "parse_source_geometry_data", 685862123)
 
     public val bakeFromSourceGeometryDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data", 2469318639)
+        Internals.getMethodBindPtr("NavigationMeshGenerator", "bake_from_source_geometry_data", 2469318639)
   }
 }

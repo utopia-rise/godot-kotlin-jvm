@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -40,7 +39,7 @@ private const val ENGINE_CLASS_ENGINEDEBUGGER_INDEX: Int = 20
 @GodotBaseType
 public object EngineDebugger : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_ENGINEDEBUGGER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_ENGINEDEBUGGER_INDEX)
   }
 
   /**
@@ -48,9 +47,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -58,8 +57,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerProfilerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, OBJECT to profiler)
+    Internals.callMethod(rawPtr, MethodBindings.registerProfilerPtr, NIL)
   }
 
   /**
@@ -67,8 +66,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun unregisterProfiler(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.unregisterProfilerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.unregisterProfilerPtr, NIL)
   }
 
   /**
@@ -76,9 +75,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isProfiling(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.isProfilingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.isProfilingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -86,9 +85,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun hasProfiler(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasProfilerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasProfilerPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -96,8 +95,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.profilerAddFrameDataPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.profilerAddFrameDataPtr, NIL)
   }
 
   /**
@@ -111,8 +110,8 @@ public object EngineDebugger : Object() {
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, BOOL to enable, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.profilerEnablePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, BOOL to enable, ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.profilerEnablePtr, NIL)
   }
 
   /**
@@ -123,8 +122,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun registerMessageCapture(name: StringName, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerMessageCapturePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.registerMessageCapturePtr, NIL)
   }
 
   /**
@@ -132,8 +131,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun unregisterMessageCapture(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.unregisterMessageCapturePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.unregisterMessageCapturePtr, NIL)
   }
 
   /**
@@ -141,9 +140,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun hasCapture(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasCapturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasCapturePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -153,8 +152,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun linePoll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.linePollPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.linePollPtr, NIL)
   }
 
   /**
@@ -162,8 +161,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(STRING to message, ARRAY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.sendMessagePtr, NIL)
+    Internals.writeArguments(STRING to message, ARRAY to data)
+    Internals.callMethod(rawPtr, MethodBindings.sendMessagePtr, NIL)
   }
 
   /**
@@ -173,8 +172,8 @@ public object EngineDebugger : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to canContinue, BOOL to isErrorBreakpoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.debugPtr, NIL)
+    Internals.writeArguments(BOOL to canContinue, BOOL to isErrorBreakpoint)
+    Internals.callMethod(rawPtr, MethodBindings.debugPtr, NIL)
   }
 
   /**
@@ -188,8 +187,8 @@ public object EngineDebugger : Object() {
     canContinue: Boolean = true,
     isErrorBreakpoint: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to language, BOOL to canContinue, BOOL to isErrorBreakpoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.scriptDebugPtr, NIL)
+    Internals.writeArguments(OBJECT to language, BOOL to canContinue, BOOL to isErrorBreakpoint)
+    Internals.callMethod(rawPtr, MethodBindings.scriptDebugPtr, NIL)
   }
 
   /**
@@ -197,8 +196,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun setLinesLeft(lines: Int): Unit {
-    TransferContext.writeArguments(LONG to lines.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinesLeftPtr, NIL)
+    Internals.writeArguments(LONG to lines.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLinesLeftPtr, NIL)
   }
 
   /**
@@ -206,9 +205,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun getLinesLeft(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinesLeftPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinesLeftPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -216,8 +215,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun setDepth(depth: Int): Unit {
-    TransferContext.writeArguments(LONG to depth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(LONG to depth.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   /**
@@ -225,9 +224,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun getDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -235,9 +234,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isBreakpoint(line: Int, source: StringName): Boolean {
-    TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.isBreakpointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to line.toLong(), STRING_NAME to source)
+    Internals.callMethod(rawPtr, MethodBindings.isBreakpointPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -245,9 +244,9 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun isSkippingBreakpoints(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSkippingBreakpointsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSkippingBreakpointsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -255,8 +254,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun insertBreakpoint(line: Int, source: StringName): Unit {
-    TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.insertBreakpointPtr, NIL)
+    Internals.writeArguments(LONG to line.toLong(), STRING_NAME to source)
+    Internals.callMethod(rawPtr, MethodBindings.insertBreakpointPtr, NIL)
   }
 
   /**
@@ -264,8 +263,8 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun removeBreakpoint(line: Int, source: StringName): Unit {
-    TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeBreakpointPtr, NIL)
+    Internals.writeArguments(LONG to line.toLong(), STRING_NAME to source)
+    Internals.callMethod(rawPtr, MethodBindings.removeBreakpointPtr, NIL)
   }
 
   /**
@@ -273,78 +272,77 @@ public object EngineDebugger : Object() {
    */
   @JvmStatic
   public final fun clearBreakpoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBreakpointsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearBreakpointsPtr, NIL)
   }
 
   internal object MethodBindings {
     public val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_active", 2240911060)
+        Internals.getMethodBindPtr("EngineDebugger", "is_active", 2240911060)
 
     public val registerProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_profiler", 3651669560)
+        Internals.getMethodBindPtr("EngineDebugger", "register_profiler", 3651669560)
 
     public val unregisterProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3304788590)
+        Internals.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3304788590)
 
     public val isProfilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_profiling", 2041966384)
+        Internals.getMethodBindPtr("EngineDebugger", "is_profiling", 2041966384)
 
     public val hasProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_profiler", 2041966384)
+        Internals.getMethodBindPtr("EngineDebugger", "has_profiler", 2041966384)
 
     public val profilerAddFrameDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1895267858)
+        Internals.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1895267858)
 
     public val profilerEnablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_enable", 3192561009)
+        Internals.getMethodBindPtr("EngineDebugger", "profiler_enable", 3192561009)
 
     public val registerMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_message_capture", 1874754934)
+        Internals.getMethodBindPtr("EngineDebugger", "register_message_capture", 1874754934)
 
     public val unregisterMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3304788590)
+        Internals.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3304788590)
 
     public val hasCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_capture", 2041966384)
+        Internals.getMethodBindPtr("EngineDebugger", "has_capture", 2041966384)
 
     public val linePollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "line_poll", 3218959716)
+        Internals.getMethodBindPtr("EngineDebugger", "line_poll", 3218959716)
 
     public val sendMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "send_message", 1209351045)
+        Internals.getMethodBindPtr("EngineDebugger", "send_message", 1209351045)
 
-    public val debugPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
+    public val debugPtr: VoidPtr = Internals.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
 
     public val scriptDebugPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "script_debug", 2442343672)
+        Internals.getMethodBindPtr("EngineDebugger", "script_debug", 2442343672)
 
     public val setLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "set_lines_left", 1286410249)
+        Internals.getMethodBindPtr("EngineDebugger", "set_lines_left", 1286410249)
 
     public val getLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "get_lines_left", 3905245786)
+        Internals.getMethodBindPtr("EngineDebugger", "get_lines_left", 3905245786)
 
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "set_depth", 1286410249)
+        Internals.getMethodBindPtr("EngineDebugger", "set_depth", 1286410249)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "get_depth", 3905245786)
+        Internals.getMethodBindPtr("EngineDebugger", "get_depth", 3905245786)
 
     public val isBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921227809)
+        Internals.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921227809)
 
     public val isSkippingBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36873697)
+        Internals.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36873697)
 
     public val insertBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3780747571)
+        Internals.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3780747571)
 
     public val removeBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3780747571)
+        Internals.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3780747571)
 
     public val clearBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3218959716)
+        Internals.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3218959716)
   }
 }

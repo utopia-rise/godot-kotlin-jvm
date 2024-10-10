@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -390,7 +389,7 @@ public open class Camera2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAMERA2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERA2D_INDEX, scriptIndex)
   }
 
   /**
@@ -453,75 +452,75 @@ public open class Camera2D : Node2D() {
 
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAnchorMode(anchorMode: AnchorMode): Unit {
-    TransferContext.writeArguments(LONG to anchorMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnchorModePtr, NIL)
+    Internals.writeArguments(LONG to anchorMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAnchorModePtr, NIL)
   }
 
   public final fun getAnchorMode(): AnchorMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnchorModePtr, LONG)
-    return Camera2D.AnchorMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnchorModePtr, LONG)
+    return Camera2D.AnchorMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setIgnoreRotation(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreRotationPtr, NIL)
+    Internals.writeArguments(BOOL to ignore)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreRotationPtr, NIL)
   }
 
   public final fun isIgnoringRotation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringRotationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIgnoringRotationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setProcessCallback(mode: Camera2DProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
   public final fun getProcessCallback(): Camera2DProcessCallback {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
-    return Camera2D.Camera2DProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessCallbackPtr, LONG)
+    return Camera2D.Camera2DProcessCallback.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Forces this [Camera2D] to become the current active one. [enabled] must be `true`.
    */
   public final fun makeCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
 
   /**
    * Returns `true` if this [Camera2D] is the active camera (see [Viewport.getCamera2d]).
    */
   public final fun isCurrent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -529,8 +528,8 @@ public open class Camera2D : Node2D() {
    * [limitLeft], and [limitRight].
    */
   public final fun setLimit(margin: Side, limit: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to limit.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, LONG to limit.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLimitPtr, NIL)
   }
 
   /**
@@ -538,64 +537,64 @@ public open class Camera2D : Node2D() {
    * [limitLeft], and [limitRight].
    */
   public final fun getLimit(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getLimitPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLimitSmoothingEnabled(limitSmoothingEnabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to limitSmoothingEnabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitSmoothingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to limitSmoothingEnabled)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitSmoothingEnabledPtr, NIL)
   }
 
   public final fun isLimitSmoothingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLimitSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLimitSmoothingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragVerticalEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragVerticalEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDragVerticalEnabledPtr, NIL)
   }
 
   public final fun isDragVerticalEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDragVerticalEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDragVerticalEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragHorizontalEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragHorizontalEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDragHorizontalEnabledPtr, NIL)
   }
 
   public final fun isDragHorizontalEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDragHorizontalEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDragHorizontalEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragVerticalOffset(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragVerticalOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDragVerticalOffsetPtr, NIL)
   }
 
   public final fun getDragVerticalOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragVerticalOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDragVerticalOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDragHorizontalOffset(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragHorizontalOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDragHorizontalOffsetPtr, NIL)
   }
 
   public final fun getDragHorizontalOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragHorizontalOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDragHorizontalOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -603,8 +602,8 @@ public open class Camera2D : Node2D() {
    * [dragLeftMargin], and [dragRightMargin].
    */
   public final fun setDragMargin(margin: Side, dragMargin: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, DOUBLE to dragMargin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
   }
 
   /**
@@ -612,9 +611,9 @@ public open class Camera2D : Node2D() {
    * [dragLeftMargin], and [dragRightMargin].
    */
   public final fun getDragMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getDragMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -624,9 +623,9 @@ public open class Camera2D : Node2D() {
    * is `true` (see [getScreenCenterPosition]).
    */
   public final fun getTargetPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -634,83 +633,83 @@ public open class Camera2D : Node2D() {
    * **Note:** The exact targeted position of the camera may be different. See [getTargetPosition].
    */
   public final fun getScreenCenterPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenCenterPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenCenterPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setZoom(zoom: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to zoom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
+    Internals.writeArguments(VECTOR2 to zoom)
+    Internals.callMethod(rawPtr, MethodBindings.setZoomPtr, NIL)
   }
 
   public final fun getZoom(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZoomPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZoomPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setCustomViewport(viewport: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to viewport)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomViewportPtr, NIL)
+    Internals.writeArguments(OBJECT to viewport)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomViewportPtr, NIL)
   }
 
   public final fun getCustomViewport(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomViewportPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   public final fun setPositionSmoothingSpeed(positionSmoothingSpeed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to positionSmoothingSpeed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionSmoothingSpeedPtr, NIL)
+    Internals.writeArguments(DOUBLE to positionSmoothingSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPositionSmoothingSpeedPtr, NIL)
   }
 
   public final fun getPositionSmoothingSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionSmoothingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionSmoothingSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPositionSmoothingEnabled(positionSmoothingSpeed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to positionSmoothingSpeed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionSmoothingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to positionSmoothingSpeed)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionSmoothingEnabledPtr, NIL)
   }
 
   public final fun isPositionSmoothingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPositionSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPositionSmoothingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRotationSmoothingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationSmoothingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationSmoothingEnabledPtr, NIL)
   }
 
   public final fun isRotationSmoothingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRotationSmoothingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRotationSmoothingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRotationSmoothingSpeed(speed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to speed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationSmoothingSpeedPtr, NIL)
+    Internals.writeArguments(DOUBLE to speed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRotationSmoothingSpeedPtr, NIL)
   }
 
   public final fun getRotationSmoothingSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationSmoothingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationSmoothingSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Forces the camera to update scroll immediately.
    */
   public final fun forceUpdateScroll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateScrollPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceUpdateScrollPtr, NIL)
   }
 
   /**
@@ -718,49 +717,49 @@ public open class Camera2D : Node2D() {
    * This method has no effect if [positionSmoothingEnabled] is `false`.
    */
   public final fun resetSmoothing(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.resetSmoothingPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.resetSmoothingPtr, NIL)
   }
 
   /**
    * Aligns the camera to the tracked node.
    */
   public final fun align(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.alignPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.alignPtr, NIL)
   }
 
   public final fun setScreenDrawingEnabled(screenDrawingEnabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to screenDrawingEnabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenDrawingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to screenDrawingEnabled)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenDrawingEnabledPtr, NIL)
   }
 
   public final fun isScreenDrawingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScreenDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isScreenDrawingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLimitDrawingEnabled(limitDrawingEnabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to limitDrawingEnabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitDrawingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to limitDrawingEnabled)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitDrawingEnabledPtr, NIL)
   }
 
   public final fun isLimitDrawingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLimitDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLimitDrawingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMarginDrawingEnabled(marginDrawingEnabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to marginDrawingEnabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginDrawingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to marginDrawingEnabled)
+    Internals.callMethod(rawPtr, MethodBindings.setMarginDrawingEnabledPtr, NIL)
   }
 
   public final fun isMarginDrawingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMarginDrawingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMarginDrawingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AnchorMode(
@@ -813,148 +812,146 @@ public open class Camera2D : Node2D() {
 
   internal object MethodBindings {
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_offset", 743155724)
+        Internals.getMethodBindPtr("Camera2D", "set_offset", 743155724)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("Camera2D", "get_offset", 3341600327)
 
     public val setAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_anchor_mode", 2050398218)
+        Internals.getMethodBindPtr("Camera2D", "set_anchor_mode", 2050398218)
 
     public val getAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_anchor_mode", 155978067)
+        Internals.getMethodBindPtr("Camera2D", "get_anchor_mode", 155978067)
 
     public val setIgnoreRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_ignore_rotation", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_ignore_rotation", 2586408642)
 
     public val isIgnoringRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_ignoring_rotation", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_ignoring_rotation", 36873697)
 
     public val setProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_process_callback", 4201947462)
+        Internals.getMethodBindPtr("Camera2D", "set_process_callback", 4201947462)
 
     public val getProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_process_callback", 2325344499)
+        Internals.getMethodBindPtr("Camera2D", "get_process_callback", 2325344499)
 
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_enabled", 36873697)
 
     public val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "make_current", 3218959716)
+        Internals.getMethodBindPtr("Camera2D", "make_current", 3218959716)
 
     public val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_current", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_current", 36873697)
 
-    public val setLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit", 437707142)
+    public val setLimitPtr: VoidPtr = Internals.getMethodBindPtr("Camera2D", "set_limit", 437707142)
 
     public val getLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_limit", 1983885014)
+        Internals.getMethodBindPtr("Camera2D", "get_limit", 1983885014)
 
     public val setLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled", 2586408642)
 
     public val isLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled", 36873697)
 
     public val setDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled", 2586408642)
 
     public val isDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled", 36873697)
 
     public val setDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled", 2586408642)
 
     public val isDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled", 36873697)
 
     public val setDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_offset", 373806689)
+        Internals.getMethodBindPtr("Camera2D", "set_drag_vertical_offset", 373806689)
 
     public val getDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_vertical_offset", 1740695150)
+        Internals.getMethodBindPtr("Camera2D", "get_drag_vertical_offset", 1740695150)
 
     public val setDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset", 373806689)
+        Internals.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset", 373806689)
 
     public val getDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset", 1740695150)
+        Internals.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset", 1740695150)
 
     public val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_margin", 4290182280)
+        Internals.getMethodBindPtr("Camera2D", "set_drag_margin", 4290182280)
 
     public val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_margin", 2869120046)
+        Internals.getMethodBindPtr("Camera2D", "get_drag_margin", 2869120046)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_target_position", 3341600327)
+        Internals.getMethodBindPtr("Camera2D", "get_target_position", 3341600327)
 
     public val getScreenCenterPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position", 3341600327)
+        Internals.getMethodBindPtr("Camera2D", "get_screen_center_position", 3341600327)
 
-    public val setZoomPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "set_zoom", 743155724)
+    public val setZoomPtr: VoidPtr = Internals.getMethodBindPtr("Camera2D", "set_zoom", 743155724)
 
-    public val getZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_zoom", 3341600327)
+    public val getZoomPtr: VoidPtr = Internals.getMethodBindPtr("Camera2D", "get_zoom", 3341600327)
 
     public val setCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_custom_viewport", 1078189570)
+        Internals.getMethodBindPtr("Camera2D", "set_custom_viewport", 1078189570)
 
     public val getCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_custom_viewport", 3160264692)
+        Internals.getMethodBindPtr("Camera2D", "get_custom_viewport", 3160264692)
 
     public val setPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_speed", 373806689)
+        Internals.getMethodBindPtr("Camera2D", "set_position_smoothing_speed", 373806689)
 
     public val getPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_position_smoothing_speed", 1740695150)
+        Internals.getMethodBindPtr("Camera2D", "get_position_smoothing_speed", 1740695150)
 
     public val setPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled", 2586408642)
 
     public val isPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled", 36873697)
 
     public val setRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled", 2586408642)
 
     public val isRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled", 36873697)
 
     public val setRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed", 373806689)
+        Internals.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed", 373806689)
 
     public val getRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed", 1740695150)
+        Internals.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed", 1740695150)
 
     public val forceUpdateScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "force_update_scroll", 3218959716)
+        Internals.getMethodBindPtr("Camera2D", "force_update_scroll", 3218959716)
 
     public val resetSmoothingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "reset_smoothing", 3218959716)
+        Internals.getMethodBindPtr("Camera2D", "reset_smoothing", 3218959716)
 
-    public val alignPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "align", 3218959716)
+    public val alignPtr: VoidPtr = Internals.getMethodBindPtr("Camera2D", "align", 3218959716)
 
     public val setScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled", 2586408642)
 
     public val isScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled", 36873697)
 
     public val setLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled", 2586408642)
 
     public val isLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled", 36873697)
 
     public val setMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled", 2586408642)
+        Internals.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled", 2586408642)
 
     public val isMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled", 36873697)
+        Internals.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled", 36873697)
   }
 }

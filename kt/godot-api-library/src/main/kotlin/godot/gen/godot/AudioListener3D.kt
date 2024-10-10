@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -29,23 +28,23 @@ private const val ENGINE_CLASS_AUDIOLISTENER3D_INDEX: Int = 109
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOLISTENER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOLISTENER3D_INDEX, scriptIndex)
   }
 
   /**
    * Enables the listener. This will override the current camera's listener.
    */
   public final fun makeCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.makeCurrentPtr, NIL)
   }
 
   /**
    * Disables the listener to use the current camera's listener instead.
    */
   public final fun clearCurrent(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearCurrentPtr, NIL)
   }
 
   /**
@@ -54,33 +53,33 @@ public open class AudioListener3D : Node3D() {
    * only the one that was made current last will be used.
    */
   public final fun isCurrent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCurrentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the listener's global orthonormalized [Transform3D].
    */
   public final fun getListenerTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getListenerTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getListenerTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "make_current", 3218959716)
+        Internals.getMethodBindPtr("AudioListener3D", "make_current", 3218959716)
 
     public val clearCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "clear_current", 3218959716)
+        Internals.getMethodBindPtr("AudioListener3D", "clear_current", 3218959716)
 
     public val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "is_current", 36873697)
+        Internals.getMethodBindPtr("AudioListener3D", "is_current", 36873697)
 
     public val getListenerTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3229777777)
+        Internals.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3229777777)
   }
 }

@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -18,7 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -347,7 +346,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STYLEBOXFLAT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STYLEBOXFLAT_INDEX, scriptIndex)
   }
 
   /**
@@ -478,78 +477,78 @@ public open class StyleBoxFlat : StyleBox() {
 
 
   public final fun setBgColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setBgColorPtr, NIL)
   }
 
   public final fun getBgColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBgColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setBorderColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setBorderColorPtr, NIL)
   }
 
   public final fun getBorderColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
    * Sets the border width to [width] pixels for all sides.
    */
   public final fun setBorderWidthAll(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthAllPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBorderWidthAllPtr, NIL)
   }
 
   /**
    * Returns the smallest border width out of all four borders.
    */
   public final fun getBorderWidthMin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderWidthMinPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the specified [Side]'s border width to [width] pixels.
    */
   public final fun setBorderWidth(margin: Side, width: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBorderWidthPtr, NIL)
   }
 
   /**
    * Returns the specified [Side]'s border width.
    */
   public final fun getBorderWidth(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getBorderWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBorderBlend(blend: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to blend)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
+    Internals.writeArguments(BOOL to blend)
+    Internals.callMethod(rawPtr, MethodBindings.setBorderBlendPtr, NIL)
   }
 
   public final fun getBorderBlend(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderBlendPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
   public final fun setCornerRadiusAll(radius: Int): Unit {
-    TransferContext.writeArguments(LONG to radius.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusAllPtr, NIL)
+    Internals.writeArguments(LONG to radius.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCornerRadiusAllPtr, NIL)
   }
 
   /**
@@ -557,229 +556,229 @@ public open class StyleBoxFlat : StyleBox() {
    * values.
    */
   public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
-    TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
+    Internals.writeArguments(LONG to corner.id, LONG to radius.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCornerRadiusPtr, NIL)
   }
 
   /**
    * Returns the given [corner]'s radius. See [Corner] for possible values.
    */
   public final fun getCornerRadius(corner: Corner): Int {
-    TransferContext.writeArguments(LONG to corner.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to corner.id)
+    Internals.callMethod(rawPtr, MethodBindings.getCornerRadiusPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
   public final fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
   }
 
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
   public final fun setExpandMarginAll(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
 
   /**
    * Returns the size of the specified [Side]'s expand margin.
    */
   public final fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDrawCenter(drawCenter: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to drawCenter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+    Internals.writeArguments(BOOL to drawCenter)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSkew(skew: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to skew)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
+    Internals.writeArguments(VECTOR2 to skew)
+    Internals.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
   }
 
   public final fun getSkew(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkewPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setShadowColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
   }
 
   public final fun getShadowColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
   }
 
   public final fun getShadowSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShadowOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
   }
 
   public final fun getShadowOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAntiAliased(antiAliased: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to antiAliased)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
+    Internals.writeArguments(BOOL to antiAliased)
+    Internals.callMethod(rawPtr, MethodBindings.setAntiAliasedPtr, NIL)
   }
 
   public final fun isAntiAliased(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAntiAliasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAaSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAaSizePtr, NIL)
   }
 
   public final fun getAaSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAaSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCornerDetail(detail: Int): Unit {
-    TransferContext.writeArguments(LONG to detail.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
+    Internals.writeArguments(LONG to detail.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCornerDetailPtr, NIL)
   }
 
   public final fun getCornerDetail(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCornerDetailPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_bg_color", 2920490490)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_bg_color", 2920490490)
 
     public val getBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_bg_color", 3444240500)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_bg_color", 3444240500)
 
     public val setBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_color", 2920490490)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_border_color", 2920490490)
 
     public val getBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_color", 3444240500)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_border_color", 3444240500)
 
     public val setBorderWidthAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width_all", 1286410249)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_border_width_all", 1286410249)
 
     public val getBorderWidthMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width_min", 3905245786)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_border_width_min", 3905245786)
 
     public val setBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width", 437707142)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_border_width", 437707142)
 
     public val getBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width", 1983885014)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_border_width", 1983885014)
 
     public val setBorderBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_blend", 2586408642)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_border_blend", 2586408642)
 
     public val getBorderBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_blend", 36873697)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_border_blend", 36873697)
 
     public val setCornerRadiusAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all", 1286410249)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all", 1286410249)
 
     public val setCornerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius", 2696158768)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_radius", 2696158768)
 
     public val getCornerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_radius", 3982397690)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_corner_radius", 3982397690)
 
     public val setExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin", 4290182280)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_expand_margin", 4290182280)
 
     public val setExpandMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all", 373806689)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all", 373806689)
 
     public val getExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_expand_margin", 2869120046)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_expand_margin", 2869120046)
 
     public val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_draw_center", 2586408642)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_draw_center", 2586408642)
 
     public val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled", 36873697)
+        Internals.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled", 36873697)
 
     public val setSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_skew", 743155724)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_skew", 743155724)
 
     public val getSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_skew", 3341600327)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_skew", 3341600327)
 
     public val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_color", 2920490490)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_color", 2920490490)
 
     public val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_color", 3444240500)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_color", 3444240500)
 
     public val setShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_size", 1286410249)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_size", 1286410249)
 
     public val getShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_size", 3905245786)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_size", 3905245786)
 
     public val setShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset", 743155724)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset", 743155724)
 
     public val getShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset", 3341600327)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset", 3341600327)
 
     public val setAntiAliasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased", 2586408642)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased", 2586408642)
 
     public val isAntiAliasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased", 36873697)
+        Internals.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased", 36873697)
 
     public val setAaSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_aa_size", 373806689)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_aa_size", 373806689)
 
     public val getAaSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_aa_size", 1740695150)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_aa_size", 1740695150)
 
     public val setCornerDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_detail", 1286410249)
+        Internals.getMethodBindPtr("StyleBoxFlat", "set_corner_detail", 1286410249)
 
     public val getCornerDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_detail", 3905245786)
+        Internals.getMethodBindPtr("StyleBoxFlat", "get_corner_detail", 3905245786)
   }
 }

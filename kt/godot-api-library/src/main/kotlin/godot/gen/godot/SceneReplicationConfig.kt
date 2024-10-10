@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -29,16 +28,16 @@ private const val ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX: Int = 504
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX, scriptIndex)
   }
 
   /**
    * Returns a list of synchronized property [NodePath]s.
    */
   public final fun getProperties(): VariantArray<NodePath> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropertiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPropertiesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<NodePath>)
   }
 
   /**
@@ -49,34 +48,34 @@ public open class SceneReplicationConfig : Resource() {
    */
   @JvmOverloads
   public final fun addProperty(path: NodePath, index: Int = -1): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPropertyPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPropertyPtr, NIL)
   }
 
   /**
    * Returns `true` if the given [path] is configured for synchronization.
    */
   public final fun hasProperty(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPropertyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.hasPropertyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Removes the property identified by the given [path] from the configuration.
    */
   public final fun removeProperty(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.removePropertyPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.removePropertyPtr, NIL)
   }
 
   /**
    * Finds the index of the given [path].
    */
   public final fun propertyGetIndex(path: NodePath): Int {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -84,9 +83,9 @@ public open class SceneReplicationConfig : Resource() {
    * on spawn.
    */
   public final fun propertyGetSpawn(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSpawnPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetSpawnPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -94,8 +93,8 @@ public open class SceneReplicationConfig : Resource() {
    * spawn.
    */
   public final fun propertySetSpawn(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertySetSpawnPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.propertySetSpawnPtr, NIL)
   }
 
   /**
@@ -103,9 +102,9 @@ public open class SceneReplicationConfig : Resource() {
    * [ReplicationMode].
    */
   public final fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
-    return SceneReplicationConfig.ReplicationMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetReplicationModePtr, LONG)
+    return SceneReplicationConfig.ReplicationMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -113,8 +112,8 @@ public open class SceneReplicationConfig : Resource() {
    * [ReplicationMode].
    */
   public final fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.propertySetReplicationModePtr, NIL)
   }
 
   /**
@@ -122,9 +121,9 @@ public open class SceneReplicationConfig : Resource() {
    * on process.
    */
   public final fun propertyGetSync(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetSyncPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetSyncPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -132,8 +131,8 @@ public open class SceneReplicationConfig : Resource() {
    * process.
    */
   public final fun propertySetSync(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertySetSyncPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.propertySetSyncPtr, NIL)
   }
 
   /**
@@ -141,9 +140,9 @@ public open class SceneReplicationConfig : Resource() {
    * synchronized when changes are detected on process.
    */
   public final fun propertyGetWatch(path: NodePath): Boolean {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetWatchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetWatchPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -151,8 +150,8 @@ public open class SceneReplicationConfig : Resource() {
    * synchronized when changes are detected on process.
    */
   public final fun propertySetWatch(path: NodePath, enabled: Boolean): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertySetWatchPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.propertySetWatchPtr, NIL)
   }
 
   public enum class ReplicationMode(
@@ -188,42 +187,42 @@ public open class SceneReplicationConfig : Resource() {
 
   internal object MethodBindings {
     public val getPropertiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "get_properties", 3995934104)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "get_properties", 3995934104)
 
     public val addPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "add_property", 4094619021)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "add_property", 4094619021)
 
     public val hasPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "has_property", 861721659)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "has_property", 861721659)
 
     public val removePropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "remove_property", 1348162250)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "remove_property", 1348162250)
 
     public val propertyGetIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_index", 1382022557)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_get_index", 1382022557)
 
     public val propertyGetSpawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_spawn", 3456846888)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_get_spawn", 3456846888)
 
     public val propertySetSpawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_spawn", 3868023870)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_set_spawn", 3868023870)
 
     public val propertyGetReplicationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_replication_mode", 2870606336)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_get_replication_mode", 2870606336)
 
     public val propertySetReplicationModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_replication_mode", 3200083865)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_set_replication_mode", 3200083865)
 
     public val propertyGetSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_sync", 3456846888)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_get_sync", 3456846888)
 
     public val propertySetSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_sync", 3868023870)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_set_sync", 3868023870)
 
     public val propertyGetWatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_get_watch", 3456846888)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_get_watch", 3456846888)
 
     public val propertySetWatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneReplicationConfig", "property_set_watch", 3868023870)
+        Internals.getMethodBindPtr("SceneReplicationConfig", "property_set_watch", 3868023870)
   }
 }

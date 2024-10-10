@@ -11,7 +11,6 @@ import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -23,7 +22,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -108,47 +107,47 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRPOSITIONALTRACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRPOSITIONALTRACKER_INDEX, scriptIndex)
   }
 
   public final fun getTrackerProfile(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerProfilePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTrackerProfile(profile: String): Unit {
-    TransferContext.writeArguments(STRING to profile)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
+    Internals.writeArguments(STRING to profile)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerProfilePtr, NIL)
   }
 
   public final fun getTrackerHand(): TrackerHand {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
-    return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
+    return XRPositionalTracker.TrackerHand.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTrackerHand(hand: TrackerHand): Unit {
-    TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
+    Internals.writeArguments(LONG to hand.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerHandPtr, NIL)
   }
 
   /**
    * Returns `true` if the tracker is available and is currently tracking the bound [name] pose.
    */
   public final fun hasPose(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasPosePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the current [XRPose] state object for the bound [name] pose.
    */
   public final fun getPose(name: StringName): XRPose? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as XRPose?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as XRPose?)
   }
 
   /**
@@ -157,8 +156,8 @@ public open class XRPositionalTracker : XRTracker() {
    * position.
    */
   public final fun invalidatePose(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.invalidatePosePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.invalidatePosePtr, NIL)
   }
 
   /**
@@ -172,8 +171,8 @@ public open class XRPositionalTracker : XRTracker() {
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPosePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPosePtr, NIL)
   }
 
   /**
@@ -181,9 +180,9 @@ public open class XRPositionalTracker : XRTracker() {
    * on whether the input is a button, trigger or thumbstick/thumbpad.
    */
   public final fun getInput(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -191,8 +190,8 @@ public open class XRPositionalTracker : XRTracker() {
    * and should not be used directly.
    */
   public final fun setInput(name: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setInputPtr, NIL)
   }
 
   public enum class TrackerHand(
@@ -230,33 +229,33 @@ public open class XRPositionalTracker : XRTracker() {
 
   internal object MethodBindings {
     public val getTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201670096)
+        Internals.getMethodBindPtr("XRPositionalTracker", "get_tracker_profile", 201670096)
 
     public val setTrackerProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83702148)
+        Internals.getMethodBindPtr("XRPositionalTracker", "set_tracker_profile", 83702148)
 
     public val getTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4181770860)
+        Internals.getMethodBindPtr("XRPositionalTracker", "get_tracker_hand", 4181770860)
 
     public val setTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3904108980)
+        Internals.getMethodBindPtr("XRPositionalTracker", "set_tracker_hand", 3904108980)
 
     public val hasPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "has_pose", 2619796661)
+        Internals.getMethodBindPtr("XRPositionalTracker", "has_pose", 2619796661)
 
     public val getPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_pose", 4099720006)
+        Internals.getMethodBindPtr("XRPositionalTracker", "get_pose", 4099720006)
 
     public val invalidatePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3304788590)
+        Internals.getMethodBindPtr("XRPositionalTracker", "invalidate_pose", 3304788590)
 
     public val setPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_pose", 3451230163)
+        Internals.getMethodBindPtr("XRPositionalTracker", "set_pose", 3451230163)
 
     public val getInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "get_input", 2760726917)
+        Internals.getMethodBindPtr("XRPositionalTracker", "get_input", 2760726917)
 
     public val setInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPositionalTracker", "set_input", 3776071444)
+        Internals.getMethodBindPtr("XRPositionalTracker", "set_input", 3776071444)
   }
 }

@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -33,7 +32,7 @@ private const val ENGINE_CLASS_PACKETPEERUDP_INDEX: Int = 401
 @GodotBaseType
 public open class PacketPeerUDP : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKETPEERUDP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKETPEERUDP_INDEX, scriptIndex)
   }
 
   /**
@@ -53,17 +52,17 @@ public open class PacketPeerUDP : PacketPeer() {
     bindAddress: String = "*",
     recvBufSize: Int = 65536,
   ): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress, LONG to recvBufSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to port.toLong(), STRING to bindAddress, LONG to recvBufSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.bindPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Closes the [PacketPeerUDP]'s underlying UDP socket.
    */
   public final fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   /**
@@ -103,18 +102,18 @@ public open class PacketPeerUDP : PacketPeer() {
    * ```
    */
   public final fun wait(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.waitPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.waitPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns whether this [PacketPeerUDP] is bound to an address and can receive packets.
    */
   public final fun isBound(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBoundPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBoundPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -129,9 +128,9 @@ public open class PacketPeerUDP : PacketPeer() {
    * application is transferring sensitive information.
    */
   public final fun connectToHost(host: String, port: Int): Error {
-    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to host, LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.connectToHostPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -139,9 +138,9 @@ public open class PacketPeerUDP : PacketPeer() {
    * [connectToHost].
    */
   public final fun isSocketConnected(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSocketConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSocketConnectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -149,9 +148,9 @@ public open class PacketPeerUDP : PacketPeer() {
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketIp(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketIpPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketIpPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -159,18 +158,18 @@ public open class PacketPeerUDP : PacketPeer() {
    * [PacketPeer.getPacket] or [PacketPeer.getVar]).
    */
   public final fun getPacketPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the local port to which this peer is bound.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -180,9 +179,9 @@ public open class PacketPeerUDP : PacketPeer() {
    * (e.g. `255.255.255.255`).
    */
   public final fun setDestAddress(host: String, port: Int): Error {
-    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDestAddressPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to host, LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDestAddressPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -192,8 +191,8 @@ public open class PacketPeerUDP : PacketPeer() {
    * this option to be enabled to receive broadcast packets too.
    */
   public final fun setBroadcastEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBroadcastEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setBroadcastEnabledPtr, NIL)
   }
 
   /**
@@ -205,9 +204,9 @@ public open class PacketPeerUDP : PacketPeer() {
    * multicast to work.
    */
   public final fun joinMulticastGroup(multicastAddress: String, interfaceName: String): Error {
-    TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, MethodBindings.joinMulticastGroupPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to multicastAddress, STRING to interfaceName)
+    Internals.callMethod(rawPtr, MethodBindings.joinMulticastGroupPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -215,49 +214,48 @@ public open class PacketPeerUDP : PacketPeer() {
    * [multicastAddress].
    */
   public final fun leaveMulticastGroup(multicastAddress: String, interfaceName: String): Error {
-    TransferContext.writeArguments(STRING to multicastAddress, STRING to interfaceName)
-    TransferContext.callMethod(rawPtr, MethodBindings.leaveMulticastGroupPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to multicastAddress, STRING to interfaceName)
+    Internals.callMethod(rawPtr, MethodBindings.leaveMulticastGroupPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val bindPtr: VoidPtr = TypeManager.getMethodBindPtr("PacketPeerUDP", "bind", 4051239242)
+    public val bindPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "bind", 4051239242)
 
-    public val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "close", 3218959716)
+    public val closePtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "close", 3218959716)
 
-    public val waitPtr: VoidPtr = TypeManager.getMethodBindPtr("PacketPeerUDP", "wait", 166280745)
+    public val waitPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeerUDP", "wait", 166280745)
 
     public val isBoundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_bound", 36873697)
+        Internals.getMethodBindPtr("PacketPeerUDP", "is_bound", 36873697)
 
     public val connectToHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "connect_to_host", 993915709)
+        Internals.getMethodBindPtr("PacketPeerUDP", "connect_to_host", 993915709)
 
     public val isSocketConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "is_socket_connected", 36873697)
+        Internals.getMethodBindPtr("PacketPeerUDP", "is_socket_connected", 36873697)
 
     public val getPacketIpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_ip", 201670096)
+        Internals.getMethodBindPtr("PacketPeerUDP", "get_packet_ip", 201670096)
 
     public val getPacketPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_packet_port", 3905245786)
+        Internals.getMethodBindPtr("PacketPeerUDP", "get_packet_port", 3905245786)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "get_local_port", 3905245786)
+        Internals.getMethodBindPtr("PacketPeerUDP", "get_local_port", 3905245786)
 
     public val setDestAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_dest_address", 993915709)
+        Internals.getMethodBindPtr("PacketPeerUDP", "set_dest_address", 993915709)
 
     public val setBroadcastEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "set_broadcast_enabled", 2586408642)
+        Internals.getMethodBindPtr("PacketPeerUDP", "set_broadcast_enabled", 2586408642)
 
     public val joinMulticastGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "join_multicast_group", 852856452)
+        Internals.getMethodBindPtr("PacketPeerUDP", "join_multicast_group", 852856452)
 
     public val leaveMulticastGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerUDP", "leave_multicast_group", 852856452)
+        Internals.getMethodBindPtr("PacketPeerUDP", "leave_multicast_group", 852856452)
   }
 }

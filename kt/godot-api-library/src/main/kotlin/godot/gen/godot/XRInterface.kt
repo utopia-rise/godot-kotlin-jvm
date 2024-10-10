@@ -13,7 +13,6 @@ import godot.core.Projection
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -28,7 +27,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -94,16 +93,16 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRINTERFACE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRINTERFACE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the name of this interface (`"OpenXR"`, `"OpenVR"`, `"OpenHMD"`, `"ARKit"`, etc.).
    */
   public final fun getName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -111,29 +110,29 @@ public open class XRInterface internal constructor() : RefCounted() {
    * this interface.
    */
   public final fun getCapabilities(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCapabilitiesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCapabilitiesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun isPrimary(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPrimaryPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPrimaryPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPrimary(primary: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to primary)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryPtr, NIL)
+    Internals.writeArguments(BOOL to primary)
+    Internals.callMethod(rawPtr, MethodBindings.setPrimaryPtr, NIL)
   }
 
   /**
    * Returns `true` if this interface has been initialized.
    */
   public final fun isInitialized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -153,17 +152,17 @@ public open class XRInterface internal constructor() : RefCounted() {
    * interface can render to an HMD.
    */
   public final fun initialize(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.initializePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.initializePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Turns the interface off.
    */
   public final fun uninitialize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.uninitializePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.uninitializePtr, NIL)
   }
 
   /**
@@ -173,9 +172,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * **Note:**This information may only be available after [initialize] was successfully called.
    */
   public final fun getSystemInfo(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSystemInfoPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -183,9 +182,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * the user whether there are issues with positional tracking.
    */
   public final fun getTrackingStatus(): TrackingStatus {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackingStatusPtr, LONG)
-    return XRInterface.TrackingStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackingStatusPtr, LONG)
+    return XRInterface.TrackingStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -193,9 +192,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * lens distortion are applied by the VR platform.
    */
   public final fun getRenderTargetSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderTargetSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -203,9 +202,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * Stereoscopic.
    */
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -227,23 +226,23 @@ public open class XRInterface internal constructor() : RefCounted() {
     durationSec: Double,
     delaySec: Double,
   ): Unit {
-    TransferContext.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
-    TransferContext.callMethod(rawPtr, MethodBindings.triggerHapticPulsePtr, NIL)
+    Internals.writeArguments(STRING to actionName, STRING_NAME to trackerName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
+    Internals.callMethod(rawPtr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
 
   /**
    * Call this to find out if a given play area mode is supported by this interface.
    */
   public final fun supportsPlayAreaMode(mode: PlayAreaMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.supportsPlayAreaModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.supportsPlayAreaModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPlayAreaMode(): PlayAreaMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaModePtr, LONG)
-    return XRInterface.PlayAreaMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlayAreaModePtr, LONG)
+    return XRInterface.PlayAreaMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -254,9 +253,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * [XRInterface.XR_PLAY_AREA_STAGE]) or make the switch during a scene change.
    */
   public final fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlayAreaModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPlayAreaModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -266,20 +265,20 @@ public open class XRInterface internal constructor() : RefCounted() {
    * information is not yet available.
    */
   public final fun getPlayArea(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlayAreaPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlayAreaPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun getAnchorDetectionIsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnchorDetectionIsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnchorDetectionIsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAnchorDetectionIsEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnchorDetectionIsEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAnchorDetectionIsEnabledPtr, NIL)
   }
 
   /**
@@ -287,27 +286,27 @@ public open class XRInterface internal constructor() : RefCounted() {
    * method returns the feed ID in the [CameraServer] for this interface.
    */
   public final fun getCameraFeedId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns `true` if this interface supports passthrough.
    */
   public final fun isPassthroughSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPassthroughSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPassthroughSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if passthrough is enabled.
    */
   public final fun isPassthroughEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPassthroughEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPassthroughEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -316,17 +315,17 @@ public open class XRInterface internal constructor() : RefCounted() {
    * may not properly render.
    */
   public final fun startPassthrough(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.startPassthroughPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.startPassthroughPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Stops passthrough.
    */
   public final fun stopPassthrough(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPassthroughPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPassthroughPtr, NIL)
   }
 
   /**
@@ -336,9 +335,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * the [Node3D.globalTransform] of the current XROrigin3D.
    */
   public final fun getTransformForView(view: Long, camTransform: Transform3D): Transform3D {
-    TransferContext.writeArguments(LONG to view, TRANSFORM3D to camTransform)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformForViewPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to view, TRANSFORM3D to camTransform)
+    Internals.callMethod(rawPtr, MethodBindings.getTransformForViewPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -350,9 +349,9 @@ public open class XRInterface internal constructor() : RefCounted() {
     near: Double,
     far: Double,
   ): Projection {
-    TransferContext.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectionForViewPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION) as Projection)
+    Internals.writeArguments(LONG to view, DOUBLE to aspect, DOUBLE to near, DOUBLE to far)
+    Internals.callMethod(rawPtr, MethodBindings.getProjectionForViewPtr, PROJECTION)
+    return (Internals.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
@@ -360,9 +359,9 @@ public open class XRInterface internal constructor() : RefCounted() {
    * [XRInterface.EnvironmentBlendMode].
    */
   public final fun getSupportedEnvironmentBlendModes(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSupportedEnvironmentBlendModesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSupportedEnvironmentBlendModesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -386,15 +385,15 @@ public open class XRInterface internal constructor() : RefCounted() {
    * [/codeblock]
    */
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentBlendModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentBlendModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getEnvironmentBlendMode(): EnvironmentBlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentBlendModePtr, LONG)
-    return XRInterface.EnvironmentBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentBlendModePtr, LONG)
+    return XRInterface.EnvironmentBlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Capabilities(
@@ -552,87 +551,87 @@ public open class XRInterface internal constructor() : RefCounted() {
 
   internal object MethodBindings {
     public val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_name", 2002593661)
+        Internals.getMethodBindPtr("XRInterface", "get_name", 2002593661)
 
     public val getCapabilitiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_capabilities", 3905245786)
+        Internals.getMethodBindPtr("XRInterface", "get_capabilities", 3905245786)
 
     public val isPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_primary", 2240911060)
+        Internals.getMethodBindPtr("XRInterface", "is_primary", 2240911060)
 
     public val setPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_primary", 2586408642)
+        Internals.getMethodBindPtr("XRInterface", "set_primary", 2586408642)
 
     public val isInitializedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_initialized", 36873697)
+        Internals.getMethodBindPtr("XRInterface", "is_initialized", 36873697)
 
     public val initializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "initialize", 2240911060)
+        Internals.getMethodBindPtr("XRInterface", "initialize", 2240911060)
 
     public val uninitializePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "uninitialize", 3218959716)
+        Internals.getMethodBindPtr("XRInterface", "uninitialize", 3218959716)
 
     public val getSystemInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_system_info", 2382534195)
+        Internals.getMethodBindPtr("XRInterface", "get_system_info", 2382534195)
 
     public val getTrackingStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_tracking_status", 167423259)
+        Internals.getMethodBindPtr("XRInterface", "get_tracking_status", 167423259)
 
     public val getRenderTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_render_target_size", 1497962370)
+        Internals.getMethodBindPtr("XRInterface", "get_render_target_size", 1497962370)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_view_count", 2455072627)
+        Internals.getMethodBindPtr("XRInterface", "get_view_count", 2455072627)
 
     public val triggerHapticPulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "trigger_haptic_pulse", 3752640163)
+        Internals.getMethodBindPtr("XRInterface", "trigger_haptic_pulse", 3752640163)
 
     public val supportsPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "supports_play_area_mode", 3429955281)
+        Internals.getMethodBindPtr("XRInterface", "supports_play_area_mode", 3429955281)
 
     public val getPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_play_area_mode", 1615132885)
+        Internals.getMethodBindPtr("XRInterface", "get_play_area_mode", 1615132885)
 
     public val setPlayAreaModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_play_area_mode", 3429955281)
+        Internals.getMethodBindPtr("XRInterface", "set_play_area_mode", 3429955281)
 
     public val getPlayAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_play_area", 497664490)
+        Internals.getMethodBindPtr("XRInterface", "get_play_area", 497664490)
 
     public val getAnchorDetectionIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_anchor_detection_is_enabled", 36873697)
+        Internals.getMethodBindPtr("XRInterface", "get_anchor_detection_is_enabled", 36873697)
 
     public val setAnchorDetectionIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_anchor_detection_is_enabled", 2586408642)
+        Internals.getMethodBindPtr("XRInterface", "set_anchor_detection_is_enabled", 2586408642)
 
     public val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_camera_feed_id", 2455072627)
+        Internals.getMethodBindPtr("XRInterface", "get_camera_feed_id", 2455072627)
 
     public val isPassthroughSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_supported", 2240911060)
+        Internals.getMethodBindPtr("XRInterface", "is_passthrough_supported", 2240911060)
 
     public val isPassthroughEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "is_passthrough_enabled", 2240911060)
+        Internals.getMethodBindPtr("XRInterface", "is_passthrough_enabled", 2240911060)
 
     public val startPassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "start_passthrough", 2240911060)
+        Internals.getMethodBindPtr("XRInterface", "start_passthrough", 2240911060)
 
     public val stopPassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "stop_passthrough", 3218959716)
+        Internals.getMethodBindPtr("XRInterface", "stop_passthrough", 3218959716)
 
     public val getTransformForViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_transform_for_view", 518934792)
+        Internals.getMethodBindPtr("XRInterface", "get_transform_for_view", 518934792)
 
     public val getProjectionForViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_projection_for_view", 3766090294)
+        Internals.getMethodBindPtr("XRInterface", "get_projection_for_view", 3766090294)
 
     public val getSupportedEnvironmentBlendModesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_supported_environment_blend_modes", 2915620761)
+        Internals.getMethodBindPtr("XRInterface", "get_supported_environment_blend_modes", 2915620761)
 
     public val setEnvironmentBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "set_environment_blend_mode", 551152418)
+        Internals.getMethodBindPtr("XRInterface", "set_environment_blend_mode", 551152418)
 
     public val getEnvironmentBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterface", "get_environment_blend_mode", 1984334071)
+        Internals.getMethodBindPtr("XRInterface", "get_environment_blend_mode", 1984334071)
   }
 }

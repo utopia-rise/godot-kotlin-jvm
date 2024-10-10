@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -50,29 +49,29 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setParameterNamePtr, NIL)
   }
 
   public final fun getParameterName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParameterNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setQualifier(qualifier: Qualifier): Unit {
-    TransferContext.writeArguments(LONG to qualifier.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
+    Internals.writeArguments(LONG to qualifier.id)
+    Internals.callMethod(rawPtr, MethodBindings.setQualifierPtr, NIL)
   }
 
   public final fun getQualifier(): Qualifier {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
-    return VisualShaderNodeParameter.Qualifier.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getQualifierPtr, LONG)
+    return VisualShaderNodeParameter.Qualifier.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Qualifier(
@@ -110,15 +109,15 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
   internal object MethodBindings {
     public val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83702148)
 
     public val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201670096)
 
     public val setQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1276489447)
+        Internals.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1276489447)
 
     public val getQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
+        Internals.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
   }
 }

@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -62,40 +61,40 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
+    Internals.writeArguments(LONG to value.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSourcePtr, NIL)
   }
 
   public final fun getSource(): Source {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
-    return VisualShaderNodeTexture.Source.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourcePtr, LONG)
+    return VisualShaderNodeTexture.Source.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(`value`: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to value)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
-    TransferContext.writeArguments(LONG to value.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    Internals.writeArguments(LONG to value.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): TextureType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeTexture.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return VisualShaderNodeTexture.TextureType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Source(
@@ -188,21 +187,21 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_source", 905262939)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_source", 905262939)
 
     public val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_source", 2896297444)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_source", 2896297444)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_texture", 3635182373)
 
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "set_texture_type", 986314081)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "set_texture_type", 986314081)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture", "get_texture_type", 3290430153)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture", "get_texture_type", 3290430153)
   }
 }

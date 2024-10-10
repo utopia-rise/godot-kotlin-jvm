@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -82,7 +81,7 @@ public open class JSON : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_JSON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_JSON_INDEX, scriptIndex)
   }
 
   /**
@@ -97,29 +96,29 @@ public open class JSON : Resource() {
    */
   @JvmOverloads
   public final fun parse(jsonText: String, keepText: Boolean = false): Error {
-    TransferContext.writeArguments(STRING to jsonText, BOOL to keepText)
-    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to jsonText, BOOL to keepText)
+    Internals.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun getData(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public final fun setData(`data`: Any?): Unit {
-    TransferContext.writeArguments(ANY to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
+    Internals.writeArguments(ANY to data)
+    Internals.callMethod(rawPtr, MethodBindings.setDataPtr, NIL)
   }
 
   /**
    * Return the text parsed by [parse] (requires passing `keep_text` to [parse]).
    */
   public final fun getParsedText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -127,9 +126,9 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorLine(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorLinePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getErrorLinePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -137,9 +136,9 @@ public open class JSON : Resource() {
    * failed.
    */
   public final fun getErrorMessage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorMessagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getErrorMessagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object {
@@ -199,9 +198,9 @@ public open class JSON : Resource() {
       sortKeys: Boolean = true,
       fullPrecision: Boolean = false,
     ): String {
-      TransferContext.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
-      TransferContext.callMethod(0, MethodBindings.stringifyPtr, STRING)
-      return (TransferContext.readReturnValue(STRING) as String)
+      Internals.writeArguments(ANY to data, STRING to indent, BOOL to sortKeys, BOOL to fullPrecision)
+      Internals.callMethod(0, MethodBindings.stringifyPtr, STRING)
+      return (Internals.readReturnValue(STRING) as String)
     }
 
     /**
@@ -209,31 +208,31 @@ public open class JSON : Resource() {
      * parse failed.
      */
     public final fun parseString(jsonString: String): Any? {
-      TransferContext.writeArguments(STRING to jsonString)
-      TransferContext.callMethod(0, MethodBindings.parseStringPtr, ANY)
-      return (TransferContext.readReturnValue(ANY) as Any?)
+      Internals.writeArguments(STRING to jsonString)
+      Internals.callMethod(0, MethodBindings.parseStringPtr, ANY)
+      return (Internals.readReturnValue(ANY) as Any?)
     }
   }
 
   internal object MethodBindings {
-    public val stringifyPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
+    public val stringifyPtr: VoidPtr = Internals.getMethodBindPtr("JSON", "stringify", 462733549)
 
     public val parseStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
+        Internals.getMethodBindPtr("JSON", "parse_string", 309047738)
 
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885841341)
+    public val parsePtr: VoidPtr = Internals.getMethodBindPtr("JSON", "parse", 885841341)
 
-    public val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data", 1214101251)
+    public val getDataPtr: VoidPtr = Internals.getMethodBindPtr("JSON", "get_data", 1214101251)
 
-    public val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "set_data", 1114965689)
+    public val setDataPtr: VoidPtr = Internals.getMethodBindPtr("JSON", "set_data", 1114965689)
 
     public val getParsedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_parsed_text", 201670096)
+        Internals.getMethodBindPtr("JSON", "get_parsed_text", 201670096)
 
     public val getErrorLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_error_line", 3905245786)
+        Internals.getMethodBindPtr("JSON", "get_error_line", 3905245786)
 
     public val getErrorMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
+        Internals.getMethodBindPtr("JSON", "get_error_message", 201670096)
   }
 }

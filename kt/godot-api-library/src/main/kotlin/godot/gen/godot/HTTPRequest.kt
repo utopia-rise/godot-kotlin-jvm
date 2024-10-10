@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.Signal4
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,7 +18,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -298,7 +297,7 @@ public open class HTTPRequest : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_HTTPREQUEST_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_HTTPREQUEST_INDEX, scriptIndex)
   }
 
   /**
@@ -324,9 +323,9 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestData: String = "",
   ): Error {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
-    TransferContext.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
+    Internals.callMethod(rawPtr, MethodBindings.requestPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -345,98 +344,98 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.METHOD_GET,
     requestDataRaw: PackedByteArray = PackedByteArray(),
   ): Error {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
-    TransferContext.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    Internals.callMethod(rawPtr, MethodBindings.requestRawPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Cancels the current request.
    */
   public final fun cancelRequest(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cancelRequestPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.cancelRequestPtr, NIL)
   }
 
   /**
    * Sets the [TLSOptions] to be used when connecting to an HTTPS server. See [TLSOptions.client].
    */
   public final fun setTlsOptions(clientOptions: TLSOptions?): Unit {
-    TransferContext.writeArguments(OBJECT to clientOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTlsOptionsPtr, NIL)
+    Internals.writeArguments(OBJECT to clientOptions)
+    Internals.callMethod(rawPtr, MethodBindings.setTlsOptionsPtr, NIL)
   }
 
   /**
    * Returns the current status of the underlying [HTTPClient]. See [HTTPClient.Status].
    */
   public final fun getHttpClientStatus(): HTTPClient.Status {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHttpClientStatusPtr, LONG)
-    return HTTPClient.Status.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHttpClientStatusPtr, LONG)
+    return HTTPClient.Status.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseThreads(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseThreadsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseThreadsPtr, NIL)
   }
 
   public final fun isUsingThreads(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingThreadsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAcceptGzip(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAcceptGzipPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAcceptGzipPtr, NIL)
   }
 
   public final fun isAcceptingGzip(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAcceptingGzipPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBodySizeLimit(bytes: Int): Unit {
-    TransferContext.writeArguments(LONG to bytes.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodySizeLimitPtr, NIL)
+    Internals.writeArguments(LONG to bytes.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBodySizeLimitPtr, NIL)
   }
 
   public final fun getBodySizeLimit(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodySizeLimitPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxRedirects(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxRedirectsPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxRedirectsPtr, NIL)
   }
 
   public final fun getMaxRedirects(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxRedirectsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDownloadFile(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDownloadFilePtr, NIL)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.setDownloadFilePtr, NIL)
   }
 
   public final fun getDownloadFile(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDownloadFilePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the number of bytes this HTTPRequest downloaded.
    */
   public final fun getDownloadedBytes(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadedBytesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDownloadedBytesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -445,31 +444,31 @@ public open class HTTPRequest : Node() {
    * `-1`. If using chunked transfer encoding, the body length will also be `-1`.
    */
   public final fun getBodySize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodySizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodySizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTimeout(timeout: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to timeout)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
+    Internals.writeArguments(DOUBLE to timeout)
+    Internals.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
   }
 
   public final fun getTimeout(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeoutPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDownloadChunkSize(chunkSize: Int): Unit {
-    TransferContext.writeArguments(LONG to chunkSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDownloadChunkSizePtr, NIL)
+    Internals.writeArguments(LONG to chunkSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDownloadChunkSizePtr, NIL)
   }
 
   public final fun getDownloadChunkSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDownloadChunkSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -477,8 +476,8 @@ public open class HTTPRequest : Node() {
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpProxy(host: String, port: Int): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHttpProxyPtr, NIL)
+    Internals.writeArguments(STRING to host, LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHttpProxyPtr, NIL)
   }
 
   /**
@@ -486,8 +485,8 @@ public open class HTTPRequest : Node() {
    * The proxy server is unset if [host] is empty or [port] is -1.
    */
   public final fun setHttpsProxy(host: String, port: Int): Unit {
-    TransferContext.writeArguments(STRING to host, LONG to port.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHttpsProxyPtr, NIL)
+    Internals.writeArguments(STRING to host, LONG to port.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHttpsProxyPtr, NIL)
   }
 
   public enum class Result(
@@ -560,72 +559,72 @@ public open class HTTPRequest : Node() {
 
   internal object MethodBindings {
     public val requestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "request", 3215244323)
+        Internals.getMethodBindPtr("HTTPRequest", "request", 3215244323)
 
     public val requestRawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "request_raw", 2714829993)
+        Internals.getMethodBindPtr("HTTPRequest", "request_raw", 2714829993)
 
     public val cancelRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "cancel_request", 3218959716)
+        Internals.getMethodBindPtr("HTTPRequest", "cancel_request", 3218959716)
 
     public val setTlsOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_tls_options", 2210231844)
+        Internals.getMethodBindPtr("HTTPRequest", "set_tls_options", 2210231844)
 
     public val getHttpClientStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_http_client_status", 1426656811)
+        Internals.getMethodBindPtr("HTTPRequest", "get_http_client_status", 1426656811)
 
     public val setUseThreadsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_use_threads", 2586408642)
+        Internals.getMethodBindPtr("HTTPRequest", "set_use_threads", 2586408642)
 
     public val isUsingThreadsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "is_using_threads", 36873697)
+        Internals.getMethodBindPtr("HTTPRequest", "is_using_threads", 36873697)
 
     public val setAcceptGzipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_accept_gzip", 2586408642)
+        Internals.getMethodBindPtr("HTTPRequest", "set_accept_gzip", 2586408642)
 
     public val isAcceptingGzipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "is_accepting_gzip", 36873697)
+        Internals.getMethodBindPtr("HTTPRequest", "is_accepting_gzip", 36873697)
 
     public val setBodySizeLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_body_size_limit", 1286410249)
+        Internals.getMethodBindPtr("HTTPRequest", "set_body_size_limit", 1286410249)
 
     public val getBodySizeLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size_limit", 3905245786)
+        Internals.getMethodBindPtr("HTTPRequest", "get_body_size_limit", 3905245786)
 
     public val setMaxRedirectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_max_redirects", 1286410249)
+        Internals.getMethodBindPtr("HTTPRequest", "set_max_redirects", 1286410249)
 
     public val getMaxRedirectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_max_redirects", 3905245786)
+        Internals.getMethodBindPtr("HTTPRequest", "get_max_redirects", 3905245786)
 
     public val setDownloadFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_file", 83702148)
+        Internals.getMethodBindPtr("HTTPRequest", "set_download_file", 83702148)
 
     public val getDownloadFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_file", 201670096)
+        Internals.getMethodBindPtr("HTTPRequest", "get_download_file", 201670096)
 
     public val getDownloadedBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes", 3905245786)
+        Internals.getMethodBindPtr("HTTPRequest", "get_downloaded_bytes", 3905245786)
 
     public val getBodySizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_body_size", 3905245786)
+        Internals.getMethodBindPtr("HTTPRequest", "get_body_size", 3905245786)
 
     public val setTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_timeout", 373806689)
+        Internals.getMethodBindPtr("HTTPRequest", "set_timeout", 373806689)
 
     public val getTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_timeout", 191475506)
+        Internals.getMethodBindPtr("HTTPRequest", "get_timeout", 191475506)
 
     public val setDownloadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_download_chunk_size", 1286410249)
+        Internals.getMethodBindPtr("HTTPRequest", "set_download_chunk_size", 1286410249)
 
     public val getDownloadChunkSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "get_download_chunk_size", 3905245786)
+        Internals.getMethodBindPtr("HTTPRequest", "get_download_chunk_size", 3905245786)
 
     public val setHttpProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_http_proxy", 2956805083)
+        Internals.getMethodBindPtr("HTTPRequest", "set_http_proxy", 2956805083)
 
     public val setHttpsProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HTTPRequest", "set_https_proxy", 2956805083)
+        Internals.getMethodBindPtr("HTTPRequest", "set_https_proxy", 2956805083)
   }
 }

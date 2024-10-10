@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedFloat32Array
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DICTIONARY
@@ -17,7 +16,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -32,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -49,9 +48,9 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun intersectPoint(parameters: PhysicsPointQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectPointPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.intersectPointPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -70,9 +69,9 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * If the ray did not intersect anything, then an empty dictionary is returned instead.
    */
   public final fun intersectRay(parameters: PhysicsRayQueryParameters3D?): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectRayPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(OBJECT to parameters)
+    Internals.callMethod(rawPtr, MethodBindings.intersectRayPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -90,9 +89,9 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun intersectShape(parameters: PhysicsShapeQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.intersectShapePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.intersectShapePtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -106,9 +105,9 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * ignored. Use [collideShape] to determine the [Shape3D]s that the shape is already colliding with.
    */
   public final fun castMotion(parameters: PhysicsShapeQueryParameters3D?): PackedFloat32Array {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments(OBJECT to parameters)
+    Internals.callMethod(rawPtr, MethodBindings.castMotionPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
@@ -124,9 +123,9 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   @JvmOverloads
   public final fun collideShape(parameters: PhysicsShapeQueryParameters3D?, maxResults: Int = 32):
       VariantArray<Vector3> {
-    TransferContext.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.collideShapePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3>)
+    Internals.writeArguments(OBJECT to parameters, LONG to maxResults.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.collideShapePtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Vector3>)
   }
 
   /**
@@ -144,30 +143,30 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
    * **Note:** This method does not take into account the `motion` property of the object.
    */
   public final fun getRestInfo(parameters: PhysicsShapeQueryParameters3D?): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(OBJECT to parameters)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRestInfoPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(OBJECT to parameters)
+    Internals.callMethod(rawPtr, MethodBindings.getRestInfoPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val intersectPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_point", 975173756)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_point", 975173756)
 
     public val intersectRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_ray", 3957970750)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_ray", 3957970750)
 
     public val intersectShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_shape", 3762137681)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "intersect_shape", 3762137681)
 
     public val castMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "cast_motion", 1778757334)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "cast_motion", 1778757334)
 
     public val collideShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "collide_shape", 3762137681)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "collide_shape", 3762137681)
 
     public val getRestInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState3D", "get_rest_info", 1376751592)
+        Internals.getMethodBindPtr("PhysicsDirectSpaceState3D", "get_rest_info", 1376751592)
   }
 }

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -20,7 +19,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -52,18 +51,18 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENT_INDEX, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {
-    TransferContext.writeArguments(LONG to device.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
+    Internals.writeArguments(LONG to device.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDevicePtr, NIL)
   }
 
   public final fun getDevice(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDevicePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -73,9 +72,9 @@ public open class InputEvent internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun isAction(action: StringName, exactMatch: Boolean = false): Boolean {
-    TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to action, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.isActionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -95,9 +94,9 @@ public open class InputEvent internal constructor() : Resource() {
     allowEcho: Boolean = false,
     exactMatch: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to action, BOOL to allowEcho, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.isActionPressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -108,9 +107,9 @@ public open class InputEvent internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun isActionReleased(action: StringName, exactMatch: Boolean = false): Boolean {
-    TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionReleasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to action, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.isActionReleasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -121,18 +120,18 @@ public open class InputEvent internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun getActionStrength(action: StringName, exactMatch: Boolean = false): Float {
-    TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(STRING_NAME to action, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.getActionStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns `true` if this input event has been canceled.
    */
   public final fun isCanceled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCanceledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCanceledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -143,9 +142,9 @@ public open class InputEvent internal constructor() : Resource() {
    * examples[/url] in the documentation for more information.
    */
   public final fun isPressed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -153,9 +152,9 @@ public open class InputEvent internal constructor() : Resource() {
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    */
   public final fun isReleased(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isReleasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isReleasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -169,18 +168,18 @@ public open class InputEvent internal constructor() : Resource() {
    * configuration in your project's behavior.
    */
   public final fun isEcho(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEchoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEchoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns a [String] representation of the event.
    */
   public final fun asText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.asTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.asTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -192,18 +191,18 @@ public open class InputEvent internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
-    TransferContext.writeArguments(OBJECT to event, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to event, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.isMatchPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if this input event's type is one that can be assigned to an input action.
    */
   public final fun isActionType(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionTypePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActionTypePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -213,9 +212,9 @@ public open class InputEvent internal constructor() : Resource() {
    * `relative` is a sum of both events. Both events' modifiers have to be identical.
    */
   public final fun accumulate(withEvent: InputEvent?): Boolean {
-    TransferContext.writeArguments(OBJECT to withEvent)
-    TransferContext.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to withEvent)
+    Internals.callMethod(rawPtr, MethodBindings.accumulatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -226,9 +225,9 @@ public open class InputEvent internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun xformedBy(xform: Transform2D, localOfs: Vector2 = Vector2(0, 0)): InputEvent? {
-    TransferContext.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
-    TransferContext.callMethod(rawPtr, MethodBindings.xformedByPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as InputEvent?)
+    Internals.writeArguments(TRANSFORM2D to xform, VECTOR2 to localOfs)
+    Internals.callMethod(rawPtr, MethodBindings.xformedByPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as InputEvent?)
   }
 
   public companion object {
@@ -242,46 +241,46 @@ public open class InputEvent internal constructor() : Resource() {
 
   internal object MethodBindings {
     public val setDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "set_device", 1286410249)
+        Internals.getMethodBindPtr("InputEvent", "set_device", 1286410249)
 
     public val getDevicePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "get_device", 3905245786)
+        Internals.getMethodBindPtr("InputEvent", "get_device", 3905245786)
 
     public val isActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action", 1558498928)
+        Internals.getMethodBindPtr("InputEvent", "is_action", 1558498928)
 
     public val isActionPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_pressed", 1631499404)
+        Internals.getMethodBindPtr("InputEvent", "is_action_pressed", 1631499404)
 
     public val isActionReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_released", 1558498928)
+        Internals.getMethodBindPtr("InputEvent", "is_action_released", 1558498928)
 
     public val getActionStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "get_action_strength", 801543509)
+        Internals.getMethodBindPtr("InputEvent", "get_action_strength", 801543509)
 
     public val isCanceledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_canceled", 36873697)
+        Internals.getMethodBindPtr("InputEvent", "is_canceled", 36873697)
 
     public val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_pressed", 36873697)
+        Internals.getMethodBindPtr("InputEvent", "is_pressed", 36873697)
 
     public val isReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_released", 36873697)
+        Internals.getMethodBindPtr("InputEvent", "is_released", 36873697)
 
-    public val isEchoPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "is_echo", 36873697)
+    public val isEchoPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "is_echo", 36873697)
 
-    public val asTextPtr: VoidPtr = TypeManager.getMethodBindPtr("InputEvent", "as_text", 201670096)
+    public val asTextPtr: VoidPtr = Internals.getMethodBindPtr("InputEvent", "as_text", 201670096)
 
     public val isMatchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_match", 1754951977)
+        Internals.getMethodBindPtr("InputEvent", "is_match", 1754951977)
 
     public val isActionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "is_action_type", 36873697)
+        Internals.getMethodBindPtr("InputEvent", "is_action_type", 36873697)
 
     public val accumulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "accumulate", 1062211774)
+        Internals.getMethodBindPtr("InputEvent", "accumulate", 1062211774)
 
     public val xformedByPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEvent", "xformed_by", 1282766827)
+        Internals.getMethodBindPtr("InputEvent", "xformed_by", 1282766827)
   }
 }

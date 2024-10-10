@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -42,27 +41,27 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CSGPRIMITIVE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CSGPRIMITIVE3D_INDEX, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+    Internals.writeArguments(BOOL to flipFaces)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
   }
 
   public final fun getFlipFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPrimitive3D", "set_flip_faces", 2586408642)
+        Internals.getMethodBindPtr("CSGPrimitive3D", "set_flip_faces", 2586408642)
 
     public val getFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGPrimitive3D", "get_flip_faces", 2240911060)
+        Internals.getMethodBindPtr("CSGPrimitive3D", "get_flip_faces", 2240911060)
   }
 }

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -38,18 +37,19 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEACCELERATOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARTICLEACCELERATOR_INDEX,
+        scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setModePtr, NIL)
   }
 
   public final fun getMode(): Mode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
-    return VisualShaderNodeParticleAccelerator.Mode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModePtr, LONG)
+    return VisualShaderNodeParticleAccelerator.Mode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Mode(
@@ -88,9 +88,9 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3457585749)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3457585749)
 
     public val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2660365633)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2660365633)
   }
 }

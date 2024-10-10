@@ -11,7 +11,6 @@ import godot.core.Callable
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -137,62 +136,62 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setRootPathPtr, NIL)
   }
 
   public final fun getRootPath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootPathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setReplicationInterval(milliseconds: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to milliseconds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReplicationIntervalPtr, NIL)
+    Internals.writeArguments(DOUBLE to milliseconds)
+    Internals.callMethod(rawPtr, MethodBindings.setReplicationIntervalPtr, NIL)
   }
 
   public final fun getReplicationInterval(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReplicationIntervalPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDeltaInterval(milliseconds: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to milliseconds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeltaIntervalPtr, NIL)
+    Internals.writeArguments(DOUBLE to milliseconds)
+    Internals.callMethod(rawPtr, MethodBindings.setDeltaIntervalPtr, NIL)
   }
 
   public final fun getDeltaInterval(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDeltaIntervalPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setReplicationConfig(config: SceneReplicationConfig?): Unit {
-    TransferContext.writeArguments(OBJECT to config)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReplicationConfigPtr, NIL)
+    Internals.writeArguments(OBJECT to config)
+    Internals.callMethod(rawPtr, MethodBindings.setReplicationConfigPtr, NIL)
   }
 
   public final fun getReplicationConfig(): SceneReplicationConfig? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReplicationConfigPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SceneReplicationConfig?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReplicationConfigPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SceneReplicationConfig?)
   }
 
   public final fun setVisibilityUpdateMode(mode: VisibilityUpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityUpdateModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityUpdateModePtr, NIL)
   }
 
   public final fun getVisibilityUpdateMode(): VisibilityUpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityUpdateModePtr, LONG)
-    return MultiplayerSynchronizer.VisibilityUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityUpdateModePtr, LONG)
+    return MultiplayerSynchronizer.VisibilityUpdateMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -201,19 +200,19 @@ public open class MultiplayerSynchronizer : Node() {
    */
   @JvmOverloads
   public final fun updateVisibility(forPeer: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to forPeer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.updateVisibilityPtr, NIL)
+    Internals.writeArguments(LONG to forPeer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.updateVisibilityPtr, NIL)
   }
 
   public final fun setVisibilityPublic(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityPublicPtr, NIL)
+    Internals.writeArguments(BOOL to visible)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityPublicPtr, NIL)
   }
 
   public final fun isVisibilityPublic(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisibilityPublicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVisibilityPublicPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -221,16 +220,16 @@ public open class MultiplayerSynchronizer : Node() {
    * [filter] should take a peer ID [int] and return a [bool].
    */
   public final fun addVisibilityFilter(filter: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to filter)
-    TransferContext.callMethod(rawPtr, MethodBindings.addVisibilityFilterPtr, NIL)
+    Internals.writeArguments(CALLABLE to filter)
+    Internals.callMethod(rawPtr, MethodBindings.addVisibilityFilterPtr, NIL)
   }
 
   /**
    * Removes a peer visibility filter from this synchronizer.
    */
   public final fun removeVisibilityFilter(filter: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to filter)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeVisibilityFilterPtr, NIL)
+    Internals.writeArguments(CALLABLE to filter)
+    Internals.callMethod(rawPtr, MethodBindings.removeVisibilityFilterPtr, NIL)
   }
 
   /**
@@ -238,17 +237,17 @@ public open class MultiplayerSynchronizer : Node() {
    * will be updated instead.
    */
   public final fun setVisibilityFor(peer: Int, visible: Boolean): Unit {
-    TransferContext.writeArguments(LONG to peer.toLong(), BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityForPtr, NIL)
+    Internals.writeArguments(LONG to peer.toLong(), BOOL to visible)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityForPtr, NIL)
   }
 
   /**
    * Queries the current visibility for peer [peer].
    */
   public final fun getVisibilityFor(peer: Int): Boolean {
-    TransferContext.writeArguments(LONG to peer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityForPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to peer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityForPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class VisibilityUpdateMode(
@@ -285,54 +284,54 @@ public open class MultiplayerSynchronizer : Node() {
 
   internal object MethodBindings {
     public val setRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1348162250)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_root_path", 1348162250)
 
     public val getRootPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4075236667)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_root_path", 4075236667)
 
     public val setReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373806689)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_interval", 373806689)
 
     public val getReplicationIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1740695150)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_interval", 1740695150)
 
     public val setDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373806689)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_delta_interval", 373806689)
 
     public val getDeltaIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1740695150)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_delta_interval", 1740695150)
 
     public val setReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3889206742)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_replication_config", 3889206742)
 
     public val getReplicationConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3200254614)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_replication_config", 3200254614)
 
     public val setVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3494860300)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_update_mode", 3494860300)
 
     public val getVisibilityUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3352241418)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_update_mode", 3352241418)
 
     public val updateVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1995695955)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "update_visibility", 1995695955)
 
     public val setVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2586408642)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_public", 2586408642)
 
     public val isVisibilityPublicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36873697)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "is_visibility_public", 36873697)
 
     public val addVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1611583062)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "add_visibility_filter", 1611583062)
 
     public val removeVisibilityFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1611583062)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "remove_visibility_filter", 1611583062)
 
     public val setVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300928843)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "set_visibility_for", 300928843)
 
     public val getVisibilityForPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1116898809)
+        Internals.getMethodBindPtr("MultiplayerSynchronizer", "get_visibility_for", 1116898809)
   }
 }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,8 @@ private const val ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX: Int
 @GodotBaseType
 public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX,
+        scriptIndex)
   }
 
   public companion object

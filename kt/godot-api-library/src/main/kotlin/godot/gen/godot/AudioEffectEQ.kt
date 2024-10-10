@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -31,45 +30,45 @@ private const val ENGINE_CLASS_AUDIOEFFECTEQ_INDEX: Int = 88
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTEQ_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTEQ_INDEX, scriptIndex)
   }
 
   /**
    * Sets band's gain at the specified index, in dB.
    */
   public final fun setBandGainDb(bandIdx: Int, volumeDb: Float): Unit {
-    TransferContext.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBandGainDbPtr, NIL)
+    Internals.writeArguments(LONG to bandIdx.toLong(), DOUBLE to volumeDb.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBandGainDbPtr, NIL)
   }
 
   /**
    * Returns the band's gain at the specified index, in dB.
    */
   public final fun getBandGainDb(bandIdx: Int): Float {
-    TransferContext.writeArguments(LONG to bandIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to bandIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBandGainDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the number of bands of the equalizer.
    */
   public final fun getBandCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBandCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db", 1602489585)
+        Internals.getMethodBindPtr("AudioEffectEQ", "set_band_gain_db", 1602489585)
 
     public val getBandGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db", 2339986948)
+        Internals.getMethodBindPtr("AudioEffectEQ", "get_band_gain_db", 2339986948)
 
     public val getBandCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectEQ", "get_band_count", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectEQ", "get_band_count", 3905245786)
   }
 }

@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -271,367 +270,367 @@ public open class RDPipelineDepthStencilState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINEDEPTHSTENCILSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINEDEPTHSTENCILSTATE_INDEX, scriptIndex)
   }
 
   public final fun setEnableDepthTest(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthTestPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDepthTestPtr, NIL)
   }
 
   public final fun getEnableDepthTest(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthTestPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableDepthTestPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableDepthWrite(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthWritePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDepthWritePtr, NIL)
   }
 
   public final fun getEnableDepthWrite(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthWritePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableDepthWritePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDepthCompareOperator(pMember: RenderingDevice.CompareOperator): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthCompareOperatorPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDepthCompareOperatorPtr, NIL)
   }
 
   public final fun getDepthCompareOperator(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthCompareOperatorPtr, LONG)
-    return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthCompareOperatorPtr, LONG)
+    return RenderingDevice.CompareOperator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableDepthRange(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthRangePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDepthRangePtr, NIL)
   }
 
   public final fun getEnableDepthRange(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthRangePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableDepthRangePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDepthRangeMin(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMinPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthRangeMinPtr, NIL)
   }
 
   public final fun getDepthRangeMin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthRangeMinPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthRangeMax(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthRangeMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthRangeMaxPtr, NIL)
   }
 
   public final fun getDepthRangeMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthRangeMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthRangeMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableStencil(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableStencilPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableStencilPtr, NIL)
   }
 
   public final fun getEnableStencil(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableStencilPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableStencilPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFrontOpFail(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpFailPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpFailPtr, NIL)
   }
 
   public final fun getFrontOpFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpFailPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpFailPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpPass(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpPassPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpPassPtr, NIL)
   }
 
   public final fun getFrontOpPass(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpPassPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpPassPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpDepthFailPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpDepthFailPtr, NIL)
   }
 
   public final fun getFrontOpDepthFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpDepthFailPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpDepthFailPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpComparePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpComparePtr, NIL)
   }
 
   public final fun getFrontOpCompare(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpComparePtr, LONG)
-    return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpComparePtr, LONG)
+    return RenderingDevice.CompareOperator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpCompareMask(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpCompareMaskPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpCompareMaskPtr, NIL)
   }
 
   public final fun getFrontOpCompareMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpCompareMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpCompareMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpWriteMask(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpWriteMaskPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpWriteMaskPtr, NIL)
   }
 
   public final fun getFrontOpWriteMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpWriteMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpWriteMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontOpReference(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontOpReferencePtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontOpReferencePtr, NIL)
   }
 
   public final fun getFrontOpReference(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontOpReferencePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontOpReferencePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpFail(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpFailPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpFailPtr, NIL)
   }
 
   public final fun getBackOpFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpFailPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpFailPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpPass(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpPassPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpPassPtr, NIL)
   }
 
   public final fun getBackOpPass(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpPassPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpPassPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpDepthFail(pMember: RenderingDevice.StencilOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpDepthFailPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpDepthFailPtr, NIL)
   }
 
   public final fun getBackOpDepthFail(): RenderingDevice.StencilOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpDepthFailPtr, LONG)
-    return RenderingDevice.StencilOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpDepthFailPtr, LONG)
+    return RenderingDevice.StencilOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpCompare(pMember: RenderingDevice.CompareOperator): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpComparePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpComparePtr, NIL)
   }
 
   public final fun getBackOpCompare(): RenderingDevice.CompareOperator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpComparePtr, LONG)
-    return RenderingDevice.CompareOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpComparePtr, LONG)
+    return RenderingDevice.CompareOperator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpCompareMask(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpCompareMaskPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpCompareMaskPtr, NIL)
   }
 
   public final fun getBackOpCompareMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpCompareMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpCompareMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpWriteMask(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpWriteMaskPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpWriteMaskPtr, NIL)
   }
 
   public final fun getBackOpWriteMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpWriteMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpWriteMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBackOpReference(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackOpReferencePtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setBackOpReferencePtr, NIL)
   }
 
   public final fun getBackOpReference(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBackOpReferencePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBackOpReferencePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnableDepthTestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_test", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_test", 2586408642)
 
     public val getEnableDepthTestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_test", 36873697)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_test", 36873697)
 
     public val setEnableDepthWritePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_write", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_write", 2586408642)
 
     public val getEnableDepthWritePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_write", 36873697)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_write", 36873697)
 
     public val setDepthCompareOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_compare_operator", 2573711505)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_compare_operator", 2573711505)
 
     public val getDepthCompareOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_compare_operator", 269730778)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_compare_operator", 269730778)
 
     public val setEnableDepthRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_range", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_depth_range", 2586408642)
 
     public val getEnableDepthRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_range", 36873697)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_depth_range", 36873697)
 
     public val setDepthRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_min", 373806689)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_min", 373806689)
 
     public val getDepthRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_min", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_min", 1740695150)
 
     public val setDepthRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_max", 373806689)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_depth_range_max", 373806689)
 
     public val getDepthRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_max", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_depth_range_max", 1740695150)
 
     public val setEnableStencilPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_stencil", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_enable_stencil", 2586408642)
 
     public val getEnableStencilPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_stencil", 36873697)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_enable_stencil", 36873697)
 
     public val setFrontOpFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_fail", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_fail", 2092799566)
 
     public val getFrontOpFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_fail", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_fail", 1714732389)
 
     public val setFrontOpPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_pass", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_pass", 2092799566)
 
     public val getFrontOpPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_pass", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_pass", 1714732389)
 
     public val setFrontOpDepthFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_depth_fail", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_depth_fail", 2092799566)
 
     public val getFrontOpDepthFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_depth_fail", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_depth_fail", 1714732389)
 
     public val setFrontOpComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare", 2573711505)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare", 2573711505)
 
     public val getFrontOpComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare", 269730778)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare", 269730778)
 
     public val setFrontOpCompareMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare_mask", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_compare_mask", 1286410249)
 
     public val getFrontOpCompareMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare_mask", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_compare_mask", 3905245786)
 
     public val setFrontOpWriteMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_write_mask", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_write_mask", 1286410249)
 
     public val getFrontOpWriteMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_write_mask", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_write_mask", 3905245786)
 
     public val setFrontOpReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_reference", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_front_op_reference", 1286410249)
 
     public val getFrontOpReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_reference", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_front_op_reference", 3905245786)
 
     public val setBackOpFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_fail", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_fail", 2092799566)
 
     public val getBackOpFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_fail", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_fail", 1714732389)
 
     public val setBackOpPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_pass", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_pass", 2092799566)
 
     public val getBackOpPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_pass", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_pass", 1714732389)
 
     public val setBackOpDepthFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_depth_fail", 2092799566)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_depth_fail", 2092799566)
 
     public val getBackOpDepthFailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_depth_fail", 1714732389)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_depth_fail", 1714732389)
 
     public val setBackOpComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare", 2573711505)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare", 2573711505)
 
     public val getBackOpComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare", 269730778)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare", 269730778)
 
     public val setBackOpCompareMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare_mask", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_compare_mask", 1286410249)
 
     public val getBackOpCompareMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare_mask", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_compare_mask", 3905245786)
 
     public val setBackOpWriteMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_write_mask", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_write_mask", 1286410249)
 
     public val getBackOpWriteMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_write_mask", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_write_mask", 3905245786)
 
     public val setBackOpReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_reference", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "set_back_op_reference", 1286410249)
 
     public val getBackOpReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_reference", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineDepthStencilState", "get_back_op_reference", 3905245786)
   }
 }

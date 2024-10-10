@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -87,95 +86,95 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYEREQUIRECT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRCOMPOSITIONLAYEREQUIRECT_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCentralHorizontalAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
   }
 
   public final fun getCentralHorizontalAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCentralHorizontalAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUpperVerticalAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setUpperVerticalAnglePtr, NIL)
   }
 
   public final fun getUpperVerticalAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpperVerticalAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLowerVerticalAngle(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLowerVerticalAnglePtr, NIL)
   }
 
   public final fun getLowerVerticalAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLowerVerticalAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFallbackSegments(segments: Long): Unit {
-    TransferContext.writeArguments(LONG to segments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
+    Internals.writeArguments(LONG to segments)
+    Internals.callMethod(rawPtr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
 
   public final fun getFallbackSegments(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFallbackSegmentsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_radius", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_radius", 1740695150)
 
     public val setCentralHorizontalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_central_horizontal_angle", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_central_horizontal_angle", 373806689)
 
     public val getCentralHorizontalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_central_horizontal_angle", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_central_horizontal_angle", 1740695150)
 
     public val setUpperVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_upper_vertical_angle", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_upper_vertical_angle", 373806689)
 
     public val getUpperVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_upper_vertical_angle", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_upper_vertical_angle", 1740695150)
 
     public val setLowerVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_lower_vertical_angle", 373806689)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_lower_vertical_angle", 373806689)
 
     public val getLowerVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_lower_vertical_angle", 1740695150)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_lower_vertical_angle", 1740695150)
 
     public val setFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_fallback_segments", 1286410249)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_fallback_segments", 1286410249)
 
     public val getFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_fallback_segments", 3905245786)
+        Internals.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_fallback_segments", 3905245786)
   }
 }

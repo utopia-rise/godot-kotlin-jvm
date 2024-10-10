@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -30,7 +29,7 @@ private const val ENGINE_CLASS_WEAKREF_INDEX: Int = 734
 @GodotBaseType
 public open class WeakRef : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WEAKREF_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WEAKREF_INDEX, scriptIndex)
   }
 
   /**
@@ -38,14 +37,14 @@ public open class WeakRef : RefCounted() {
    * exists.
    */
   public final fun getRef(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRefPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRefPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val getRefPtr: VoidPtr = TypeManager.getMethodBindPtr("WeakRef", "get_ref", 1214101251)
+    public val getRefPtr: VoidPtr = Internals.getMethodBindPtr("WeakRef", "get_ref", 1214101251)
   }
 }

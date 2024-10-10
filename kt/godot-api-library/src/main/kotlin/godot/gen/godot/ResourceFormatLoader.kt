@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -38,7 +39,7 @@ private const val ENGINE_CLASS_RESOURCEFORMATLOADER_INDEX: Int = 494
 @GodotBaseType
 public open class ResourceFormatLoader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RESOURCEFORMATLOADER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RESOURCEFORMATLOADER_INDEX, scriptIndex)
   }
 
   /**

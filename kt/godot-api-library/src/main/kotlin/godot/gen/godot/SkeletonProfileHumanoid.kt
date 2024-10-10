@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -78,7 +79,7 @@ private const val ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX: Int = 534
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX, scriptIndex)
   }
 
   public companion object

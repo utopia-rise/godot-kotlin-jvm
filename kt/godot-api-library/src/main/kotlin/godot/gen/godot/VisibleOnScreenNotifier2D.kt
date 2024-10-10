@@ -11,11 +11,10 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -59,7 +58,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX, scriptIndex)
   }
 
   /**
@@ -87,14 +86,14 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
 
   public final fun setRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
   }
 
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -104,21 +103,21 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * instantiated, before the draw pass.
    */
   public final fun isOnScreen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect", 2046264180)
+        Internals.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect", 2046264180)
 
     public val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1639390495)
+        Internals.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1639390495)
 
     public val isOnScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36873697)
+        Internals.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36873697)
   }
 }

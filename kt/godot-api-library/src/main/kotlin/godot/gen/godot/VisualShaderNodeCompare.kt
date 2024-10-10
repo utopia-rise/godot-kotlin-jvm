@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -60,40 +59,40 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX, scriptIndex)
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setComparisonTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setComparisonTypePtr, NIL)
   }
 
   public final fun getComparisonType(): ComparisonType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getComparisonTypePtr, LONG)
-    return VisualShaderNodeCompare.ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getComparisonTypePtr, LONG)
+    return VisualShaderNodeCompare.ComparisonType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+    Internals.writeArguments(LONG to func.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeCompare.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeCompare.Function.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCondition(condition: Condition): Unit {
-    TransferContext.writeArguments(LONG to condition.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
+    Internals.writeArguments(LONG to condition.id)
+    Internals.callMethod(rawPtr, MethodBindings.setConditionPtr, NIL)
   }
 
   public final fun getCondition(): Condition {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConditionPtr, LONG)
-    return VisualShaderNodeCompare.Condition.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConditionPtr, LONG)
+    return VisualShaderNodeCompare.Condition.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ComparisonType(
@@ -225,21 +224,21 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type", 516558320)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type", 516558320)
 
     public val getComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type", 3495315961)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type", 3495315961)
 
     public val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function", 2370951349)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "set_function", 2370951349)
 
     public val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function", 4089164265)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "get_function", 4089164265)
 
     public val setConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition", 918742392)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "set_condition", 918742392)
 
     public val getConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition", 3281078941)
+        Internals.getMethodBindPtr("VisualShaderNodeCompare", "get_condition", 3281078941)
   }
 }

@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -39,7 +38,7 @@ private const val ENGINE_CLASS_VISUALSHADERNODECUSTOM_INDEX: Int = 646
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODECUSTOM_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODECUSTOM_INDEX, scriptIndex)
   }
 
   /**
@@ -263,15 +262,15 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * function to define the specific behavior in the [_getCode] or [_getGlobalCode].
    */
   public final fun getOptionIndex(option: Int): Int {
-    TransferContext.writeArguments(LONG to option.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOptionIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to option.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOptionIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getOptionIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCustom", "get_option_index", 923996154)
+        Internals.getMethodBindPtr("VisualShaderNodeCustom", "get_option_index", 923996154)
   }
 }

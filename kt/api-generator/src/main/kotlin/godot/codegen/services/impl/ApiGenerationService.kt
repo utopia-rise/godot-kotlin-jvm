@@ -52,8 +52,8 @@ import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
+import godot.tools.common.constants.INTERNALS
 import godot.tools.common.constants.KT_OBJECT
-import godot.tools.common.constants.TRANSFER_CONTEXT
 import godot.tools.common.constants.TYPE_MANAGER
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
@@ -727,7 +727,7 @@ class ApiGenerationService(
         .builder("${method.name}Ptr", VOID_PTR)
         .initializer(
             "%T.getMethodBindPtr(%S,·%S,·%L)",
-            ClassName("godot.core", "TypeManager"),
+            INTERNALS,
             enrichedClass.internal.name,
             method.internal.name,
             method.internal.hash
@@ -798,7 +798,8 @@ class ApiGenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "getSingleton(%M)",
+                    "%T.getSingleton(this, %M)",
+                    INTERNALS,
                     MemberName(godotPackage, classIndexName),
                 )
                 .build()
@@ -813,7 +814,8 @@ class ApiGenerationService(
                 .addParameter("scriptIndex", Int::class)
                 .returns(Unit::class)
                 .addStatement(
-                    "callConstructor(%M, scriptIndex)",
+                    "%T.callConstructor(this, %M, scriptIndex)",
+                    INTERNALS,
                     MemberName(godotPackage, classIndexName),
                 )
                 .build()
@@ -909,14 +911,14 @@ class ApiGenerationService(
         if (callable.isVararg) {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString·*__var_args.map·{·%T·to·it·}.toTypedArray())",
-                TRANSFER_CONTEXT,
+                INTERNALS,
                 *ktVariantClassNames,
                 VARIANT_CASTER_ANY
             )
         } else {
             addStatement(
                 "%T.writeArguments($callArgumentsAsString)",
-                TRANSFER_CONTEXT,
+                INTERNALS,
                 *ktVariantClassNames
             )
         }
@@ -931,7 +933,7 @@ class ApiGenerationService(
 
         addStatement(
             "%T.callMethod($rawPtr, %T.%M, %T)",
-            TRANSFER_CONTEXT,
+            INTERNALS,
             clazz.getTypeClassName().className.nestedClass(methodBindingsInnerClassName),
             MemberName("godot", callable.voidPtrVariableName),
             returnTypeVariantTypeClass
@@ -943,7 +945,7 @@ class ApiGenerationService(
             if (callable.isEnum()) {
                 addStatement(
                     "return·${methodReturnType.className.simpleNames.joinToString(".")}.from(%T.readReturnValue(%T)·as·%T)",
-                    TRANSFER_CONTEXT,
+                    INTERNALS,
                     VARIANT_PARSER_LONG,
                     LONG
                 )
@@ -955,14 +957,14 @@ class ApiGenerationService(
                         "${methodReturnType.className.packageName}.${simpleNames.subList(0, simpleNames.size - 1).joinToString(".")}",
                         "${callable.getTypeClassName().className.simpleName}Value"
                     ),
-                    TRANSFER_CONTEXT,
+                    INTERNALS,
                     VARIANT_PARSER_LONG,
                     LONG
                 )
             } else {
                 addStatement(
                     "return·(%T.readReturnValue(%T)·as·%T)${callable.getFromBufferCastingMethod()}",
-                    TRANSFER_CONTEXT,
+                    INTERNALS,
                     returnTypeVariantTypeClass,
                     methodReturnType.typeName
                 )

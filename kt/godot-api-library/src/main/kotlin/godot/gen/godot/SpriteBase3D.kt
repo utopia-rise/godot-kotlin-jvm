@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -22,7 +21,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -285,7 +284,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SPRITEBASE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SPRITEBASE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -345,91 +344,91 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
 
   public final fun setCentered(centered: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to centered)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
+    Internals.writeArguments(BOOL to centered)
+    Internals.callMethod(rawPtr, MethodBindings.setCenteredPtr, NIL)
   }
 
   public final fun isCentered(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCenteredPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFlipH(flipH: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipH)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
+    Internals.writeArguments(BOOL to flipH)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipHPtr, NIL)
   }
 
   public final fun isFlippedH(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedHPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlipV(flipV: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipV)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
+    Internals.writeArguments(BOOL to flipV)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipVPtr, NIL)
   }
 
   public final fun isFlippedV(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlippedVPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModulate(modulate: Color): Unit {
-    TransferContext.writeArguments(COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    Internals.writeArguments(COLOR to modulate)
+    Internals.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
   }
 
   public final fun getRenderPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPixelSize(pixelSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to pixelSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
   }
 
   public final fun getPixelSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAxis(axis: Vector3.Axis): Unit {
-    TransferContext.writeArguments(LONG to axis.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+    Internals.writeArguments(LONG to axis.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
   }
 
   public final fun getAxis(): Vector3.Axis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
-    return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
+    return Vector3.Axis.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -437,103 +436,103 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * flags.
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+    Internals.writeArguments(LONG to flag.id, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
   }
 
   /**
    * Returns the value of the specified flag.
    */
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to flag.id)
+    Internals.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
   }
 
   public final fun getAlphaCutMode(): AlphaCutMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
-    return SpriteBase3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
+    return SpriteBase3D.AlphaCutMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
   public final fun getAlphaScissorThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
   public final fun getAlphaHashScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
-    TransferContext.writeArguments(LONG to alphaAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+    Internals.writeArguments(LONG to alphaAa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
   public final fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edge.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+    Internals.writeArguments(DOUBLE to edge.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
   }
 
   public final fun getBillboardMode(): BaseMaterial3D.BillboardMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): BaseMaterial3D.TextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the rectangle representing this sprite.
    */
   public final fun getItemRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getItemRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -541,9 +540,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * as its [axis] and [pixelSize]).
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class DrawFlags(
@@ -631,105 +630,105 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_centered", 2586408642)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_centered", 2586408642)
 
     public val isCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_centered", 36873697)
+        Internals.getMethodBindPtr("SpriteBase3D", "is_centered", 36873697)
 
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_offset", 743155724)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_offset", 743155724)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_offset", 3341600327)
 
     public val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_h", 2586408642)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_flip_h", 2586408642)
 
     public val isFlippedHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_h", 36873697)
+        Internals.getMethodBindPtr("SpriteBase3D", "is_flipped_h", 36873697)
 
     public val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_flip_v", 2586408642)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_flip_v", 2586408642)
 
     public val isFlippedVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "is_flipped_v", 36873697)
+        Internals.getMethodBindPtr("SpriteBase3D", "is_flipped_v", 36873697)
 
     public val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_modulate", 2920490490)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_modulate", 2920490490)
 
     public val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_modulate", 3444240500)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_modulate", 3444240500)
 
     public val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_render_priority", 1286410249)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_render_priority", 1286410249)
 
     public val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_render_priority", 3905245786)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_render_priority", 3905245786)
 
     public val setPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_pixel_size", 373806689)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_pixel_size", 373806689)
 
     public val getPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_pixel_size", 1740695150)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_pixel_size", 1740695150)
 
     public val setAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_axis", 1144690656)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_axis", 1144690656)
 
     public val getAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_axis", 3050976882)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_axis", 3050976882)
 
     public val setDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_draw_flag", 1135633219)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_draw_flag", 1135633219)
 
     public val getDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_draw_flag", 1733036628)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_draw_flag", 1733036628)
 
     public val setAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode", 227561226)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_cut_mode", 227561226)
 
     public val getAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode", 336003791)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_cut_mode", 336003791)
 
     public val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold", 373806689)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_scissor_threshold", 373806689)
 
     public val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold", 1740695150)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_scissor_threshold", 1740695150)
 
     public val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale", 373806689)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_hash_scale", 373806689)
 
     public val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale", 1740695150)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_hash_scale", 1740695150)
 
     public val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing", 3212649852)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing", 3212649852)
 
     public val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing", 2889939400)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing", 2889939400)
 
     public val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge", 373806689)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_alpha_antialiasing_edge", 373806689)
 
     public val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge", 1740695150)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_alpha_antialiasing_edge", 1740695150)
 
     public val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_billboard_mode", 4202036497)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_billboard_mode", 4202036497)
 
     public val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_billboard_mode", 1283840139)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_billboard_mode", 1283840139)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "set_texture_filter", 22904437)
+        Internals.getMethodBindPtr("SpriteBase3D", "set_texture_filter", 22904437)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_texture_filter", 3289213076)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_texture_filter", 3289213076)
 
     public val getItemRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "get_item_rect", 1639390495)
+        Internals.getMethodBindPtr("SpriteBase3D", "get_item_rect", 1639390495)
 
     public val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh", 3476533166)
+        Internals.getMethodBindPtr("SpriteBase3D", "generate_triangle_mesh", 3476533166)
   }
 }

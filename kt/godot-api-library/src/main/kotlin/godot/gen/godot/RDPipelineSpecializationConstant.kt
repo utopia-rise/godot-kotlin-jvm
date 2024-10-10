@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -56,44 +55,45 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINESPECIALIZATIONCONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINESPECIALIZATIONCONSTANT_INDEX,
+        scriptIndex)
   }
 
   public final fun setValue(`value`: Any?): Unit {
-    TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+    Internals.writeArguments(ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
   }
 
   public final fun getValue(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public final fun setConstantId(constantId: Long): Unit {
-    TransferContext.writeArguments(LONG to constantId)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
+    Internals.writeArguments(LONG to constantId)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantIdPtr, NIL)
   }
 
   public final fun getConstantId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_value", 1114965689)
+        Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "set_value", 1114965689)
 
     public val getValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_value", 1214101251)
+        Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "get_value", 1214101251)
 
     public val setConstantIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "set_constant_id", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "set_constant_id", 1286410249)
 
     public val getConstantIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineSpecializationConstant", "get_constant_id", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineSpecializationConstant", "get_constant_id", 3905245786)
   }
 }

@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -120,129 +119,129 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTCOMPRESSOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTCOMPRESSOR_INDEX, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setThresholdPtr, NIL)
   }
 
   public final fun getThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRatioPtr, NIL)
   }
 
   public final fun getRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGain(gain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+    Internals.writeArguments(DOUBLE to gain.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAttackUs(attackUs: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to attackUs.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttackUsPtr, NIL)
+    Internals.writeArguments(DOUBLE to attackUs.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAttackUsPtr, NIL)
   }
 
   public final fun getAttackUs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttackUsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAttackUsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setReleaseMs(releaseMs: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to releaseMs.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setReleaseMsPtr, NIL)
+    Internals.writeArguments(DOUBLE to releaseMs.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setReleaseMsPtr, NIL)
   }
 
   public final fun getReleaseMs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReleaseMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReleaseMsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMix(mix: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mix.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMixPtr, NIL)
+    Internals.writeArguments(DOUBLE to mix.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMixPtr, NIL)
   }
 
   public final fun getMix(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMixPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSidechain(sidechain: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to sidechain)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSidechainPtr, NIL)
+    Internals.writeArguments(STRING_NAME to sidechain)
+    Internals.callMethod(rawPtr, MethodBindings.setSidechainPtr, NIL)
   }
 
   public final fun getSidechain(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSidechainPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSidechainPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_threshold", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_threshold", 373806689)
 
     public val getThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_threshold", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_threshold", 1740695150)
 
     public val setRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_ratio", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_ratio", 373806689)
 
     public val getRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_ratio", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_ratio", 1740695150)
 
     public val setGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_gain", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_gain", 373806689)
 
     public val getGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_gain", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_gain", 1740695150)
 
     public val setAttackUsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_attack_us", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_attack_us", 373806689)
 
     public val getAttackUsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_attack_us", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_attack_us", 1740695150)
 
     public val setReleaseMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_release_ms", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_release_ms", 373806689)
 
     public val getReleaseMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_release_ms", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_release_ms", 1740695150)
 
     public val setMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_mix", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_mix", 373806689)
 
     public val getMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_mix", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_mix", 1740695150)
 
     public val setSidechainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "set_sidechain", 3304788590)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "set_sidechain", 3304788590)
 
     public val getSidechainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCompressor", "get_sidechain", 2002593661)
+        Internals.getMethodBindPtr("AudioEffectCompressor", "get_sidechain", 2002593661)
   }
 }

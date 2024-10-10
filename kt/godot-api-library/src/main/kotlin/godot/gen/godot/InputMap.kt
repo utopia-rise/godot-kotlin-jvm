@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -16,7 +15,7 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -37,7 +36,7 @@ private const val ENGINE_CLASS_INPUTMAP_INDEX: Int = 19
 @GodotBaseType
 public object InputMap : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_INPUTMAP_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_INPUTMAP_INDEX)
   }
 
   /**
@@ -45,9 +44,9 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun hasAction(action: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.hasActionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -55,9 +54,9 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun getActions(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -67,8 +66,8 @@ public object InputMap : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun addAction(action: StringName, deadzone: Float = 0.5f): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
   }
 
   /**
@@ -76,8 +75,8 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun eraseAction(action: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseActionPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.eraseActionPtr, NIL)
   }
 
   /**
@@ -85,8 +84,8 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionSetDeadzone(action: StringName, deadzone: Float): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.actionSetDeadzonePtr, NIL)
+    Internals.writeArguments(STRING_NAME to action, DOUBLE to deadzone.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.actionSetDeadzonePtr, NIL)
   }
 
   /**
@@ -94,9 +93,9 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionGetDeadzone(action: StringName): Float {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.actionGetDeadzonePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -104,8 +103,8 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionAddEvent(action: StringName, event: InputEvent?): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionAddEventPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action, OBJECT to event)
+    Internals.callMethod(rawPtr, MethodBindings.actionAddEventPtr, NIL)
   }
 
   /**
@@ -113,9 +112,9 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionHasEvent(action: StringName, event: InputEvent?): Boolean {
-    TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to action, OBJECT to event)
+    Internals.callMethod(rawPtr, MethodBindings.actionHasEventPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -123,8 +122,8 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionEraseEvent(action: StringName, event: InputEvent?): Unit {
-    TransferContext.writeArguments(STRING_NAME to action, OBJECT to event)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action, OBJECT to event)
+    Internals.callMethod(rawPtr, MethodBindings.actionEraseEventPtr, NIL)
   }
 
   /**
@@ -132,8 +131,8 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionEraseEvents(action: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionEraseEventsPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.actionEraseEventsPtr, NIL)
   }
 
   /**
@@ -144,9 +143,9 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun actionGetEvents(action: StringName): VariantArray<InputEvent> {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.actionGetEventsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<InputEvent>)
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.actionGetEventsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<InputEvent>)
   }
 
   /**
@@ -163,9 +162,9 @@ public object InputMap : Object() {
     action: StringName,
     exactMatch: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
-    TransferContext.callMethod(rawPtr, MethodBindings.eventIsActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to event, STRING_NAME to action, BOOL to exactMatch)
+    Internals.callMethod(rawPtr, MethodBindings.eventIsActionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -173,48 +172,48 @@ public object InputMap : Object() {
    */
   @JvmStatic
   public final fun loadFromProjectSettings(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromProjectSettingsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.loadFromProjectSettingsPtr, NIL)
   }
 
   internal object MethodBindings {
     public val hasActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "has_action", 2619796661)
+        Internals.getMethodBindPtr("InputMap", "has_action", 2619796661)
 
     public val getActionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "get_actions", 2915620761)
+        Internals.getMethodBindPtr("InputMap", "get_actions", 2915620761)
 
     public val addActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "add_action", 4100757082)
+        Internals.getMethodBindPtr("InputMap", "add_action", 4100757082)
 
     public val eraseActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "erase_action", 3304788590)
+        Internals.getMethodBindPtr("InputMap", "erase_action", 3304788590)
 
     public val actionSetDeadzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_set_deadzone", 4135858297)
+        Internals.getMethodBindPtr("InputMap", "action_set_deadzone", 4135858297)
 
     public val actionGetDeadzonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_get_deadzone", 1391627649)
+        Internals.getMethodBindPtr("InputMap", "action_get_deadzone", 1391627649)
 
     public val actionAddEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_add_event", 518302593)
+        Internals.getMethodBindPtr("InputMap", "action_add_event", 518302593)
 
     public val actionHasEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_has_event", 1185871985)
+        Internals.getMethodBindPtr("InputMap", "action_has_event", 1185871985)
 
     public val actionEraseEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_erase_event", 518302593)
+        Internals.getMethodBindPtr("InputMap", "action_erase_event", 518302593)
 
     public val actionEraseEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_erase_events", 3304788590)
+        Internals.getMethodBindPtr("InputMap", "action_erase_events", 3304788590)
 
     public val actionGetEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "action_get_events", 689397652)
+        Internals.getMethodBindPtr("InputMap", "action_get_events", 689397652)
 
     public val eventIsActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "event_is_action", 3193353650)
+        Internals.getMethodBindPtr("InputMap", "event_is_action", 3193353650)
 
     public val loadFromProjectSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputMap", "load_from_project_settings", 3218959716)
+        Internals.getMethodBindPtr("InputMap", "load_from_project_settings", 3218959716)
   }
 }

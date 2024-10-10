@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -121,129 +120,129 @@ public open class CylinderMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CYLINDERMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CYLINDERMESH_INDEX, scriptIndex)
   }
 
   public final fun setTopRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTopRadiusPtr, NIL)
   }
 
   public final fun getTopRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTopRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBottomRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBottomRadiusPtr, NIL)
   }
 
   public final fun getBottomRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBottomRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+    Internals.writeArguments(LONG to segments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
   public final fun getRadialSegments(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
-    TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+    Internals.writeArguments(LONG to rings.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
   public final fun getRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCapTop(capTop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capTop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
+    Internals.writeArguments(BOOL to capTop)
+    Internals.callMethod(rawPtr, MethodBindings.setCapTopPtr, NIL)
   }
 
   public final fun isCapTop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCapTopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCapBottom(capBottom: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to capBottom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
+    Internals.writeArguments(BOOL to capBottom)
+    Internals.callMethod(rawPtr, MethodBindings.setCapBottomPtr, NIL)
   }
 
   public final fun isCapBottom(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCapBottomPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTopRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_top_radius", 373806689)
+        Internals.getMethodBindPtr("CylinderMesh", "set_top_radius", 373806689)
 
     public val getTopRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_top_radius", 1740695150)
+        Internals.getMethodBindPtr("CylinderMesh", "get_top_radius", 1740695150)
 
     public val setBottomRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_bottom_radius", 373806689)
+        Internals.getMethodBindPtr("CylinderMesh", "set_bottom_radius", 373806689)
 
     public val getBottomRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_bottom_radius", 1740695150)
+        Internals.getMethodBindPtr("CylinderMesh", "get_bottom_radius", 1740695150)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_height", 373806689)
+        Internals.getMethodBindPtr("CylinderMesh", "set_height", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_height", 1740695150)
+        Internals.getMethodBindPtr("CylinderMesh", "get_height", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_radial_segments", 1286410249)
+        Internals.getMethodBindPtr("CylinderMesh", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_radial_segments", 3905245786)
+        Internals.getMethodBindPtr("CylinderMesh", "get_radial_segments", 3905245786)
 
     public val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_rings", 1286410249)
+        Internals.getMethodBindPtr("CylinderMesh", "set_rings", 1286410249)
 
     public val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "get_rings", 3905245786)
+        Internals.getMethodBindPtr("CylinderMesh", "get_rings", 3905245786)
 
     public val setCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_top", 2586408642)
+        Internals.getMethodBindPtr("CylinderMesh", "set_cap_top", 2586408642)
 
     public val isCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_top", 36873697)
+        Internals.getMethodBindPtr("CylinderMesh", "is_cap_top", 36873697)
 
     public val setCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "set_cap_bottom", 2586408642)
+        Internals.getMethodBindPtr("CylinderMesh", "set_cap_bottom", 2586408642)
 
     public val isCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CylinderMesh", "is_cap_bottom", 36873697)
+        Internals.getMethodBindPtr("CylinderMesh", "is_cap_bottom", 36873697)
   }
 }

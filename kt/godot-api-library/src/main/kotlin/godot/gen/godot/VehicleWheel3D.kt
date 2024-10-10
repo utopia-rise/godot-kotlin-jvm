@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -218,126 +217,126 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VEHICLEWHEEL3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VEHICLEWHEEL3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionRestLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionRestLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSuspensionRestLengthPtr, NIL)
   }
 
   public final fun getSuspensionRestLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSuspensionRestLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionTravel(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionTravelPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSuspensionTravelPtr, NIL)
   }
 
   public final fun getSuspensionTravel(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSuspensionTravelPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionStiffness(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionStiffnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSuspensionStiffnessPtr, NIL)
   }
 
   public final fun getSuspensionStiffness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSuspensionStiffnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSuspensionMaxForce(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuspensionMaxForcePtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSuspensionMaxForcePtr, NIL)
   }
 
   public final fun getSuspensionMaxForce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSuspensionMaxForcePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingCompression(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingCompressionPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDampingCompressionPtr, NIL)
   }
 
   public final fun getDampingCompression(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingCompressionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDampingCompressionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDampingRelaxation(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingRelaxationPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDampingRelaxationPtr, NIL)
   }
 
   public final fun getDampingRelaxation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDampingRelaxationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseAsTraction(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAsTractionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseAsTractionPtr, NIL)
   }
 
   public final fun isUsedAsTraction(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsTractionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsedAsTractionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseAsSteering(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAsSteeringPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseAsSteeringPtr, NIL)
   }
 
   public final fun isUsedAsSteering(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsedAsSteeringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsedAsSteeringPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFrictionSlip(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionSlipPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrictionSlipPtr, NIL)
   }
 
   public final fun getFrictionSlip(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionSlipPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrictionSlipPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns `true` if this wheel is in contact with a surface.
    */
   public final fun isInContact(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInContactPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInContactPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -347,20 +346,20 @@ public open class VehicleWheel3D : Node3D() {
    * [PhysicsBody3D].
    */
   public final fun getContactBody(): Node3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContactBodyPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getContactBodyPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node3D?)
   }
 
   public final fun setRollInfluence(rollInfluence: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rollInfluence.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRollInfluencePtr, NIL)
+    Internals.writeArguments(DOUBLE to rollInfluence.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRollInfluencePtr, NIL)
   }
 
   public final fun getRollInfluence(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRollInfluencePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRollInfluencePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -369,150 +368,150 @@ public open class VehicleWheel3D : Node3D() {
    * grip, e.g. dry asphalt road).
    */
   public final fun getSkidinfo(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkidinfoPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkidinfoPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the rotational speed of the wheel in revolutions per minute.
    */
   public final fun getRpm(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRpmPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRpmPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to engineForce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
+    Internals.writeArguments(DOUBLE to engineForce.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEngineForcePtr, NIL)
   }
 
   public final fun getEngineForce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEngineForcePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBrake(brake: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to brake.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
+    Internals.writeArguments(DOUBLE to brake.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBrakePtr, NIL)
   }
 
   public final fun getBrake(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBrakePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSteering(steering: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to steering.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
+    Internals.writeArguments(DOUBLE to steering.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSteeringPtr, NIL)
   }
 
   public final fun getSteering(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSteeringPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_radius", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_radius", 1740695150)
 
     public val setSuspensionRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_rest_length", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_suspension_rest_length", 373806689)
 
     public val getSuspensionRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_rest_length", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_suspension_rest_length", 1740695150)
 
     public val setSuspensionTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_travel", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_suspension_travel", 373806689)
 
     public val getSuspensionTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_travel", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_suspension_travel", 1740695150)
 
     public val setSuspensionStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_stiffness", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_suspension_stiffness", 373806689)
 
     public val getSuspensionStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_stiffness", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_suspension_stiffness", 1740695150)
 
     public val setSuspensionMaxForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_suspension_max_force", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_suspension_max_force", 373806689)
 
     public val getSuspensionMaxForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_suspension_max_force", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_suspension_max_force", 1740695150)
 
     public val setDampingCompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_compression", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_damping_compression", 373806689)
 
     public val getDampingCompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_compression", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_damping_compression", 1740695150)
 
     public val setDampingRelaxationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_damping_relaxation", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_damping_relaxation", 373806689)
 
     public val getDampingRelaxationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_damping_relaxation", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_damping_relaxation", 1740695150)
 
     public val setUseAsTractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_traction", 2586408642)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_use_as_traction", 2586408642)
 
     public val isUsedAsTractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_traction", 36873697)
+        Internals.getMethodBindPtr("VehicleWheel3D", "is_used_as_traction", 36873697)
 
     public val setUseAsSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_use_as_steering", 2586408642)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_use_as_steering", 2586408642)
 
     public val isUsedAsSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_used_as_steering", 36873697)
+        Internals.getMethodBindPtr("VehicleWheel3D", "is_used_as_steering", 36873697)
 
     public val setFrictionSlipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_friction_slip", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_friction_slip", 373806689)
 
     public val getFrictionSlipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_friction_slip", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_friction_slip", 1740695150)
 
     public val isInContactPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "is_in_contact", 36873697)
+        Internals.getMethodBindPtr("VehicleWheel3D", "is_in_contact", 36873697)
 
     public val getContactBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_contact_body", 151077316)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_contact_body", 151077316)
 
     public val setRollInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_roll_influence", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_roll_influence", 373806689)
 
     public val getRollInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_roll_influence", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_roll_influence", 1740695150)
 
     public val getSkidinfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_skidinfo", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_skidinfo", 1740695150)
 
     public val getRpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_rpm", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_rpm", 1740695150)
 
     public val setEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_engine_force", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_engine_force", 373806689)
 
     public val getEngineForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_engine_force", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_engine_force", 1740695150)
 
     public val setBrakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_brake", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_brake", 373806689)
 
     public val getBrakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_brake", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_brake", 1740695150)
 
     public val setSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "set_steering", 373806689)
+        Internals.getMethodBindPtr("VehicleWheel3D", "set_steering", 373806689)
 
     public val getSteeringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VehicleWheel3D", "get_steering", 1740695150)
+        Internals.getMethodBindPtr("VehicleWheel3D", "get_steering", 1740695150)
   }
 }

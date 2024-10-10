@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -42,27 +41,27 @@ public open class EncodedObjectAsID : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ENCODEDOBJECTASID_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ENCODEDOBJECTASID_INDEX, scriptIndex)
   }
 
   public final fun setObjectId(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.setObjectIdPtr, NIL)
   }
 
   public final fun getObjectId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getObjectIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setObjectIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EncodedObjectAsID", "set_object_id", 1286410249)
+        Internals.getMethodBindPtr("EncodedObjectAsID", "set_object_id", 1286410249)
 
     public val getObjectIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EncodedObjectAsID", "get_object_id", 3905245786)
+        Internals.getMethodBindPtr("EncodedObjectAsID", "get_object_id", 3905245786)
   }
 }

@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -27,7 +26,8 @@ private const val ENGINE_CLASS_SKELETONMODIFICATION2DSTACKHOLDER_INDEX: Int = 52
 @GodotBaseType
 public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DSTACKHOLDER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATION2DSTACKHOLDER_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -36,26 +36,26 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
    */
   public final fun setHeldModificationStack(heldModificationStack: SkeletonModificationStack2D?):
       Unit {
-    TransferContext.writeArguments(OBJECT to heldModificationStack)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeldModificationStackPtr, NIL)
+    Internals.writeArguments(OBJECT to heldModificationStack)
+    Internals.callMethod(rawPtr, MethodBindings.setHeldModificationStackPtr, NIL)
   }
 
   /**
    * Returns the [SkeletonModificationStack2D] that this modification is holding.
    */
   public final fun getHeldModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeldModificationStackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeldModificationStackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setHeldModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack", 3907307132)
+        Internals.getMethodBindPtr("SkeletonModification2DStackHolder", "set_held_modification_stack", 3907307132)
 
     public val getHeldModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack", 2107508396)
+        Internals.getMethodBindPtr("SkeletonModification2DStackHolder", "get_held_modification_stack", 2107508396)
   }
 }

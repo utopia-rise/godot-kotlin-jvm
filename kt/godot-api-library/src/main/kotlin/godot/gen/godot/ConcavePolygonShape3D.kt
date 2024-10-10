@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector3Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -65,7 +64,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONCAVEPOLYGONSHAPE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONCAVEPOLYGONSHAPE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -73,8 +72,8 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * composed of triples such that each triple of vertices defines a triangle.
    */
   public final fun setFaces(faces: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to faces)
+    Internals.callMethod(rawPtr, MethodBindings.setFacesPtr, NIL)
   }
 
   /**
@@ -82,35 +81,35 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * by three) is naturally divided into triples; each triple of vertices defines a triangle.
    */
   public final fun getFaces(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
   }
 
   public final fun isBackfaceCollisionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBackfaceCollisionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_faces", 334873810)
+        Internals.getMethodBindPtr("ConcavePolygonShape3D", "set_faces", 334873810)
 
     public val getFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "get_faces", 497664490)
+        Internals.getMethodBindPtr("ConcavePolygonShape3D", "get_faces", 497664490)
 
     public val setBackfaceCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled", 2586408642)
+        Internals.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled", 2586408642)
 
     public val isBackfaceCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled", 36873697)
+        Internals.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled", 36873697)
   }
 }

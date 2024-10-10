@@ -12,7 +12,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,7 +22,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -195,7 +194,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONIK3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONIK3D_INDEX, scriptIndex)
   }
 
   /**
@@ -252,80 +251,80 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
 
 
   public final fun setRootBone(rootBone: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to rootBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
+    Internals.writeArguments(STRING_NAME to rootBone)
+    Internals.callMethod(rawPtr, MethodBindings.setRootBonePtr, NIL)
   }
 
   public final fun getRootBone(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootBonePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTipBone(tipBone: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to tipBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
+    Internals.writeArguments(STRING_NAME to tipBone)
+    Internals.callMethod(rawPtr, MethodBindings.setTipBonePtr, NIL)
   }
 
   public final fun getTipBone(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTipBonePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTipBonePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTargetTransform(target: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to target)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to target)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetTransformPtr, NIL)
   }
 
   public final fun getTargetTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setTargetNode(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to node)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetNodePtr, NIL)
   }
 
   public final fun getTargetNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setOverrideTipBasis(`override`: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to override)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOverrideTipBasisPtr, NIL)
+    Internals.writeArguments(BOOL to override)
+    Internals.callMethod(rawPtr, MethodBindings.setOverrideTipBasisPtr, NIL)
   }
 
   public final fun isOverrideTipBasis(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOverrideTipBasisPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOverrideTipBasisPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseMagnet(use: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to use)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseMagnetPtr, NIL)
+    Internals.writeArguments(BOOL to use)
+    Internals.callMethod(rawPtr, MethodBindings.setUseMagnetPtr, NIL)
   }
 
   public final fun isUsingMagnet(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMagnetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingMagnetPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMagnetPosition(localPosition: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to localPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMagnetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to localPosition)
+    Internals.callMethod(rawPtr, MethodBindings.setMagnetPositionPtr, NIL)
   }
 
   public final fun getMagnetPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagnetPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMagnetPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -334,9 +333,9 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * [SceneTree].
    */
   public final fun getParentSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentSkeletonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParentSkeletonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   /**
@@ -345,31 +344,31 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * set to `true`.
    */
   public final fun isRunning(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMinDistance(minDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to minDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to minDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinDistancePtr, NIL)
   }
 
   public final fun getMinDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxIterations(iterations: Int): Unit {
-    TransferContext.writeArguments(LONG to iterations.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
+    Internals.writeArguments(LONG to iterations.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxIterationsPtr, NIL)
   }
 
   public final fun getMaxIterations(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxIterationsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxIterationsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -379,8 +378,8 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    */
   @JvmOverloads
   public final fun start(oneTime: Boolean = false): Unit {
-    TransferContext.writeArguments(BOOL to oneTime)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, NIL)
+    Internals.writeArguments(BOOL to oneTime)
+    Internals.callMethod(rawPtr, MethodBindings.startPtr, NIL)
   }
 
   /**
@@ -388,92 +387,92 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * [Skeleton3D.clearBonesGlobalPoseOverride] to remove existing overrides on all bones.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setInterpolation(interpolation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to interpolation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
+    Internals.writeArguments(DOUBLE to interpolation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInterpolationPtr, NIL)
   }
 
   public final fun getInterpolation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInterpolationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_root_bone", 3304788590)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_root_bone", 3304788590)
 
     public val getRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_root_bone", 2002593661)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_root_bone", 2002593661)
 
     public val setTipBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_tip_bone", 3304788590)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_tip_bone", 3304788590)
 
     public val getTipBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_tip_bone", 2002593661)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_tip_bone", 2002593661)
 
     public val setTargetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_transform", 2952846383)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_target_transform", 2952846383)
 
     public val getTargetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_transform", 3229777777)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_target_transform", 3229777777)
 
     public val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_node", 1348162250)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_target_node", 1348162250)
 
     public val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_node", 277076166)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_target_node", 277076166)
 
     public val setOverrideTipBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_override_tip_basis", 2586408642)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_override_tip_basis", 2586408642)
 
     public val isOverrideTipBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_override_tip_basis", 36873697)
+        Internals.getMethodBindPtr("SkeletonIK3D", "is_override_tip_basis", 36873697)
 
     public val setUseMagnetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_use_magnet", 2586408642)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_use_magnet", 2586408642)
 
     public val isUsingMagnetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_using_magnet", 36873697)
+        Internals.getMethodBindPtr("SkeletonIK3D", "is_using_magnet", 36873697)
 
     public val setMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_magnet_position", 3460891852)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_magnet_position", 3460891852)
 
     public val getMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_magnet_position", 3360562783)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_magnet_position", 3360562783)
 
     public val getParentSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_parent_skeleton", 1488626673)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_parent_skeleton", 1488626673)
 
     public val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_running", 2240911060)
+        Internals.getMethodBindPtr("SkeletonIK3D", "is_running", 2240911060)
 
     public val setMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_min_distance", 373806689)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_min_distance", 373806689)
 
     public val getMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_min_distance", 1740695150)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_min_distance", 1740695150)
 
     public val setMaxIterationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_max_iterations", 1286410249)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_max_iterations", 1286410249)
 
     public val getMaxIterationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_max_iterations", 3905245786)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_max_iterations", 3905245786)
 
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "start", 107499316)
+    public val startPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "start", 107499316)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("SkeletonIK3D", "stop", 3218959716)
 
     public val setInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_interpolation", 373806689)
+        Internals.getMethodBindPtr("SkeletonIK3D", "set_interpolation", 373806689)
 
     public val getInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_interpolation", 1740695150)
+        Internals.getMethodBindPtr("SkeletonIK3D", "get_interpolation", 1740695150)
   }
 }

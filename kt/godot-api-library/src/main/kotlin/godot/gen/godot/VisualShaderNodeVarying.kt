@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -49,44 +48,44 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVARYING_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEVARYING_INDEX, scriptIndex)
   }
 
   public final fun setVaryingName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVaryingNamePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setVaryingNamePtr, NIL)
   }
 
   public final fun getVaryingName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVaryingNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVaryingTypePtr, NIL)
   }
 
   public final fun getVaryingType(): VisualShader.VaryingType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVaryingTypePtr, LONG)
-    return VisualShader.VaryingType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVaryingTypePtr, LONG)
+    return VisualShader.VaryingType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_name", 83702148)
 
     public val getVaryingNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_name", 201670096)
 
     public val setVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type", 3565867981)
+        Internals.getMethodBindPtr("VisualShaderNodeVarying", "set_varying_type", 3565867981)
 
     public val getVaryingTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type", 523183580)
+        Internals.getMethodBindPtr("VisualShaderNodeVarying", "get_varying_type", 523183580)
   }
 }

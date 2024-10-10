@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -93,24 +92,24 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONETWISTJOINT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONETWISTJOINT3D_INDEX, scriptIndex)
   }
 
   /**
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
+    Internals.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setParamPtr, NIL)
   }
 
   /**
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParamPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Param(
@@ -162,9 +161,9 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   internal object MethodBindings {
     public val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "set_param", 1062470226)
+        Internals.getMethodBindPtr("ConeTwistJoint3D", "set_param", 1062470226)
 
     public val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "get_param", 2928790850)
+        Internals.getMethodBindPtr("ConeTwistJoint3D", "get_param", 2928790850)
   }
 }

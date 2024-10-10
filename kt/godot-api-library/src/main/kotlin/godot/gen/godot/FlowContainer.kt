@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -81,60 +80,60 @@ public open class FlowContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FLOWCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FLOWCONTAINER_INDEX, scriptIndex)
   }
 
   /**
    * Returns the current line count.
    */
   public final fun getLineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
   }
 
   public final fun getAlignment(): AlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
-    return FlowContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    return FlowContainer.AlignmentMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to lastWrapAlignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLastWrapAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to lastWrapAlignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLastWrapAlignmentPtr, NIL)
   }
 
   public final fun getLastWrapAlignment(): LastWrapAlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLastWrapAlignmentPtr, LONG)
-    return FlowContainer.LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLastWrapAlignmentPtr, LONG)
+    return FlowContainer.LastWrapAlignmentMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    Internals.writeArguments(BOOL to vertical)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setReverseFill(reverseFill: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to reverseFill)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
+    Internals.writeArguments(BOOL to reverseFill)
+    Internals.callMethod(rawPtr, MethodBindings.setReverseFillPtr, NIL)
   }
 
   public final fun isReverseFill(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isReverseFillPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AlignmentMode(
@@ -205,30 +204,30 @@ public open class FlowContainer : Container() {
 
   internal object MethodBindings {
     public val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_line_count", 3905245786)
+        Internals.getMethodBindPtr("FlowContainer", "get_line_count", 3905245786)
 
     public val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_alignment", 575250951)
+        Internals.getMethodBindPtr("FlowContainer", "set_alignment", 575250951)
 
     public val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_alignment", 3749743559)
+        Internals.getMethodBindPtr("FlowContainer", "get_alignment", 3749743559)
 
     public val setLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2899697495)
+        Internals.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2899697495)
 
     public val getLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3743456014)
+        Internals.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3743456014)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_vertical", 2586408642)
+        Internals.getMethodBindPtr("FlowContainer", "set_vertical", 2586408642)
 
     public val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "is_vertical", 36873697)
+        Internals.getMethodBindPtr("FlowContainer", "is_vertical", 36873697)
 
     public val setReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2586408642)
+        Internals.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2586408642)
 
     public val isReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36873697)
+        Internals.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36873697)
   }
 }

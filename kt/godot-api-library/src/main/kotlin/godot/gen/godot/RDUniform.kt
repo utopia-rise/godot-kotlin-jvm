@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -52,29 +51,29 @@ public open class RDUniform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDUNIFORM_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDUNIFORM_INDEX, scriptIndex)
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setUniformTypePtr, NIL)
   }
 
   public final fun getUniformType(): RenderingDevice.UniformType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
-    return RenderingDevice.UniformType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniformTypePtr, LONG)
+    return RenderingDevice.UniformType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBinding(pMember: Int): Unit {
-    TransferContext.writeArguments(LONG to pMember.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
+    Internals.writeArguments(LONG to pMember.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBindingPtr, NIL)
   }
 
   public final fun getBinding(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBindingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -82,47 +81,47 @@ public open class RDUniform : RefCounted() {
    * uniform is passed to a shader.
    */
   public final fun addId(id: RID): Unit {
-    TransferContext.writeArguments(_RID to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
+    Internals.writeArguments(_RID to id)
+    Internals.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
 
   /**
    * Unbinds all ids currently bound to the uniform.
    */
   public final fun clearIds(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearIdsPtr, NIL)
   }
 
   /**
    * Returns an array of all ids currently bound to the uniform.
    */
   public final fun getIds(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIdsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "set_uniform_type", 1664894931)
+        Internals.getMethodBindPtr("RDUniform", "set_uniform_type", 1664894931)
 
     public val getUniformTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_uniform_type", 475470040)
+        Internals.getMethodBindPtr("RDUniform", "get_uniform_type", 475470040)
 
     public val setBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "set_binding", 1286410249)
+        Internals.getMethodBindPtr("RDUniform", "set_binding", 1286410249)
 
     public val getBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "get_binding", 3905245786)
+        Internals.getMethodBindPtr("RDUniform", "get_binding", 3905245786)
 
-    public val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "add_id", 2722037293)
+    public val addIdPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "add_id", 2722037293)
 
     public val clearIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDUniform", "clear_ids", 3218959716)
+        Internals.getMethodBindPtr("RDUniform", "clear_ids", 3218959716)
 
-    public val getIdsPtr: VoidPtr = TypeManager.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
+    public val getIdsPtr: VoidPtr = Internals.getMethodBindPtr("RDUniform", "get_ids", 3995934104)
   }
 }

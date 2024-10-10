@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt64Array
 import godot.core.PackedVector3Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -86,7 +85,7 @@ private const val ENGINE_CLASS_ASTAR3D_INDEX: Int = 40
 @GodotBaseType
 public open class AStar3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ASTAR3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ASTAR3D_INDEX, scriptIndex)
   }
 
   /**
@@ -109,9 +108,9 @@ public open class AStar3D : RefCounted() {
    * Returns the next available point ID with no point associated to it.
    */
   public final fun getAvailablePointId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePointIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvailablePointIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -142,34 +141,34 @@ public open class AStar3D : RefCounted() {
     position: Vector3,
     weightScale: Float = 1.0f,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, VECTOR3 to position, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
+    Internals.writeArguments(LONG to id, VECTOR3 to position, DOUBLE to weightScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
 
   /**
    * Returns the position of the point associated with the given [id].
    */
   public final fun getPointPosition(id: Long): Vector3 {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Sets the [position] for the point with the given [id].
    */
   public final fun setPointPosition(id: Long, position: Vector3): Unit {
-    TransferContext.writeArguments(LONG to id, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
+    Internals.writeArguments(LONG to id, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
 
   /**
    * Returns the weight scale of the point associated with the given [id].
    */
   public final fun getPointWeightScale(id: Long): Float {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.getPointWeightScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -178,25 +177,25 @@ public open class AStar3D : RefCounted() {
    * a neighboring point to this point.
    */
   public final fun setPointWeightScale(id: Long, weightScale: Float): Unit {
-    TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
+    Internals.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPointWeightScalePtr, NIL)
   }
 
   /**
    * Removes the point associated with the given [id] from the points pool.
    */
   public final fun removePoint(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
 
   /**
    * Returns whether a point associated with the given [id] exists.
    */
   public final fun hasPoint(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.hasPointPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -229,18 +228,18 @@ public open class AStar3D : RefCounted() {
    * ```
    */
   public final fun getPointConnections(id: Long): PackedInt64Array {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointConnectionsPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.getPointConnectionsPtr, PACKED_INT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
    * Returns an array of all point IDs.
    */
   public final fun getPointIds(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointIdsPtr, PACKED_INT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -249,17 +248,17 @@ public open class AStar3D : RefCounted() {
    */
   @JvmOverloads
   public final fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
-    TransferContext.writeArguments(LONG to id, BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointDisabledPtr, NIL)
+    Internals.writeArguments(LONG to id, BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setPointDisabledPtr, NIL)
   }
 
   /**
    * Returns whether a point is disabled or not for pathfinding. By default, all points are enabled.
    */
   public final fun isPointDisabled(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.isPointDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.isPointDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -287,8 +286,8 @@ public open class AStar3D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectPointsPtr, NIL)
+    Internals.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
+    Internals.callMethod(rawPtr, MethodBindings.connectPointsPtr, NIL)
   }
 
   /**
@@ -301,8 +300,8 @@ public open class AStar3D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectPointsPtr, NIL)
+    Internals.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
+    Internals.callMethod(rawPtr, MethodBindings.disconnectPointsPtr, NIL)
   }
 
   /**
@@ -315,18 +314,18 @@ public open class AStar3D : RefCounted() {
     toId: Long,
     bidirectional: Boolean = true,
   ): Boolean {
-    TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
-    TransferContext.callMethod(rawPtr, MethodBindings.arePointsConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
+    Internals.callMethod(rawPtr, MethodBindings.arePointsConnectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the number of points currently in the points pool.
    */
   public final fun getPointCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -334,9 +333,9 @@ public open class AStar3D : RefCounted() {
    * [reserveSpace].
    */
   public final fun getPointCapacity(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointCapacityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointCapacityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -345,16 +344,16 @@ public open class AStar3D : RefCounted() {
    * capacity.
    */
   public final fun reserveSpace(numNodes: Long): Unit {
-    TransferContext.writeArguments(LONG to numNodes)
-    TransferContext.callMethod(rawPtr, MethodBindings.reserveSpacePtr, NIL)
+    Internals.writeArguments(LONG to numNodes)
+    Internals.callMethod(rawPtr, MethodBindings.reserveSpacePtr, NIL)
   }
 
   /**
    * Clears all the points and segments.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -365,9 +364,9 @@ public open class AStar3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
-    TransferContext.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(VECTOR3 to toPosition, BOOL to includeDisabled)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPointPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -395,9 +394,9 @@ public open class AStar3D : RefCounted() {
    * the segment to the given point.
    */
   public final fun getClosestPositionInSegment(toPosition: Vector3): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to toPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPositionInSegmentPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to toPosition)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPositionInSegmentPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -414,9 +413,9 @@ public open class AStar3D : RefCounted() {
     toId: Long,
     allowPartialPath: Boolean = false,
   ): PackedVector3Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
+    Internals.callMethod(rawPtr, MethodBindings.getPointPathPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -463,80 +462,78 @@ public open class AStar3D : RefCounted() {
     toId: Long,
     allowPartialPath: Boolean = false,
   ): PackedInt64Array {
-    TransferContext.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+    Internals.writeArguments(LONG to fromId, LONG to toId, BOOL to allowPartialPath)
+    Internals.callMethod(rawPtr, MethodBindings.getIdPathPtr, PACKED_INT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getAvailablePointIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_available_point_id", 3905245786)
+        Internals.getMethodBindPtr("AStar3D", "get_available_point_id", 3905245786)
 
-    public val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "add_point", 1038703438)
+    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "add_point", 1038703438)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_position", 711720468)
+        Internals.getMethodBindPtr("AStar3D", "get_point_position", 711720468)
 
     public val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_position", 1530502735)
+        Internals.getMethodBindPtr("AStar3D", "set_point_position", 1530502735)
 
     public val getPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_weight_scale", 2339986948)
+        Internals.getMethodBindPtr("AStar3D", "get_point_weight_scale", 2339986948)
 
     public val setPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_weight_scale", 1602489585)
+        Internals.getMethodBindPtr("AStar3D", "set_point_weight_scale", 1602489585)
 
     public val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "remove_point", 1286410249)
+        Internals.getMethodBindPtr("AStar3D", "remove_point", 1286410249)
 
-    public val hasPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "has_point", 1116898809)
+    public val hasPointPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "has_point", 1116898809)
 
     public val getPointConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_connections", 2865087369)
+        Internals.getMethodBindPtr("AStar3D", "get_point_connections", 2865087369)
 
     public val getPointIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_ids", 3851388692)
+        Internals.getMethodBindPtr("AStar3D", "get_point_ids", 3851388692)
 
     public val setPointDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_disabled", 972357352)
+        Internals.getMethodBindPtr("AStar3D", "set_point_disabled", 972357352)
 
     public val isPointDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "is_point_disabled", 1116898809)
+        Internals.getMethodBindPtr("AStar3D", "is_point_disabled", 1116898809)
 
     public val connectPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "connect_points", 3710494224)
+        Internals.getMethodBindPtr("AStar3D", "connect_points", 3710494224)
 
     public val disconnectPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "disconnect_points", 3710494224)
+        Internals.getMethodBindPtr("AStar3D", "disconnect_points", 3710494224)
 
     public val arePointsConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "are_points_connected", 2288175859)
+        Internals.getMethodBindPtr("AStar3D", "are_points_connected", 2288175859)
 
     public val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_count", 3905245786)
+        Internals.getMethodBindPtr("AStar3D", "get_point_count", 3905245786)
 
     public val getPointCapacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_capacity", 3905245786)
+        Internals.getMethodBindPtr("AStar3D", "get_point_capacity", 3905245786)
 
     public val reserveSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "reserve_space", 1286410249)
+        Internals.getMethodBindPtr("AStar3D", "reserve_space", 1286410249)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStar3D", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("AStar3D", "clear", 3218959716)
 
     public val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_closest_point", 3241074317)
+        Internals.getMethodBindPtr("AStar3D", "get_closest_point", 3241074317)
 
     public val getClosestPositionInSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_closest_position_in_segment", 192990374)
+        Internals.getMethodBindPtr("AStar3D", "get_closest_position_in_segment", 192990374)
 
     public val getPointPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_path", 1562654675)
+        Internals.getMethodBindPtr("AStar3D", "get_point_path", 1562654675)
 
     public val getIdPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_id_path", 3136199648)
+        Internals.getMethodBindPtr("AStar3D", "get_id_path", 3136199648)
   }
 }

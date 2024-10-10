@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -100,7 +99,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_UPNPDEVICE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_UPNPDEVICE_INDEX, scriptIndex)
   }
 
   /**
@@ -108,18 +107,18 @@ public open class UPNPDevice : RefCounted() {
    * forwarding.
    */
   public final fun isValidGateway(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isValidGatewayPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isValidGatewayPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the external IP address of this [UPNPDevice] or an empty string.
    */
   public final fun queryExternalAddress(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.queryExternalAddressPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -134,9 +133,9 @@ public open class UPNPDevice : RefCounted() {
     proto: String = "UDP",
     duration: Int = 0,
   ): Int {
-    TransferContext.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to port.toLong(), LONG to portInternal.toLong(), STRING to desc, STRING to proto, LONG to duration.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPortMappingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -145,75 +144,75 @@ public open class UPNPDevice : RefCounted() {
    */
   @JvmOverloads
   public final fun deletePortMapping(port: Int, proto: String = "UDP"): Int {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to proto)
-    TransferContext.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to port.toLong(), STRING to proto)
+    Internals.callMethod(rawPtr, MethodBindings.deletePortMappingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDescriptionUrl(url: String): Unit {
-    TransferContext.writeArguments(STRING to url)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionUrlPtr, NIL)
+    Internals.writeArguments(STRING to url)
+    Internals.callMethod(rawPtr, MethodBindings.setDescriptionUrlPtr, NIL)
   }
 
   public final fun getDescriptionUrl(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionUrlPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDescriptionUrlPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setServiceType(type: String): Unit {
-    TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr, MethodBindings.setServiceTypePtr, NIL)
+    Internals.writeArguments(STRING to type)
+    Internals.callMethod(rawPtr, MethodBindings.setServiceTypePtr, NIL)
   }
 
   public final fun getServiceType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getServiceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getServiceTypePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdControlUrl(url: String): Unit {
-    TransferContext.writeArguments(STRING to url)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgdControlUrlPtr, NIL)
+    Internals.writeArguments(STRING to url)
+    Internals.callMethod(rawPtr, MethodBindings.setIgdControlUrlPtr, NIL)
   }
 
   public final fun getIgdControlUrl(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgdControlUrlPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIgdControlUrlPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdServiceType(type: String): Unit {
-    TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgdServiceTypePtr, NIL)
+    Internals.writeArguments(STRING to type)
+    Internals.callMethod(rawPtr, MethodBindings.setIgdServiceTypePtr, NIL)
   }
 
   public final fun getIgdServiceType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgdServiceTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIgdServiceTypePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdOurAddr(addr: String): Unit {
-    TransferContext.writeArguments(STRING to addr)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgdOurAddrPtr, NIL)
+    Internals.writeArguments(STRING to addr)
+    Internals.callMethod(rawPtr, MethodBindings.setIgdOurAddrPtr, NIL)
   }
 
   public final fun getIgdOurAddr(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgdOurAddrPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIgdOurAddrPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setIgdStatus(status: IGDStatus): Unit {
-    TransferContext.writeArguments(LONG to status.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgdStatusPtr, NIL)
+    Internals.writeArguments(LONG to status.id)
+    Internals.callMethod(rawPtr, MethodBindings.setIgdStatusPtr, NIL)
   }
 
   public final fun getIgdStatus(): IGDStatus {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIgdStatusPtr, LONG)
-    return UPNPDevice.IGDStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIgdStatusPtr, LONG)
+    return UPNPDevice.IGDStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class IGDStatus(
@@ -275,51 +274,51 @@ public open class UPNPDevice : RefCounted() {
 
   internal object MethodBindings {
     public val isValidGatewayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "is_valid_gateway", 36873697)
+        Internals.getMethodBindPtr("UPNPDevice", "is_valid_gateway", 36873697)
 
     public val queryExternalAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "query_external_address", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "query_external_address", 201670096)
 
     public val addPortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "add_port_mapping", 818314583)
+        Internals.getMethodBindPtr("UPNPDevice", "add_port_mapping", 818314583)
 
     public val deletePortMappingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "delete_port_mapping", 3444187325)
+        Internals.getMethodBindPtr("UPNPDevice", "delete_port_mapping", 3444187325)
 
     public val setDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_description_url", 83702148)
+        Internals.getMethodBindPtr("UPNPDevice", "set_description_url", 83702148)
 
     public val getDescriptionUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_description_url", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "get_description_url", 201670096)
 
     public val setServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_service_type", 83702148)
+        Internals.getMethodBindPtr("UPNPDevice", "set_service_type", 83702148)
 
     public val getServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_service_type", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "get_service_type", 201670096)
 
     public val setIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_control_url", 83702148)
+        Internals.getMethodBindPtr("UPNPDevice", "set_igd_control_url", 83702148)
 
     public val getIgdControlUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_control_url", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "get_igd_control_url", 201670096)
 
     public val setIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_service_type", 83702148)
+        Internals.getMethodBindPtr("UPNPDevice", "set_igd_service_type", 83702148)
 
     public val getIgdServiceTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_service_type", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "get_igd_service_type", 201670096)
 
     public val setIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_our_addr", 83702148)
+        Internals.getMethodBindPtr("UPNPDevice", "set_igd_our_addr", 83702148)
 
     public val getIgdOurAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_our_addr", 201670096)
+        Internals.getMethodBindPtr("UPNPDevice", "get_igd_our_addr", 201670096)
 
     public val setIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "set_igd_status", 519504122)
+        Internals.getMethodBindPtr("UPNPDevice", "set_igd_status", 519504122)
 
     public val getIgdStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UPNPDevice", "get_igd_status", 180887011)
+        Internals.getMethodBindPtr("UPNPDevice", "get_igd_status", 180887011)
   }
 }

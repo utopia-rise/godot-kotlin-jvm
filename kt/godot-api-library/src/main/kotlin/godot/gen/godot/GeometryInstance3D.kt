@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -257,7 +256,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -291,113 +290,113 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
 
   public final fun setMaterialOverride(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverridePtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialOverridePtr, NIL)
   }
 
   public final fun getMaterialOverride(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialOverridePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setMaterialOverlay(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialOverlayPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialOverlayPtr, NIL)
   }
 
   public final fun getMaterialOverlay(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialOverlayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialOverlayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
-    TransferContext.writeArguments(LONG to shadowCastingSetting.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCastShadowsSettingPtr, NIL)
+    Internals.writeArguments(LONG to shadowCastingSetting.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCastShadowsSettingPtr, NIL)
   }
 
   public final fun getCastShadowsSetting(): ShadowCastingSetting {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCastShadowsSettingPtr, LONG)
-    return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCastShadowsSettingPtr, LONG)
+    return GeometryInstance3D.ShadowCastingSetting.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLodBias(bias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to bias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLodBiasPtr, NIL)
   }
 
   public final fun getLodBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLodBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransparency(transparency: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to transparency.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
+    Internals.writeArguments(DOUBLE to transparency.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
   }
 
   public final fun getTransparency(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransparencyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEndMargin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
   }
 
   public final fun getVisibilityRangeEndMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeEnd(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityRangeEndPtr, NIL)
   }
 
   public final fun getVisibilityRangeEnd(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityRangeEndPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBeginMargin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
   }
 
   public final fun getVisibilityRangeBeginMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeBegin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
   }
 
   public final fun getVisibilityRangeBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityRangeBeginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
   }
 
   public final fun getVisibilityRangeFadeMode(): VisibilityRangeFadeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
-    return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityRangeFadeModePtr, LONG)
+    return GeometryInstance3D.VisibilityRangeFadeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -413,73 +412,72 @@ public open class GeometryInstance3D : VisualInstance3D() {
    * equivalent of this method.
    */
   public final fun setInstanceShaderParameter(name: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceShaderParameterPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceShaderParameterPtr, NIL)
   }
 
   /**
    * Get the value of a shader parameter as set on this instance.
    */
   public final fun getInstanceShaderParameter(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceShaderParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceShaderParameterPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public final fun setExtraCullMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExtraCullMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExtraCullMarginPtr, NIL)
   }
 
   public final fun getExtraCullMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExtraCullMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLightmapScale(scale: LightmapScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapScalePtr, NIL)
+    Internals.writeArguments(LONG to scale.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLightmapScalePtr, NIL)
   }
 
   public final fun getLightmapScale(): LightmapScale {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapScalePtr, LONG)
-    return GeometryInstance3D.LightmapScale.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightmapScalePtr, LONG)
+    return GeometryInstance3D.LightmapScale.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setGiMode(mode: GIMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGiModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setGiModePtr, NIL)
   }
 
   public final fun getGiMode(): GIMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGiModePtr, LONG)
-    return GeometryInstance3D.GIMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGiModePtr, LONG)
+    return GeometryInstance3D.GIMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setIgnoreOcclusionCulling(ignoreCulling: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignoreCulling)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreOcclusionCullingPtr, NIL)
+    Internals.writeArguments(BOOL to ignoreCulling)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreOcclusionCullingPtr, NIL)
   }
 
   public final fun isIgnoringOcclusionCulling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIgnoringOcclusionCullingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public enum class ShadowCastingSetting(
@@ -638,99 +636,99 @@ public open class GeometryInstance3D : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_override", 2757459619)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_material_override", 2757459619)
 
     public val getMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_override", 5934680)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_material_override", 5934680)
 
     public val setMaterialOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_material_overlay", 2757459619)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_material_overlay", 2757459619)
 
     public val getMaterialOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_material_overlay", 5934680)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_material_overlay", 5934680)
 
     public val setCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting", 856677339)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_cast_shadows_setting", 856677339)
 
     public val getCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting", 3383019359)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_cast_shadows_setting", 3383019359)
 
     public val setLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lod_bias", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_lod_bias", 373806689)
 
     public val getLodBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lod_bias", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_lod_bias", 1740695150)
 
     public val setTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_transparency", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_transparency", 373806689)
 
     public val getTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_transparency", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_transparency", 1740695150)
 
     public val setVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end_margin", 373806689)
 
     public val getVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end_margin", 1740695150)
 
     public val setVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_end", 373806689)
 
     public val getVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_end", 1740695150)
 
     public val setVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin_margin", 373806689)
 
     public val getVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin_margin", 1740695150)
 
     public val setVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_begin", 373806689)
 
     public val getVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_begin", 1740695150)
 
     public val setVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode", 1440117808)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_visibility_range_fade_mode", 1440117808)
 
     public val getVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode", 2067221882)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_visibility_range_fade_mode", 2067221882)
 
     public val setInstanceShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter", 3776071444)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_instance_shader_parameter", 3776071444)
 
     public val getInstanceShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter", 2760726917)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_instance_shader_parameter", 2760726917)
 
     public val setExtraCullMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin", 373806689)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_extra_cull_margin", 373806689)
 
     public val getExtraCullMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin", 1740695150)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_extra_cull_margin", 1740695150)
 
     public val setLightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale", 2462696582)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_lightmap_scale", 2462696582)
 
     public val getLightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale", 798767852)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_lightmap_scale", 798767852)
 
     public val setGiModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_gi_mode", 2548557163)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_gi_mode", 2548557163)
 
     public val getGiModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_gi_mode", 2188566509)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_gi_mode", 2188566509)
 
     public val setIgnoreOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling", 2586408642)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_ignore_occlusion_culling", 2586408642)
 
     public val isIgnoringOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling", 2240911060)
+        Internals.getMethodBindPtr("GeometryInstance3D", "is_ignoring_occlusion_culling", 2240911060)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb", 259215842)
+        Internals.getMethodBindPtr("GeometryInstance3D", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb", 1068685055)
+        Internals.getMethodBindPtr("GeometryInstance3D", "get_custom_aabb", 1068685055)
   }
 }

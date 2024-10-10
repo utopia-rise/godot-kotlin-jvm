@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -56,44 +55,44 @@ public open class MeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MESHINSTANCE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MESHINSTANCE2D_INDEX, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh", 194775623)
+        Internals.getMethodBindPtr("MeshInstance2D", "set_mesh", 194775623)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh", 1808005922)
+        Internals.getMethodBindPtr("MeshInstance2D", "get_mesh", 1808005922)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("MeshInstance2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("MeshInstance2D", "get_texture", 3635182373)
   }
 }

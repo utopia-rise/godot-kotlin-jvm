@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -114,12 +113,12 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX, scriptIndex)
   }
 
   public final fun setInputCount(inputCount: Int): Unit {
-    TransferContext.writeArguments(LONG to inputCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
+    Internals.writeArguments(LONG to inputCount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setInputCountPtr, NIL)
   }
 
   /**
@@ -128,17 +127,17 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * first.
    */
   public final fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
+    Internals.writeArguments(LONG to input.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
   }
 
   /**
    * Returns `true` if auto-advance is enabled for the given [input] index.
    */
   public final fun isInputSetAsAutoAdvance(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to input.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isInputSetAsAutoAdvancePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -146,109 +145,109 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
    * is looping.
    */
   public final fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
+    Internals.writeArguments(LONG to input.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
   }
 
   /**
    * Returns whether the animation breaks the loop at the end of the loop cycle for transition.
    */
   public final fun isInputLoopBrokenAtEnd(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to input.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isInputLoopBrokenAtEndPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * If `true`, the destination animation is restarted when the animation transitions.
    */
   public final fun setInputReset(input: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputResetPtr, NIL)
+    Internals.writeArguments(LONG to input.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setInputResetPtr, NIL)
   }
 
   /**
    * Returns whether the animation restarts when the animation transitions from the other animation.
    */
   public final fun isInputReset(input: Int): Boolean {
-    TransferContext.writeArguments(LONG to input.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to input.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isInputResetPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setXfadeTime(time: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to time)
-    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to time)
+    Internals.callMethod(rawPtr, MethodBindings.setXfadeTimePtr, NIL)
   }
 
   public final fun getXfadeTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getXfadeTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setXfadeCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setXfadeCurvePtr, NIL)
   }
 
   public final fun getXfadeCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getXfadeCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setAllowTransitionToSelf(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
   }
 
   public final fun isAllowTransitionToSelf(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAllowTransitionToSelfPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setInputCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_count", 1286410249)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_count", 1286410249)
 
     public val setInputAsAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance", 300928843)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance", 300928843)
 
     public val isInputSetAsAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance", 1116898809)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance", 1116898809)
 
     public val setInputBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end", 300928843)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end", 300928843)
 
     public val isInputLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end", 1116898809)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end", 1116898809)
 
     public val setInputResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_reset", 300928843)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_input_reset", 300928843)
 
     public val isInputResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_reset", 1116898809)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "is_input_reset", 1116898809)
 
     public val setXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time", 373806689)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time", 373806689)
 
     public val getXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time", 1740695150)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time", 1740695150)
 
     public val setXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve", 270443179)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve", 270443179)
 
     public val getXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve", 2460114913)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve", 2460114913)
 
     public val setAllowTransitionToSelfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self", 2586408642)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self", 2586408642)
 
     public val isAllowTransitionToSelfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self", 36873697)
+        Internals.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self", 36873697)
   }
 }

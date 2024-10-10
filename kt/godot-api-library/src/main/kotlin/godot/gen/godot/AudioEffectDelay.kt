@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -176,231 +175,231 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX, scriptIndex)
   }
 
   public final fun setDry(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDryPtr, NIL)
   }
 
   public final fun getDry(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDryPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Active(amount: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1ActivePtr, NIL)
+    Internals.writeArguments(BOOL to amount)
+    Internals.callMethod(rawPtr, MethodBindings.setTap1ActivePtr, NIL)
   }
 
   public final fun isTap1Active(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTap1ActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTap1ActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap1DelayMs(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1DelayMsPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap1DelayMsPtr, NIL)
   }
 
   public final fun getTap1DelayMs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap1DelayMsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1LevelDb(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1LevelDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap1LevelDbPtr, NIL)
   }
 
   public final fun getTap1LevelDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap1LevelDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap1Pan(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap1PanPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap1PanPtr, NIL)
   }
 
   public final fun getTap1Pan(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap1PanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap1PanPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Active(amount: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2ActivePtr, NIL)
+    Internals.writeArguments(BOOL to amount)
+    Internals.callMethod(rawPtr, MethodBindings.setTap2ActivePtr, NIL)
   }
 
   public final fun isTap2Active(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTap2ActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTap2ActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTap2DelayMs(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2DelayMsPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap2DelayMsPtr, NIL)
   }
 
   public final fun getTap2DelayMs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap2DelayMsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2LevelDb(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2LevelDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap2LevelDbPtr, NIL)
   }
 
   public final fun getTap2LevelDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap2LevelDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTap2Pan(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTap2PanPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTap2PanPtr, NIL)
   }
 
   public final fun getTap2Pan(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTap2PanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTap2PanPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackActive(amount: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to amount)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackActivePtr, NIL)
+    Internals.writeArguments(BOOL to amount)
+    Internals.callMethod(rawPtr, MethodBindings.setFeedbackActivePtr, NIL)
   }
 
   public final fun isFeedbackActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFeedbackActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFeedbackActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFeedbackDelayMs(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackDelayMsPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFeedbackDelayMsPtr, NIL)
   }
 
   public final fun getFeedbackDelayMs(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFeedbackDelayMsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLevelDb(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLevelDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFeedbackLevelDbPtr, NIL)
   }
 
   public final fun getFeedbackLevelDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFeedbackLevelDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedbackLowpass(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackLowpassPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFeedbackLowpassPtr, NIL)
   }
 
   public final fun getFeedbackLowpass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFeedbackLowpassPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_dry", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_dry", 373806689)
 
     public val getDryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_dry", 191475506)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_dry", 191475506)
 
     public val setTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2586408642)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_active", 2586408642)
 
     public val isTap1ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36873697)
+        Internals.getMethodBindPtr("AudioEffectDelay", "is_tap1_active", 36873697)
 
     public val setTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_delay_ms", 373806689)
 
     public val getTap1DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_delay_ms", 1740695150)
 
     public val setTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_level_db", 373806689)
 
     public val getTap1LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_level_db", 1740695150)
 
     public val setTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap1_pan", 373806689)
 
     public val getTap1PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap1_pan", 1740695150)
 
     public val setTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2586408642)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_active", 2586408642)
 
     public val isTap2ActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36873697)
+        Internals.getMethodBindPtr("AudioEffectDelay", "is_tap2_active", 36873697)
 
     public val setTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_delay_ms", 373806689)
 
     public val getTap2DelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_delay_ms", 1740695150)
 
     public val setTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_level_db", 373806689)
 
     public val getTap2LevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_level_db", 1740695150)
 
     public val setTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_tap2_pan", 373806689)
 
     public val getTap2PanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_tap2_pan", 1740695150)
 
     public val setFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2586408642)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_active", 2586408642)
 
     public val isFeedbackActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36873697)
+        Internals.getMethodBindPtr("AudioEffectDelay", "is_feedback_active", 36873697)
 
     public val setFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_delay_ms", 373806689)
 
     public val getFeedbackDelayMsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_delay_ms", 1740695150)
 
     public val setFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_level_db", 373806689)
 
     public val getFeedbackLevelDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_level_db", 1740695150)
 
     public val setFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373806689)
+        Internals.getMethodBindPtr("AudioEffectDelay", "set_feedback_lowpass", 373806689)
 
     public val getFeedbackLowpassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectDelay", "get_feedback_lowpass", 1740695150)
   }
 }

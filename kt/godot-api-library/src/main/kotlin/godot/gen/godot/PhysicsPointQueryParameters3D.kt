@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -18,7 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -99,7 +98,7 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS3D_INDEX, scriptIndex)
   }
 
   /**
@@ -127,91 +126,91 @@ public open class PhysicsPointQueryParameters3D : RefCounted() {
 
 
   public final fun setPosition(position: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCollisionMask(collisionMask: Long): Unit {
-    TransferContext.writeArguments(LONG to collisionMask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to collisionMask)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setExclude(exclude: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to exclude)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
+    Internals.writeArguments(ARRAY to exclude)
+    Internals.callMethod(rawPtr, MethodBindings.setExcludePtr, NIL)
   }
 
   public final fun getExclude(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExcludePtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_position", 3460891852)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_position", 3460891852)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_position", 3360562783)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_position", 3360562783)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_collision_mask", 3905245786)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_collision_mask", 3905245786)
 
     public val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_exclude", 381264803)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_exclude", 381264803)
 
     public val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_exclude", 3995934104)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "get_exclude", 3995934104)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_bodies", 2586408642)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_areas", 2586408642)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
+        Internals.getMethodBindPtr("PhysicsPointQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
   }
 }

@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -169,7 +168,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS2D_INDEX, scriptIndex)
   }
 
   /**
@@ -221,102 +220,102 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
 
   public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
-    TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+    Internals.writeArguments(LONG to pathfindingAlgorithm.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
   public final fun getPathfindingAlgorithm(): PathfindingAlgorithm {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
-    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
+    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
-    TransferContext.writeArguments(LONG to pathPostprocessing.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
+    Internals.writeArguments(LONG to pathPostprocessing.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 
   public final fun getPathPostprocessing(): PathPostProcessing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
-    return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
+    return NavigationPathQueryParameters2D.PathPostProcessing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMap(map: RID): Unit {
-    TransferContext.writeArguments(_RID to map)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
+    Internals.writeArguments(_RID to map)
+    Internals.callMethod(rawPtr, MethodBindings.setMapPtr, NIL)
   }
 
   public final fun getMap(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setStartPosition(startPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to startPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to startPosition)
+    Internals.callMethod(rawPtr, MethodBindings.setStartPositionPtr, NIL)
   }
 
   public final fun getStartPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStartPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTargetPosition(targetPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to targetPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to targetPosition)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+    Internals.writeArguments(LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
   public final fun getNavigationLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setMetadataFlagsPtr, NIL)
   }
 
   public final fun getMetadataFlags(): PathMetadataFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
-    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMetadataFlagsPtr, LONG)
+    return PathMetadataFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSimplifyPath(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
   }
 
   public final fun getSimplifyPath(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSimplifyEpsilon(epsilon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+    Internals.writeArguments(DOUBLE to epsilon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
 
   public final fun getSimplifyEpsilon(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class PathfindingAlgorithm(
@@ -449,57 +448,57 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
 
   internal object MethodBindings {
     public val setPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_pathfinding_algorithm", 2783519915)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_pathfinding_algorithm", 2783519915)
 
     public val getPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_pathfinding_algorithm", 3000421146)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_pathfinding_algorithm", 3000421146)
 
     public val setPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_path_postprocessing", 2864409082)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_path_postprocessing", 2864409082)
 
     public val getPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_path_postprocessing", 3798118993)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_path_postprocessing", 3798118993)
 
     public val setMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_map", 2722037293)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_map", 2722037293)
 
     public val getMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_map", 2944877500)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_map", 2944877500)
 
     public val setStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_start_position", 743155724)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_start_position", 743155724)
 
     public val getStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_start_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_start_position", 3341600327)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_target_position", 743155724)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_target_position", 743155724)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_target_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_target_position", 3341600327)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_navigation_layers", 1286410249)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_navigation_layers", 3905245786)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_navigation_layers", 3905245786)
 
     public val setMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_metadata_flags", 24274129)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_metadata_flags", 24274129)
 
     public val getMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_metadata_flags", 488152976)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_metadata_flags", 488152976)
 
     public val setSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_path", 2586408642)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_path", 2586408642)
 
     public val getSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_path", 36873697)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_path", 36873697)
 
     public val setSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_epsilon", 373806689)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "set_simplify_epsilon", 373806689)
 
     public val getSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_epsilon", 1740695150)
+        Internals.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_epsilon", 1740695150)
   }
 }

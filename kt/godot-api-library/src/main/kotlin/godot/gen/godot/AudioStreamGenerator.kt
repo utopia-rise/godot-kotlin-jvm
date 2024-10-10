@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -123,44 +122,44 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMGENERATOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMGENERATOR_INDEX, scriptIndex)
   }
 
   public final fun setMixRate(hz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
+    Internals.writeArguments(DOUBLE to hz.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMixRatePtr, NIL)
   }
 
   public final fun getMixRate(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMixRatePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to seconds.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373806689)
+        Internals.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373806689)
 
     public val getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1740695150)
 
     public val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373806689)
+        Internals.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373806689)
 
     public val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1740695150)
   }
 }

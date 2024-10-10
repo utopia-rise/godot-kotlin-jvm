@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -42,7 +41,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     get() = getHost()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ENETMULTIPLAYERPEER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ENETMULTIPLAYERPEER_INDEX, scriptIndex)
   }
 
   /**
@@ -65,9 +64,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     inBandwidth: Int = 0,
     outBandwidth: Int = 0,
   ): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to port.toLong(), LONG to maxClients.toLong(), LONG to maxChannels.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -95,9 +94,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     outBandwidth: Int = 0,
     localPort: Int = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to address, LONG to port.toLong(), LONG to channelCount.toLong(), LONG to inBandwidth.toLong(), LONG to outBandwidth.toLong(), LONG to localPort.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -109,9 +108,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * network load (which would otherwise be more taxing on the server).
    */
   public final fun createMesh(uniqueId: Int): Error {
-    TransferContext.writeArguments(LONG to uniqueId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to uniqueId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -119,9 +118,9 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * **Note:** The [host] must have exactly one peer in the [ENetPacketPeer.STATE_CONNECTED] state.
    */
   public final fun addMeshPeer(peerId: Int, host: ENetConnection?): Error {
-    TransferContext.writeArguments(LONG to peerId.toLong(), OBJECT to host)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to peerId.toLong(), OBJECT to host)
+    Internals.callMethod(rawPtr, MethodBindings.addMeshPeerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -130,47 +129,47 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
    * `"192.168.1.1"`.
    */
   public final fun setBindIp(ip: String): Unit {
-    TransferContext.writeArguments(STRING to ip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
+    Internals.writeArguments(STRING to ip)
+    Internals.callMethod(rawPtr, MethodBindings.setBindIpPtr, NIL)
   }
 
   public final fun getHost(): ENetConnection? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ENetConnection?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHostPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ENetConnection?)
   }
 
   /**
    * Returns the [ENetPacketPeer] associated to the given [id].
    */
   public final fun getPeer(id: Int): ENetPacketPeer? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ENetPacketPeer?)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPeerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ENetPacketPeer?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_server", 2917761309)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_server", 2917761309)
 
     public val createClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_client", 2327163476)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_client", 2327163476)
 
     public val createMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "create_mesh", 844576869)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "create_mesh", 844576869)
 
     public val addMeshPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "add_mesh_peer", 1293458335)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "add_mesh_peer", 1293458335)
 
     public val setBindIpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "set_bind_ip", 83702148)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "set_bind_ip", 83702148)
 
     public val getHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_host", 4103238886)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "get_host", 4103238886)
 
     public val getPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetMultiplayerPeer", "get_peer", 3793311544)
+        Internals.getMethodBindPtr("ENetMultiplayerPeer", "get_peer", 3793311544)
   }
 }

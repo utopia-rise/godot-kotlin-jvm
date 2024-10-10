@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -135,7 +134,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -187,79 +186,79 @@ public open class GradientTexture2D : Texture2D() {
 
 
   public final fun setGradient(gradient: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+    Internals.writeArguments(OBJECT to gradient)
+    Internals.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
   }
 
   public final fun getGradient(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setHeight(height: Int): Unit {
-    TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(LONG to height.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun setUseHdr(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setUseHdrPtr, NIL)
   }
 
   public final fun isUsingHdr(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingHdrPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFill(fill: Fill): Unit {
-    TransferContext.writeArguments(LONG to fill.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillPtr, NIL)
+    Internals.writeArguments(LONG to fill.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFillPtr, NIL)
   }
 
   public final fun getFill(): Fill {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillPtr, LONG)
-    return GradientTexture2D.Fill.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillPtr, LONG)
+    return GradientTexture2D.Fill.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFillFrom(fillFrom: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to fillFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillFromPtr, NIL)
+    Internals.writeArguments(VECTOR2 to fillFrom)
+    Internals.callMethod(rawPtr, MethodBindings.setFillFromPtr, NIL)
   }
 
   public final fun getFillFrom(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillFromPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillFromPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFillTo(fillTo: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to fillTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillToPtr, NIL)
+    Internals.writeArguments(VECTOR2 to fillTo)
+    Internals.callMethod(rawPtr, MethodBindings.setFillToPtr, NIL)
   }
 
   public final fun getFillTo(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillToPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillToPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeat(repeat: Repeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
+    Internals.writeArguments(LONG to repeat.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatPtr, NIL)
   }
 
   public final fun getRepeat(): Repeat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatPtr, LONG)
-    return GradientTexture2D.Repeat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatPtr, LONG)
+    return GradientTexture2D.Repeat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Fill(
@@ -322,45 +321,45 @@ public open class GradientTexture2D : Texture2D() {
 
   internal object MethodBindings {
     public val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_gradient", 2756054477)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_gradient", 2756054477)
 
     public val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_gradient", 132272999)
+        Internals.getMethodBindPtr("GradientTexture2D", "get_gradient", 132272999)
 
     public val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_width", 1286410249)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_width", 1286410249)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_height", 1286410249)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_height", 1286410249)
 
     public val setUseHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_use_hdr", 2586408642)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_use_hdr", 2586408642)
 
     public val isUsingHdrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "is_using_hdr", 36873697)
+        Internals.getMethodBindPtr("GradientTexture2D", "is_using_hdr", 36873697)
 
     public val setFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill", 3623927636)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_fill", 3623927636)
 
     public val getFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill", 1876227217)
+        Internals.getMethodBindPtr("GradientTexture2D", "get_fill", 1876227217)
 
     public val setFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_from", 743155724)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_fill_from", 743155724)
 
     public val getFillFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_from", 3341600327)
+        Internals.getMethodBindPtr("GradientTexture2D", "get_fill_from", 3341600327)
 
     public val setFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_fill_to", 743155724)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_fill_to", 743155724)
 
     public val getFillToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_fill_to", 3341600327)
+        Internals.getMethodBindPtr("GradientTexture2D", "get_fill_to", 3341600327)
 
     public val setRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "set_repeat", 1357597002)
+        Internals.getMethodBindPtr("GradientTexture2D", "set_repeat", 1357597002)
 
     public val getRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GradientTexture2D", "get_repeat", 3351758665)
+        Internals.getMethodBindPtr("GradientTexture2D", "get_repeat", 3351758665)
   }
 }

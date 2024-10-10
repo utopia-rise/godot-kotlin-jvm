@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -36,7 +35,7 @@ private const val ENGINE_CLASS_MESHLIBRARY_INDEX: Int = 336
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MESHLIBRARY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MESHLIBRARY_INDEX, scriptIndex)
   }
 
   /**
@@ -44,8 +43,8 @@ public open class MeshLibrary : Resource() {
    * You can get an unused ID from [getLastUnusedItemId].
    */
   public final fun createItem(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createItemPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createItemPtr, NIL)
   }
 
   /**
@@ -54,48 +53,48 @@ public open class MeshLibrary : Resource() {
    * [findItemByName].
    */
   public final fun setItemName(id: Int, name: String): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNamePtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setItemNamePtr, NIL)
   }
 
   /**
    * Sets the item's mesh.
    */
   public final fun setItemMesh(id: Int, mesh: Mesh?): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemMeshPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setItemMeshPtr, NIL)
   }
 
   /**
    * Sets the transform to apply to the item's mesh.
    */
   public final fun setItemMeshTransform(id: Int, meshTransform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to meshTransform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemMeshTransformPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), TRANSFORM3D to meshTransform)
+    Internals.callMethod(rawPtr, MethodBindings.setItemMeshTransformPtr, NIL)
   }
 
   /**
    * Sets the item's navigation mesh.
    */
   public final fun setItemNavigationMesh(id: Int, navigationMesh: NavigationMesh?): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationMeshPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), OBJECT to navigationMesh)
+    Internals.callMethod(rawPtr, MethodBindings.setItemNavigationMeshPtr, NIL)
   }
 
   /**
    * Sets the transform to apply to the item's navigation mesh.
    */
   public final fun setItemNavigationMeshTransform(id: Int, navigationMesh: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), TRANSFORM3D to navigationMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationMeshTransformPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), TRANSFORM3D to navigationMesh)
+    Internals.callMethod(rawPtr, MethodBindings.setItemNavigationMeshTransformPtr, NIL)
   }
 
   /**
    * Sets the item's navigation layers bitmask.
    */
   public final fun setItemNavigationLayers(id: Int, navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemNavigationLayersPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.setItemNavigationLayersPtr, NIL)
   }
 
   /**
@@ -104,71 +103,70 @@ public open class MeshLibrary : Resource() {
    * applied to it. For shapes that should not have a transform, use [Transform3D.IDENTITY].
    */
   public final fun setItemShapes(id: Int, shapes: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), ARRAY to shapes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemShapesPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), ARRAY to shapes)
+    Internals.callMethod(rawPtr, MethodBindings.setItemShapesPtr, NIL)
   }
 
   /**
    * Sets a texture to use as the item's preview icon in the editor.
    */
   public final fun setItemPreview(id: Int, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setItemPreviewPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setItemPreviewPtr, NIL)
   }
 
   /**
    * Returns the item's name.
    */
   public final fun getItemName(id: Int): String {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the item's mesh.
    */
   public final fun getItemMesh(id: Int): Mesh? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   /**
    * Returns the transform applied to the item's mesh.
    */
   public final fun getItemMeshTransform(id: Int): Transform3D {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemMeshTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemMeshTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
    * Returns the item's navigation mesh.
    */
   public final fun getItemNavigationMesh(id: Int): NavigationMesh? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemNavigationMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as NavigationMesh?)
   }
 
   /**
    * Returns the transform applied to the item's navigation mesh.
    */
   public final fun getItemNavigationMeshTransform(id: Int): Transform3D {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationMeshTransformPtr,
-        TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemNavigationMeshTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
    * Returns the item's navigation layers bitmask.
    */
   public final fun getItemNavigationLayers(id: Int): Long {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -176,9 +174,9 @@ public open class MeshLibrary : Resource() {
    * The array consists of each [Shape3D] followed by its [Transform3D].
    */
   public final fun getItemShapes(id: Int): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemShapesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemShapesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -188,120 +186,120 @@ public open class MeshLibrary : Resource() {
    * running project.
    */
   public final fun getItemPreview(id: Int): Texture2D? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemPreviewPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemPreviewPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * Removes the item.
    */
   public final fun removeItem(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeItemPtr, NIL)
   }
 
   /**
    * Returns the first item with the given name, or `-1` if no item is found.
    */
   public final fun findItemByName(name: String): Int {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findItemByNamePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.findItemByNamePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Clears the library.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
    * Returns the list of item IDs in use.
    */
   public final fun getItemList(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemListPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getItemListPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
    * Gets an unused ID for a new item.
    */
   public final fun getLastUnusedItemId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLastUnusedItemIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLastUnusedItemIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "create_item", 1286410249)
+        Internals.getMethodBindPtr("MeshLibrary", "create_item", 1286410249)
 
     public val setItemNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_name", 501894301)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_name", 501894301)
 
     public val setItemMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh", 969122797)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_mesh", 969122797)
 
     public val setItemMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform", 3616898986)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_mesh_transform", 3616898986)
 
     public val setItemNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh", 3483353960)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh", 3483353960)
 
     public val setItemNavigationMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh_transform", 3616898986)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_mesh_transform", 3616898986)
 
     public val setItemNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_navigation_layers", 3937882851)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_navigation_layers", 3937882851)
 
     public val setItemShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_shapes", 537221740)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_shapes", 537221740)
 
     public val setItemPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "set_item_preview", 666127730)
+        Internals.getMethodBindPtr("MeshLibrary", "set_item_preview", 666127730)
 
     public val getItemNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_name", 844755477)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_name", 844755477)
 
     public val getItemMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh", 1576363275)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_mesh", 1576363275)
 
     public val getItemMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform", 1965739696)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_mesh_transform", 1965739696)
 
     public val getItemNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh", 2729647406)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh", 2729647406)
 
     public val getItemNavigationMeshTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh_transform", 1965739696)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_mesh_transform", 1965739696)
 
     public val getItemNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_navigation_layers", 923996154)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_navigation_layers", 923996154)
 
     public val getItemShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_shapes", 663333327)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_shapes", 663333327)
 
     public val getItemPreviewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_preview", 3536238170)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_preview", 3536238170)
 
     public val removeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "remove_item", 1286410249)
+        Internals.getMethodBindPtr("MeshLibrary", "remove_item", 1286410249)
 
     public val findItemByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "find_item_by_name", 1321353865)
+        Internals.getMethodBindPtr("MeshLibrary", "find_item_by_name", 1321353865)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("MeshLibrary", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("MeshLibrary", "clear", 3218959716)
 
     public val getItemListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_item_list", 1930428628)
+        Internals.getMethodBindPtr("MeshLibrary", "get_item_list", 1930428628)
 
     public val getLastUnusedItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id", 3905245786)
+        Internals.getMethodBindPtr("MeshLibrary", "get_last_unused_item_id", 3905245786)
   }
 }

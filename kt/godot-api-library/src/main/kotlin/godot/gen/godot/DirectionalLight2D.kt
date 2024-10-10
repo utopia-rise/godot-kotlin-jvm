@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -58,27 +57,27 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX, scriptIndex)
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixels.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to pixels.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxDistancePtr, NIL)
   }
 
   public final fun getMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight2D", "set_max_distance", 373806689)
+        Internals.getMethodBindPtr("DirectionalLight2D", "set_max_distance", 373806689)
 
     public val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight2D", "get_max_distance", 1740695150)
+        Internals.getMethodBindPtr("DirectionalLight2D", "get_max_distance", 1740695150)
   }
 }

@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,7 +18,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -101,7 +100,7 @@ public open class StyleBox : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STYLEBOX_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STYLEBOX_INDEX, scriptIndex)
   }
 
   public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
@@ -129,34 +128,34 @@ public open class StyleBox : Resource() {
    * Returns the minimum size that this stylebox can be shrunk to.
    */
   public final fun getMinimumSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinimumSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinimumSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Sets the default value of the specified [Side] to [offset] pixels.
    */
   public final fun setContentMargin(margin: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setContentMarginPtr, NIL)
   }
 
   /**
    * Sets the default margin to [offset] pixels for all sides.
    */
   public final fun setContentMarginAll(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setContentMarginAllPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setContentMarginAllPtr, NIL)
   }
 
   /**
    * Returns the default margin of the specified [Side].
    */
   public final fun getContentMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getContentMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -164,9 +163,9 @@ public open class StyleBox : Resource() {
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public final fun getMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -174,9 +173,9 @@ public open class StyleBox : Resource() {
    * `Vector2(style.get_margin(MARGIN_LEFT), style.get_margin(MARGIN_TOP))`.
    */
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -186,8 +185,8 @@ public open class StyleBox : Resource() {
    * [RenderingServer.canvasItemCreate].
    */
   public final fun draw(canvasItem: RID, rect: Rect2): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
+    Internals.writeArguments(_RID to canvasItem, RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.drawPtr, NIL)
   }
 
   /**
@@ -195,47 +194,47 @@ public open class StyleBox : Resource() {
    * callback at this moment.
    */
   public final fun getCurrentItemDrawn(): CanvasItem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CanvasItem?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentItemDrawnPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CanvasItem?)
   }
 
   /**
    * Test a position in a rectangle, return whether it passes the mask test.
    */
   public final fun testMask(point: Vector2, rect: Rect2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to point, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.testMaskPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2 to point, RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.testMaskPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_minimum_size", 3341600327)
+        Internals.getMethodBindPtr("StyleBox", "get_minimum_size", 3341600327)
 
     public val setContentMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin", 4290182280)
+        Internals.getMethodBindPtr("StyleBox", "set_content_margin", 4290182280)
 
     public val setContentMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "set_content_margin_all", 373806689)
+        Internals.getMethodBindPtr("StyleBox", "set_content_margin_all", 373806689)
 
     public val getContentMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_content_margin", 2869120046)
+        Internals.getMethodBindPtr("StyleBox", "get_content_margin", 2869120046)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_margin", 2869120046)
+        Internals.getMethodBindPtr("StyleBox", "get_margin", 2869120046)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("StyleBox", "get_offset", 3341600327)
 
-    public val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("StyleBox", "draw", 2275962004)
+    public val drawPtr: VoidPtr = Internals.getMethodBindPtr("StyleBox", "draw", 2275962004)
 
     public val getCurrentItemDrawnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "get_current_item_drawn", 3213695180)
+        Internals.getMethodBindPtr("StyleBox", "get_current_item_drawn", 3213695180)
 
     public val testMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBox", "test_mask", 3735564539)
+        Internals.getMethodBindPtr("StyleBox", "test_mask", 3735564539)
   }
 }

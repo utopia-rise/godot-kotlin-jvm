@@ -7,7 +7,6 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -15,7 +14,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -36,7 +35,7 @@ private const val ENGINE_CLASS_OPENXRAPIEXTENSION_INDEX: Int = 380
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRAPIEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRAPIEXTENSION_INDEX, scriptIndex)
   }
 
   /**
@@ -45,9 +44,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * created during the initialization of the OpenXR API.
    */
   public final fun getInstance(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstancePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -56,9 +55,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * to an integer.
    */
   public final fun getSystemId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSystemIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSystemIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -67,9 +66,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * an integer.
    */
   public final fun getSession(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSessionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSessionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -84,9 +83,9 @@ public open class OpenXRAPIExtension : RefCounted() {
     format: String,
     args: VariantArray<Any?>,
   ): Boolean {
-    TransferContext.writeArguments(LONG to result, STRING to format, ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.xrResultPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to result, STRING to format, ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.xrResultPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -96,9 +95,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.
    */
   public final fun getInstanceProcAddr(name: String): Long {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceProcAddrPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceProcAddrPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -106,27 +105,27 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url].
    */
   public final fun getErrorString(result: Long): String {
-    TransferContext.writeArguments(LONG to result)
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to result)
+    Internals.callMethod(rawPtr, MethodBindings.getErrorStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the name of the specified swapchain format.
    */
   public final fun getSwapchainFormatName(swapchainFormat: Long): String {
-    TransferContext.writeArguments(LONG to swapchainFormat)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSwapchainFormatNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to swapchainFormat)
+    Internals.callMethod(rawPtr, MethodBindings.getSwapchainFormatNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if OpenXR is initialized.
    */
   public final fun isInitialized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInitializedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -135,9 +134,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * was successfully called and the swapchains were created).
    */
   public final fun isRunning(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRunningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -146,45 +145,45 @@ public open class OpenXRAPIExtension : RefCounted() {
    * integer.
    */
   public final fun getPlaySpace(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaySpacePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlaySpacePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the predicted display timing for the current frame.
    */
   public final fun getPredictedDisplayTime(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPredictedDisplayTimePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPredictedDisplayTimePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the predicted display timing for the next frame.
    */
   public final fun getNextFrameTime(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextFrameTimePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNextFrameTimePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns `true` if OpenXR is initialized for rendering with an XR viewport.
    */
   public final fun canRender(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canRenderPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.canRenderPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the corresponding `XRHandTrackerEXT` handle for the given hand index value.
    */
   public final fun getHandTracker(handIndex: Int): Long {
-    TransferContext.writeArguments(LONG to handIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to handIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -192,8 +191,8 @@ public open class OpenXRAPIExtension : RefCounted() {
    */
   public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
       Unit {
-    TransferContext.writeArguments(OBJECT to extension)
-    TransferContext.callMethod(rawPtr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
+    Internals.writeArguments(OBJECT to extension)
+    Internals.callMethod(rawPtr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
   }
 
   /**
@@ -201,8 +200,8 @@ public open class OpenXRAPIExtension : RefCounted() {
    */
   public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
       Unit {
-    TransferContext.writeArguments(OBJECT to extension)
-    TransferContext.callMethod(rawPtr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
+    Internals.writeArguments(OBJECT to extension)
+    Internals.callMethod(rawPtr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
   }
 
   /**
@@ -210,9 +209,8 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] blend mode.
    */
   public final fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmulateEnvironmentBlendModeAlphaBlendPtr,
-        NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEmulateEnvironmentBlendModeAlphaBlendPtr, NIL)
   }
 
   /**
@@ -220,9 +218,9 @@ public open class OpenXRAPIExtension : RefCounted() {
    * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
    */
   public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
-    return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnvironmentBlendModeAlphaSupportedPtr, LONG)
+    return OpenXRAPIExtension.OpenXRAlphaBlendModeSupport.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class OpenXRAlphaBlendModeSupport(
@@ -258,71 +256,71 @@ public open class OpenXRAPIExtension : RefCounted() {
      * Returns `true` if OpenXR is enabled.
      */
     public final fun openxrIsEnabled(checkRunInEditor: Boolean): Boolean {
-      TransferContext.writeArguments(BOOL to checkRunInEditor)
-      TransferContext.callMethod(0, MethodBindings.openxrIsEnabledPtr, BOOL)
-      return (TransferContext.readReturnValue(BOOL) as Boolean)
+      Internals.writeArguments(BOOL to checkRunInEditor)
+      Internals.callMethod(0, MethodBindings.openxrIsEnabledPtr, BOOL)
+      return (Internals.readReturnValue(BOOL) as Boolean)
     }
   }
 
   internal object MethodBindings {
     public val getInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2455072627)
 
     public val getSystemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_system_id", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_system_id", 2455072627)
 
     public val getSessionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
 
     public val transformFromPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 3255299855)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 3255299855)
 
     public val xrResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)
 
     public val openxrIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
 
     public val getInstanceProcAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1597066294)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1597066294)
 
     public val getErrorStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_error_string", 990163283)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_error_string", 990163283)
 
     public val getSwapchainFormatNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name", 990163283)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name", 990163283)
 
     public val isInitializedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2240911060)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2240911060)
 
     public val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2240911060)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2240911060)
 
     public val getPlaySpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2455072627)
 
     public val getPredictedDisplayTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time", 2455072627)
 
     public val getNextFrameTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time", 2455072627)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time", 2455072627)
 
     public val canRenderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render", 2240911060)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "can_render", 2240911060)
 
     public val getHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3744713108)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3744713108)
 
     public val registerCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1997997368)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1997997368)
 
     public val unregisterCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1997997368)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1997997368)
 
     public val setEmulateEnvironmentBlendModeAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend", 2586408642)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend", 2586408642)
 
     public val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
+        Internals.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
   }
 }

@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -142,7 +141,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LABELSETTINGS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LABELSETTINGS_INDEX, scriptIndex)
   }
 
   /**
@@ -242,159 +241,159 @@ public open class LabelSettings : Resource() {
 
 
   public final fun setLineSpacing(spacing: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to spacing.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+    Internals.writeArguments(DOUBLE to spacing.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
   public final fun getLineSpacing(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFont(font: Font?): Unit {
-    TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+    Internals.writeArguments(OBJECT to font)
+    Internals.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
   }
 
   public final fun getFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Font?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFontSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
   }
 
   public final fun getFontSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFontColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setFontColorPtr, NIL)
   }
 
   public final fun getFontColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setOutlineSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
   public final fun getOutlineSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setOutlineColorPtr, NIL)
   }
 
   public final fun getOutlineColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setShadowSizePtr, NIL)
   }
 
   public final fun getShadowSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShadowColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowColorPtr, NIL)
   }
 
   public final fun getShadowColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setShadowOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowOffsetPtr, NIL)
   }
 
   public final fun getShadowOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_line_spacing", 373806689)
+        Internals.getMethodBindPtr("LabelSettings", "set_line_spacing", 373806689)
 
     public val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
+        Internals.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
 
     public val setFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font", 1262170328)
+        Internals.getMethodBindPtr("LabelSettings", "set_font", 1262170328)
 
     public val getFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font", 3229501585)
+        Internals.getMethodBindPtr("LabelSettings", "get_font", 3229501585)
 
     public val setFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_size", 1286410249)
+        Internals.getMethodBindPtr("LabelSettings", "set_font_size", 1286410249)
 
     public val getFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_size", 3905245786)
+        Internals.getMethodBindPtr("LabelSettings", "get_font_size", 3905245786)
 
     public val setFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_color", 2920490490)
+        Internals.getMethodBindPtr("LabelSettings", "set_font_color", 2920490490)
 
     public val getFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_color", 3444240500)
+        Internals.getMethodBindPtr("LabelSettings", "get_font_color", 3444240500)
 
     public val setOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_size", 1286410249)
+        Internals.getMethodBindPtr("LabelSettings", "set_outline_size", 1286410249)
 
     public val getOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_size", 3905245786)
+        Internals.getMethodBindPtr("LabelSettings", "get_outline_size", 3905245786)
 
     public val setOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_color", 2920490490)
+        Internals.getMethodBindPtr("LabelSettings", "set_outline_color", 2920490490)
 
     public val getOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_color", 3444240500)
+        Internals.getMethodBindPtr("LabelSettings", "get_outline_color", 3444240500)
 
     public val setShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_size", 1286410249)
+        Internals.getMethodBindPtr("LabelSettings", "set_shadow_size", 1286410249)
 
     public val getShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_size", 3905245786)
+        Internals.getMethodBindPtr("LabelSettings", "get_shadow_size", 3905245786)
 
     public val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_color", 2920490490)
+        Internals.getMethodBindPtr("LabelSettings", "set_shadow_color", 2920490490)
 
     public val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_color", 3444240500)
+        Internals.getMethodBindPtr("LabelSettings", "get_shadow_color", 3444240500)
 
     public val setShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743155724)
+        Internals.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743155724)
 
     public val getShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
+        Internals.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
   }
 }

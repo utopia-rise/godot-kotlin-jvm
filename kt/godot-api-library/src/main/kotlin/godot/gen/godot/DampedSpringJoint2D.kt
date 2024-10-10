@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -77,78 +76,78 @@ public open class DampedSpringJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_DAMPEDSPRINGJOINT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_DAMPEDSPRINGJOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRestLength(restLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to restLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRestLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to restLength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRestLengthPtr, NIL)
   }
 
   public final fun getRestLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRestLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRestLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStiffness(stiffness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to stiffness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to stiffness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setStiffnessPtr, NIL)
   }
 
   public final fun getStiffness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStiffnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDamping(damping: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to damping.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
+    Internals.writeArguments(DOUBLE to damping.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDampingPtr, NIL)
   }
 
   public final fun getDamping(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDampingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_length", 373806689)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_length", 1740695150)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "get_length", 1740695150)
 
     public val setRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_rest_length", 373806689)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "set_rest_length", 373806689)
 
     public val getRestLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_rest_length", 1740695150)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "get_rest_length", 1740695150)
 
     public val setStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_stiffness", 373806689)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "set_stiffness", 373806689)
 
     public val getStiffnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_stiffness", 1740695150)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "get_stiffness", 1740695150)
 
     public val setDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "set_damping", 373806689)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "set_damping", 373806689)
 
     public val getDampingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DampedSpringJoint2D", "get_damping", 1740695150)
+        Internals.getMethodBindPtr("DampedSpringJoint2D", "get_damping", 1740695150)
   }
 }

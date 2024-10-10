@@ -11,13 +11,12 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -99,7 +98,7 @@ public open class RootMotionView : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ROOTMOTIONVIEW_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ROOTMOTIONVIEW_INDEX, scriptIndex)
   }
 
   /**
@@ -127,91 +126,91 @@ public open class RootMotionView : VisualInstance3D() {
 
 
   public final fun setAnimationPath(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setAnimationPathPtr, NIL)
   }
 
   public final fun getAnimationPath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationPathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setCellSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
   public final fun getCellSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadius(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setZeroY(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setZeroYPtr, NIL)
   }
 
   public final fun getZeroY(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getZeroYPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setAnimationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_animation_path", 1348162250)
+        Internals.getMethodBindPtr("RootMotionView", "set_animation_path", 1348162250)
 
     public val getAnimationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_animation_path", 4075236667)
+        Internals.getMethodBindPtr("RootMotionView", "get_animation_path", 4075236667)
 
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_color", 2920490490)
+        Internals.getMethodBindPtr("RootMotionView", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_color", 3444240500)
+        Internals.getMethodBindPtr("RootMotionView", "get_color", 3444240500)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_cell_size", 373806689)
+        Internals.getMethodBindPtr("RootMotionView", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_cell_size", 1740695150)
+        Internals.getMethodBindPtr("RootMotionView", "get_cell_size", 1740695150)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_radius", 373806689)
+        Internals.getMethodBindPtr("RootMotionView", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("RootMotionView", "get_radius", 1740695150)
 
     public val setZeroYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "set_zero_y", 2586408642)
+        Internals.getMethodBindPtr("RootMotionView", "set_zero_y", 2586408642)
 
     public val getZeroYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RootMotionView", "get_zero_y", 36873697)
+        Internals.getMethodBindPtr("RootMotionView", "get_zero_y", 36873697)
   }
 }

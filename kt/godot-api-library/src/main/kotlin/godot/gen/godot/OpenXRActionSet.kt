@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -71,95 +70,95 @@ public open class OpenXRActionSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRACTIONSET_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRACTIONSET_INDEX, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {
-    TransferContext.writeArguments(STRING to localizedName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
+    Internals.writeArguments(STRING to localizedName)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalizedNamePtr, NIL)
   }
 
   public final fun getLocalizedName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalizedNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
   }
 
   public final fun getPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Retrieve the number of actions in our action set.
    */
   public final fun getActionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setActions(actions: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to actions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
+    Internals.writeArguments(ARRAY to actions)
+    Internals.callMethod(rawPtr, MethodBindings.setActionsPtr, NIL)
   }
 
   public final fun getActions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Add an action to this action set.
    */
   public final fun addAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
+    Internals.writeArguments(OBJECT to action)
+    Internals.callMethod(rawPtr, MethodBindings.addActionPtr, NIL)
   }
 
   /**
    * Remove an action from this action set.
    */
   public final fun removeAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeActionPtr, NIL)
+    Internals.writeArguments(OBJECT to action)
+    Internals.callMethod(rawPtr, MethodBindings.removeActionPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_localized_name", 83702148)
+        Internals.getMethodBindPtr("OpenXRActionSet", "set_localized_name", 83702148)
 
     public val getLocalizedNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_localized_name", 201670096)
+        Internals.getMethodBindPtr("OpenXRActionSet", "get_localized_name", 201670096)
 
     public val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_priority", 1286410249)
+        Internals.getMethodBindPtr("OpenXRActionSet", "set_priority", 1286410249)
 
     public val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_priority", 3905245786)
+        Internals.getMethodBindPtr("OpenXRActionSet", "get_priority", 3905245786)
 
     public val getActionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_action_count", 3905245786)
+        Internals.getMethodBindPtr("OpenXRActionSet", "get_action_count", 3905245786)
 
     public val setActionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "set_actions", 381264803)
+        Internals.getMethodBindPtr("OpenXRActionSet", "set_actions", 381264803)
 
     public val getActionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "get_actions", 3995934104)
+        Internals.getMethodBindPtr("OpenXRActionSet", "get_actions", 3995934104)
 
     public val addActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "add_action", 349361333)
+        Internals.getMethodBindPtr("OpenXRActionSet", "add_action", 349361333)
 
     public val removeActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRActionSet", "remove_action", 349361333)
+        Internals.getMethodBindPtr("OpenXRActionSet", "remove_action", 349361333)
   }
 }

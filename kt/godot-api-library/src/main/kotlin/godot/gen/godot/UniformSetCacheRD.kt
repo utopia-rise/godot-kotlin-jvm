@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -30,7 +29,7 @@ private const val ENGINE_CLASS_UNIFORMSETCACHERD_INDEX: Int = 612
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_UNIFORMSETCACHERD_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_UNIFORMSETCACHERD_INDEX, scriptIndex)
   }
 
   public companion object {
@@ -42,14 +41,14 @@ public open class UniformSetCacheRD : Object() {
       `set`: Long,
       uniforms: VariantArray<RDUniform>,
     ): RID {
-      TransferContext.writeArguments(_RID to shader, LONG to set, ARRAY to uniforms)
-      TransferContext.callMethod(0, MethodBindings.getCachePtr, _RID)
-      return (TransferContext.readReturnValue(_RID) as RID)
+      Internals.writeArguments(_RID to shader, LONG to set, ARRAY to uniforms)
+      Internals.callMethod(0, MethodBindings.getCachePtr, _RID)
+      return (Internals.readReturnValue(_RID) as RID)
     }
   }
 
   internal object MethodBindings {
     public val getCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UniformSetCacheRD", "get_cache", 658571723)
+        Internals.getMethodBindPtr("UniformSetCacheRD", "get_cache", 658571723)
   }
 }

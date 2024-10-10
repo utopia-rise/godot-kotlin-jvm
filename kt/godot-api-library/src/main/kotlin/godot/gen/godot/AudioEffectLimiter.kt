@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -73,78 +72,78 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to ceiling.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
   }
 
   public final fun getCeilingDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setThresholdDb(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setThresholdDbPtr, NIL)
   }
 
   public final fun getThresholdDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThresholdDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSoftClipDb(softClip: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to softClip.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to softClip.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSoftClipDbPtr, NIL)
   }
 
   public final fun getSoftClipDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSoftClipDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSoftClipRatio(softClip: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to softClip.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to softClip.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSoftClipRatioPtr, NIL)
   }
 
   public final fun getSoftClipRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSoftClipRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373806689)
 
     public val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1740695150)
 
     public val setThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373806689)
 
     public val getThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1740695150)
 
     public val setSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373806689)
 
     public val getSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1740695150)
 
     public val setSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373806689)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373806689)
 
     public val getSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1740695150)
   }
 }

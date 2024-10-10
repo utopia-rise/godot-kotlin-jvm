@@ -10,12 +10,11 @@ import godot.MouseButtonMaskValue
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -177,7 +176,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BASEBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BASEBUTTON_INDEX, scriptIndex)
   }
 
   /**
@@ -194,14 +193,14 @@ public open class BaseButton : Control() {
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    Internals.writeArguments(BOOL to pressed)
+    Internals.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun isPressed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -211,72 +210,72 @@ public open class BaseButton : Control() {
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
   public final fun setPressedNoSignal(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedNoSignalPtr, NIL)
+    Internals.writeArguments(BOOL to pressed)
+    Internals.callMethod(rawPtr, MethodBindings.setPressedNoSignalPtr, NIL)
   }
 
   /**
    * Returns `true` if the mouse has entered the button and has not left it yet.
    */
   public final fun isHovered(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHoveredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHoveredPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setToggleMode(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setToggleModePtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setToggleModePtr, NIL)
   }
 
   public final fun isToggleMode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isToggleModePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isToggleModePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutInTooltip(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutInTooltipPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutInTooltipPtr, NIL)
   }
 
   public final fun isShortcutInTooltipEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShortcutInTooltipEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    Internals.writeArguments(BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setActionMode(mode: ActionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setActionModePtr, NIL)
   }
 
   public final fun getActionMode(): ActionMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionModePtr, LONG)
-    return BaseButton.ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionModePtr, LONG)
+    return BaseButton.ActionMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setButtonMask(mask: MouseButtonMask): Unit {
-    TransferContext.writeArguments(LONG to mask.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
   public final fun getButtonMask(): MouseButtonMask {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
+    return MouseButtonMaskValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -285,53 +284,53 @@ public open class BaseButton : Control() {
    * button is defined by the [DrawMode] enum.
    */
   public final fun getDrawMode(): DrawMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawModePtr, LONG)
-    return BaseButton.DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrawModePtr, LONG)
+    return BaseButton.DrawMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setKeepPressedOutside(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeepPressedOutsidePtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setKeepPressedOutsidePtr, NIL)
   }
 
   public final fun isKeepPressedOutside(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isKeepPressedOutsidePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutFeedback(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutFeedbackPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutFeedbackPtr, NIL)
   }
 
   public final fun isShortcutFeedback(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutFeedbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShortcutFeedbackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {
-    TransferContext.writeArguments(OBJECT to shortcut)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
+    Internals.writeArguments(OBJECT to shortcut)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutPtr, NIL)
   }
 
   public final fun getShortcut(): Shortcut? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShortcutPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shortcut?)
   }
 
   public final fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
-    TransferContext.writeArguments(OBJECT to buttonGroup)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonGroupPtr, NIL)
+    Internals.writeArguments(OBJECT to buttonGroup)
+    Internals.callMethod(rawPtr, MethodBindings.setButtonGroupPtr, NIL)
   }
 
   public final fun getButtonGroup(): ButtonGroup? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonGroupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ButtonGroup?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonGroupPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ButtonGroup?)
   }
 
   public enum class DrawMode(
@@ -396,72 +395,72 @@ public open class BaseButton : Control() {
 
   internal object MethodBindings {
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_pressed", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_pressed", 2586408642)
 
     public val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_pressed", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_pressed", 36873697)
 
     public val setPressedNoSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_pressed_no_signal", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_pressed_no_signal", 2586408642)
 
     public val isHoveredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_hovered", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_hovered", 36873697)
 
     public val setToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_toggle_mode", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_toggle_mode", 2586408642)
 
     public val isToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_toggle_mode", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_toggle_mode", 36873697)
 
     public val setShortcutInTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip", 2586408642)
 
     public val isShortcutInTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled", 36873697)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_disabled", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_disabled", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_disabled", 36873697)
 
     public val setActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_action_mode", 1985162088)
+        Internals.getMethodBindPtr("BaseButton", "set_action_mode", 1985162088)
 
     public val getActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_action_mode", 2589712189)
+        Internals.getMethodBindPtr("BaseButton", "get_action_mode", 2589712189)
 
     public val setButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_mask", 3950145251)
+        Internals.getMethodBindPtr("BaseButton", "set_button_mask", 3950145251)
 
     public val getButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_mask", 2512161324)
+        Internals.getMethodBindPtr("BaseButton", "get_button_mask", 2512161324)
 
     public val getDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_draw_mode", 2492721305)
+        Internals.getMethodBindPtr("BaseButton", "get_draw_mode", 2492721305)
 
     public val setKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_keep_pressed_outside", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_keep_pressed_outside", 2586408642)
 
     public val isKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_keep_pressed_outside", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_keep_pressed_outside", 36873697)
 
     public val setShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_feedback", 2586408642)
+        Internals.getMethodBindPtr("BaseButton", "set_shortcut_feedback", 2586408642)
 
     public val isShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_feedback", 36873697)
+        Internals.getMethodBindPtr("BaseButton", "is_shortcut_feedback", 36873697)
 
     public val setShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut", 857163497)
+        Internals.getMethodBindPtr("BaseButton", "set_shortcut", 857163497)
 
     public val getShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_shortcut", 3415666916)
+        Internals.getMethodBindPtr("BaseButton", "get_shortcut", 3415666916)
 
     public val setButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_group", 1794463739)
+        Internals.getMethodBindPtr("BaseButton", "set_button_group", 1794463739)
 
     public val getButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_group", 281644053)
+        Internals.getMethodBindPtr("BaseButton", "get_button_group", 281644053)
   }
 }

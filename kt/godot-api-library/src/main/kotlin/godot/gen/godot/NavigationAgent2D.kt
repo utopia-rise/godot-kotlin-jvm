@@ -16,7 +16,6 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -27,7 +26,7 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -451,7 +450,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX, scriptIndex)
   }
 
   /**
@@ -535,130 +534,130 @@ public open class NavigationAgent2D : Node() {
    * Returns the [RID] of this agent on the [NavigationServer2D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidanceEnabledPtr, NIL)
   }
 
   public final fun getAvoidanceEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidanceEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPathDesiredDistance(desiredDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathDesiredDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to desiredDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPathDesiredDistancePtr, NIL)
   }
 
   public final fun getPathDesiredDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathDesiredDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTargetDesiredDistance(desiredDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetDesiredDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to desiredDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTargetDesiredDistancePtr, NIL)
   }
 
   public final fun getTargetDesiredDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetDesiredDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNeighborDistance(neighborDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to neighborDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNeighborDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to neighborDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setNeighborDistancePtr, NIL)
   }
 
   public final fun getNeighborDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNeighborDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNeighborDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxNeighbors(maxNeighbors: Int): Unit {
-    TransferContext.writeArguments(LONG to maxNeighbors.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxNeighborsPtr, NIL)
+    Internals.writeArguments(LONG to maxNeighbors.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxNeighborsPtr, NIL)
   }
 
   public final fun getMaxNeighbors(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxNeighborsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxNeighborsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTimeHorizonAgents(timeHorizon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonAgentsPtr, NIL)
+    Internals.writeArguments(DOUBLE to timeHorizon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTimeHorizonAgentsPtr, NIL)
   }
 
   public final fun getTimeHorizonAgents(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeHorizonAgentsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTimeHorizonObstacles(timeHorizon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeHorizonObstaclesPtr, NIL)
+    Internals.writeArguments(DOUBLE to timeHorizon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTimeHorizonObstaclesPtr, NIL)
   }
 
   public final fun getTimeHorizonObstacles(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeHorizonObstaclesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxSpeed(maxSpeed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxSpeedPtr, NIL)
+    Internals.writeArguments(DOUBLE to maxSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxSpeedPtr, NIL)
   }
 
   public final fun getMaxSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPathMaxDistance(maxSpeed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathMaxDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to maxSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPathMaxDistancePtr, NIL)
   }
 
   public final fun getPathMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathMaxDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNavigationLayers(navigationLayers: Long): Unit {
-    TransferContext.writeArguments(LONG to navigationLayers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
+    Internals.writeArguments(LONG to navigationLayers)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayersPtr, NIL)
   }
 
   public final fun getNavigationLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -666,8 +665,8 @@ public open class NavigationAgent2D : Node() {
    * given a [layerNumber] between 1 and 32.
    */
   public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
@@ -675,47 +674,47 @@ public open class NavigationAgent2D : Node() {
    * a [layerNumber] between 1 and 32.
    */
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayerValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final
       fun setPathfindingAlgorithm(pathfindingAlgorithm: NavigationPathQueryParameters2D.PathfindingAlgorithm):
       Unit {
-    TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
+    Internals.writeArguments(LONG to pathfindingAlgorithm.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
   public final fun getPathfindingAlgorithm(): NavigationPathQueryParameters2D.PathfindingAlgorithm {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
-    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathfindingAlgorithmPtr, LONG)
+    return NavigationPathQueryParameters2D.PathfindingAlgorithm.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final
       fun setPathPostprocessing(pathPostprocessing: NavigationPathQueryParameters2D.PathPostProcessing):
       Unit {
-    TransferContext.writeArguments(LONG to pathPostprocessing.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
+    Internals.writeArguments(LONG to pathPostprocessing.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 
   public final fun getPathPostprocessing(): NavigationPathQueryParameters2D.PathPostProcessing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
-    return NavigationPathQueryParameters2D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathPostprocessingPtr, LONG)
+    return NavigationPathQueryParameters2D.PathPostProcessing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters2D.PathMetadataFlags):
       Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathMetadataFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
 
   public final fun getPathMetadataFlags(): NavigationPathQueryParameters2D.PathMetadataFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathMetadataFlagsPtr, LONG)
-    return PathMetadataFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathMetadataFlagsPtr, LONG)
+    return PathMetadataFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -723,8 +722,8 @@ public open class NavigationAgent2D : Node() {
    * `agent` on the NavigationServer.
    */
   public final fun setNavigationMap(navigationMap: RID): Unit {
-    TransferContext.writeArguments(_RID to navigationMap)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
+    Internals.writeArguments(_RID to navigationMap)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
@@ -735,42 +734,42 @@ public open class NavigationAgent2D : Node() {
    * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationMapPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setTargetPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setSimplifyPath(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSimplifyPathPtr, NIL)
   }
 
   public final fun getSimplifyPath(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimplifyPathPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSimplifyEpsilon(epsilon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
+    Internals.writeArguments(DOUBLE to epsilon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
 
   public final fun getSimplifyEpsilon(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -780,9 +779,9 @@ public open class NavigationAgent2D : Node() {
    * update the internal path logic of the NavigationAgent.
    */
   public final fun getNextPathPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextPathPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNextPathPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -791,19 +790,19 @@ public open class NavigationAgent2D : Node() {
    * frequently this function can get agents stuck.
    */
   public final fun setVelocityForced(velocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityForcedPtr, NIL)
+    Internals.writeArguments(VECTOR2 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setVelocityForcedPtr, NIL)
   }
 
   public final fun setVelocity(velocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
   public final fun getVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -811,18 +810,18 @@ public open class NavigationAgent2D : Node() {
    * set [targetPosition] in order for this to be accurate.
    */
   public final fun distanceToTarget(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.distanceToTargetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.distanceToTargetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the path query result for the path the agent is currently following.
    */
   public final fun getCurrentNavigationResult(): NavigationPathQueryResult2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as NavigationPathQueryResult2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentNavigationResultPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as NavigationPathQueryResult2D?)
   }
 
   /**
@@ -834,19 +833,18 @@ public open class NavigationAgent2D : Node() {
    * also updates the internal path logic.
    */
   public final fun getCurrentNavigationPath(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathPtr,
-        PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
    * Returns which index the agent is currently on in the navigation path's [PackedVector2Array].
    */
   public final fun getCurrentNavigationPathIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentNavigationPathIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -855,18 +853,18 @@ public open class NavigationAgent2D : Node() {
    * but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public final fun isTargetReached(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTargetReachedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if [getFinalPosition] is within [targetDesiredDistance] of the [targetPosition].
    */
   public final fun isTargetReachable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTargetReachablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTargetReachablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -877,9 +875,9 @@ public open class NavigationAgent2D : Node() {
    * avoids jittering the standing agent due to calling repeated path updates.
    */
   public final fun isNavigationFinished(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isNavigationFinishedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isNavigationFinishedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -888,31 +886,31 @@ public open class NavigationAgent2D : Node() {
    * the [signal path_changed] signal.
    */
   public final fun getFinalPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFinalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFinalPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setAvoidanceLayers(layers: Long): Unit {
-    TransferContext.writeArguments(LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
+    Internals.writeArguments(LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidanceLayersPtr, NIL)
   }
 
   public final fun getAvoidanceLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidanceLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAvoidanceMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidanceMaskPtr, NIL)
   }
 
   public final fun getAvoidanceMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidanceMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -920,8 +918,8 @@ public open class NavigationAgent2D : Node() {
    * given a [layerNumber] between 1 and 32.
    */
   public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
@@ -929,9 +927,9 @@ public open class NavigationAgent2D : Node() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidanceLayerValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -939,8 +937,8 @@ public open class NavigationAgent2D : Node() {
    * a [maskNumber] between 1 and 32.
    */
   public final fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidanceMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidanceMaskValuePtr, NIL)
   }
 
   /**
@@ -948,291 +946,291 @@ public open class NavigationAgent2D : Node() {
    * [maskNumber] between 1 and 32.
    */
   public final fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to maskNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidanceMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to maskNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidanceMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAvoidancePriority(priority: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to priority.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAvoidancePriorityPtr, NIL)
+    Internals.writeArguments(DOUBLE to priority.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAvoidancePriorityPtr, NIL)
   }
 
   public final fun getAvoidancePriority(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvoidancePriorityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDebugEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugEnabledPtr, NIL)
   }
 
   public final fun getDebugEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugUseCustom(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugUseCustomPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugUseCustomPtr, NIL)
   }
 
   public final fun getDebugUseCustom(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugUseCustomPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugUseCustomPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugPathCustomColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugPathCustomColorPtr, NIL)
   }
 
   public final fun getDebugPathCustomColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugPathCustomColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setDebugPathCustomPointSize(pointSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to pointSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
   }
 
   public final fun getDebugPathCustomPointSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugPathCustomPointSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDebugPathCustomLineWidth(lineWidth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to lineWidth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathCustomLineWidthPtr, NIL)
+    Internals.writeArguments(DOUBLE to lineWidth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDebugPathCustomLineWidthPtr, NIL)
   }
 
   public final fun getDebugPathCustomLineWidth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugPathCustomLineWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugPathCustomLineWidthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_rid", 2944877500)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_rid", 2944877500)
 
     public val setAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_enabled", 2586408642)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_enabled", 2586408642)
 
     public val getAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_enabled", 36873697)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_enabled", 36873697)
 
     public val setPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_desired_distance", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_path_desired_distance", 373806689)
 
     public val getPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_desired_distance", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_path_desired_distance", 1740695150)
 
     public val setTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_desired_distance", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_target_desired_distance", 373806689)
 
     public val getTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_desired_distance", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_target_desired_distance", 1740695150)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_radius", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_radius", 1740695150)
 
     public val setNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_neighbor_distance", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_neighbor_distance", 373806689)
 
     public val getNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_neighbor_distance", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_neighbor_distance", 1740695150)
 
     public val setMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_neighbors", 1286410249)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_max_neighbors", 1286410249)
 
     public val getMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_neighbors", 3905245786)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_max_neighbors", 3905245786)
 
     public val setTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_agents", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_agents", 373806689)
 
     public val getTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_agents", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_agents", 1740695150)
 
     public val setTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_obstacles", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_time_horizon_obstacles", 373806689)
 
     public val getTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_obstacles", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_time_horizon_obstacles", 1740695150)
 
     public val setMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_max_speed", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_max_speed", 373806689)
 
     public val getMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_max_speed", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_max_speed", 1740695150)
 
     public val setPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_max_distance", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_path_max_distance", 373806689)
 
     public val getPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_max_distance", 191475506)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_path_max_distance", 191475506)
 
     public val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layers", 1286410249)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_navigation_layers", 1286410249)
 
     public val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layers", 3905245786)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_navigation_layers", 3905245786)
 
     public val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_layer_value", 300928843)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_navigation_layer_value", 300928843)
 
     public val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_layer_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_navigation_layer_value", 1116898809)
 
     public val setPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_pathfinding_algorithm", 2783519915)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_pathfinding_algorithm", 2783519915)
 
     public val getPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_pathfinding_algorithm", 3000421146)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_pathfinding_algorithm", 3000421146)
 
     public val setPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_postprocessing", 2864409082)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_path_postprocessing", 2864409082)
 
     public val getPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_postprocessing", 3798118993)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_path_postprocessing", 3798118993)
 
     public val setPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_path_metadata_flags", 24274129)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_path_metadata_flags", 24274129)
 
     public val getPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_path_metadata_flags", 488152976)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_path_metadata_flags", 488152976)
 
     public val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_navigation_map", 2722037293)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_navigation_map", 2722037293)
 
     public val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_navigation_map", 2944877500)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_navigation_map", 2944877500)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_target_position", 743155724)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_target_position", 743155724)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_target_position", 3341600327)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_target_position", 3341600327)
 
     public val setSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_path", 2586408642)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_simplify_path", 2586408642)
 
     public val getSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_path", 36873697)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_simplify_path", 36873697)
 
     public val setSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_simplify_epsilon", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_simplify_epsilon", 373806689)
 
     public val getSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_simplify_epsilon", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_simplify_epsilon", 1740695150)
 
     public val getNextPathPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_next_path_position", 1497962370)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_next_path_position", 1497962370)
 
     public val setVelocityForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity_forced", 743155724)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_velocity_forced", 743155724)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_velocity", 743155724)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_velocity", 1497962370)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_velocity", 1497962370)
 
     public val distanceToTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "distance_to_target", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "distance_to_target", 1740695150)
 
     public val getCurrentNavigationResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_result", 166799483)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_result", 166799483)
 
     public val getCurrentNavigationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path", 2961356807)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path", 2961356807)
 
     public val getCurrentNavigationPathIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path_index", 3905245786)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_current_navigation_path_index", 3905245786)
 
     public val isTargetReachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reached", 36873697)
+        Internals.getMethodBindPtr("NavigationAgent2D", "is_target_reached", 36873697)
 
     public val isTargetReachablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_target_reachable", 2240911060)
+        Internals.getMethodBindPtr("NavigationAgent2D", "is_target_reachable", 2240911060)
 
     public val isNavigationFinishedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "is_navigation_finished", 2240911060)
+        Internals.getMethodBindPtr("NavigationAgent2D", "is_navigation_finished", 2240911060)
 
     public val getFinalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_final_position", 1497962370)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_final_position", 1497962370)
 
     public val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layers", 1286410249)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layers", 1286410249)
 
     public val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layers", 3905245786)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layers", 3905245786)
 
     public val setAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask", 1286410249)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask", 1286410249)
 
     public val getAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask", 3905245786)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask", 3905245786)
 
     public val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layer_value", 300928843)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_layer_value", 300928843)
 
     public val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layer_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_layer_value", 1116898809)
 
     public val setAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask_value", 300928843)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_mask_value", 300928843)
 
     public val getAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_mask_value", 1116898809)
 
     public val setAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_avoidance_priority", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_avoidance_priority", 373806689)
 
     public val getAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_avoidance_priority", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_avoidance_priority", 1740695150)
 
     public val setDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_enabled", 2586408642)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_debug_enabled", 2586408642)
 
     public val getDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_enabled", 36873697)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_debug_enabled", 36873697)
 
     public val setDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_use_custom", 2586408642)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_debug_use_custom", 2586408642)
 
     public val getDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_use_custom", 36873697)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_debug_use_custom", 36873697)
 
     public val setDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_color", 2920490490)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_color", 2920490490)
 
     public val getDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_color", 3444240500)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_color", 3444240500)
 
     public val setDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_point_size", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_point_size", 373806689)
 
     public val getDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_point_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_point_size", 1740695150)
 
     public val setDebugPathCustomLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_line_width", 373806689)
+        Internals.getMethodBindPtr("NavigationAgent2D", "set_debug_path_custom_line_width", 373806689)
 
     public val getDebugPathCustomLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_line_width", 1740695150)
+        Internals.getMethodBindPtr("NavigationAgent2D", "get_debug_path_custom_line_width", 1740695150)
   }
 }

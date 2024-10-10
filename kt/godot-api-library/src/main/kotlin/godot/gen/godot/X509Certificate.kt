@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -30,25 +29,25 @@ private const val ENGINE_CLASS_X509CERTIFICATE_INDEX: Int = 747
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_X509CERTIFICATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_X509CERTIFICATE_INDEX, scriptIndex)
   }
 
   /**
    * Saves a certificate to the given [path] (should be a "*.crt" file).
    */
   public final fun save(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Loads a certificate from [path] ("*.crt" file).
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -56,31 +55,31 @@ public open class X509Certificate : Resource() {
    * invalid.
    */
   public final fun saveToString(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.saveToStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Loads a certificate from the given [string].
    */
   public final fun loadFromString(string: String): Error {
-    TransferContext.writeArguments(STRING to string)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to string)
+    Internals.callMethod(rawPtr, MethodBindings.loadFromStringPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("X509Certificate", "save", 166001499)
+    public val savePtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "save", 166001499)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("X509Certificate", "load", 166001499)
+    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("X509Certificate", "load", 166001499)
 
     public val saveToStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "save_to_string", 2841200299)
+        Internals.getMethodBindPtr("X509Certificate", "save_to_string", 2841200299)
 
     public val loadFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("X509Certificate", "load_from_string", 166001499)
+        Internals.getMethodBindPtr("X509Certificate", "load_from_string", 166001499)
   }
 }

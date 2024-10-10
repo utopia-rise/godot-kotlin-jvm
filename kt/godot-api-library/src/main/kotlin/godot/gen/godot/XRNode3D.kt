@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -81,58 +80,58 @@ public open class XRNode3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRNODE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRNODE3D_INDEX, scriptIndex)
   }
 
   public final fun setTracker(trackerName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to trackerName)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerPtr, NIL)
   }
 
   public final fun getTracker(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setPoseName(pose: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to pose)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to pose)
+    Internals.callMethod(rawPtr, MethodBindings.setPoseNamePtr, NIL)
   }
 
   public final fun getPoseName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPoseNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setShowWhenTracked(show: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to show)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
+    Internals.writeArguments(BOOL to show)
+    Internals.callMethod(rawPtr, MethodBindings.setShowWhenTrackedPtr, NIL)
   }
 
   public final fun getShowWhenTracked(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShowWhenTrackedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the [tracker] has been registered and the [pose] is being tracked.
    */
   public final fun getIsActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIsActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the [tracker] has current tracking data for the [pose] being tracked.
    */
   public final fun getHasTrackingData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -140,9 +139,9 @@ public open class XRNode3D : Node3D() {
    * to additional properties of this pose.
    */
   public final fun getPose(): XRPose? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as XRPose?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPosePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as XRPose?)
   }
 
   /**
@@ -161,41 +160,40 @@ public open class XRNode3D : Node3D() {
     durationSec: Double,
     delaySec: Double,
   ): Unit {
-    TransferContext.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
-    TransferContext.callMethod(rawPtr, MethodBindings.triggerHapticPulsePtr, NIL)
+    Internals.writeArguments(STRING to actionName, DOUBLE to frequency, DOUBLE to amplitude, DOUBLE to durationSec, DOUBLE to delaySec)
+    Internals.callMethod(rawPtr, MethodBindings.triggerHapticPulsePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_tracker", 3304788590)
+        Internals.getMethodBindPtr("XRNode3D", "set_tracker", 3304788590)
 
     public val getTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_tracker", 2002593661)
+        Internals.getMethodBindPtr("XRNode3D", "get_tracker", 2002593661)
 
     public val setPoseNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_pose_name", 3304788590)
+        Internals.getMethodBindPtr("XRNode3D", "set_pose_name", 3304788590)
 
     public val getPoseNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_pose_name", 2002593661)
+        Internals.getMethodBindPtr("XRNode3D", "get_pose_name", 2002593661)
 
     public val setShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2586408642)
+        Internals.getMethodBindPtr("XRNode3D", "set_show_when_tracked", 2586408642)
 
     public val getShowWhenTrackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36873697)
+        Internals.getMethodBindPtr("XRNode3D", "get_show_when_tracked", 36873697)
 
     public val getIsActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_is_active", 36873697)
+        Internals.getMethodBindPtr("XRNode3D", "get_is_active", 36873697)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36873697)
+        Internals.getMethodBindPtr("XRNode3D", "get_has_tracking_data", 36873697)
 
-    public val getPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
+    public val getPosePtr: VoidPtr = Internals.getMethodBindPtr("XRNode3D", "get_pose", 2806551826)
 
     public val triggerHapticPulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508576839)
+        Internals.getMethodBindPtr("XRNode3D", "trigger_haptic_pulse", 508576839)
   }
 }

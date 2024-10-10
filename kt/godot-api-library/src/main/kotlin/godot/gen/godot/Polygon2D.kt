@@ -14,7 +14,6 @@ import godot.core.NodePath
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -29,7 +28,7 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -231,7 +230,7 @@ public open class Polygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_POLYGON2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_POLYGON2D_INDEX, scriptIndex)
   }
 
   /**
@@ -334,350 +333,349 @@ public open class Polygon2D : Node2D() {
 
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setUv(uv: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to uv)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUvPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to uv)
+    Internals.callMethod(rawPtr, MethodBindings.setUvPtr, NIL)
   }
 
   public final fun getUv(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUvPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUvPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setPolygons(polygons: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to polygons)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonsPtr, NIL)
+    Internals.writeArguments(ARRAY to polygons)
+    Internals.callMethod(rawPtr, MethodBindings.setPolygonsPtr, NIL)
   }
 
   public final fun getPolygons(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setVertexColors(vertexColors: PackedColorArray): Unit {
-    TransferContext.writeArguments(PACKED_COLOR_ARRAY to vertexColors)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVertexColorsPtr, NIL)
+    Internals.writeArguments(PACKED_COLOR_ARRAY to vertexColors)
+    Internals.callMethod(rawPtr, MethodBindings.setVertexColorsPtr, NIL)
   }
 
   public final fun getVertexColors(): PackedColorArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVertexColorsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVertexColorsPtr, PACKED_COLOR_ARRAY)
+    return (Internals.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureOffset(textureOffset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to textureOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to textureOffset)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
   }
 
   public final fun getTextureOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTextureRotation(textureRotation: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to textureRotation.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRotationPtr, NIL)
+    Internals.writeArguments(DOUBLE to textureRotation.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureRotationPtr, NIL)
   }
 
   public final fun getTextureRotation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRotationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureRotationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureScale(textureScale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to textureScale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to textureScale)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
   }
 
   public final fun getTextureScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setInvertEnabled(invert: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to invert)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInvertEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to invert)
+    Internals.callMethod(rawPtr, MethodBindings.setInvertEnabledPtr, NIL)
   }
 
   public final fun getInvertEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInvertEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInvertEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAntialiased(antialiased: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
+    Internals.writeArguments(BOOL to antialiased)
+    Internals.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
   }
 
   public final fun getAntialiased(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInvertBorder(invertBorder: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to invertBorder.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInvertBorderPtr, NIL)
+    Internals.writeArguments(DOUBLE to invertBorder.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInvertBorderPtr, NIL)
   }
 
   public final fun getInvertBorder(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInvertBorderPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInvertBorderPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Adds a bone with the specified [path] and [weights].
    */
   public final fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBonePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)
+    Internals.callMethod(rawPtr, MethodBindings.addBonePtr, NIL)
   }
 
   /**
    * Returns the number of bones in this [Polygon2D].
    */
   public final fun getBoneCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the path to the node associated with the specified bone.
    */
   public final fun getBonePath(index: Int): NodePath {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBonePathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBonePathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
    * Returns the weight values of the specified bone.
    */
   public final fun getBoneWeights(index: Int): PackedFloat32Array {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneWeightsPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBoneWeightsPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   /**
    * Removes the specified bone from this [Polygon2D].
    */
   public final fun eraseBone(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseBonePtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.eraseBonePtr, NIL)
   }
 
   /**
    * Removes all bones from this [Polygon2D].
    */
   public final fun clearBones(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBonesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearBonesPtr, NIL)
   }
 
   /**
    * Sets the path to the node associated with the specified bone.
    */
   public final fun setBonePath(index: Int, path: NodePath): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBonePathPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong(), NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setBonePathPtr, NIL)
   }
 
   /**
    * Sets the weight values for the specified bone.
    */
   public final fun setBoneWeights(index: Int, weights: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneWeightsPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong(), PACKED_FLOAT_32_ARRAY to weights)
+    Internals.callMethod(rawPtr, MethodBindings.setBoneWeightsPtr, NIL)
   }
 
   public final fun setSkeleton(skeleton: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to skeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
+    Internals.writeArguments(NODE_PATH to skeleton)
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
   }
 
   public final fun getSkeleton(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setInternalVertexCount(internalVertexCount: Int): Unit {
-    TransferContext.writeArguments(LONG to internalVertexCount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInternalVertexCountPtr, NIL)
+    Internals.writeArguments(LONG to internalVertexCount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setInternalVertexCountPtr, NIL)
   }
 
   public final fun getInternalVertexCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInternalVertexCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInternalVertexCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_polygon", 1509147220)
+        Internals.getMethodBindPtr("Polygon2D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_polygon", 2961356807)
+        Internals.getMethodBindPtr("Polygon2D", "get_polygon", 2961356807)
 
-    public val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_uv", 1509147220)
+    public val setUvPtr: VoidPtr = Internals.getMethodBindPtr("Polygon2D", "set_uv", 1509147220)
 
-    public val getUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_uv", 2961356807)
+    public val getUvPtr: VoidPtr = Internals.getMethodBindPtr("Polygon2D", "get_uv", 2961356807)
 
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_color", 2920490490)
+        Internals.getMethodBindPtr("Polygon2D", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_color", 3444240500)
+        Internals.getMethodBindPtr("Polygon2D", "get_color", 3444240500)
 
     public val setPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_polygons", 381264803)
+        Internals.getMethodBindPtr("Polygon2D", "set_polygons", 381264803)
 
     public val getPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_polygons", 3995934104)
+        Internals.getMethodBindPtr("Polygon2D", "get_polygons", 3995934104)
 
     public val setVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors", 3546319833)
+        Internals.getMethodBindPtr("Polygon2D", "set_vertex_colors", 3546319833)
 
     public val getVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors", 1392750486)
+        Internals.getMethodBindPtr("Polygon2D", "get_vertex_colors", 1392750486)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("Polygon2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("Polygon2D", "get_texture", 3635182373)
 
     public val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset", 743155724)
+        Internals.getMethodBindPtr("Polygon2D", "set_texture_offset", 743155724)
 
     public val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset", 3341600327)
+        Internals.getMethodBindPtr("Polygon2D", "get_texture_offset", 3341600327)
 
     public val setTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation", 373806689)
+        Internals.getMethodBindPtr("Polygon2D", "set_texture_rotation", 373806689)
 
     public val getTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation", 1740695150)
+        Internals.getMethodBindPtr("Polygon2D", "get_texture_rotation", 1740695150)
 
     public val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale", 743155724)
+        Internals.getMethodBindPtr("Polygon2D", "set_texture_scale", 743155724)
 
     public val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale", 3341600327)
+        Internals.getMethodBindPtr("Polygon2D", "get_texture_scale", 3341600327)
 
     public val setInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled", 2586408642)
+        Internals.getMethodBindPtr("Polygon2D", "set_invert_enabled", 2586408642)
 
     public val getInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled", 36873697)
+        Internals.getMethodBindPtr("Polygon2D", "get_invert_enabled", 36873697)
 
     public val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased", 2586408642)
+        Internals.getMethodBindPtr("Polygon2D", "set_antialiased", 2586408642)
 
     public val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased", 36873697)
+        Internals.getMethodBindPtr("Polygon2D", "get_antialiased", 36873697)
 
     public val setInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border", 373806689)
+        Internals.getMethodBindPtr("Polygon2D", "set_invert_border", 373806689)
 
     public val getInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border", 1740695150)
+        Internals.getMethodBindPtr("Polygon2D", "get_invert_border", 1740695150)
 
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_offset", 743155724)
+        Internals.getMethodBindPtr("Polygon2D", "set_offset", 743155724)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("Polygon2D", "get_offset", 3341600327)
 
-    public val addBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "add_bone", 703042815)
+    public val addBonePtr: VoidPtr = Internals.getMethodBindPtr("Polygon2D", "add_bone", 703042815)
 
     public val getBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count", 3905245786)
+        Internals.getMethodBindPtr("Polygon2D", "get_bone_count", 3905245786)
 
     public val getBonePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path", 408788394)
+        Internals.getMethodBindPtr("Polygon2D", "get_bone_path", 408788394)
 
     public val getBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights", 1542882410)
+        Internals.getMethodBindPtr("Polygon2D", "get_bone_weights", 1542882410)
 
     public val eraseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "erase_bone", 1286410249)
+        Internals.getMethodBindPtr("Polygon2D", "erase_bone", 1286410249)
 
     public val clearBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "clear_bones", 3218959716)
+        Internals.getMethodBindPtr("Polygon2D", "clear_bones", 3218959716)
 
     public val setBonePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path", 2761262315)
+        Internals.getMethodBindPtr("Polygon2D", "set_bone_path", 2761262315)
 
     public val setBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights", 1345852415)
+        Internals.getMethodBindPtr("Polygon2D", "set_bone_weights", 1345852415)
 
     public val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton", 1348162250)
+        Internals.getMethodBindPtr("Polygon2D", "set_skeleton", 1348162250)
 
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton", 4075236667)
+        Internals.getMethodBindPtr("Polygon2D", "get_skeleton", 4075236667)
 
     public val setInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count", 1286410249)
+        Internals.getMethodBindPtr("Polygon2D", "set_internal_vertex_count", 1286410249)
 
     public val getInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count", 3905245786)
+        Internals.getMethodBindPtr("Polygon2D", "get_internal_vertex_count", 3905245786)
   }
 }

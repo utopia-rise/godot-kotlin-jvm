@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -282,7 +281,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_DECAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_DECAL_INDEX, scriptIndex)
   }
 
   /**
@@ -342,14 +341,14 @@ public open class Decal : VisualInstance3D() {
 
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -374,8 +373,8 @@ public open class Decal : VisualInstance3D() {
    * ```
    */
   public final fun setTexture(type: DecalTexture, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(LONG to type.id, OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   /**
@@ -400,119 +399,119 @@ public open class Decal : VisualInstance3D() {
    * ```
    */
   public final fun getTexture(type: DecalTexture): Texture2D? {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setEmissionEnergy(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionEnergyPtr, NIL)
   }
 
   public final fun getEmissionEnergy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionEnergyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlbedoMix(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoMixPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlbedoMixPtr, NIL)
   }
 
   public final fun getAlbedoMix(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoMixPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlbedoMixPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setModulate(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setUpperFade(fade: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpperFadePtr, NIL)
+    Internals.writeArguments(DOUBLE to fade.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setUpperFadePtr, NIL)
   }
 
   public final fun getUpperFade(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpperFadePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpperFadePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLowerFade(fade: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLowerFadePtr, NIL)
+    Internals.writeArguments(DOUBLE to fade.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLowerFadePtr, NIL)
   }
 
   public final fun getLowerFade(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLowerFadePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLowerFadePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalFade(fade: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalFadePtr, NIL)
+    Internals.writeArguments(DOUBLE to fade.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setNormalFadePtr, NIL)
   }
 
   public final fun getNormalFade(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalFadePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalFadePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEnableDistanceFade(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDistanceFadePtr, NIL)
   }
 
   public final fun isDistanceFadeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDistanceFadeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDistanceFadeBegin(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeBeginPtr, NIL)
   }
 
   public final fun getDistanceFadeBegin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeBeginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeLength(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeLengthPtr, NIL)
   }
 
   public final fun getDistanceFadeLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCullMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCullMaskPtr, NIL)
   }
 
   public final fun getCullMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class DecalTexture(
@@ -553,74 +552,74 @@ public open class Decal : VisualInstance3D() {
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "set_size", 3460891852)
+    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("Decal", "get_size", 3360562783)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("Decal", "get_size", 3360562783)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_texture", 2086764391)
+        Internals.getMethodBindPtr("Decal", "set_texture", 2086764391)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_texture", 3244119503)
+        Internals.getMethodBindPtr("Decal", "get_texture", 3244119503)
 
     public val setEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_emission_energy", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_emission_energy", 373806689)
 
     public val getEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_emission_energy", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_emission_energy", 1740695150)
 
     public val setAlbedoMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_albedo_mix", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_albedo_mix", 373806689)
 
     public val getAlbedoMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_albedo_mix", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_albedo_mix", 1740695150)
 
     public val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_modulate", 2920490490)
+        Internals.getMethodBindPtr("Decal", "set_modulate", 2920490490)
 
     public val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_modulate", 3444240500)
+        Internals.getMethodBindPtr("Decal", "get_modulate", 3444240500)
 
     public val setUpperFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_upper_fade", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_upper_fade", 373806689)
 
     public val getUpperFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_upper_fade", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_upper_fade", 1740695150)
 
     public val setLowerFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_lower_fade", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_lower_fade", 373806689)
 
     public val getLowerFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_lower_fade", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_lower_fade", 1740695150)
 
     public val setNormalFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_normal_fade", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_normal_fade", 373806689)
 
     public val getNormalFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_normal_fade", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_normal_fade", 1740695150)
 
     public val setEnableDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_enable_distance_fade", 2586408642)
+        Internals.getMethodBindPtr("Decal", "set_enable_distance_fade", 2586408642)
 
     public val isDistanceFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "is_distance_fade_enabled", 36873697)
+        Internals.getMethodBindPtr("Decal", "is_distance_fade_enabled", 36873697)
 
     public val setDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_begin", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_distance_fade_begin", 373806689)
 
     public val getDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_begin", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_distance_fade_begin", 1740695150)
 
     public val setDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_distance_fade_length", 373806689)
+        Internals.getMethodBindPtr("Decal", "set_distance_fade_length", 373806689)
 
     public val getDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_distance_fade_length", 1740695150)
+        Internals.getMethodBindPtr("Decal", "get_distance_fade_length", 1740695150)
 
     public val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "set_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("Decal", "set_cull_mask", 1286410249)
 
     public val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Decal", "get_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("Decal", "get_cull_mask", 3905245786)
   }
 }

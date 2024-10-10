@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -32,16 +31,16 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKINREFERENCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKINREFERENCE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the [RID] owned by this SkinReference, as returned by [RenderingServer.skeletonCreate].
    */
   public final fun getSkeleton(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -52,18 +51,18 @@ public open class SkinReference internal constructor() : RefCounted() {
    * by meshes across multiple [Skeleton3D] nodes.
    */
   public final fun getSkin(): Skin? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skin?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkinPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skin?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkinReference", "get_skeleton", 2944877500)
+        Internals.getMethodBindPtr("SkinReference", "get_skeleton", 2944877500)
 
     public val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkinReference", "get_skin", 2074563878)
+        Internals.getMethodBindPtr("SkinReference", "get_skin", 2074563878)
   }
 }

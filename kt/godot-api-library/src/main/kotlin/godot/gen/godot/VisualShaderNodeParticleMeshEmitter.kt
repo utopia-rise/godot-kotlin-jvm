@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -64,61 +63,62 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_INDEX,
+        scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseAllSurfaces(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setUseAllSurfacesPtr, NIL)
   }
 
   public final fun isUseAllSurfaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUseAllSurfacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSurfaceIndex(surfaceIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to surfaceIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
+    Internals.writeArguments(LONG to surfaceIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSurfaceIndexPtr, NIL)
   }
 
   public final fun getSurfaceIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194775623)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194775623)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1808005922)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1808005922)
 
     public val setUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2586408642)
 
     public val isUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36873697)
 
     public val setSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1286410249)
 
     public val getSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3905245786)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3905245786)
   }
 }

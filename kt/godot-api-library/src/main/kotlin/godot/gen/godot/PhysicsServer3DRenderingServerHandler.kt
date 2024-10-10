@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -24,7 +23,8 @@ private const val ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX: Int 
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -53,36 +53,36 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
    * Sets the position for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
   public final fun setVertex(vertexId: Int, vertex: Vector3): Unit {
-    TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVertexPtr, NIL)
+    Internals.writeArguments(LONG to vertexId.toLong(), VECTOR3 to vertex)
+    Internals.callMethod(rawPtr, MethodBindings.setVertexPtr, NIL)
   }
 
   /**
    * Sets the normal for the [SoftBody3D] vertex at the index specified by [vertexId].
    */
   public final fun setNormal(vertexId: Int, normal: Vector3): Unit {
-    TransferContext.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
+    Internals.writeArguments(LONG to vertexId.toLong(), VECTOR3 to normal)
+    Internals.callMethod(rawPtr, MethodBindings.setNormalPtr, NIL)
   }
 
   /**
    * Sets the bounding box for the [SoftBody3D].
    */
   public final fun setAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_vertex", 1530502735)
+        Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_vertex", 1530502735)
 
     public val setNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_normal", 1530502735)
+        Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_normal", 1530502735)
 
     public val setAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_aabb", 259215842)
+        Internals.getMethodBindPtr("PhysicsServer3DRenderingServerHandler", "set_aabb", 259215842)
   }
 }

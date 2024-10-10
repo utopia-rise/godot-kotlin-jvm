@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -39,27 +38,27 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX, scriptIndex)
   }
 
   public final fun setDescription(description: String): Unit {
-    TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
+    Internals.writeArguments(STRING to description)
+    Internals.callMethod(rawPtr, MethodBindings.setDescriptionPtr, NIL)
   }
 
   public final fun getDescription(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDescriptionPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83702148)
 
     public val getDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201670096)
   }
 }

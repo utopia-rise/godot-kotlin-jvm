@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -24,7 +25,7 @@ private const val ENGINE_CLASS_AUDIOEFFECTINSTANCE_INDEX: Int = 96
 @GodotBaseType
 public open class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTINSTANCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTINSTANCE_INDEX, scriptIndex)
   }
 
   /**

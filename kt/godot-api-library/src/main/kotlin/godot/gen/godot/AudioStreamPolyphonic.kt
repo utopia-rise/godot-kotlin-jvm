@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -43,27 +42,27 @@ public open class AudioStreamPolyphonic : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX, scriptIndex)
   }
 
   public final fun setPolyphony(voices: Int): Unit {
-    TransferContext.writeArguments(LONG to voices.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
+    Internals.writeArguments(LONG to voices.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPolyphonyPtr, NIL)
   }
 
   public final fun getPolyphony(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolyphonyPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1286410249)
+        Internals.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1286410249)
 
     public val getPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3905245786)
   }
 }

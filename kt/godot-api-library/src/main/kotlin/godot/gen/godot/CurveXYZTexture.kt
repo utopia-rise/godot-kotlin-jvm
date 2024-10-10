@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -76,69 +75,69 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CURVEXYZTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CURVEXYZTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setCurveX(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurveXPtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurveXPtr, NIL)
   }
 
   public final fun getCurveX(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurveXPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveY(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurveYPtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurveYPtr, NIL)
   }
 
   public final fun getCurveY(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurveYPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setCurveZ(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurveZPtr, NIL)
   }
 
   public final fun getCurveZ(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurveZPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_width", 1286410249)
+        Internals.getMethodBindPtr("CurveXYZTexture", "set_width", 1286410249)
 
     public val setCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_x", 270443179)
+        Internals.getMethodBindPtr("CurveXYZTexture", "set_curve_x", 270443179)
 
     public val getCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_x", 2460114913)
+        Internals.getMethodBindPtr("CurveXYZTexture", "get_curve_x", 2460114913)
 
     public val setCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_y", 270443179)
+        Internals.getMethodBindPtr("CurveXYZTexture", "set_curve_y", 270443179)
 
     public val getCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_y", 2460114913)
+        Internals.getMethodBindPtr("CurveXYZTexture", "get_curve_y", 2460114913)
 
     public val setCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_z", 270443179)
+        Internals.getMethodBindPtr("CurveXYZTexture", "set_curve_z", 270443179)
 
     public val getCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_z", 2460114913)
+        Internals.getMethodBindPtr("CurveXYZTexture", "get_curve_z", 2460114913)
   }
 }

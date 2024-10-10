@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -168,7 +167,7 @@ public open class UDPServer : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_UDPSERVER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_UDPSERVER_INDEX, scriptIndex)
   }
 
   /**
@@ -178,9 +177,9 @@ public open class UDPServer : RefCounted() {
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
-    TransferContext.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to port.toLong(), STRING to bindAddress)
+    Internals.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -191,36 +190,36 @@ public open class UDPServer : RefCounted() {
    * via [maxPendingConnections].
    */
   public final fun poll(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns `true` if a packet with a new address/port combination was received on the socket.
    */
   public final fun isConnectionAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns `true` if the socket is open and listening on a port.
    */
   public final fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -229,9 +228,9 @@ public open class UDPServer : RefCounted() {
    * [PacketPeerUDP.connectToHost].
    */
   public final fun takeConnection(): PacketPeerUDP? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PacketPeerUDP?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PacketPeerUDP?)
   }
 
   /**
@@ -239,46 +238,46 @@ public open class UDPServer : RefCounted() {
    * accepted via [takeConnection] (remote peers will not be notified).
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setMaxPendingConnections(maxPendingConnections: Int): Unit {
-    TransferContext.writeArguments(LONG to maxPendingConnections.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
+    Internals.writeArguments(LONG to maxPendingConnections.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPendingConnectionsPtr, NIL)
   }
 
   public final fun getMaxPendingConnections(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPendingConnectionsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val listenPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "listen", 3167955072)
+    public val listenPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "listen", 3167955072)
 
-    public val pollPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "poll", 166280745)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "poll", 166280745)
 
     public val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "is_connection_available", 36873697)
+        Internals.getMethodBindPtr("UDPServer", "is_connection_available", 36873697)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "get_local_port", 3905245786)
+        Internals.getMethodBindPtr("UDPServer", "get_local_port", 3905245786)
 
     public val isListeningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "is_listening", 36873697)
+        Internals.getMethodBindPtr("UDPServer", "is_listening", 36873697)
 
     public val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "take_connection", 808734560)
+        Internals.getMethodBindPtr("UDPServer", "take_connection", 808734560)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("UDPServer", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("UDPServer", "stop", 3218959716)
 
     public val setMaxPendingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "set_max_pending_connections", 1286410249)
+        Internals.getMethodBindPtr("UDPServer", "set_max_pending_connections", 1286410249)
 
     public val getMaxPendingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UDPServer", "get_max_pending_connections", 3905245786)
+        Internals.getMethodBindPtr("UDPServer", "get_max_pending_connections", 3905245786)
   }
 }

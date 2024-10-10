@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -95,7 +94,8 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -124,47 +124,47 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+    Internals.writeArguments(LONG to resolution.id)
+    Internals.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
   }
 
   public final fun getResolution(): Resolution {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
-    return GPUParticlesCollisionHeightField3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    return GPUParticlesCollisionHeightField3D.Resolution.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to updateMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
+    Internals.writeArguments(LONG to updateMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateModePtr, NIL)
   }
 
   public final fun getUpdateMode(): UpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
-    return GPUParticlesCollisionHeightField3D.UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateModePtr, LONG)
+    return GPUParticlesCollisionHeightField3D.UpdateMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFollowCameraEnabledPtr, NIL)
   }
 
   public final fun isFollowCameraEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFollowCameraEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Resolution(
@@ -244,27 +244,27 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3460891852)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3360562783)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3360562783)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1009996517)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1009996517)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1156065644)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1156065644)
 
     public val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673680859)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673680859)
 
     public val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
 
     public val setFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)
 
     public val isFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36873697)
+        Internals.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36873697)
   }
 }

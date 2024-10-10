@@ -13,7 +13,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -25,7 +24,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -210,7 +209,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX, scriptIndex)
   }
 
   /**
@@ -267,51 +266,51 @@ public open class NavigationPolygon : Resource() {
    * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
    */
   public final fun setVertices(vertices: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to vertices)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
 
   /**
    * Returns a [PackedVector2Array] containing all the vertices being used to create the polygons.
    */
   public final fun getVertices(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
   public final fun addPolygon(polygon: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
   }
 
   /**
    * Returns the count of all polygons.
    */
   public final fun getPolygonCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns a [PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
   public final fun getPolygon(idx: Int): PackedInt32Array {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
    * Clears the array of polygons, but it doesn't clear the array of outlines and vertices.
    */
   public final fun clearPolygons(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
   /**
@@ -321,9 +320,9 @@ public open class NavigationPolygon : Resource() {
    * scene).
    */
   public final fun getNavigationMesh(): NavigationMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as NavigationMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as NavigationMesh?)
   }
 
   /**
@@ -331,8 +330,8 @@ public open class NavigationPolygon : Resource() {
    * that contains all the outlines.
    */
   public final fun addOutline(outline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, MethodBindings.addOutlinePtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to outline)
+    Internals.callMethod(rawPtr, MethodBindings.addOutlinePtr, NIL)
   }
 
   /**
@@ -340,17 +339,17 @@ public open class NavigationPolygon : Resource() {
    * contains all the outlines at a fixed position.
    */
   public final fun addOutlineAtIndex(outline: PackedVector2Array, index: Int): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addOutlineAtIndexPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to outline, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addOutlineAtIndexPtr, NIL)
   }
 
   /**
    * Returns the number of outlines that were created in the editor or by script.
    */
   public final fun getOutlineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -358,8 +357,8 @@ public open class NavigationPolygon : Resource() {
    * [makePolygonsFromOutlines] for the polygons to update.
    */
   public final fun setOutline(idx: Int, outline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), PACKED_VECTOR2_ARRAY to outline)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong(), PACKED_VECTOR2_ARRAY to outline)
+    Internals.callMethod(rawPtr, MethodBindings.setOutlinePtr, NIL)
   }
 
   /**
@@ -367,9 +366,9 @@ public open class NavigationPolygon : Resource() {
    * editor or by script.
    */
   public final fun getOutline(idx: Int): PackedVector2Array {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlinePtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOutlinePtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -377,8 +376,8 @@ public open class NavigationPolygon : Resource() {
    * [makePolygonsFromOutlines] for the polygons to update.
    */
   public final fun removeOutline(idx: Int): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeOutlinePtr, NIL)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeOutlinePtr, NIL)
   }
 
   /**
@@ -386,60 +385,60 @@ public open class NavigationPolygon : Resource() {
    * created by them.
    */
   public final fun clearOutlines(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearOutlinesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearOutlinesPtr, NIL)
   }
 
   /**
    * Creates polygons from the outlines added in the editor or by script.
    */
   public final fun makePolygonsFromOutlines(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.makePolygonsFromOutlinesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.makePolygonsFromOutlinesPtr, NIL)
   }
 
   public final fun setCellSize(cellSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to cellSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
   public final fun getCellSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderSize(borderSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to borderSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
   }
 
   public final fun getBorderSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
-    TransferContext.writeArguments(LONG to geometryType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+    Internals.writeArguments(LONG to geometryType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
 
   public final fun getParsedGeometryType(): ParsedGeometryType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationPolygon.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
+    return NavigationPolygon.ParsedGeometryType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskPtr, NIL)
   }
 
   public final fun getParsedCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -447,8 +446,8 @@ public open class NavigationPolygon : Resource() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setParsedCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setParsedCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -456,72 +455,72 @@ public open class NavigationPolygon : Resource() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getParsedCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getParsedCollisionMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSourceGeometryMode(geometryMode: SourceGeometryMode): Unit {
-    TransferContext.writeArguments(LONG to geometryMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+    Internals.writeArguments(LONG to geometryMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
 
   public final fun getSourceGeometryMode(): SourceGeometryMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationPolygon.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
+    return NavigationPolygon.SourceGeometryMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGeometryGroupName(groupName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to groupName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryGroupNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to groupName)
+    Internals.callMethod(rawPtr, MethodBindings.setSourceGeometryGroupNamePtr, NIL)
   }
 
   public final fun getSourceGeometryGroupName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceGeometryGroupNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAgentRadius(agentRadius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to agentRadius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
   }
 
   public final fun getAgentRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBakingRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectPtr, NIL)
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.setBakingRectPtr, NIL)
   }
 
   public final fun getBakingRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakingRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setBakingRectOffset(rectOffset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to rectOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to rectOffset)
+    Internals.callMethod(rawPtr, MethodBindings.setBakingRectOffsetPtr, NIL)
   }
 
   public final fun getBakingRectOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakingRectOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Clears the internal arrays for vertices and polygon indices.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public enum class ParsedGeometryType(
@@ -594,111 +593,111 @@ public open class NavigationPolygon : Resource() {
 
   internal object MethodBindings {
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_vertices", 1509147220)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_vertices", 1509147220)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_vertices", 2961356807)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_vertices", 2961356807)
 
     public val addPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_polygon", 3614634198)
+        Internals.getMethodBindPtr("NavigationPolygon", "add_polygon", 3614634198)
 
     public val getPolygonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon_count", 3905245786)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_polygon_count", 3905245786)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_polygon", 3668444399)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_polygon", 3668444399)
 
     public val clearPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_polygons", 3218959716)
+        Internals.getMethodBindPtr("NavigationPolygon", "clear_polygons", 3218959716)
 
     public val getNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_navigation_mesh", 330232164)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_navigation_mesh", 330232164)
 
     public val addOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline", 1509147220)
+        Internals.getMethodBindPtr("NavigationPolygon", "add_outline", 1509147220)
 
     public val addOutlineAtIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "add_outline_at_index", 1569738947)
+        Internals.getMethodBindPtr("NavigationPolygon", "add_outline_at_index", 1569738947)
 
     public val getOutlineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline_count", 3905245786)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_outline_count", 3905245786)
 
     public val setOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_outline", 1201971903)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_outline", 1201971903)
 
     public val getOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_outline", 3946907486)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_outline", 3946907486)
 
     public val removeOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "remove_outline", 1286410249)
+        Internals.getMethodBindPtr("NavigationPolygon", "remove_outline", 1286410249)
 
     public val clearOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "clear_outlines", 3218959716)
+        Internals.getMethodBindPtr("NavigationPolygon", "clear_outlines", 3218959716)
 
     public val makePolygonsFromOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "make_polygons_from_outlines", 3218959716)
+        Internals.getMethodBindPtr("NavigationPolygon", "make_polygons_from_outlines", 3218959716)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_cell_size", 373806689)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_cell_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_cell_size", 1740695150)
 
     public val setBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_border_size", 373806689)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_border_size", 373806689)
 
     public val getBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_border_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_border_size", 1740695150)
 
     public val setParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type", 2507971764)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_parsed_geometry_type", 2507971764)
 
     public val getParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_geometry_type", 1073219508)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_parsed_geometry_type", 1073219508)
 
     public val setParsedCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask", 1286410249)
 
     public val getParsedCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask", 3905245786)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask", 3905245786)
 
     public val setParsedCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask_value", 300928843)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_parsed_collision_mask_value", 300928843)
 
     public val getParsedCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_parsed_collision_mask_value", 1116898809)
 
     public val setSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_mode", 4002316705)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_source_geometry_mode", 4002316705)
 
     public val getSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_mode", 459686762)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_source_geometry_mode", 459686762)
 
     public val setSourceGeometryGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_source_geometry_group_name", 3304788590)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_source_geometry_group_name", 3304788590)
 
     public val getSourceGeometryGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_source_geometry_group_name", 2002593661)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_source_geometry_group_name", 2002593661)
 
     public val setAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_agent_radius", 373806689)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_agent_radius", 373806689)
 
     public val getAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_agent_radius", 1740695150)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_agent_radius", 1740695150)
 
     public val setBakingRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect", 2046264180)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_baking_rect", 2046264180)
 
     public val getBakingRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect", 1639390495)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_baking_rect", 1639390495)
 
     public val setBakingRectOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "set_baking_rect_offset", 743155724)
+        Internals.getMethodBindPtr("NavigationPolygon", "set_baking_rect_offset", 743155724)
 
     public val getBakingRectOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "get_baking_rect_offset", 3341600327)
+        Internals.getMethodBindPtr("NavigationPolygon", "get_baking_rect_offset", 3341600327)
 
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPolygon", "clear", 3218959716)
+        Internals.getMethodBindPtr("NavigationPolygon", "clear", 3218959716)
   }
 }

@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -19,7 +18,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -148,7 +147,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SHAPECAST2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SHAPECAST2D_INDEX, scriptIndex)
   }
 
   /**
@@ -176,58 +175,58 @@ public open class ShapeCast2D : Node2D() {
 
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShape(shape: Shape2D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(OBJECT to shape)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setTargetPosition(localPoint: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to localPoint)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPositionPtr, NIL)
   }
 
   public final fun getTargetPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxResults(maxResults: Int): Unit {
-    TransferContext.writeArguments(LONG to maxResults.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxResultsPtr, NIL)
+    Internals.writeArguments(LONG to maxResults.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxResultsPtr, NIL)
   }
 
   public final fun getMaxResults(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxResultsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxResultsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -235,9 +234,9 @@ public open class ShapeCast2D : Node2D() {
    * length).
    */
   public final fun isColliding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollidingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -246,9 +245,9 @@ public open class ShapeCast2D : Node2D() {
    * [getCollisionNormal] methods.
    */
   public final fun getCollisionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -258,8 +257,8 @@ public open class ShapeCast2D : Node2D() {
    * **Note:** `enabled == true` is not required for this to work.
    */
   public final fun forceShapecastUpdate(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceShapecastUpdatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceShapecastUpdatePtr, NIL)
   }
 
   /**
@@ -267,18 +266,18 @@ public open class ShapeCast2D : Node2D() {
    * object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public final fun getCollider(index: Int): Object? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Object?)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Object?)
   }
 
   /**
    * Returns the [RID] of the collided object of one of the multiple collisions at [index].
    */
   public final fun getColliderRid(index: Int): RID {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -286,9 +285,9 @@ public open class ShapeCast2D : Node2D() {
    * `0` if no object is intersecting the shape (i.e. [isColliding] returns `false`).
    */
   public final fun getColliderShape(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -297,18 +296,18 @@ public open class ShapeCast2D : Node2D() {
    * **Note:** this point is in the **global** coordinate system.
    */
   public final fun getCollisionPoint(index: Int): Vector2 {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the normal of one of the multiple collisions at [index] of the intersecting object.
    */
   public final fun getCollisionNormal(index: Int): Vector2 {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -316,9 +315,9 @@ public open class ShapeCast2D : Node2D() {
    * far the shape can move without triggering a collision.
    */
   public final fun getClosestCollisionSafeFraction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestCollisionSafeFractionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClosestCollisionSafeFractionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -329,17 +328,17 @@ public open class ShapeCast2D : Node2D() {
    * calculated positions.
    */
   public final fun getClosestCollisionUnsafeFraction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestCollisionUnsafeFractionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClosestCollisionUnsafeFractionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Adds a collision exception so the shape does not report collisions with the specified [RID].
    */
   public final fun addExceptionRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
+    Internals.writeArguments(_RID to rid)
+    Internals.callMethod(rawPtr, MethodBindings.addExceptionRidPtr, NIL)
   }
 
   /**
@@ -347,16 +346,16 @@ public open class ShapeCast2D : Node2D() {
    * [CollisionObject2D] node.
    */
   public final fun addException(node: CollisionObject2D?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.addExceptionPtr, NIL)
   }
 
   /**
    * Removes a collision exception so the shape does report collisions with the specified [RID].
    */
   public final fun removeExceptionRid(rid: RID): Unit {
-    TransferContext.writeArguments(_RID to rid)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
+    Internals.writeArguments(_RID to rid)
+    Internals.callMethod(rawPtr, MethodBindings.removeExceptionRidPtr, NIL)
   }
 
   /**
@@ -364,27 +363,27 @@ public open class ShapeCast2D : Node2D() {
    * [CollisionObject2D] node.
    */
   public final fun removeException(node: CollisionObject2D?): Unit {
-    TransferContext.writeArguments(OBJECT to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
+    Internals.writeArguments(OBJECT to node)
+    Internals.callMethod(rawPtr, MethodBindings.removeExceptionPtr, NIL)
   }
 
   /**
    * Removes all collision exceptions for this shape.
    */
   public final fun clearExceptions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -392,8 +391,8 @@ public open class ShapeCast2D : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -401,150 +400,150 @@ public open class ShapeCast2D : Node2D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExcludeParentBody(mask: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
+    Internals.writeArguments(BOOL to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
 
   public final fun getExcludeParentBody(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExcludeParentBodyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithAreas(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
 
   public final fun isCollideWithAreasEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithAreasEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCollideWithBodies(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
 
   public final fun isCollideWithBodiesEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollideWithBodiesEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_enabled", 2586408642)
 
     public val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "is_enabled", 36873697)
+        Internals.getMethodBindPtr("ShapeCast2D", "is_enabled", 36873697)
 
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_shape", 771364740)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_shape", 771364740)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_shape", 522005891)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_shape", 522005891)
 
     public val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_target_position", 743155724)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_target_position", 743155724)
 
     public val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_target_position", 3341600327)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_target_position", 3341600327)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_margin", 373806689)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_margin", 1740695150)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_margin", 1740695150)
 
     public val setMaxResultsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_max_results", 1286410249)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_max_results", 1286410249)
 
     public val getMaxResultsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_max_results", 3905245786)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_max_results", 3905245786)
 
     public val isCollidingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "is_colliding", 36873697)
+        Internals.getMethodBindPtr("ShapeCast2D", "is_colliding", 36873697)
 
     public val getCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_count", 3905245786)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collision_count", 3905245786)
 
     public val forceShapecastUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "force_shapecast_update", 3218959716)
+        Internals.getMethodBindPtr("ShapeCast2D", "force_shapecast_update", 3218959716)
 
     public val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collider", 3332903315)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collider", 3332903315)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collider_rid", 495598643)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collider_rid", 495598643)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collider_shape", 923996154)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collider_shape", 923996154)
 
     public val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_point", 2299179447)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collision_point", 2299179447)
 
     public val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_normal", 2299179447)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collision_normal", 2299179447)
 
     public val getClosestCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_closest_collision_safe_fraction", 1740695150)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_closest_collision_safe_fraction", 1740695150)
 
     public val getClosestCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_closest_collision_unsafe_fraction", 1740695150)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_closest_collision_unsafe_fraction", 1740695150)
 
     public val addExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "add_exception_rid", 2722037293)
+        Internals.getMethodBindPtr("ShapeCast2D", "add_exception_rid", 2722037293)
 
     public val addExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "add_exception", 3090941106)
+        Internals.getMethodBindPtr("ShapeCast2D", "add_exception", 3090941106)
 
     public val removeExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "remove_exception_rid", 2722037293)
+        Internals.getMethodBindPtr("ShapeCast2D", "remove_exception_rid", 2722037293)
 
     public val removeExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "remove_exception", 3090941106)
+        Internals.getMethodBindPtr("ShapeCast2D", "remove_exception", 3090941106)
 
     public val clearExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "clear_exceptions", 3218959716)
+        Internals.getMethodBindPtr("ShapeCast2D", "clear_exceptions", 3218959716)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_mask", 3905245786)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_collision_mask_value", 300928843)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_collision_mask_value", 1116898809)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_collision_mask_value", 1116898809)
 
     public val setExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_exclude_parent_body", 2586408642)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_exclude_parent_body", 2586408642)
 
     public val getExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "get_exclude_parent_body", 36873697)
+        Internals.getMethodBindPtr("ShapeCast2D", "get_exclude_parent_body", 36873697)
 
     public val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_collide_with_areas", 2586408642)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_collide_with_areas", 2586408642)
 
     public val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "is_collide_with_areas_enabled", 36873697)
+        Internals.getMethodBindPtr("ShapeCast2D", "is_collide_with_areas_enabled", 36873697)
 
     public val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "set_collide_with_bodies", 2586408642)
+        Internals.getMethodBindPtr("ShapeCast2D", "set_collide_with_bodies", 2586408642)
 
     public val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShapeCast2D", "is_collide_with_bodies_enabled", 36873697)
+        Internals.getMethodBindPtr("ShapeCast2D", "is_collide_with_bodies_enabled", 36873697)
   }
 }

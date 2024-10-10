@@ -13,7 +13,6 @@ import godot.core.PackedInt32Array
 import godot.core.Quaternion
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -24,7 +23,7 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -201,7 +200,7 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFNODE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFNODE_INDEX, scriptIndex)
   }
 
   /**
@@ -302,146 +301,146 @@ public open class GLTFNode : Resource() {
 
 
   public final fun getOriginalName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOriginalNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setOriginalName(originalName: String): Unit {
-    TransferContext.writeArguments(STRING to originalName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
+    Internals.writeArguments(STRING to originalName)
+    Internals.callMethod(rawPtr, MethodBindings.setOriginalNamePtr, NIL)
   }
 
   public final fun getParent(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParentPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParent(parent: Int): Unit {
-    TransferContext.writeArguments(LONG to parent.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
+    Internals.writeArguments(LONG to parent.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setParentPtr, NIL)
   }
 
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHeight(height: Int): Unit {
-    TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(LONG to height.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getXform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getXformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setXform(xform: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.setXformPtr, NIL)
   }
 
   public final fun getMesh(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMesh(mesh: Int): Unit {
-    TransferContext.writeArguments(LONG to mesh.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(LONG to mesh.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getCamera(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCamera(camera: Int): Unit {
-    TransferContext.writeArguments(LONG to camera.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
+    Internals.writeArguments(LONG to camera.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCameraPtr, NIL)
   }
 
   public final fun getSkin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkinPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkin(skin: Int): Unit {
-    TransferContext.writeArguments(LONG to skin.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
+    Internals.writeArguments(LONG to skin.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSkinPtr, NIL)
   }
 
   public final fun getSkeleton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSkeleton(skeleton: Int): Unit {
-    TransferContext.writeArguments(LONG to skeleton.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
+    Internals.writeArguments(LONG to skeleton.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonPtr, NIL)
   }
 
   public final fun getPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setPosition(position: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getRotation(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setRotation(rotation: Quaternion): Unit {
-    TransferContext.writeArguments(QUATERNION to rotation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+    Internals.writeArguments(QUATERNION to rotation)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
   }
 
   public final fun getScale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setScale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
   }
 
   public final fun getChildren(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getChildrenPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setChildren(children: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to children)
-    TransferContext.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to children)
+    Internals.callMethod(rawPtr, MethodBindings.setChildrenPtr, NIL)
   }
 
   public final fun getLight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLight(light: Int): Unit {
-    TransferContext.writeArguments(LONG to light.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
+    Internals.writeArguments(LONG to light.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLightPtr, NIL)
   }
 
   /**
@@ -452,9 +451,9 @@ public open class GLTFNode : Resource() {
    * return value is null.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to extensionName)
+    Internals.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -464,95 +463,91 @@ public open class GLTFNode : Resource() {
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+    Internals.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
+    Internals.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_original_name", 2841200299)
+        Internals.getMethodBindPtr("GLTFNode", "get_original_name", 2841200299)
 
     public val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_original_name", 83702148)
+        Internals.getMethodBindPtr("GLTFNode", "set_original_name", 83702148)
 
     public val getParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_parent", 2455072627)
+        Internals.getMethodBindPtr("GLTFNode", "get_parent", 2455072627)
 
     public val setParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_parent", 1286410249)
+        Internals.getMethodBindPtr("GLTFNode", "set_parent", 1286410249)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_height", 2455072627)
+        Internals.getMethodBindPtr("GLTFNode", "get_height", 2455072627)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_height", 1286410249)
+        Internals.getMethodBindPtr("GLTFNode", "set_height", 1286410249)
 
     public val getXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_xform", 4183770049)
+        Internals.getMethodBindPtr("GLTFNode", "get_xform", 4183770049)
 
     public val setXformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_xform", 2952846383)
+        Internals.getMethodBindPtr("GLTFNode", "set_xform", 2952846383)
 
-    public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_mesh", 2455072627)
+    public val getMeshPtr: VoidPtr = Internals.getMethodBindPtr("GLTFNode", "get_mesh", 2455072627)
 
-    public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_mesh", 1286410249)
+    public val setMeshPtr: VoidPtr = Internals.getMethodBindPtr("GLTFNode", "set_mesh", 1286410249)
 
     public val getCameraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_camera", 2455072627)
+        Internals.getMethodBindPtr("GLTFNode", "get_camera", 2455072627)
 
     public val setCameraPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_camera", 1286410249)
+        Internals.getMethodBindPtr("GLTFNode", "set_camera", 1286410249)
 
-    public val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_skin", 2455072627)
+    public val getSkinPtr: VoidPtr = Internals.getMethodBindPtr("GLTFNode", "get_skin", 2455072627)
 
-    public val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_skin", 1286410249)
+    public val setSkinPtr: VoidPtr = Internals.getMethodBindPtr("GLTFNode", "set_skin", 1286410249)
 
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_skeleton", 2455072627)
+        Internals.getMethodBindPtr("GLTFNode", "get_skeleton", 2455072627)
 
     public val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_skeleton", 1286410249)
+        Internals.getMethodBindPtr("GLTFNode", "set_skeleton", 1286410249)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_position", 3783033775)
+        Internals.getMethodBindPtr("GLTFNode", "get_position", 3783033775)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_position", 3460891852)
+        Internals.getMethodBindPtr("GLTFNode", "set_position", 3460891852)
 
     public val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_rotation", 2916281908)
+        Internals.getMethodBindPtr("GLTFNode", "get_rotation", 2916281908)
 
     public val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_rotation", 1727505552)
+        Internals.getMethodBindPtr("GLTFNode", "set_rotation", 1727505552)
 
     public val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_scale", 3783033775)
+        Internals.getMethodBindPtr("GLTFNode", "get_scale", 3783033775)
 
     public val setScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_scale", 3460891852)
+        Internals.getMethodBindPtr("GLTFNode", "set_scale", 3460891852)
 
     public val getChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_children", 969006518)
+        Internals.getMethodBindPtr("GLTFNode", "get_children", 969006518)
 
     public val setChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_children", 3614634198)
+        Internals.getMethodBindPtr("GLTFNode", "set_children", 3614634198)
 
     public val getLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_light", 2455072627)
+        Internals.getMethodBindPtr("GLTFNode", "get_light", 2455072627)
 
     public val setLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_light", 1286410249)
+        Internals.getMethodBindPtr("GLTFNode", "set_light", 1286410249)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data", 2138907829)
+        Internals.getMethodBindPtr("GLTFNode", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFNode", "set_additional_data", 3776071444)
+        Internals.getMethodBindPtr("GLTFNode", "set_additional_data", 3776071444)
   }
 }

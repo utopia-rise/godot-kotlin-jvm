@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -88,7 +87,7 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FOGVOLUME_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FOGVOLUME_INDEX, scriptIndex)
   }
 
   /**
@@ -127,57 +126,55 @@ public open class FogVolume : VisualInstance3D() {
 
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setShape(shape: RenderingServer.FogVolumeShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(LONG to shape.id)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): RenderingServer.FogVolumeShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, LONG)
-    return RenderingServer.FogVolumeShape.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, LONG)
+    return RenderingServer.FogVolumeShape.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_size", 3460891852)
+    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("FogVolume", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_size", 3360562783)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("FogVolume", "get_size", 3360562783)
 
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_shape", 1416323362)
+        Internals.getMethodBindPtr("FogVolume", "set_shape", 1416323362)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_shape", 3920334604)
+        Internals.getMethodBindPtr("FogVolume", "get_shape", 3920334604)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_material", 2757459619)
+        Internals.getMethodBindPtr("FogVolume", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_material", 5934680)
+        Internals.getMethodBindPtr("FogVolume", "get_material", 5934680)
   }
 }

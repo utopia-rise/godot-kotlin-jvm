@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -153,115 +152,115 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TOUCHSCREENBUTTON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TOUCHSCREENBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureNormalPtr, NIL)
   }
 
   public final fun getTextureNormal(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureNormalPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTexturePressed(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePressedPtr, NIL)
   }
 
   public final fun getTexturePressed(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePressedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setBitmask(bitmask: BitMap?): Unit {
-    TransferContext.writeArguments(OBJECT to bitmask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBitmaskPtr, NIL)
+    Internals.writeArguments(OBJECT to bitmask)
+    Internals.callMethod(rawPtr, MethodBindings.setBitmaskPtr, NIL)
   }
 
   public final fun getBitmask(): BitMap? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBitmaskPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as BitMap?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBitmaskPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as BitMap?)
   }
 
   public final fun setShape(shape: Shape2D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(OBJECT to shape)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape2D?)
   }
 
   public final fun setShapeCentered(bool: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to bool)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapeCenteredPtr, NIL)
+    Internals.writeArguments(BOOL to bool)
+    Internals.callMethod(rawPtr, MethodBindings.setShapeCenteredPtr, NIL)
   }
 
   public final fun isShapeCentered(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShapeCenteredPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShapeCenteredPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShapeVisible(bool: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to bool)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapeVisiblePtr, NIL)
+    Internals.writeArguments(BOOL to bool)
+    Internals.callMethod(rawPtr, MethodBindings.setShapeVisiblePtr, NIL)
   }
 
   public final fun isShapeVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShapeVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShapeVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAction(action: String): Unit {
-    TransferContext.writeArguments(STRING to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+    Internals.writeArguments(STRING to action)
+    Internals.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
   public final fun getAction(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setVisibilityMode(mode: VisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityModePtr, NIL)
   }
 
   public final fun getVisibilityMode(): VisibilityMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityModePtr, LONG)
-    return TouchScreenButton.VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityModePtr, LONG)
+    return TouchScreenButton.VisibilityMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPassbyPress(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPassbyPressPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setPassbyPressPtr, NIL)
   }
 
   public final fun isPassbyPressEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPassbyPressEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if this button is currently pressed.
    */
   public final fun isPressed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class VisibilityMode(
@@ -291,60 +290,60 @@ public open class TouchScreenButton : Node2D() {
 
   internal object MethodBindings {
     public val setTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4051416890)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4051416890)
 
     public val getTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3635182373)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3635182373)
 
     public val setTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4051416890)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4051416890)
 
     public val getTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3635182373)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3635182373)
 
     public val setBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698588216)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698588216)
 
     public val getBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2459671998)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2459671998)
 
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape", 771364740)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_shape", 771364740)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_shape", 522005891)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_shape", 522005891)
 
     public val setShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2586408642)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2586408642)
 
     public val isShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36873697)
+        Internals.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36873697)
 
     public val setShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2586408642)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2586408642)
 
     public val isShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36873697)
+        Internals.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36873697)
 
     public val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_action", 83702148)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_action", 83702148)
 
     public val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_action", 201670096)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_action", 201670096)
 
     public val setVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3031128463)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3031128463)
 
     public val getVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2558996468)
+        Internals.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2558996468)
 
     public val setPassbyPressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2586408642)
+        Internals.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2586408642)
 
     public val isPassbyPressEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36873697)
+        Internals.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36873697)
 
     public val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_pressed", 36873697)
+        Internals.getMethodBindPtr("TouchScreenButton", "is_pressed", 36873697)
   }
 }

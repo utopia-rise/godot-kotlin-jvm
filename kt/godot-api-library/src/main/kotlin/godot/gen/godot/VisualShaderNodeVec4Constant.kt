@@ -10,10 +10,9 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.QUATERNION
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -40,7 +39,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC4CONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEVEC4CONSTANT_INDEX, scriptIndex)
   }
 
   /**
@@ -68,23 +67,23 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
 
 
   public final fun setConstant(constant: Quaternion): Unit {
-    TransferContext.writeArguments(QUATERNION to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(QUATERNION to constant)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec4Constant", "set_constant", 1727505552)
+        Internals.getMethodBindPtr("VisualShaderNodeVec4Constant", "set_constant", 1727505552)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec4Constant", "get_constant", 1222331677)
+        Internals.getMethodBindPtr("VisualShaderNodeVec4Constant", "get_constant", 1222331677)
   }
 }

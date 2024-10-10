@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -17,7 +16,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -37,7 +36,7 @@ private const val ENGINE_CLASS_TRANSLATIONSERVER_INDEX: Int = 17
 @GodotBaseType
 public object TranslationServer : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_TRANSLATIONSERVER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_TRANSLATIONSERVER_INDEX)
   }
 
   /**
@@ -47,8 +46,8 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun setLocale(locale: String): Unit {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
+    Internals.writeArguments(STRING to locale)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalePtr, NIL)
   }
 
   /**
@@ -57,9 +56,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLocale(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -68,9 +67,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getToolLocale(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getToolLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getToolLocalePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -79,9 +78,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun compareLocales(localeA: String, localeB: String): Int {
-    TransferContext.writeArguments(STRING to localeA, STRING to localeB)
-    TransferContext.callMethod(rawPtr, MethodBindings.compareLocalesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to localeA, STRING to localeB)
+    Internals.callMethod(rawPtr, MethodBindings.compareLocalesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -90,9 +89,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun standardizeLocale(locale: String): String {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.standardizeLocalePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to locale)
+    Internals.callMethod(rawPtr, MethodBindings.standardizeLocalePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -100,9 +99,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllLanguages(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllLanguagesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -110,9 +109,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLanguageName(language: String): String {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguageNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.getLanguageNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -120,9 +119,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllScripts(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllScriptsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -130,9 +129,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getScriptName(script: String): String {
-    TransferContext.writeArguments(STRING to script)
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to script)
+    Internals.callMethod(rawPtr, MethodBindings.getScriptNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -140,9 +139,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getAllCountries(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllCountriesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -150,9 +149,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getCountryName(country: String): String {
-    TransferContext.writeArguments(STRING to country)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCountryNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to country)
+    Internals.callMethod(rawPtr, MethodBindings.getCountryNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -161,9 +160,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLocaleName(locale: String): String {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocaleNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to locale)
+    Internals.callMethod(rawPtr, MethodBindings.getLocaleNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -173,9 +172,9 @@ public object TranslationServer : Object() {
   @JvmStatic
   public final fun translate(message: StringName, context: StringName = StringName("")):
       StringName {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to message, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.translatePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -192,9 +191,9 @@ public object TranslationServer : Object() {
     n: Int,
     context: StringName = StringName(""),
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.translatePluralPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.translatePluralPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -202,8 +201,8 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun addTranslation(translation: Translation?): Unit {
-    TransferContext.writeArguments(OBJECT to translation)
-    TransferContext.callMethod(rawPtr, MethodBindings.addTranslationPtr, NIL)
+    Internals.writeArguments(OBJECT to translation)
+    Internals.callMethod(rawPtr, MethodBindings.addTranslationPtr, NIL)
   }
 
   /**
@@ -211,8 +210,8 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun removeTranslation(translation: Translation?): Unit {
-    TransferContext.writeArguments(OBJECT to translation)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeTranslationPtr, NIL)
+    Internals.writeArguments(OBJECT to translation)
+    Internals.callMethod(rawPtr, MethodBindings.removeTranslationPtr, NIL)
   }
 
   /**
@@ -221,9 +220,9 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getTranslationObject(locale: String): Translation? {
-    TransferContext.writeArguments(STRING to locale)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTranslationObjectPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Translation?)
+    Internals.writeArguments(STRING to locale)
+    Internals.callMethod(rawPtr, MethodBindings.getTranslationObjectPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Translation?)
   }
 
   /**
@@ -231,8 +230,8 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -240,22 +239,22 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun getLoadedLocales(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoadedLocalesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   @JvmStatic
   public final fun isPseudolocalizationEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPseudolocalizationEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   @JvmStatic
   public final fun setPseudolocalizationEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPseudolocalizationEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setPseudolocalizationEnabledPtr, NIL)
   }
 
   /**
@@ -263,8 +262,8 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun reloadPseudolocalization(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadPseudolocalizationPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.reloadPseudolocalizationPtr, NIL)
   }
 
   /**
@@ -272,79 +271,79 @@ public object TranslationServer : Object() {
    */
   @JvmStatic
   public final fun pseudolocalize(message: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to message)
-    TransferContext.callMethod(rawPtr, MethodBindings.pseudolocalizePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to message)
+    Internals.callMethod(rawPtr, MethodBindings.pseudolocalizePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   internal object MethodBindings {
     public val setLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "set_locale", 83702148)
+        Internals.getMethodBindPtr("TranslationServer", "set_locale", 83702148)
 
     public val getLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_locale", 201670096)
+        Internals.getMethodBindPtr("TranslationServer", "get_locale", 201670096)
 
     public val getToolLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_tool_locale", 2841200299)
+        Internals.getMethodBindPtr("TranslationServer", "get_tool_locale", 2841200299)
 
     public val compareLocalesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "compare_locales", 2878152881)
+        Internals.getMethodBindPtr("TranslationServer", "compare_locales", 2878152881)
 
     public val standardizeLocalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "standardize_locale", 3135753539)
+        Internals.getMethodBindPtr("TranslationServer", "standardize_locale", 3135753539)
 
     public val getAllLanguagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_languages", 1139954409)
+        Internals.getMethodBindPtr("TranslationServer", "get_all_languages", 1139954409)
 
     public val getLanguageNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_language_name", 3135753539)
+        Internals.getMethodBindPtr("TranslationServer", "get_language_name", 3135753539)
 
     public val getAllScriptsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_scripts", 1139954409)
+        Internals.getMethodBindPtr("TranslationServer", "get_all_scripts", 1139954409)
 
     public val getScriptNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_script_name", 3135753539)
+        Internals.getMethodBindPtr("TranslationServer", "get_script_name", 3135753539)
 
     public val getAllCountriesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_all_countries", 1139954409)
+        Internals.getMethodBindPtr("TranslationServer", "get_all_countries", 1139954409)
 
     public val getCountryNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_country_name", 3135753539)
+        Internals.getMethodBindPtr("TranslationServer", "get_country_name", 3135753539)
 
     public val getLocaleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
+        Internals.getMethodBindPtr("TranslationServer", "get_locale_name", 3135753539)
 
     public val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate", 58037827)
+        Internals.getMethodBindPtr("TranslationServer", "translate", 58037827)
 
     public val translatePluralPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "translate_plural", 1333931916)
+        Internals.getMethodBindPtr("TranslationServer", "translate_plural", 1333931916)
 
     public val addTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "add_translation", 1466479800)
+        Internals.getMethodBindPtr("TranslationServer", "add_translation", 1466479800)
 
     public val removeTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "remove_translation", 1466479800)
+        Internals.getMethodBindPtr("TranslationServer", "remove_translation", 1466479800)
 
     public val getTranslationObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
+        Internals.getMethodBindPtr("TranslationServer", "get_translation_object", 2065240175)
 
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "clear", 3218959716)
+        Internals.getMethodBindPtr("TranslationServer", "clear", 3218959716)
 
     public val getLoadedLocalesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "get_loaded_locales", 1139954409)
+        Internals.getMethodBindPtr("TranslationServer", "get_loaded_locales", 1139954409)
 
     public val isPseudolocalizationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled", 36873697)
+        Internals.getMethodBindPtr("TranslationServer", "is_pseudolocalization_enabled", 36873697)
 
     public val setPseudolocalizationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "set_pseudolocalization_enabled", 2586408642)
+        Internals.getMethodBindPtr("TranslationServer", "set_pseudolocalization_enabled", 2586408642)
 
     public val reloadPseudolocalizationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "reload_pseudolocalization", 3218959716)
+        Internals.getMethodBindPtr("TranslationServer", "reload_pseudolocalization", 3218959716)
 
     public val pseudolocalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TranslationServer", "pseudolocalize", 1965194235)
+        Internals.getMethodBindPtr("TranslationServer", "pseudolocalize", 1965194235)
   }
 }

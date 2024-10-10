@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -142,40 +141,40 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATEDSPRITE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATEDSPRITE3D_INDEX, scriptIndex)
   }
 
   public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
-    TransferContext.writeArguments(OBJECT to spriteFrames)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpriteFramesPtr, NIL)
+    Internals.writeArguments(OBJECT to spriteFrames)
+    Internals.callMethod(rawPtr, MethodBindings.setSpriteFramesPtr, NIL)
   }
 
   public final fun getSpriteFrames(): SpriteFrames? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SpriteFrames?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpriteFramesPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SpriteFrames?)
   }
 
   public final fun setAnimation(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setAnimationPtr, NIL)
   }
 
   public final fun getAnimation(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAutoplay(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
   public final fun getAutoplay(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoplayPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -183,9 +182,9 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * are `0`).
    */
   public final fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -200,8 +199,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
-    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
+    Internals.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -211,8 +210,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    */
   @JvmOverloads
   public final fun playBackwards(name: StringName = StringName("")): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.playBackwardsPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.playBackwardsPtr, NIL)
   }
 
   /**
@@ -222,8 +221,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * See also [stop].
    */
   public final fun pause(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pausePtr, NIL)
   }
 
   /**
@@ -231,30 +230,30 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * `custom_speed` is reset to `1.0`. See also [pause].
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun setFrame(frame: Int): Unit {
-    TransferContext.writeArguments(LONG to frame.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
+    Internals.writeArguments(LONG to frame.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFramePtr, NIL)
   }
 
   public final fun getFrame(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFrameProgress(progress: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to progress.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameProgressPtr, NIL)
+    Internals.writeArguments(DOUBLE to progress.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrameProgressPtr, NIL)
   }
 
   public final fun getFrameProgress(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrameProgressPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -273,19 +272,19 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * ```
    */
   public final fun setFrameAndProgress(frame: Int, progress: Float): Unit {
-    TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrameAndProgressPtr, NIL)
+    Internals.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrameAndProgressPtr, NIL)
   }
 
   public final fun setSpeedScale(speedScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to speedScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun getSpeedScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -295,69 +294,67 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * Returns a negative value if the current animation is playing backwards.
    */
   public final fun getPlayingSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlayingSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905781144)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905781144)
 
     public val getSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3804851214)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3804851214)
 
     public val setAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3304788590)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3304788590)
 
     public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2002593661)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2002593661)
 
     public val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83702148)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83702148)
 
     public val getAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201670096)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201670096)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
 
-    public val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
+    public val playPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite3D", "play", 2372066587)
 
     public val playBackwardsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 1421762485)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 1421762485)
 
     public val pausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)
 
-    public val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
 
     public val setFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1286410249)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1286410249)
 
     public val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3905245786)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3905245786)
 
     public val setFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373806689)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373806689)
 
     public val getFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1740695150)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1740695150)
 
     public val setFrameAndProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1602489585)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1602489585)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373806689)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373806689)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1740695150)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1740695150)
 
     public val getPlayingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1740695150)
+        Internals.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1740695150)
   }
 }

@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -153,136 +152,136 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NOISETEXTURE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NOISETEXTURE3D_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {
-    TransferContext.writeArguments(LONG to width.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(LONG to width.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun setHeight(height: Int): Unit {
-    TransferContext.writeArguments(LONG to height.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(LONG to height.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun setDepth(depth: Int): Unit {
-    TransferContext.writeArguments(LONG to depth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(LONG to depth.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun setInvert(invert: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to invert)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInvertPtr, NIL)
+    Internals.writeArguments(BOOL to invert)
+    Internals.callMethod(rawPtr, MethodBindings.setInvertPtr, NIL)
   }
 
   public final fun getInvert(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInvertPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInvertPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSeamless(seamless: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to seamless)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessPtr, NIL)
+    Internals.writeArguments(BOOL to seamless)
+    Internals.callMethod(rawPtr, MethodBindings.setSeamlessPtr, NIL)
   }
 
   public final fun getSeamless(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSeamlessPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSeamlessBlendSkirt(seamlessBlendSkirt: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seamlessBlendSkirt.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
+    Internals.writeArguments(DOUBLE to seamlessBlendSkirt.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
   }
 
   public final fun getSeamlessBlendSkirt(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalize(normalize: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalizePtr, NIL)
+    Internals.writeArguments(BOOL to normalize)
+    Internals.callMethod(rawPtr, MethodBindings.setNormalizePtr, NIL)
   }
 
   public final fun isNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isNormalizedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColorRamp(gradient: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
+    Internals.writeArguments(OBJECT to gradient)
+    Internals.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
   }
 
   public final fun getColorRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setNoise(noise: Noise?): Unit {
-    TransferContext.writeArguments(OBJECT to noise)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNoisePtr, NIL)
+    Internals.writeArguments(OBJECT to noise)
+    Internals.callMethod(rawPtr, MethodBindings.setNoisePtr, NIL)
   }
 
   public final fun getNoise(): Noise? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNoisePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Noise?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNoisePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Noise?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_width", 1286410249)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_width", 1286410249)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_height", 1286410249)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_height", 1286410249)
 
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_depth", 1286410249)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_depth", 1286410249)
 
     public val setInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_invert", 2586408642)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_invert", 2586408642)
 
     public val getInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_invert", 36873697)
+        Internals.getMethodBindPtr("NoiseTexture3D", "get_invert", 36873697)
 
     public val setSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless", 2586408642)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_seamless", 2586408642)
 
     public val getSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless", 2240911060)
+        Internals.getMethodBindPtr("NoiseTexture3D", "get_seamless", 2240911060)
 
     public val setSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless_blend_skirt", 373806689)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_seamless_blend_skirt", 373806689)
 
     public val getSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless_blend_skirt", 191475506)
+        Internals.getMethodBindPtr("NoiseTexture3D", "get_seamless_blend_skirt", 191475506)
 
     public val setNormalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_normalize", 2586408642)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_normalize", 2586408642)
 
     public val isNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "is_normalized", 36873697)
+        Internals.getMethodBindPtr("NoiseTexture3D", "is_normalized", 36873697)
 
     public val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_color_ramp", 2756054477)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_color_ramp", 2756054477)
 
     public val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_color_ramp", 132272999)
+        Internals.getMethodBindPtr("NoiseTexture3D", "get_color_ramp", 132272999)
 
     public val setNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_noise", 4135492439)
+        Internals.getMethodBindPtr("NoiseTexture3D", "set_noise", 4135492439)
 
     public val getNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_noise", 185851837)
+        Internals.getMethodBindPtr("NoiseTexture3D", "get_noise", 185851837)
   }
 }

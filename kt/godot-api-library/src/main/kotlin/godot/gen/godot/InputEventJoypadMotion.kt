@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -53,44 +52,44 @@ public open class InputEventJoypadMotion : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX, scriptIndex)
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {
-    TransferContext.writeArguments(LONG to axis.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
+    Internals.writeArguments(LONG to axis.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAxisPtr, NIL)
   }
 
   public final fun getAxis(): JoyAxis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
-    return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAxisPtr, LONG)
+    return JoyAxis.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAxisValue(axisValue: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to axisValue.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
+    Internals.writeArguments(DOUBLE to axisValue.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAxisValuePtr, NIL)
   }
 
   public final fun getAxisValue(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAxisValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAxisValuePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis", 1332685170)
+        Internals.getMethodBindPtr("InputEventJoypadMotion", "set_axis", 1332685170)
 
     public val getAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis", 4019121683)
+        Internals.getMethodBindPtr("InputEventJoypadMotion", "get_axis", 4019121683)
 
     public val setAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value", 373806689)
+        Internals.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value", 373806689)
 
     public val getAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value", 1740695150)
+        Internals.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value", 1740695150)
   }
 }

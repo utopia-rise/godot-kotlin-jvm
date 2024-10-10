@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -36,27 +35,27 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTFROMWINDOW_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTFROMWINDOW_INDEX, scriptIndex)
   }
 
   public final fun setWindowId(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.setWindowIdPtr, NIL)
   }
 
   public final fun getWindowId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWindowIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id", 1286410249)
+        Internals.getMethodBindPtr("InputEventFromWindow", "set_window_id", 1286410249)
 
     public val getWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id", 3905245786)
+        Internals.getMethodBindPtr("InputEventFromWindow", "get_window_id", 3905245786)
   }
 }

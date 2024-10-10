@@ -10,12 +10,11 @@ import godot.MouseButtonMaskValue
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -71,7 +70,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTMOUSE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTMOUSE_INDEX, scriptIndex)
   }
 
   /**
@@ -129,57 +128,57 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
 
   public final fun setButtonMask(buttonMask: MouseButtonMask): Unit {
-    TransferContext.writeArguments(LONG to buttonMask.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
+    Internals.writeArguments(LONG to buttonMask.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setButtonMaskPtr, NIL)
   }
 
   public final fun getButtonMask(): MouseButtonMask {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
-    return MouseButtonMaskValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getButtonMaskPtr, LONG)
+    return MouseButtonMaskValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGlobalPosition(globalPosition: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to globalPosition)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to globalPosition)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
   public final fun getGlobalPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_button_mask", 3950145251)
+        Internals.getMethodBindPtr("InputEventMouse", "set_button_mask", 3950145251)
 
     public val getButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_button_mask", 2512161324)
+        Internals.getMethodBindPtr("InputEventMouse", "get_button_mask", 2512161324)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_position", 743155724)
+        Internals.getMethodBindPtr("InputEventMouse", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_position", 3341600327)
+        Internals.getMethodBindPtr("InputEventMouse", "get_position", 3341600327)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_global_position", 743155724)
+        Internals.getMethodBindPtr("InputEventMouse", "set_global_position", 743155724)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_global_position", 3341600327)
+        Internals.getMethodBindPtr("InputEventMouse", "get_global_position", 3341600327)
   }
 }

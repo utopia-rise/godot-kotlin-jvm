@@ -13,7 +13,6 @@ import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
 import godot.core.Signal4
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,7 +21,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -301,15 +300,15 @@ public open class Tree : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TREE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TREE_INDEX, scriptIndex)
   }
 
   /**
    * Clears the tree. This removes all items.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -322,18 +321,18 @@ public open class Tree : Control() {
    */
   @JvmOverloads
   public final fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
-    TransferContext.writeArguments(OBJECT to parent, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createItemPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments(OBJECT to parent, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createItemPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
    * Returns the tree's root item, or `null` if the tree is empty.
    */
   public final fun getRoot(): TreeItem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
@@ -342,8 +341,8 @@ public open class Tree : Control() {
    * [Control.sizeFlagsStretchRatio].
    */
   public final fun setColumnCustomMinimumWidth(column: Int, minWidth: Int): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to minWidth.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnCustomMinimumWidthPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), LONG to minWidth.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setColumnCustomMinimumWidthPtr, NIL)
   }
 
   /**
@@ -352,71 +351,71 @@ public open class Tree : Control() {
    * [setColumnExpandRatio]).
    */
   public final fun setColumnExpand(column: Int, expand: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnExpandPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), BOOL to expand)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnExpandPtr, NIL)
   }
 
   /**
    * Sets the relative expand ratio for a column. See [setColumnExpand].
    */
   public final fun setColumnExpandRatio(column: Int, ratio: Int): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to ratio.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnExpandRatioPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), LONG to ratio.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setColumnExpandRatioPtr, NIL)
   }
 
   /**
    * Allows to enable clipping for column's content, making the content size ignored.
    */
   public final fun setColumnClipContent(column: Int, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnClipContentPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnClipContentPtr, NIL)
   }
 
   /**
    * Returns `true` if the column has enabled expanding (see [setColumnExpand]).
    */
   public final fun isColumnExpanding(column: Int): Boolean {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isColumnExpandingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isColumnExpandingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the column has enabled clipping (see [setColumnClipContent]).
    */
   public final fun isColumnClippingContent(column: Int): Boolean {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.isColumnClippingContentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.isColumnClippingContentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the expand ratio assigned to the column.
    */
   public final fun getColumnExpandRatio(column: Int): Int {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnExpandRatioPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnExpandRatioPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the column's width in pixels.
    */
   public final fun getColumnWidth(column: Int): Int {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHideRoot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHideRootPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setHideRootPtr, NIL)
   }
 
   public final fun isRootHidden(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRootHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRootHiddenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -424,9 +423,9 @@ public open class Tree : Control() {
    * If [from] is `null`, this returns the first selected item.
    */
   public final fun getNextSelected(from: TreeItem?): TreeItem? {
-    TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextSelectedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments(OBJECT to from)
+    Internals.callMethod(rawPtr, MethodBindings.getNextSelectedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
@@ -437,17 +436,17 @@ public open class Tree : Control() {
    * To get the currently selected item(s), use [getNextSelected].
    */
   public final fun getSelected(): TreeItem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
    * Selects the specified [TreeItem] and column.
    */
   public final fun setSelected(item: TreeItem?, column: Int): Unit {
-    TransferContext.writeArguments(OBJECT to item, LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
+    Internals.writeArguments(OBJECT to item, LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSelectedPtr, NIL)
   }
 
   /**
@@ -458,29 +457,29 @@ public open class Tree : Control() {
    * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
   public final fun getSelectedColumn(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedColumnPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectedColumnPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the last pressed button's index.
    */
   public final fun getPressedButton(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPressedButtonPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSelectMode(mode: SelectMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectModePtr, NIL)
   }
 
   public final fun getSelectMode(): SelectMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
-    return Tree.SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectModePtr, LONG)
+    return Tree.SelectMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -488,19 +487,19 @@ public open class Tree : Control() {
    * cursor.
    */
   public final fun deselectAll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.deselectAllPtr, NIL)
   }
 
   public final fun setColumns(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
   }
 
   public final fun getColumns(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -529,18 +528,18 @@ public open class Tree : Control() {
    * ```
    */
   public final fun getEdited(): TreeItem? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEditedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
    * Returns the column for the currently edited item.
    */
   public final fun getEditedColumn(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditedColumnPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEditedColumnPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -550,9 +549,9 @@ public open class Tree : Control() {
    */
   @JvmOverloads
   public final fun editSelected(forceEdit: Boolean = false): Boolean {
-    TransferContext.writeArguments(BOOL to forceEdit)
-    TransferContext.callMethod(rawPtr, MethodBindings.editSelectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(BOOL to forceEdit)
+    Internals.callMethod(rawPtr, MethodBindings.editSelectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -560,9 +559,9 @@ public open class Tree : Control() {
    * popup. See [TreeItem.setCellMode].
    */
   public final fun getCustomPopupRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomPopupRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomPopupRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
@@ -576,27 +575,27 @@ public open class Tree : Control() {
     column: Int = -1,
     buttonIndex: Int = -1,
   ): Rect2 {
-    TransferContext.writeArguments(OBJECT to item, LONG to column.toLong(), LONG to buttonIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemAreaRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments(OBJECT to item, LONG to column.toLong(), LONG to buttonIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getItemAreaRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   /**
    * Returns the tree item at the specified position (relative to the tree origin position).
    */
   public final fun getItemAtPosition(position: Vector2): TreeItem? {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getItemAtPositionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TreeItem?)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.getItemAtPositionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TreeItem?)
   }
 
   /**
    * Returns the column index at [position], or -1 if no item is there.
    */
   public final fun getColumnAtPosition(position: Vector2): Int {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnAtPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.getColumnAtPositionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -606,18 +605,18 @@ public open class Tree : Control() {
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
   public final fun getDropSectionAtPosition(position: Vector2): Int {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDropSectionAtPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.getDropSectionAtPositionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the button ID at [position], or -1 if no button is there.
    */
   public final fun getButtonIdAtPosition(position: Vector2): Int {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.getButtonIdAtPositionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.getButtonIdAtPositionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -628,36 +627,36 @@ public open class Tree : Control() {
    * [SELECT_MULTI] mode.
    */
   public final fun ensureCursorIsVisible(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.ensureCursorIsVisiblePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.ensureCursorIsVisiblePtr, NIL)
   }
 
   public final fun setColumnTitlesVisible(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitlesVisiblePtr, NIL)
+    Internals.writeArguments(BOOL to visible)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnTitlesVisiblePtr, NIL)
   }
 
   public final fun areColumnTitlesVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.areColumnTitlesVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.areColumnTitlesVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the title of a column.
    */
   public final fun setColumnTitle(column: Int, title: String): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitlePtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnTitlePtr, NIL)
   }
 
   /**
    * Returns the column's title.
    */
   public final fun getColumnTitle(column: Int): String {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnTitlePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -665,34 +664,34 @@ public open class Tree : Control() {
    * supported for column titles.
    */
   public final fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitleAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnTitleAlignmentPtr, NIL)
   }
 
   /**
    * Returns the column title alignment.
    */
   public final fun getColumnTitleAlignment(column: Int): HorizontalAlignment {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnTitleAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnTitleAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets column title base writing direction.
    */
   public final fun setColumnTitleDirection(column: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitleDirectionPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnTitleDirectionPtr, NIL)
   }
 
   /**
    * Returns column title base writing direction.
    */
   public final fun getColumnTitleDirection(column: Int): Control.TextDirection {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnTitleDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnTitleDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -700,26 +699,26 @@ public open class Tree : Control() {
    * empty current locale is used instead.
    */
   public final fun setColumnTitleLanguage(column: Int, language: String): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnTitleLanguagePtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setColumnTitleLanguagePtr, NIL)
   }
 
   /**
    * Returns column title language code.
    */
   public final fun getColumnTitleLanguage(column: Int): String {
-    TransferContext.writeArguments(LONG to column.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnTitleLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to column.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColumnTitleLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the current scrolling position.
    */
   public final fun getScroll(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -727,96 +726,96 @@ public open class Tree : Control() {
    */
   @JvmOverloads
   public final fun scrollToItem(item: TreeItem?, centerOnItem: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
-    TransferContext.callMethod(rawPtr, MethodBindings.scrollToItemPtr, NIL)
+    Internals.writeArguments(OBJECT to item, BOOL to centerOnItem)
+    Internals.callMethod(rawPtr, MethodBindings.scrollToItemPtr, NIL)
   }
 
   public final fun setHScrollEnabled(hScroll: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hScroll)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHScrollEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to hScroll)
+    Internals.callMethod(rawPtr, MethodBindings.setHScrollEnabledPtr, NIL)
   }
 
   public final fun isHScrollEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHScrollEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHScrollEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVScrollEnabled(hScroll: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hScroll)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVScrollEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to hScroll)
+    Internals.callMethod(rawPtr, MethodBindings.setVScrollEnabledPtr, NIL)
   }
 
   public final fun isVScrollEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVScrollEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVScrollEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHideFolding(hide: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hide)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHideFoldingPtr, NIL)
+    Internals.writeArguments(BOOL to hide)
+    Internals.callMethod(rawPtr, MethodBindings.setHideFoldingPtr, NIL)
   }
 
   public final fun isFoldingHidden(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFoldingHiddenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFoldingHiddenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnableRecursiveFolding(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableRecursiveFoldingPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableRecursiveFoldingPtr, NIL)
   }
 
   public final fun isRecursiveFoldingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRecursiveFoldingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDropModeFlags(flags: Int): Unit {
-    TransferContext.writeArguments(LONG to flags.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDropModeFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDropModeFlagsPtr, NIL)
   }
 
   public final fun getDropModeFlags(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDropModeFlagsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDropModeFlagsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAllowRmbSelect(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowRmbSelectPtr, NIL)
   }
 
   public final fun getAllowRmbSelect(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllowRmbSelectPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowReselect(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowReselectPtr, NIL)
   }
 
   public final fun getAllowReselect(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllowReselectPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowSearch(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowSearchPtr, NIL)
   }
 
   public final fun getAllowSearch(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAllowSearchPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class SelectMode(
@@ -893,185 +892,182 @@ public open class Tree : Control() {
   public companion object
 
   internal object MethodBindings {
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Tree", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "clear", 3218959716)
 
-    public val createItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "create_item", 528467046)
+    public val createItemPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "create_item", 528467046)
 
-    public val getRootPtr: VoidPtr = TypeManager.getMethodBindPtr("Tree", "get_root", 1514277247)
+    public val getRootPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_root", 1514277247)
 
     public val setColumnCustomMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_custom_minimum_width", 3937882851)
+        Internals.getMethodBindPtr("Tree", "set_column_custom_minimum_width", 3937882851)
 
     public val setColumnExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_expand", 300928843)
+        Internals.getMethodBindPtr("Tree", "set_column_expand", 300928843)
 
     public val setColumnExpandRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_expand_ratio", 3937882851)
+        Internals.getMethodBindPtr("Tree", "set_column_expand_ratio", 3937882851)
 
     public val setColumnClipContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_clip_content", 300928843)
+        Internals.getMethodBindPtr("Tree", "set_column_clip_content", 300928843)
 
     public val isColumnExpandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_column_expanding", 1116898809)
+        Internals.getMethodBindPtr("Tree", "is_column_expanding", 1116898809)
 
     public val isColumnClippingContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_column_clipping_content", 1116898809)
+        Internals.getMethodBindPtr("Tree", "is_column_clipping_content", 1116898809)
 
     public val getColumnExpandRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_expand_ratio", 923996154)
+        Internals.getMethodBindPtr("Tree", "get_column_expand_ratio", 923996154)
 
     public val getColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_width", 923996154)
+        Internals.getMethodBindPtr("Tree", "get_column_width", 923996154)
 
     public val setHideRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_hide_root", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_hide_root", 2586408642)
 
     public val isRootHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_root_hidden", 36873697)
+        Internals.getMethodBindPtr("Tree", "is_root_hidden", 36873697)
 
     public val getNextSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_next_selected", 873446299)
+        Internals.getMethodBindPtr("Tree", "get_next_selected", 873446299)
 
     public val getSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_selected", 1514277247)
+        Internals.getMethodBindPtr("Tree", "get_selected", 1514277247)
 
     public val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_selected", 2662547442)
+        Internals.getMethodBindPtr("Tree", "set_selected", 2662547442)
 
     public val getSelectedColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_selected_column", 3905245786)
+        Internals.getMethodBindPtr("Tree", "get_selected_column", 3905245786)
 
     public val getPressedButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_pressed_button", 3905245786)
+        Internals.getMethodBindPtr("Tree", "get_pressed_button", 3905245786)
 
     public val setSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_select_mode", 3223887270)
+        Internals.getMethodBindPtr("Tree", "set_select_mode", 3223887270)
 
     public val getSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_select_mode", 100748571)
+        Internals.getMethodBindPtr("Tree", "get_select_mode", 100748571)
 
     public val deselectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "deselect_all", 3218959716)
+        Internals.getMethodBindPtr("Tree", "deselect_all", 3218959716)
 
     public val setColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_columns", 1286410249)
+        Internals.getMethodBindPtr("Tree", "set_columns", 1286410249)
 
     public val getColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_columns", 3905245786)
+        Internals.getMethodBindPtr("Tree", "get_columns", 3905245786)
 
-    public val getEditedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_edited", 1514277247)
+    public val getEditedPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_edited", 1514277247)
 
     public val getEditedColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_edited_column", 3905245786)
+        Internals.getMethodBindPtr("Tree", "get_edited_column", 3905245786)
 
     public val editSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "edit_selected", 2595650253)
+        Internals.getMethodBindPtr("Tree", "edit_selected", 2595650253)
 
     public val getCustomPopupRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_custom_popup_rect", 1639390495)
+        Internals.getMethodBindPtr("Tree", "get_custom_popup_rect", 1639390495)
 
     public val getItemAreaRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_item_area_rect", 47968679)
+        Internals.getMethodBindPtr("Tree", "get_item_area_rect", 47968679)
 
     public val getItemAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_item_at_position", 4193340126)
+        Internals.getMethodBindPtr("Tree", "get_item_at_position", 4193340126)
 
     public val getColumnAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_at_position", 3820158470)
+        Internals.getMethodBindPtr("Tree", "get_column_at_position", 3820158470)
 
     public val getDropSectionAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_drop_section_at_position", 3820158470)
+        Internals.getMethodBindPtr("Tree", "get_drop_section_at_position", 3820158470)
 
     public val getButtonIdAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_button_id_at_position", 3820158470)
+        Internals.getMethodBindPtr("Tree", "get_button_id_at_position", 3820158470)
 
     public val ensureCursorIsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "ensure_cursor_is_visible", 3218959716)
+        Internals.getMethodBindPtr("Tree", "ensure_cursor_is_visible", 3218959716)
 
     public val setColumnTitlesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_titles_visible", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_column_titles_visible", 2586408642)
 
     public val areColumnTitlesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "are_column_titles_visible", 36873697)
+        Internals.getMethodBindPtr("Tree", "are_column_titles_visible", 36873697)
 
     public val setColumnTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title", 501894301)
+        Internals.getMethodBindPtr("Tree", "set_column_title", 501894301)
 
     public val getColumnTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title", 844755477)
+        Internals.getMethodBindPtr("Tree", "get_column_title", 844755477)
 
     public val setColumnTitleAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_alignment", 3276431499)
+        Internals.getMethodBindPtr("Tree", "set_column_title_alignment", 3276431499)
 
     public val getColumnTitleAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_alignment", 4171562184)
+        Internals.getMethodBindPtr("Tree", "get_column_title_alignment", 4171562184)
 
     public val setColumnTitleDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_direction", 1707680378)
+        Internals.getMethodBindPtr("Tree", "set_column_title_direction", 1707680378)
 
     public val getColumnTitleDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_direction", 4235602388)
+        Internals.getMethodBindPtr("Tree", "get_column_title_direction", 4235602388)
 
     public val setColumnTitleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_language", 501894301)
+        Internals.getMethodBindPtr("Tree", "set_column_title_language", 501894301)
 
     public val getColumnTitleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_language", 844755477)
+        Internals.getMethodBindPtr("Tree", "get_column_title_language", 844755477)
 
-    public val getScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_scroll", 3341600327)
+    public val getScrollPtr: VoidPtr = Internals.getMethodBindPtr("Tree", "get_scroll", 3341600327)
 
     public val scrollToItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "scroll_to_item", 1314737213)
+        Internals.getMethodBindPtr("Tree", "scroll_to_item", 1314737213)
 
     public val setHScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_h_scroll_enabled", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_h_scroll_enabled", 2586408642)
 
     public val isHScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_h_scroll_enabled", 36873697)
+        Internals.getMethodBindPtr("Tree", "is_h_scroll_enabled", 36873697)
 
     public val setVScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_v_scroll_enabled", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_v_scroll_enabled", 2586408642)
 
     public val isVScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36873697)
+        Internals.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36873697)
 
     public val setHideFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_hide_folding", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_hide_folding", 2586408642)
 
     public val isFoldingHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_folding_hidden", 36873697)
+        Internals.getMethodBindPtr("Tree", "is_folding_hidden", 36873697)
 
     public val setEnableRecursiveFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_enable_recursive_folding", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_enable_recursive_folding", 2586408642)
 
     public val isRecursiveFoldingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36873697)
+        Internals.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36873697)
 
     public val setDropModeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_drop_mode_flags", 1286410249)
+        Internals.getMethodBindPtr("Tree", "set_drop_mode_flags", 1286410249)
 
     public val getDropModeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_drop_mode_flags", 3905245786)
+        Internals.getMethodBindPtr("Tree", "get_drop_mode_flags", 3905245786)
 
     public val setAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_rmb_select", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_allow_rmb_select", 2586408642)
 
     public val getAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_rmb_select", 36873697)
+        Internals.getMethodBindPtr("Tree", "get_allow_rmb_select", 36873697)
 
     public val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_reselect", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_allow_reselect", 2586408642)
 
     public val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_reselect", 36873697)
+        Internals.getMethodBindPtr("Tree", "get_allow_reselect", 36873697)
 
     public val setAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_search", 2586408642)
+        Internals.getMethodBindPtr("Tree", "set_allow_search", 2586408642)
 
     public val getAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_search", 36873697)
+        Internals.getMethodBindPtr("Tree", "get_allow_search", 36873697)
   }
 }

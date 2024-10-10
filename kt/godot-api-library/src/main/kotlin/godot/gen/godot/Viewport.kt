@@ -14,7 +14,6 @@ import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -29,7 +28,7 @@ import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -714,7 +713,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VIEWPORT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VIEWPORT_INDEX, scriptIndex)
   }
 
   /**
@@ -769,14 +768,14 @@ public open class Viewport internal constructor() : Node() {
 
 
   public final fun setWorld2d(world2d: World2D?): Unit {
-    TransferContext.writeArguments(OBJECT to world2d)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWorld2dPtr, NIL)
+    Internals.writeArguments(OBJECT to world2d)
+    Internals.callMethod(rawPtr, MethodBindings.setWorld2dPtr, NIL)
   }
 
   public final fun getWorld2d(): World2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWorld2dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as World2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWorld2dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as World2D?)
   }
 
   /**
@@ -784,31 +783,31 @@ public open class Viewport internal constructor() : Node() {
    * and any Viewport ancestor.
    */
   public final fun findWorld2d(): World2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.findWorld2dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as World2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.findWorld2dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as World2D?)
   }
 
   public final fun setCanvasTransform(xform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanvasTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.setCanvasTransformPtr, NIL)
   }
 
   public final fun getCanvasTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCanvasTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setGlobalCanvasTransform(xform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalCanvasTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalCanvasTransformPtr, NIL)
   }
 
   public final fun getGlobalCanvasTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalCanvasTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalCanvasTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -816,9 +815,9 @@ public open class Viewport internal constructor() : Node() {
    * system.
    */
   public final fun getFinalTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFinalTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -826,117 +825,117 @@ public open class Viewport internal constructor() : Node() {
    * containing window manager window.
    */
   public final fun getScreenTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
    * Returns the visible rectangle in global screen coordinates.
    */
   public final fun getVisibleRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setTransparentBackground(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransparentBackgroundPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setTransparentBackgroundPtr, NIL)
   }
 
   public final fun hasTransparentBackground(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasTransparentBackgroundPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasTransparentBackgroundPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseHdr2d(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseHdr2dPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseHdr2dPtr, NIL)
   }
 
   public final fun isUsingHdr2d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingHdr2dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingHdr2dPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMsaa2d(msaa: MSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsaa2dPtr, NIL)
+    Internals.writeArguments(LONG to msaa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMsaa2dPtr, NIL)
   }
 
   public final fun getMsaa2d(): MSAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsaa2dPtr, LONG)
-    return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsaa2dPtr, LONG)
+    return Viewport.MSAA.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMsaa3d(msaa: MSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
+    Internals.writeArguments(LONG to msaa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMsaa3dPtr, NIL)
   }
 
   public final fun getMsaa3d(): MSAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
-    return Viewport.MSAA.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsaa3dPtr, LONG)
+    return Viewport.MSAA.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: ScreenSpaceAA): Unit {
-    TransferContext.writeArguments(LONG to screenSpaceAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
+    Internals.writeArguments(LONG to screenSpaceAa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
 
   public final fun getScreenSpaceAa(): ScreenSpaceAA {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
-    return Viewport.ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenSpaceAaPtr, LONG)
+    return Viewport.ScreenSpaceAA.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUseTaa(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTaaPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseTaaPtr, NIL)
   }
 
   public final fun isUsingTaa(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTaaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingTaaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseDebanding(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
   }
 
   public final fun isUsingDebanding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingDebandingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingDebandingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseOcclusionCulling(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseOcclusionCullingPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseOcclusionCullingPtr, NIL)
   }
 
   public final fun isUsingOcclusionCulling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingOcclusionCullingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingOcclusionCullingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugDraw(debugDraw: DebugDraw): Unit {
-    TransferContext.writeArguments(LONG to debugDraw.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugDrawPtr, NIL)
+    Internals.writeArguments(LONG to debugDraw.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugDrawPtr, NIL)
   }
 
   public final fun getDebugDraw(): DebugDraw {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDebugDrawPtr, LONG)
-    return Viewport.DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDebugDrawPtr, LONG)
+    return Viewport.DebugDraw.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -944,9 +943,9 @@ public open class Viewport internal constructor() : Node() {
    * options.
    */
   public final fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
-    TransferContext.writeArguments(LONG to type.id, LONG to info.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderInfoPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to type.id, LONG to info.id)
+    Internals.callMethod(rawPtr, MethodBindings.getRenderInfoPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -961,51 +960,51 @@ public open class Viewport internal constructor() : Node() {
    * [/codeblock]
    */
   public final fun getTexture(): ViewportTexture? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ViewportTexture?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ViewportTexture?)
   }
 
   public final fun setPhysicsObjectPicking(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingPtr, NIL)
   }
 
   public final fun getPhysicsObjectPicking(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPhysicsObjectPickingSort(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingSortPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingSortPtr, NIL)
   }
 
   public final fun getPhysicsObjectPickingSort(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingSortPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingSortPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPhysicsObjectPickingFirstOnly(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingFirstOnlyPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsObjectPickingFirstOnlyPtr, NIL)
   }
 
   public final fun getPhysicsObjectPickingFirstOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingFirstOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsObjectPickingFirstOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the viewport's RID from the [RenderingServer].
    */
   public final fun getViewportRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewportRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getViewportRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -1013,8 +1012,8 @@ public open class Viewport internal constructor() : Node() {
    * that it is defined (e.g. if the focused Control is [Button] or [LineEdit]).
    */
   public final fun pushTextInput(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushTextInputPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.pushTextInputPtr, NIL)
   }
 
   /**
@@ -1040,8 +1039,8 @@ public open class Viewport internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun pushInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushInputPtr, NIL)
+    Internals.writeArguments(OBJECT to event, BOOL to inLocalCoords)
+    Internals.callMethod(rawPtr, MethodBindings.pushInputPtr, NIL)
   }
 
   /**
@@ -1063,17 +1062,17 @@ public open class Viewport internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun pushUnhandledInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushUnhandledInputPtr, NIL)
+    Internals.writeArguments(OBJECT to event, BOOL to inLocalCoords)
+    Internals.callMethod(rawPtr, MethodBindings.pushUnhandledInputPtr, NIL)
   }
 
   /**
    * Returns the mouse's position in this [Viewport] using the coordinate system of this [Viewport].
    */
   public final fun getMousePosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMousePositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMousePositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -1083,8 +1082,8 @@ public open class Viewport internal constructor() : Node() {
    * Android, iOS and Web.
    */
   public final fun warpMouse(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.warpMousePtr, NIL)
   }
 
   /**
@@ -1094,17 +1093,17 @@ public open class Viewport internal constructor() : Node() {
    * Window.mouse_entered] signals and their respective `mouse_exited` counterparts.
    */
   public final fun updateMouseCursorState(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updateMouseCursorStatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.updateMouseCursorStatePtr, NIL)
   }
 
   /**
    * Returns the drag data from the GUI, that was previously returned by [Control.GetDragData].
    */
   public final fun guiGetDragData(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiGetDragDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiGetDragDataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -1113,18 +1112,18 @@ public open class Viewport internal constructor() : Node() {
    * polling the value.
    */
   public final fun guiIsDragging(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiIsDraggingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiIsDraggingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the drag operation is successful.
    */
   public final fun guiIsDragSuccessful(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiIsDragSuccessfulPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiIsDragSuccessfulPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1132,8 +1131,8 @@ public open class Viewport internal constructor() : Node() {
    * has the focus, does nothing.
    */
   public final fun guiReleaseFocus(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiReleaseFocusPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiReleaseFocusPtr, NIL)
   }
 
   /**
@@ -1141,9 +1140,9 @@ public open class Viewport internal constructor() : Node() {
    * returns null.
    */
   public final fun guiGetFocusOwner(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiGetFocusOwnerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Control?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiGetFocusOwnerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Control?)
   }
 
   /**
@@ -1154,75 +1153,75 @@ public open class Viewport internal constructor() : Node() {
    * tree.
    */
   public final fun guiGetHoveredControl(): Control? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.guiGetHoveredControlPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Control?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.guiGetHoveredControlPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setDisableInput(disable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisableInputPtr, NIL)
+    Internals.writeArguments(BOOL to disable)
+    Internals.callMethod(rawPtr, MethodBindings.setDisableInputPtr, NIL)
   }
 
   public final fun isInputDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInputDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPositionalShadowAtlasSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasSizePtr, NIL)
   }
 
   public final fun getPositionalShadowAtlasSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPositionalShadowAtlas16Bits(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlas16BitsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlas16BitsPtr, NIL)
   }
 
   public final fun getPositionalShadowAtlas16Bits(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlas16BitsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlas16BitsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSnapControlsToPixels(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnapControlsToPixelsPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSnapControlsToPixelsPtr, NIL)
   }
 
   public final fun isSnapControlsToPixelsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSnapControlsToPixelsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSnapControlsToPixelsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSnap2dTransformsToPixel(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
   }
 
   public final fun isSnap2dTransformsToPixelEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSnap2dTransformsToPixelEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSnap2dTransformsToPixelEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSnap2dVerticesToPixel(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSnap2dVerticesToPixelPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSnap2dVerticesToPixelPtr, NIL)
   }
 
   public final fun isSnap2dVerticesToPixelEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSnap2dVerticesToPixelEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSnap2dVerticesToPixelEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1233,9 +1232,8 @@ public open class Viewport internal constructor() : Node() {
    */
   public final fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
       subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
-    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr,
-        NIL)
+    Internals.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr, NIL)
   }
 
   /**
@@ -1243,10 +1241,9 @@ public open class Viewport internal constructor() : Node() {
    */
   public final fun getPositionalShadowAtlasQuadrantSubdiv(quadrant: Int):
       PositionalShadowAtlasQuadrantSubdiv {
-    TransferContext.writeArguments(LONG to quadrant.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr,
-        LONG)
-    return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to quadrant.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr, LONG)
+    return Viewport.PositionalShadowAtlasQuadrantSubdiv.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1254,8 +1251,8 @@ public open class Viewport internal constructor() : Node() {
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
   public final fun setInputAsHandled(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputAsHandledPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.setInputAsHandledPtr, NIL)
   }
 
   /**
@@ -1267,42 +1264,42 @@ public open class Viewport internal constructor() : Node() {
    * viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
   public final fun isInputHandled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isInputHandledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isInputHandledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHandleInputLocally(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandleInputLocallyPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setHandleInputLocallyPtr, NIL)
   }
 
   public final fun isHandlingInputLocally(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHandlingInputLocallyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHandlingInputLocallyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultCanvasItemTextureFilter(mode: DefaultCanvasItemTextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureFilterPtr, NIL)
   }
 
   public final fun getDefaultCanvasItemTextureFilter(): DefaultCanvasItemTextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureFilterPtr, LONG)
-    return Viewport.DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureFilterPtr, LONG)
+    return Viewport.DefaultCanvasItemTextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmbeddingSubwindows(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
   }
 
   public final fun isEmbeddingSubwindows(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEmbeddingSubwindowsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEmbeddingSubwindowsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1310,20 +1307,20 @@ public open class Viewport internal constructor() : Node() {
    * **Note:** [Window]s inside other viewports will not be listed.
    */
   public final fun getEmbeddedSubwindows(): VariantArray<Window> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmbeddedSubwindowsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Window>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmbeddedSubwindowsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Window>)
   }
 
   public final fun setCanvasCullMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanvasCullMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCanvasCullMaskPtr, NIL)
   }
 
   public final fun getCanvasCullMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasCullMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCanvasCullMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1331,92 +1328,92 @@ public open class Viewport internal constructor() : Node() {
    * [Viewport]'s layers.
    */
   public final fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layer, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanvasCullMaskBitPtr, NIL)
+    Internals.writeArguments(LONG to layer, BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setCanvasCullMaskBitPtr, NIL)
   }
 
   /**
    * Returns an individual bit on the rendering layer mask.
    */
   public final fun getCanvasCullMaskBit(layer: Long): Boolean {
-    TransferContext.writeArguments(LONG to layer)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCanvasCullMaskBitPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layer)
+    Internals.callMethod(rawPtr, MethodBindings.getCanvasCullMaskBitPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultCanvasItemTextureRepeat(mode: DefaultCanvasItemTextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureRepeatPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultCanvasItemTextureRepeatPtr, NIL)
   }
 
   public final fun getDefaultCanvasItemTextureRepeat(): DefaultCanvasItemTextureRepeat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureRepeatPtr, LONG)
-    return Viewport.DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultCanvasItemTextureRepeatPtr, LONG)
+    return Viewport.DefaultCanvasItemTextureRepeat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfOversize(oversize: SDFOversize): Unit {
-    TransferContext.writeArguments(LONG to oversize.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfOversizePtr, NIL)
+    Internals.writeArguments(LONG to oversize.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfOversizePtr, NIL)
   }
 
   public final fun getSdfOversize(): SDFOversize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfOversizePtr, LONG)
-    return Viewport.SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfOversizePtr, LONG)
+    return Viewport.SDFOversize.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSdfScale(scale: SDFScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSdfScalePtr, NIL)
+    Internals.writeArguments(LONG to scale.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSdfScalePtr, NIL)
   }
 
   public final fun getSdfScale(): SDFScale {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSdfScalePtr, LONG)
-    return Viewport.SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSdfScalePtr, LONG)
+    return Viewport.SDFScale.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMeshLodThreshold(pixels: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixels.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to pixels.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMeshLodThresholdPtr, NIL)
   }
 
   public final fun getMeshLodThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshLodThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAsAudioListener2d(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsAudioListener2dPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAsAudioListener2dPtr, NIL)
   }
 
   public final fun isAudioListener2d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAudioListener2dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAudioListener2dPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the currently active 2D camera. Returns null if there are no active cameras.
    */
   public final fun getCamera2d(): Camera2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamera2dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Camera2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCamera2dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Camera2D?)
   }
 
   public final fun setWorld3d(world3d: World3D?): Unit {
-    TransferContext.writeArguments(OBJECT to world3d)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWorld3dPtr, NIL)
+    Internals.writeArguments(OBJECT to world3d)
+    Internals.callMethod(rawPtr, MethodBindings.setWorld3dPtr, NIL)
   }
 
   public final fun getWorld3d(): World3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWorld3dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as World3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWorld3dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as World3D?)
   }
 
   /**
@@ -1424,139 +1421,139 @@ public open class Viewport internal constructor() : Node() {
    * and any Viewport ancestor.
    */
   public final fun findWorld3d(): World3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.findWorld3dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as World3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.findWorld3dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as World3D?)
   }
 
   public final fun setUseOwnWorld3d(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseOwnWorld3dPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseOwnWorld3dPtr, NIL)
   }
 
   public final fun isUsingOwnWorld3d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingOwnWorld3dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingOwnWorld3dPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the currently active 3D camera.
    */
   public final fun getCamera3d(): Camera3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamera3dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCamera3dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Camera3D?)
   }
 
   public final fun setAsAudioListener3d(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsAudioListener3dPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAsAudioListener3dPtr, NIL)
   }
 
   public final fun isAudioListener3d(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAudioListener3dPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAudioListener3dPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDisable3d(disable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisable3dPtr, NIL)
+    Internals.writeArguments(BOOL to disable)
+    Internals.callMethod(rawPtr, MethodBindings.setDisable3dPtr, NIL)
   }
 
   public final fun is3dDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.is3dDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.is3dDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseXr(use: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to use)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseXrPtr, NIL)
+    Internals.writeArguments(BOOL to use)
+    Internals.callMethod(rawPtr, MethodBindings.setUseXrPtr, NIL)
   }
 
   public final fun isUsingXr(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingXrPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingXrPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScaling3dMode(scaling3dMode: Scaling3DMode): Unit {
-    TransferContext.writeArguments(LONG to scaling3dMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
+    Internals.writeArguments(LONG to scaling3dMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setScaling3dModePtr, NIL)
   }
 
   public final fun getScaling3dMode(): Scaling3DMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
-    return Viewport.Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaling3dModePtr, LONG)
+    return Viewport.Scaling3DMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setScaling3dScale(scale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to scale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaling3dScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setScaling3dScalePtr, NIL)
   }
 
   public final fun getScaling3dScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaling3dScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaling3dScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFsrSharpness(fsrSharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fsrSharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to fsrSharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFsrSharpnessPtr, NIL)
   }
 
   public final fun getFsrSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFsrSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to textureMipmapBias.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
+    Internals.writeArguments(DOUBLE to textureMipmapBias.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
 
   public final fun getTextureMipmapBias(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureMipmapBiasPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMode(mode: VRSMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVrsModePtr, NIL)
   }
 
   public final fun getVrsMode(): VRSMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsModePtr, LONG)
-    return Viewport.VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsModePtr, LONG)
+    return Viewport.VRSMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsUpdateMode(mode: VRSUpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsUpdateModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVrsUpdateModePtr, NIL)
   }
 
   public final fun getVrsUpdateMode(): VRSUpdateMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsUpdateModePtr, LONG)
-    return Viewport.VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsUpdateModePtr, LONG)
+    return Viewport.VRSUpdateMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVrsTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setVrsTexturePtr, NIL)
   }
 
   public final fun getVrsTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(
@@ -2143,342 +2140,342 @@ public open class Viewport internal constructor() : Node() {
 
   internal object MethodBindings {
     public val setWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_world_2d", 2736080068)
+        Internals.getMethodBindPtr("Viewport", "set_world_2d", 2736080068)
 
     public val getWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_world_2d", 2339128592)
+        Internals.getMethodBindPtr("Viewport", "get_world_2d", 2339128592)
 
     public val findWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "find_world_2d", 2339128592)
+        Internals.getMethodBindPtr("Viewport", "find_world_2d", 2339128592)
 
     public val setCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform", 2761652528)
+        Internals.getMethodBindPtr("Viewport", "set_canvas_transform", 2761652528)
 
     public val getCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform", 3814499831)
+        Internals.getMethodBindPtr("Viewport", "get_canvas_transform", 3814499831)
 
     public val setGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform", 2761652528)
+        Internals.getMethodBindPtr("Viewport", "set_global_canvas_transform", 2761652528)
 
     public val getGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3814499831)
+        Internals.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3814499831)
 
     public val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_final_transform", 3814499831)
+        Internals.getMethodBindPtr("Viewport", "get_final_transform", 3814499831)
 
     public val getScreenTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform", 3814499831)
+        Internals.getMethodBindPtr("Viewport", "get_screen_transform", 3814499831)
 
     public val getVisibleRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect", 1639390495)
+        Internals.getMethodBindPtr("Viewport", "get_visible_rect", 1639390495)
 
     public val setTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_transparent_background", 2586408642)
 
     public val hasTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background", 36873697)
+        Internals.getMethodBindPtr("Viewport", "has_transparent_background", 36873697)
 
     public val setUseHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_hdr_2d", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_hdr_2d", 2586408642)
 
     public val isUsingHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_hdr_2d", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_using_hdr_2d", 36873697)
 
     public val setMsaa2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d", 3330258708)
+        Internals.getMethodBindPtr("Viewport", "set_msaa_2d", 3330258708)
 
     public val getMsaa2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d", 2542055527)
+        Internals.getMethodBindPtr("Viewport", "get_msaa_2d", 2542055527)
 
     public val setMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d", 3330258708)
+        Internals.getMethodBindPtr("Viewport", "set_msaa_3d", 3330258708)
 
     public val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d", 2542055527)
+        Internals.getMethodBindPtr("Viewport", "get_msaa_3d", 2542055527)
 
     public val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa", 3544169389)
+        Internals.getMethodBindPtr("Viewport", "set_screen_space_aa", 3544169389)
 
     public val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa", 1390814124)
+        Internals.getMethodBindPtr("Viewport", "get_screen_space_aa", 1390814124)
 
     public val setUseTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_taa", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_taa", 2586408642)
 
     public val isUsingTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_taa", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_using_taa", 36873697)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_debanding", 2586408642)
 
     public val isUsingDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_using_debanding", 36873697)
 
     public val setUseOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_occlusion_culling", 2586408642)
 
     public val isUsingOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_using_occlusion_culling", 36873697)
 
     public val setDebugDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_debug_draw", 1970246205)
+        Internals.getMethodBindPtr("Viewport", "set_debug_draw", 1970246205)
 
     public val getDebugDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_debug_draw", 579191299)
+        Internals.getMethodBindPtr("Viewport", "get_debug_draw", 579191299)
 
     public val getRenderInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_render_info", 481977019)
+        Internals.getMethodBindPtr("Viewport", "get_render_info", 481977019)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture", 1746695840)
+        Internals.getMethodBindPtr("Viewport", "get_texture", 1746695840)
 
     public val setPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_physics_object_picking", 2586408642)
 
     public val getPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking", 2240911060)
+        Internals.getMethodBindPtr("Viewport", "get_physics_object_picking", 2240911060)
 
     public val setPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_physics_object_picking_sort", 2586408642)
 
     public val getPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort", 2240911060)
+        Internals.getMethodBindPtr("Viewport", "get_physics_object_picking_sort", 2240911060)
 
     public val setPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only", 2586408642)
 
     public val getPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only", 2240911060)
+        Internals.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only", 2240911060)
 
     public val getViewportRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid", 2944877500)
+        Internals.getMethodBindPtr("Viewport", "get_viewport_rid", 2944877500)
 
     public val pushTextInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_text_input", 83702148)
+        Internals.getMethodBindPtr("Viewport", "push_text_input", 83702148)
 
     public val pushInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_input", 3644664830)
+        Internals.getMethodBindPtr("Viewport", "push_input", 3644664830)
 
     public val pushUnhandledInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input", 3644664830)
+        Internals.getMethodBindPtr("Viewport", "push_unhandled_input", 3644664830)
 
     public val getMousePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position", 3341600327)
+        Internals.getMethodBindPtr("Viewport", "get_mouse_position", 3341600327)
 
     public val warpMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "warp_mouse", 743155724)
+        Internals.getMethodBindPtr("Viewport", "warp_mouse", 743155724)
 
     public val updateMouseCursorStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3218959716)
+        Internals.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3218959716)
 
     public val guiGetDragDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
+        Internals.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
 
     public val guiIsDraggingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging", 36873697)
+        Internals.getMethodBindPtr("Viewport", "gui_is_dragging", 36873697)
 
     public val guiIsDragSuccessfulPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful", 36873697)
+        Internals.getMethodBindPtr("Viewport", "gui_is_drag_successful", 36873697)
 
     public val guiReleaseFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus", 3218959716)
+        Internals.getMethodBindPtr("Viewport", "gui_release_focus", 3218959716)
 
     public val guiGetFocusOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner", 2783021301)
+        Internals.getMethodBindPtr("Viewport", "gui_get_focus_owner", 2783021301)
 
     public val guiGetHoveredControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control", 2783021301)
+        Internals.getMethodBindPtr("Viewport", "gui_get_hovered_control", 2783021301)
 
     public val setDisableInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_input", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_disable_input", 2586408642)
 
     public val isInputDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_input_disabled", 36873697)
 
     public val setPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size", 1286410249)
+        Internals.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size", 1286410249)
 
     public val getPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size", 3905245786)
+        Internals.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size", 3905245786)
 
     public val setPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits", 2586408642)
 
     public val getPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits", 36873697)
+        Internals.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits", 36873697)
 
     public val setSnapControlsToPixelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels", 2586408642)
 
     public val isSnapControlsToPixelsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled", 36873697)
 
     public val setSnap2dTransformsToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel", 2586408642)
 
     public val isSnap2dTransformsToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled", 36873697)
 
     public val setSnap2dVerticesToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel", 2586408642)
 
     public val isSnap2dVerticesToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled", 36873697)
 
     public val setPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv", 2596956071)
+        Internals.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv", 2596956071)
 
     public val getPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv", 2676778355)
+        Internals.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv", 2676778355)
 
     public val setInputAsHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled", 3218959716)
+        Internals.getMethodBindPtr("Viewport", "set_input_as_handled", 3218959716)
 
     public val isInputHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_handled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_input_handled", 36873697)
 
     public val setHandleInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_handle_input_locally", 2586408642)
 
     public val isHandlingInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_handling_input_locally", 36873697)
 
     public val setDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter", 2815160100)
+        Internals.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter", 2815160100)
 
     public val getDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter", 896601198)
+        Internals.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter", 896601198)
 
     public val setEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_embedding_subwindows", 2586408642)
 
     public val isEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_embedding_subwindows", 36873697)
 
     public val getEmbeddedSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3995934104)
+        Internals.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3995934104)
 
     public val setCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1286410249)
+        Internals.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1286410249)
 
     public val getCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask", 3905245786)
+        Internals.getMethodBindPtr("Viewport", "get_canvas_cull_mask", 3905245786)
 
     public val setCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit", 300928843)
+        Internals.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit", 300928843)
 
     public val getCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit", 1116898809)
+        Internals.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit", 1116898809)
 
     public val setDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat", 1658513413)
+        Internals.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat", 1658513413)
 
     public val getDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat", 4049774160)
+        Internals.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat", 4049774160)
 
     public val setSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize", 2574159017)
+        Internals.getMethodBindPtr("Viewport", "set_sdf_oversize", 2574159017)
 
     public val getSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize", 2631427510)
+        Internals.getMethodBindPtr("Viewport", "get_sdf_oversize", 2631427510)
 
     public val setSdfScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale", 1402773951)
+        Internals.getMethodBindPtr("Viewport", "set_sdf_scale", 1402773951)
 
     public val getSdfScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale", 3162688184)
+        Internals.getMethodBindPtr("Viewport", "get_sdf_scale", 3162688184)
 
     public val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold", 373806689)
+        Internals.getMethodBindPtr("Viewport", "set_mesh_lod_threshold", 373806689)
 
     public val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold", 1740695150)
+        Internals.getMethodBindPtr("Viewport", "get_mesh_lod_threshold", 1740695150)
 
     public val setAsAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_as_audio_listener_2d", 2586408642)
 
     public val isAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36873697)
 
     public val getCamera2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_camera_2d", 3551466917)
+        Internals.getMethodBindPtr("Viewport", "get_camera_2d", 3551466917)
 
     public val setWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_world_3d", 1400875337)
+        Internals.getMethodBindPtr("Viewport", "set_world_3d", 1400875337)
 
     public val getWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_world_3d", 317588385)
+        Internals.getMethodBindPtr("Viewport", "get_world_3d", 317588385)
 
     public val findWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "find_world_3d", 317588385)
+        Internals.getMethodBindPtr("Viewport", "find_world_3d", 317588385)
 
     public val setUseOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_own_world_3d", 2586408642)
 
     public val isUsingOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36873697)
 
     public val getCamera3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_camera_3d", 2285090890)
+        Internals.getMethodBindPtr("Viewport", "get_camera_3d", 2285090890)
 
     public val setAsAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_as_audio_listener_3d", 2586408642)
 
     public val isAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_audio_listener_3d", 36873697)
 
     public val setDisable3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_3d", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_disable_3d", 2586408642)
 
     public val is3dDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled", 36873697)
+        Internals.getMethodBindPtr("Viewport", "is_3d_disabled", 36873697)
 
     public val setUseXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_xr", 2586408642)
+        Internals.getMethodBindPtr("Viewport", "set_use_xr", 2586408642)
 
     public val isUsingXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 2240911060)
+        Internals.getMethodBindPtr("Viewport", "is_using_xr", 2240911060)
 
     public val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1531597597)
+        Internals.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1531597597)
 
     public val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode", 2597660574)
+        Internals.getMethodBindPtr("Viewport", "get_scaling_3d_mode", 2597660574)
 
     public val setScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale", 373806689)
+        Internals.getMethodBindPtr("Viewport", "set_scaling_3d_scale", 373806689)
 
     public val getScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale", 1740695150)
+        Internals.getMethodBindPtr("Viewport", "get_scaling_3d_scale", 1740695150)
 
     public val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness", 373806689)
+        Internals.getMethodBindPtr("Viewport", "set_fsr_sharpness", 373806689)
 
     public val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness", 1740695150)
+        Internals.getMethodBindPtr("Viewport", "get_fsr_sharpness", 1740695150)
 
     public val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias", 373806689)
+        Internals.getMethodBindPtr("Viewport", "set_texture_mipmap_bias", 373806689)
 
     public val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1740695150)
+        Internals.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1740695150)
 
     public val setVrsModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode", 2749867817)
+        Internals.getMethodBindPtr("Viewport", "set_vrs_mode", 2749867817)
 
     public val getVrsModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode", 349660525)
+        Internals.getMethodBindPtr("Viewport", "get_vrs_mode", 349660525)
 
     public val setVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode", 3182412319)
+        Internals.getMethodBindPtr("Viewport", "set_vrs_update_mode", 3182412319)
 
     public val getVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode", 2255951583)
+        Internals.getMethodBindPtr("Viewport", "get_vrs_update_mode", 2255951583)
 
     public val setVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture", 4051416890)
+        Internals.getMethodBindPtr("Viewport", "set_vrs_texture", 4051416890)
 
     public val getVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture", 3635182373)
+        Internals.getMethodBindPtr("Viewport", "get_vrs_texture", 3635182373)
   }
 }

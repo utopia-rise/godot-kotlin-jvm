@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -159,197 +158,197 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINERASTERIZATIONSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINERASTERIZATIONSTATE_INDEX, scriptIndex)
   }
 
   public final fun setEnableDepthClamp(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableDepthClampPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableDepthClampPtr, NIL)
   }
 
   public final fun getEnableDepthClamp(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableDepthClampPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableDepthClampPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDiscardPrimitives(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiscardPrimitivesPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setDiscardPrimitivesPtr, NIL)
   }
 
   public final fun getDiscardPrimitives(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiscardPrimitivesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiscardPrimitivesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWireframe(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWireframePtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setWireframePtr, NIL)
   }
 
   public final fun getWireframe(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWireframePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWireframePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
   }
 
   public final fun getCullMode(): RenderingDevice.PolygonCullMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
-    return RenderingDevice.PolygonCullMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
+    return RenderingDevice.PolygonCullMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrontFacePtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFrontFacePtr, NIL)
   }
 
   public final fun getFrontFace(): RenderingDevice.PolygonFrontFace {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrontFacePtr, LONG)
-    return RenderingDevice.PolygonFrontFace.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrontFacePtr, LONG)
+    return RenderingDevice.PolygonFrontFace.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepthBiasEnabled(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setDepthBiasEnabledPtr, NIL)
   }
 
   public final fun getDepthBiasEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthBiasEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDepthBiasConstantFactor(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
   }
 
   public final fun getDepthBiasConstantFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasConstantFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthBiasConstantFactorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthBiasClamp(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasClampPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthBiasClampPtr, NIL)
   }
 
   public final fun getDepthBiasClamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasClampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthBiasClampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthBiasSlopeFactor(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthBiasSlopeFactorPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthBiasSlopeFactorPtr, NIL)
   }
 
   public final fun getDepthBiasSlopeFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthBiasSlopeFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthBiasSlopeFactorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLineWidth(pMember: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pMember.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLineWidthPtr, NIL)
+    Internals.writeArguments(DOUBLE to pMember.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLineWidthPtr, NIL)
   }
 
   public final fun getLineWidth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineWidthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPatchControlPoints(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPatchControlPointsPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setPatchControlPointsPtr, NIL)
   }
 
   public final fun getPatchControlPoints(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatchControlPointsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPatchControlPointsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp", 2586408642)
 
     public val getEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp", 36873697)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp", 36873697)
 
     public val setDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives", 2586408642)
 
     public val getDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives", 36873697)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives", 36873697)
 
     public val setWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe", 2586408642)
 
     public val getWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe", 36873697)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe", 36873697)
 
     public val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode", 2662586502)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode", 2662586502)
 
     public val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode", 2192484313)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode", 2192484313)
 
     public val setFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face", 2637251213)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face", 2637251213)
 
     public val getFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face", 708793786)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face", 708793786)
 
     public val setDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled", 2586408642)
 
     public val getDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled", 36873697)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled", 36873697)
 
     public val setDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor", 373806689)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor", 373806689)
 
     public val getDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor", 1740695150)
 
     public val setDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp", 373806689)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp", 373806689)
 
     public val getDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp", 1740695150)
 
     public val setDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor", 373806689)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor", 373806689)
 
     public val getDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor", 1740695150)
 
     public val setLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width", 373806689)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width", 373806689)
 
     public val getLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width", 1740695150)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width", 1740695150)
 
     public val setPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points", 1286410249)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points", 1286410249)
 
     public val getPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points", 3905245786)
+        Internals.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points", 3905245786)
   }
 }

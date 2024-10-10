@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -102,7 +101,7 @@ private const val ENGINE_CLASS_AESCONTEXT_INDEX: Int = 38
 @GodotBaseType
 public open class AESContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AESCONTEXT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AESCONTEXT_INDEX, scriptIndex)
   }
 
   /**
@@ -116,9 +115,9 @@ public open class AESContext : RefCounted() {
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray(),
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
-    TransferContext.callMethod(rawPtr, MethodBindings.startPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
+    Internals.callMethod(rawPtr, MethodBindings.startPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -127,9 +126,9 @@ public open class AESContext : RefCounted() {
    * **Note:** The size of [src] must be a multiple of 16. Apply some padding if needed.
    */
   public final fun update(src: PackedByteArray): PackedByteArray {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to src)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to src)
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
@@ -139,17 +138,17 @@ public open class AESContext : RefCounted() {
    * [MODE_CBC_DECRYPT].
    */
   public final fun getIvState(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIvStatePtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIvStatePtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
    * Close this AES context so it can be started again. See [start].
    */
   public final fun finish(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.finishPtr, NIL)
   }
 
   public enum class Mode(
@@ -190,13 +189,13 @@ public open class AESContext : RefCounted() {
   public companion object
 
   internal object MethodBindings {
-    public val startPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "start", 3122411423)
+    public val startPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "start", 3122411423)
 
-    public val updatePtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "update", 527836100)
+    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "update", 527836100)
 
     public val getIvStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AESContext", "get_iv_state", 2115431945)
+        Internals.getMethodBindPtr("AESContext", "get_iv_state", 2115431945)
 
-    public val finishPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "finish", 3218959716)
+    public val finishPtr: VoidPtr = Internals.getMethodBindPtr("AESContext", "finish", 3218959716)
   }
 }

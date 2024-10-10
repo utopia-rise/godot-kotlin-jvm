@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -34,7 +33,7 @@ private const val ENGINE_CLASS_TEXTURELAYERED_INDEX: Int = 588
 @GodotBaseType
 public open class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTURELAYERED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**
@@ -90,9 +89,9 @@ public open class TextureLayered : Texture() {
    * Returns the current format being used by this texture. See [Image.Format] for details.
    */
   public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return Image.Format.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -100,54 +99,54 @@ public open class TextureLayered : Texture() {
    * cubemaps having special types.
    */
   public final fun getLayeredType(): LayeredType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayeredTypePtr, LONG)
-    return TextureLayered.LayeredType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLayeredTypePtr, LONG)
+    return TextureLayered.LayeredType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the width of the texture in pixels. Width is typically represented by the X axis.
    */
   public final fun getWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the height of the texture in pixels. Height is typically represented by the Y axis.
    */
   public final fun getHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the number of referenced [Image]s.
    */
   public final fun getLayers(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns `true` if the layers have generated mipmaps.
    */
   public final fun hasMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasMipmapsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns an [Image] resource with the data from specified [layer].
    */
   public final fun getLayerData(layer: Int): Image? {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLayerDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getLayerDataPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   public enum class LayeredType(
@@ -181,24 +180,24 @@ public open class TextureLayered : Texture() {
 
   internal object MethodBindings {
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_format", 3847873762)
+        Internals.getMethodBindPtr("TextureLayered", "get_format", 3847873762)
 
     public val getLayeredTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layered_type", 518123893)
+        Internals.getMethodBindPtr("TextureLayered", "get_layered_type", 518123893)
 
     public val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_width", 3905245786)
+        Internals.getMethodBindPtr("TextureLayered", "get_width", 3905245786)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_height", 3905245786)
+        Internals.getMethodBindPtr("TextureLayered", "get_height", 3905245786)
 
     public val getLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layers", 3905245786)
+        Internals.getMethodBindPtr("TextureLayered", "get_layers", 3905245786)
 
     public val hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "has_mipmaps", 36873697)
+        Internals.getMethodBindPtr("TextureLayered", "has_mipmaps", 36873697)
 
     public val getLayerDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureLayered", "get_layer_data", 3655284255)
+        Internals.getMethodBindPtr("TextureLayered", "get_layer_data", 3655284255)
   }
 }

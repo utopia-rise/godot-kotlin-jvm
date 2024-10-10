@@ -11,13 +11,12 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -154,7 +153,7 @@ public open class NinePatchRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NINEPATCHRECT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NINEPATCHRECT_INDEX, scriptIndex)
   }
 
   /**
@@ -184,75 +183,75 @@ public open class NinePatchRect : Control() {
 
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * Sets the size of the margin on the specified [Side] to [value] pixels.
    */
   public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPatchMarginPtr, NIL)
   }
 
   /**
    * Returns the size of the margin on the specified [Side].
    */
   public final fun getPatchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getPatchMarginPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRegionRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
   }
 
   public final fun getRegionRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setDrawCenter(drawCenter: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to drawCenter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+    Internals.writeArguments(BOOL to drawCenter)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
   public final fun getHAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
+    return NinePatchRect.AxisStretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
   public final fun getVAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
-    return NinePatchRect.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
+    return NinePatchRect.AxisStretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class AxisStretchMode(
@@ -291,39 +290,39 @@ public open class NinePatchRect : Control() {
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("NinePatchRect", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("NinePatchRect", "get_texture", 3635182373)
 
     public val setPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437707142)
+        Internals.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437707142)
 
     public val getPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1983885014)
+        Internals.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1983885014)
 
     public val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_region_rect", 2046264180)
+        Internals.getMethodBindPtr("NinePatchRect", "set_region_rect", 2046264180)
 
     public val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_region_rect", 1639390495)
+        Internals.getMethodBindPtr("NinePatchRect", "get_region_rect", 1639390495)
 
     public val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_draw_center", 2586408642)
+        Internals.getMethodBindPtr("NinePatchRect", "set_draw_center", 2586408642)
 
     public val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36873697)
+        Internals.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36873697)
 
     public val setHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3219608417)
+        Internals.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3219608417)
 
     public val getHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3317113799)
+        Internals.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3317113799)
 
     public val setVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3219608417)
+        Internals.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3219608417)
 
     public val getVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3317113799)
+        Internals.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3317113799)
   }
 }

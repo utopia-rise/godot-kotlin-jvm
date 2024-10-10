@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -42,27 +41,27 @@ public open class GridContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRIDCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRIDCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setColumns(columns: Int): Unit {
-    TransferContext.writeArguments(LONG to columns.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
+    Internals.writeArguments(LONG to columns.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setColumnsPtr, NIL)
   }
 
   public final fun getColumns(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColumnsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridContainer", "set_columns", 1286410249)
+        Internals.getMethodBindPtr("GridContainer", "set_columns", 1286410249)
 
     public val getColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridContainer", "get_columns", 3905245786)
+        Internals.getMethodBindPtr("GridContainer", "get_columns", 3905245786)
   }
 }

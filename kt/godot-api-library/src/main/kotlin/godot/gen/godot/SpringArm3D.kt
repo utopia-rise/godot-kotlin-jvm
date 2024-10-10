@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -93,38 +92,38 @@ public open class SpringArm3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SPRINGARM3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SPRINGARM3D_INDEX, scriptIndex)
   }
 
   /**
    * Returns the spring arm's current length.
    */
   public final fun getHitLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHitLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHitLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShape(shape: Shape3D?): Unit {
-    TransferContext.writeArguments(OBJECT to shape)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
+    Internals.writeArguments(OBJECT to shape)
+    Internals.callMethod(rawPtr, MethodBindings.setShapePtr, NIL)
   }
 
   public final fun getShape(): Shape3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape3D?)
   }
 
   /**
@@ -132,8 +131,8 @@ public open class SpringArm3D : Node3D() {
    * excluded from the collision check.
    */
   public final fun addExcludedObject(RID: RID): Unit {
-    TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, MethodBindings.addExcludedObjectPtr, NIL)
+    Internals.writeArguments(_RID to RID)
+    Internals.callMethod(rawPtr, MethodBindings.addExcludedObjectPtr, NIL)
   }
 
   /**
@@ -141,78 +140,78 @@ public open class SpringArm3D : Node3D() {
    * check.
    */
   public final fun removeExcludedObject(RID: RID): Boolean {
-    TransferContext.writeArguments(_RID to RID)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeExcludedObjectPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(_RID to RID)
+    Internals.callMethod(rawPtr, MethodBindings.removeExcludedObjectPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Clears the list of [PhysicsBody3D] objects excluded from the collision check.
    */
   public final fun clearExcludedObjects(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearExcludedObjectsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearExcludedObjectsPtr, NIL)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMarginPtr, NIL)
   }
 
   public final fun getMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getHitLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_hit_length", 191475506)
+        Internals.getMethodBindPtr("SpringArm3D", "get_hit_length", 191475506)
 
     public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "set_length", 373806689)
+        Internals.getMethodBindPtr("SpringArm3D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_length", 1740695150)
+        Internals.getMethodBindPtr("SpringArm3D", "get_length", 1740695150)
 
     public val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "set_shape", 1549710052)
+        Internals.getMethodBindPtr("SpringArm3D", "set_shape", 1549710052)
 
     public val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_shape", 3214262478)
+        Internals.getMethodBindPtr("SpringArm3D", "get_shape", 3214262478)
 
     public val addExcludedObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "add_excluded_object", 2722037293)
+        Internals.getMethodBindPtr("SpringArm3D", "add_excluded_object", 2722037293)
 
     public val removeExcludedObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "remove_excluded_object", 3521089500)
+        Internals.getMethodBindPtr("SpringArm3D", "remove_excluded_object", 3521089500)
 
     public val clearExcludedObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "clear_excluded_objects", 3218959716)
+        Internals.getMethodBindPtr("SpringArm3D", "clear_excluded_objects", 3218959716)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "set_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("SpringArm3D", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_collision_mask", 2455072627)
+        Internals.getMethodBindPtr("SpringArm3D", "get_collision_mask", 2455072627)
 
     public val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "set_margin", 373806689)
+        Internals.getMethodBindPtr("SpringArm3D", "set_margin", 373806689)
 
     public val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringArm3D", "get_margin", 191475506)
+        Internals.getMethodBindPtr("SpringArm3D", "get_margin", 191475506)
   }
 }

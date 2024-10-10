@@ -11,10 +11,9 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -60,7 +59,7 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISIBLEONSCREENNOTIFIER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISIBLEONSCREENNOTIFIER3D_INDEX, scriptIndex)
   }
 
   /**
@@ -88,8 +87,8 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
 
 
   public final fun setAabb(rect: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to rect)
+    Internals.callMethod(rawPtr, MethodBindings.setAabbPtr, NIL)
   }
 
   /**
@@ -99,18 +98,18 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
    * instantiated.
    */
   public final fun isOnScreen(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnScreenPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "set_aabb", 259215842)
+        Internals.getMethodBindPtr("VisibleOnScreenNotifier3D", "set_aabb", 259215842)
 
     public val isOnScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier3D", "is_on_screen", 36873697)
+        Internals.getMethodBindPtr("VisibleOnScreenNotifier3D", "is_on_screen", 36873697)
   }
 }

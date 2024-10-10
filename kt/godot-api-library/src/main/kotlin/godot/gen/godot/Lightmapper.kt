@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHTMAPPER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHTMAPPER_INDEX, scriptIndex)
   }
 
   public companion object

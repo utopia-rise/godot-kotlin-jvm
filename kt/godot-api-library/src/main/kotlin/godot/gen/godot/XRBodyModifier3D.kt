@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -86,40 +85,40 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRBODYMODIFIER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRBODYMODIFIER3D_INDEX, scriptIndex)
   }
 
   public final fun setBodyTracker(trackerName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTrackerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to trackerName)
+    Internals.callMethod(rawPtr, MethodBindings.setBodyTrackerPtr, NIL)
   }
 
   public final fun getBodyTracker(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodyTrackerPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBodyUpdate(bodyUpdate: BodyUpdate): Unit {
-    TransferContext.writeArguments(LONG to bodyUpdate.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyUpdatePtr, NIL)
+    Internals.writeArguments(LONG to bodyUpdate.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setBodyUpdatePtr, NIL)
   }
 
   public final fun getBodyUpdate(): BodyUpdate {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyUpdatePtr, LONG)
-    return BodyUpdateValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodyUpdatePtr, LONG)
+    return BodyUpdateValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    Internals.writeArguments(LONG to boneUpdate.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-    return XRBodyModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return XRBodyModifier3D.BoneUpdate.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public sealed interface BodyUpdate {
@@ -218,21 +217,21 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
 
   internal object MethodBindings {
     public val setBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker", 3304788590)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "set_body_tracker", 3304788590)
 
     public val getBodyTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker", 2002593661)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "get_body_tracker", 2002593661)
 
     public val setBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_body_update", 2211199417)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "set_body_update", 2211199417)
 
     public val getBodyUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_body_update", 2642335328)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "get_body_update", 2642335328)
 
     public val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "set_bone_update", 3356796943)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "set_bone_update", 3356796943)
 
     public val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1309305964)
+        Internals.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1309305964)
   }
 }

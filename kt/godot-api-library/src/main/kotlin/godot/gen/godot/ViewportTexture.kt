@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -48,27 +47,27 @@ public open class ViewportTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VIEWPORTTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VIEWPORTTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setViewportPathInScene(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setViewportPathInScenePtr, NIL)
   }
 
   public final fun getViewportPathInScene(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getViewportPathInScenePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setViewportPathInScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ViewportTexture", "set_viewport_path_in_scene", 1348162250)
+        Internals.getMethodBindPtr("ViewportTexture", "set_viewport_path_in_scene", 1348162250)
 
     public val getViewportPathInScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ViewportTexture", "get_viewport_path_in_scene", 4075236667)
+        Internals.getMethodBindPtr("ViewportTexture", "get_viewport_path_in_scene", 4075236667)
   }
 }

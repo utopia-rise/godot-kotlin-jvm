@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -90,7 +89,7 @@ public open class PrismMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PRISMMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PRISMMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -118,91 +117,89 @@ public open class PrismMesh : PrimitiveMesh() {
 
 
   public final fun setLeftToRight(leftToRight: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to leftToRight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLeftToRightPtr, NIL)
+    Internals.writeArguments(DOUBLE to leftToRight.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLeftToRightPtr, NIL)
   }
 
   public final fun getLeftToRight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLeftToRightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSubdivideWidth(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
+    Internals.writeArguments(LONG to segments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivideWidthPtr, NIL)
   }
 
   public final fun getSubdivideWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivideWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideHeight(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
+    Internals.writeArguments(LONG to segments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivideHeightPtr, NIL)
   }
 
   public final fun getSubdivideHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivideHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSubdivideDepth(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
+    Internals.writeArguments(LONG to segments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivideDepthPtr, NIL)
   }
 
   public final fun getSubdivideDepth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivideDepthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_left_to_right", 373806689)
+        Internals.getMethodBindPtr("PrismMesh", "set_left_to_right", 373806689)
 
     public val getLeftToRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_left_to_right", 1740695150)
+        Internals.getMethodBindPtr("PrismMesh", "get_left_to_right", 1740695150)
 
-    public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
+    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("PrismMesh", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("PrismMesh", "get_size", 3360562783)
 
     public val setSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1286410249)
+        Internals.getMethodBindPtr("PrismMesh", "set_subdivide_width", 1286410249)
 
     public val getSubdivideWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3905245786)
+        Internals.getMethodBindPtr("PrismMesh", "get_subdivide_width", 3905245786)
 
     public val setSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1286410249)
+        Internals.getMethodBindPtr("PrismMesh", "set_subdivide_height", 1286410249)
 
     public val getSubdivideHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3905245786)
+        Internals.getMethodBindPtr("PrismMesh", "get_subdivide_height", 3905245786)
 
     public val setSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1286410249)
+        Internals.getMethodBindPtr("PrismMesh", "set_subdivide_depth", 1286410249)
 
     public val getSubdivideDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3905245786)
+        Internals.getMethodBindPtr("PrismMesh", "get_subdivide_depth", 3905245786)
   }
 }

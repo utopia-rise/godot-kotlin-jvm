@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -104,112 +103,111 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CSGCYLINDER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CSGCYLINDER3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSides(sides: Int): Unit {
-    TransferContext.writeArguments(LONG to sides.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
+    Internals.writeArguments(LONG to sides.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSidesPtr, NIL)
   }
 
   public final fun getSides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSidesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCone(cone: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to cone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConePtr, NIL)
+    Internals.writeArguments(BOOL to cone)
+    Internals.callMethod(rawPtr, MethodBindings.setConePtr, NIL)
   }
 
   public final fun isCone(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isConePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isConePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to smoothFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
+    Internals.writeArguments(BOOL to smoothFaces)
+    Internals.callMethod(rawPtr, MethodBindings.setSmoothFacesPtr, NIL)
   }
 
   public final fun getSmoothFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSmoothFacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_radius", 373806689)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("CSGCylinder3D", "get_radius", 1740695150)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_height", 373806689)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_height", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_height", 1740695150)
+        Internals.getMethodBindPtr("CSGCylinder3D", "get_height", 1740695150)
 
     public val setSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_sides", 1286410249)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_sides", 1286410249)
 
     public val getSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_sides", 3905245786)
+        Internals.getMethodBindPtr("CSGCylinder3D", "get_sides", 3905245786)
 
     public val setConePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_cone", 2586408642)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_cone", 2586408642)
 
-    public val isConePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
+    public val isConePtr: VoidPtr = Internals.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_material", 2757459619)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_material", 5934680)
+        Internals.getMethodBindPtr("CSGCylinder3D", "get_material", 5934680)
 
     public val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2586408642)
+        Internals.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2586408642)
 
     public val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36873697)
+        Internals.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36873697)
   }
 }

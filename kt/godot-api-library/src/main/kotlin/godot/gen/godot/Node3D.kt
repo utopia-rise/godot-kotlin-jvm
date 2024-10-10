@@ -14,7 +14,6 @@ import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BASIS
@@ -28,7 +27,7 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -291,7 +290,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NODE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NODE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -607,157 +606,157 @@ public open class Node3D : Node() {
 
 
   public final fun setTransform(local: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to local)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to local)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
   public final fun getTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setPosition(position: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setRotation(eulerRadians: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to eulerRadians)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+    Internals.writeArguments(VECTOR3 to eulerRadians)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
   }
 
   public final fun getRotation(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setRotationDegrees(eulerDegrees: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to eulerDegrees)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+    Internals.writeArguments(VECTOR3 to eulerDegrees)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
   }
 
   public final fun getRotationDegrees(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setRotationOrder(order: EulerOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationOrderPtr, NIL)
+    Internals.writeArguments(LONG to order.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationOrderPtr, NIL)
   }
 
   public final fun getRotationOrder(): EulerOrder {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationOrderPtr, LONG)
-    return EulerOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationOrderPtr, LONG)
+    return EulerOrder.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRotationEditMode(editMode: RotationEditMode): Unit {
-    TransferContext.writeArguments(LONG to editMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationEditModePtr, NIL)
+    Internals.writeArguments(LONG to editMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRotationEditModePtr, NIL)
   }
 
   public final fun getRotationEditMode(): RotationEditMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationEditModePtr, LONG)
-    return Node3D.RotationEditMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationEditModePtr, LONG)
+    return Node3D.RotationEditMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setScale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
   }
 
   public final fun getScale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setQuaternion(quaternion: Quaternion): Unit {
-    TransferContext.writeArguments(QUATERNION to quaternion)
-    TransferContext.callMethod(rawPtr, MethodBindings.setQuaternionPtr, NIL)
+    Internals.writeArguments(QUATERNION to quaternion)
+    Internals.callMethod(rawPtr, MethodBindings.setQuaternionPtr, NIL)
   }
 
   public final fun getQuaternion(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getQuaternionPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getQuaternionPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setBasis(basis: Basis): Unit {
-    TransferContext.writeArguments(BASIS to basis)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBasisPtr, NIL)
+    Internals.writeArguments(BASIS to basis)
+    Internals.callMethod(rawPtr, MethodBindings.setBasisPtr, NIL)
   }
 
   public final fun getBasis(): Basis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBasisPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS) as Basis)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBasisPtr, BASIS)
+    return (Internals.readReturnValue(BASIS) as Basis)
   }
 
   public final fun setGlobalTransform(global: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to global)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to global)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
   }
 
   public final fun getGlobalTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setGlobalPosition(position: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
   public final fun getGlobalPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGlobalBasis(basis: Basis): Unit {
-    TransferContext.writeArguments(BASIS to basis)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalBasisPtr, NIL)
+    Internals.writeArguments(BASIS to basis)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalBasisPtr, NIL)
   }
 
   public final fun getGlobalBasis(): Basis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalBasisPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS) as Basis)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalBasisPtr, BASIS)
+    return (Internals.readReturnValue(BASIS) as Basis)
   }
 
   public final fun setGlobalRotation(eulerRadians: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to eulerRadians)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
+    Internals.writeArguments(VECTOR3 to eulerRadians)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
   }
 
   public final fun getGlobalRotation(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGlobalRotationDegrees(eulerDegrees: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to eulerDegrees)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
+    Internals.writeArguments(VECTOR3 to eulerDegrees)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
   }
 
   public final fun getGlobalRotationDegrees(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -767,28 +766,28 @@ public open class Node3D : Node() {
    * take [topLevel] into account.
    */
   public final fun getParentNode3d(): Node3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentNode3dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParentNode3dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node3D?)
   }
 
   /**
    * Sets whether the node ignores notification that its transformation (global or local) changed.
    */
   public final fun setIgnoreTransformNotification(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreTransformNotificationPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreTransformNotificationPtr, NIL)
   }
 
   public final fun setAsTopLevel(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAsTopLevelPtr, NIL)
   }
 
   public final fun isSetAsTopLevel(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSetAsTopLevelPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -796,26 +795,26 @@ public open class Node3D : Node() {
    * the local transformation scale are preserved.
    */
   public final fun setDisableScale(disable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisableScalePtr, NIL)
+    Internals.writeArguments(BOOL to disable)
+    Internals.callMethod(rawPtr, MethodBindings.setDisableScalePtr, NIL)
   }
 
   /**
    * Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale.
    */
   public final fun isScaleDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScaleDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isScaleDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the current [World3D] resource this [Node3D] node is registered to.
    */
   public final fun getWorld3d(): World3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWorld3dPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as World3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWorld3dPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as World3D?)
   }
 
   /**
@@ -824,27 +823,27 @@ public open class Node3D : Node() {
    * when doing physics operations.
    */
   public final fun forceUpdateTransform(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.forceUpdateTransformPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.forceUpdateTransformPtr, NIL)
   }
 
   public final fun setVisibilityParent(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityParentPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityParentPtr, NIL)
   }
 
   public final fun getVisibilityParent(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityParentPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityParentPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
    * Updates all the [Node3D] gizmos attached to this node.
    */
   public final fun updateGizmos(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updateGizmosPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.updateGizmosPtr, NIL)
   }
 
   /**
@@ -853,25 +852,25 @@ public open class Node3D : Node() {
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
    */
   public final fun addGizmo(gizmo: Node3DGizmo?): Unit {
-    TransferContext.writeArguments(OBJECT to gizmo)
-    TransferContext.callMethod(rawPtr, MethodBindings.addGizmoPtr, NIL)
+    Internals.writeArguments(OBJECT to gizmo)
+    Internals.callMethod(rawPtr, MethodBindings.addGizmoPtr, NIL)
   }
 
   /**
    * Returns all the gizmos attached to this [Node3D].
    */
   public final fun getGizmos(): VariantArray<Node3DGizmo> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGizmosPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node3DGizmo>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGizmosPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Node3DGizmo>)
   }
 
   /**
    * Clear all gizmos attached to this [Node3D].
    */
   public final fun clearGizmos(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearGizmosPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearGizmosPtr, NIL)
   }
 
   /**
@@ -884,8 +883,8 @@ public open class Node3D : Node() {
     id: Int,
     transform: Transform3D,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to gizmo, LONG to id.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubgizmoSelectionPtr, NIL)
+    Internals.writeArguments(OBJECT to gizmo, LONG to id.toLong(), TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setSubgizmoSelectionPtr, NIL)
   }
 
   /**
@@ -893,19 +892,19 @@ public open class Node3D : Node() {
    * after a property change.
    */
   public final fun clearSubgizmoSelection(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearSubgizmoSelectionPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearSubgizmoSelectionPtr, NIL)
   }
 
   public final fun setVisible(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
+    Internals.writeArguments(BOOL to visible)
+    Internals.callMethod(rawPtr, MethodBindings.setVisiblePtr, NIL)
   }
 
   public final fun isVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -914,25 +913,25 @@ public open class Node3D : Node() {
    * the scene tree.
    */
   public final fun isVisibleInTree(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVisibleInTreePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVisibleInTreePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Enables rendering of this node. Changes [visible] to `true`.
    */
   public final fun show(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.showPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.showPtr, NIL)
   }
 
   /**
    * Disables rendering of this node. Changes [visible] to `false`.
    */
   public final fun hide(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hidePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hidePtr, NIL)
   }
 
   /**
@@ -940,8 +939,8 @@ public open class Node3D : Node() {
    * propagate this by default.
    */
   public final fun setNotifyLocalTransform(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNotifyLocalTransformPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setNotifyLocalTransformPtr, NIL)
   }
 
   /**
@@ -949,9 +948,9 @@ public open class Node3D : Node() {
    * propagate this by default.
    */
   public final fun isLocalTransformNotificationEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLocalTransformNotificationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLocalTransformNotificationEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -959,8 +958,8 @@ public open class Node3D : Node() {
    * not propagate this by default, unless it is in the editor context and it has a valid gizmo.
    */
   public final fun setNotifyTransform(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNotifyTransformPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setNotifyTransformPtr, NIL)
   }
 
   /**
@@ -968,17 +967,17 @@ public open class Node3D : Node() {
    * will not propagate this by default.
    */
   public final fun isTransformNotificationEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTransformNotificationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTransformNotificationEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
    */
   public final fun rotate(axis: Vector3, angle: Float): Unit {
-    TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotatePtr, NIL)
+    Internals.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotatePtr, NIL)
   }
 
   /**
@@ -986,16 +985,16 @@ public open class Node3D : Node() {
    * radians. The rotation axis is in global coordinate system.
    */
   public final fun globalRotate(axis: Vector3, angle: Float): Unit {
-    TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.globalRotatePtr, NIL)
+    Internals.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.globalRotatePtr, NIL)
   }
 
   /**
    * Scales the global (world) transformation by the given [Vector3] scale factors.
    */
   public final fun globalScale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalScalePtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.globalScalePtr, NIL)
   }
 
   /**
@@ -1003,8 +1002,8 @@ public open class Node3D : Node() {
    * system.
    */
   public final fun globalTranslate(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalTranslatePtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.globalTranslatePtr, NIL)
   }
 
   /**
@@ -1012,48 +1011,48 @@ public open class Node3D : Node() {
    * The rotation axis is in object-local coordinate system.
    */
   public final fun rotateObjectLocal(axis: Vector3, angle: Float): Unit {
-    TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotateObjectLocalPtr, NIL)
+    Internals.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotateObjectLocalPtr, NIL)
   }
 
   /**
    * Scales the local transformation by given 3D scale factors in object-local coordinate system.
    */
   public final fun scaleObjectLocal(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.scaleObjectLocalPtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.scaleObjectLocalPtr, NIL)
   }
 
   /**
    * Changes the node's position by the given offset [Vector3] in local space.
    */
   public final fun translateObjectLocal(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.translateObjectLocalPtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.translateObjectLocalPtr, NIL)
   }
 
   /**
    * Rotates the local transformation around the X axis by angle in radians.
    */
   public final fun rotateX(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotateXPtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotateXPtr, NIL)
   }
 
   /**
    * Rotates the local transformation around the Y axis by angle in radians.
    */
   public final fun rotateY(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotateYPtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotateYPtr, NIL)
   }
 
   /**
    * Rotates the local transformation around the Z axis by angle in radians.
    */
   public final fun rotateZ(angle: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotateZPtr, NIL)
+    Internals.writeArguments(DOUBLE to angle.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotateZPtr, NIL)
   }
 
   /**
@@ -1063,8 +1062,8 @@ public open class Node3D : Node() {
    * coordinate.
    */
   public final fun translate(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.translatePtr, NIL)
   }
 
   /**
@@ -1072,16 +1071,16 @@ public open class Node3D : Node() {
    * translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D].
    */
   public final fun orthonormalize(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.orthonormalizePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.orthonormalizePtr, NIL)
   }
 
   /**
    * Reset all transformations for this node (sets its [Transform3D] to the identity matrix).
    */
   public final fun setIdentity(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setIdentityPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.setIdentityPtr, NIL)
   }
 
   /**
@@ -1104,8 +1103,8 @@ public open class Node3D : Node() {
     up: Vector3 = Vector3(0, 1, 0),
     useModelFront: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
-    TransferContext.callMethod(rawPtr, MethodBindings.lookAtPtr, NIL)
+    Internals.writeArguments(VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
+    Internals.callMethod(rawPtr, MethodBindings.lookAtPtr, NIL)
   }
 
   /**
@@ -1119,26 +1118,26 @@ public open class Node3D : Node() {
     up: Vector3 = Vector3(0, 1, 0),
     useModelFront: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
-    TransferContext.callMethod(rawPtr, MethodBindings.lookAtFromPositionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to position, VECTOR3 to target, VECTOR3 to up, BOOL to useModelFront)
+    Internals.callMethod(rawPtr, MethodBindings.lookAtFromPositionPtr, NIL)
   }
 
   /**
    * Transforms [globalPoint] from world space to this node's local space.
    */
   public final fun toLocal(globalPoint: Vector3): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to globalPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toLocalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to globalPoint)
+    Internals.callMethod(rawPtr, MethodBindings.toLocalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Transforms [localPoint] from this node's local space to world space.
    */
   public final fun toGlobal(localPoint: Vector3): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toGlobalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to localPoint)
+    Internals.callMethod(rawPtr, MethodBindings.toGlobalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public enum class RotationEditMode(
@@ -1205,204 +1204,197 @@ public open class Node3D : Node() {
 
   internal object MethodBindings {
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_transform", 2952846383)
+        Internals.getMethodBindPtr("Node3D", "set_transform", 2952846383)
 
     public val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_transform", 3229777777)
+        Internals.getMethodBindPtr("Node3D", "get_transform", 3229777777)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_position", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_position", 3460891852)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_position", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_position", 3360562783)
 
     public val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_rotation", 3460891852)
 
     public val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_rotation", 3360562783)
 
     public val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_degrees", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_rotation_degrees", 3460891852)
 
     public val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_degrees", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_rotation_degrees", 3360562783)
 
     public val setRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_order", 1820889989)
+        Internals.getMethodBindPtr("Node3D", "set_rotation_order", 1820889989)
 
     public val getRotationOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_order", 916939469)
+        Internals.getMethodBindPtr("Node3D", "get_rotation_order", 916939469)
 
     public val setRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_rotation_edit_mode", 141483330)
+        Internals.getMethodBindPtr("Node3D", "set_rotation_edit_mode", 141483330)
 
     public val getRotationEditModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_rotation_edit_mode", 1572188370)
+        Internals.getMethodBindPtr("Node3D", "get_rotation_edit_mode", 1572188370)
 
-    public val setScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_scale", 3460891852)
+    public val setScalePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "set_scale", 3460891852)
 
-    public val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_scale", 3360562783)
+    public val getScalePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "get_scale", 3360562783)
 
     public val setQuaternionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_quaternion", 1727505552)
+        Internals.getMethodBindPtr("Node3D", "set_quaternion", 1727505552)
 
     public val getQuaternionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_quaternion", 1222331677)
+        Internals.getMethodBindPtr("Node3D", "get_quaternion", 1222331677)
 
-    public val setBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_basis", 1055510324)
+    public val setBasisPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "set_basis", 1055510324)
 
-    public val getBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_basis", 2716978435)
+    public val getBasisPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "get_basis", 2716978435)
 
     public val setGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_transform", 2952846383)
+        Internals.getMethodBindPtr("Node3D", "set_global_transform", 2952846383)
 
     public val getGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_transform", 3229777777)
+        Internals.getMethodBindPtr("Node3D", "get_global_transform", 3229777777)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_position", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_global_position", 3460891852)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_position", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_global_position", 3360562783)
 
     public val setGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_basis", 1055510324)
+        Internals.getMethodBindPtr("Node3D", "set_global_basis", 1055510324)
 
     public val getGlobalBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_basis", 2716978435)
+        Internals.getMethodBindPtr("Node3D", "get_global_basis", 2716978435)
 
     public val setGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_global_rotation", 3460891852)
 
     public val getGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_global_rotation", 3360562783)
 
     public val setGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_global_rotation_degrees", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "set_global_rotation_degrees", 3460891852)
 
     public val getGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_global_rotation_degrees", 3360562783)
+        Internals.getMethodBindPtr("Node3D", "get_global_rotation_degrees", 3360562783)
 
     public val getParentNode3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_parent_node_3d", 151077316)
+        Internals.getMethodBindPtr("Node3D", "get_parent_node_3d", 151077316)
 
     public val setIgnoreTransformNotificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_ignore_transform_notification", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_ignore_transform_notification", 2586408642)
 
     public val setAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_as_top_level", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_as_top_level", 2586408642)
 
     public val isSetAsTopLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_set_as_top_level", 36873697)
+        Internals.getMethodBindPtr("Node3D", "is_set_as_top_level", 36873697)
 
     public val setDisableScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_disable_scale", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_disable_scale", 2586408642)
 
     public val isScaleDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_scale_disabled", 36873697)
+        Internals.getMethodBindPtr("Node3D", "is_scale_disabled", 36873697)
 
     public val getWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_world_3d", 317588385)
+        Internals.getMethodBindPtr("Node3D", "get_world_3d", 317588385)
 
     public val forceUpdateTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "force_update_transform", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "force_update_transform", 3218959716)
 
     public val setVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_visibility_parent", 1348162250)
+        Internals.getMethodBindPtr("Node3D", "set_visibility_parent", 1348162250)
 
     public val getVisibilityParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_visibility_parent", 4075236667)
+        Internals.getMethodBindPtr("Node3D", "get_visibility_parent", 4075236667)
 
     public val updateGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "update_gizmos", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "update_gizmos", 3218959716)
 
-    public val addGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "add_gizmo", 1544533845)
+    public val addGizmoPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "add_gizmo", 1544533845)
 
     public val getGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "get_gizmos", 3995934104)
+        Internals.getMethodBindPtr("Node3D", "get_gizmos", 3995934104)
 
     public val clearGizmosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "clear_gizmos", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "clear_gizmos", 3218959716)
 
     public val setSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_subgizmo_selection", 3317607635)
+        Internals.getMethodBindPtr("Node3D", "set_subgizmo_selection", 3317607635)
 
     public val clearSubgizmoSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "clear_subgizmo_selection", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "clear_subgizmo_selection", 3218959716)
 
     public val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_visible", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_visible", 2586408642)
 
-    public val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_visible", 36873697)
+    public val isVisiblePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "is_visible", 36873697)
 
     public val isVisibleInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_visible_in_tree", 36873697)
+        Internals.getMethodBindPtr("Node3D", "is_visible_in_tree", 36873697)
 
-    public val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "show", 3218959716)
+    public val showPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "show", 3218959716)
 
-    public val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "hide", 3218959716)
+    public val hidePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "hide", 3218959716)
 
     public val setNotifyLocalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_local_transform", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_notify_local_transform", 2586408642)
 
     public val isLocalTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled", 36873697)
+        Internals.getMethodBindPtr("Node3D", "is_local_transform_notification_enabled", 36873697)
 
     public val setNotifyTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_notify_transform", 2586408642)
+        Internals.getMethodBindPtr("Node3D", "set_notify_transform", 2586408642)
 
     public val isTransformNotificationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "is_transform_notification_enabled", 36873697)
+        Internals.getMethodBindPtr("Node3D", "is_transform_notification_enabled", 36873697)
 
-    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate", 3436291937)
+    public val rotatePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "rotate", 3436291937)
 
     public val globalRotatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_rotate", 3436291937)
+        Internals.getMethodBindPtr("Node3D", "global_rotate", 3436291937)
 
     public val globalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_scale", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "global_scale", 3460891852)
 
     public val globalTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "global_translate", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "global_translate", 3460891852)
 
     public val rotateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "rotate_object_local", 3436291937)
+        Internals.getMethodBindPtr("Node3D", "rotate_object_local", 3436291937)
 
     public val scaleObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "scale_object_local", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "scale_object_local", 3460891852)
 
     public val translateObjectLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "translate_object_local", 3460891852)
+        Internals.getMethodBindPtr("Node3D", "translate_object_local", 3460891852)
 
-    public val rotateXPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_x", 373806689)
+    public val rotateXPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "rotate_x", 373806689)
 
-    public val rotateYPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_y", 373806689)
+    public val rotateYPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "rotate_y", 373806689)
 
-    public val rotateZPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "rotate_z", 373806689)
+    public val rotateZPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "rotate_z", 373806689)
 
-    public val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "translate", 3460891852)
+    public val translatePtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "translate", 3460891852)
 
     public val orthonormalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "orthonormalize", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "orthonormalize", 3218959716)
 
     public val setIdentityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "set_identity", 3218959716)
+        Internals.getMethodBindPtr("Node3D", "set_identity", 3218959716)
 
-    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "look_at", 2882425029)
+    public val lookAtPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "look_at", 2882425029)
 
     public val lookAtFromPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node3D", "look_at_from_position", 2086826090)
+        Internals.getMethodBindPtr("Node3D", "look_at_from_position", 2086826090)
 
-    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_local", 192990374)
+    public val toLocalPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "to_local", 192990374)
 
-    public val toGlobalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node3D", "to_global", 192990374)
+    public val toGlobalPtr: VoidPtr = Internals.getMethodBindPtr("Node3D", "to_global", 192990374)
   }
 }

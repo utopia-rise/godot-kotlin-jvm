@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -86,95 +85,95 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTPHASER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTPHASER_INDEX, scriptIndex)
   }
 
   public final fun setRangeMinHz(hz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRangeMinHzPtr, NIL)
+    Internals.writeArguments(DOUBLE to hz.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRangeMinHzPtr, NIL)
   }
 
   public final fun getRangeMinHz(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRangeMinHzPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRangeMaxHz(hz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRangeMaxHzPtr, NIL)
+    Internals.writeArguments(DOUBLE to hz.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRangeMaxHzPtr, NIL)
   }
 
   public final fun getRangeMaxHz(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRangeMaxHzPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRateHz(hz: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hz.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRateHzPtr, NIL)
+    Internals.writeArguments(DOUBLE to hz.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRateHzPtr, NIL)
   }
 
   public final fun getRateHz(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRateHzPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFeedback(fbk: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fbk.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeedbackPtr, NIL)
+    Internals.writeArguments(DOUBLE to fbk.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFeedbackPtr, NIL)
   }
 
   public final fun getFeedback(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFeedbackPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepth(depth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to depth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
+    Internals.writeArguments(DOUBLE to depth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthPtr, NIL)
   }
 
   public final fun getDepth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRangeMinHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "set_range_min_hz", 373806689)
 
     public val getRangeMinHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "get_range_min_hz", 1740695150)
 
     public val setRangeMaxHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "set_range_max_hz", 373806689)
 
     public val getRangeMaxHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "get_range_max_hz", 1740695150)
 
     public val setRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "set_rate_hz", 373806689)
 
     public val getRateHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "get_rate_hz", 1740695150)
 
     public val setFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_feedback", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "set_feedback", 373806689)
 
     public val getFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_feedback", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "get_feedback", 1740695150)
 
     public val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "set_depth", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "set_depth", 373806689)
 
     public val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPhaser", "get_depth", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPhaser", "get_depth", 1740695150)
   }
 }

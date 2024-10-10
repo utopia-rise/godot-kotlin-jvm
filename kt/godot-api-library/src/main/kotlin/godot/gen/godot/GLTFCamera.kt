@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -96,80 +95,80 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFCAMERA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFCAMERA_INDEX, scriptIndex)
   }
 
   /**
    * Converts this GLTFCamera instance into a Godot [Camera3D] node.
    */
   public final fun toNode(): Camera3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Camera3D?)
   }
 
   /**
    * Serializes this GLTFCamera instance into a [Dictionary].
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getPerspective(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPerspectivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPerspective(perspective: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to perspective)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
+    Internals.writeArguments(BOOL to perspective)
+    Internals.callMethod(rawPtr, MethodBindings.setPerspectivePtr, NIL)
   }
 
   public final fun getFov(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFovPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFov(fov: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fov.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
+    Internals.writeArguments(DOUBLE to fov.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFovPtr, NIL)
   }
 
   public final fun getSizeMag(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizeMagPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSizeMag(sizeMag: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sizeMag.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
+    Internals.writeArguments(DOUBLE to sizeMag.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSizeMagPtr, NIL)
   }
 
   public final fun getDepthFar(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthFarPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthFar(zdepthFar: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zdepthFar.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
+    Internals.writeArguments(DOUBLE to zdepthFar.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthFarPtr, NIL)
   }
 
   public final fun getDepthNear(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthNearPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDepthNear(zdepthNear: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to zdepthNear.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
+    Internals.writeArguments(DOUBLE to zdepthNear.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDepthNearPtr, NIL)
   }
 
   public companion object {
@@ -177,61 +176,58 @@ public open class GLTFCamera : Resource() {
      * Create a new GLTFCamera instance from the given Godot [Camera3D] node.
      */
     public final fun fromNode(cameraNode: Camera3D?): GLTFCamera? {
-      TransferContext.writeArguments(OBJECT to cameraNode)
-      TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
+      Internals.writeArguments(OBJECT to cameraNode)
+      Internals.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFCamera?)
     }
 
     /**
      * Creates a new GLTFCamera instance by parsing the given [Dictionary].
      */
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFCamera? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFCamera?)
+      Internals.writeArguments(DICTIONARY to dictionary)
+      Internals.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFCamera?)
     }
   }
 
   internal object MethodBindings {
-    public val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "from_node", 237784)
+    public val fromNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "from_node", 237784)
 
-    public val toNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
+    public val toNodePtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "to_node", 2285090890)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
+        Internals.getMethodBindPtr("GLTFCamera", "from_dictionary", 2495512509)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "to_dictionary", 3102165223)
+        Internals.getMethodBindPtr("GLTFCamera", "to_dictionary", 3102165223)
 
     public val getPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_perspective", 36873697)
+        Internals.getMethodBindPtr("GLTFCamera", "get_perspective", 36873697)
 
     public val setPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_perspective", 2586408642)
+        Internals.getMethodBindPtr("GLTFCamera", "set_perspective", 2586408642)
 
-    public val getFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_fov", 1740695150)
+    public val getFovPtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "get_fov", 1740695150)
 
-    public val setFovPtr: VoidPtr = TypeManager.getMethodBindPtr("GLTFCamera", "set_fov", 373806689)
+    public val setFovPtr: VoidPtr = Internals.getMethodBindPtr("GLTFCamera", "set_fov", 373806689)
 
     public val getSizeMagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_size_mag", 1740695150)
+        Internals.getMethodBindPtr("GLTFCamera", "get_size_mag", 1740695150)
 
     public val setSizeMagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_size_mag", 373806689)
+        Internals.getMethodBindPtr("GLTFCamera", "set_size_mag", 373806689)
 
     public val getDepthFarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_far", 1740695150)
+        Internals.getMethodBindPtr("GLTFCamera", "get_depth_far", 1740695150)
 
     public val setDepthFarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_far", 373806689)
+        Internals.getMethodBindPtr("GLTFCamera", "set_depth_far", 373806689)
 
     public val getDepthNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "get_depth_near", 1740695150)
+        Internals.getMethodBindPtr("GLTFCamera", "get_depth_near", 1740695150)
 
     public val setDepthNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFCamera", "set_depth_near", 373806689)
+        Internals.getMethodBindPtr("GLTFCamera", "set_depth_near", 373806689)
   }
 }

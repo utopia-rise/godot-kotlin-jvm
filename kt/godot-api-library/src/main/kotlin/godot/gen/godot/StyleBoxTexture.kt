@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -216,7 +215,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STYLEBOXTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STYLEBOXTEXTURE_INDEX, scriptIndex)
   }
 
   /**
@@ -270,119 +269,119 @@ public open class StyleBoxTexture : StyleBox() {
 
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
    * Sets the margin to [size] pixels for the specified [Side].
    */
   public final fun setTextureMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureMarginPtr, NIL)
   }
 
   /**
    * Sets the margin to [size] pixels for all sides.
    */
   public final fun setTextureMarginAll(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureMarginAllPtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureMarginAllPtr, NIL)
   }
 
   /**
    * Returns the margin size of the specified [Side].
    */
   public final fun getTextureMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getTextureMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
   public final fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExpandMarginPtr, NIL)
   }
 
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
   public final fun setExpandMarginAll(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
 
   /**
    * Returns the expand margin size of the specified [Side].
    */
   public final fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getExpandMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionRect(region: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to region)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
+    Internals.writeArguments(RECT2 to region)
+    Internals.callMethod(rawPtr, MethodBindings.setRegionRectPtr, NIL)
   }
 
   public final fun getRegionRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRegionRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setDrawCenter(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawCenterPtr, NIL)
   }
 
   public final fun isDrawCenterEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDrawCenterEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setModulate(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
   public final fun getHAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
-    return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHAxisStretchModePtr, LONG)
+    return StyleBoxTexture.AxisStretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
   public final fun getVAxisStretchMode(): AxisStretchMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
-    return StyleBoxTexture.AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVAxisStretchModePtr, LONG)
+    return StyleBoxTexture.AxisStretchMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class AxisStretchMode(
@@ -420,57 +419,57 @@ public open class StyleBoxTexture : StyleBox() {
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_texture", 3635182373)
 
     public val setTextureMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin", 4290182280)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_texture_margin", 4290182280)
 
     public val setTextureMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all", 373806689)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_texture_margin_all", 373806689)
 
     public val getTextureMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_texture_margin", 2869120046)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_texture_margin", 2869120046)
 
     public val setExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin", 4290182280)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_expand_margin", 4290182280)
 
     public val setExpandMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all", 373806689)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_expand_margin_all", 373806689)
 
     public val getExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_expand_margin", 2869120046)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_expand_margin", 2869120046)
 
     public val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_region_rect", 2046264180)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_region_rect", 2046264180)
 
     public val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_region_rect", 1639390495)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_region_rect", 1639390495)
 
     public val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_draw_center", 2586408642)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_draw_center", 2586408642)
 
     public val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled", 36873697)
+        Internals.getMethodBindPtr("StyleBoxTexture", "is_draw_center_enabled", 36873697)
 
     public val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_modulate", 2920490490)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_modulate", 2920490490)
 
     public val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_modulate", 3444240500)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_modulate", 3444240500)
 
     public val setHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode", 2965538783)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_h_axis_stretch_mode", 2965538783)
 
     public val getHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode", 3807744063)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_h_axis_stretch_mode", 3807744063)
 
     public val setVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode", 2965538783)
+        Internals.getMethodBindPtr("StyleBoxTexture", "set_v_axis_stretch_mode", 2965538783)
 
     public val getVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode", 3807744063)
+        Internals.getMethodBindPtr("StyleBoxTexture", "get_v_axis_stretch_mode", 3807744063)
   }
 }

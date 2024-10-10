@@ -10,10 +10,9 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -41,7 +40,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOLORCONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODECOLORCONSTANT_INDEX, scriptIndex)
   }
 
   /**
@@ -69,23 +68,23 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
 
 
   public final fun setConstant(constant: Color): Unit {
-    TransferContext.writeArguments(COLOR to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(COLOR to constant)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant", 2920490490)
+        Internals.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant", 2920490490)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant", 3444240500)
+        Internals.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant", 3444240500)
   }
 }

@@ -7,9 +7,8 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -28,7 +27,7 @@ private const val ENGINE_CLASS_GDSCRIPT_INDEX: Int = 231
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GDSCRIPT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GDSCRIPT_INDEX, scriptIndex)
   }
 
   /**
@@ -41,14 +40,14 @@ public open class GDScript : Script() {
    * [/codeblock]
    */
   public final fun new(vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.newPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments( *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.newPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val newPtr: VoidPtr = TypeManager.getMethodBindPtr("GDScript", "new", 1545262638)
+    public val newPtr: VoidPtr = Internals.getMethodBindPtr("GDScript", "new", 1545262638)
   }
 }

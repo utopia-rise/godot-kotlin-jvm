@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -59,7 +58,7 @@ public open class ArrayOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ARRAYOCCLUDER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ARRAYOCCLUDER3D_INDEX, scriptIndex)
   }
 
   /**
@@ -67,30 +66,30 @@ public open class ArrayOccluder3D : Occluder3D() {
    * are set.
    */
   public final fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setArraysPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
+    Internals.callMethod(rawPtr, MethodBindings.setArraysPtr, NIL)
   }
 
   public final fun setVertices(vertices: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
 
   public final fun setIndices(indices: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to indices)
+    Internals.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_arrays", 3233972621)
+        Internals.getMethodBindPtr("ArrayOccluder3D", "set_arrays", 3233972621)
 
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_vertices", 334873810)
+        Internals.getMethodBindPtr("ArrayOccluder3D", "set_vertices", 334873810)
 
     public val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_indices", 3614634198)
+        Internals.getMethodBindPtr("ArrayOccluder3D", "set_indices", 3614634198)
   }
 }

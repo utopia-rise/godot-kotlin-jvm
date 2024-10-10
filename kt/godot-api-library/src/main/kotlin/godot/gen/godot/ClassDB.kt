@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -20,7 +19,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -39,7 +38,7 @@ private const val ENGINE_CLASS_CLASSDB_INDEX: Int = 15
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_CLASSDB_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_CLASSDB_INDEX)
   }
 
   /**
@@ -47,9 +46,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun getClassList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClassListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -57,10 +56,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun getInheritersFromClass(`class`: StringName): PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInheritersFromClassPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.getInheritersFromClassPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -68,9 +66,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun getParentClass(`class`: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParentClassPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.getParentClassPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -78,9 +76,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classExists(`class`: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.classExistsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.classExistsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -88,9 +86,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun isParentClass(`class`: StringName, inherits: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to inherits)
-    TransferContext.callMethod(rawPtr, MethodBindings.isParentClassPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to inherits)
+    Internals.callMethod(rawPtr, MethodBindings.isParentClassPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -99,9 +97,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun canInstantiate(`class`: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -109,9 +107,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun instantiate(`class`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.instantiatePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.instantiatePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -119,9 +117,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classHasSignal(`class`: StringName, signal: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasSignalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.classHasSignalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -131,9 +129,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classGetSignal(`class`: StringName, signal: StringName): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.classGetSignalPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -144,9 +142,9 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetSignalList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetSignalListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetSignalListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -157,9 +155,9 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetPropertyList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetPropertyListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -167,9 +165,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classGetProperty(`object`: Object?, `property`: StringName): Any? {
-    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(OBJECT to `object`, STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.classGetPropertyPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -181,9 +179,9 @@ public object ClassDB : Object() {
     `property`: StringName,
     `value`: Any?,
   ): Error {
-    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.classSetPropertyPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -191,9 +189,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classGetPropertyDefaultValue(`class`: StringName, `property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.classGetPropertyDefaultValuePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -207,9 +205,9 @@ public object ClassDB : Object() {
     method: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classHasMethodPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -223,9 +221,9 @@ public object ClassDB : Object() {
     method: StringName,
     noInheritance: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to method, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetMethodArgumentCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -239,9 +237,9 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetMethodList(`class`: StringName, noInheritance: Boolean = false):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetMethodListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetMethodListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -251,10 +249,9 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantListPtr,
-        PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetIntegerConstantListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -262,9 +259,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classHasIntegerConstant(`class`: StringName, name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasIntegerConstantPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.classHasIntegerConstantPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -273,9 +270,9 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun classGetIntegerConstant(`class`: StringName, name: StringName): Long {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.classGetIntegerConstantPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -288,9 +285,9 @@ public object ClassDB : Object() {
     name: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classHasEnumPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classHasEnumPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -300,9 +297,9 @@ public object ClassDB : Object() {
   @JvmStatic
   public final fun classGetEnumList(`class`: StringName, noInheritance: Boolean = false):
       PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -315,9 +312,9 @@ public object ClassDB : Object() {
     `enum`: StringName,
     noInheritance: Boolean = false,
   ): PackedStringArray {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetEnumConstantsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -330,9 +327,9 @@ public object ClassDB : Object() {
     name: StringName,
     noInheritance: Boolean = false,
   ): StringName {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to name, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.classGetIntegerConstantEnumPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -346,9 +343,9 @@ public object ClassDB : Object() {
     `enum`: StringName,
     noInheritance: Boolean = false,
   ): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`, STRING_NAME to `enum`, BOOL to noInheritance)
+    Internals.callMethod(rawPtr, MethodBindings.isClassEnumBitfieldPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -356,88 +353,88 @@ public object ClassDB : Object() {
    */
   @JvmStatic
   public final fun isClassEnabled(`class`: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.isClassEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   internal object MethodBindings {
     public val getClassListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
+        Internals.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
 
     public val getInheritersFromClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1761182771)
+        Internals.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1761182771)
 
     public val getParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class", 1965194235)
+        Internals.getMethodBindPtr("ClassDB", "get_parent_class", 1965194235)
 
     public val classExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_exists", 2619796661)
+        Internals.getMethodBindPtr("ClassDB", "class_exists", 2619796661)
 
     public val isParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class", 471820014)
+        Internals.getMethodBindPtr("ClassDB", "is_parent_class", 471820014)
 
     public val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate", 2619796661)
+        Internals.getMethodBindPtr("ClassDB", "can_instantiate", 2619796661)
 
     public val instantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
+        Internals.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
 
     public val classHasSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
+        Internals.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
 
     public val classGetSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal", 3061114238)
+        Internals.getMethodBindPtr("ClassDB", "class_get_signal", 3061114238)
 
     public val classGetSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list", 3504980660)
+        Internals.getMethodBindPtr("ClassDB", "class_get_signal_list", 3504980660)
 
     public val classGetPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
+        Internals.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
 
     public val classGetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
+        Internals.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
 
     public val classSetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_set_property", 1690314931)
+        Internals.getMethodBindPtr("ClassDB", "class_set_property", 1690314931)
 
     public val classGetPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2718203076)
+        Internals.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2718203076)
 
     public val classHasMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_method", 3860701026)
+        Internals.getMethodBindPtr("ClassDB", "class_has_method", 3860701026)
 
     public val classGetMethodArgumentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3885694822)
+        Internals.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3885694822)
 
     public val classGetMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
+        Internals.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
 
     public val classGetIntegerConstantListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)
+        Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)
 
     public val classHasIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471820014)
+        Internals.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471820014)
 
     public val classGetIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2419549490)
+        Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2419549490)
 
     public val classHasEnumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_enum", 3860701026)
+        Internals.getMethodBindPtr("ClassDB", "class_has_enum", 3860701026)
 
     public val classGetEnumListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list", 3031669221)
+        Internals.getMethodBindPtr("ClassDB", "class_get_enum_list", 3031669221)
 
     public val classGetEnumConstantsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661528303)
+        Internals.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661528303)
 
     public val classGetIntegerConstantEnumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2457504236)
+        Internals.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2457504236)
 
     public val isClassEnumBitfieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3860701026)
+        Internals.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3860701026)
 
     public val isClassEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled", 2619796661)
+        Internals.getMethodBindPtr("ClassDB", "is_class_enabled", 2619796661)
   }
 }

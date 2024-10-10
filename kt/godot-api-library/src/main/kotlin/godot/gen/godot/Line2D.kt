@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -21,7 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -216,7 +215,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LINE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LINE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -244,40 +243,40 @@ public open class Line2D : Node2D() {
 
 
   public final fun setPoints(points: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to points)
+    Internals.callMethod(rawPtr, MethodBindings.setPointsPtr, NIL)
   }
 
   public final fun getPoints(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointsPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
    * Overwrites the position of the point at the given [index] with the supplied [position].
    */
   public final fun setPointPosition(index: Int, position: Vector2): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong(), VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPointPositionPtr, NIL)
   }
 
   /**
    * Returns the position of the point at index [index].
    */
   public final fun getPointPosition(index: Int): Vector2 {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPointPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the number of points in the polyline.
    */
   public final fun getPointCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -289,167 +288,167 @@ public open class Line2D : Node2D() {
    */
   @JvmOverloads
   public final fun addPoint(position: Vector2, index: Int = -1): Unit {
-    TransferContext.writeArguments(VECTOR2 to position, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPointPtr, NIL)
   }
 
   /**
    * Removes the point at index [index] from the polyline.
    */
   public final fun removePoint(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removePointPtr, NIL)
   }
 
   /**
    * Removes all points from the polyline, making it empty.
    */
   public final fun clearPoints(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPointsPtr, NIL)
   }
 
   public final fun setClosed(closed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to closed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
+    Internals.writeArguments(BOOL to closed)
+    Internals.callMethod(rawPtr, MethodBindings.setClosedPtr, NIL)
   }
 
   public final fun isClosed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isClosedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setWidth(width: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to width.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(DOUBLE to width.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCurve(curve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
+    Internals.writeArguments(OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setCurvePtr, NIL)
   }
 
   public final fun getCurve(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setDefaultColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultColorPtr, NIL)
   }
 
   public final fun getDefaultColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGradient(color: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
+    Internals.writeArguments(OBJECT to color)
+    Internals.callMethod(rawPtr, MethodBindings.setGradientPtr, NIL)
   }
 
   public final fun getGradient(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGradientPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureMode(mode: LineTextureMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureModePtr, NIL)
   }
 
   public final fun getTextureMode(): LineTextureMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
-    return Line2D.LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureModePtr, LONG)
+    return Line2D.LineTextureMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointMode(mode: LineJointMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setJointModePtr, NIL)
   }
 
   public final fun getJointMode(): LineJointMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointModePtr, LONG)
-    return Line2D.LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointModePtr, LONG)
+    return Line2D.LineJointMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBeginCapMode(mode: LineCapMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBeginCapModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBeginCapModePtr, NIL)
   }
 
   public final fun getBeginCapMode(): LineCapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBeginCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBeginCapModePtr, LONG)
+    return Line2D.LineCapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEndCapMode(mode: LineCapMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEndCapModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEndCapModePtr, NIL)
   }
 
   public final fun getEndCapMode(): LineCapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEndCapModePtr, LONG)
-    return Line2D.LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEndCapModePtr, LONG)
+    return Line2D.LineCapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSharpLimit(limit: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to limit.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSharpLimitPtr, NIL)
+    Internals.writeArguments(DOUBLE to limit.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSharpLimitPtr, NIL)
   }
 
   public final fun getSharpLimit(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSharpLimitPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRoundPrecision(precision: Int): Unit {
-    TransferContext.writeArguments(LONG to precision.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRoundPrecisionPtr, NIL)
+    Internals.writeArguments(LONG to precision.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRoundPrecisionPtr, NIL)
   }
 
   public final fun getRoundPrecision(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRoundPrecisionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAntialiased(antialiased: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to antialiased)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
+    Internals.writeArguments(BOOL to antialiased)
+    Internals.callMethod(rawPtr, MethodBindings.setAntialiasedPtr, NIL)
   }
 
   public final fun getAntialiased(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAntialiasedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class LineJointMode(
@@ -544,102 +543,99 @@ public open class Line2D : Node2D() {
 
   internal object MethodBindings {
     public val setPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_points", 1509147220)
+        Internals.getMethodBindPtr("Line2D", "set_points", 1509147220)
 
     public val getPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_points", 2961356807)
+        Internals.getMethodBindPtr("Line2D", "get_points", 2961356807)
 
     public val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_point_position", 163021252)
+        Internals.getMethodBindPtr("Line2D", "set_point_position", 163021252)
 
     public val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_point_position", 2299179447)
+        Internals.getMethodBindPtr("Line2D", "get_point_position", 2299179447)
 
     public val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_point_count", 3905245786)
+        Internals.getMethodBindPtr("Line2D", "get_point_count", 3905245786)
 
-    public val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "add_point", 2654014372)
+    public val addPointPtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "add_point", 2654014372)
 
     public val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "remove_point", 1286410249)
+        Internals.getMethodBindPtr("Line2D", "remove_point", 1286410249)
 
     public val clearPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "clear_points", 3218959716)
+        Internals.getMethodBindPtr("Line2D", "clear_points", 3218959716)
 
     public val setClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_closed", 2586408642)
+        Internals.getMethodBindPtr("Line2D", "set_closed", 2586408642)
 
-    public val isClosedPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "is_closed", 36873697)
+    public val isClosedPtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "is_closed", 36873697)
 
-    public val setWidthPtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_width", 373806689)
+    public val setWidthPtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_width", 1740695150)
+    public val getWidthPtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "get_width", 1740695150)
 
-    public val setCurvePtr: VoidPtr = TypeManager.getMethodBindPtr("Line2D", "set_curve", 270443179)
+    public val setCurvePtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "set_curve", 270443179)
 
-    public val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_curve", 2460114913)
+    public val getCurvePtr: VoidPtr = Internals.getMethodBindPtr("Line2D", "get_curve", 2460114913)
 
     public val setDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_default_color", 2920490490)
+        Internals.getMethodBindPtr("Line2D", "set_default_color", 2920490490)
 
     public val getDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_default_color", 3444240500)
+        Internals.getMethodBindPtr("Line2D", "get_default_color", 3444240500)
 
     public val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_gradient", 2756054477)
+        Internals.getMethodBindPtr("Line2D", "set_gradient", 2756054477)
 
     public val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_gradient", 132272999)
+        Internals.getMethodBindPtr("Line2D", "get_gradient", 132272999)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("Line2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("Line2D", "get_texture", 3635182373)
 
     public val setTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode", 1952559516)
+        Internals.getMethodBindPtr("Line2D", "set_texture_mode", 1952559516)
 
     public val getTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode", 2341040722)
+        Internals.getMethodBindPtr("Line2D", "get_texture_mode", 2341040722)
 
     public val setJointModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_joint_mode", 604292979)
+        Internals.getMethodBindPtr("Line2D", "set_joint_mode", 604292979)
 
     public val getJointModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_joint_mode", 2546544037)
+        Internals.getMethodBindPtr("Line2D", "get_joint_mode", 2546544037)
 
     public val setBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode", 1669024546)
+        Internals.getMethodBindPtr("Line2D", "set_begin_cap_mode", 1669024546)
 
     public val getBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode", 1107511441)
+        Internals.getMethodBindPtr("Line2D", "get_begin_cap_mode", 1107511441)
 
     public val setEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode", 1669024546)
+        Internals.getMethodBindPtr("Line2D", "set_end_cap_mode", 1669024546)
 
     public val getEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode", 1107511441)
+        Internals.getMethodBindPtr("Line2D", "get_end_cap_mode", 1107511441)
 
     public val setSharpLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit", 373806689)
+        Internals.getMethodBindPtr("Line2D", "set_sharp_limit", 373806689)
 
     public val getSharpLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit", 1740695150)
+        Internals.getMethodBindPtr("Line2D", "get_sharp_limit", 1740695150)
 
     public val setRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_round_precision", 1286410249)
+        Internals.getMethodBindPtr("Line2D", "set_round_precision", 1286410249)
 
     public val getRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_round_precision", 3905245786)
+        Internals.getMethodBindPtr("Line2D", "get_round_precision", 3905245786)
 
     public val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_antialiased", 2586408642)
+        Internals.getMethodBindPtr("Line2D", "set_antialiased", 2586408642)
 
     public val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_antialiased", 36873697)
+        Internals.getMethodBindPtr("Line2D", "get_antialiased", 36873697)
   }
 }

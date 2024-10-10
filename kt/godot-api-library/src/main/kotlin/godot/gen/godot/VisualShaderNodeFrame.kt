@@ -11,14 +11,13 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.PackedInt32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -95,7 +94,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX, scriptIndex)
   }
 
   /**
@@ -123,47 +122,47 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
 
   public final fun setTitle(title: String): Unit {
-    TransferContext.writeArguments(STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+    Internals.writeArguments(STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
 
   public final fun isTintColorEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
   }
 
   public final fun getTintColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAutoshrinkEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -171,8 +170,8 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * [VisualShader.attachNodeToFrame] method instead.
    */
   public final fun addAttachedNode(node: Int): Unit {
-    TransferContext.writeArguments(LONG to node.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addAttachedNodePtr, NIL)
+    Internals.writeArguments(LONG to node.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addAttachedNodePtr, NIL)
   }
 
   /**
@@ -180,58 +179,58 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * the [VisualShader.detachNodeFromFrame] method instead.
    */
   public final fun removeAttachedNode(node: Int): Unit {
-    TransferContext.writeArguments(LONG to node.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAttachedNodePtr, NIL)
+    Internals.writeArguments(LONG to node.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeAttachedNodePtr, NIL)
   }
 
   public final fun setAttachedNodes(attachedNodes: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to attachedNodes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to attachedNodes)
+    Internals.callMethod(rawPtr, MethodBindings.setAttachedNodesPtr, NIL)
   }
 
   public final fun getAttachedNodes(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAttachedNodesPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83702148)
 
     public val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201670096)
 
     public val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2586408642)
 
     public val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36873697)
 
     public val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2920490490)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2920490490)
 
     public val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3444240500)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3444240500)
 
     public val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2586408642)
 
     public val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36873697)
 
     public val addAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1286410249)
 
     public val removeAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1286410249)
 
     public val setAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3614634198)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3614634198)
 
     public val getAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1930428628)
+        Internals.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1930428628)
   }
 }

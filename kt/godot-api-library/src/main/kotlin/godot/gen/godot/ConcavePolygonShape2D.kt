@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -56,27 +55,27 @@ public open class ConcavePolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setSegments(segments: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to segments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to segments)
+    Internals.callMethod(rawPtr, MethodBindings.setSegmentsPtr, NIL)
   }
 
   public final fun getSegments(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSegmentsPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "set_segments", 1509147220)
+        Internals.getMethodBindPtr("ConcavePolygonShape2D", "set_segments", 1509147220)
 
     public val getSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape2D", "get_segments", 2961356807)
+        Internals.getMethodBindPtr("ConcavePolygonShape2D", "get_segments", 2961356807)
   }
 }

@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -82,78 +81,78 @@ public open class PhysicsMaterial : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setFriction(friction: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to friction.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+    Internals.writeArguments(DOUBLE to friction.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
   }
 
   public final fun getFriction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRough(rough: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to rough)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRoughPtr, NIL)
+    Internals.writeArguments(BOOL to rough)
+    Internals.callMethod(rawPtr, MethodBindings.setRoughPtr, NIL)
   }
 
   public final fun isRough(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRoughPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRoughPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBounce(bounce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+    Internals.writeArguments(DOUBLE to bounce.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
   }
 
   public final fun getBounce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAbsorbent(absorbent: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to absorbent)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAbsorbentPtr, NIL)
+    Internals.writeArguments(BOOL to absorbent)
+    Internals.callMethod(rawPtr, MethodBindings.setAbsorbentPtr, NIL)
   }
 
   public final fun isAbsorbent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAbsorbentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAbsorbentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_friction", 373806689)
+        Internals.getMethodBindPtr("PhysicsMaterial", "set_friction", 373806689)
 
     public val getFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "get_friction", 1740695150)
+        Internals.getMethodBindPtr("PhysicsMaterial", "get_friction", 1740695150)
 
     public val setRoughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_rough", 2586408642)
+        Internals.getMethodBindPtr("PhysicsMaterial", "set_rough", 2586408642)
 
     public val isRoughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "is_rough", 36873697)
+        Internals.getMethodBindPtr("PhysicsMaterial", "is_rough", 36873697)
 
     public val setBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_bounce", 373806689)
+        Internals.getMethodBindPtr("PhysicsMaterial", "set_bounce", 373806689)
 
     public val getBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "get_bounce", 1740695150)
+        Internals.getMethodBindPtr("PhysicsMaterial", "get_bounce", 1740695150)
 
     public val setAbsorbentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "set_absorbent", 2586408642)
+        Internals.getMethodBindPtr("PhysicsMaterial", "set_absorbent", 2586408642)
 
     public val isAbsorbentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsMaterial", "is_absorbent", 36873697)
+        Internals.getMethodBindPtr("PhysicsMaterial", "is_absorbent", 36873697)
   }
 }

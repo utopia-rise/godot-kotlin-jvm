@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -48,7 +47,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_CAMERASERVER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_CAMERASERVER_INDEX)
   }
 
   /**
@@ -56,9 +55,9 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun getFeed(index: Int): CameraFeed? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CameraFeed?)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getFeedPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CameraFeed?)
   }
 
   /**
@@ -66,9 +65,9 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun getFeedCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFeedCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -76,9 +75,9 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun feeds(): VariantArray<CameraFeed> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.feedsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<CameraFeed>)
   }
 
   /**
@@ -86,8 +85,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun addFeed(feed: CameraFeed?): Unit {
-    TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
+    Internals.writeArguments(OBJECT to feed)
+    Internals.callMethod(rawPtr, MethodBindings.addFeedPtr, NIL)
   }
 
   /**
@@ -95,8 +94,8 @@ public object CameraServer : Object() {
    */
   @JvmStatic
   public final fun removeFeed(feed: CameraFeed?): Unit {
-    TransferContext.writeArguments(OBJECT to feed)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
+    Internals.writeArguments(OBJECT to feed)
+    Internals.callMethod(rawPtr, MethodBindings.removeFeedPtr, NIL)
   }
 
   public enum class FeedImage(
@@ -132,17 +131,17 @@ public object CameraServer : Object() {
 
   internal object MethodBindings {
     public val getFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "get_feed", 361927068)
+        Internals.getMethodBindPtr("CameraServer", "get_feed", 361927068)
 
     public val getFeedCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "get_feed_count", 2455072627)
+        Internals.getMethodBindPtr("CameraServer", "get_feed_count", 2455072627)
 
-    public val feedsPtr: VoidPtr = TypeManager.getMethodBindPtr("CameraServer", "feeds", 2915620761)
+    public val feedsPtr: VoidPtr = Internals.getMethodBindPtr("CameraServer", "feeds", 2915620761)
 
     public val addFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "add_feed", 3204782488)
+        Internals.getMethodBindPtr("CameraServer", "add_feed", 3204782488)
 
     public val removeFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraServer", "remove_feed", 3204782488)
+        Internals.getMethodBindPtr("CameraServer", "remove_feed", 3204782488)
   }
 }

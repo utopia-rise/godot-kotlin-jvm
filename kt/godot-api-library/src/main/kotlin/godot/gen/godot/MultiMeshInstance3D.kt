@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -40,27 +39,27 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
+    Internals.writeArguments(OBJECT to multimesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
   }
 
   public final fun getMultimesh(): MultiMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MultiMesh?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "set_multimesh", 2246127404)
+        Internals.getMethodBindPtr("MultiMeshInstance3D", "set_multimesh", 2246127404)
 
     public val getMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance3D", "get_multimesh", 1385450523)
+        Internals.getMethodBindPtr("MultiMeshInstance3D", "get_multimesh", 1385450523)
   }
 }

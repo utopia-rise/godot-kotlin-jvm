@@ -11,7 +11,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -23,7 +22,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -421,7 +420,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LABEL3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LABEL3D_INDEX, scriptIndex)
   }
 
   /**
@@ -497,329 +496,328 @@ public open class Label3D : GeometryInstance3D() {
 
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
   public final fun getVerticalAlignment(): VerticalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
-    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    return VerticalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setModulate(modulate: Color): Unit {
-    TransferContext.writeArguments(COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
+    Internals.writeArguments(COLOR to modulate)
+    Internals.callMethod(rawPtr, MethodBindings.setModulatePtr, NIL)
   }
 
   public final fun getModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setOutlineModulate(modulate: Color): Unit {
-    TransferContext.writeArguments(COLOR to modulate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
+    Internals.writeArguments(COLOR to modulate)
+    Internals.callMethod(rawPtr, MethodBindings.setOutlineModulatePtr, NIL)
   }
 
   public final fun getOutlineModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTextDirection(direction: TextServer.Direction): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): TextServer.Direction {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return TextServer.Direction.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    Internals.writeArguments(LONG to parser.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    Internals.writeArguments(ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setUppercase(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
   }
 
   public final fun isUppercase(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRenderPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRenderPriorityPtr, NIL)
   }
 
   public final fun getRenderPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineRenderPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOutlineRenderPriorityPtr, NIL)
   }
 
   public final fun getOutlineRenderPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineRenderPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFont(font: Font?): Unit {
-    TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
+    Internals.writeArguments(OBJECT to font)
+    Internals.callMethod(rawPtr, MethodBindings.setFontPtr, NIL)
   }
 
   public final fun getFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Font?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setFontSize(size: Int): Unit {
-    TransferContext.writeArguments(LONG to size.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
+    Internals.writeArguments(LONG to size.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFontSizePtr, NIL)
   }
 
   public final fun getFontSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOutlineSize(outlineSize: Int): Unit {
-    TransferContext.writeArguments(LONG to outlineSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
+    Internals.writeArguments(LONG to outlineSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOutlineSizePtr, NIL)
   }
 
   public final fun getOutlineSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOutlineSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setLineSpacing(lineSpacing: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
+    Internals.writeArguments(DOUBLE to lineSpacing.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLineSpacingPtr, NIL)
   }
 
   public final fun getLineSpacing(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineSpacingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    Internals.writeArguments(LONG to autowrapMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
-    TransferContext.writeArguments(LONG to justificationFlags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+    Internals.writeArguments(LONG to justificationFlags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    return JustificationFlagValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setWidth(width: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to width.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
+    Internals.writeArguments(DOUBLE to width.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWidthPtr, NIL)
   }
 
   public final fun getWidth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWidthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPixelSize(pixelSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to pixelSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPixelSizePtr, NIL)
   }
 
   public final fun getPixelSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPixelSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setOffsetPtr, NIL)
   }
 
   public final fun getOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * If `true`, the specified flag will be enabled. See [Label3D.DrawFlags] for a list of flags.
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
+    Internals.writeArguments(LONG to flag.id, BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawFlagPtr, NIL)
   }
 
   /**
    * Returns the value of the specified flag.
    */
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to flag.id)
+    Internals.callMethod(rawPtr, MethodBindings.getDrawFlagPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
   }
 
   public final fun getBillboardMode(): BaseMaterial3D.BillboardMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaCutModePtr, NIL)
   }
 
   public final fun getAlphaCutMode(): AlphaCutMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
-    return Label3D.AlphaCutMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaCutModePtr, LONG)
+    return Label3D.AlphaCutMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
   public final fun getAlphaScissorThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
   public final fun getAlphaHashScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
-    TransferContext.writeArguments(LONG to alphaAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+    Internals.writeArguments(LONG to alphaAa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
   public final fun getAlphaAntialiasing(): BaseMaterial3D.AlphaAntiAliasing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edge.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+    Internals.writeArguments(DOUBLE to edge.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): BaseMaterial3D.TextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -827,9 +825,9 @@ public open class Label3D : GeometryInstance3D() {
    * its [pixelSize]).
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class DrawFlags(
@@ -919,176 +917,174 @@ public open class Label3D : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_horizontal_alignment", 2312603777)
+        Internals.getMethodBindPtr("Label3D", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_horizontal_alignment", 341400642)
+        Internals.getMethodBindPtr("Label3D", "get_horizontal_alignment", 341400642)
 
     public val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_vertical_alignment", 1796458609)
+        Internals.getMethodBindPtr("Label3D", "set_vertical_alignment", 1796458609)
 
     public val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_vertical_alignment", 3274884059)
+        Internals.getMethodBindPtr("Label3D", "get_vertical_alignment", 3274884059)
 
     public val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_modulate", 2920490490)
+        Internals.getMethodBindPtr("Label3D", "set_modulate", 2920490490)
 
     public val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_modulate", 3444240500)
+        Internals.getMethodBindPtr("Label3D", "get_modulate", 3444240500)
 
     public val setOutlineModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_modulate", 2920490490)
+        Internals.getMethodBindPtr("Label3D", "set_outline_modulate", 2920490490)
 
     public val getOutlineModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_modulate", 3444240500)
+        Internals.getMethodBindPtr("Label3D", "get_outline_modulate", 3444240500)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_text", 83702148)
+    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_text", 201670096)
+    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "get_text", 201670096)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_text_direction", 1418190634)
+        Internals.getMethodBindPtr("Label3D", "set_text_direction", 1418190634)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_text_direction", 2516697328)
+        Internals.getMethodBindPtr("Label3D", "get_text_direction", 2516697328)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_language", 83702148)
+        Internals.getMethodBindPtr("Label3D", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_language", 201670096)
+        Internals.getMethodBindPtr("Label3D", "get_language", 201670096)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override", 55961453)
+        Internals.getMethodBindPtr("Label3D", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override", 3385126229)
+        Internals.getMethodBindPtr("Label3D", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_structured_text_bidi_override_options", 381264803)
+        Internals.getMethodBindPtr("Label3D", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_structured_text_bidi_override_options", 3995934104)
+        Internals.getMethodBindPtr("Label3D", "get_structured_text_bidi_override_options", 3995934104)
 
     public val setUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_uppercase", 2586408642)
+        Internals.getMethodBindPtr("Label3D", "set_uppercase", 2586408642)
 
     public val isUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "is_uppercase", 36873697)
+        Internals.getMethodBindPtr("Label3D", "is_uppercase", 36873697)
 
     public val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_render_priority", 1286410249)
+        Internals.getMethodBindPtr("Label3D", "set_render_priority", 1286410249)
 
     public val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_render_priority", 3905245786)
+        Internals.getMethodBindPtr("Label3D", "get_render_priority", 3905245786)
 
     public val setOutlineRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_render_priority", 1286410249)
+        Internals.getMethodBindPtr("Label3D", "set_outline_render_priority", 1286410249)
 
     public val getOutlineRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_render_priority", 3905245786)
+        Internals.getMethodBindPtr("Label3D", "get_outline_render_priority", 3905245786)
 
-    public val setFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "set_font", 1262170328)
+    public val setFontPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "set_font", 1262170328)
 
-    public val getFontPtr: VoidPtr = TypeManager.getMethodBindPtr("Label3D", "get_font", 3229501585)
+    public val getFontPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "get_font", 3229501585)
 
     public val setFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_font_size", 1286410249)
+        Internals.getMethodBindPtr("Label3D", "set_font_size", 1286410249)
 
     public val getFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_font_size", 3905245786)
+        Internals.getMethodBindPtr("Label3D", "get_font_size", 3905245786)
 
     public val setOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_outline_size", 1286410249)
+        Internals.getMethodBindPtr("Label3D", "set_outline_size", 1286410249)
 
     public val getOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_outline_size", 3905245786)
+        Internals.getMethodBindPtr("Label3D", "get_outline_size", 3905245786)
 
     public val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_line_spacing", 373806689)
+        Internals.getMethodBindPtr("Label3D", "set_line_spacing", 373806689)
 
     public val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_line_spacing", 1740695150)
+        Internals.getMethodBindPtr("Label3D", "get_line_spacing", 1740695150)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_autowrap_mode", 3289138044)
+        Internals.getMethodBindPtr("Label3D", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_autowrap_mode", 1549071663)
+        Internals.getMethodBindPtr("Label3D", "get_autowrap_mode", 1549071663)
 
     public val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_justification_flags", 2877345813)
+        Internals.getMethodBindPtr("Label3D", "set_justification_flags", 2877345813)
 
     public val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_justification_flags", 1583363614)
+        Internals.getMethodBindPtr("Label3D", "get_justification_flags", 1583363614)
 
-    public val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_width", 373806689)
+    public val setWidthPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "set_width", 373806689)
 
-    public val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_width", 1740695150)
+    public val getWidthPtr: VoidPtr = Internals.getMethodBindPtr("Label3D", "get_width", 1740695150)
 
     public val setPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_pixel_size", 373806689)
+        Internals.getMethodBindPtr("Label3D", "set_pixel_size", 373806689)
 
     public val getPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_pixel_size", 1740695150)
+        Internals.getMethodBindPtr("Label3D", "get_pixel_size", 1740695150)
 
     public val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_offset", 743155724)
+        Internals.getMethodBindPtr("Label3D", "set_offset", 743155724)
 
     public val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_offset", 3341600327)
+        Internals.getMethodBindPtr("Label3D", "get_offset", 3341600327)
 
     public val setDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_draw_flag", 1285833066)
+        Internals.getMethodBindPtr("Label3D", "set_draw_flag", 1285833066)
 
     public val getDrawFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_draw_flag", 259226453)
+        Internals.getMethodBindPtr("Label3D", "get_draw_flag", 259226453)
 
     public val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_billboard_mode", 4202036497)
+        Internals.getMethodBindPtr("Label3D", "set_billboard_mode", 4202036497)
 
     public val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_billboard_mode", 1283840139)
+        Internals.getMethodBindPtr("Label3D", "get_billboard_mode", 1283840139)
 
     public val setAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_cut_mode", 2549142916)
+        Internals.getMethodBindPtr("Label3D", "set_alpha_cut_mode", 2549142916)
 
     public val getAlphaCutModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_cut_mode", 219468601)
+        Internals.getMethodBindPtr("Label3D", "get_alpha_cut_mode", 219468601)
 
     public val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_scissor_threshold", 373806689)
+        Internals.getMethodBindPtr("Label3D", "set_alpha_scissor_threshold", 373806689)
 
     public val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_scissor_threshold", 1740695150)
+        Internals.getMethodBindPtr("Label3D", "get_alpha_scissor_threshold", 1740695150)
 
     public val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_hash_scale", 373806689)
+        Internals.getMethodBindPtr("Label3D", "set_alpha_hash_scale", 373806689)
 
     public val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_hash_scale", 1740695150)
+        Internals.getMethodBindPtr("Label3D", "get_alpha_hash_scale", 1740695150)
 
     public val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing", 3212649852)
+        Internals.getMethodBindPtr("Label3D", "set_alpha_antialiasing", 3212649852)
 
     public val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing", 2889939400)
+        Internals.getMethodBindPtr("Label3D", "get_alpha_antialiasing", 2889939400)
 
     public val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_alpha_antialiasing_edge", 373806689)
+        Internals.getMethodBindPtr("Label3D", "set_alpha_antialiasing_edge", 373806689)
 
     public val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_alpha_antialiasing_edge", 1740695150)
+        Internals.getMethodBindPtr("Label3D", "get_alpha_antialiasing_edge", 1740695150)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "set_texture_filter", 22904437)
+        Internals.getMethodBindPtr("Label3D", "set_texture_filter", 22904437)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "get_texture_filter", 3289213076)
+        Internals.getMethodBindPtr("Label3D", "get_texture_filter", 3289213076)
 
     public val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label3D", "generate_triangle_mesh", 3476533166)
+        Internals.getMethodBindPtr("Label3D", "generate_triangle_mesh", 3476533166)
   }
 }

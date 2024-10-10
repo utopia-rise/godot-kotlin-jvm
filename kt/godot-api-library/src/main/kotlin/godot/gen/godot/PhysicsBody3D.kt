@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -19,7 +18,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
@@ -104,7 +103,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSBODY3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSBODY3D_INDEX, scriptIndex)
   }
 
   /**
@@ -129,9 +128,9 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     recoveryAsCollision: Boolean = false,
     maxCollisions: Int = 1,
   ): KinematicCollision3D? {
-    TransferContext.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveAndCollidePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
+    Internals.writeArguments(VECTOR3 to motion, BOOL to testOnly, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveAndCollidePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   /**
@@ -157,9 +156,9 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     recoveryAsCollision: Boolean = false,
     maxCollisions: Int = 1,
   ): Boolean {
-    TransferContext.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.testMovePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(TRANSFORM3D to from, VECTOR3 to motion, OBJECT to collision, DOUBLE to safeMargin.toDouble(), BOOL to recoveryAsCollision, LONG to maxCollisions.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.testMovePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -167,78 +166,78 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * gravity overrides from [Area3D] nodes and the global world gravity.
    */
   public final fun getGravity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Locks or unlocks the specified linear or rotational [axis] depending on the value of [lock].
    */
   public final fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
-    TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
+    Internals.writeArguments(LONG to axis.id, BOOL to lock)
+    Internals.callMethod(rawPtr, MethodBindings.setAxisLockPtr, NIL)
   }
 
   /**
    * Returns `true` if the specified linear or rotational [axis] is locked.
    */
   public final fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
-    TransferContext.writeArguments(LONG to axis.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to axis.id)
+    Internals.callMethod(rawPtr, MethodBindings.getAxisLockPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns an array of nodes that were added as collision exceptions for this body.
    */
   public final fun getCollisionExceptions(): VariantArray<PhysicsBody3D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionExceptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<PhysicsBody3D>)
   }
 
   /**
    * Adds a body to the list of bodies that this body can't collide with.
    */
   public final fun addCollisionExceptionWith(body: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr, MethodBindings.addCollisionExceptionWithPtr, NIL)
+    Internals.writeArguments(OBJECT to body)
+    Internals.callMethod(rawPtr, MethodBindings.addCollisionExceptionWithPtr, NIL)
   }
 
   /**
    * Removes a body from the list of bodies that this body can't collide with.
    */
   public final fun removeCollisionExceptionWith(body: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
+    Internals.writeArguments(OBJECT to body)
+    Internals.callMethod(rawPtr, MethodBindings.removeCollisionExceptionWithPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val moveAndCollidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "move_and_collide", 3208792678)
+        Internals.getMethodBindPtr("PhysicsBody3D", "move_and_collide", 3208792678)
 
     public val testMovePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "test_move", 2481691619)
+        Internals.getMethodBindPtr("PhysicsBody3D", "test_move", 2481691619)
 
     public val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "get_gravity", 3360562783)
+        Internals.getMethodBindPtr("PhysicsBody3D", "get_gravity", 3360562783)
 
     public val setAxisLockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "set_axis_lock", 1787895195)
+        Internals.getMethodBindPtr("PhysicsBody3D", "set_axis_lock", 1787895195)
 
     public val getAxisLockPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "get_axis_lock", 2264617709)
+        Internals.getMethodBindPtr("PhysicsBody3D", "get_axis_lock", 2264617709)
 
     public val getCollisionExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "get_collision_exceptions", 2915620761)
+        Internals.getMethodBindPtr("PhysicsBody3D", "get_collision_exceptions", 2915620761)
 
     public val addCollisionExceptionWithPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "add_collision_exception_with", 1078189570)
+        Internals.getMethodBindPtr("PhysicsBody3D", "add_collision_exception_with", 1078189570)
 
     public val removeCollisionExceptionWithPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsBody3D", "remove_collision_exception_with", 1078189570)
+        Internals.getMethodBindPtr("PhysicsBody3D", "remove_collision_exception_with", 1078189570)
   }
 }

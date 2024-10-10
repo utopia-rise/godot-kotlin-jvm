@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -44,27 +43,27 @@ public open class AnimatableBody2D : StaticBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATABLEBODY2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATABLEBODY2D_INDEX, scriptIndex)
   }
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSyncToPhysicsPtr, NIL)
   }
 
   public final fun isSyncToPhysicsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSyncToPhysicsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSyncToPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody2D", "set_sync_to_physics", 2586408642)
+        Internals.getMethodBindPtr("AnimatableBody2D", "set_sync_to_physics", 2586408642)
 
     public val isSyncToPhysicsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatableBody2D", "is_sync_to_physics_enabled", 36873697)
+        Internals.getMethodBindPtr("AnimatableBody2D", "is_sync_to_physics_enabled", 36873697)
   }
 }

@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -65,7 +64,7 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFIER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFIER3D_INDEX, scriptIndex)
   }
 
   /**
@@ -81,49 +80,49 @@ public open class SkeletonModifier3D : Node3D() {
    * Get parent [Skeleton3D] node if found.
    */
   public final fun getSkeleton(): Skeleton3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
 
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInfluence(influence: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to influence.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInfluencePtr, NIL)
+    Internals.writeArguments(DOUBLE to influence.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInfluencePtr, NIL)
   }
 
   public final fun getInfluence(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInfluencePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInfluencePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_skeleton", 1488626673)
+        Internals.getMethodBindPtr("SkeletonModifier3D", "get_skeleton", 1488626673)
 
     public val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_active", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModifier3D", "set_active", 2586408642)
 
     public val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "is_active", 36873697)
+        Internals.getMethodBindPtr("SkeletonModifier3D", "is_active", 36873697)
 
     public val setInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "set_influence", 373806689)
+        Internals.getMethodBindPtr("SkeletonModifier3D", "set_influence", 373806689)
 
     public val getInfluencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModifier3D", "get_influence", 1740695150)
+        Internals.getMethodBindPtr("SkeletonModifier3D", "get_influence", 1740695150)
   }
 }

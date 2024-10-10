@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -33,25 +32,25 @@ private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX: Int = 432
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX, scriptIndex)
   }
 
   /**
    * Returns the moving object's travel before collision.
    */
   public final fun getTravel(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTravelPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTravelPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Returns the moving object's remaining movement vector.
    */
   public final fun getRemainder(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemainderPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRemainderPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -59,9 +58,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * `1`.
    */
   public final fun getCollisionSafeFraction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionSafeFractionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -69,18 +68,18 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    * `0` and `1`.
    */
   public final fun getCollisionUnsafeFraction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionUnsafeFractionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the number of detected collisions.
    */
   public final fun getCollisionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -89,9 +88,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionPointPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -100,9 +99,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionNormalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -111,9 +110,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -122,9 +121,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getColliderId(collisionIndex: Int = 0): Long {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -133,9 +132,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getColliderRid(collisionIndex: Int = 0): RID {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -144,9 +143,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getCollider(collisionIndex: Int = 0): Object? {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Object?)
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Object?)
   }
 
   /**
@@ -155,9 +154,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getColliderShape(collisionIndex: Int = 0): Int {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getColliderShapePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -166,9 +165,9 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionLocalShapePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionLocalShapePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -177,54 +176,54 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
    */
   @JvmOverloads
   public final fun getCollisionDepth(collisionIndex: Int = 0): Float {
-    TransferContext.writeArguments(LONG to collisionIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to collisionIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionDepthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_travel", 3360562783)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_travel", 3360562783)
 
     public val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_remainder", 3360562783)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_remainder", 3360562783)
 
     public val getCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_safe_fraction", 1740695150)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_safe_fraction", 1740695150)
 
     public val getCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_unsafe_fraction", 1740695150)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_unsafe_fraction", 1740695150)
 
     public val getCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_count", 3905245786)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_count", 3905245786)
 
     public val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_point", 1914908202)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_point", 1914908202)
 
     public val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_normal", 1914908202)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_normal", 1914908202)
 
     public val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_velocity", 1914908202)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_velocity", 1914908202)
 
     public val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_id", 1591665591)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_id", 1591665591)
 
     public val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_rid", 1231817359)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_rid", 1231817359)
 
     public val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider", 2639523548)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider", 2639523548)
 
     public val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_shape", 1591665591)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_shape", 1591665591)
 
     public val getCollisionLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_local_shape", 1591665591)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_local_shape", 1591665591)
 
     public val getCollisionDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_depth", 218038398)
+        Internals.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_depth", 218038398)
   }
 }

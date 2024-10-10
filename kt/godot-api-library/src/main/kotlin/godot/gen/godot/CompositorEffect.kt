@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -135,7 +134,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COMPOSITOREFFECT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COMPOSITOREFFECT_INDEX, scriptIndex)
   }
 
   /**
@@ -147,80 +146,80 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun getEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
-    TransferContext.writeArguments(LONG to effectCallbackType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEffectCallbackTypePtr, NIL)
+    Internals.writeArguments(LONG to effectCallbackType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEffectCallbackTypePtr, NIL)
   }
 
   public final fun getEffectCallbackType(): EffectCallbackType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEffectCallbackTypePtr, LONG)
-    return CompositorEffect.EffectCallbackType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEffectCallbackTypePtr, LONG)
+    return CompositorEffect.EffectCallbackType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAccessResolvedColor(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAccessResolvedColorPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAccessResolvedColorPtr, NIL)
   }
 
   public final fun getAccessResolvedColor(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAccessResolvedColorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAccessResolvedDepth(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAccessResolvedDepthPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAccessResolvedDepthPtr, NIL)
   }
 
   public final fun getAccessResolvedDepth(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAccessResolvedDepthPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsMotionVectors(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNeedsMotionVectorsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setNeedsMotionVectorsPtr, NIL)
   }
 
   public final fun getNeedsMotionVectors(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNeedsMotionVectorsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsNormalRoughness(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNeedsNormalRoughnessPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setNeedsNormalRoughnessPtr, NIL)
   }
 
   public final fun getNeedsNormalRoughness(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNeedsNormalRoughnessPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setNeedsSeparateSpecular(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNeedsSeparateSpecularPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setNeedsSeparateSpecularPtr, NIL)
   }
 
   public final fun getNeedsSeparateSpecular(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNeedsSeparateSpecularPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class EffectCallbackType(
@@ -270,45 +269,45 @@ public open class CompositorEffect : Resource() {
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_enabled", 2586408642)
 
     public val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_enabled", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_enabled", 36873697)
 
     public val setEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1390728419)
+        Internals.getMethodBindPtr("CompositorEffect", "set_effect_callback_type", 1390728419)
 
     public val getEffectCallbackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1221912590)
+        Internals.getMethodBindPtr("CompositorEffect", "get_effect_callback_type", 1221912590)
 
     public val setAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_access_resolved_color", 2586408642)
 
     public val getAccessResolvedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_access_resolved_color", 36873697)
 
     public val setAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_access_resolved_depth", 2586408642)
 
     public val getAccessResolvedDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_access_resolved_depth", 36873697)
 
     public val setNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_needs_motion_vectors", 2586408642)
 
     public val getNeedsMotionVectorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_needs_motion_vectors", 36873697)
 
     public val setNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_needs_normal_roughness", 2586408642)
 
     public val getNeedsNormalRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_needs_normal_roughness", 36873697)
 
     public val setNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2586408642)
+        Internals.getMethodBindPtr("CompositorEffect", "set_needs_separate_specular", 2586408642)
 
     public val getNeedsSeparateSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36873697)
+        Internals.getMethodBindPtr("CompositorEffect", "get_needs_separate_specular", 36873697)
   }
 }

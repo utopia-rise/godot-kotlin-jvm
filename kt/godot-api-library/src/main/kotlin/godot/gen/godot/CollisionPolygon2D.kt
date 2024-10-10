@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -99,62 +98,62 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.setPolygonPtr, NIL)
   }
 
   public final fun getPolygon(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setBuildMode(buildMode: BuildMode): Unit {
-    TransferContext.writeArguments(LONG to buildMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBuildModePtr, NIL)
+    Internals.writeArguments(LONG to buildMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBuildModePtr, NIL)
   }
 
   public final fun getBuildMode(): BuildMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBuildModePtr, LONG)
-    return CollisionPolygon2D.BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBuildModePtr, LONG)
+    return CollisionPolygon2D.BuildMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDisabled(disabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
+    Internals.writeArguments(BOOL to disabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDisabledPtr, NIL)
   }
 
   public final fun isDisabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDisabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollision(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setOneWayCollisionPtr, NIL)
   }
 
   public final fun isOneWayCollisionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOneWayCollisionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setOneWayCollisionMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
   }
 
   public final fun getOneWayCollisionMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOneWayCollisionMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class BuildMode(
@@ -189,33 +188,33 @@ public open class CollisionPolygon2D : Node2D() {
 
   internal object MethodBindings {
     public val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1509147220)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1509147220)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2961356807)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2961356807)
 
     public val setBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2780803135)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2780803135)
 
     public val getBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3044948800)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3044948800)
 
     public val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2586408642)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2586408642)
 
     public val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36873697)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36873697)
 
     public val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2586408642)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2586408642)
 
     public val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36873697)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36873697)
 
     public val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373806689)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373806689)
 
     public val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
+        Internals.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
   }
 }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.Vector2
+import godot.util.Internals
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -29,7 +30,8 @@ private const val ENGINE_CLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION_INDEX: Int = 41
 @GodotBaseType
 public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION_INDEX,
+        scriptIndex)
   }
 
   /**

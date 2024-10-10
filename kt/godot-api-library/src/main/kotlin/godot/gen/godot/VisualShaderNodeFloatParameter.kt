@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -99,73 +98,73 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {
-    TransferContext.writeArguments(LONG to hint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+    Internals.writeArguments(LONG to hint.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
   }
 
   public final fun getHint(): Hint {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
-    return VisualShaderNodeFloatParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    return VisualShaderNodeFloatParameter.Hint.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun getMin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMax(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun getMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setStep(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun getStep(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    Internals.writeArguments(DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Hint(
@@ -206,39 +205,39 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint", 3712586466)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_hint", 3712586466)
 
     public val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint", 3042240429)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_hint", 3042240429)
 
     public val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min", 373806689)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_min", 373806689)
 
     public val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min", 1740695150)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_min", 1740695150)
 
     public val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max", 373806689)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_max", 373806689)
 
     public val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max", 1740695150)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_max", 1740695150)
 
     public val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step", 373806689)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_step", 373806689)
 
     public val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step", 1740695150)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_step", 1740695150)
 
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value", 373806689)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "set_default_value", 373806689)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value", 1740695150)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatParameter", "get_default_value", 1740695150)
   }
 }

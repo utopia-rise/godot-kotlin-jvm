@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Float
 import kotlin.Int
@@ -32,7 +33,7 @@ private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX: Int = 237
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX, scriptIndex)
   }
 
   /**

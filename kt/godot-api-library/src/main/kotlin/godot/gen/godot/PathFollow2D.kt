@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -123,129 +122,129 @@ public open class PathFollow2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PATHFOLLOW2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PATHFOLLOW2D_INDEX, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to progress.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setProgressPtr, NIL)
+    Internals.writeArguments(DOUBLE to progress.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setProgressPtr, NIL)
   }
 
   public final fun getProgress(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProgressPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHOffset(hOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to hOffset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to hOffset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHOffsetPtr, NIL)
   }
 
   public final fun getHOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVOffset(vOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to vOffset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to vOffset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVOffsetPtr, NIL)
   }
 
   public final fun getVOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setProgressRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setProgressRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setProgressRatioPtr, NIL)
   }
 
   public final fun getProgressRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProgressRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRotates(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotatesPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setRotatesPtr, NIL)
   }
 
   public final fun isRotating(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRotatingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRotatingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCubicInterpolation(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCubicInterpolationPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setCubicInterpolationPtr, NIL)
   }
 
   public final fun getCubicInterpolation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCubicInterpolationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setLoopPtr, NIL)
   }
 
   public final fun hasLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_progress", 373806689)
+        Internals.getMethodBindPtr("PathFollow2D", "set_progress", 373806689)
 
     public val getProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "get_progress", 1740695150)
+        Internals.getMethodBindPtr("PathFollow2D", "get_progress", 1740695150)
 
     public val setHOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_h_offset", 373806689)
+        Internals.getMethodBindPtr("PathFollow2D", "set_h_offset", 373806689)
 
     public val getHOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "get_h_offset", 1740695150)
+        Internals.getMethodBindPtr("PathFollow2D", "get_h_offset", 1740695150)
 
     public val setVOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_v_offset", 373806689)
+        Internals.getMethodBindPtr("PathFollow2D", "set_v_offset", 373806689)
 
     public val getVOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "get_v_offset", 1740695150)
+        Internals.getMethodBindPtr("PathFollow2D", "get_v_offset", 1740695150)
 
     public val setProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_progress_ratio", 373806689)
+        Internals.getMethodBindPtr("PathFollow2D", "set_progress_ratio", 373806689)
 
     public val getProgressRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "get_progress_ratio", 1740695150)
+        Internals.getMethodBindPtr("PathFollow2D", "get_progress_ratio", 1740695150)
 
     public val setRotatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_rotates", 2586408642)
+        Internals.getMethodBindPtr("PathFollow2D", "set_rotates", 2586408642)
 
     public val isRotatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "is_rotating", 36873697)
+        Internals.getMethodBindPtr("PathFollow2D", "is_rotating", 36873697)
 
     public val setCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_cubic_interpolation", 2586408642)
+        Internals.getMethodBindPtr("PathFollow2D", "set_cubic_interpolation", 2586408642)
 
     public val getCubicInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "get_cubic_interpolation", 36873697)
+        Internals.getMethodBindPtr("PathFollow2D", "get_cubic_interpolation", 36873697)
 
     public val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "set_loop", 2586408642)
+        Internals.getMethodBindPtr("PathFollow2D", "set_loop", 2586408642)
 
     public val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PathFollow2D", "has_loop", 36873697)
+        Internals.getMethodBindPtr("PathFollow2D", "has_loop", 36873697)
   }
 }

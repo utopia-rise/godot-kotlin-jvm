@@ -8,9 +8,8 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Float
 import kotlin.Int
@@ -29,7 +28,7 @@ private const val ENGINE_CLASS_IMAGEFORMATLOADEREXTENSION_INDEX: Int = 285
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGEFORMATLOADEREXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGEFORMATLOADEREXTENSION_INDEX, scriptIndex)
   }
 
   /**
@@ -57,25 +56,25 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
    * [_getRecognizedExtensions].
    */
   public final fun addFormatLoader(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.addFormatLoaderPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.addFormatLoaderPtr, NIL)
   }
 
   /**
    * Remove this format loader from the engine.
    */
   public final fun removeFormatLoader(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.removeFormatLoaderPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.removeFormatLoaderPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val addFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader", 3218959716)
+        Internals.getMethodBindPtr("ImageFormatLoaderExtension", "add_format_loader", 3218959716)
 
     public val removeFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader", 3218959716)
+        Internals.getMethodBindPtr("ImageFormatLoaderExtension", "remove_format_loader", 3218959716)
   }
 }

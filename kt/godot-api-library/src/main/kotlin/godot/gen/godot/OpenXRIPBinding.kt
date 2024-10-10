@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -58,90 +57,90 @@ public open class OpenXRIPBinding : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRIPBINDING_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRIPBINDING_INDEX, scriptIndex)
   }
 
   public final fun setAction(action: OpenXRAction?): Unit {
-    TransferContext.writeArguments(OBJECT to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+    Internals.writeArguments(OBJECT to action)
+    Internals.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
   public final fun getAction(): OpenXRAction? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRAction?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRAction?)
   }
 
   /**
    * Get the number of input/output paths in this binding.
    */
   public final fun getPathCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setPaths(paths: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
+    Internals.writeArguments(PACKED_STRING_ARRAY to paths)
+    Internals.callMethod(rawPtr, MethodBindings.setPathsPtr, NIL)
   }
 
   public final fun getPaths(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
    * Returns `true` if this input/output path is part of this binding.
    */
   public final fun hasPath(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPathPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.hasPathPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Add an input/output path to this binding.
    */
   public final fun addPath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPathPtr, NIL)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.addPathPtr, NIL)
   }
 
   /**
    * Removes this input/output path from this binding.
    */
   public final fun removePath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.removePathPtr, NIL)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.removePathPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_action", 349361333)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "set_action", 349361333)
 
     public val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_action", 4072409085)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "get_action", 4072409085)
 
     public val getPathCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_path_count", 3905245786)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "get_path_count", 3905245786)
 
     public val setPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_paths", 4015028928)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "set_paths", 4015028928)
 
     public val getPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_paths", 1139954409)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "get_paths", 1139954409)
 
     public val hasPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "has_path", 3927539163)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "has_path", 3927539163)
 
     public val addPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "add_path", 83702148)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "add_path", 83702148)
 
     public val removePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "remove_path", 83702148)
+        Internals.getMethodBindPtr("OpenXRIPBinding", "remove_path", 83702148)
   }
 }

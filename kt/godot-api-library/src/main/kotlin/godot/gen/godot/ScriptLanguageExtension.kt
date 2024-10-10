@@ -11,6 +11,7 @@ import godot.core.Dictionary
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -25,7 +26,7 @@ private const val ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX: Int = 507
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getName(): String {

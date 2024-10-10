@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -17,7 +16,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -81,7 +80,7 @@ private const val ENGINE_CLASS_EXPRESSION_INDEX: Int = 219
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_EXPRESSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_EXPRESSION_INDEX, scriptIndex)
   }
 
   /**
@@ -92,9 +91,9 @@ public open class Expression : RefCounted() {
   @JvmOverloads
   public final fun parse(expression: String, inputNames: PackedStringArray = PackedStringArray()):
       Error {
-    TransferContext.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
-    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to expression, PACKED_STRING_ARRAY to inputNames)
+    Internals.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -110,41 +109,40 @@ public open class Expression : RefCounted() {
     showError: Boolean = true,
     constCallsOnly: Boolean = false,
   ): Any? {
-    TransferContext.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(ARRAY to inputs, OBJECT to baseInstance, BOOL to showError, BOOL to constCallsOnly)
+    Internals.callMethod(rawPtr, MethodBindings.executePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
    * Returns `true` if [execute] has failed.
    */
   public final fun hasExecuteFailed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasExecuteFailedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasExecuteFailedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the error text if [parse] or [execute] has failed.
    */
   public final fun getErrorText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getErrorTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getErrorTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("Expression", "parse", 3069722906)
+    public val parsePtr: VoidPtr = Internals.getMethodBindPtr("Expression", "parse", 3069722906)
 
-    public val executePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "execute", 3712471238)
+    public val executePtr: VoidPtr = Internals.getMethodBindPtr("Expression", "execute", 3712471238)
 
     public val hasExecuteFailedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "has_execute_failed", 36873697)
+        Internals.getMethodBindPtr("Expression", "has_execute_failed", 36873697)
 
     public val getErrorTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Expression", "get_error_text", 201670096)
+        Internals.getMethodBindPtr("Expression", "get_error_text", 201670096)
   }
 }

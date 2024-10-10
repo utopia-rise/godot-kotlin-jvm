@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -70,61 +69,61 @@ public open class PanoramaSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setPanorama(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setPanoramaPtr, NIL)
   }
 
   public final fun getPanorama(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPanoramaPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFilteringEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFilteringEnabledPtr, NIL)
   }
 
   public final fun isFilteringEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFilteringEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_panorama", 4051416890)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_panorama", 4051416890)
 
     public val getPanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_panorama", 3635182373)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "get_panorama", 3635182373)
 
     public val setFilteringEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_filtering_enabled", 2586408642)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_filtering_enabled", 2586408642)
 
     public val isFilteringEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled", 36873697)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled", 36873697)
 
     public val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier", 373806689)
 
     public val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier", 1740695150)
   }
 }

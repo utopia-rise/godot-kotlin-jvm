@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -117,7 +116,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX, scriptIndex)
   }
 
   /**
@@ -146,58 +145,58 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
+    Internals.writeArguments(LONG to resolution.id)
+    Internals.callMethod(rawPtr, MethodBindings.setResolutionPtr, NIL)
   }
 
   public final fun getResolution(): Resolution {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
-    return GPUParticlesCollisionSDF3D.Resolution.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getResolutionPtr, LONG)
+    return GPUParticlesCollisionSDF3D.Resolution.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTexture(texture: Texture3D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public final fun setThickness(thickness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to thickness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
+    Internals.writeArguments(DOUBLE to thickness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setThicknessPtr, NIL)
   }
 
   public final fun getThickness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getThicknessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getThicknessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBakeMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
   }
 
   public final fun getBakeMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -205,8 +204,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
   }
 
   /**
@@ -214,9 +213,9 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * between 1 and 32.
    */
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Resolution(
@@ -268,39 +267,39 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3460891852)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3460891852)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3360562783)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3360562783)
 
     public val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1155629297)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1155629297)
 
     public val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2919555867)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2919555867)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1188404210)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1188404210)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373985333)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373985333)
 
     public val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373806689)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373806689)
 
     public val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1740695150)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1740695150)
 
     public val setBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1286410249)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1286410249)
 
     public val getBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3905245786)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3905245786)
 
     public val setBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300928843)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300928843)
 
     public val getBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1116898809)
+        Internals.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1116898809)
   }
 }

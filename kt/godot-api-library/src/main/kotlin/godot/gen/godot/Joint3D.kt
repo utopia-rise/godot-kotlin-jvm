@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -81,89 +80,89 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_JOINT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_JOINT3D_INDEX, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
+    Internals.writeArguments(NODE_PATH to node)
+    Internals.callMethod(rawPtr, MethodBindings.setNodeAPtr, NIL)
   }
 
   public final fun getNodeA(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeAPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setNodeB(node: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to node)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
+    Internals.writeArguments(NODE_PATH to node)
+    Internals.callMethod(rawPtr, MethodBindings.setNodeBPtr, NIL)
   }
 
   public final fun getNodeB(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeBPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setSolverPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSolverPriorityPtr, NIL)
   }
 
   public final fun getSolverPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSolverPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
 
   public final fun getExcludeNodesFromCollision(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExcludeNodesFromCollisionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the joint's internal [RID] from the [PhysicsServer3D].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "set_node_a", 1348162250)
+        Internals.getMethodBindPtr("Joint3D", "set_node_a", 1348162250)
 
     public val getNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "get_node_a", 4075236667)
+        Internals.getMethodBindPtr("Joint3D", "get_node_a", 4075236667)
 
     public val setNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "set_node_b", 1348162250)
+        Internals.getMethodBindPtr("Joint3D", "set_node_b", 1348162250)
 
     public val getNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "get_node_b", 4075236667)
+        Internals.getMethodBindPtr("Joint3D", "get_node_b", 4075236667)
 
     public val setSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "set_solver_priority", 1286410249)
+        Internals.getMethodBindPtr("Joint3D", "set_solver_priority", 1286410249)
 
     public val getSolverPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "get_solver_priority", 3905245786)
+        Internals.getMethodBindPtr("Joint3D", "get_solver_priority", 3905245786)
 
     public val setExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "set_exclude_nodes_from_collision", 2586408642)
+        Internals.getMethodBindPtr("Joint3D", "set_exclude_nodes_from_collision", 2586408642)
 
     public val getExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint3D", "get_exclude_nodes_from_collision", 36873697)
+        Internals.getMethodBindPtr("Joint3D", "get_exclude_nodes_from_collision", 36873697)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint3D", "get_rid", 2944877500)
+    public val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Joint3D", "get_rid", 2944877500)
   }
 }

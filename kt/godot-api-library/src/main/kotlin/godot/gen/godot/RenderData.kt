@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -24,25 +23,25 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERDATA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERDATA_INDEX, scriptIndex)
   }
 
   /**
    * Returns the [RenderSceneBuffers] object managing the scene buffers for rendering this viewport.
    */
   public final fun getRenderSceneBuffers(): RenderSceneBuffers? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as RenderSceneBuffers?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderSceneBuffersPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as RenderSceneBuffers?)
   }
 
   /**
    * Returns the [RenderSceneData] object managing this frames scene data.
    */
   public final fun getRenderSceneData(): RenderSceneData? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderSceneDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as RenderSceneData?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderSceneDataPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as RenderSceneData?)
   }
 
   /**
@@ -50,9 +49,9 @@ public open class RenderData internal constructor() : Object() {
    * viewport.
    */
   public final fun getEnvironment(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -60,24 +59,24 @@ public open class RenderData internal constructor() : Object() {
    * this viewport.
    */
   public final fun getCameraAttributes(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getRenderSceneBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_buffers", 2793216201)
+        Internals.getMethodBindPtr("RenderData", "get_render_scene_buffers", 2793216201)
 
     public val getRenderSceneDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_render_scene_data", 1288715698)
+        Internals.getMethodBindPtr("RenderData", "get_render_scene_data", 1288715698)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_environment", 2944877500)
+        Internals.getMethodBindPtr("RenderData", "get_environment", 2944877500)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderData", "get_camera_attributes", 2944877500)
+        Internals.getMethodBindPtr("RenderData", "get_camera_attributes", 2944877500)
   }
 }

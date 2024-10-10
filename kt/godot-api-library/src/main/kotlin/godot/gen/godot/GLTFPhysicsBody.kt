@@ -12,7 +12,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Basis
 import godot.core.Dictionary
 import godot.core.Quaternion
-import godot.core.TypeManager
 import godot.core.VariantParser.BASIS
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -22,7 +21,7 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
@@ -153,7 +152,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFPHYSICSBODY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFPHYSICSBODY_INDEX, scriptIndex)
   }
 
   /**
@@ -319,9 +318,9 @@ public open class GLTFPhysicsBody : Resource() {
    * Converts this GLTFPhysicsBody instance into a Godot [CollisionObject3D] node.
    */
   public final fun toNode(): CollisionObject3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CollisionObject3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CollisionObject3D?)
   }
 
   /**
@@ -329,97 +328,97 @@ public open class GLTFPhysicsBody : Resource() {
    * by the `OMI_physics_body` GLTF extension.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getBodyType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodyTypePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setBodyType(bodyType: String): Unit {
-    TransferContext.writeArguments(STRING to bodyType)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
+    Internals.writeArguments(STRING to bodyType)
+    Internals.callMethod(rawPtr, MethodBindings.setBodyTypePtr, NIL)
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMass(mass: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+    Internals.writeArguments(DOUBLE to mass.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to linearVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to linearVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to angularVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to angularVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getCenterOfMass(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCenterOfMassPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCenterOfMass(centerOfMass: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to centerOfMass)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
+    Internals.writeArguments(VECTOR3 to centerOfMass)
+    Internals.callMethod(rawPtr, MethodBindings.setCenterOfMassPtr, NIL)
   }
 
   public final fun getInertiaDiagonal(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInertiaDiagonalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setInertiaDiagonal(inertiaDiagonal: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to inertiaDiagonal)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaDiagonalPtr, NIL)
+    Internals.writeArguments(VECTOR3 to inertiaDiagonal)
+    Internals.callMethod(rawPtr, MethodBindings.setInertiaDiagonalPtr, NIL)
   }
 
   public final fun getInertiaOrientation(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInertiaOrientationPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   public final fun setInertiaOrientation(inertiaOrientation: Quaternion): Unit {
-    TransferContext.writeArguments(QUATERNION to inertiaOrientation)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaOrientationPtr, NIL)
+    Internals.writeArguments(QUATERNION to inertiaOrientation)
+    Internals.callMethod(rawPtr, MethodBindings.setInertiaOrientationPtr, NIL)
   }
 
   public final fun getInertiaTensor(): Basis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInertiaTensorPtr, BASIS)
-    return (TransferContext.readReturnValue(BASIS) as Basis)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInertiaTensorPtr, BASIS)
+    return (Internals.readReturnValue(BASIS) as Basis)
   }
 
   public final fun setInertiaTensor(inertiaTensor: Basis): Unit {
-    TransferContext.writeArguments(BASIS to inertiaTensor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
+    Internals.writeArguments(BASIS to inertiaTensor)
+    Internals.callMethod(rawPtr, MethodBindings.setInertiaTensorPtr, NIL)
   }
 
   public companion object {
@@ -427,9 +426,9 @@ public open class GLTFPhysicsBody : Resource() {
      * Creates a new GLTFPhysicsBody instance from the given Godot [CollisionObject3D] node.
      */
     public final fun fromNode(bodyNode: CollisionObject3D?): GLTFPhysicsBody? {
-      TransferContext.writeArguments(OBJECT to bodyNode)
-      TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsBody?)
+      Internals.writeArguments(OBJECT to bodyNode)
+      Internals.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFPhysicsBody?)
     }
 
     /**
@@ -437,71 +436,71 @@ public open class GLTFPhysicsBody : Resource() {
      * `OMI_physics_body` GLTF extension format.
      */
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsBody? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsBody?)
+      Internals.writeArguments(DICTIONARY to dictionary)
+      Internals.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFPhysicsBody?)
     }
   }
 
   internal object MethodBindings {
     public val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "from_node", 420544174)
 
     public val toNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_node", 3224013656)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "to_node", 3224013656)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "from_dictionary", 1177544336)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary", 3102165223)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "to_dictionary", 3102165223)
 
     public val getBodyTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_body_type", 201670096)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_body_type", 201670096)
 
     public val setBodyTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_body_type", 83702148)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_body_type", 83702148)
 
     public val getMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_mass", 1740695150)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_mass", 1740695150)
 
     public val setMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_mass", 373806689)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_mass", 373806689)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_linear_velocity", 3360562783)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_linear_velocity", 3360562783)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_linear_velocity", 3460891852)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_linear_velocity", 3460891852)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_angular_velocity", 3360562783)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_angular_velocity", 3360562783)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_angular_velocity", 3460891852)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_angular_velocity", 3460891852)
 
     public val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_center_of_mass", 3360562783)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_center_of_mass", 3360562783)
 
     public val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_center_of_mass", 3460891852)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_center_of_mass", 3460891852)
 
     public val getInertiaDiagonalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_diagonal", 3360562783)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_diagonal", 3360562783)
 
     public val setInertiaDiagonalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_diagonal", 3460891852)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_diagonal", 3460891852)
 
     public val getInertiaOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_orientation", 1222331677)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_orientation", 1222331677)
 
     public val setInertiaOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_orientation", 1727505552)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_orientation", 1727505552)
 
     public val getInertiaTensorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_tensor", 2716978435)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "get_inertia_tensor", 2716978435)
 
     public val setInertiaTensorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor", 1055510324)
+        Internals.getMethodBindPtr("GLTFPhysicsBody", "set_inertia_tensor", 1055510324)
   }
 }

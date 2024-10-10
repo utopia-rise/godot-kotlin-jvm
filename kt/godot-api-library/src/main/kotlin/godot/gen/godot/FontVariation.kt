@@ -11,14 +11,13 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
@@ -194,7 +193,7 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FONTVARIATION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FONTVARIATION_INDEX, scriptIndex)
   }
 
   /**
@@ -226,63 +225,63 @@ public open class FontVariation : Font() {
 
 
   public final fun setBaseFont(font: Font?): Unit {
-    TransferContext.writeArguments(OBJECT to font)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
+    Internals.writeArguments(OBJECT to font)
+    Internals.callMethod(rawPtr, MethodBindings.setBaseFontPtr, NIL)
   }
 
   public final fun getBaseFont(): Font? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Font?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBaseFontPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Font?)
   }
 
   public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to coords)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
+    Internals.writeArguments(DICTIONARY to coords)
+    Internals.callMethod(rawPtr, MethodBindings.setVariationOpentypePtr, NIL)
   }
 
   public final fun getVariationOpentype(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVariationOpentypePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setVariationEmbolden(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVariationEmboldenPtr, NIL)
   }
 
   public final fun getVariationEmbolden(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVariationEmboldenPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVariationFaceIndex(faceIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to faceIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
+    Internals.writeArguments(LONG to faceIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setVariationFaceIndexPtr, NIL)
   }
 
   public final fun getVariationFaceIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVariationFaceIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVariationTransform(transform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setVariationTransformPtr, NIL)
   }
 
   public final fun getVariationTransform(): Transform2D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVariationTransformPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to features)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
+    Internals.writeArguments(DICTIONARY to features)
+    Internals.callMethod(rawPtr, MethodBindings.setOpentypeFeaturesPtr, NIL)
   }
 
   /**
@@ -290,64 +289,64 @@ public open class FontVariation : Font() {
    * relative to the font size).
    */
   public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
+    Internals.writeArguments(LONG to spacing.id, LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSpacingPtr, NIL)
   }
 
   public final fun setBaselineOffset(baselineOffset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to baselineOffset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBaselineOffsetPtr, NIL)
   }
 
   public final fun getBaselineOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBaselineOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setBaseFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_base_font", 1262170328)
+        Internals.getMethodBindPtr("FontVariation", "set_base_font", 1262170328)
 
     public val getBaseFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_base_font", 3229501585)
+        Internals.getMethodBindPtr("FontVariation", "get_base_font", 3229501585)
 
     public val setVariationOpentypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_opentype", 4155329257)
+        Internals.getMethodBindPtr("FontVariation", "set_variation_opentype", 4155329257)
 
     public val getVariationOpentypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_opentype", 3102165223)
+        Internals.getMethodBindPtr("FontVariation", "get_variation_opentype", 3102165223)
 
     public val setVariationEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_embolden", 373806689)
+        Internals.getMethodBindPtr("FontVariation", "set_variation_embolden", 373806689)
 
     public val getVariationEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_embolden", 1740695150)
+        Internals.getMethodBindPtr("FontVariation", "get_variation_embolden", 1740695150)
 
     public val setVariationFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_face_index", 1286410249)
+        Internals.getMethodBindPtr("FontVariation", "set_variation_face_index", 1286410249)
 
     public val getVariationFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_face_index", 3905245786)
+        Internals.getMethodBindPtr("FontVariation", "get_variation_face_index", 3905245786)
 
     public val setVariationTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_transform", 2761652528)
+        Internals.getMethodBindPtr("FontVariation", "set_variation_transform", 2761652528)
 
     public val getVariationTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_transform", 3814499831)
+        Internals.getMethodBindPtr("FontVariation", "get_variation_transform", 3814499831)
 
     public val setOpentypeFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_opentype_features", 4155329257)
+        Internals.getMethodBindPtr("FontVariation", "set_opentype_features", 4155329257)
 
     public val setSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_spacing", 3122339690)
+        Internals.getMethodBindPtr("FontVariation", "set_spacing", 3122339690)
 
     public val setBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_baseline_offset", 373806689)
+        Internals.getMethodBindPtr("FontVariation", "set_baseline_offset", 373806689)
 
     public val getBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_baseline_offset", 1740695150)
+        Internals.getMethodBindPtr("FontVariation", "get_baseline_offset", 1740695150)
   }
 }

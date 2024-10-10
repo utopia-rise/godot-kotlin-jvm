@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.VariantArray
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -25,7 +26,7 @@ private const val ENGINE_CLASS_ENGINEPROFILER_INDEX: Int = 217
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ENGINEPROFILER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ENGINEPROFILER_INDEX, scriptIndex)
   }
 
   /**

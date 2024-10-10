@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -25,21 +24,21 @@ private const val ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX: Int = 393
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX, scriptIndex)
   }
 
   /**
    * Generates and sets an optimized translation from the given [Translation] resource.
    */
   public final fun generate(from: Translation?): Unit {
-    TransferContext.writeArguments(OBJECT to from)
-    TransferContext.callMethod(rawPtr, MethodBindings.generatePtr, NIL)
+    Internals.writeArguments(OBJECT to from)
+    Internals.callMethod(rawPtr, MethodBindings.generatePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val generatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OptimizedTranslation", "generate", 1466479800)
+        Internals.getMethodBindPtr("OptimizedTranslation", "generate", 1466479800)
   }
 }

@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -47,18 +46,18 @@ public open class ShaderMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SHADERMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SHADERMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setShader(shader: Shader?): Unit {
-    TransferContext.writeArguments(OBJECT to shader)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
+    Internals.writeArguments(OBJECT to shader)
+    Internals.callMethod(rawPtr, MethodBindings.setShaderPtr, NIL)
   }
 
   public final fun getShader(): Shader? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shader?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShaderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shader?)
   }
 
   /**
@@ -72,32 +71,32 @@ public open class ShaderMaterial : Material() {
    * faster, so they should be preferred over duplicating the [ShaderMaterial] when possible.
    */
   public final fun setShaderParameter(`param`: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to param, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShaderParameterPtr, NIL)
+    Internals.writeArguments(STRING_NAME to param, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setShaderParameterPtr, NIL)
   }
 
   /**
    * Returns the current value set for this material of a uniform in the shader.
    */
   public final fun getShaderParameter(`param`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to param)
-    TransferContext.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to param)
+    Internals.callMethod(rawPtr, MethodBindings.getShaderParameterPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setShaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderMaterial", "set_shader", 3341921675)
+        Internals.getMethodBindPtr("ShaderMaterial", "set_shader", 3341921675)
 
     public val getShaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderMaterial", "get_shader", 2078273437)
+        Internals.getMethodBindPtr("ShaderMaterial", "get_shader", 2078273437)
 
     public val setShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderMaterial", "set_shader_parameter", 3776071444)
+        Internals.getMethodBindPtr("ShaderMaterial", "set_shader_parameter", 3776071444)
 
     public val getShaderParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderMaterial", "get_shader_parameter", 2760726917)
+        Internals.getMethodBindPtr("ShaderMaterial", "get_shader_parameter", 2760726917)
   }
 }

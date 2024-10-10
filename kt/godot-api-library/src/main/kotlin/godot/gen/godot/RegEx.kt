@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -91,7 +90,7 @@ private const val ENGINE_CLASS_REGEX_INDEX: Int = 482
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_REGEX_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_REGEX_INDEX, scriptIndex)
   }
 
   /**
@@ -99,8 +98,8 @@ public open class RegEx : RefCounted() {
    * the regular expression of this object.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -108,9 +107,9 @@ public open class RegEx : RefCounted() {
    * If an error is encountered, details are printed to standard output and an error is returned.
    */
   public final fun compile(pattern: String): Error {
-    TransferContext.writeArguments(STRING to pattern)
-    TransferContext.callMethod(rawPtr, MethodBindings.compilePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to pattern)
+    Internals.callMethod(rawPtr, MethodBindings.compilePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -128,9 +127,9 @@ public open class RegEx : RefCounted() {
     offset: Int = 0,
     end: Int = -1,
   ): RegExMatch? {
-    TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.searchPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as RegExMatch?)
+    Internals.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.searchPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as RegExMatch?)
   }
 
   /**
@@ -148,9 +147,9 @@ public open class RegEx : RefCounted() {
     offset: Int = 0,
     end: Int = -1,
   ): VariantArray<RegExMatch> {
-    TransferContext.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.searchAllPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RegExMatch>)
+    Internals.writeArguments(STRING to subject, LONG to offset.toLong(), LONG to end.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.searchAllPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RegExMatch>)
   }
 
   /**
@@ -171,36 +170,36 @@ public open class RegEx : RefCounted() {
     offset: Int = 0,
     end: Int = -1,
   ): String {
-    TransferContext.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset.toLong(), LONG to end.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.subPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING to subject, STRING to replacement, BOOL to all, LONG to offset.toLong(), LONG to end.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.subPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns whether this object has a valid search pattern assigned.
    */
   public final fun isValid(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isValidPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the original search pattern that was compiled.
    */
   public final fun getPattern(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatternPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPatternPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the number of capturing groups in compiled pattern.
    */
   public final fun getGroupCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroupCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -208,9 +207,9 @@ public open class RegEx : RefCounted() {
    * by appearance.
    */
   public final fun getNames(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public companion object {
@@ -218,35 +217,34 @@ public open class RegEx : RefCounted() {
      * Creates and compiles a new [RegEx] object.
      */
     public final fun createFromString(pattern: String): RegEx? {
-      TransferContext.writeArguments(STRING to pattern)
-      TransferContext.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as RegEx?)
+      Internals.writeArguments(STRING to pattern)
+      Internals.callMethod(0, MethodBindings.createFromStringPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as RegEx?)
     }
   }
 
   internal object MethodBindings {
     public val createFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "create_from_string", 2150300909)
+        Internals.getMethodBindPtr("RegEx", "create_from_string", 2150300909)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "clear", 3218959716)
 
-    public val compilePtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "compile", 166001499)
+    public val compilePtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "compile", 166001499)
 
-    public val searchPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "search", 3365977994)
+    public val searchPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "search", 3365977994)
 
-    public val searchAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "search_all", 849021363)
+    public val searchAllPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "search_all", 849021363)
 
-    public val subPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "sub", 54019702)
+    public val subPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "sub", 54019702)
 
-    public val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "is_valid", 36873697)
+    public val isValidPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "is_valid", 36873697)
 
     public val getPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "get_pattern", 201670096)
+        Internals.getMethodBindPtr("RegEx", "get_pattern", 201670096)
 
     public val getGroupCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RegEx", "get_group_count", 3905245786)
+        Internals.getMethodBindPtr("RegEx", "get_group_count", 3905245786)
 
-    public val getNamesPtr: VoidPtr = TypeManager.getMethodBindPtr("RegEx", "get_names", 1139954409)
+    public val getNamesPtr: VoidPtr = Internals.getMethodBindPtr("RegEx", "get_names", 1139954409)
   }
 }

@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -51,7 +50,7 @@ private const val ENGINE_CLASS_TIME_INDEX: Int = 21
 @GodotBaseType
 public object Time : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_TIME_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_TIME_INDEX)
   }
 
   /**
@@ -63,9 +62,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getDatetimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to unixTimeVal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeDictFromUnixTimePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(LONG to unixTimeVal)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeDictFromUnixTimePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -74,9 +73,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getDateDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to unixTimeVal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDateDictFromUnixTimePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(LONG to unixTimeVal)
+    Internals.callMethod(rawPtr, MethodBindings.getDateDictFromUnixTimePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -84,9 +83,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTimeDictFromUnixTime(unixTimeVal: Long): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to unixTimeVal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeDictFromUnixTimePtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(LONG to unixTimeVal)
+    Internals.callMethod(rawPtr, MethodBindings.getTimeDictFromUnixTimePtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -98,9 +97,9 @@ public object Time : Object() {
   @JvmStatic
   public final fun getDatetimeStringFromUnixTime(unixTimeVal: Long, useSpace: Boolean = false):
       String {
-    TransferContext.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeStringFromUnixTimePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to unixTimeVal, BOOL to useSpace)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeStringFromUnixTimePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -108,9 +107,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getDateStringFromUnixTime(unixTimeVal: Long): String {
-    TransferContext.writeArguments(LONG to unixTimeVal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDateStringFromUnixTimePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to unixTimeVal)
+    Internals.callMethod(rawPtr, MethodBindings.getDateStringFromUnixTimePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -118,9 +117,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTimeStringFromUnixTime(unixTimeVal: Long): String {
-    TransferContext.writeArguments(LONG to unixTimeVal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeStringFromUnixTimePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to unixTimeVal)
+    Internals.callMethod(rawPtr, MethodBindings.getTimeStringFromUnixTimePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -133,10 +132,9 @@ public object Time : Object() {
   @JvmStatic
   public final fun getDatetimeDictFromDatetimeString(datetime: String, weekday: Boolean):
       Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(STRING to datetime, BOOL to weekday)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeDictFromDatetimeStringPtr,
-        DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(STRING to datetime, BOOL to weekday)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeDictFromDatetimeStringPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -152,9 +150,9 @@ public object Time : Object() {
   @JvmStatic
   public final fun getDatetimeStringFromDatetimeDict(datetime: Dictionary<Any?, Any?>,
       useSpace: Boolean): String {
-    TransferContext.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeStringFromDatetimeDictPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(DICTIONARY to datetime, BOOL to useSpace)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeStringFromDatetimeDictPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -170,9 +168,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getUnixTimeFromDatetimeDict(datetime: Dictionary<Any?, Any?>): Long {
-    TransferContext.writeArguments(DICTIONARY to datetime)
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeDictPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(DICTIONARY to datetime)
+    Internals.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeDictPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -184,9 +182,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getUnixTimeFromDatetimeString(datetime: String): Long {
-    TransferContext.writeArguments(STRING to datetime)
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeStringPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to datetime)
+    Internals.callMethod(rawPtr, MethodBindings.getUnixTimeFromDatetimeStringPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -195,9 +193,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getOffsetStringFromOffsetMinutes(offsetMinutes: Long): String {
-    TransferContext.writeArguments(LONG to offsetMinutes)
-    TransferContext.callMethod(rawPtr, MethodBindings.getOffsetStringFromOffsetMinutesPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to offsetMinutes)
+    Internals.callMethod(rawPtr, MethodBindings.getOffsetStringFromOffsetMinutesPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -207,9 +205,9 @@ public object Time : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getDatetimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to utc)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeDictFromSystemPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(BOOL to utc)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeDictFromSystemPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -220,9 +218,9 @@ public object Time : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getDateDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to utc)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDateDictFromSystemPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(BOOL to utc)
+    Internals.callMethod(rawPtr, MethodBindings.getDateDictFromSystemPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -233,9 +231,9 @@ public object Time : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getTimeDictFromSystem(utc: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to utc)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeDictFromSystemPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(BOOL to utc)
+    Internals.callMethod(rawPtr, MethodBindings.getTimeDictFromSystemPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -249,9 +247,9 @@ public object Time : Object() {
   @JvmStatic
   public final fun getDatetimeStringFromSystem(utc: Boolean = false, useSpace: Boolean = false):
       String {
-    TransferContext.writeArguments(BOOL to utc, BOOL to useSpace)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDatetimeStringFromSystemPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(BOOL to utc, BOOL to useSpace)
+    Internals.callMethod(rawPtr, MethodBindings.getDatetimeStringFromSystemPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -262,9 +260,9 @@ public object Time : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getDateStringFromSystem(utc: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to utc)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDateStringFromSystemPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(BOOL to utc)
+    Internals.callMethod(rawPtr, MethodBindings.getDateStringFromSystemPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -275,9 +273,9 @@ public object Time : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getTimeStringFromSystem(utc: Boolean = false): String {
-    TransferContext.writeArguments(BOOL to utc)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeStringFromSystemPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(BOOL to utc)
+    Internals.callMethod(rawPtr, MethodBindings.getTimeStringFromSystemPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -289,9 +287,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTimeZoneFromSystem(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTimeZoneFromSystemPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTimeZoneFromSystemPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -304,9 +302,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getUnixTimeFromSystem(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnixTimeFromSystemPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUnixTimeFromSystemPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
@@ -316,9 +314,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTicksMsec(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksMsecPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTicksMsecPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -328,9 +326,9 @@ public object Time : Object() {
    */
   @JvmStatic
   public final fun getTicksUsec(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksUsecPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTicksUsecPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Month(
@@ -441,66 +439,66 @@ public object Time : Object() {
 
   internal object MethodBindings {
     public val getDatetimeDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_unix_time", 3485342025)
+        Internals.getMethodBindPtr("Time", "get_datetime_dict_from_unix_time", 3485342025)
 
     public val getDateDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_unix_time", 3485342025)
+        Internals.getMethodBindPtr("Time", "get_date_dict_from_unix_time", 3485342025)
 
     public val getTimeDictFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_unix_time", 3485342025)
+        Internals.getMethodBindPtr("Time", "get_time_dict_from_unix_time", 3485342025)
 
     public val getDatetimeStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_unix_time", 2311239925)
+        Internals.getMethodBindPtr("Time", "get_datetime_string_from_unix_time", 2311239925)
 
     public val getDateStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_string_from_unix_time", 844755477)
+        Internals.getMethodBindPtr("Time", "get_date_string_from_unix_time", 844755477)
 
     public val getTimeStringFromUnixTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_string_from_unix_time", 844755477)
+        Internals.getMethodBindPtr("Time", "get_time_string_from_unix_time", 844755477)
 
     public val getDatetimeDictFromDatetimeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_datetime_string", 3253569256)
+        Internals.getMethodBindPtr("Time", "get_datetime_dict_from_datetime_string", 3253569256)
 
     public val getDatetimeStringFromDatetimeDictPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_datetime_dict", 1898123706)
+        Internals.getMethodBindPtr("Time", "get_datetime_string_from_datetime_dict", 1898123706)
 
     public val getUnixTimeFromDatetimeDictPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_dict", 3021115443)
+        Internals.getMethodBindPtr("Time", "get_unix_time_from_datetime_dict", 3021115443)
 
     public val getUnixTimeFromDatetimeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_datetime_string", 1321353865)
+        Internals.getMethodBindPtr("Time", "get_unix_time_from_datetime_string", 1321353865)
 
     public val getOffsetStringFromOffsetMinutesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_offset_string_from_offset_minutes", 844755477)
+        Internals.getMethodBindPtr("Time", "get_offset_string_from_offset_minutes", 844755477)
 
     public val getDatetimeDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_dict_from_system", 205769976)
+        Internals.getMethodBindPtr("Time", "get_datetime_dict_from_system", 205769976)
 
     public val getDateDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_dict_from_system", 205769976)
+        Internals.getMethodBindPtr("Time", "get_date_dict_from_system", 205769976)
 
     public val getTimeDictFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_dict_from_system", 205769976)
+        Internals.getMethodBindPtr("Time", "get_time_dict_from_system", 205769976)
 
     public val getDatetimeStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_datetime_string_from_system", 1136425492)
+        Internals.getMethodBindPtr("Time", "get_datetime_string_from_system", 1136425492)
 
     public val getDateStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_date_string_from_system", 1162154673)
+        Internals.getMethodBindPtr("Time", "get_date_string_from_system", 1162154673)
 
     public val getTimeStringFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_string_from_system", 1162154673)
+        Internals.getMethodBindPtr("Time", "get_time_string_from_system", 1162154673)
 
     public val getTimeZoneFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_time_zone_from_system", 3102165223)
+        Internals.getMethodBindPtr("Time", "get_time_zone_from_system", 3102165223)
 
     public val getUnixTimeFromSystemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_unix_time_from_system", 1740695150)
+        Internals.getMethodBindPtr("Time", "get_unix_time_from_system", 1740695150)
 
     public val getTicksMsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_ticks_msec", 3905245786)
+        Internals.getMethodBindPtr("Time", "get_ticks_msec", 3905245786)
 
     public val getTicksUsecPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Time", "get_ticks_usec", 3905245786)
+        Internals.getMethodBindPtr("Time", "get_ticks_usec", 3905245786)
   }
 }

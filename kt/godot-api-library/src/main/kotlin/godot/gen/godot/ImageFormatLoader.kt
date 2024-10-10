@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -42,7 +43,7 @@ public operator fun Long.rem(other: godot.ImageFormatLoader.LoaderFlags): Long =
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGEFORMATLOADER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGEFORMATLOADER_INDEX, scriptIndex)
   }
 
   public sealed interface LoaderFlags {

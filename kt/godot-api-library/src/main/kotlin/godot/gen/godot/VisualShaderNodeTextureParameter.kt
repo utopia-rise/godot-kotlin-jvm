@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -81,62 +80,63 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETER_INDEX,
+        scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureTypePtr, NIL)
   }
 
   public final fun getTextureType(): TextureType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureTypePtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setColorDefault(color: ColorDefault): Unit {
-    TransferContext.writeArguments(LONG to color.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
+    Internals.writeArguments(LONG to color.id)
+    Internals.callMethod(rawPtr, MethodBindings.setColorDefaultPtr, NIL)
   }
 
   public final fun getColorDefault(): ColorDefault {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
-    return VisualShaderNodeTextureParameter.ColorDefault.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorDefaultPtr, LONG)
+    return VisualShaderNodeTextureParameter.ColorDefault.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureFilter(filter: TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to filter.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): TextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureRepeat(repeat: TextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
+    Internals.writeArguments(LONG to repeat.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
   public final fun getTextureRepeat(): TextureRepeat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureRepeatPtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureRepeat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextureSource(source: TextureSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
+    Internals.writeArguments(LONG to source.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureSourcePtr, NIL)
   }
 
   public final fun getTextureSource(): TextureSource {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
-    return VisualShaderNodeTextureParameter.TextureSource.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureSourcePtr, LONG)
+    return VisualShaderNodeTextureParameter.TextureSource.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class TextureType(
@@ -353,33 +353,33 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   internal object MethodBindings {
     public val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type", 2227296876)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_type", 2227296876)
 
     public val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type", 367922070)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_type", 367922070)
 
     public val setColorDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default", 4217624432)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_color_default", 4217624432)
 
     public val getColorDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default", 3837060134)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_color_default", 3837060134)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter", 2147684752)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_filter", 2147684752)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter", 4184490817)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_filter", 4184490817)
 
     public val setTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat", 2036143070)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_repeat", 2036143070)
 
     public val getTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat", 1690132794)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_repeat", 1690132794)
 
     public val setTextureSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source", 1212687372)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "set_texture_source", 1212687372)
 
     public val getTextureSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source", 2039092262)
+        Internals.getMethodBindPtr("VisualShaderNodeTextureParameter", "get_texture_source", 2039092262)
   }
 }

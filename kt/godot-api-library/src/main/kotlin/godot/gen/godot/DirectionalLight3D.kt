@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -67,40 +66,40 @@ public open class DirectionalLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_DIRECTIONALLIGHT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_DIRECTIONALLIGHT3D_INDEX, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setShadowModePtr, NIL)
   }
 
   public final fun getShadowMode(): ShadowMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
-    return DirectionalLight3D.ShadowMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadowModePtr, LONG)
+    return DirectionalLight3D.ShadowMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendSplits(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendSplitsPtr, NIL)
   }
 
   public final fun isBlendSplitsEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBlendSplitsEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSkyMode(mode: SkyMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyModePtr, NIL)
   }
 
   public final fun getSkyMode(): SkyMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
-    return DirectionalLight3D.SkyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyModePtr, LONG)
+    return DirectionalLight3D.SkyMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ShadowMode(
@@ -168,21 +167,21 @@ public open class DirectionalLight3D : Light3D() {
 
   internal object MethodBindings {
     public val setShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode", 1261211726)
+        Internals.getMethodBindPtr("DirectionalLight3D", "set_shadow_mode", 1261211726)
 
     public val getShadowModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode", 2765228544)
+        Internals.getMethodBindPtr("DirectionalLight3D", "get_shadow_mode", 2765228544)
 
     public val setBlendSplitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_blend_splits", 2586408642)
+        Internals.getMethodBindPtr("DirectionalLight3D", "set_blend_splits", 2586408642)
 
     public val isBlendSplitsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled", 36873697)
+        Internals.getMethodBindPtr("DirectionalLight3D", "is_blend_splits_enabled", 36873697)
 
     public val setSkyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "set_sky_mode", 2691194817)
+        Internals.getMethodBindPtr("DirectionalLight3D", "set_sky_mode", 2691194817)
 
     public val getSkyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DirectionalLight3D", "get_sky_mode", 3819982774)
+        Internals.getMethodBindPtr("DirectionalLight3D", "get_sky_mode", 3819982774)
   }
 }

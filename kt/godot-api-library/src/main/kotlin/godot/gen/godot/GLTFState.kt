@@ -11,7 +11,6 @@ import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.PackedInt32Array
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -25,7 +24,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -327,7 +326,7 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFSTATE_INDEX, scriptIndex)
   }
 
   /**
@@ -337,8 +336,8 @@ public open class GLTFState : Resource() {
    * final list is sorted alphabetically.
    */
   public final fun addUsedExtension(extensionName: String, required: Boolean): Unit {
-    TransferContext.writeArguments(STRING to extensionName, BOOL to required)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUsedExtensionPtr, NIL)
+    Internals.writeArguments(STRING to extensionName, BOOL to required)
+    Internals.callMethod(rawPtr, MethodBindings.addUsedExtensionPtr, NIL)
   }
 
   /**
@@ -347,75 +346,75 @@ public open class GLTFState : Resource() {
    * will first be searched for duplicate data, otherwise new bytes will always be appended.
    */
   public final fun appendDataToBuffers(`data`: PackedByteArray, deduplication: Boolean): Int {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendDataToBuffersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
+    Internals.callMethod(rawPtr, MethodBindings.appendDataToBuffersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getJson(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJsonPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJsonPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setJson(json: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to json)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJsonPtr, NIL)
+    Internals.writeArguments(DICTIONARY to json)
+    Internals.callMethod(rawPtr, MethodBindings.setJsonPtr, NIL)
   }
 
   public final fun getMajorVersion(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMajorVersionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMajorVersionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMajorVersion(majorVersion: Int): Unit {
-    TransferContext.writeArguments(LONG to majorVersion.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMajorVersionPtr, NIL)
+    Internals.writeArguments(LONG to majorVersion.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMajorVersionPtr, NIL)
   }
 
   public final fun getMinorVersion(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinorVersionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinorVersionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMinorVersion(minorVersion: Int): Unit {
-    TransferContext.writeArguments(LONG to minorVersion.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
+    Internals.writeArguments(LONG to minorVersion.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMinorVersionPtr, NIL)
   }
 
   public final fun getCopyright(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCopyrightPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCopyrightPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setCopyright(copyright: String): Unit {
-    TransferContext.writeArguments(STRING to copyright)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCopyrightPtr, NIL)
+    Internals.writeArguments(STRING to copyright)
+    Internals.callMethod(rawPtr, MethodBindings.setCopyrightPtr, NIL)
   }
 
   public final fun getGlbData(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlbDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlbDataPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun setGlbData(glbData: PackedByteArray): Unit {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to glbData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlbDataPtr, NIL)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to glbData)
+    Internals.callMethod(rawPtr, MethodBindings.setGlbDataPtr, NIL)
   }
 
   public final fun getUseNamedSkinBinds(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseNamedSkinBindsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseNamedSkinBindsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseNamedSkinBinds(useNamedSkinBinds: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useNamedSkinBinds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseNamedSkinBindsPtr, NIL)
+    Internals.writeArguments(BOOL to useNamedSkinBinds)
+    Internals.callMethod(rawPtr, MethodBindings.setUseNamedSkinBindsPtr, NIL)
   }
 
   /**
@@ -424,9 +423,9 @@ public open class GLTFState : Resource() {
    * Godot scene, or nodes that may generate multiple Godot scene nodes.
    */
   public final fun getNodes(): VariantArray<GLTFNode> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFNode>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFNode>)
   }
 
   /**
@@ -435,41 +434,41 @@ public open class GLTFState : Resource() {
    * multiple Godot scene nodes.
    */
   public final fun setNodes(nodes: VariantArray<GLTFNode>): Unit {
-    TransferContext.writeArguments(ARRAY to nodes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNodesPtr, NIL)
+    Internals.writeArguments(ARRAY to nodes)
+    Internals.callMethod(rawPtr, MethodBindings.setNodesPtr, NIL)
   }
 
   public final fun getBuffers(): VariantArray<PackedByteArray> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBuffersPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedByteArray>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBuffersPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<PackedByteArray>)
   }
 
   public final fun setBuffers(buffers: VariantArray<PackedByteArray>): Unit {
-    TransferContext.writeArguments(ARRAY to buffers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBuffersPtr, NIL)
+    Internals.writeArguments(ARRAY to buffers)
+    Internals.callMethod(rawPtr, MethodBindings.setBuffersPtr, NIL)
   }
 
   public final fun getBufferViews(): VariantArray<GLTFBufferView> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferViewsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFBufferView>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferViewsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFBufferView>)
   }
 
   public final fun setBufferViews(bufferViews: VariantArray<GLTFBufferView>): Unit {
-    TransferContext.writeArguments(ARRAY to bufferViews)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferViewsPtr, NIL)
+    Internals.writeArguments(ARRAY to bufferViews)
+    Internals.callMethod(rawPtr, MethodBindings.setBufferViewsPtr, NIL)
   }
 
   public final fun getAccessors(): VariantArray<GLTFAccessor> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAccessorsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFAccessor>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAccessorsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFAccessor>)
   }
 
   public final fun setAccessors(accessors: VariantArray<GLTFAccessor>): Unit {
-    TransferContext.writeArguments(ARRAY to accessors)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAccessorsPtr, NIL)
+    Internals.writeArguments(ARRAY to accessors)
+    Internals.callMethod(rawPtr, MethodBindings.setAccessorsPtr, NIL)
   }
 
   /**
@@ -477,9 +476,9 @@ public open class GLTFState : Resource() {
    * [GLTFNode.mesh] index refers to.
    */
   public final fun getMeshes(): VariantArray<GLTFMesh> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFMesh>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFMesh>)
   }
 
   /**
@@ -487,8 +486,8 @@ public open class GLTFState : Resource() {
    * to.
    */
   public final fun setMeshes(meshes: VariantArray<GLTFMesh>): Unit {
-    TransferContext.writeArguments(ARRAY to meshes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshesPtr, NIL)
+    Internals.writeArguments(ARRAY to meshes)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshesPtr, NIL)
   }
 
   /**
@@ -496,9 +495,9 @@ public open class GLTFState : Resource() {
    * during the export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
    */
   public final fun getAnimationPlayersCount(idx: Int): Int {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationPlayersCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -506,92 +505,92 @@ public open class GLTFState : Resource() {
    * export process when converting Godot [AnimationPlayer] nodes to GLTF animations.
    */
   public final fun getAnimationPlayer(idx: Int): AnimationPlayer? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AnimationPlayer?)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationPlayerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AnimationPlayer?)
   }
 
   public final fun getMaterials(): VariantArray<Material> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
   public final fun setMaterials(materials: VariantArray<Material>): Unit {
-    TransferContext.writeArguments(ARRAY to materials)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialsPtr, NIL)
+    Internals.writeArguments(ARRAY to materials)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialsPtr, NIL)
   }
 
   public final fun getSceneName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSceneNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setSceneName(sceneName: String): Unit {
-    TransferContext.writeArguments(STRING to sceneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneNamePtr, NIL)
+    Internals.writeArguments(STRING to sceneName)
+    Internals.callMethod(rawPtr, MethodBindings.setSceneNamePtr, NIL)
   }
 
   public final fun getBasePath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBasePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBasePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setBasePath(basePath: String): Unit {
-    TransferContext.writeArguments(STRING to basePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
+    Internals.writeArguments(STRING to basePath)
+    Internals.callMethod(rawPtr, MethodBindings.setBasePathPtr, NIL)
   }
 
   public final fun getFilename(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilenamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilenamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setFilename(filename: String): Unit {
-    TransferContext.writeArguments(STRING to filename)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilenamePtr, NIL)
+    Internals.writeArguments(STRING to filename)
+    Internals.callMethod(rawPtr, MethodBindings.setFilenamePtr, NIL)
   }
 
   public final fun getRootNodes(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootNodesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootNodesPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setRootNodes(rootNodes: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to rootNodes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootNodesPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to rootNodes)
+    Internals.callMethod(rawPtr, MethodBindings.setRootNodesPtr, NIL)
   }
 
   public final fun getTextures(): VariantArray<GLTFTexture> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFTexture>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFTexture>)
   }
 
   public final fun setTextures(textures: VariantArray<GLTFTexture>): Unit {
-    TransferContext.writeArguments(ARRAY to textures)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturesPtr, NIL)
+    Internals.writeArguments(ARRAY to textures)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturesPtr, NIL)
   }
 
   /**
    * Retrieves the array of texture samplers that are used by the textures contained in the GLTF.
    */
   public final fun getTextureSamplers(): VariantArray<GLTFTextureSampler> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureSamplersPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFTextureSampler>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureSamplersPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFTextureSampler>)
   }
 
   /**
    * Sets the array of texture samplers that are used by the textures contained in the GLTF.
    */
   public final fun setTextureSamplers(textureSamplers: VariantArray<GLTFTextureSampler>): Unit {
-    TransferContext.writeArguments(ARRAY to textureSamplers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureSamplersPtr, NIL)
+    Internals.writeArguments(ARRAY to textureSamplers)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureSamplersPtr, NIL)
   }
 
   /**
@@ -599,9 +598,9 @@ public open class GLTFState : Resource() {
    * [GLTFTexture.srcImage] index refers to.
    */
   public final fun getImages(): VariantArray<Texture2D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImagesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Texture2D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getImagesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Texture2D>)
   }
 
   /**
@@ -609,8 +608,8 @@ public open class GLTFState : Resource() {
    * export. These are the images that the [GLTFTexture.srcImage] index refers to.
    */
   public final fun setImages(images: VariantArray<Texture2D>): Unit {
-    TransferContext.writeArguments(ARRAY to images)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImagesPtr, NIL)
+    Internals.writeArguments(ARRAY to images)
+    Internals.callMethod(rawPtr, MethodBindings.setImagesPtr, NIL)
   }
 
   /**
@@ -618,9 +617,9 @@ public open class GLTFState : Resource() {
    * [GLTFNode.skin] index refers to.
    */
   public final fun getSkins(): VariantArray<GLTFSkin> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkinsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFSkin>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkinsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFSkin>)
   }
 
   /**
@@ -628,8 +627,8 @@ public open class GLTFState : Resource() {
    * to.
    */
   public final fun setSkins(skins: VariantArray<GLTFSkin>): Unit {
-    TransferContext.writeArguments(ARRAY to skins)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkinsPtr, NIL)
+    Internals.writeArguments(ARRAY to skins)
+    Internals.callMethod(rawPtr, MethodBindings.setSkinsPtr, NIL)
   }
 
   /**
@@ -637,9 +636,9 @@ public open class GLTFState : Resource() {
    * [GLTFNode.camera] index refers to.
    */
   public final fun getCameras(): VariantArray<GLTFCamera> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamerasPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFCamera>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCamerasPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFCamera>)
   }
 
   /**
@@ -647,8 +646,8 @@ public open class GLTFState : Resource() {
    * refers to.
    */
   public final fun setCameras(cameras: VariantArray<GLTFCamera>): Unit {
-    TransferContext.writeArguments(ARRAY to cameras)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCamerasPtr, NIL)
+    Internals.writeArguments(ARRAY to cameras)
+    Internals.callMethod(rawPtr, MethodBindings.setCamerasPtr, NIL)
   }
 
   /**
@@ -656,9 +655,9 @@ public open class GLTFState : Resource() {
    * [GLTFNode.light] index refers to.
    */
   public final fun getLights(): VariantArray<GLTFLight> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFLight>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFLight>)
   }
 
   /**
@@ -666,8 +665,8 @@ public open class GLTFState : Resource() {
    * to.
    */
   public final fun setLights(lights: VariantArray<GLTFLight>): Unit {
-    TransferContext.writeArguments(ARRAY to lights)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightsPtr, NIL)
+    Internals.writeArguments(ARRAY to lights)
+    Internals.callMethod(rawPtr, MethodBindings.setLightsPtr, NIL)
   }
 
   /**
@@ -675,9 +674,9 @@ public open class GLTFState : Resource() {
    * process.
    */
   public final fun getUniqueNames(): VariantArray<String> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueNamesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniqueNamesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   /**
@@ -685,25 +684,25 @@ public open class GLTFState : Resource() {
    * process.
    */
   public final fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
-    TransferContext.writeArguments(ARRAY to uniqueNames)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUniqueNamesPtr, NIL)
+    Internals.writeArguments(ARRAY to uniqueNames)
+    Internals.callMethod(rawPtr, MethodBindings.setUniqueNamesPtr, NIL)
   }
 
   /**
    * Returns an array of unique animation names. This is only used during the import process.
    */
   public final fun getUniqueAnimationNames(): VariantArray<String> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueAnimationNamesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<String>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniqueAnimationNamesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<String>)
   }
 
   /**
    * Sets the unique animation names in the state. This is only used during the import process.
    */
   public final fun setUniqueAnimationNames(uniqueAnimationNames: VariantArray<String>): Unit {
-    TransferContext.writeArguments(ARRAY to uniqueAnimationNames)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUniqueAnimationNamesPtr, NIL)
+    Internals.writeArguments(ARRAY to uniqueAnimationNames)
+    Internals.callMethod(rawPtr, MethodBindings.setUniqueAnimationNamesPtr, NIL)
   }
 
   /**
@@ -711,9 +710,9 @@ public open class GLTFState : Resource() {
    * [GLTFNode.skeleton] index refers to.
    */
   public final fun getSkeletons(): VariantArray<GLTFSkeleton> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFSkeleton>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFSkeleton>)
   }
 
   /**
@@ -721,30 +720,30 @@ public open class GLTFState : Resource() {
    * index refers to.
    */
   public final fun setSkeletons(skeletons: VariantArray<GLTFSkeleton>): Unit {
-    TransferContext.writeArguments(ARRAY to skeletons)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonsPtr, NIL)
+    Internals.writeArguments(ARRAY to skeletons)
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonsPtr, NIL)
   }
 
   public final fun getCreateAnimations(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCreateAnimationsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCreateAnimationsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCreateAnimations(createAnimations: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to createAnimations)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCreateAnimationsPtr, NIL)
+    Internals.writeArguments(BOOL to createAnimations)
+    Internals.callMethod(rawPtr, MethodBindings.setCreateAnimationsPtr, NIL)
   }
 
   public final fun getImportAsSkeletonBones(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImportAsSkeletonBonesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getImportAsSkeletonBonesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setImportAsSkeletonBones(importAsSkeletonBones: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to importAsSkeletonBones)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImportAsSkeletonBonesPtr, NIL)
+    Internals.writeArguments(BOOL to importAsSkeletonBones)
+    Internals.callMethod(rawPtr, MethodBindings.setImportAsSkeletonBonesPtr, NIL)
   }
 
   /**
@@ -753,9 +752,9 @@ public open class GLTFState : Resource() {
    * Godot [AnimationPlayer] nodes.
    */
   public final fun getAnimations(): VariantArray<GLTFAnimation> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFAnimation>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<GLTFAnimation>)
   }
 
   /**
@@ -764,8 +763,8 @@ public open class GLTFState : Resource() {
    * nodes.
    */
   public final fun setAnimations(animations: VariantArray<GLTFAnimation>): Unit {
-    TransferContext.writeArguments(ARRAY to animations)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnimationsPtr, NIL)
+    Internals.writeArguments(ARRAY to animations)
+    Internals.callMethod(rawPtr, MethodBindings.setAnimationsPtr, NIL)
   }
 
   /**
@@ -776,9 +775,9 @@ public open class GLTFState : Resource() {
    * `null` is returned.
    */
   public final fun getSceneNode(idx: Int): Node? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSceneNodePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -789,9 +788,9 @@ public open class GLTFState : Resource() {
    * `-1` is returned.
    */
   public final fun getNodeIndex(sceneNode: Node?): Int {
-    TransferContext.writeArguments(OBJECT to sceneNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(OBJECT to sceneNode)
+    Internals.callMethod(rawPtr, MethodBindings.getNodeIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -802,9 +801,9 @@ public open class GLTFState : Resource() {
    * return value is null.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to extensionName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to extensionName)
+    Internals.callMethod(rawPtr, MethodBindings.getAdditionalDataPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -814,30 +813,30 @@ public open class GLTFState : Resource() {
    * extension name in the GLTF file), and the second argument can be anything you want.
    */
   public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
+    Internals.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
+    Internals.callMethod(rawPtr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   public final fun getHandleBinaryImage(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandleBinaryImagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHandleBinaryImagePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHandleBinaryImage(method: Int): Unit {
-    TransferContext.writeArguments(LONG to method.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandleBinaryImagePtr, NIL)
+    Internals.writeArguments(LONG to method.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHandleBinaryImagePtr, NIL)
   }
 
   public final fun setBakeFps(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeFpsPtr, NIL)
+    Internals.writeArguments(DOUBLE to value)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeFpsPtr, NIL)
   }
 
   public final fun getBakeFps(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeFpsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeFpsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public companion object {
@@ -865,207 +864,205 @@ public open class GLTFState : Resource() {
 
   internal object MethodBindings {
     public val addUsedExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "add_used_extension", 2678287736)
+        Internals.getMethodBindPtr("GLTFState", "add_used_extension", 2678287736)
 
     public val appendDataToBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
+        Internals.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
 
-    public val getJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_json", 2382534195)
+    public val getJsonPtr: VoidPtr = Internals.getMethodBindPtr("GLTFState", "get_json", 2382534195)
 
-    public val setJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_json", 4155329257)
+    public val setJsonPtr: VoidPtr = Internals.getMethodBindPtr("GLTFState", "set_json", 4155329257)
 
     public val getMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
+        Internals.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
 
     public val setMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
+        Internals.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
 
     public val getMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
+        Internals.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
 
     public val setMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
+        Internals.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
 
     public val getCopyrightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_copyright", 201670096)
+        Internals.getMethodBindPtr("GLTFState", "get_copyright", 201670096)
 
     public val setCopyrightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
+        Internals.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
 
     public val getGlbDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
+        Internals.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
 
     public val setGlbDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
+        Internals.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
 
     public val getUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
+        Internals.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
 
     public val setUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
+        Internals.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
 
     public val getNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
 
     public val setNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
 
     public val getBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
 
     public val setBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
 
     public val getBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
 
     public val setBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
 
     public val getAccessorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
 
     public val setAccessorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
 
     public val getMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
 
     public val setMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
 
     public val getAnimationPlayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
+        Internals.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
 
     public val getAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
+        Internals.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
 
     public val getMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
 
     public val setMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_materials", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_materials", 381264803)
 
     public val getSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
+        Internals.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
 
     public val setSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
+        Internals.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
 
     public val getBasePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
+        Internals.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
 
     public val setBasePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
+        Internals.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
 
     public val getFilenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_filename", 201670096)
+        Internals.getMethodBindPtr("GLTFState", "get_filename", 201670096)
 
     public val setFilenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_filename", 83702148)
+        Internals.getMethodBindPtr("GLTFState", "set_filename", 83702148)
 
     public val getRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
+        Internals.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
 
     public val setRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
+        Internals.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
 
     public val getTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
 
     public val setTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_textures", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_textures", 381264803)
 
     public val getTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
 
     public val setTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
 
     public val getImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_images", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_images", 2915620761)
 
     public val setImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_images", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_images", 381264803)
 
     public val getSkinsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
 
     public val setSkinsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_skins", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_skins", 381264803)
 
     public val getCamerasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
 
     public val setCamerasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
 
     public val getLightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
 
     public val setLightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_lights", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_lights", 381264803)
 
     public val getUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
 
     public val setUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
 
     public val getUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
 
     public val setUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
 
     public val getSkeletonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
 
     public val setSkeletonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
 
     public val getCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
+        Internals.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
 
     public val setCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
+        Internals.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
 
     public val getImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
+        Internals.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
 
     public val setImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
+        Internals.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
 
     public val getAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
+        Internals.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
 
     public val setAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_animations", 381264803)
+        Internals.getMethodBindPtr("GLTFState", "set_animations", 381264803)
 
     public val getSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
+        Internals.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
 
     public val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
+        Internals.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
 
     public val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
+        Internals.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
 
     public val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
+        Internals.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
 
     public val getHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
+        Internals.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
 
     public val setHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
+        Internals.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
 
     public val setBakeFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
+        Internals.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
 
     public val getBakeFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
+        Internals.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
   }
 }

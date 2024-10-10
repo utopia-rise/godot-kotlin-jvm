@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -41,31 +40,31 @@ public open class CompressedTexture3D : Texture3D() {
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COMPRESSEDTEXTURE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COMPRESSEDTEXTURE3D_INDEX, scriptIndex)
   }
 
   /**
    * Loads the texture from the specified [path].
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun getLoadPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLoadPathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val loadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTexture3D", "load", 166001499)
+        Internals.getMethodBindPtr("CompressedTexture3D", "load", 166001499)
 
     public val getLoadPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CompressedTexture3D", "get_load_path", 201670096)
+        Internals.getMethodBindPtr("CompressedTexture3D", "get_load_path", 201670096)
   }
 }

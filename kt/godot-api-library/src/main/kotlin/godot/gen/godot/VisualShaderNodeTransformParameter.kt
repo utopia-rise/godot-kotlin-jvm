@@ -10,11 +10,10 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -53,7 +52,8 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMPARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETRANSFORMPARAMETER_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -82,40 +82,40 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
 
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to value)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "is_default_value_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value", 2952846383)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value", 2952846383)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "get_default_value", 3229777777)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformParameter", "get_default_value", 3229777777)
   }
 }

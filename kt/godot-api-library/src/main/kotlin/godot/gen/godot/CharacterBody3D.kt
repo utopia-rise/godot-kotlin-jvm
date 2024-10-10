@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -247,7 +246,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CHARACTERBODY3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CHARACTERBODY3D_INDEX, scriptIndex)
   }
 
   /**
@@ -316,9 +315,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Returns `true` if the body collided, otherwise, returns `false`.
    */
   public final fun moveAndSlide(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.moveAndSlidePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.moveAndSlidePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -326,173 +325,173 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * does nothing when [isOnFloor] returns `true`.
    */
   public final fun applyFloorSnap(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.applyFloorSnapPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.applyFloorSnapPtr, NIL)
   }
 
   public final fun setVelocity(velocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
   public final fun getVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSafeMargin(margin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSafeMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSafeMarginPtr, NIL)
   }
 
   public final fun getSafeMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSafeMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSafeMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun isFloorStopOnSlopeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFloorStopOnSlopeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFloorStopOnSlopeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorStopOnSlopeEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFloorStopOnSlopeEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFloorStopOnSlopeEnabledPtr, NIL)
   }
 
   public final fun setFloorConstantSpeedEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFloorConstantSpeedEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFloorConstantSpeedEnabledPtr, NIL)
   }
 
   public final fun isFloorConstantSpeedEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFloorConstantSpeedEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFloorConstantSpeedEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFloorBlockOnWallEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFloorBlockOnWallEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFloorBlockOnWallEnabledPtr, NIL)
   }
 
   public final fun isFloorBlockOnWallEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFloorBlockOnWallEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFloorBlockOnWallEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSlideOnCeilingEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSlideOnCeilingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSlideOnCeilingEnabledPtr, NIL)
   }
 
   public final fun isSlideOnCeilingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSlideOnCeilingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSlideOnCeilingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPlatformFloorLayers(excludeLayer: Long): Unit {
-    TransferContext.writeArguments(LONG to excludeLayer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlatformFloorLayersPtr, NIL)
+    Internals.writeArguments(LONG to excludeLayer)
+    Internals.callMethod(rawPtr, MethodBindings.setPlatformFloorLayersPtr, NIL)
   }
 
   public final fun getPlatformFloorLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlatformFloorLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlatformFloorLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformWallLayers(excludeLayer: Long): Unit {
-    TransferContext.writeArguments(LONG to excludeLayer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlatformWallLayersPtr, NIL)
+    Internals.writeArguments(LONG to excludeLayer)
+    Internals.callMethod(rawPtr, MethodBindings.setPlatformWallLayersPtr, NIL)
   }
 
   public final fun getPlatformWallLayers(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlatformWallLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlatformWallLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun getMaxSlides(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxSlidesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxSlidesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxSlides(maxSlides: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSlides.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxSlidesPtr, NIL)
+    Internals.writeArguments(LONG to maxSlides.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxSlidesPtr, NIL)
   }
 
   public final fun getFloorMaxAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloorMaxAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFloorMaxAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorMaxAngle(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFloorMaxAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFloorMaxAnglePtr, NIL)
   }
 
   public final fun getFloorSnapLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloorSnapLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFloorSnapLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFloorSnapLength(floorSnapLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to floorSnapLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFloorSnapLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to floorSnapLength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFloorSnapLengthPtr, NIL)
   }
 
   public final fun getWallMinSlideAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWallMinSlideAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWallMinSlideAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWallMinSlideAngle(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWallMinSlideAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWallMinSlideAnglePtr, NIL)
   }
 
   public final fun getUpDirection(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpDirectionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpDirectionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUpDirection(upDirection: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to upDirection)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpDirectionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to upDirection)
+    Internals.callMethod(rawPtr, MethodBindings.setUpDirectionPtr, NIL)
   }
 
   public final fun setMotionMode(mode: MotionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMotionModePtr, NIL)
   }
 
   public final fun getMotionMode(): MotionMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionModePtr, LONG)
-    return CharacterBody3D.MotionMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMotionModePtr, LONG)
+    return CharacterBody3D.MotionMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
-    TransferContext.writeArguments(LONG to onLeaveApplyVelocity.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlatformOnLeavePtr, NIL)
+    Internals.writeArguments(LONG to onLeaveApplyVelocity.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPlatformOnLeavePtr, NIL)
   }
 
   public final fun getPlatformOnLeave(): PlatformOnLeave {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlatformOnLeavePtr, LONG)
-    return CharacterBody3D.PlatformOnLeave.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlatformOnLeavePtr, LONG)
+    return CharacterBody3D.PlatformOnLeave.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -501,9 +500,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * surface is "floor" or not.
    */
   public final fun isOnFloor(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnFloorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnFloorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -512,9 +511,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * surface is "floor" or not.
    */
   public final fun isOnFloorOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnFloorOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnFloorOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -523,9 +522,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * surface is "ceiling" or not.
    */
   public final fun isOnCeiling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnCeilingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnCeilingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -534,9 +533,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * surface is "ceiling" or not.
    */
   public final fun isOnCeilingOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnCeilingOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnCeilingOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -545,9 +544,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * "wall" or not.
    */
   public final fun isOnWall(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnWallPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnWallPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -556,9 +555,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * surface is "wall" or not.
    */
   public final fun isOnWallOnly(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOnWallOnlyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOnWallOnlyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -567,9 +566,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getFloorNormal(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloorNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFloorNormalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -578,9 +577,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * **Warning:** The collision normal is not always the same as the surface normal.
    */
   public final fun getWallNormal(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWallNormalPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWallNormalPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -589,18 +588,18 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * method return the last one, which is useful to retrieve the current direction of the movement.
    */
   public final fun getLastMotion(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLastMotionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLastMotionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Returns the travel (position delta) that occurred during the last call to [moveAndSlide].
    */
   public final fun getPositionDelta(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionDeltaPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionDeltaPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -609,9 +608,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * returns the diagonal movement, as opposed to [velocity] which returns the requested velocity.
    */
   public final fun getRealVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRealVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRealVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -621,9 +620,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    */
   @JvmOverloads
   public final fun getFloorAngle(upDirection: Vector3 = Vector3(0, 1, 0)): Float {
-    TransferContext.writeArguments(VECTOR3 to upDirection)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloorAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(VECTOR3 to upDirection)
+    Internals.callMethod(rawPtr, MethodBindings.getFloorAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -631,9 +630,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * calling [moveAndSlide].
    */
   public final fun getPlatformVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlatformVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlatformVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -641,9 +640,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * calling [moveAndSlide].
    */
   public final fun getPlatformAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlatformAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlatformAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -651,9 +650,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * [moveAndSlide].
    */
   public final fun getSlideCollisionCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlideCollisionCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSlideCollisionCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -663,9 +662,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * ([getSlideCollisionCount] - 1).
    */
   public final fun getSlideCollision(slideIdx: Int): KinematicCollision3D? {
-    TransferContext.writeArguments(LONG to slideIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSlideCollisionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
+    Internals.writeArguments(LONG to slideIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSlideCollisionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   /**
@@ -673,9 +672,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * occurred during the last call to [moveAndSlide].
    */
   public final fun getLastSlideCollision(): KinematicCollision3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLastSlideCollisionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as KinematicCollision3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLastSlideCollisionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as KinematicCollision3D?)
   }
 
   public enum class MotionMode(
@@ -738,150 +737,150 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   internal object MethodBindings {
     public val moveAndSlidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "move_and_slide", 2240911060)
+        Internals.getMethodBindPtr("CharacterBody3D", "move_and_slide", 2240911060)
 
     public val applyFloorSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "apply_floor_snap", 3218959716)
+        Internals.getMethodBindPtr("CharacterBody3D", "apply_floor_snap", 3218959716)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_velocity", 3460891852)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_velocity", 3460891852)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_velocity", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_velocity", 3360562783)
 
     public val setSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_safe_margin", 373806689)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_safe_margin", 373806689)
 
     public val getSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_safe_margin", 1740695150)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_safe_margin", 1740695150)
 
     public val isFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_floor_stop_on_slope_enabled", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_floor_stop_on_slope_enabled", 36873697)
 
     public val setFloorStopOnSlopeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_floor_stop_on_slope_enabled", 2586408642)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_floor_stop_on_slope_enabled", 2586408642)
 
     public val setFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_floor_constant_speed_enabled", 2586408642)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_floor_constant_speed_enabled", 2586408642)
 
     public val isFloorConstantSpeedEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_floor_constant_speed_enabled", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_floor_constant_speed_enabled", 36873697)
 
     public val setFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_floor_block_on_wall_enabled", 2586408642)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_floor_block_on_wall_enabled", 2586408642)
 
     public val isFloorBlockOnWallEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_floor_block_on_wall_enabled", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_floor_block_on_wall_enabled", 36873697)
 
     public val setSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_slide_on_ceiling_enabled", 2586408642)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_slide_on_ceiling_enabled", 2586408642)
 
     public val isSlideOnCeilingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_slide_on_ceiling_enabled", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_slide_on_ceiling_enabled", 36873697)
 
     public val setPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_platform_floor_layers", 1286410249)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_platform_floor_layers", 1286410249)
 
     public val getPlatformFloorLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_platform_floor_layers", 3905245786)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_platform_floor_layers", 3905245786)
 
     public val setPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_platform_wall_layers", 1286410249)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_platform_wall_layers", 1286410249)
 
     public val getPlatformWallLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_platform_wall_layers", 3905245786)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_platform_wall_layers", 3905245786)
 
     public val getMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_max_slides", 3905245786)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_max_slides", 3905245786)
 
     public val setMaxSlidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_max_slides", 1286410249)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_max_slides", 1286410249)
 
     public val getFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_floor_max_angle", 1740695150)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_floor_max_angle", 1740695150)
 
     public val setFloorMaxAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_floor_max_angle", 373806689)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_floor_max_angle", 373806689)
 
     public val getFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_floor_snap_length", 191475506)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_floor_snap_length", 191475506)
 
     public val setFloorSnapLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_floor_snap_length", 373806689)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_floor_snap_length", 373806689)
 
     public val getWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_wall_min_slide_angle", 1740695150)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_wall_min_slide_angle", 1740695150)
 
     public val setWallMinSlideAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_wall_min_slide_angle", 373806689)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_wall_min_slide_angle", 373806689)
 
     public val getUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_up_direction", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_up_direction", 3360562783)
 
     public val setUpDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_up_direction", 3460891852)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_up_direction", 3460891852)
 
     public val setMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_motion_mode", 2690739026)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_motion_mode", 2690739026)
 
     public val getMotionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_motion_mode", 3529553604)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_motion_mode", 3529553604)
 
     public val setPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "set_platform_on_leave", 1459986142)
+        Internals.getMethodBindPtr("CharacterBody3D", "set_platform_on_leave", 1459986142)
 
     public val getPlatformOnLeavePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_platform_on_leave", 996491171)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_platform_on_leave", 996491171)
 
     public val isOnFloorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_floor", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_floor", 36873697)
 
     public val isOnFloorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_floor_only", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_floor_only", 36873697)
 
     public val isOnCeilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_ceiling", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_ceiling", 36873697)
 
     public val isOnCeilingOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_ceiling_only", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_ceiling_only", 36873697)
 
     public val isOnWallPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_wall", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_wall", 36873697)
 
     public val isOnWallOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "is_on_wall_only", 36873697)
+        Internals.getMethodBindPtr("CharacterBody3D", "is_on_wall_only", 36873697)
 
     public val getFloorNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_floor_normal", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_floor_normal", 3360562783)
 
     public val getWallNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_wall_normal", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_wall_normal", 3360562783)
 
     public val getLastMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_last_motion", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_last_motion", 3360562783)
 
     public val getPositionDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_position_delta", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_position_delta", 3360562783)
 
     public val getRealVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_real_velocity", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_real_velocity", 3360562783)
 
     public val getFloorAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_floor_angle", 2906300789)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_floor_angle", 2906300789)
 
     public val getPlatformVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_platform_velocity", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_platform_velocity", 3360562783)
 
     public val getPlatformAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_platform_angular_velocity", 3360562783)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_platform_angular_velocity", 3360562783)
 
     public val getSlideCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_slide_collision_count", 3905245786)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_slide_collision_count", 3905245786)
 
     public val getSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_slide_collision", 107003663)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_slide_collision", 107003663)
 
     public val getLastSlideCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CharacterBody3D", "get_last_slide_collision", 186875014)
+        Internals.getMethodBindPtr("CharacterBody3D", "get_last_slide_collision", 186875014)
   }
 }

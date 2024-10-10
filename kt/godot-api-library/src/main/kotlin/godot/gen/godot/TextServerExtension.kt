@@ -21,6 +21,7 @@ import godot.core.VariantArray
 import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3i
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
@@ -39,7 +40,7 @@ private const val ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX: Int = 577
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX, scriptIndex)
   }
 
   /**

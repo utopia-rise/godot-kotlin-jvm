@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -45,18 +44,18 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX, scriptIndex)
   }
 
   public final fun setInputName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setInputNamePtr, NIL)
   }
 
   public final fun getInputName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInputNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -64,21 +63,21 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
    * if the [inputName] equal to `"albedo"`.
    */
   public final fun getInputRealName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputRealNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInputRealNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "set_input_name", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeInput", "set_input_name", 83702148)
 
     public val getInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_name", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeInput", "get_input_name", 201670096)
 
     public val getInputRealNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_real_name", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeInput", "get_input_real_name", 201670096)
   }
 }

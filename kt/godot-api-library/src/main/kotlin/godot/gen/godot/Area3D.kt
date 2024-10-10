@@ -14,7 +14,6 @@ import godot.core.RID
 import godot.core.Signal1
 import godot.core.Signal4
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -26,7 +25,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -406,7 +405,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AREA3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AREA3D_INDEX, scriptIndex)
   }
 
   /**
@@ -460,179 +459,179 @@ public open class Area3D : CollisionObject3D() {
 
 
   public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
+    Internals.writeArguments(LONG to spaceOverrideMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
   }
 
   public final fun getGravitySpaceOverrideMode(): SpaceOverride {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
-    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravitySpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setGravityIsPoint(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setGravityIsPointPtr, NIL)
   }
 
   public final fun isGravityAPoint(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isGravityAPointPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGravityPointUnitDistance(distanceScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distanceScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distanceScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
   }
 
   public final fun getGravityPointUnitDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityPointUnitDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGravityPointCenter(center: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to center)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
+    Internals.writeArguments(VECTOR3 to center)
+    Internals.callMethod(rawPtr, MethodBindings.setGravityPointCenterPtr, NIL)
   }
 
   public final fun getGravityPointCenter(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityPointCenterPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGravityDirection(direction: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to direction)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to direction)
+    Internals.callMethod(rawPtr, MethodBindings.setGravityDirectionPtr, NIL)
   }
 
   public final fun getGravityDirection(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityDirectionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGravity(gravity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gravity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+    Internals.writeArguments(DOUBLE to gravity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
   }
 
   public final fun getGravity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
+    Internals.writeArguments(LONG to spaceOverrideMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
   }
 
   public final fun getLinearDampSpaceOverrideMode(): SpaceOverride {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
-    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampSpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
+    Internals.writeArguments(LONG to spaceOverrideMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
   }
 
   public final fun getAngularDampSpaceOverrideMode(): SpaceOverride {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
-    return Area3D.SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampSpaceOverrideModePtr, LONG)
+    return Area3D.SpaceOverride.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
   }
 
   public final fun getAngularDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to linearDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
   }
 
   public final fun getLinearDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPriority(priority: Int): Unit {
-    TransferContext.writeArguments(LONG to priority.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
+    Internals.writeArguments(LONG to priority.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPriorityPtr, NIL)
   }
 
   public final fun getPriority(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPriorityPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWindForceMagnitude(windForceMagnitude: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to windForceMagnitude.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWindForceMagnitudePtr, NIL)
+    Internals.writeArguments(DOUBLE to windForceMagnitude.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWindForceMagnitudePtr, NIL)
   }
 
   public final fun getWindForceMagnitude(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindForceMagnitudePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWindForceMagnitudePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWindAttenuationFactor(windAttenuationFactor: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to windAttenuationFactor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setWindAttenuationFactorPtr, NIL)
+    Internals.writeArguments(DOUBLE to windAttenuationFactor.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setWindAttenuationFactorPtr, NIL)
   }
 
   public final fun getWindAttenuationFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindAttenuationFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWindAttenuationFactorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setWindSourcePath(windSourcePath: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to windSourcePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWindSourcePathPtr, NIL)
+    Internals.writeArguments(NODE_PATH to windSourcePath)
+    Internals.callMethod(rawPtr, MethodBindings.setWindSourcePathPtr, NIL)
   }
 
   public final fun getWindSourcePath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWindSourcePathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWindSourcePathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setMonitorable(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMonitorablePtr, NIL)
   }
 
   public final fun isMonitorable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMonitorablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMonitoring(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMonitoringPtr, NIL)
   }
 
   public final fun isMonitoring(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMonitoringPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -644,9 +643,9 @@ public open class Area3D : CollisionObject3D() {
    * instead.
    */
   public final fun getOverlappingBodies(): VariantArray<Node3D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingBodiesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node3D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOverlappingBodiesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Node3D>)
   }
 
   /**
@@ -658,9 +657,9 @@ public open class Area3D : CollisionObject3D() {
    * instead.
    */
   public final fun getOverlappingAreas(): VariantArray<Area3D> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOverlappingAreasPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Area3D>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOverlappingAreasPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Area3D>)
   }
 
   /**
@@ -672,9 +671,9 @@ public open class Area3D : CollisionObject3D() {
    * using signals instead.
    */
   public final fun hasOverlappingBodies(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingBodiesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasOverlappingBodiesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -686,9 +685,9 @@ public open class Area3D : CollisionObject3D() {
    * using signals instead.
    */
   public final fun hasOverlappingAreas(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasOverlappingAreasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasOverlappingAreasPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -701,9 +700,9 @@ public open class Area3D : CollisionObject3D() {
    * body.
    */
   public final fun overlapsBody(body: Node?): Boolean {
-    TransferContext.writeArguments(OBJECT to body)
-    TransferContext.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to body)
+    Internals.callMethod(rawPtr, MethodBindings.overlapsBodyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -712,75 +711,75 @@ public open class Area3D : CollisionObject3D() {
    * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
   public final fun overlapsArea(area: Node?): Boolean {
-    TransferContext.writeArguments(OBJECT to area)
-    TransferContext.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to area)
+    Internals.callMethod(rawPtr, MethodBindings.overlapsAreaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAudioBusOverride(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAudioBusOverridePtr, NIL)
   }
 
   public final fun isOverridingAudioBus(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isOverridingAudioBusPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAudioBusName(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setAudioBusNamePtr, NIL)
   }
 
   public final fun getAudioBusName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAudioBusNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setUseReverbBus(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseReverbBusPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseReverbBusPtr, NIL)
   }
 
   public final fun isUsingReverbBus(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingReverbBusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingReverbBusPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setReverbBusName(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setReverbBusNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setReverbBusNamePtr, NIL)
   }
 
   public final fun getReverbBusName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReverbBusNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReverbBusNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setReverbAmount(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setReverbAmountPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setReverbAmountPtr, NIL)
   }
 
   public final fun getReverbAmount(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReverbAmountPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReverbAmountPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setReverbUniformity(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setReverbUniformityPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setReverbUniformityPtr, NIL)
   }
 
   public final fun getReverbUniformity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReverbUniformityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReverbUniformityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class SpaceOverride(
@@ -825,153 +824,153 @@ public open class Area3D : CollisionObject3D() {
 
   internal object MethodBindings {
     public val setGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_space_override_mode", 2311433571)
+        Internals.getMethodBindPtr("Area3D", "set_gravity_space_override_mode", 2311433571)
 
     public val getGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_space_override_mode", 958191869)
+        Internals.getMethodBindPtr("Area3D", "get_gravity_space_override_mode", 958191869)
 
     public val setGravityIsPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_is_point", 2586408642)
+        Internals.getMethodBindPtr("Area3D", "set_gravity_is_point", 2586408642)
 
     public val isGravityAPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_gravity_a_point", 36873697)
+        Internals.getMethodBindPtr("Area3D", "is_gravity_a_point", 36873697)
 
     public val setGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_unit_distance", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_gravity_point_unit_distance", 373806689)
 
     public val getGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_unit_distance", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_gravity_point_unit_distance", 1740695150)
 
     public val setGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_point_center", 3460891852)
+        Internals.getMethodBindPtr("Area3D", "set_gravity_point_center", 3460891852)
 
     public val getGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_point_center", 3360562783)
+        Internals.getMethodBindPtr("Area3D", "get_gravity_point_center", 3360562783)
 
     public val setGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity_direction", 3460891852)
+        Internals.getMethodBindPtr("Area3D", "set_gravity_direction", 3460891852)
 
     public val getGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity_direction", 3360562783)
+        Internals.getMethodBindPtr("Area3D", "get_gravity_direction", 3360562783)
 
     public val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_gravity", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_gravity", 373806689)
 
     public val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_gravity", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_gravity", 1740695150)
 
     public val setLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_linear_damp_space_override_mode", 2311433571)
+        Internals.getMethodBindPtr("Area3D", "set_linear_damp_space_override_mode", 2311433571)
 
     public val getLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_linear_damp_space_override_mode", 958191869)
+        Internals.getMethodBindPtr("Area3D", "get_linear_damp_space_override_mode", 958191869)
 
     public val setAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp_space_override_mode", 2311433571)
+        Internals.getMethodBindPtr("Area3D", "set_angular_damp_space_override_mode", 2311433571)
 
     public val getAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp_space_override_mode", 958191869)
+        Internals.getMethodBindPtr("Area3D", "get_angular_damp_space_override_mode", 958191869)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_angular_damp", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_angular_damp", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_angular_damp", 1740695150)
 
     public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_linear_damp", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_linear_damp", 373806689)
 
     public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_linear_damp", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_linear_damp", 1740695150)
 
     public val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_priority", 1286410249)
+        Internals.getMethodBindPtr("Area3D", "set_priority", 1286410249)
 
     public val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_priority", 3905245786)
+        Internals.getMethodBindPtr("Area3D", "get_priority", 3905245786)
 
     public val setWindForceMagnitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_force_magnitude", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_wind_force_magnitude", 373806689)
 
     public val getWindForceMagnitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_force_magnitude", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_wind_force_magnitude", 1740695150)
 
     public val setWindAttenuationFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_attenuation_factor", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_wind_attenuation_factor", 373806689)
 
     public val getWindAttenuationFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_attenuation_factor", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_wind_attenuation_factor", 1740695150)
 
     public val setWindSourcePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_wind_source_path", 1348162250)
+        Internals.getMethodBindPtr("Area3D", "set_wind_source_path", 1348162250)
 
     public val getWindSourcePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_wind_source_path", 4075236667)
+        Internals.getMethodBindPtr("Area3D", "get_wind_source_path", 4075236667)
 
     public val setMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_monitorable", 2586408642)
+        Internals.getMethodBindPtr("Area3D", "set_monitorable", 2586408642)
 
     public val isMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_monitorable", 36873697)
+        Internals.getMethodBindPtr("Area3D", "is_monitorable", 36873697)
 
     public val setMonitoringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_monitoring", 2586408642)
+        Internals.getMethodBindPtr("Area3D", "set_monitoring", 2586408642)
 
     public val isMonitoringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_monitoring", 36873697)
+        Internals.getMethodBindPtr("Area3D", "is_monitoring", 36873697)
 
     public val getOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_bodies", 3995934104)
+        Internals.getMethodBindPtr("Area3D", "get_overlapping_bodies", 3995934104)
 
     public val getOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_overlapping_areas", 3995934104)
+        Internals.getMethodBindPtr("Area3D", "get_overlapping_areas", 3995934104)
 
     public val hasOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_bodies", 36873697)
+        Internals.getMethodBindPtr("Area3D", "has_overlapping_bodies", 36873697)
 
     public val hasOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "has_overlapping_areas", 36873697)
+        Internals.getMethodBindPtr("Area3D", "has_overlapping_areas", 36873697)
 
     public val overlapsBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "overlaps_body", 3093956946)
+        Internals.getMethodBindPtr("Area3D", "overlaps_body", 3093956946)
 
     public val overlapsAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "overlaps_area", 3093956946)
+        Internals.getMethodBindPtr("Area3D", "overlaps_area", 3093956946)
 
     public val setAudioBusOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_override", 2586408642)
+        Internals.getMethodBindPtr("Area3D", "set_audio_bus_override", 2586408642)
 
     public val isOverridingAudioBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_overriding_audio_bus", 36873697)
+        Internals.getMethodBindPtr("Area3D", "is_overriding_audio_bus", 36873697)
 
     public val setAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_audio_bus_name", 3304788590)
+        Internals.getMethodBindPtr("Area3D", "set_audio_bus_name", 3304788590)
 
     public val getAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_audio_bus_name", 2002593661)
+        Internals.getMethodBindPtr("Area3D", "get_audio_bus_name", 2002593661)
 
     public val setUseReverbBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_use_reverb_bus", 2586408642)
+        Internals.getMethodBindPtr("Area3D", "set_use_reverb_bus", 2586408642)
 
     public val isUsingReverbBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "is_using_reverb_bus", 36873697)
+        Internals.getMethodBindPtr("Area3D", "is_using_reverb_bus", 36873697)
 
     public val setReverbBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_bus_name", 3304788590)
+        Internals.getMethodBindPtr("Area3D", "set_reverb_bus_name", 3304788590)
 
     public val getReverbBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_bus_name", 2002593661)
+        Internals.getMethodBindPtr("Area3D", "get_reverb_bus_name", 2002593661)
 
     public val setReverbAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_amount", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_reverb_amount", 373806689)
 
     public val getReverbAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_amount", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_reverb_amount", 1740695150)
 
     public val setReverbUniformityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "set_reverb_uniformity", 373806689)
+        Internals.getMethodBindPtr("Area3D", "set_reverb_uniformity", 373806689)
 
     public val getReverbUniformityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area3D", "get_reverb_uniformity", 1740695150)
+        Internals.getMethodBindPtr("Area3D", "get_reverb_uniformity", 1740695150)
   }
 }

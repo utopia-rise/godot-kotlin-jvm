@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -114,18 +113,18 @@ public open class OccluderInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX, scriptIndex)
   }
 
   public final fun setBakeMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeMaskPtr, NIL)
   }
 
   public final fun getBakeMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -133,8 +132,8 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * [layerNumber] between 1 and 32.
    */
   public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setBakeMaskValuePtr, NIL)
   }
 
   /**
@@ -142,58 +141,58 @@ public open class OccluderInstance3D : VisualInstance3D() {
    * between 1 and 32.
    */
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBakeMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBakeSimplificationDistance(simplificationDistance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to simplificationDistance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to simplificationDistance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBakeSimplificationDistancePtr, NIL)
   }
 
   public final fun getBakeSimplificationDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBakeSimplificationDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOccluder(occluder: Occluder3D?): Unit {
-    TransferContext.writeArguments(OBJECT to occluder)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
+    Internals.writeArguments(OBJECT to occluder)
+    Internals.callMethod(rawPtr, MethodBindings.setOccluderPtr, NIL)
   }
 
   public final fun getOccluder(): Occluder3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Occluder3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOccluderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Occluder3D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask", 1286410249)
+        Internals.getMethodBindPtr("OccluderInstance3D", "set_bake_mask", 1286410249)
 
     public val getBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask", 3905245786)
+        Internals.getMethodBindPtr("OccluderInstance3D", "get_bake_mask", 3905245786)
 
     public val setBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_mask_value", 300928843)
+        Internals.getMethodBindPtr("OccluderInstance3D", "set_bake_mask_value", 300928843)
 
     public val getBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_mask_value", 1116898809)
+        Internals.getMethodBindPtr("OccluderInstance3D", "get_bake_mask_value", 1116898809)
 
     public val setBakeSimplificationDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_bake_simplification_distance", 373806689)
+        Internals.getMethodBindPtr("OccluderInstance3D", "set_bake_simplification_distance", 373806689)
 
     public val getBakeSimplificationDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_bake_simplification_distance", 1740695150)
+        Internals.getMethodBindPtr("OccluderInstance3D", "get_bake_simplification_distance", 1740695150)
 
     public val setOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "set_occluder", 1664878165)
+        Internals.getMethodBindPtr("OccluderInstance3D", "set_occluder", 1664878165)
 
     public val getOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderInstance3D", "get_occluder", 1696836198)
+        Internals.getMethodBindPtr("OccluderInstance3D", "get_occluder", 1696836198)
   }
 }

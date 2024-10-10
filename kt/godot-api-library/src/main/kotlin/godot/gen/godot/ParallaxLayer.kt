@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -84,7 +83,7 @@ public open class ParallaxLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PARALLAXLAYER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PARALLAXLAYER_INDEX, scriptIndex)
   }
 
   /**
@@ -176,57 +175,57 @@ public open class ParallaxLayer : Node2D() {
 
 
   public final fun setMotionScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setMotionScalePtr, NIL)
   }
 
   public final fun getMotionScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMotionScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMotionOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setMotionOffsetPtr, NIL)
   }
 
   public final fun getMotionOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMotionOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setMirroring(mirror: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to mirror)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
+    Internals.writeArguments(VECTOR2 to mirror)
+    Internals.callMethod(rawPtr, MethodBindings.setMirroringPtr, NIL)
   }
 
   public final fun getMirroring(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMirroringPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_scale", 743155724)
+        Internals.getMethodBindPtr("ParallaxLayer", "set_motion_scale", 743155724)
 
     public val getMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_scale", 3341600327)
+        Internals.getMethodBindPtr("ParallaxLayer", "get_motion_scale", 3341600327)
 
     public val setMotionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_motion_offset", 743155724)
+        Internals.getMethodBindPtr("ParallaxLayer", "set_motion_offset", 743155724)
 
     public val getMotionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_motion_offset", 3341600327)
+        Internals.getMethodBindPtr("ParallaxLayer", "get_motion_offset", 3341600327)
 
     public val setMirroringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "set_mirroring", 743155724)
+        Internals.getMethodBindPtr("ParallaxLayer", "set_mirroring", 743155724)
 
     public val getMirroringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxLayer", "get_mirroring", 3341600327)
+        Internals.getMethodBindPtr("ParallaxLayer", "get_mirroring", 3341600327)
   }
 }

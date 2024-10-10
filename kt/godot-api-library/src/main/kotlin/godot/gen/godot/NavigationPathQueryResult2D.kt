@@ -11,14 +11,13 @@ import godot.core.PackedInt32Array
 import godot.core.PackedInt64Array
 import godot.core.PackedVector2Array
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -81,51 +80,51 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to path)
+    Internals.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
   }
 
   public final fun getPath(): PackedVector2Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   public final fun setPathTypes(pathTypes: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
+    Internals.callMethod(rawPtr, MethodBindings.setPathTypesPtr, NIL)
   }
 
   public final fun getPathTypes(): PackedInt32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathTypesPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   public final fun setPathRids(pathRids: VariantArray<RID>): Unit {
-    TransferContext.writeArguments(ARRAY to pathRids)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
+    Internals.writeArguments(ARRAY to pathRids)
+    Internals.callMethod(rawPtr, MethodBindings.setPathRidsPtr, NIL)
   }
 
   public final fun getPathRids(): VariantArray<RID> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathRidsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
   public final fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
+    Internals.callMethod(rawPtr, MethodBindings.setPathOwnerIdsPtr, NIL)
   }
 
   public final fun getPathOwnerIds(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathOwnerIdsPtr, PACKED_INT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   /**
@@ -133,8 +132,8 @@ public open class NavigationPathQueryResult2D : RefCounted() {
    * multiple queries.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
   }
 
   public enum class PathSegmentType(
@@ -164,30 +163,30 @@ public open class NavigationPathQueryResult2D : RefCounted() {
 
   internal object MethodBindings {
     public val setPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path", 1509147220)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path", 1509147220)
 
     public val getPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path", 2961356807)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path", 2961356807)
 
     public val setPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_types", 3614634198)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_types", 3614634198)
 
     public val getPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_types", 1930428628)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_types", 1930428628)
 
     public val setPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_rids", 381264803)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_rids", 381264803)
 
     public val getPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_rids", 3995934104)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_rids", 3995934104)
 
     public val setPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_owner_ids", 3709968205)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "set_path_owner_ids", 3709968205)
 
     public val getPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_owner_ids", 235988956)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "get_path_owner_ids", 235988956)
 
     public val resetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult2D", "reset", 3218959716)
+        Internals.getMethodBindPtr("NavigationPathQueryResult2D", "reset", 3218959716)
   }
 }

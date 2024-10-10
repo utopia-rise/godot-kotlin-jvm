@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt64Array
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Double
@@ -66,74 +65,73 @@ public open class OggPacketSequence : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX, scriptIndex)
   }
 
   public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {
-    TransferContext.writeArguments(ARRAY to packetData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
+    Internals.writeArguments(ARRAY to packetData)
+    Internals.callMethod(rawPtr, MethodBindings.setPacketDataPtr, NIL)
   }
 
   public final fun getPacketData(): VariantArray<VariantArray<Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketDataPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketDataPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
   public final fun setPacketGranulePositions(granulePositions: PackedInt64Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_64_ARRAY to granulePositions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
+    Internals.writeArguments(PACKED_INT_64_ARRAY to granulePositions)
+    Internals.callMethod(rawPtr, MethodBindings.setPacketGranulePositionsPtr, NIL)
   }
 
   public final fun getPacketGranulePositions(): PackedInt64Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketGranulePositionsPtr,
-        PACKED_INT_64_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketGranulePositionsPtr, PACKED_INT_64_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
   public final fun setSamplingRate(samplingRate: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to samplingRate.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
+    Internals.writeArguments(DOUBLE to samplingRate.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSamplingRatePtr, NIL)
   }
 
   public final fun getSamplingRate(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplingRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplingRatePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * The length of this stream, in seconds.
    */
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381264803)
+        Internals.getMethodBindPtr("OggPacketSequence", "set_packet_data", 381264803)
 
     public val getPacketDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3995934104)
+        Internals.getMethodBindPtr("OggPacketSequence", "get_packet_data", 3995934104)
 
     public val setPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3709968205)
+        Internals.getMethodBindPtr("OggPacketSequence", "set_packet_granule_positions", 3709968205)
 
     public val getPacketGranulePositionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235988956)
+        Internals.getMethodBindPtr("OggPacketSequence", "get_packet_granule_positions", 235988956)
 
     public val setSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373806689)
+        Internals.getMethodBindPtr("OggPacketSequence", "set_sampling_rate", 373806689)
 
     public val getSamplingRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1740695150)
+        Internals.getMethodBindPtr("OggPacketSequence", "get_sampling_rate", 1740695150)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OggPacketSequence", "get_length", 1740695150)
+        Internals.getMethodBindPtr("OggPacketSequence", "get_length", 1740695150)
   }
 }

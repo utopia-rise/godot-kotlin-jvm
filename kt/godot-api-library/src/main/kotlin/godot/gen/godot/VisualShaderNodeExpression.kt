@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -42,27 +41,27 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEEXPRESSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEEXPRESSION_INDEX, scriptIndex)
   }
 
   public final fun setExpression(expression: String): Unit {
-    TransferContext.writeArguments(STRING to expression)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpressionPtr, NIL)
+    Internals.writeArguments(STRING to expression)
+    Internals.callMethod(rawPtr, MethodBindings.setExpressionPtr, NIL)
   }
 
   public final fun getExpression(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExpressionPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeExpression", "set_expression", 83702148)
+        Internals.getMethodBindPtr("VisualShaderNodeExpression", "set_expression", 83702148)
 
     public val getExpressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeExpression", "get_expression", 201670096)
+        Internals.getMethodBindPtr("VisualShaderNodeExpression", "get_expression", 201670096)
   }
 }

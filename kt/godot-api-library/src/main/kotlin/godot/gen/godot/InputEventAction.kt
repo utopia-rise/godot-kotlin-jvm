@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -87,69 +86,69 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTACTION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTACTION_INDEX, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to action)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
+    Internals.writeArguments(STRING_NAME to action)
+    Internals.callMethod(rawPtr, MethodBindings.setActionPtr, NIL)
   }
 
   public final fun getAction(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pressed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
+    Internals.writeArguments(BOOL to pressed)
+    Internals.callMethod(rawPtr, MethodBindings.setPressedPtr, NIL)
   }
 
   public final fun setStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
   public final fun getStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEventIndex(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setEventIndexPtr, NIL)
   }
 
   public final fun getEventIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEventIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_action", 3304788590)
+        Internals.getMethodBindPtr("InputEventAction", "set_action", 3304788590)
 
     public val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_action", 2002593661)
+        Internals.getMethodBindPtr("InputEventAction", "get_action", 2002593661)
 
     public val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_pressed", 2586408642)
+        Internals.getMethodBindPtr("InputEventAction", "set_pressed", 2586408642)
 
     public val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_strength", 373806689)
+        Internals.getMethodBindPtr("InputEventAction", "set_strength", 373806689)
 
     public val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_strength", 1740695150)
+        Internals.getMethodBindPtr("InputEventAction", "get_strength", 1740695150)
 
     public val setEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index", 1286410249)
+        Internals.getMethodBindPtr("InputEventAction", "set_event_index", 1286410249)
 
     public val getEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index", 3905245786)
+        Internals.getMethodBindPtr("InputEventAction", "get_event_index", 3905245786)
   }
 }

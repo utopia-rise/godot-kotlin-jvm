@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -39,27 +38,27 @@ public open class Marker3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MARKER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MARKER3D_INDEX, scriptIndex)
   }
 
   public final fun setGizmoExtents(extents: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to extents.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
+    Internals.writeArguments(DOUBLE to extents.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGizmoExtentsPtr, NIL)
   }
 
   public final fun getGizmoExtents(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGizmoExtentsPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373806689)
+        Internals.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373806689)
 
     public val getGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1740695150)
+        Internals.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1740695150)
   }
 }

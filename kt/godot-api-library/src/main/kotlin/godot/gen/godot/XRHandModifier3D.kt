@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -55,29 +54,29 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRHANDMODIFIER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRHANDMODIFIER3D_INDEX, scriptIndex)
   }
 
   public final fun setHandTracker(trackerName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to trackerName)
+    Internals.callMethod(rawPtr, MethodBindings.setHandTrackerPtr, NIL)
   }
 
   public final fun getHandTracker(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHandTrackerPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
+    Internals.writeArguments(LONG to boneUpdate.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
   public final fun getBoneUpdate(): BoneUpdate {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
-    return XRHandModifier3D.BoneUpdate.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneUpdatePtr, LONG)
+    return XRHandModifier3D.BoneUpdate.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class BoneUpdate(
@@ -113,15 +112,15 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
 
   internal object MethodBindings {
     public val setHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_hand_tracker", 3304788590)
+        Internals.getMethodBindPtr("XRHandModifier3D", "set_hand_tracker", 3304788590)
 
     public val getHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_hand_tracker", 2002593661)
+        Internals.getMethodBindPtr("XRHandModifier3D", "get_hand_tracker", 2002593661)
 
     public val setBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "set_bone_update", 3635701455)
+        Internals.getMethodBindPtr("XRHandModifier3D", "set_bone_update", 3635701455)
 
     public val getBoneUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRHandModifier3D", "get_bone_update", 2873665691)
+        Internals.getMethodBindPtr("XRHandModifier3D", "get_bone_update", 2873665691)
   }
 }

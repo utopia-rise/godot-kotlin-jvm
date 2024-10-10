@@ -10,14 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Projection
 import godot.core.RID
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PROJECTION
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -31,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERSCENEDATA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERSCENEDATA_INDEX, scriptIndex)
   }
 
   /**
@@ -39,9 +38,9 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a centered transform.
    */
   public final fun getCamTransform(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCamTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
@@ -49,18 +48,18 @@ public open class RenderSceneData internal constructor() : Object() {
    * **Note:** If more than one view is rendered, this will return a combined projection.
    */
   public final fun getCamProjection(): Projection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCamProjectionPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION) as Projection)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCamProjectionPtr, PROJECTION)
+    return (Internals.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
    * Returns the number of views being rendered.
    */
   public final fun getViewCount(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getViewCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -68,9 +67,9 @@ public open class RenderSceneData internal constructor() : Object() {
    * camera transform and the eye transform.
    */
   public final fun getViewEyeOffset(view: Long): Vector3 {
-    TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to view)
+    Internals.callMethod(rawPtr, MethodBindings.getViewEyeOffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -79,39 +78,39 @@ public open class RenderSceneData internal constructor() : Object() {
    * view is rendered, this will return a projection for the given view including the eye offset.
    */
   public final fun getViewProjection(view: Long): Projection {
-    TransferContext.writeArguments(LONG to view)
-    TransferContext.callMethod(rawPtr, MethodBindings.getViewProjectionPtr, PROJECTION)
-    return (TransferContext.readReturnValue(PROJECTION) as Projection)
+    Internals.writeArguments(LONG to view)
+    Internals.callMethod(rawPtr, MethodBindings.getViewProjectionPtr, PROJECTION)
+    return (Internals.readReturnValue(PROJECTION) as Projection)
   }
 
   /**
    * Return the [RID] of the uniform buffer containing the scene data as a UBO.
    */
   public final fun getUniformBuffer(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniformBufferPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniformBufferPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getCamTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3229777777)
+        Internals.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3229777777)
 
     public val getCamProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2910717950)
+        Internals.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2910717950)
 
     public val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_count", 3905245786)
+        Internals.getMethodBindPtr("RenderSceneData", "get_view_count", 3905245786)
 
     public val getViewEyeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711720468)
+        Internals.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711720468)
 
     public val getViewProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_projection", 3179846605)
+        Internals.getMethodBindPtr("RenderSceneData", "get_view_projection", 3179846605)
 
     public val getUniformBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2944877500)
+        Internals.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2944877500)
   }
 }

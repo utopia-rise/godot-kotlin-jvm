@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -99,73 +98,73 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINTPARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEINTPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {
-    TransferContext.writeArguments(LONG to hint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
+    Internals.writeArguments(LONG to hint.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHintPtr, NIL)
   }
 
   public final fun getHint(): Hint {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
-    return VisualShaderNodeIntParameter.Hint.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHintPtr, LONG)
+    return VisualShaderNodeIntParameter.Hint.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMin(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun getMin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMax(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun getMax(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStep(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun getStep(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStepPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Int): Unit {
-    TransferContext.writeArguments(LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    Internals.writeArguments(LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class Hint(
@@ -204,39 +203,39 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   internal object MethodBindings {
     public val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2540512075)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2540512075)
 
     public val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4250814924)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4250814924)
 
     public val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1286410249)
 
     public val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3905245786)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3905245786)
 
     public val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1286410249)
 
     public val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3905245786)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3905245786)
 
     public val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1286410249)
 
     public val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
 
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1286410249)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1286410249)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3905245786)
+        Internals.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3905245786)
   }
 }

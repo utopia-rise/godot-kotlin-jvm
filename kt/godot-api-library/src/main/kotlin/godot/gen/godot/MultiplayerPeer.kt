@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -87,29 +86,29 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIPLAYERPEER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIPLAYERPEER_INDEX, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {
-    TransferContext.writeArguments(LONG to channel.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTransferChannelPtr, NIL)
   }
 
   public final fun getTransferChannel(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransferChannelPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTransferMode(mode: TransferMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransferModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransferModePtr, NIL)
   }
 
   public final fun getTransferMode(): TransferMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransferModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransferModePtr, LONG)
+    return MultiplayerPeer.TransferMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -120,8 +119,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * peer is [TARGET_PEER_BROADCAST].
    */
   public final fun setTargetPeer(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPeerPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPeerPtr, NIL)
   }
 
   /**
@@ -129,9 +128,9 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * [PacketPeer.getAvailablePacketCount].
    */
   public final fun getPacketPeer(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketPeerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketPeerPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -139,9 +138,9 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * [PacketPeer.getAvailablePacketCount].
    */
   public final fun getPacketChannel(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketChannelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketChannelPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -149,17 +148,17 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * [PacketPeer.getAvailablePacketCount].
    */
   public final fun getPacketMode(): TransferMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketModePtr, LONG)
-    return MultiplayerPeer.TransferMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketModePtr, LONG)
+    return MultiplayerPeer.TransferMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Waits up to 1 second to receive a new network event.
    */
   public final fun poll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pollPtr, NIL)
   }
 
   /**
@@ -167,8 +166,8 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * Connected peers will be dropped without emitting [signal peer_disconnected].
    */
   public final fun close(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.closePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.closePtr, NIL)
   }
 
   /**
@@ -177,46 +176,46 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun disconnectPeer(peer: Int, force: Boolean = false): Unit {
-    TransferContext.writeArguments(LONG to peer.toLong(), BOOL to force)
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectPeerPtr, NIL)
+    Internals.writeArguments(LONG to peer.toLong(), BOOL to force)
+    Internals.callMethod(rawPtr, MethodBindings.disconnectPeerPtr, NIL)
   }
 
   /**
    * Returns the current state of the connection. See [ConnectionStatus].
    */
   public final fun getConnectionStatus(): ConnectionStatus {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConnectionStatusPtr, LONG)
-    return MultiplayerPeer.ConnectionStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConnectionStatusPtr, LONG)
+    return MultiplayerPeer.ConnectionStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the ID of this [MultiplayerPeer].
    */
   public final fun getUniqueId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUniqueIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns a randomly generated integer that can be used as a network unique ID.
    */
   public final fun generateUniqueId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateUniqueIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.generateUniqueIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRefuseNewConnections(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setRefuseNewConnectionsPtr, NIL)
   }
 
   public final fun isRefusingNewConnections(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRefusingNewConnectionsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -225,9 +224,9 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
    * protocol to allow communication between them).
    */
   public final fun isServerRelaySupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isServerRelaySupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isServerRelaySupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class ConnectionStatus(
@@ -307,54 +306,53 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
 
   internal object MethodBindings {
     public val setTransferChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "set_transfer_channel", 1286410249)
+        Internals.getMethodBindPtr("MultiplayerPeer", "set_transfer_channel", 1286410249)
 
     public val getTransferChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_transfer_channel", 3905245786)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_transfer_channel", 3905245786)
 
     public val setTransferModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "set_transfer_mode", 950411049)
+        Internals.getMethodBindPtr("MultiplayerPeer", "set_transfer_mode", 950411049)
 
     public val getTransferModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_transfer_mode", 3369852622)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_transfer_mode", 3369852622)
 
     public val setTargetPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "set_target_peer", 1286410249)
+        Internals.getMethodBindPtr("MultiplayerPeer", "set_target_peer", 1286410249)
 
     public val getPacketPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_packet_peer", 3905245786)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_peer", 3905245786)
 
     public val getPacketChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_packet_channel", 3905245786)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_channel", 3905245786)
 
     public val getPacketModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_packet_mode", 3369852622)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_packet_mode", 3369852622)
 
-    public val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "poll", 3218959716)
+    public val pollPtr: VoidPtr = Internals.getMethodBindPtr("MultiplayerPeer", "poll", 3218959716)
 
     public val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "close", 3218959716)
+        Internals.getMethodBindPtr("MultiplayerPeer", "close", 3218959716)
 
     public val disconnectPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "disconnect_peer", 4023243586)
+        Internals.getMethodBindPtr("MultiplayerPeer", "disconnect_peer", 4023243586)
 
     public val getConnectionStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_connection_status", 2147374275)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_connection_status", 2147374275)
 
     public val getUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "get_unique_id", 3905245786)
+        Internals.getMethodBindPtr("MultiplayerPeer", "get_unique_id", 3905245786)
 
     public val generateUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "generate_unique_id", 3905245786)
+        Internals.getMethodBindPtr("MultiplayerPeer", "generate_unique_id", 3905245786)
 
     public val setRefuseNewConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "set_refuse_new_connections", 2586408642)
+        Internals.getMethodBindPtr("MultiplayerPeer", "set_refuse_new_connections", 2586408642)
 
     public val isRefusingNewConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "is_refusing_new_connections", 36873697)
+        Internals.getMethodBindPtr("MultiplayerPeer", "is_refusing_new_connections", 36873697)
 
     public val isServerRelaySupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiplayerPeer", "is_server_relay_supported", 36873697)
+        Internals.getMethodBindPtr("MultiplayerPeer", "is_server_relay_supported", 36873697)
   }
 }

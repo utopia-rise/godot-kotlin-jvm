@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -20,7 +19,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -55,25 +54,25 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCRIPT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCRIPT_INDEX, scriptIndex)
   }
 
   /**
    * Returns `true` if the script can be instantiated.
    */
   public final fun canInstantiate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.canInstantiatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if [baseObject] is an instance of this script.
    */
   public final fun instanceHas(baseObject: Object?): Boolean {
-    TransferContext.writeArguments(OBJECT to baseObject)
-    TransferContext.callMethod(rawPtr, MethodBindings.instanceHasPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(OBJECT to baseObject)
+    Internals.callMethod(rawPtr, MethodBindings.instanceHasPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -84,20 +83,20 @@ public open class Script internal constructor() : Resource() {
    * [canInstantiate].
    */
   public final fun hasSourceCode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSourceCodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasSourceCodePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSourceCode(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceCodePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceCodePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setSourceCode(source: String): Unit {
-    TransferContext.writeArguments(STRING to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceCodePtr, NIL)
+    Internals.writeArguments(STRING to source)
+    Internals.callMethod(rawPtr, MethodBindings.setSourceCodePtr, NIL)
   }
 
   /**
@@ -105,27 +104,27 @@ public open class Script internal constructor() : Resource() {
    */
   @JvmOverloads
   public final fun reload(keepState: Boolean = false): Error {
-    TransferContext.writeArguments(BOOL to keepState)
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(BOOL to keepState)
+    Internals.callMethod(rawPtr, MethodBindings.reloadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the script directly inherited by this script.
    */
   public final fun getBaseScript(): Script? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBaseScriptPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Script?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBaseScriptPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Script?)
   }
 
   /**
    * Returns the script's base type.
    */
   public final fun getInstanceBaseType(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceBaseTypePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -150,72 +149,72 @@ public open class Script internal constructor() : Resource() {
    * ```
    */
   public final fun getGlobalName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
    * Returns `true` if the script, or a base class, defines a signal with the given name.
    */
   public final fun hasScriptSignal(signalName: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signalName)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasScriptSignalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to signalName)
+    Internals.callMethod(rawPtr, MethodBindings.hasScriptSignalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the list of properties in this [Script].
    */
   public final fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptPropertyListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScriptPropertyListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Returns the list of methods in this [Script].
    */
   public final fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptMethodListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScriptMethodListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Returns the list of user signals defined in this [Script].
    */
   public final fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptSignalListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScriptSignalListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
    * Returns a dictionary containing constant names and their values.
    */
   public final fun getScriptConstantMap(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptConstantMapPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScriptConstantMapPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
    * Returns the default value of the specified property.
    */
   public final fun getPropertyDefaultValue(`property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropertyDefaultValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.getPropertyDefaultValuePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
    * Returns `true` if the script is a tool script. A tool script can run in the editor.
    */
   public final fun isTool(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isToolPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isToolPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -223,61 +222,61 @@ public open class Script internal constructor() : Resource() {
    * constructor and cannot be instantiated.
    */
   public final fun isAbstract(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAbstractPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "can_instantiate", 36873697)
+        Internals.getMethodBindPtr("Script", "can_instantiate", 36873697)
 
     public val instanceHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "instance_has", 397768994)
+        Internals.getMethodBindPtr("Script", "instance_has", 397768994)
 
     public val hasSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "has_source_code", 36873697)
+        Internals.getMethodBindPtr("Script", "has_source_code", 36873697)
 
     public val getSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_source_code", 201670096)
+        Internals.getMethodBindPtr("Script", "get_source_code", 201670096)
 
     public val setSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "set_source_code", 83702148)
+        Internals.getMethodBindPtr("Script", "set_source_code", 83702148)
 
-    public val reloadPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "reload", 1633102583)
+    public val reloadPtr: VoidPtr = Internals.getMethodBindPtr("Script", "reload", 1633102583)
 
     public val getBaseScriptPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_base_script", 278624046)
+        Internals.getMethodBindPtr("Script", "get_base_script", 278624046)
 
     public val getInstanceBaseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_instance_base_type", 2002593661)
+        Internals.getMethodBindPtr("Script", "get_instance_base_type", 2002593661)
 
     public val getGlobalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_global_name", 2002593661)
+        Internals.getMethodBindPtr("Script", "get_global_name", 2002593661)
 
     public val hasScriptSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "has_script_signal", 2619796661)
+        Internals.getMethodBindPtr("Script", "has_script_signal", 2619796661)
 
     public val getScriptPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_property_list", 2915620761)
+        Internals.getMethodBindPtr("Script", "get_script_property_list", 2915620761)
 
     public val getScriptMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_method_list", 2915620761)
+        Internals.getMethodBindPtr("Script", "get_script_method_list", 2915620761)
 
     public val getScriptSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_signal_list", 2915620761)
+        Internals.getMethodBindPtr("Script", "get_script_signal_list", 2915620761)
 
     public val getScriptConstantMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_constant_map", 2382534195)
+        Internals.getMethodBindPtr("Script", "get_script_constant_map", 2382534195)
 
     public val getPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_property_default_value", 2138907829)
+        Internals.getMethodBindPtr("Script", "get_property_default_value", 2138907829)
 
-    public val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool", 36873697)
+    public val isToolPtr: VoidPtr = Internals.getMethodBindPtr("Script", "is_tool", 36873697)
 
     public val isAbstractPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "is_abstract", 36873697)
+        Internals.getMethodBindPtr("Script", "is_abstract", 36873697)
   }
 }

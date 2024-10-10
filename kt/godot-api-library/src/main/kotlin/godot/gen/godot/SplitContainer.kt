@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -82,18 +81,18 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SPLITCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SPLITCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {
-    TransferContext.writeArguments(LONG to offset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
+    Internals.writeArguments(LONG to offset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSplitOffsetPtr, NIL)
   }
 
   public final fun getSplitOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSplitOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -101,41 +100,41 @@ public open class SplitContainer : Container() {
    * values.
    */
   public final fun clampSplitOffset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clampSplitOffsetPtr, NIL)
   }
 
   public final fun setCollapsed(collapsed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to collapsed)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
+    Internals.writeArguments(BOOL to collapsed)
+    Internals.callMethod(rawPtr, MethodBindings.setCollapsedPtr, NIL)
   }
 
   public final fun isCollapsed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCollapsedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDraggerVisibilityPtr, NIL)
   }
 
   public final fun getDraggerVisibility(): DraggerVisibility {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
-    return SplitContainer.DraggerVisibility.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDraggerVisibilityPtr, LONG)
+    return SplitContainer.DraggerVisibility.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    Internals.writeArguments(BOOL to vertical)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class DraggerVisibility(
@@ -169,30 +168,30 @@ public open class SplitContainer : Container() {
 
   internal object MethodBindings {
     public val setSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
+        Internals.getMethodBindPtr("SplitContainer", "set_split_offset", 1286410249)
 
     public val getSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
+        Internals.getMethodBindPtr("SplitContainer", "get_split_offset", 3905245786)
 
     public val clampSplitOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "clamp_split_offset", 3218959716)
+        Internals.getMethodBindPtr("SplitContainer", "clamp_split_offset", 3218959716)
 
     public val setCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_collapsed", 2586408642)
+        Internals.getMethodBindPtr("SplitContainer", "set_collapsed", 2586408642)
 
     public val isCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "is_collapsed", 36873697)
+        Internals.getMethodBindPtr("SplitContainer", "is_collapsed", 36873697)
 
     public val setDraggerVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_dragger_visibility", 1168273952)
+        Internals.getMethodBindPtr("SplitContainer", "set_dragger_visibility", 1168273952)
 
     public val getDraggerVisibilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "get_dragger_visibility", 967297479)
+        Internals.getMethodBindPtr("SplitContainer", "get_dragger_visibility", 967297479)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "set_vertical", 2586408642)
+        Internals.getMethodBindPtr("SplitContainer", "set_vertical", 2586408642)
 
     public val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SplitContainer", "is_vertical", 36873697)
+        Internals.getMethodBindPtr("SplitContainer", "is_vertical", 36873697)
   }
 }

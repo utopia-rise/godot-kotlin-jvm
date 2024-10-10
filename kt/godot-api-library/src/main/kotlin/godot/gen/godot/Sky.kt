@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -68,40 +67,40 @@ public open class Sky : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKY_INDEX, scriptIndex)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {
-    TransferContext.writeArguments(LONG to size.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
+    Internals.writeArguments(LONG to size.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRadianceSizePtr, NIL)
   }
 
   public final fun getRadianceSize(): RadianceSize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
-    return Sky.RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadianceSizePtr, LONG)
+    return Sky.RadianceSize.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setProcessMode(mode: ProcessMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setProcessModePtr, NIL)
   }
 
   public final fun getProcessMode(): ProcessMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
-    return Sky.ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessModePtr, LONG)
+    return Sky.ProcessMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public enum class RadianceSize(
@@ -202,21 +201,20 @@ public open class Sky : Resource() {
 
   internal object MethodBindings {
     public val setRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_radiance_size", 1512957179)
+        Internals.getMethodBindPtr("Sky", "set_radiance_size", 1512957179)
 
     public val getRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_radiance_size", 2708733976)
+        Internals.getMethodBindPtr("Sky", "get_radiance_size", 2708733976)
 
     public val setProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_process_mode", 875986769)
+        Internals.getMethodBindPtr("Sky", "set_process_mode", 875986769)
 
     public val getProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_process_mode", 731245043)
+        Internals.getMethodBindPtr("Sky", "get_process_mode", 731245043)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_material", 2757459619)
+        Internals.getMethodBindPtr("Sky", "set_material", 2757459619)
 
-    public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_material", 5934680)
+    public val getMaterialPtr: VoidPtr = Internals.getMethodBindPtr("Sky", "get_material", 5934680)
   }
 }

@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -39,7 +38,7 @@ public object ResourceUID : Object() {
   public final const val INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_RESOURCEUID_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_RESOURCEUID_INDEX)
   }
 
   /**
@@ -47,9 +46,9 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun idToText(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.idToTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -57,9 +56,9 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun textToId(textId: String): Long {
-    TransferContext.writeArguments(STRING to textId)
-    TransferContext.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to textId)
+    Internals.callMethod(rawPtr, MethodBindings.textToIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -69,9 +68,9 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun createId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -79,9 +78,9 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun hasId(id: Long): Boolean {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.hasIdPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -91,8 +90,8 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun addId(id: Long, path: String): Unit {
-    TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
+    Internals.writeArguments(LONG to id, STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.addIdPtr, NIL)
   }
 
   /**
@@ -102,8 +101,8 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun setId(id: Long, path: String): Unit {
-    TransferContext.writeArguments(LONG to id, STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIdPtr, NIL)
+    Internals.writeArguments(LONG to id, STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.setIdPtr, NIL)
   }
 
   /**
@@ -112,9 +111,9 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun getIdPath(id: Long): String {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.getIdPathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -123,30 +122,30 @@ public object ResourceUID : Object() {
    */
   @JvmStatic
   public final fun removeId(id: Long): Unit {
-    TransferContext.writeArguments(LONG to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)
+    Internals.writeArguments(LONG to id)
+    Internals.callMethod(rawPtr, MethodBindings.removeIdPtr, NIL)
   }
 
   internal object MethodBindings {
     public val idToTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceUID", "id_to_text", 844755477)
+        Internals.getMethodBindPtr("ResourceUID", "id_to_text", 844755477)
 
     public val textToIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceUID", "text_to_id", 1321353865)
+        Internals.getMethodBindPtr("ResourceUID", "text_to_id", 1321353865)
 
     public val createIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceUID", "create_id", 2455072627)
+        Internals.getMethodBindPtr("ResourceUID", "create_id", 2455072627)
 
-    public val hasIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "has_id", 1116898809)
+    public val hasIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "has_id", 1116898809)
 
-    public val addIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "add_id", 501894301)
+    public val addIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "add_id", 501894301)
 
-    public val setIdPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceUID", "set_id", 501894301)
+    public val setIdPtr: VoidPtr = Internals.getMethodBindPtr("ResourceUID", "set_id", 501894301)
 
     public val getIdPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceUID", "get_id_path", 844755477)
+        Internals.getMethodBindPtr("ResourceUID", "get_id_path", 844755477)
 
     public val removeIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceUID", "remove_id", 1286410249)
+        Internals.getMethodBindPtr("ResourceUID", "remove_id", 1286410249)
   }
 }

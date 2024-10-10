@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
@@ -20,7 +19,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -132,7 +131,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX, scriptIndex)
   }
 
   /**
@@ -165,9 +164,9 @@ public open class GLTFPhysicsShape : Resource() {
    */
   @JvmOverloads
   public final fun toNode(cacheShapes: Boolean = false): CollisionShape3D? {
-    TransferContext.writeArguments(BOOL to cacheShapes)
-    TransferContext.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CollisionShape3D?)
+    Internals.writeArguments(BOOL to cacheShapes)
+    Internals.callMethod(rawPtr, MethodBindings.toNodePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CollisionShape3D?)
   }
 
   /**
@@ -175,9 +174,9 @@ public open class GLTFPhysicsShape : Resource() {
    */
   @JvmOverloads
   public final fun toResource(cacheShapes: Boolean = false): Shape3D? {
-    TransferContext.writeArguments(BOOL to cacheShapes)
-    TransferContext.callMethod(rawPtr, MethodBindings.toResourcePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Shape3D?)
+    Internals.writeArguments(BOOL to cacheShapes)
+    Internals.callMethod(rawPtr, MethodBindings.toResourcePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Shape3D?)
   }
 
   /**
@@ -185,86 +184,86 @@ public open class GLTFPhysicsShape : Resource() {
    * `OMI_physics_shape`.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toDictionaryPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun getShapeType(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShapeTypePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShapeTypePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setShapeType(shapeType: String): Unit {
-    TransferContext.writeArguments(STRING to shapeType)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShapeTypePtr, NIL)
+    Internals.writeArguments(STRING to shapeType)
+    Internals.callMethod(rawPtr, MethodBindings.setShapeTypePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getIsTrigger(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsTriggerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIsTriggerPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIsTrigger(isTrigger: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to isTrigger)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIsTriggerPtr, NIL)
+    Internals.writeArguments(BOOL to isTrigger)
+    Internals.callMethod(rawPtr, MethodBindings.setIsTriggerPtr, NIL)
   }
 
   public final fun getMeshIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMeshIndex(meshIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to meshIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshIndexPtr, NIL)
+    Internals.writeArguments(LONG to meshIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMeshIndexPtr, NIL)
   }
 
   public final fun getImporterMesh(): ImporterMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getImporterMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getImporterMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
   public final fun setImporterMesh(importerMesh: ImporterMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to importerMesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImporterMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to importerMesh)
+    Internals.callMethod(rawPtr, MethodBindings.setImporterMeshPtr, NIL)
   }
 
   public companion object {
@@ -272,89 +271,89 @@ public open class GLTFPhysicsShape : Resource() {
      * Creates a new GLTFPhysicsShape instance from the given Godot [CollisionShape3D] node.
      */
     public final fun fromNode(shapeNode: CollisionShape3D?): GLTFPhysicsShape? {
-      TransferContext.writeArguments(OBJECT to shapeNode)
-      TransferContext.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
+      Internals.writeArguments(OBJECT to shapeNode)
+      Internals.callMethod(0, MethodBindings.fromNodePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
 
     /**
      * Creates a new GLTFPhysicsShape instance from the given Godot [Shape3D] resource.
      */
     public final fun fromResource(shapeResource: Shape3D?): GLTFPhysicsShape? {
-      TransferContext.writeArguments(OBJECT to shapeResource)
-      TransferContext.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
+      Internals.writeArguments(OBJECT to shapeResource)
+      Internals.callMethod(0, MethodBindings.fromResourcePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
 
     /**
      * Creates a new GLTFPhysicsShape instance by parsing the given [Dictionary].
      */
     public final fun fromDictionary(dictionary: Dictionary<Any?, Any?>): GLTFPhysicsShape? {
-      TransferContext.writeArguments(DICTIONARY to dictionary)
-      TransferContext.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as GLTFPhysicsShape?)
+      Internals.writeArguments(DICTIONARY to dictionary)
+      Internals.callMethod(0, MethodBindings.fromDictionaryPtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as GLTFPhysicsShape?)
     }
   }
 
   internal object MethodBindings {
     public val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
 
     public val toNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
 
     public val fromResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
 
     public val toResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
 
     public val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
 
     public val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
 
     public val getShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201670096)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201670096)
 
     public val setShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83702148)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83702148)
 
     public val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3360562783)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3360562783)
 
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3460891852)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3460891852)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1740695150)
 
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373806689)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1740695150)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1740695150)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373806689)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373806689)
 
     public val getIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36873697)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36873697)
 
     public val setIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2586408642)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2586408642)
 
     public val getMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3905245786)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3905245786)
 
     public val setMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1286410249)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1286410249)
 
     public val getImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3161779525)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3161779525)
 
     public val setImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
+        Internals.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
   }
 }

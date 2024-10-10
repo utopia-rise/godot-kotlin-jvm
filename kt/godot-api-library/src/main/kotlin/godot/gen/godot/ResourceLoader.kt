@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -42,7 +41,7 @@ private const val ENGINE_CLASS_RESOURCELOADER_INDEX: Int = 11
 @GodotBaseType
 public object ResourceLoader : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_RESOURCELOADER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_RESOURCELOADER_INDEX)
   }
 
   /**
@@ -60,9 +59,9 @@ public object ResourceLoader : Object() {
     useSubThreads: Boolean = false,
     cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
   ): Error {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadThreadedRequestPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.loadThreadedRequestPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -77,9 +76,9 @@ public object ResourceLoader : Object() {
   @JvmStatic
   public final fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
       godot.core.variantArrayOf()): ThreadLoadStatus {
-    TransferContext.writeArguments(STRING to path, ARRAY to progress)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadThreadedGetStatusPtr, LONG)
-    return ResourceLoader.ThreadLoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, ARRAY to progress)
+    Internals.callMethod(rawPtr, MethodBindings.loadThreadedGetStatusPtr, LONG)
+    return ResourceLoader.ThreadLoadStatus.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -91,9 +90,9 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun loadThreadedGet(path: String): Resource? {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadThreadedGetPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadThreadedGetPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
@@ -124,9 +123,9 @@ public object ResourceLoader : Object() {
     typeHint: String = "",
     cacheMode: CacheMode = ResourceLoader.CacheMode.CACHE_MODE_REUSE,
   ): Resource? {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+    Internals.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
@@ -134,10 +133,10 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun getRecognizedExtensionsForType(type: String): PackedStringArray {
-    TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsForTypePtr,
+    Internals.writeArguments(STRING to type)
+    Internals.callMethod(rawPtr, MethodBindings.getRecognizedExtensionsForTypePtr,
         PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -150,8 +149,8 @@ public object ResourceLoader : Object() {
   @JvmStatic
   public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean =
       false): Unit {
-    TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
-    TransferContext.callMethod(rawPtr, MethodBindings.addResourceFormatLoaderPtr, NIL)
+    Internals.writeArguments(OBJECT to formatLoader, BOOL to atFront)
+    Internals.callMethod(rawPtr, MethodBindings.addResourceFormatLoaderPtr, NIL)
   }
 
   /**
@@ -159,8 +158,8 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?): Unit {
-    TransferContext.writeArguments(OBJECT to formatLoader)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
+    Internals.writeArguments(OBJECT to formatLoader)
+    Internals.callMethod(rawPtr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
   }
 
   /**
@@ -168,8 +167,8 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun setAbortOnMissingResources(abort: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to abort)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAbortOnMissingResourcesPtr, NIL)
+    Internals.writeArguments(BOOL to abort)
+    Internals.callMethod(rawPtr, MethodBindings.setAbortOnMissingResourcesPtr, NIL)
   }
 
   /**
@@ -184,9 +183,9 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun getDependencies(path: String): PackedStringArray {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.getDependenciesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.getDependenciesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -197,9 +196,9 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun hasCached(path: String): Boolean {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasCachedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.hasCachedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -213,9 +212,9 @@ public object ResourceLoader : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun exists(path: String, typeHint: String = ""): Boolean {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint)
-    TransferContext.callMethod(rawPtr, MethodBindings.existsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to path, STRING to typeHint)
+    Internals.callMethod(rawPtr, MethodBindings.existsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -223,9 +222,9 @@ public object ResourceLoader : Object() {
    */
   @JvmStatic
   public final fun getResourceUid(path: String): Long {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.getResourceUidPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.getResourceUidPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class ThreadLoadStatus(
@@ -306,38 +305,38 @@ public object ResourceLoader : Object() {
 
   internal object MethodBindings {
     public val loadThreadedRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3614384323)
+        Internals.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3614384323)
 
     public val loadThreadedGetStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4137685479)
+        Internals.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4137685479)
 
     public val loadThreadedGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1748875256)
+        Internals.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1748875256)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ResourceLoader", "load", 3358495409)
+    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("ResourceLoader", "load", 3358495409)
 
     public val getRecognizedExtensionsForTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3538744774)
+        Internals.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3538744774)
 
     public val addResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2896595483)
+        Internals.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2896595483)
 
     public val removeResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405397102)
+        Internals.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405397102)
 
     public val setAbortOnMissingResourcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2586408642)
+        Internals.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2586408642)
 
     public val getDependenciesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_dependencies", 3538744774)
+        Internals.getMethodBindPtr("ResourceLoader", "get_dependencies", 3538744774)
 
     public val hasCachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
+        Internals.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
 
     public val existsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
+        Internals.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
 
     public val getResourceUidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
+        Internals.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
   }
 }

@@ -10,13 +10,12 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -211,7 +210,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX, scriptIndex)
   }
 
   /**
@@ -339,244 +338,244 @@ public open class ProceduralSkyMaterial : Material() {
 
 
   public final fun setSkyTopColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyTopColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyTopColorPtr, NIL)
   }
 
   public final fun getSkyTopColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyTopColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyTopColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSkyHorizonColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyHorizonColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyHorizonColorPtr, NIL)
   }
 
   public final fun getSkyHorizonColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyHorizonColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyHorizonColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSkyCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyCurvePtr, NIL)
+    Internals.writeArguments(DOUBLE to curve.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSkyCurvePtr, NIL)
   }
 
   public final fun getSkyCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyCurvePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyCurvePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSkyEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSkyEnergyMultiplierPtr, NIL)
   }
 
   public final fun getSkyEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSkyCover(skyCover: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to skyCover)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyCoverPtr, NIL)
+    Internals.writeArguments(OBJECT to skyCover)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyCoverPtr, NIL)
   }
 
   public final fun getSkyCover(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyCoverPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyCoverPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setSkyCoverModulate(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkyCoverModulatePtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSkyCoverModulatePtr, NIL)
   }
 
   public final fun getSkyCoverModulate(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkyCoverModulatePtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkyCoverModulatePtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundBottomColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundBottomColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setGroundBottomColorPtr, NIL)
   }
 
   public final fun getGroundBottomColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundBottomColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroundBottomColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundHorizonColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundHorizonColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setGroundHorizonColorPtr, NIL)
   }
 
   public final fun getGroundHorizonColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundHorizonColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroundHorizonColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setGroundCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundCurvePtr, NIL)
+    Internals.writeArguments(DOUBLE to curve.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGroundCurvePtr, NIL)
   }
 
   public final fun getGroundCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundCurvePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroundCurvePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGroundEnergyMultiplier(energy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to energy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroundEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to energy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGroundEnergyMultiplierPtr, NIL)
   }
 
   public final fun getGroundEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroundEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGroundEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunAngleMax(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSunAngleMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSunAngleMaxPtr, NIL)
   }
 
   public final fun getSunAngleMax(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSunAngleMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSunAngleMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSunCurve(curve: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to curve.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSunCurvePtr, NIL)
+    Internals.writeArguments(DOUBLE to curve.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSunCurvePtr, NIL)
   }
 
   public final fun getSunCurve(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSunCurvePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSunCurvePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseDebanding(useDebanding: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useDebanding)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
+    Internals.writeArguments(BOOL to useDebanding)
+    Internals.callMethod(rawPtr, MethodBindings.setUseDebandingPtr, NIL)
   }
 
   public final fun getUseDebanding(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseDebandingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnergyMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2920490490)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_top_color", 2920490490)
 
     public val getSkyTopColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3444240500)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_top_color", 3444240500)
 
     public val setSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2920490490)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_horizon_color", 2920490490)
 
     public val getSkyHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3444240500)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_horizon_color", 3444240500)
 
     public val setSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_curve", 373806689)
 
     public val getSkyCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_curve", 1740695150)
 
     public val setSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_energy_multiplier", 373806689)
 
     public val getSkyEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_energy_multiplier", 1740695150)
 
     public val setSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4051416890)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover", 4051416890)
 
     public val getSkyCoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3635182373)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover", 3635182373)
 
     public val setSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2920490490)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sky_cover_modulate", 2920490490)
 
     public val getSkyCoverModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3444240500)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sky_cover_modulate", 3444240500)
 
     public val setGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2920490490)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_bottom_color", 2920490490)
 
     public val getGroundBottomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3444240500)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_bottom_color", 3444240500)
 
     public val setGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2920490490)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_horizon_color", 2920490490)
 
     public val getGroundHorizonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3444240500)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_horizon_color", 3444240500)
 
     public val setGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_curve", 373806689)
 
     public val getGroundCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_curve", 1740695150)
 
     public val setGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_ground_energy_multiplier", 373806689)
 
     public val getGroundEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_ground_energy_multiplier", 1740695150)
 
     public val setSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_angle_max", 373806689)
 
     public val getSunAngleMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_angle_max", 1740695150)
 
     public val setSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_sun_curve", 373806689)
 
     public val getSunCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_sun_curve", 1740695150)
 
     public val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2586408642)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_use_debanding", 2586408642)
 
     public val getUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36873697)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_use_debanding", 36873697)
 
     public val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "set_energy_multiplier", 373806689)
 
     public val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("ProceduralSkyMaterial", "get_energy_multiplier", 1740695150)
   }
 }

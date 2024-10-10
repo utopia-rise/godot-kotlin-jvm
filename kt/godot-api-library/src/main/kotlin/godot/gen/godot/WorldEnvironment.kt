@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -65,61 +64,61 @@ public open class WorldEnvironment : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WORLDENVIRONMENT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WORLDENVIRONMENT_INDEX, scriptIndex)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {
-    TransferContext.writeArguments(OBJECT to env)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
+    Internals.writeArguments(OBJECT to env)
+    Internals.callMethod(rawPtr, MethodBindings.setEnvironmentPtr, NIL)
   }
 
   public final fun getEnvironment(): Environment? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Environment?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnvironmentPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Environment?)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
-    TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    Internals.writeArguments(OBJECT to cameraAttributes)
+    Internals.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   public final fun setCompositor(compositor: Compositor?): Unit {
-    TransferContext.writeArguments(OBJECT to compositor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
+    Internals.writeArguments(OBJECT to compositor)
+    Internals.callMethod(rawPtr, MethodBindings.setCompositorPtr, NIL)
   }
 
   public final fun getCompositor(): Compositor? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Compositor?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCompositorPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Compositor?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_environment", 4143518816)
+        Internals.getMethodBindPtr("WorldEnvironment", "set_environment", 4143518816)
 
     public val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_environment", 3082064660)
+        Internals.getMethodBindPtr("WorldEnvironment", "get_environment", 3082064660)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_camera_attributes", 2817810567)
+        Internals.getMethodBindPtr("WorldEnvironment", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_camera_attributes", 3921283215)
+        Internals.getMethodBindPtr("WorldEnvironment", "get_camera_attributes", 3921283215)
 
     public val setCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_compositor", 1586754307)
+        Internals.getMethodBindPtr("WorldEnvironment", "set_compositor", 1586754307)
 
     public val getCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_compositor", 3647707413)
+        Internals.getMethodBindPtr("WorldEnvironment", "get_compositor", 3647707413)
   }
 }

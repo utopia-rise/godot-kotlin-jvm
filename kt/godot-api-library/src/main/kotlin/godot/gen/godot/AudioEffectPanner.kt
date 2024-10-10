@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -38,27 +37,27 @@ public open class AudioEffectPanner : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTPANNER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTPANNER_INDEX, scriptIndex)
   }
 
   public final fun setPan(cpanume: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to cpanume.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
+    Internals.writeArguments(DOUBLE to cpanume.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPanPtr, NIL)
   }
 
   public final fun getPan(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPanPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPanner", "set_pan", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPanner", "set_pan", 373806689)
 
     public val getPanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPanner", "get_pan", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPanner", "get_pan", 1740695150)
   }
 }

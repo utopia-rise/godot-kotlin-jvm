@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -37,18 +36,18 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMOP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETRANSFORMOP_INDEX, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {
-    TransferContext.writeArguments(LONG to op.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
+    Internals.writeArguments(LONG to op.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOperatorPtr, NIL)
   }
 
   public final fun getOperator(): Operator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
-    return VisualShaderNodeTransformOp.Operator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOperatorPtr, LONG)
+    return VisualShaderNodeTransformOp.Operator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Operator(
@@ -110,9 +109,9 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "set_operator", 2287310733)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformOp", "set_operator", 2287310733)
 
     public val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformOp", "get_operator", 1238663601)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformOp", "get_operator", 1238663601)
   }
 }

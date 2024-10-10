@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -73,78 +72,78 @@ public open class CapsuleMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAPSULEMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAPSULEMESH_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadiusPtr, NIL)
   }
 
   public final fun getRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightPtr, NIL)
   }
 
   public final fun getHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialSegments(segments: Int): Unit {
-    TransferContext.writeArguments(LONG to segments.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
+    Internals.writeArguments(LONG to segments.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
 
   public final fun getRadialSegments(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialSegmentsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRings(rings: Int): Unit {
-    TransferContext.writeArguments(LONG to rings.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
+    Internals.writeArguments(LONG to rings.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRingsPtr, NIL)
   }
 
   public final fun getRings(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRingsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "set_radius", 373806689)
+        Internals.getMethodBindPtr("CapsuleMesh", "set_radius", 373806689)
 
     public val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "get_radius", 1740695150)
+        Internals.getMethodBindPtr("CapsuleMesh", "get_radius", 1740695150)
 
     public val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "set_height", 373806689)
+        Internals.getMethodBindPtr("CapsuleMesh", "set_height", 373806689)
 
     public val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "get_height", 1740695150)
+        Internals.getMethodBindPtr("CapsuleMesh", "get_height", 1740695150)
 
     public val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "set_radial_segments", 1286410249)
+        Internals.getMethodBindPtr("CapsuleMesh", "set_radial_segments", 1286410249)
 
     public val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "get_radial_segments", 3905245786)
+        Internals.getMethodBindPtr("CapsuleMesh", "get_radial_segments", 3905245786)
 
     public val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "set_rings", 1286410249)
+        Internals.getMethodBindPtr("CapsuleMesh", "set_rings", 1286410249)
 
     public val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CapsuleMesh", "get_rings", 3905245786)
+        Internals.getMethodBindPtr("CapsuleMesh", "get_rings", 3905245786)
   }
 }

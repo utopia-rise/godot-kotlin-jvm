@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -36,7 +35,7 @@ private const val ENGINE_CLASS_MUTEX_INDEX: Int = 350
 @GodotBaseType
 public open class Mutex : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MUTEX_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MUTEX_INDEX, scriptIndex)
   }
 
   /**
@@ -45,8 +44,8 @@ public open class Mutex : RefCounted() {
    * mutex.
    */
   public final fun lock(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.lockPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.lockPtr, NIL)
   }
 
   /**
@@ -54,9 +53,9 @@ public open class Mutex : RefCounted() {
    * **Note:** This function returns `true` if the thread already has ownership of the mutex.
    */
   public final fun tryLock(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.tryLockPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.tryLockPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -67,17 +66,17 @@ public open class Mutex : RefCounted() {
    * to unlock a non-locked mutex, is wrong and may causes crashes or deadlocks.
    */
   public final fun unlock(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unlockPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.unlockPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val lockPtr: VoidPtr = TypeManager.getMethodBindPtr("Mutex", "lock", 3218959716)
+    public val lockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "lock", 3218959716)
 
-    public val tryLockPtr: VoidPtr = TypeManager.getMethodBindPtr("Mutex", "try_lock", 2240911060)
+    public val tryLockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "try_lock", 2240911060)
 
-    public val unlockPtr: VoidPtr = TypeManager.getMethodBindPtr("Mutex", "unlock", 3218959716)
+    public val unlockPtr: VoidPtr = Internals.getMethodBindPtr("Mutex", "unlock", 3218959716)
   }
 }

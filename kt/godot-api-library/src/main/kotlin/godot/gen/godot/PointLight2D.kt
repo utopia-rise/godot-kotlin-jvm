@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -78,7 +77,7 @@ public open class PointLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_POINTLIGHT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_POINTLIGHT2D_INDEX, scriptIndex)
   }
 
   /**
@@ -106,57 +105,57 @@ public open class PointLight2D : Light2D() {
 
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setTextureOffset(textureOffset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to textureOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to textureOffset)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureOffsetPtr, NIL)
   }
 
   public final fun getTextureOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTextureScale(textureScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to textureScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to textureScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTextureScalePtr, NIL)
   }
 
   public final fun getTextureScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("PointLight2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("PointLight2D", "get_texture", 3635182373)
 
     public val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset", 743155724)
+        Internals.getMethodBindPtr("PointLight2D", "set_texture_offset", 743155724)
 
     public val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset", 3341600327)
+        Internals.getMethodBindPtr("PointLight2D", "get_texture_offset", 3341600327)
 
     public val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale", 373806689)
+        Internals.getMethodBindPtr("PointLight2D", "set_texture_scale", 373806689)
 
     public val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale", 1740695150)
+        Internals.getMethodBindPtr("PointLight2D", "get_texture_scale", 1740695150)
   }
 }

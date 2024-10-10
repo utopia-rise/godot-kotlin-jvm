@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -17,7 +16,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -134,7 +133,7 @@ private const val ENGINE_CLASS_CONFIGFILE_INDEX: Int = 192
 @GodotBaseType
 public open class ConfigFile : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONFIGFILE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONFIGFILE_INDEX, scriptIndex)
   }
 
   /**
@@ -147,8 +146,8 @@ public open class ConfigFile : RefCounted() {
     key: String,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING to section, STRING to key, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+    Internals.writeArguments(STRING to section, STRING to key, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
   }
 
   /**
@@ -162,36 +161,36 @@ public open class ConfigFile : RefCounted() {
     key: String,
     default: Any? = null,
   ): Any? {
-    TransferContext.writeArguments(STRING to section, STRING to key, ANY to default)
-    TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING to section, STRING to key, ANY to default)
+    Internals.callMethod(rawPtr, MethodBindings.getValuePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
    * Returns `true` if the specified section exists.
    */
   public final fun hasSection(section: String): Boolean {
-    TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to section)
+    Internals.callMethod(rawPtr, MethodBindings.hasSectionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the specified section-key pair exists.
    */
   public final fun hasSectionKey(section: String, key: String): Boolean {
-    TransferContext.writeArguments(STRING to section, STRING to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSectionKeyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to section, STRING to key)
+    Internals.callMethod(rawPtr, MethodBindings.hasSectionKeyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns an array of all defined section identifiers.
    */
   public final fun getSections(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionsPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSectionsPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -199,9 +198,9 @@ public open class ConfigFile : RefCounted() {
    * returns an empty array if the section does not exist.
    */
   public final fun getSectionKeys(section: String): PackedStringArray {
-    TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSectionKeysPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments(STRING to section)
+    Internals.callMethod(rawPtr, MethodBindings.getSectionKeysPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
@@ -209,8 +208,8 @@ public open class ConfigFile : RefCounted() {
    * section does not exist.
    */
   public final fun eraseSection(section: String): Unit {
-    TransferContext.writeArguments(STRING to section)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseSectionPtr, NIL)
+    Internals.writeArguments(STRING to section)
+    Internals.callMethod(rawPtr, MethodBindings.eraseSectionPtr, NIL)
   }
 
   /**
@@ -218,8 +217,8 @@ public open class ConfigFile : RefCounted() {
    * exist.
    */
   public final fun eraseSectionKey(section: String, key: String): Unit {
-    TransferContext.writeArguments(STRING to section, STRING to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.eraseSectionKeyPtr, NIL)
+    Internals.writeArguments(STRING to section, STRING to key)
+    Internals.callMethod(rawPtr, MethodBindings.eraseSectionKeyPtr, NIL)
   }
 
   /**
@@ -228,9 +227,9 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun load(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.loadPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -239,9 +238,9 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun parse(`data`: String): Error {
-    TransferContext.writeArguments(STRING to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to data)
+    Internals.callMethod(rawPtr, MethodBindings.parsePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -250,18 +249,18 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun save(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.savePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.savePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Obtain the text version of this config file (the same text that would be written to a file).
    */
   public final fun encodeToText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.encodeToTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.encodeToTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -271,9 +270,9 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun loadEncrypted(path: String, key: PackedByteArray): Error {
-    TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
+    Internals.callMethod(rawPtr, MethodBindings.loadEncryptedPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -283,9 +282,9 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun loadEncryptedPass(path: String, password: String): Error {
-    TransferContext.writeArguments(STRING to path, STRING to password)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadEncryptedPassPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, STRING to password)
+    Internals.callMethod(rawPtr, MethodBindings.loadEncryptedPassPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -294,9 +293,9 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun saveEncrypted(path: String, key: PackedByteArray): Error {
-    TransferContext.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, PACKED_BYTE_ARRAY to key)
+    Internals.callMethod(rawPtr, MethodBindings.saveEncryptedPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -306,67 +305,67 @@ public open class ConfigFile : RefCounted() {
    * Returns [OK] on success, or one of the other [Error] values if the operation failed.
    */
   public final fun saveEncryptedPass(path: String, password: String): Error {
-    TransferContext.writeArguments(STRING to path, STRING to password)
-    TransferContext.callMethod(rawPtr, MethodBindings.saveEncryptedPassPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path, STRING to password)
+    Internals.callMethod(rawPtr, MethodBindings.saveEncryptedPassPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Removes the entire contents of the config.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "set_value", 2504492430)
+        Internals.getMethodBindPtr("ConfigFile", "set_value", 2504492430)
 
     public val getValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_value", 89809366)
+        Internals.getMethodBindPtr("ConfigFile", "get_value", 89809366)
 
     public val hasSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "has_section", 3927539163)
+        Internals.getMethodBindPtr("ConfigFile", "has_section", 3927539163)
 
     public val hasSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "has_section_key", 820780508)
+        Internals.getMethodBindPtr("ConfigFile", "has_section_key", 820780508)
 
     public val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_sections", 1139954409)
+        Internals.getMethodBindPtr("ConfigFile", "get_sections", 1139954409)
 
     public val getSectionKeysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "get_section_keys", 4291131558)
+        Internals.getMethodBindPtr("ConfigFile", "get_section_keys", 4291131558)
 
     public val eraseSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section", 83702148)
+        Internals.getMethodBindPtr("ConfigFile", "erase_section", 83702148)
 
     public val eraseSectionKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "erase_section_key", 3186203200)
+        Internals.getMethodBindPtr("ConfigFile", "erase_section_key", 3186203200)
 
-    public val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "load", 166001499)
+    public val loadPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "load", 166001499)
 
-    public val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "parse", 166001499)
+    public val parsePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "parse", 166001499)
 
-    public val savePtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "save", 166001499)
+    public val savePtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "save", 166001499)
 
     public val encodeToTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "encode_to_text", 201670096)
+        Internals.getMethodBindPtr("ConfigFile", "encode_to_text", 201670096)
 
     public val loadEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted", 887037711)
+        Internals.getMethodBindPtr("ConfigFile", "load_encrypted", 887037711)
 
     public val loadEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852856452)
+        Internals.getMethodBindPtr("ConfigFile", "load_encrypted_pass", 852856452)
 
     public val saveEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted", 887037711)
+        Internals.getMethodBindPtr("ConfigFile", "save_encrypted", 887037711)
 
     public val saveEncryptedPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852856452)
+        Internals.getMethodBindPtr("ConfigFile", "save_encrypted_pass", 852856452)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ConfigFile", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("ConfigFile", "clear", 3218959716)
   }
 }

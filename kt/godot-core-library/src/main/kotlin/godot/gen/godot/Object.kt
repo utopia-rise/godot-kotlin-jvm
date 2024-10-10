@@ -13,7 +13,6 @@ import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -24,7 +23,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -98,7 +97,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OBJECT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OBJECT_INDEX, scriptIndex)
   }
 
   /**
@@ -108,9 +107,9 @@ public open class Object : KtObject() {
    */
   @JvmName("getGodotClass")
   public final fun getClass(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClassPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClassPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -134,9 +133,9 @@ public open class Object : KtObject() {
    * **Note:** This method ignores `class_name` declarations in the object's script.
    */
   public final fun isClass(`class`: String): Boolean {
-    TransferContext.writeArguments(STRING to `class`)
-    TransferContext.callMethod(rawPtr, MethodBindings.isClassPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to `class`)
+    Internals.callMethod(rawPtr, MethodBindings.isClassPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -161,8 +160,8 @@ public open class Object : KtObject() {
    * on each call.
    */
   public final fun `set`(`property`: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPtr, NIL)
+    Internals.writeArguments(STRING_NAME to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setPtr, NIL)
   }
 
   /**
@@ -187,9 +186,9 @@ public open class Object : KtObject() {
    * on each call.
    */
   public final fun `get`(`property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.getPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.getPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -217,8 +216,8 @@ public open class Object : KtObject() {
    * [StringName] on each call.
    */
   public final fun setIndexed(propertyPath: NodePath, `value`: Any?): Unit {
-    TransferContext.writeArguments(NODE_PATH to propertyPath, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndexedPtr, NIL)
+    Internals.writeArguments(NODE_PATH to propertyPath, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setIndexedPtr, NIL)
   }
 
   /**
@@ -248,9 +247,9 @@ public open class Object : KtObject() {
    * sub-property paths. In the context of nodes, use [Node.getNodeAndResource] instead.
    */
   public final fun getIndexed(propertyPath: NodePath): Any? {
-    TransferContext.writeArguments(NODE_PATH to propertyPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexedPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(NODE_PATH to propertyPath)
+    Internals.callMethod(rawPtr, MethodBindings.getIndexedPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -268,9 +267,9 @@ public open class Object : KtObject() {
    * attributes.
    */
   public final fun getPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPropertyListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPropertyListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -286,9 +285,9 @@ public open class Object : KtObject() {
    * [getPropertyList], although not all entries are used.
    */
   public final fun getMethodList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMethodListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMethodListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -299,9 +298,9 @@ public open class Object : KtObject() {
    * implemented, this method returns `false`.
    */
   public final fun propertyCanRevert(`property`: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyCanRevertPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.propertyCanRevertPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -312,9 +311,9 @@ public open class Object : KtObject() {
    * implemented, this method returns `null`.
    */
   public final fun propertyGetRevert(`property`: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to property)
-    TransferContext.callMethod(rawPtr, MethodBindings.propertyGetRevertPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to property)
+    Internals.callMethod(rawPtr, MethodBindings.propertyGetRevertPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -348,8 +347,8 @@ public open class Object : KtObject() {
    */
   @JvmOverloads
   public final fun notification(what: Int, reversed: Boolean = false): Unit {
-    TransferContext.writeArguments(LONG to what.toLong(), BOOL to reversed)
-    TransferContext.callMethod(rawPtr, MethodBindings.notificationPtr, NIL)
+    Internals.writeArguments(LONG to what.toLong(), BOOL to reversed)
+    Internals.callMethod(rawPtr, MethodBindings.notificationPtr, NIL)
   }
 
   /**
@@ -357,9 +356,9 @@ public open class Object : KtObject() {
    * [_toString] to customize the string representation of the object.
    */
   public final override fun toString(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.toStringPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.toStringPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -369,9 +368,9 @@ public open class Object : KtObject() {
    * object if the ID is sent over a network, or loaded from a file at a later time.
    */
   public final fun getInstanceId(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -381,17 +380,17 @@ public open class Object : KtObject() {
    * lost. Built-in property values are still kept.
    */
   public final fun setScript(script: Any?): Unit {
-    TransferContext.writeArguments(ANY to script)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScriptPtr, NIL)
+    Internals.writeArguments(ANY to script)
+    Internals.callMethod(rawPtr, MethodBindings.setScriptPtr, NIL)
   }
 
   /**
    * Returns the object's [Script] instance, or `null` if no script is attached.
    */
   public final fun getScript(): Any? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScriptPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScriptPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -406,8 +405,8 @@ public open class Object : KtObject() {
    * still be found by this method.
    */
   public final fun setMeta(name: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetaPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setMetaPtr, NIL)
   }
 
   /**
@@ -420,8 +419,8 @@ public open class Object : KtObject() {
    * still be found by this method.
    */
   public final fun removeMeta(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeMetaPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.removeMetaPtr, NIL)
   }
 
   /**
@@ -435,9 +434,9 @@ public open class Object : KtObject() {
    */
   @JvmOverloads
   public final fun getMeta(name: StringName, default: Any? = null): Any? {
-    TransferContext.writeArguments(STRING_NAME to name, ANY to default)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetaPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to name, ANY to default)
+    Internals.callMethod(rawPtr, MethodBindings.getMetaPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -450,18 +449,18 @@ public open class Object : KtObject() {
    * still be found by this method.
    */
   public final fun hasMeta(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMetaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasMetaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the object's metadata entry names as a [PackedStringArray].
    */
   public final fun getMetaList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetaListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMetaListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -496,8 +495,8 @@ public open class Object : KtObject() {
   @JvmOverloads
   public final fun addUserSignal(signal: String, arguments: VariantArray<Any?> =
       godot.core.variantArrayOf()): Unit {
-    TransferContext.writeArguments(STRING to signal, ARRAY to arguments)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUserSignalPtr, NIL)
+    Internals.writeArguments(STRING to signal, ARRAY to arguments)
+    Internals.callMethod(rawPtr, MethodBindings.addUserSignalPtr, NIL)
   }
 
   /**
@@ -505,9 +504,9 @@ public open class Object : KtObject() {
    * [addUserSignal] are included. See also [removeUserSignal].
    */
   public final fun hasUserSignal(signal: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasUserSignalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.hasUserSignalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -515,8 +514,8 @@ public open class Object : KtObject() {
    * [hasUserSignal].
    */
   public final fun removeUserSignal(signal: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeUserSignalPtr, NIL)
+    Internals.writeArguments(STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.removeUserSignalPtr, NIL)
   }
 
   /**
@@ -542,9 +541,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun emitSignal(signal: StringName, vararg __var_args: Any?): Error {
-    TransferContext.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.emitSignalPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING_NAME to signal,  *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.emitSignalPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -567,9 +566,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun call(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.callPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -611,9 +610,9 @@ public open class Object : KtObject() {
    * [/codeblock]
    */
   public final fun callDeferred(method: StringName, vararg __var_args: Any?): Any? {
-    TransferContext.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callDeferredPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.callDeferredPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -648,8 +647,8 @@ public open class Object : KtObject() {
    * on each call.
    */
   public final fun setDeferred(`property`: StringName, `value`: Any?): Unit {
-    TransferContext.writeArguments(STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeferredPtr, NIL)
+    Internals.writeArguments(STRING_NAME to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setDeferredPtr, NIL)
   }
 
   /**
@@ -673,9 +672,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun callv(method: StringName, argArray: VariantArray<Any?>): Any? {
-    TransferContext.writeArguments(STRING_NAME to method, ARRAY to argArray)
-    TransferContext.callMethod(rawPtr, MethodBindings.callvPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to method, ARRAY to argArray)
+    Internals.callMethod(rawPtr, MethodBindings.callvPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -685,9 +684,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun hasMethod(method: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMethodPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to method)
+    Internals.callMethod(rawPtr, MethodBindings.hasMethodPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -697,9 +696,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun getMethodArgumentCount(method: StringName): Int {
-    TransferContext.writeArguments(STRING_NAME to method)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMethodArgumentCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING_NAME to method)
+    Internals.callMethod(rawPtr, MethodBindings.getMethodArgumentCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -709,9 +708,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun hasSignal(signal: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSignalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.hasSignalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -720,9 +719,9 @@ public open class Object : KtObject() {
    * returned values of [getMethodList].
    */
   public final fun getSignalList(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSignalListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSignalListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -734,9 +733,9 @@ public open class Object : KtObject() {
    */
   public final fun getSignalConnectionList(signal: StringName):
       VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(STRING_NAME to signal)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSignalConnectionListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments(STRING_NAME to signal)
+    Internals.callMethod(rawPtr, MethodBindings.getSignalConnectionListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -747,9 +746,9 @@ public open class Object : KtObject() {
    * - `flags` is a combination of [ConnectFlags].
    */
   public final fun getIncomingConnections(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIncomingConnectionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIncomingConnectionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -913,9 +912,9 @@ public open class Object : KtObject() {
     callable: Callable,
     flags: Long = 0,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
-    TransferContext.callMethod(rawPtr, MethodBindings.connectPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
+    Internals.callMethod(rawPtr, MethodBindings.connectPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -923,8 +922,8 @@ public open class Object : KtObject() {
    * generates an error. Use [isConnected] to make sure that the connection exists.
    */
   public final fun disconnect(signal: StringName, callable: Callable): Unit {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.disconnectPtr, NIL)
+    Internals.writeArguments(STRING_NAME to signal, CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.disconnectPtr, NIL)
   }
 
   /**
@@ -934,9 +933,9 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun isConnected(signal: StringName, callable: Callable): Boolean {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.isConnectedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to signal, CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.isConnectedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -944,17 +943,17 @@ public open class Object : KtObject() {
    * connections will not work, until it is set to `false`.
    */
   public final fun setBlockSignals(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlockSignalsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setBlockSignalsPtr, NIL)
   }
 
   /**
    * Returns `true` if the object is blocking its signals from being emitted. See [setBlockSignals].
    */
   public final fun isBlockingSignals(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isBlockingSignalsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isBlockingSignalsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -962,8 +961,8 @@ public open class Object : KtObject() {
    * that the Inspector and editor plugins are properly updated.
    */
   public final fun notifyPropertyListChanged(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.notifyPropertyListChangedPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.notifyPropertyListChangedPtr, NIL)
   }
 
   /**
@@ -971,8 +970,8 @@ public open class Object : KtObject() {
    * default. See also [canTranslateMessages].
    */
   public final fun setMessageTranslation(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMessageTranslationPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMessageTranslationPtr, NIL)
   }
 
   /**
@@ -980,9 +979,9 @@ public open class Object : KtObject() {
    * [setMessageTranslation].
    */
   public final fun canTranslateMessages(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.canTranslateMessagesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.canTranslateMessagesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1000,9 +999,9 @@ public open class Object : KtObject() {
    */
   @JvmOverloads
   public final fun tr(message: StringName, context: StringName = StringName("")): String {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.trPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING_NAME to message, STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.trPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1027,18 +1026,18 @@ public open class Object : KtObject() {
     n: Int,
     context: StringName = StringName(""),
   ): String {
-    TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
-    TransferContext.callMethod(rawPtr, MethodBindings.trNPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(STRING_NAME to message, STRING_NAME to pluralMessage, LONG to n.toLong(), STRING_NAME to context)
+    Internals.callMethod(rawPtr, MethodBindings.trNPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if the [Node.queueFree] method was called for the object.
    */
   public final fun isQueuedForDeletion(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isQueuedForDeletionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isQueuedForDeletionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1047,8 +1046,8 @@ public open class Object : KtObject() {
    * the user from freeing objects when they are not intended to.
    */
   public final fun cancelFree(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cancelFreePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.cancelFreePtr, NIL)
   }
 
   public enum class ConnectFlags(
@@ -1108,130 +1107,129 @@ public open class Object : KtObject() {
   }
 
   internal object MethodBindings {
-    public val getClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_class", 201670096)
+    public val getClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_class", 201670096)
 
-    public val isClassPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "is_class", 3927539163)
+    public val isClassPtr: VoidPtr = Internals.getMethodBindPtr("Object", "is_class", 3927539163)
 
-    public val setPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set", 3776071444)
+    public val setPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set", 3776071444)
 
-    public val getPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get", 2760726917)
+    public val getPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get", 2760726917)
 
     public val setIndexedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_indexed", 3500910842)
+        Internals.getMethodBindPtr("Object", "set_indexed", 3500910842)
 
     public val getIndexedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_indexed", 4006125091)
+        Internals.getMethodBindPtr("Object", "get_indexed", 4006125091)
 
     public val getPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_property_list", 3995934104)
+        Internals.getMethodBindPtr("Object", "get_property_list", 3995934104)
 
     public val getMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_method_list", 3995934104)
+        Internals.getMethodBindPtr("Object", "get_method_list", 3995934104)
 
     public val propertyCanRevertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "property_can_revert", 2619796661)
+        Internals.getMethodBindPtr("Object", "property_can_revert", 2619796661)
 
     public val propertyGetRevertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "property_get_revert", 2760726917)
+        Internals.getMethodBindPtr("Object", "property_get_revert", 2760726917)
 
     public val notificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "notification", 4023243586)
+        Internals.getMethodBindPtr("Object", "notification", 4023243586)
 
-    public val toStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "to_string", 2841200299)
+    public val toStringPtr: VoidPtr = Internals.getMethodBindPtr("Object", "to_string", 2841200299)
 
     public val getInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_instance_id", 3905245786)
+        Internals.getMethodBindPtr("Object", "get_instance_id", 3905245786)
 
     public val setScriptPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_script", 1114965689)
+        Internals.getMethodBindPtr("Object", "set_script", 1114965689)
 
     public val getScriptPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_script", 1214101251)
+        Internals.getMethodBindPtr("Object", "get_script", 1214101251)
 
-    public val setMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "set_meta", 3776071444)
+    public val setMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "set_meta", 3776071444)
 
     public val removeMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "remove_meta", 3304788590)
+        Internals.getMethodBindPtr("Object", "remove_meta", 3304788590)
 
-    public val getMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "get_meta", 3990617847)
+    public val getMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "get_meta", 3990617847)
 
-    public val hasMetaPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "has_meta", 2619796661)
+    public val hasMetaPtr: VoidPtr = Internals.getMethodBindPtr("Object", "has_meta", 2619796661)
 
     public val getMetaListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_meta_list", 3995934104)
+        Internals.getMethodBindPtr("Object", "get_meta_list", 3995934104)
 
     public val addUserSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "add_user_signal", 85656714)
+        Internals.getMethodBindPtr("Object", "add_user_signal", 85656714)
 
     public val hasUserSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "has_user_signal", 2619796661)
+        Internals.getMethodBindPtr("Object", "has_user_signal", 2619796661)
 
     public val removeUserSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "remove_user_signal", 3304788590)
+        Internals.getMethodBindPtr("Object", "remove_user_signal", 3304788590)
 
     public val emitSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "emit_signal", 4047867050)
+        Internals.getMethodBindPtr("Object", "emit_signal", 4047867050)
 
-    public val callPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "call", 3400424181)
+    public val callPtr: VoidPtr = Internals.getMethodBindPtr("Object", "call", 3400424181)
 
     public val callDeferredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "call_deferred", 3400424181)
+        Internals.getMethodBindPtr("Object", "call_deferred", 3400424181)
 
     public val setDeferredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_deferred", 3776071444)
+        Internals.getMethodBindPtr("Object", "set_deferred", 3776071444)
 
-    public val callvPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "callv", 1260104456)
+    public val callvPtr: VoidPtr = Internals.getMethodBindPtr("Object", "callv", 1260104456)
 
     public val hasMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "has_method", 2619796661)
+        Internals.getMethodBindPtr("Object", "has_method", 2619796661)
 
     public val getMethodArgumentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_method_argument_count", 2458036349)
+        Internals.getMethodBindPtr("Object", "get_method_argument_count", 2458036349)
 
     public val hasSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "has_signal", 2619796661)
+        Internals.getMethodBindPtr("Object", "has_signal", 2619796661)
 
     public val getSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_signal_list", 3995934104)
+        Internals.getMethodBindPtr("Object", "get_signal_list", 3995934104)
 
     public val getSignalConnectionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_signal_connection_list", 3147814860)
+        Internals.getMethodBindPtr("Object", "get_signal_connection_list", 3147814860)
 
     public val getIncomingConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "get_incoming_connections", 3995934104)
+        Internals.getMethodBindPtr("Object", "get_incoming_connections", 3995934104)
 
-    public val connectPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "connect", 1518946055)
+    public val connectPtr: VoidPtr = Internals.getMethodBindPtr("Object", "connect", 1518946055)
 
     public val disconnectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "disconnect", 1874754934)
+        Internals.getMethodBindPtr("Object", "disconnect", 1874754934)
 
     public val isConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_connected", 768136979)
+        Internals.getMethodBindPtr("Object", "is_connected", 768136979)
 
     public val setBlockSignalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_block_signals", 2586408642)
+        Internals.getMethodBindPtr("Object", "set_block_signals", 2586408642)
 
     public val isBlockingSignalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_blocking_signals", 36873697)
+        Internals.getMethodBindPtr("Object", "is_blocking_signals", 36873697)
 
     public val notifyPropertyListChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "notify_property_list_changed", 3218959716)
+        Internals.getMethodBindPtr("Object", "notify_property_list_changed", 3218959716)
 
     public val setMessageTranslationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "set_message_translation", 2586408642)
+        Internals.getMethodBindPtr("Object", "set_message_translation", 2586408642)
 
     public val canTranslateMessagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "can_translate_messages", 36873697)
+        Internals.getMethodBindPtr("Object", "can_translate_messages", 36873697)
 
-    public val trPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr", 2475554935)
+    public val trPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr", 2475554935)
 
-    public val trNPtr: VoidPtr = TypeManager.getMethodBindPtr("Object", "tr_n", 4021311862)
+    public val trNPtr: VoidPtr = Internals.getMethodBindPtr("Object", "tr_n", 4021311862)
 
     public val isQueuedForDeletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "is_queued_for_deletion", 36873697)
+        Internals.getMethodBindPtr("Object", "is_queued_for_deletion", 36873697)
 
     public val cancelFreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Object", "cancel_free", 3218959716)
+        Internals.getMethodBindPtr("Object", "cancel_free", 3218959716)
   }
 }

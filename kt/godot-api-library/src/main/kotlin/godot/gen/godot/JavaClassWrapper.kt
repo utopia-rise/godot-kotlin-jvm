@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -29,7 +28,7 @@ private const val ENGINE_CLASS_JAVACLASSWRAPPER_INDEX: Int = 26
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_JAVACLASSWRAPPER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_JAVACLASSWRAPPER_INDEX)
   }
 
   /**
@@ -40,13 +39,12 @@ public object JavaClassWrapper : Object() {
    */
   @JvmStatic
   public final fun wrap(name: String): JavaClass? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as JavaClass?)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.wrapPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as JavaClass?)
   }
 
   internal object MethodBindings {
-    public val wrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap", 1124367868)
+    public val wrapPtr: VoidPtr = Internals.getMethodBindPtr("JavaClassWrapper", "wrap", 1124367868)
   }
 }

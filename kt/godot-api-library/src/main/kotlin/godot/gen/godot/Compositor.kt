@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -38,27 +37,27 @@ public open class Compositor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_COMPOSITOR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_COMPOSITOR_INDEX, scriptIndex)
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {
-    TransferContext.writeArguments(ARRAY to compositorEffects)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
+    Internals.writeArguments(ARRAY to compositorEffects)
+    Internals.callMethod(rawPtr, MethodBindings.setCompositorEffectsPtr, NIL)
   }
 
   public final fun getCompositorEffects(): VariantArray<CompositorEffect> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<CompositorEffect>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCompositorEffectsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<CompositorEffect>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "set_compositor_effects", 381264803)
+        Internals.getMethodBindPtr("Compositor", "set_compositor_effects", 381264803)
 
     public val getCompositorEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Compositor", "get_compositor_effects", 3995934104)
+        Internals.getMethodBindPtr("Compositor", "get_compositor_effects", 3995934104)
   }
 }

@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -23,7 +24,7 @@ private const val ENGINE_CLASS_JNISINGLETON_INDEX: Int = 305
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_JNISINGLETON_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_JNISINGLETON_INDEX, scriptIndex)
   }
 
   public companion object

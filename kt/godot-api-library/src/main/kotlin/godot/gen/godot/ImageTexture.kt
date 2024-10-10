@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -56,16 +55,16 @@ private const val ENGINE_CLASS_IMAGETEXTURE_INDEX: Int = 286
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_IMAGETEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_IMAGETEXTURE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the format of the texture, one of [Image.Format].
    */
   public final fun getFormat(): Image.Format {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return Image.Format.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return Image.Format.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -75,8 +74,8 @@ public open class ImageTexture : Texture2D() {
    * [update] instead for better performance.
    */
   public final fun setImage(image: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
+    Internals.writeArguments(OBJECT to image)
+    Internals.callMethod(rawPtr, MethodBindings.setImagePtr, NIL)
   }
 
   /**
@@ -88,16 +87,16 @@ public open class ImageTexture : Texture2D() {
    * than allocating additional memory for a new texture each time.
    */
   public final fun update(image: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to image)
-    TransferContext.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
+    Internals.writeArguments(OBJECT to image)
+    Internals.callMethod(rawPtr, MethodBindings.updatePtr, NIL)
   }
 
   /**
    * Resizes the texture to the specified dimensions.
    */
   public final fun setSizeOverride(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizeOverridePtr, NIL)
   }
 
   public companion object {
@@ -106,26 +105,25 @@ public open class ImageTexture : Texture2D() {
      * [Image].
      */
     public final fun createFromImage(image: Image?): ImageTexture? {
-      TransferContext.writeArguments(OBJECT to image)
-      TransferContext.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
-      return (TransferContext.readReturnValue(OBJECT) as ImageTexture?)
+      Internals.writeArguments(OBJECT to image)
+      Internals.callMethod(0, MethodBindings.createFromImagePtr, OBJECT)
+      return (Internals.readReturnValue(OBJECT) as ImageTexture?)
     }
   }
 
   internal object MethodBindings {
     public val createFromImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
+        Internals.getMethodBindPtr("ImageTexture", "create_from_image", 2775144163)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
+        Internals.getMethodBindPtr("ImageTexture", "get_format", 3847873762)
 
     public val setImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "set_image", 532598488)
+        Internals.getMethodBindPtr("ImageTexture", "set_image", 532598488)
 
-    public val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "update", 532598488)
+    public val updatePtr: VoidPtr = Internals.getMethodBindPtr("ImageTexture", "update", 532598488)
 
     public val setSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture", "set_size_override", 1130785943)
+        Internals.getMethodBindPtr("ImageTexture", "set_size_override", 1130785943)
   }
 }

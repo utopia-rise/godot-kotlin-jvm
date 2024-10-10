@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -63,61 +62,61 @@ public open class CameraTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAMERATEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERATEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setCameraFeedId(feedId: Int): Unit {
-    TransferContext.writeArguments(LONG to feedId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
+    Internals.writeArguments(LONG to feedId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
 
   public final fun getCameraFeedId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraFeedIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setWhichFeed(whichFeed: CameraServer.FeedImage): Unit {
-    TransferContext.writeArguments(LONG to whichFeed.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setWhichFeedPtr, NIL)
+    Internals.writeArguments(LONG to whichFeed.id)
+    Internals.callMethod(rawPtr, MethodBindings.setWhichFeedPtr, NIL)
   }
 
   public final fun getWhichFeed(): CameraServer.FeedImage {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getWhichFeedPtr, LONG)
-    return CameraServer.FeedImage.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getWhichFeedPtr, LONG)
+    return CameraServer.FeedImage.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCameraActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setCameraActivePtr, NIL)
   }
 
   public final fun getCameraActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_feed_id", 1286410249)
+        Internals.getMethodBindPtr("CameraTexture", "set_camera_feed_id", 1286410249)
 
     public val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_feed_id", 3905245786)
+        Internals.getMethodBindPtr("CameraTexture", "get_camera_feed_id", 3905245786)
 
     public val setWhichFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_which_feed", 1595299230)
+        Internals.getMethodBindPtr("CameraTexture", "set_which_feed", 1595299230)
 
     public val getWhichFeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_which_feed", 91039457)
+        Internals.getMethodBindPtr("CameraTexture", "get_which_feed", 91039457)
 
     public val setCameraActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "set_camera_active", 2586408642)
+        Internals.getMethodBindPtr("CameraTexture", "set_camera_active", 2586408642)
 
     public val getCameraActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraTexture", "get_camera_active", 36873697)
+        Internals.getMethodBindPtr("CameraTexture", "get_camera_active", 36873697)
   }
 }

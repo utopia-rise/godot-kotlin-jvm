@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Callable
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -79,7 +78,7 @@ private const val ENGINE_CLASS_WORKERTHREADPOOL_INDEX: Int = 24
 @GodotBaseType
 public object WorkerThreadPool : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_WORKERTHREADPOOL_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_WORKERTHREADPOOL_INDEX)
   }
 
   /**
@@ -98,9 +97,9 @@ public object WorkerThreadPool : Object() {
     highPriority: Boolean = false,
     description: String = "",
   ): Long {
-    TransferContext.writeArguments(CALLABLE to action, BOOL to highPriority, STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.addTaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(CALLABLE to action, BOOL to highPriority, STRING to description)
+    Internals.callMethod(rawPtr, MethodBindings.addTaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -109,9 +108,9 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun isTaskCompleted(taskId: Long): Boolean {
-    TransferContext.writeArguments(LONG to taskId)
-    TransferContext.callMethod(rawPtr, MethodBindings.isTaskCompletedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to taskId)
+    Internals.callMethod(rawPtr, MethodBindings.isTaskCompletedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -127,9 +126,9 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun waitForTaskCompletion(taskId: Long): Error {
-    TransferContext.writeArguments(LONG to taskId)
-    TransferContext.callMethod(rawPtr, MethodBindings.waitForTaskCompletionPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to taskId)
+    Internals.callMethod(rawPtr, MethodBindings.waitForTaskCompletionPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -155,9 +154,9 @@ public object WorkerThreadPool : Object() {
     highPriority: Boolean = false,
     description: String = "",
   ): Long {
-    TransferContext.writeArguments(CALLABLE to action, LONG to elements.toLong(), LONG to tasksNeeded.toLong(), BOOL to highPriority, STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.addGroupTaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(CALLABLE to action, LONG to elements.toLong(), LONG to tasksNeeded.toLong(), BOOL to highPriority, STRING to description)
+    Internals.callMethod(rawPtr, MethodBindings.addGroupTaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -167,9 +166,9 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun isGroupTaskCompleted(groupId: Long): Boolean {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(rawPtr, MethodBindings.isGroupTaskCompletedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to groupId)
+    Internals.callMethod(rawPtr, MethodBindings.isGroupTaskCompletedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -180,9 +179,9 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun getGroupProcessedElementCount(groupId: Long): Long {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(rawPtr, MethodBindings.getGroupProcessedElementCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to groupId)
+    Internals.callMethod(rawPtr, MethodBindings.getGroupProcessedElementCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -190,30 +189,30 @@ public object WorkerThreadPool : Object() {
    */
   @JvmStatic
   public final fun waitForGroupTaskCompletion(groupId: Long): Unit {
-    TransferContext.writeArguments(LONG to groupId)
-    TransferContext.callMethod(rawPtr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)
+    Internals.writeArguments(LONG to groupId)
+    Internals.callMethod(rawPtr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)
   }
 
   internal object MethodBindings {
     public val addTaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "add_task", 3745067146)
+        Internals.getMethodBindPtr("WorkerThreadPool", "add_task", 3745067146)
 
     public val isTaskCompletedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_task_completed", 1116898809)
+        Internals.getMethodBindPtr("WorkerThreadPool", "is_task_completed", 1116898809)
 
     public val waitForTaskCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_task_completion", 844576869)
+        Internals.getMethodBindPtr("WorkerThreadPool", "wait_for_task_completion", 844576869)
 
     public val addGroupTaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "add_group_task", 1801953219)
+        Internals.getMethodBindPtr("WorkerThreadPool", "add_group_task", 1801953219)
 
     public val isGroupTaskCompletedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "is_group_task_completed", 1116898809)
+        Internals.getMethodBindPtr("WorkerThreadPool", "is_group_task_completed", 1116898809)
 
     public val getGroupProcessedElementCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "get_group_processed_element_count", 923996154)
+        Internals.getMethodBindPtr("WorkerThreadPool", "get_group_processed_element_count", 923996154)
 
     public val waitForGroupTaskCompletionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_group_task_completion", 1286410249)
+        Internals.getMethodBindPtr("WorkerThreadPool", "wait_for_group_task_completion", 1286410249)
   }
 }

@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -37,7 +36,7 @@ private const val ENGINE_CLASS_STREAMPEERGZIP_INDEX: Int = 555
 @GodotBaseType
 public open class StreamPeerGZIP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STREAMPEERGZIP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STREAMPEERGZIP_INDEX, scriptIndex)
   }
 
   /**
@@ -46,9 +45,9 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   @JvmOverloads
   public final fun startCompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.startCompressionPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.startCompressionPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -57,41 +56,40 @@ public open class StreamPeerGZIP : StreamPeer() {
    */
   @JvmOverloads
   public final fun startDecompression(useDeflate: Boolean = false, bufferSize: Int = 65535): Error {
-    TransferContext.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.startDecompressionPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(BOOL to useDeflate, LONG to bufferSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.startDecompressionPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Finalizes the stream, compressing or decompressing any buffered chunk left.
    */
   public final fun finish(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.finishPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.finishPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Clears this stream, resetting the internal state.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val startCompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerGZIP", "start_compression", 781582770)
+        Internals.getMethodBindPtr("StreamPeerGZIP", "start_compression", 781582770)
 
     public val startDecompressionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerGZIP", "start_decompression", 781582770)
+        Internals.getMethodBindPtr("StreamPeerGZIP", "start_decompression", 781582770)
 
     public val finishPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerGZIP", "finish", 166280745)
+        Internals.getMethodBindPtr("StreamPeerGZIP", "finish", 166280745)
 
-    public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerGZIP", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("StreamPeerGZIP", "clear", 3218959716)
   }
 }

@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -55,44 +54,44 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {
-    TransferContext.writeArguments(OBJECT to multimesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
+    Internals.writeArguments(OBJECT to multimesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMultimeshPtr, NIL)
   }
 
   public final fun getMultimesh(): MultiMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMultimeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MultiMesh?)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh", 2246127404)
+        Internals.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh", 2246127404)
 
     public val getMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh", 1385450523)
+        Internals.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh", 1385450523)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_texture", 4051416890)
+        Internals.getMethodBindPtr("MultiMeshInstance2D", "set_texture", 4051416890)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_texture", 3635182373)
+        Internals.getMethodBindPtr("MultiMeshInstance2D", "get_texture", 3635182373)
   }
 }

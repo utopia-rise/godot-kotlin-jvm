@@ -10,10 +10,9 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -41,7 +40,7 @@ public open class CanvasModulate : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CANVASMODULATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CANVASMODULATE_INDEX, scriptIndex)
   }
 
   /**
@@ -69,23 +68,23 @@ public open class CanvasModulate : Node2D() {
 
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasModulate", "set_color", 2920490490)
+        Internals.getMethodBindPtr("CanvasModulate", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasModulate", "get_color", 3444240500)
+        Internals.getMethodBindPtr("CanvasModulate", "get_color", 3444240500)
   }
 }

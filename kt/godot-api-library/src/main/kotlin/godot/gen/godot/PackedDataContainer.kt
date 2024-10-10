@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -49,7 +48,7 @@ private const val ENGINE_CLASS_PACKEDDATACONTAINER_INDEX: Int = 396
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKEDDATACONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKEDDATACONTAINER_INDEX, scriptIndex)
   }
 
   /**
@@ -58,27 +57,27 @@ public open class PackedDataContainer : Resource() {
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
   public final fun pack(`value`: Any?): Error {
-    TransferContext.writeArguments(ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.packPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.packPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the size of the packed container (see [Array.size] and [Dictionary.size]).
    */
   public final fun size(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.sizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val packPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainer", "pack", 966674026)
+        Internals.getMethodBindPtr("PackedDataContainer", "pack", 966674026)
 
     public val sizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainer", "size", 3905245786)
+        Internals.getMethodBindPtr("PackedDataContainer", "size", 3905245786)
   }
 }

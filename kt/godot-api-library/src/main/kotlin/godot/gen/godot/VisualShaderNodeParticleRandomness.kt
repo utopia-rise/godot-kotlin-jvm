@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -38,18 +37,19 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX,
+        scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setOpTypePtr, NIL)
   }
 
   public final fun getOpType(): OpType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
-    return VisualShaderNodeParticleRandomness.OpType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOpTypePtr, LONG)
+    return VisualShaderNodeParticleRandomness.OpType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class OpType(
@@ -91,9 +91,9 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleRandomness", "set_op_type", 2060089061)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleRandomness", "set_op_type", 2060089061)
 
     public val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleRandomness", "get_op_type", 3597061078)
+        Internals.getMethodBindPtr("VisualShaderNodeParticleRandomness", "get_op_type", 3597061078)
   }
 }

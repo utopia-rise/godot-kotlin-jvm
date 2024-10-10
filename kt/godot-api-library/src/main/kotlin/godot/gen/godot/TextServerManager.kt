@@ -10,14 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Signal1
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -49,7 +48,7 @@ public object TextServerManager : Object() {
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_TEXTSERVERMANAGER_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_TEXTSERVERMANAGER_INDEX)
   }
 
   /**
@@ -57,8 +56,8 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun addInterface(`interface`: TextServer?): Unit {
-    TransferContext.writeArguments(OBJECT to `interface`)
-    TransferContext.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
+    Internals.writeArguments(OBJECT to `interface`)
+    Internals.callMethod(rawPtr, MethodBindings.addInterfacePtr, NIL)
   }
 
   /**
@@ -66,9 +65,9 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getInterfaceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInterfaceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -77,8 +76,8 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun removeInterface(`interface`: TextServer?): Unit {
-    TransferContext.writeArguments(OBJECT to `interface`)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
+    Internals.writeArguments(OBJECT to `interface`)
+    Internals.callMethod(rawPtr, MethodBindings.removeInterfacePtr, NIL)
   }
 
   /**
@@ -86,9 +85,9 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getInterface(idx: Int): TextServer? {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TextServer?)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInterfacePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TextServer?)
   }
 
   /**
@@ -96,9 +95,9 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getInterfaces(): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInterfacesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -106,9 +105,9 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun findInterface(name: String): TextServer? {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TextServer?)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.findInterfacePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TextServer?)
   }
 
   /**
@@ -116,8 +115,8 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun setPrimaryInterface(index: TextServer?): Unit {
-    TransferContext.writeArguments(OBJECT to index)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
+    Internals.writeArguments(OBJECT to index)
+    Internals.callMethod(rawPtr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
 
   /**
@@ -125,34 +124,34 @@ public object TextServerManager : Object() {
    */
   @JvmStatic
   public final fun getPrimaryInterface(): TextServer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TextServer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPrimaryInterfacePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TextServer?)
   }
 
   internal object MethodBindings {
     public val addInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "add_interface", 1799689403)
+        Internals.getMethodBindPtr("TextServerManager", "add_interface", 1799689403)
 
     public val getInterfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interface_count", 3905245786)
+        Internals.getMethodBindPtr("TextServerManager", "get_interface_count", 3905245786)
 
     public val removeInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "remove_interface", 1799689403)
+        Internals.getMethodBindPtr("TextServerManager", "remove_interface", 1799689403)
 
     public val getInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interface", 1672475555)
+        Internals.getMethodBindPtr("TextServerManager", "get_interface", 1672475555)
 
     public val getInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interfaces", 3995934104)
+        Internals.getMethodBindPtr("TextServerManager", "get_interfaces", 3995934104)
 
     public val findInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "find_interface", 2240905781)
+        Internals.getMethodBindPtr("TextServerManager", "find_interface", 2240905781)
 
     public val setPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "set_primary_interface", 1799689403)
+        Internals.getMethodBindPtr("TextServerManager", "set_primary_interface", 1799689403)
 
     public val getPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_primary_interface", 905850878)
+        Internals.getMethodBindPtr("TextServerManager", "get_primary_interface", 905850878)
   }
 }

@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -57,44 +56,44 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRFACEMODIFIER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRFACEMODIFIER3D_INDEX, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to trackerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFaceTrackerPtr, NIL)
+    Internals.writeArguments(STRING_NAME to trackerName)
+    Internals.callMethod(rawPtr, MethodBindings.setFaceTrackerPtr, NIL)
   }
 
   public final fun getFaceTracker(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFaceTrackerPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTarget(target: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to target)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
+    Internals.writeArguments(NODE_PATH to target)
+    Internals.callMethod(rawPtr, MethodBindings.setTargetPtr, NIL)
   }
 
   public final fun getTarget(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTargetPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTargetPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFaceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_face_tracker", 3304788590)
+        Internals.getMethodBindPtr("XRFaceModifier3D", "set_face_tracker", 3304788590)
 
     public val getFaceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_face_tracker", 2002593661)
+        Internals.getMethodBindPtr("XRFaceModifier3D", "get_face_tracker", 2002593661)
 
     public val setTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_target", 1348162250)
+        Internals.getMethodBindPtr("XRFaceModifier3D", "set_target", 1348162250)
 
     public val getTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_target", 4075236667)
+        Internals.getMethodBindPtr("XRFaceModifier3D", "get_target", 4075236667)
   }
 }

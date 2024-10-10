@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -54,18 +53,18 @@ public open class BoneMap : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BONEMAP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BONEMAP_INDEX, scriptIndex)
   }
 
   public final fun getProfile(): SkeletonProfile? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProfilePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProfilePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SkeletonProfile?)
   }
 
   public final fun setProfile(profile: SkeletonProfile?): Unit {
-    TransferContext.writeArguments(OBJECT to profile)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
+    Internals.writeArguments(OBJECT to profile)
+    Internals.callMethod(rawPtr, MethodBindings.setProfilePtr, NIL)
   }
 
   /**
@@ -73,9 +72,9 @@ public open class BoneMap : Resource() {
    * In the retargeting process, the returned bone name is the bone name of the source skeleton.
    */
   public final fun getSkeletonBoneName(profileBoneName: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to profileBoneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonBoneNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to profileBoneName)
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonBoneNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -84,8 +83,8 @@ public open class BoneMap : Resource() {
    */
   public final fun setSkeletonBoneName(profileBoneName: StringName, skeletonBoneName: StringName):
       Unit {
-    TransferContext.writeArguments(STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkeletonBoneNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to profileBoneName, STRING_NAME to skeletonBoneName)
+    Internals.callMethod(rawPtr, MethodBindings.setSkeletonBoneNamePtr, NIL)
   }
 
   /**
@@ -94,27 +93,27 @@ public open class BoneMap : Resource() {
    * In the retargeting process, the returned bone name is the bone name of the target skeleton.
    */
   public final fun findProfileBoneName(skeletonBoneName: StringName): StringName {
-    TransferContext.writeArguments(STRING_NAME to skeletonBoneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.findProfileBoneNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(STRING_NAME to skeletonBoneName)
+    Internals.callMethod(rawPtr, MethodBindings.findProfileBoneNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "get_profile", 4291782652)
+        Internals.getMethodBindPtr("BoneMap", "get_profile", 4291782652)
 
     public val setProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "set_profile", 3870374136)
+        Internals.getMethodBindPtr("BoneMap", "set_profile", 3870374136)
 
     public val getSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "get_skeleton_bone_name", 1965194235)
+        Internals.getMethodBindPtr("BoneMap", "get_skeleton_bone_name", 1965194235)
 
     public val setSkeletonBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "set_skeleton_bone_name", 3740211285)
+        Internals.getMethodBindPtr("BoneMap", "set_skeleton_bone_name", 3740211285)
 
     public val findProfileBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneMap", "find_profile_bone_name", 1965194235)
+        Internals.getMethodBindPtr("BoneMap", "find_profile_bone_name", 1965194235)
   }
 }

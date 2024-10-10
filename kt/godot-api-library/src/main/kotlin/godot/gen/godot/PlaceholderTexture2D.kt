@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -47,7 +46,7 @@ public open class PlaceholderTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PLACEHOLDERTEXTURE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PLACEHOLDERTEXTURE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -75,14 +74,14 @@ public open class PlaceholderTexture2D : Texture2D() {
 
 
   public final fun setSize(size: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderTexture2D", "set_size", 743155724)
+        Internals.getMethodBindPtr("PlaceholderTexture2D", "set_size", 743155724)
   }
 }

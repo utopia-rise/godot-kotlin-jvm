@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -60,44 +59,42 @@ public open class CSGMesh3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CSGMESH3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CSGMESH3D_INDEX, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGMesh3D", "set_mesh", 194775623)
+    public val setMeshPtr: VoidPtr = Internals.getMethodBindPtr("CSGMesh3D", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGMesh3D", "get_mesh", 4081188045)
+    public val getMeshPtr: VoidPtr = Internals.getMethodBindPtr("CSGMesh3D", "get_mesh", 4081188045)
 
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGMesh3D", "set_material", 2757459619)
+        Internals.getMethodBindPtr("CSGMesh3D", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGMesh3D", "get_material", 5934680)
+        Internals.getMethodBindPtr("CSGMesh3D", "get_material", 5934680)
   }
 }

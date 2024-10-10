@@ -10,14 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -79,7 +78,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX, scriptIndex)
   }
 
   /**
@@ -107,75 +106,75 @@ public open class RDPipelineColorBlendState : RefCounted() {
 
 
   public final fun setEnableLogicOp(pMember: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableLogicOpPtr, NIL)
+    Internals.writeArguments(BOOL to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableLogicOpPtr, NIL)
   }
 
   public final fun getEnableLogicOp(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableLogicOpPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableLogicOpPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLogicOpPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLogicOpPtr, NIL)
   }
 
   public final fun getLogicOp(): RenderingDevice.LogicOperation {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLogicOpPtr, LONG)
-    return RenderingDevice.LogicOperation.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLogicOpPtr, LONG)
+    return RenderingDevice.LogicOperation.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendConstant(pMember: Color): Unit {
-    TransferContext.writeArguments(COLOR to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendConstantPtr, NIL)
+    Internals.writeArguments(COLOR to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendConstantPtr, NIL)
   }
 
   public final fun getBlendConstant(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendConstantPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendConstantPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setAttachments(attachments: VariantArray<RDPipelineColorBlendStateAttachment>):
       Unit {
-    TransferContext.writeArguments(ARRAY to attachments)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAttachmentsPtr, NIL)
+    Internals.writeArguments(ARRAY to attachments)
+    Internals.callMethod(rawPtr, MethodBindings.setAttachmentsPtr, NIL)
   }
 
   public final fun getAttachments(): VariantArray<RDPipelineColorBlendStateAttachment> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAttachmentsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAttachmentsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<RDPipelineColorBlendStateAttachment>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2586408642)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_enable_logic_op", 2586408642)
 
     public val getEnableLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36873697)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_enable_logic_op", 36873697)
 
     public val setLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3610841058)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_logic_op", 3610841058)
 
     public val getLogicOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988254690)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_logic_op", 988254690)
 
     public val setBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2920490490)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_blend_constant", 2920490490)
 
     public val getBlendConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3444240500)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_blend_constant", 3444240500)
 
     public val setAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381264803)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "set_attachments", 381264803)
 
     public val getAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3995934104)
+        Internals.getMethodBindPtr("RDPipelineColorBlendState", "get_attachments", 3995934104)
   }
 }

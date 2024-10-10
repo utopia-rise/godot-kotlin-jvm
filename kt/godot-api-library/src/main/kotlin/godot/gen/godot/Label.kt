@@ -10,7 +10,6 @@ import godot.TextServer.JustificationFlagValue
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,7 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -280,150 +279,150 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LABEL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LABEL_INDEX, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
   public final fun getVerticalAlignment(): VerticalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
-    return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticalAlignmentPtr, LONG)
+    return VerticalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setLabelSettings(settings: LabelSettings?): Unit {
-    TransferContext.writeArguments(OBJECT to settings)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLabelSettingsPtr, NIL)
+    Internals.writeArguments(OBJECT to settings)
+    Internals.callMethod(rawPtr, MethodBindings.setLabelSettingsPtr, NIL)
   }
 
   public final fun getLabelSettings(): LabelSettings? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLabelSettingsPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as LabelSettings?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLabelSettingsPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as LabelSettings?)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    Internals.writeArguments(LONG to autowrapMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
-    TransferContext.writeArguments(LONG to justificationFlags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
+    Internals.writeArguments(LONG to justificationFlags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
 
   public final fun getJustificationFlags(): TextServer.JustificationFlag {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
-    return JustificationFlagValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJustificationFlagsPtr, LONG)
+    return JustificationFlagValue(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setClipText(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setClipTextPtr, NIL)
   }
 
   public final fun isClippingText(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isClippingTextPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isClippingTextPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTabStops(tabStops: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabStopsPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
+    Internals.callMethod(rawPtr, MethodBindings.setTabStopsPtr, NIL)
   }
 
   public final fun getTabStops(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabStopsPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
+    Internals.writeArguments(LONG to overrunBehavior.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   public final fun getTextOverrunBehavior(): TextServer.OverrunBehavior {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
-    return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextOverrunBehaviorPtr, LONG)
+    return TextServer.OverrunBehavior.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEllipsisChar(char: String): Unit {
-    TransferContext.writeArguments(STRING to char)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
+    Internals.writeArguments(STRING to char)
+    Internals.callMethod(rawPtr, MethodBindings.setEllipsisCharPtr, NIL)
   }
 
   public final fun getEllipsisChar(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEllipsisCharPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setUppercase(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUppercasePtr, NIL)
   }
 
   public final fun isUppercase(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUppercasePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -433,18 +432,18 @@ public open class Label : Control() {
    */
   @JvmOverloads
   public final fun getLineHeight(line: Int = -1): Int {
-    TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to line.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getLineHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the number of lines of text the Label has.
    */
   public final fun getLineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -452,97 +451,96 @@ public open class Label : Control() {
    * lines.
    */
   public final fun getVisibleLineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleLineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the total number of printable characters in the text (excluding spaces and newlines).
    */
   public final fun getTotalCharacterCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVisibleCharacters(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
   }
 
   public final fun getVisibleCharacters(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
-    return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
+    return TextServer.VisibleCharactersBehavior.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior):
       Unit {
-    TransferContext.writeArguments(LONG to behavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+    Internals.writeArguments(LONG to behavior.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
   }
 
   public final fun setVisibleRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
   }
 
   public final fun getVisibleRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinesSkipped(linesSkipped: Int): Unit {
-    TransferContext.writeArguments(LONG to linesSkipped.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinesSkippedPtr, NIL)
+    Internals.writeArguments(LONG to linesSkipped.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setLinesSkippedPtr, NIL)
   }
 
   public final fun getLinesSkipped(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinesSkippedPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinesSkippedPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMaxLinesVisible(linesVisible: Int): Unit {
-    TransferContext.writeArguments(LONG to linesVisible.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
+    Internals.writeArguments(LONG to linesVisible.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxLinesVisiblePtr, NIL)
   }
 
   public final fun getMaxLinesVisible(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxLinesVisiblePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    Internals.writeArguments(LONG to parser.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    Internals.writeArguments(ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -552,145 +550,145 @@ public open class Label : Control() {
    * returned.
    */
   public final fun getCharacterBounds(pos: Int): Rect2 {
-    TransferContext.writeArguments(LONG to pos.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCharacterBoundsPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments(LONG to pos.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCharacterBoundsPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_horizontal_alignment", 2312603777)
+        Internals.getMethodBindPtr("Label", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_horizontal_alignment", 341400642)
+        Internals.getMethodBindPtr("Label", "get_horizontal_alignment", 341400642)
 
     public val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_vertical_alignment", 1796458609)
+        Internals.getMethodBindPtr("Label", "set_vertical_alignment", 1796458609)
 
     public val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_vertical_alignment", 3274884059)
+        Internals.getMethodBindPtr("Label", "get_vertical_alignment", 3274884059)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "set_text", 83702148)
+    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("Label", "get_text", 201670096)
+    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("Label", "get_text", 201670096)
 
     public val setLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_label_settings", 1030653839)
+        Internals.getMethodBindPtr("Label", "set_label_settings", 1030653839)
 
     public val getLabelSettingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_label_settings", 826676056)
+        Internals.getMethodBindPtr("Label", "get_label_settings", 826676056)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_direction", 119160795)
+        Internals.getMethodBindPtr("Label", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_direction", 797257663)
+        Internals.getMethodBindPtr("Label", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_language", 83702148)
+        Internals.getMethodBindPtr("Label", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_language", 201670096)
+        Internals.getMethodBindPtr("Label", "get_language", 201670096)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)
+        Internals.getMethodBindPtr("Label", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
+        Internals.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
 
     public val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_justification_flags", 2877345813)
+        Internals.getMethodBindPtr("Label", "set_justification_flags", 2877345813)
 
     public val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_justification_flags", 1583363614)
+        Internals.getMethodBindPtr("Label", "get_justification_flags", 1583363614)
 
     public val setClipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_clip_text", 2586408642)
+        Internals.getMethodBindPtr("Label", "set_clip_text", 2586408642)
 
     public val isClippingTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "is_clipping_text", 36873697)
+        Internals.getMethodBindPtr("Label", "is_clipping_text", 36873697)
 
     public val setTabStopsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_tab_stops", 2899603908)
+        Internals.getMethodBindPtr("Label", "set_tab_stops", 2899603908)
 
     public val getTabStopsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_tab_stops", 675695659)
+        Internals.getMethodBindPtr("Label", "get_tab_stops", 675695659)
 
     public val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_text_overrun_behavior", 1008890932)
+        Internals.getMethodBindPtr("Label", "set_text_overrun_behavior", 1008890932)
 
     public val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_text_overrun_behavior", 3779142101)
+        Internals.getMethodBindPtr("Label", "get_text_overrun_behavior", 3779142101)
 
     public val setEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_ellipsis_char", 83702148)
+        Internals.getMethodBindPtr("Label", "set_ellipsis_char", 83702148)
 
     public val getEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_ellipsis_char", 201670096)
+        Internals.getMethodBindPtr("Label", "get_ellipsis_char", 201670096)
 
     public val setUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_uppercase", 2586408642)
+        Internals.getMethodBindPtr("Label", "set_uppercase", 2586408642)
 
     public val isUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "is_uppercase", 36873697)
+        Internals.getMethodBindPtr("Label", "is_uppercase", 36873697)
 
     public val getLineHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_line_height", 181039630)
+        Internals.getMethodBindPtr("Label", "get_line_height", 181039630)
 
     public val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_line_count", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_line_count", 3905245786)
 
     public val getVisibleLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_line_count", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_visible_line_count", 3905245786)
 
     public val getTotalCharacterCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_total_character_count", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_total_character_count", 3905245786)
 
     public val setVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters", 1286410249)
+        Internals.getMethodBindPtr("Label", "set_visible_characters", 1286410249)
 
     public val getVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_visible_characters", 3905245786)
 
     public val getVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_characters_behavior", 258789322)
+        Internals.getMethodBindPtr("Label", "get_visible_characters_behavior", 258789322)
 
     public val setVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_characters_behavior", 3383839701)
+        Internals.getMethodBindPtr("Label", "set_visible_characters_behavior", 3383839701)
 
     public val setVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_visible_ratio", 373806689)
+        Internals.getMethodBindPtr("Label", "set_visible_ratio", 373806689)
 
     public val getVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_visible_ratio", 1740695150)
+        Internals.getMethodBindPtr("Label", "get_visible_ratio", 1740695150)
 
     public val setLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_lines_skipped", 1286410249)
+        Internals.getMethodBindPtr("Label", "set_lines_skipped", 1286410249)
 
     public val getLinesSkippedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_lines_skipped", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_lines_skipped", 3905245786)
 
     public val setMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_max_lines_visible", 1286410249)
+        Internals.getMethodBindPtr("Label", "set_max_lines_visible", 1286410249)
 
     public val getMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_max_lines_visible", 3905245786)
+        Internals.getMethodBindPtr("Label", "get_max_lines_visible", 3905245786)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55961453)
+        Internals.getMethodBindPtr("Label", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3385126229)
+        Internals.getMethodBindPtr("Label", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381264803)
+        Internals.getMethodBindPtr("Label", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3995934104)
+        Internals.getMethodBindPtr("Label", "get_structured_text_bidi_override_options", 3995934104)
 
     public val getCharacterBoundsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Label", "get_character_bounds", 3327874267)
+        Internals.getMethodBindPtr("Label", "get_character_bounds", 3327874267)
   }
 }

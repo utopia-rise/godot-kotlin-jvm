@@ -10,10 +10,9 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -40,7 +39,8 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -68,23 +68,23 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
 
 
   public final fun setConstant(constant: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to constant)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to constant)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantPtr, NIL)
   }
 
   public final fun getConstant(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformConstant", "set_constant", 2952846383)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformConstant", "set_constant", 2952846383)
 
     public val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformConstant", "get_constant", 3229777777)
+        Internals.getMethodBindPtr("VisualShaderNodeTransformConstant", "get_constant", 3229777777)
   }
 }

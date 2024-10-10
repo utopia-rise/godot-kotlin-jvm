@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -65,61 +64,61 @@ public open class LightOccluder2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHTOCCLUDER2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHTOCCLUDER2D_INDEX, scriptIndex)
   }
 
   public final fun setOccluderPolygon(polygon: OccluderPolygon2D?): Unit {
-    TransferContext.writeArguments(OBJECT to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderPolygonPtr, NIL)
+    Internals.writeArguments(OBJECT to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.setOccluderPolygonPtr, NIL)
   }
 
   public final fun getOccluderPolygon(): OccluderPolygon2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderPolygonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OccluderPolygon2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOccluderPolygonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OccluderPolygon2D?)
   }
 
   public final fun setOccluderLightMask(mask: Int): Unit {
-    TransferContext.writeArguments(LONG to mask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOccluderLightMaskPtr, NIL)
   }
 
   public final fun getOccluderLightMask(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOccluderLightMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOccluderLightMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAsSdfCollision(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsSdfCollisionPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAsSdfCollisionPtr, NIL)
   }
 
   public final fun isSetAsSdfCollision(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSetAsSdfCollisionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_polygon", 3258315893)
+        Internals.getMethodBindPtr("LightOccluder2D", "set_occluder_polygon", 3258315893)
 
     public val getOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_polygon", 3962317075)
+        Internals.getMethodBindPtr("LightOccluder2D", "get_occluder_polygon", 3962317075)
 
     public val setOccluderLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_occluder_light_mask", 1286410249)
+        Internals.getMethodBindPtr("LightOccluder2D", "set_occluder_light_mask", 1286410249)
 
     public val getOccluderLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "get_occluder_light_mask", 3905245786)
+        Internals.getMethodBindPtr("LightOccluder2D", "get_occluder_light_mask", 3905245786)
 
     public val setAsSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "set_as_sdf_collision", 2586408642)
+        Internals.getMethodBindPtr("LightOccluder2D", "set_as_sdf_collision", 2586408642)
 
     public val isSetAsSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightOccluder2D", "is_set_as_sdf_collision", 36873697)
+        Internals.getMethodBindPtr("LightOccluder2D", "is_set_as_sdf_collision", 36873697)
   }
 }

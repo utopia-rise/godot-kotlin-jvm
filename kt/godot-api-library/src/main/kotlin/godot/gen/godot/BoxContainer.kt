@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -54,7 +53,7 @@ public open class BoxContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BOXCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BOXCONTAINER_INDEX, scriptIndex)
   }
 
   /**
@@ -62,31 +61,31 @@ public open class BoxContainer : Container() {
    * [Control] node in front of all other children.
    */
   public final fun addSpacer(begin: Boolean): Control? {
-    TransferContext.writeArguments(BOOL to begin)
-    TransferContext.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Control?)
+    Internals.writeArguments(BOOL to begin)
+    Internals.callMethod(rawPtr, MethodBindings.addSpacerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Control?)
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlignmentPtr, NIL)
   }
 
   public final fun getAlignment(): AlignmentMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
-    return BoxContainer.AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlignmentPtr, LONG)
+    return BoxContainer.AlignmentMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVertical(vertical: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to vertical)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
+    Internals.writeArguments(BOOL to vertical)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticalPtr, NIL)
   }
 
   public final fun isVertical(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVerticalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class AlignmentMode(
@@ -122,18 +121,18 @@ public open class BoxContainer : Container() {
 
   internal object MethodBindings {
     public val addSpacerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "add_spacer", 1326660695)
+        Internals.getMethodBindPtr("BoxContainer", "add_spacer", 1326660695)
 
     public val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "set_alignment", 2456745134)
+        Internals.getMethodBindPtr("BoxContainer", "set_alignment", 2456745134)
 
     public val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "get_alignment", 1915476527)
+        Internals.getMethodBindPtr("BoxContainer", "get_alignment", 1915476527)
 
     public val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "set_vertical", 2586408642)
+        Internals.getMethodBindPtr("BoxContainer", "set_vertical", 2586408642)
 
     public val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "is_vertical", 36873697)
+        Internals.getMethodBindPtr("BoxContainer", "is_vertical", 36873697)
   }
 }

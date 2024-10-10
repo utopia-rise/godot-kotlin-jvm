@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -56,24 +55,25 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA2D_INDEX,
+        scriptIndex)
   }
 
   /**
    * Clears the internal data.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
    * Returns `true` when parsed source geometry data exists.
    */
   public final fun hasData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -81,17 +81,17 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun setTraversableOutlines(traversableOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to traversableOutlines)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTraversableOutlinesPtr, NIL)
+    Internals.writeArguments(ARRAY to traversableOutlines)
+    Internals.callMethod(rawPtr, MethodBindings.setTraversableOutlinesPtr, NIL)
   }
 
   /**
    * Returns all the traversable area outlines arrays.
    */
   public final fun getTraversableOutlines(): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTraversableOutlinesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   /**
@@ -99,17 +99,17 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun setObstructionOutlines(obstructionOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to obstructionOutlines)
-    TransferContext.callMethod(rawPtr, MethodBindings.setObstructionOutlinesPtr, NIL)
+    Internals.writeArguments(ARRAY to obstructionOutlines)
+    Internals.callMethod(rawPtr, MethodBindings.setObstructionOutlinesPtr, NIL)
   }
 
   /**
    * Returns all the obstructed area outlines arrays.
    */
   public final fun getObstructionOutlines(): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getObstructionOutlinesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
 
   /**
@@ -118,8 +118,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun appendTraversableOutlines(traversableOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to traversableOutlines)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendTraversableOutlinesPtr, NIL)
+    Internals.writeArguments(ARRAY to traversableOutlines)
+    Internals.callMethod(rawPtr, MethodBindings.appendTraversableOutlinesPtr, NIL)
   }
 
   /**
@@ -128,24 +128,24 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    */
   public final fun appendObstructionOutlines(obstructionOutlines: VariantArray<PackedVector2Array>):
       Unit {
-    TransferContext.writeArguments(ARRAY to obstructionOutlines)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendObstructionOutlinesPtr, NIL)
+    Internals.writeArguments(ARRAY to obstructionOutlines)
+    Internals.callMethod(rawPtr, MethodBindings.appendObstructionOutlinesPtr, NIL)
   }
 
   /**
    * Adds the outline points of a shape as traversable area.
    */
   public final fun addTraversableOutline(shapeOutline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
-    TransferContext.callMethod(rawPtr, MethodBindings.addTraversableOutlinePtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
+    Internals.callMethod(rawPtr, MethodBindings.addTraversableOutlinePtr, NIL)
   }
 
   /**
    * Adds the outline points of a shape as obstructed area.
    */
   public final fun addObstructionOutline(shapeOutline: PackedVector2Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
-    TransferContext.callMethod(rawPtr, MethodBindings.addObstructionOutlinePtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to shapeOutline)
+    Internals.callMethod(rawPtr, MethodBindings.addObstructionOutlinePtr, NIL)
   }
 
   /**
@@ -153,8 +153,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * baking data.
    */
   public final fun merge(otherGeometry: NavigationMeshSourceGeometryData2D?): Unit {
-    TransferContext.writeArguments(OBJECT to otherGeometry)
-    TransferContext.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
+    Internals.writeArguments(OBJECT to otherGeometry)
+    Internals.callMethod(rawPtr, MethodBindings.mergePtr, NIL)
   }
 
   /**
@@ -163,16 +163,16 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * process.
    */
   public final fun addProjectedObstruction(vertices: PackedVector2Array, carve: Boolean): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices, BOOL to carve)
-    TransferContext.callMethod(rawPtr, MethodBindings.addProjectedObstructionPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to vertices, BOOL to carve)
+    Internals.callMethod(rawPtr, MethodBindings.addProjectedObstructionPtr, NIL)
   }
 
   /**
    * Clears all projected obstructions.
    */
   public final fun clearProjectedObstructions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearProjectedObstructionsPtr, NIL)
   }
 
   /**
@@ -186,8 +186,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * ```
    */
   public final fun setProjectedObstructions(projectedObstructions: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to projectedObstructions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
+    Internals.writeArguments(ARRAY to projectedObstructions)
+    Internals.callMethod(rawPtr, MethodBindings.setProjectedObstructionsPtr, NIL)
   }
 
   /**
@@ -198,57 +198,57 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
    * If `true` the projected shape will not be affected by addition offsets, e.g. agent radius.
    */
   public final fun getProjectedObstructions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProjectedObstructionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear", 3218959716)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear", 3218959716)
 
     public val hasDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "has_data", 2240911060)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "has_data", 2240911060)
 
     public val setTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_traversable_outlines", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_traversable_outlines", 381264803)
 
     public val getTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_traversable_outlines", 3995934104)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_traversable_outlines", 3995934104)
 
     public val setObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_obstruction_outlines", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_obstruction_outlines", 381264803)
 
     public val getObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_obstruction_outlines", 3995934104)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_obstruction_outlines", 3995934104)
 
     public val appendTraversableOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_traversable_outlines", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_traversable_outlines", 381264803)
 
     public val appendObstructionOutlinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_obstruction_outlines", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "append_obstruction_outlines", 381264803)
 
     public val addTraversableOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_traversable_outline", 1509147220)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_traversable_outline", 1509147220)
 
     public val addObstructionOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_obstruction_outline", 1509147220)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_obstruction_outline", 1509147220)
 
     public val mergePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "merge", 742424872)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "merge", 742424872)
 
     public val addProjectedObstructionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_projected_obstruction", 3882407395)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "add_projected_obstruction", 3882407395)
 
     public val clearProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear_projected_obstructions", 3218959716)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "clear_projected_obstructions", 3218959716)
 
     public val setProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_projected_obstructions", 381264803)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "set_projected_obstructions", 381264803)
 
     public val getProjectedObstructionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions", 3995934104)
+        Internals.getMethodBindPtr("NavigationMeshSourceGeometryData2D", "get_projected_obstructions", 3995934104)
   }
 }

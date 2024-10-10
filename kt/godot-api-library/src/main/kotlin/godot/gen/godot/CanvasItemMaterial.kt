@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -108,73 +107,73 @@ public open class CanvasItemMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CANVASITEMMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CANVASITEMMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to blendMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+    Internals.writeArguments(LONG to blendMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-    return CanvasItemMaterial.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return CanvasItemMaterial.BlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLightMode(lightMode: LightMode): Unit {
-    TransferContext.writeArguments(LONG to lightMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightModePtr, NIL)
+    Internals.writeArguments(LONG to lightMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLightModePtr, NIL)
   }
 
   public final fun getLightMode(): LightMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightModePtr, LONG)
-    return CanvasItemMaterial.LightMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightModePtr, LONG)
+    return CanvasItemMaterial.LightMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setParticlesAnimation(particlesAnim: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to particlesAnim)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimationPtr, NIL)
+    Internals.writeArguments(BOOL to particlesAnim)
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimationPtr, NIL)
   }
 
   public final fun getParticlesAnimation(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setParticlesAnimHFrames(frames: Int): Unit {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
   }
 
   public final fun getParticlesAnimHFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimVFrames(frames: Int): Unit {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
   }
 
   public final fun getParticlesAnimVFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
   }
 
   public final fun getParticlesAnimLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class BlendMode(
@@ -243,39 +242,39 @@ public open class CanvasItemMaterial : Material() {
 
   internal object MethodBindings {
     public val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode", 1786054936)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_blend_mode", 1786054936)
 
     public val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode", 3318684035)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_blend_mode", 3318684035)
 
     public val setLightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_light_mode", 628074070)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_light_mode", 628074070)
 
     public val getLightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_light_mode", 3863292382)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_light_mode", 3863292382)
 
     public val setParticlesAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation", 2586408642)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_animation", 2586408642)
 
     public val getParticlesAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation", 36873697)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_animation", 36873697)
 
     public val setParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames", 1286410249)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_h_frames", 1286410249)
 
     public val getParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames", 3905245786)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_h_frames", 3905245786)
 
     public val setParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames", 1286410249)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_v_frames", 1286410249)
 
     public val getParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames", 3905245786)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_v_frames", 3905245786)
 
     public val setParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop", 2586408642)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "set_particles_anim_loop", 2586408642)
 
     public val getParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop", 36873697)
+        Internals.getMethodBindPtr("CanvasItemMaterial", "get_particles_anim_loop", 36873697)
   }
 }

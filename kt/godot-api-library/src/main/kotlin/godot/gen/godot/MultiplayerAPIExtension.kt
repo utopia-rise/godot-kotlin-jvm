@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -103,7 +104,7 @@ private const val ENGINE_CLASS_MULTIPLAYERAPIEXTENSION_INDEX: Int = 346
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIPLAYERAPIEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIPLAYERAPIEXTENSION_INDEX, scriptIndex)
   }
 
   /**

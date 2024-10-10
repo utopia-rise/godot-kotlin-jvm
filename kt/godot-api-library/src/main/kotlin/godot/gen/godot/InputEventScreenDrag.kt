@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -155,7 +154,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INPUTEVENTSCREENDRAG_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INPUTEVENTSCREENDRAG_INDEX, scriptIndex)
   }
 
   /**
@@ -318,159 +317,159 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
 
   public final fun setIndex(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setIndexPtr, NIL)
   }
 
   public final fun getIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTilt(tilt: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to tilt)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
+    Internals.writeArguments(VECTOR2 to tilt)
+    Internals.callMethod(rawPtr, MethodBindings.setTiltPtr, NIL)
   }
 
   public final fun getTilt(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTiltPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setPressure(pressure: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pressure.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
+    Internals.writeArguments(DOUBLE to pressure.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPressurePtr, NIL)
   }
 
   public final fun getPressure(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPressurePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPenInverted(penInverted: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to penInverted)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
+    Internals.writeArguments(BOOL to penInverted)
+    Internals.callMethod(rawPtr, MethodBindings.setPenInvertedPtr, NIL)
   }
 
   public final fun getPenInverted(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPenInvertedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRelative(relative: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to relative)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
+    Internals.writeArguments(VECTOR2 to relative)
+    Internals.callMethod(rawPtr, MethodBindings.setRelativePtr, NIL)
   }
 
   public final fun getRelative(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRelativePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenRelative(relative: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to relative)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenRelativePtr, NIL)
+    Internals.writeArguments(VECTOR2 to relative)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenRelativePtr, NIL)
   }
 
   public final fun getScreenRelative(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenRelativePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setVelocity(velocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setVelocityPtr, NIL)
   }
 
   public final fun getVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVelocityPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenVelocity(velocity: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to velocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to velocity)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenVelocityPtr, NIL)
   }
 
   public final fun getScreenVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenVelocityPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index", 1286410249)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_index", 1286410249)
 
     public val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index", 3905245786)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_index", 3905245786)
 
     public val setTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_tilt", 743155724)
 
     public val getTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_tilt", 3341600327)
 
     public val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure", 373806689)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_pressure", 373806689)
 
     public val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure", 1740695150)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_pressure", 1740695150)
 
     public val setPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted", 2586408642)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted", 2586408642)
 
     public val getPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted", 36873697)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted", 36873697)
 
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_position", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_position", 3341600327)
 
     public val setRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_relative", 743155724)
 
     public val getRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_relative", 3341600327)
 
     public val setScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative", 743155724)
 
     public val getScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative", 3341600327)
 
     public val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_velocity", 743155724)
 
     public val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_velocity", 3341600327)
 
     public val setScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity", 743155724)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity", 743155724)
 
     public val getScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity", 3341600327)
+        Internals.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity", 3341600327)
   }
 }

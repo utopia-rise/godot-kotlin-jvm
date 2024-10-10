@@ -8,11 +8,10 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -62,29 +61,29 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISIBLEONSCREENENABLER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISIBLEONSCREENENABLER3D_INDEX, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableModePtr, NIL)
   }
 
   public final fun getEnableMode(): EnableMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
-    return VisibleOnScreenEnabler3D.EnableMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableModePtr, LONG)
+    return VisibleOnScreenEnabler3D.EnableMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEnableNodePath(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setEnableNodePathPtr, NIL)
   }
 
   public final fun getEnableNodePath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnableNodePathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public enum class EnableMode(
@@ -118,15 +117,15 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
 
   internal object MethodBindings {
     public val setEnableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_mode", 320303646)
+        Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_mode", 320303646)
 
     public val getEnableModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_mode", 3352990031)
+        Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_mode", 3352990031)
 
     public val setEnableNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_node_path", 1348162250)
+        Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "set_enable_node_path", 1348162250)
 
     public val getEnableNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_node_path", 277076166)
+        Internals.getMethodBindPtr("VisibleOnScreenEnabler3D", "get_enable_node_path", 277076166)
   }
 }

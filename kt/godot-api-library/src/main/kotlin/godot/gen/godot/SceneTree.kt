@@ -11,7 +11,6 @@ import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -23,7 +22,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -245,99 +244,99 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCENETREE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCENETREE_INDEX, scriptIndex)
   }
 
   public final fun getRoot(): Window? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Window?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Window?)
   }
 
   /**
    * Returns `true` if a node added to the given group [name] exists in the tree.
    */
   public final fun hasGroup(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasGroupPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasGroupPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isAutoAcceptQuit(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoAcceptQuitPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoAcceptQuit(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoAcceptQuitPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoAcceptQuitPtr, NIL)
   }
 
   public final fun isQuitOnGoBack(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isQuitOnGoBackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isQuitOnGoBackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setQuitOnGoBack(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setQuitOnGoBackPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setQuitOnGoBackPtr, NIL)
   }
 
   public final fun setDebugCollisionsHint(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugCollisionsHintPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugCollisionsHintPtr, NIL)
   }
 
   public final fun isDebuggingCollisionsHint(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDebuggingCollisionsHintPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugPathsHint(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugPathsHintPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugPathsHintPtr, NIL)
   }
 
   public final fun isDebuggingPathsHint(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDebuggingPathsHintPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDebugNavigationHint(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDebugNavigationHintPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDebugNavigationHintPtr, NIL)
   }
 
   public final fun isDebuggingNavigationHint(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDebuggingNavigationHintPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditedSceneRoot(scene: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to scene)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditedSceneRootPtr, NIL)
+    Internals.writeArguments(OBJECT to scene)
+    Internals.callMethod(rawPtr, MethodBindings.setEditedSceneRootPtr, NIL)
   }
 
   public final fun getEditedSceneRoot(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEditedSceneRootPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   public final fun setPause(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setPausePtr, NIL)
   }
 
   public final fun isPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -379,9 +378,9 @@ public open class SceneTree : MainLoop() {
     processInPhysics: Boolean = false,
     ignoreTimeScale: Boolean = false,
   ): SceneTreeTimer? {
-    TransferContext.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
-    TransferContext.callMethod(rawPtr, MethodBindings.createTimerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SceneTreeTimer?)
+    Internals.writeArguments(DOUBLE to timeSec, BOOL to processAlways, BOOL to processInPhysics, BOOL to ignoreTimeScale)
+    Internals.callMethod(rawPtr, MethodBindings.createTimerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SceneTreeTimer?)
   }
 
   /**
@@ -392,27 +391,27 @@ public open class SceneTree : MainLoop() {
    * the [Node] is freed, use [Node.createTween] or [Tween.bindNode].
    */
   public final fun createTween(): Tween? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createTweenPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Tween?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createTweenPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Tween?)
   }
 
   /**
    * Returns an [Array] of currently existing [Tween]s in the tree, including paused tweens.
    */
   public final fun getProcessedTweens(): VariantArray<Tween> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProcessedTweensPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Tween>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProcessedTweensPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Tween>)
   }
 
   /**
    * Returns the number of nodes inside this tree.
    */
   public final fun getNodeCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNodeCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -420,9 +419,9 @@ public open class SceneTree : MainLoop() {
    * measurement of elapsed time.
    */
   public final fun getFrame(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFramePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -435,19 +434,19 @@ public open class SceneTree : MainLoop() {
    */
   @JvmOverloads
   public final fun quit(exitCode: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to exitCode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.quitPtr, NIL)
+    Internals.writeArguments(LONG to exitCode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.quitPtr, NIL)
   }
 
   public final fun setPhysicsInterpolationEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsInterpolationEnabledPtr, NIL)
   }
 
   public final fun isPhysicsInterpolationEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPhysicsInterpolationEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -455,8 +454,8 @@ public open class SceneTree : MainLoop() {
    * frame. This method is similar to [Node.queueFree].
    */
   public final fun queueDelete(obj: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to obj)
-    TransferContext.callMethod(rawPtr, MethodBindings.queueDeletePtr, NIL)
+    Internals.writeArguments(OBJECT to obj)
+    Internals.callMethod(rawPtr, MethodBindings.queueDeletePtr, NIL)
   }
 
   /**
@@ -481,8 +480,8 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg __var_args: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callGroupFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags, STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.callGroupFlagsPtr, NIL)
   }
 
   /**
@@ -494,8 +493,8 @@ public open class SceneTree : MainLoop() {
     group: StringName,
     notification: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.notifyGroupFlagsPtr, NIL)
+    Internals.writeArguments(LONG to callFlags, STRING_NAME to group, LONG to notification.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.notifyGroupFlagsPtr, NIL)
   }
 
   /**
@@ -512,8 +511,8 @@ public open class SceneTree : MainLoop() {
     `property`: String,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroupFlagsPtr, NIL)
+    Internals.writeArguments(LONG to callFlags, STRING_NAME to group, STRING to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setGroupFlagsPtr, NIL)
   }
 
   /**
@@ -532,8 +531,8 @@ public open class SceneTree : MainLoop() {
     method: StringName,
     vararg __var_args: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
-    TransferContext.callMethod(rawPtr, MethodBindings.callGroupPtr, NIL)
+    Internals.writeArguments(STRING_NAME to group, STRING_NAME to method,  *__var_args.map { ANY to it }.toTypedArray())
+    Internals.callMethod(rawPtr, MethodBindings.callGroupPtr, NIL)
   }
 
   /**
@@ -544,8 +543,8 @@ public open class SceneTree : MainLoop() {
    * stuttering in some performance-intensive situations.
    */
   public final fun notifyGroup(group: StringName, notification: Int): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, LONG to notification.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.notifyGroupPtr, NIL)
+    Internals.writeArguments(STRING_NAME to group, LONG to notification.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.notifyGroupPtr, NIL)
   }
 
   /**
@@ -562,8 +561,8 @@ public open class SceneTree : MainLoop() {
     `property`: String,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to group, STRING to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGroupPtr, NIL)
+    Internals.writeArguments(STRING_NAME to group, STRING to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.setGroupPtr, NIL)
   }
 
   /**
@@ -571,9 +570,9 @@ public open class SceneTree : MainLoop() {
    * [group], in scene hierarchy order.
    */
   public final fun getNodesInGroup(group: StringName): VariantArray<Node> {
-    TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodesInGroupPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Node>)
+    Internals.writeArguments(STRING_NAME to group)
+    Internals.callMethod(rawPtr, MethodBindings.getNodesInGroupPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Node>)
   }
 
   /**
@@ -581,29 +580,29 @@ public open class SceneTree : MainLoop() {
    * scene hierarchy order. Returns `null` if no match is found. See also [getNodesInGroup].
    */
   public final fun getFirstNodeInGroup(group: StringName): Node? {
-    TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFirstNodeInGroupPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments(STRING_NAME to group)
+    Internals.callMethod(rawPtr, MethodBindings.getFirstNodeInGroupPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
    * Returns the number of nodes assigned to the given group.
    */
   public final fun getNodeCountInGroup(group: StringName): Int {
-    TransferContext.writeArguments(STRING_NAME to group)
-    TransferContext.callMethod(rawPtr, MethodBindings.getNodeCountInGroupPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING_NAME to group)
+    Internals.callMethod(rawPtr, MethodBindings.getNodeCountInGroupPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setCurrentScene(childNode: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to childNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCurrentScenePtr, NIL)
+    Internals.writeArguments(OBJECT to childNode)
+    Internals.callMethod(rawPtr, MethodBindings.setCurrentScenePtr, NIL)
   }
 
   public final fun getCurrentScene(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentScenePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -614,9 +613,9 @@ public open class SceneTree : MainLoop() {
    * **Note:** See [changeSceneToPacked] for details on the order of operations.
    */
   public final fun changeSceneToFile(path: String): Error {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.changeSceneToFilePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.changeSceneToFilePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -634,9 +633,9 @@ public open class SceneTree : MainLoop() {
    * scene in a safe way similar to [Node.queueFree].
    */
   public final fun changeSceneToPacked(packedScene: PackedScene?): Error {
-    TransferContext.writeArguments(OBJECT to packedScene)
-    TransferContext.callMethod(rawPtr, MethodBindings.changeSceneToPackedPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to packedScene)
+    Internals.callMethod(rawPtr, MethodBindings.changeSceneToPackedPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -647,17 +646,17 @@ public open class SceneTree : MainLoop() {
    * instantiated.
    */
   public final fun reloadCurrentScene(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.reloadCurrentScenePtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.reloadCurrentScenePtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * If a current scene is loaded, calling this method will unload it.
    */
   public final fun unloadCurrentScene(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unloadCurrentScenePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.unloadCurrentScenePtr, NIL)
   }
 
   /**
@@ -670,8 +669,8 @@ public open class SceneTree : MainLoop() {
   @JvmOverloads
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")):
       Unit {
-    TransferContext.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPtr, NIL)
+    Internals.writeArguments(OBJECT to multiplayer, NODE_PATH to rootPath)
+    Internals.callMethod(rawPtr, MethodBindings.setMultiplayerPtr, NIL)
   }
 
   /**
@@ -681,20 +680,20 @@ public open class SceneTree : MainLoop() {
    */
   @JvmOverloads
   public final fun getMultiplayer(forPath: NodePath = NodePath("")): MultiplayerAPI? {
-    TransferContext.writeArguments(NODE_PATH to forPath)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MultiplayerAPI?)
+    Internals.writeArguments(NODE_PATH to forPath)
+    Internals.callMethod(rawPtr, MethodBindings.getMultiplayerPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MultiplayerAPI?)
   }
 
   public final fun setMultiplayerPollEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultiplayerPollEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setMultiplayerPollEnabledPtr, NIL)
   }
 
   public final fun isMultiplayerPollEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMultiplayerPollEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class GroupCallFlags(
@@ -736,135 +735,133 @@ public open class SceneTree : MainLoop() {
   public companion object
 
   internal object MethodBindings {
-    public val getRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_root", 1757182445)
+    public val getRootPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "get_root", 1757182445)
 
     public val hasGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "has_group", 2619796661)
+        Internals.getMethodBindPtr("SceneTree", "has_group", 2619796661)
 
     public val isAutoAcceptQuitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_auto_accept_quit", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_auto_accept_quit", 36873697)
 
     public val setAutoAcceptQuitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_auto_accept_quit", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_auto_accept_quit", 2586408642)
 
     public val isQuitOnGoBackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_quit_on_go_back", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_quit_on_go_back", 36873697)
 
     public val setQuitOnGoBackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_quit_on_go_back", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_quit_on_go_back", 2586408642)
 
     public val setDebugCollisionsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_collisions_hint", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_debug_collisions_hint", 2586408642)
 
     public val isDebuggingCollisionsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_collisions_hint", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_debugging_collisions_hint", 36873697)
 
     public val setDebugPathsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_paths_hint", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_debug_paths_hint", 2586408642)
 
     public val isDebuggingPathsHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_paths_hint", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_debugging_paths_hint", 36873697)
 
     public val setDebugNavigationHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_debug_navigation_hint", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_debug_navigation_hint", 2586408642)
 
     public val isDebuggingNavigationHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_debugging_navigation_hint", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_debugging_navigation_hint", 36873697)
 
     public val setEditedSceneRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_edited_scene_root", 1078189570)
+        Internals.getMethodBindPtr("SceneTree", "set_edited_scene_root", 1078189570)
 
     public val getEditedSceneRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_edited_scene_root", 3160264692)
+        Internals.getMethodBindPtr("SceneTree", "get_edited_scene_root", 3160264692)
 
     public val setPausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_pause", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_pause", 2586408642)
 
-    public val isPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_paused", 36873697)
+    public val isPausedPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "is_paused", 36873697)
 
     public val createTimerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "create_timer", 2709170273)
+        Internals.getMethodBindPtr("SceneTree", "create_timer", 2709170273)
 
     public val createTweenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "create_tween", 3426978995)
+        Internals.getMethodBindPtr("SceneTree", "create_tween", 3426978995)
 
     public val getProcessedTweensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_processed_tweens", 2915620761)
+        Internals.getMethodBindPtr("SceneTree", "get_processed_tweens", 2915620761)
 
     public val getNodeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_node_count", 3905245786)
+        Internals.getMethodBindPtr("SceneTree", "get_node_count", 3905245786)
 
     public val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_frame", 3905245786)
+        Internals.getMethodBindPtr("SceneTree", "get_frame", 3905245786)
 
-    public val quitPtr: VoidPtr = TypeManager.getMethodBindPtr("SceneTree", "quit", 1995695955)
+    public val quitPtr: VoidPtr = Internals.getMethodBindPtr("SceneTree", "quit", 1995695955)
 
     public val setPhysicsInterpolationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_physics_interpolation_enabled", 2586408642)
 
     public val isPhysicsInterpolationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_physics_interpolation_enabled", 36873697)
 
     public val queueDeletePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "queue_delete", 3975164845)
+        Internals.getMethodBindPtr("SceneTree", "queue_delete", 3975164845)
 
     public val callGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "call_group_flags", 1527739229)
+        Internals.getMethodBindPtr("SceneTree", "call_group_flags", 1527739229)
 
     public val notifyGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "notify_group_flags", 1245489420)
+        Internals.getMethodBindPtr("SceneTree", "notify_group_flags", 1245489420)
 
     public val setGroupFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_group_flags", 3497599527)
+        Internals.getMethodBindPtr("SceneTree", "set_group_flags", 3497599527)
 
     public val callGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "call_group", 1257962832)
+        Internals.getMethodBindPtr("SceneTree", "call_group", 1257962832)
 
     public val notifyGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "notify_group", 2415702435)
+        Internals.getMethodBindPtr("SceneTree", "notify_group", 2415702435)
 
     public val setGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_group", 1279312029)
+        Internals.getMethodBindPtr("SceneTree", "set_group", 1279312029)
 
     public val getNodesInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_nodes_in_group", 689397652)
+        Internals.getMethodBindPtr("SceneTree", "get_nodes_in_group", 689397652)
 
     public val getFirstNodeInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_first_node_in_group", 4071044623)
+        Internals.getMethodBindPtr("SceneTree", "get_first_node_in_group", 4071044623)
 
     public val getNodeCountInGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_node_count_in_group", 2458036349)
+        Internals.getMethodBindPtr("SceneTree", "get_node_count_in_group", 2458036349)
 
     public val setCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_current_scene", 1078189570)
+        Internals.getMethodBindPtr("SceneTree", "set_current_scene", 1078189570)
 
     public val getCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_current_scene", 3160264692)
+        Internals.getMethodBindPtr("SceneTree", "get_current_scene", 3160264692)
 
     public val changeSceneToFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_file", 166001499)
+        Internals.getMethodBindPtr("SceneTree", "change_scene_to_file", 166001499)
 
     public val changeSceneToPackedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "change_scene_to_packed", 107349098)
+        Internals.getMethodBindPtr("SceneTree", "change_scene_to_packed", 107349098)
 
     public val reloadCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "reload_current_scene", 166280745)
+        Internals.getMethodBindPtr("SceneTree", "reload_current_scene", 166280745)
 
     public val unloadCurrentScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "unload_current_scene", 3218959716)
+        Internals.getMethodBindPtr("SceneTree", "unload_current_scene", 3218959716)
 
     public val setMultiplayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer", 2385607013)
+        Internals.getMethodBindPtr("SceneTree", "set_multiplayer", 2385607013)
 
     public val getMultiplayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "get_multiplayer", 3453401404)
+        Internals.getMethodBindPtr("SceneTree", "get_multiplayer", 3453401404)
 
     public val setMultiplayerPollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "set_multiplayer_poll_enabled", 2586408642)
+        Internals.getMethodBindPtr("SceneTree", "set_multiplayer_poll_enabled", 2586408642)
 
     public val isMultiplayerPollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTree", "is_multiplayer_poll_enabled", 36873697)
+        Internals.getMethodBindPtr("SceneTree", "is_multiplayer_poll_enabled", 36873697)
   }
 }

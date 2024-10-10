@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -58,68 +57,68 @@ public open class OpenXRInteractionProfile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX, scriptIndex)
   }
 
   public final fun setInteractionProfilePath(interactionProfilePath: String): Unit {
-    TransferContext.writeArguments(STRING to interactionProfilePath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
+    Internals.writeArguments(STRING to interactionProfilePath)
+    Internals.callMethod(rawPtr, MethodBindings.setInteractionProfilePathPtr, NIL)
   }
 
   public final fun getInteractionProfilePath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInteractionProfilePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Get the number of bindings in this interaction profile.
    */
   public final fun getBindingCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBindingCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Retrieve the binding at this index.
    */
   public final fun getBinding(index: Int): OpenXRIPBinding? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRIPBinding?)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBindingPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRIPBinding?)
   }
 
   public final fun setBindings(bindings: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to bindings)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBindingsPtr, NIL)
+    Internals.writeArguments(ARRAY to bindings)
+    Internals.callMethod(rawPtr, MethodBindings.setBindingsPtr, NIL)
   }
 
   public final fun getBindings(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBindingsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path", 83702148)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "set_interaction_profile_path", 83702148)
 
     public val getInteractionProfilePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path", 201670096)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "get_interaction_profile_path", 201670096)
 
     public val getBindingCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count", 3905245786)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "get_binding_count", 3905245786)
 
     public val getBindingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_binding", 3934429652)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "get_binding", 3934429652)
 
     public val setBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings", 381264803)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "set_bindings", 381264803)
 
     public val getBindingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3995934104)
+        Internals.getMethodBindPtr("OpenXRInteractionProfile", "get_bindings", 3995934104)
   }
 }

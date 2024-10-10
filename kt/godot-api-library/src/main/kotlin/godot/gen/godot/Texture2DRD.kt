@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -38,27 +37,27 @@ public open class Texture2DRD : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTURE2DRD_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTURE2DRD_INDEX, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {
-    TransferContext.writeArguments(_RID to textureRdRid)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
+    Internals.writeArguments(_RID to textureRdRid)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureRdRidPtr, NIL)
   }
 
   public final fun getTextureRdRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureRdRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid", 2722037293)
+        Internals.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid", 2722037293)
 
     public val getTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid", 2944877500)
+        Internals.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid", 2944877500)
   }
 }

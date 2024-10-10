@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -52,7 +51,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PACKETPEER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PACKETPEER_INDEX, scriptIndex)
   }
 
   /**
@@ -64,9 +63,9 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun getVar(allowObjects: Boolean = false): Any? {
-    TransferContext.writeArguments(BOOL to allowObjects)
-    TransferContext.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(BOOL to allowObjects)
+    Internals.callMethod(rawPtr, MethodBindings.getVarPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -76,83 +75,81 @@ public open class PacketPeer internal constructor() : RefCounted() {
    */
   @JvmOverloads
   public final fun putVar(`var`: Any?, fullObjects: Boolean = false): Error {
-    TransferContext.writeArguments(ANY to `var`, BOOL to fullObjects)
-    TransferContext.callMethod(rawPtr, MethodBindings.putVarPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(ANY to `var`, BOOL to fullObjects)
+    Internals.callMethod(rawPtr, MethodBindings.putVarPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Gets a raw packet.
    */
   public final fun getPacket(): PackedByteArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
    * Sends a raw packet.
    */
   public final fun putPacket(buffer: PackedByteArray): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.putPacketPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.putPacketPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the error state of the last packet received (via [getPacket] and [getVar]).
    */
   public final fun getPacketError(): Error {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPacketErrorPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPacketErrorPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the number of packets currently available in the ring-buffer.
    */
   public final fun getAvailablePacketCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvailablePacketCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvailablePacketCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getEncodeBufferMaxSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEncodeBufferMaxSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setEncodeBufferMaxSize(maxSize: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
+    Internals.writeArguments(LONG to maxSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val getVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_var", 3442865206)
+    public val getVarPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeer", "get_var", 3442865206)
 
-    public val putVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "put_var", 2436251611)
+    public val putVarPtr: VoidPtr = Internals.getMethodBindPtr("PacketPeer", "put_var", 2436251611)
 
     public val getPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_packet", 2115431945)
+        Internals.getMethodBindPtr("PacketPeer", "get_packet", 2115431945)
 
     public val putPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "put_packet", 680677267)
+        Internals.getMethodBindPtr("PacketPeer", "put_packet", 680677267)
 
     public val getPacketErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_packet_error", 3185525595)
+        Internals.getMethodBindPtr("PacketPeer", "get_packet_error", 3185525595)
 
     public val getAvailablePacketCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_available_packet_count", 3905245786)
+        Internals.getMethodBindPtr("PacketPeer", "get_available_packet_count", 3905245786)
 
     public val getEncodeBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_encode_buffer_max_size", 3905245786)
+        Internals.getMethodBindPtr("PacketPeer", "get_encode_buffer_max_size", 3905245786)
 
     public val setEncodeBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "set_encode_buffer_max_size", 1286410249)
+        Internals.getMethodBindPtr("PacketPeer", "set_encode_buffer_max_size", 1286410249)
   }
 }

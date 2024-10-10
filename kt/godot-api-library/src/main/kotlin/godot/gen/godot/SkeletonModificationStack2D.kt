@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -74,7 +73,7 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX, scriptIndex)
   }
 
   /**
@@ -82,8 +81,8 @@ public open class SkeletonModificationStack2D : Resource() {
    * [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
    */
   public final fun setup(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.setupPtr, NIL)
   }
 
   /**
@@ -94,148 +93,148 @@ public open class SkeletonModificationStack2D : Resource() {
    * proper results.
    */
   public final fun execute(delta: Float, executionMode: Int): Unit {
-    TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.executePtr, NIL)
+    Internals.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.executePtr, NIL)
   }
 
   /**
    * Enables all [SkeletonModification2D]s in the stack.
    */
   public final fun enableAllModifications(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.enableAllModificationsPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.enableAllModificationsPtr, NIL)
   }
 
   /**
    * Returns the [SkeletonModification2D] at the passed-in index, [modIdx].
    */
   public final fun getModification(modIdx: Int): SkeletonModification2D? {
-    TransferContext.writeArguments(LONG to modIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getModificationPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SkeletonModification2D?)
+    Internals.writeArguments(LONG to modIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getModificationPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SkeletonModification2D?)
   }
 
   /**
    * Adds the passed-in [SkeletonModification2D] to the stack.
    */
   public final fun addModification(modification: SkeletonModification2D?): Unit {
-    TransferContext.writeArguments(OBJECT to modification)
-    TransferContext.callMethod(rawPtr, MethodBindings.addModificationPtr, NIL)
+    Internals.writeArguments(OBJECT to modification)
+    Internals.callMethod(rawPtr, MethodBindings.addModificationPtr, NIL)
   }
 
   /**
    * Deletes the [SkeletonModification2D] at the index position [modIdx], if it exists.
    */
   public final fun deleteModification(modIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to modIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.deleteModificationPtr, NIL)
+    Internals.writeArguments(LONG to modIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.deleteModificationPtr, NIL)
   }
 
   /**
    * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
   public final fun setModification(modIdx: Int, modification: SkeletonModification2D?): Unit {
-    TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
-    TransferContext.callMethod(rawPtr, MethodBindings.setModificationPtr, NIL)
+    Internals.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
+    Internals.callMethod(rawPtr, MethodBindings.setModificationPtr, NIL)
   }
 
   public final fun setModificationCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setModificationCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setModificationCountPtr, NIL)
   }
 
   public final fun getModificationCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModificationCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModificationCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns a boolean that indicates whether the modification stack is setup and can execute.
    */
   public final fun getIsSetup(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun getEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setStrengthPtr, NIL)
   }
 
   public final fun getStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the [Skeleton2D] node that the SkeletonModificationStack2D is bound to.
    */
   public final fun getSkeleton(): Skeleton2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Skeleton2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkeletonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Skeleton2D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "setup", 3218959716)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "setup", 3218959716)
 
     public val executePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "execute", 1005356550)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "execute", 1005356550)
 
     public val enableAllModificationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "enable_all_modifications", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "enable_all_modifications", 2586408642)
 
     public val getModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification", 2570274329)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_modification", 2570274329)
 
     public val addModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "add_modification", 354162120)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "add_modification", 354162120)
 
     public val deleteModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "delete_modification", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "delete_modification", 1286410249)
 
     public val setModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification", 1098262544)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_modification", 1098262544)
 
     public val setModificationCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification_count", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_modification_count", 1286410249)
 
     public val getModificationCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification_count", 3905245786)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_modification_count", 3905245786)
 
     public val getIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_is_setup", 36873697)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_is_setup", 36873697)
 
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_enabled", 2586408642)
 
     public val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_enabled", 36873697)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_enabled", 36873697)
 
     public val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_strength", 373806689)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "set_strength", 373806689)
 
     public val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_strength", 1740695150)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_strength", 1740695150)
 
     public val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_skeleton", 1697361217)
+        Internals.getMethodBindPtr("SkeletonModificationStack2D", "get_skeleton", 1697361217)
   }
 }

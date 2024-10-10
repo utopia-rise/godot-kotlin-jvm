@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -17,7 +16,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -447,26 +446,26 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LINEEDIT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LINEEDIT_INDEX, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Erases the [LineEdit]'s [text].
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   /**
@@ -490,224 +489,223 @@ public open class LineEdit : Control() {
    */
   @JvmOverloads
   public final fun select(from: Int = 0, to: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
+    Internals.writeArguments(LONG to from.toLong(), LONG to to.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.selectPtr, NIL)
   }
 
   /**
    * Selects the whole [String].
    */
   public final fun selectAll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
   }
 
   /**
    * Clears the current selection.
    */
   public final fun deselect(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
 
   /**
    * Returns `true` if the user has selected text.
    */
   public final fun hasSelection(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSelectionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasSelectionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the text inside the selection.
    */
   public final fun getSelectedText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the selection begin column.
    */
   public final fun getSelectionFromColumn(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionFromColumnPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectionFromColumnPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the selection end column.
    */
   public final fun getSelectionToColumn(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionToColumnPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectionToColumnPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun getDrawControlChars(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrawControlCharsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDrawControlChars(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawControlCharsPtr, NIL)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    Internals.writeArguments(LONG to parser.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    Internals.writeArguments(ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setPlaceholder(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlaceholderPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setPlaceholderPtr, NIL)
   }
 
   public final fun getPlaceholder(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaceholderPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlaceholderPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setCaretColumn(position: Int): Unit {
-    TransferContext.writeArguments(LONG to position.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCaretColumnPtr, NIL)
+    Internals.writeArguments(LONG to position.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setCaretColumnPtr, NIL)
   }
 
   public final fun getCaretColumn(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCaretColumnPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCaretColumnPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the scroll offset due to [caretColumn], as a number of characters.
    */
   public final fun getScrollOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExpandToTextLengthEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
   }
 
   public final fun isExpandToTextLengthEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isExpandToTextLengthEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isExpandToTextLengthEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCaretBlinkEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
   }
 
   public final fun isCaretBlinkEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCaretBlinkEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCaretBlinkEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCaretMidGraphemeEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
   }
 
   public final fun isCaretMidGraphemeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCaretMidGraphemeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCaretMidGraphemeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCaretForceDisplayed(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCaretForceDisplayedPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setCaretForceDisplayedPtr, NIL)
   }
 
   public final fun isCaretForceDisplayed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCaretForceDisplayedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCaretForceDisplayedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCaretBlinkInterval(interval: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to interval.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
+    Internals.writeArguments(DOUBLE to interval.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
   }
 
   public final fun getCaretBlinkInterval(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCaretBlinkIntervalPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCaretBlinkIntervalPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMaxLength(chars: Int): Unit {
-    TransferContext.writeArguments(LONG to chars.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxLengthPtr, NIL)
+    Internals.writeArguments(LONG to chars.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxLengthPtr, NIL)
   }
 
   public final fun getMaxLength(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxLengthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -715,8 +713,8 @@ public open class LineEdit : Control() {
    * happens.
    */
   public final fun insertTextAtCaret(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.insertTextAtCaretPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.insertTextAtCaretPtr, NIL)
   }
 
   /**
@@ -724,8 +722,8 @@ public open class LineEdit : Control() {
    * [kbd]Delete[/kbd]).
    */
   public final fun deleteCharAtCaret(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.deleteCharAtCaretPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.deleteCharAtCaretPtr, NIL)
   }
 
   /**
@@ -733,49 +731,49 @@ public open class LineEdit : Control() {
    * should be within the text's length.
    */
   public final fun deleteText(fromColumn: Int, toColumn: Int): Unit {
-    TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.deleteTextPtr, NIL)
+    Internals.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.deleteTextPtr, NIL)
   }
 
   public final fun setEditable(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
   }
 
   public final fun isEditable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSecret(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSecretPtr, NIL)
   }
 
   public final fun isSecret(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSecretPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSecretCharacter(character: String): Unit {
-    TransferContext.writeArguments(STRING to character)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
+    Internals.writeArguments(STRING to character)
+    Internals.callMethod(rawPtr, MethodBindings.setSecretCharacterPtr, NIL)
   }
 
   public final fun getSecretCharacter(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSecretCharacterPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Executes a given action as defined in the [MenuItems] enum.
    */
   public final fun menuOption(option: Int): Unit {
-    TransferContext.writeArguments(LONG to option.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
+    Internals.writeArguments(LONG to option.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
   }
 
   /**
@@ -827,9 +825,9 @@ public open class LineEdit : Control() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getMenu(): PopupMenu? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PopupMenu?)
   }
 
   /**
@@ -837,141 +835,141 @@ public open class LineEdit : Control() {
    * performance (so the creation of the menu is avoided).
    */
   public final fun isMenuVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setContextMenuEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
   }
 
   public final fun isContextMenuEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVirtualKeyboardEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
   }
 
   public final fun isVirtualKeyboardEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVirtualKeyboardType(type: VirtualKeyboardType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
   }
 
   public final fun getVirtualKeyboardType(): VirtualKeyboardType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
-    return LineEdit.VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVirtualKeyboardTypePtr, LONG)
+    return LineEdit.VirtualKeyboardType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setClearButtonEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearButtonEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setClearButtonEnabledPtr, NIL)
   }
 
   public final fun isClearButtonEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isClearButtonEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isClearButtonEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutKeysEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
   }
 
   public final fun isShortcutKeysEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMiddleMousePasteEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
   }
 
   public final fun isMiddleMousePasteEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMiddleMousePasteEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectingEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectingEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectingEnabledPtr, NIL)
   }
 
   public final fun isSelectingEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectingEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectingEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDeselectOnFocusLossEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
   }
 
   public final fun isDeselectOnFocusLossEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragAndDropSelectionEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
   }
 
   public final fun isDragAndDropSelectionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRightIcon(icon: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to icon)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRightIconPtr, NIL)
+    Internals.writeArguments(OBJECT to icon)
+    Internals.callMethod(rawPtr, MethodBindings.setRightIconPtr, NIL)
   }
 
   public final fun getRightIcon(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRightIconPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRightIconPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFlat(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFlatPtr, NIL)
   }
 
   public final fun isFlat(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFlatPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
   }
 
   public final fun isSelectAllOnFocus(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class MenuItems(
@@ -1169,222 +1167,219 @@ public open class LineEdit : Control() {
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_horizontal_alignment", 2312603777)
+        Internals.getMethodBindPtr("LineEdit", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341400642)
+        Internals.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341400642)
 
-    public val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "clear", 3218959716)
 
-    public val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "select", 1328111411)
+    public val selectPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "select", 1328111411)
 
     public val selectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "select_all", 3218959716)
+        Internals.getMethodBindPtr("LineEdit", "select_all", 3218959716)
 
-    public val deselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "deselect", 3218959716)
+    public val deselectPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "deselect", 3218959716)
 
     public val hasSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "has_selection", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "has_selection", 36873697)
 
     public val getSelectedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selected_text", 2841200299)
+        Internals.getMethodBindPtr("LineEdit", "get_selected_text", 2841200299)
 
     public val getSelectionFromColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selection_from_column", 3905245786)
+        Internals.getMethodBindPtr("LineEdit", "get_selection_from_column", 3905245786)
 
     public val getSelectionToColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selection_to_column", 3905245786)
+        Internals.getMethodBindPtr("LineEdit", "get_selection_to_column", 3905245786)
 
-    public val setTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "set_text", 83702148)
+    public val setTextPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "set_text", 83702148)
 
-    public val getTextPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_text", 201670096)
+    public val getTextPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "get_text", 201670096)
 
     public val getDrawControlCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_draw_control_chars", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "get_draw_control_chars", 36873697)
 
     public val setDrawControlCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_draw_control_chars", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_draw_control_chars", 2586408642)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_text_direction", 119160795)
+        Internals.getMethodBindPtr("LineEdit", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_text_direction", 797257663)
+        Internals.getMethodBindPtr("LineEdit", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_language", 83702148)
+        Internals.getMethodBindPtr("LineEdit", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_language", 201670096)
+        Internals.getMethodBindPtr("LineEdit", "get_language", 201670096)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override", 55961453)
+        Internals.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override", 3385126229)
+        Internals.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override_options", 381264803)
+        Internals.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override_options", 3995934104)
+        Internals.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override_options", 3995934104)
 
     public val setPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_placeholder", 83702148)
+        Internals.getMethodBindPtr("LineEdit", "set_placeholder", 83702148)
 
     public val getPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_placeholder", 201670096)
+        Internals.getMethodBindPtr("LineEdit", "get_placeholder", 201670096)
 
     public val setCaretColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_column", 1286410249)
+        Internals.getMethodBindPtr("LineEdit", "set_caret_column", 1286410249)
 
     public val getCaretColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_caret_column", 3905245786)
+        Internals.getMethodBindPtr("LineEdit", "get_caret_column", 3905245786)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_scroll_offset", 1740695150)
+        Internals.getMethodBindPtr("LineEdit", "get_scroll_offset", 1740695150)
 
     public val setExpandToTextLengthEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_expand_to_text_length_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_expand_to_text_length_enabled", 2586408642)
 
     public val isExpandToTextLengthEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_expand_to_text_length_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_expand_to_text_length_enabled", 36873697)
 
     public val setCaretBlinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_caret_blink_enabled", 2586408642)
 
     public val isCaretBlinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_blink_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_caret_blink_enabled", 36873697)
 
     public val setCaretMidGraphemeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_mid_grapheme_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_caret_mid_grapheme_enabled", 2586408642)
 
     public val isCaretMidGraphemeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_mid_grapheme_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_caret_mid_grapheme_enabled", 36873697)
 
     public val setCaretForceDisplayedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_force_displayed", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_caret_force_displayed", 2586408642)
 
     public val isCaretForceDisplayedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_force_displayed", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_caret_force_displayed", 36873697)
 
     public val setCaretBlinkIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_interval", 373806689)
+        Internals.getMethodBindPtr("LineEdit", "set_caret_blink_interval", 373806689)
 
     public val getCaretBlinkIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_caret_blink_interval", 1740695150)
+        Internals.getMethodBindPtr("LineEdit", "get_caret_blink_interval", 1740695150)
 
     public val setMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_max_length", 1286410249)
+        Internals.getMethodBindPtr("LineEdit", "set_max_length", 1286410249)
 
     public val getMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_max_length", 3905245786)
+        Internals.getMethodBindPtr("LineEdit", "get_max_length", 3905245786)
 
     public val insertTextAtCaretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "insert_text_at_caret", 83702148)
+        Internals.getMethodBindPtr("LineEdit", "insert_text_at_caret", 83702148)
 
     public val deleteCharAtCaretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "delete_char_at_caret", 3218959716)
+        Internals.getMethodBindPtr("LineEdit", "delete_char_at_caret", 3218959716)
 
     public val deleteTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "delete_text", 3937882851)
+        Internals.getMethodBindPtr("LineEdit", "delete_text", 3937882851)
 
     public val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_editable", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_editable", 2586408642)
 
     public val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_editable", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_editable", 36873697)
 
     public val setSecretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_secret", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_secret", 2586408642)
 
-    public val isSecretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_secret", 36873697)
+    public val isSecretPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "is_secret", 36873697)
 
     public val setSecretCharacterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_secret_character", 83702148)
+        Internals.getMethodBindPtr("LineEdit", "set_secret_character", 83702148)
 
     public val getSecretCharacterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_secret_character", 201670096)
+        Internals.getMethodBindPtr("LineEdit", "get_secret_character", 201670096)
 
     public val menuOptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "menu_option", 1286410249)
+        Internals.getMethodBindPtr("LineEdit", "menu_option", 1286410249)
 
-    public val getMenuPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "get_menu", 229722558)
+    public val getMenuPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "get_menu", 229722558)
 
     public val isMenuVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_menu_visible", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_menu_visible", 36873697)
 
     public val setContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_context_menu_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_context_menu_enabled", 2586408642)
 
     public val isContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_context_menu_enabled", 2240911060)
+        Internals.getMethodBindPtr("LineEdit", "is_context_menu_enabled", 2240911060)
 
     public val setVirtualKeyboardEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2586408642)
 
     public val isVirtualKeyboardEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled", 36873697)
 
     public val setVirtualKeyboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type", 2696893573)
+        Internals.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type", 2696893573)
 
     public val getVirtualKeyboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_virtual_keyboard_type", 1928699316)
+        Internals.getMethodBindPtr("LineEdit", "get_virtual_keyboard_type", 1928699316)
 
     public val setClearButtonEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_clear_button_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_clear_button_enabled", 2586408642)
 
     public val isClearButtonEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_clear_button_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_clear_button_enabled", 36873697)
 
     public val setShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_shortcut_keys_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_shortcut_keys_enabled", 2586408642)
 
     public val isShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_shortcut_keys_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_shortcut_keys_enabled", 36873697)
 
     public val setMiddleMousePasteEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_middle_mouse_paste_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_middle_mouse_paste_enabled", 2586408642)
 
     public val isMiddleMousePasteEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_middle_mouse_paste_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_middle_mouse_paste_enabled", 36873697)
 
     public val setSelectingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_selecting_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_selecting_enabled", 2586408642)
 
     public val isSelectingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_selecting_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_selecting_enabled", 36873697)
 
     public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_deselect_on_focus_loss_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_deselect_on_focus_loss_enabled", 2586408642)
 
     public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled", 36873697)
 
     public val setDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled", 2586408642)
 
     public val isDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled", 36873697)
 
     public val setRightIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_right_icon", 4051416890)
+        Internals.getMethodBindPtr("LineEdit", "set_right_icon", 4051416890)
 
     public val getRightIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_right_icon", 255860311)
+        Internals.getMethodBindPtr("LineEdit", "get_right_icon", 255860311)
 
-    public val setFlatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_flat", 2586408642)
+    public val setFlatPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "set_flat", 2586408642)
 
-    public val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "is_flat", 36873697)
+    public val isFlatPtr: VoidPtr = Internals.getMethodBindPtr("LineEdit", "is_flat", 36873697)
 
     public val setSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_select_all_on_focus", 2586408642)
+        Internals.getMethodBindPtr("LineEdit", "set_select_all_on_focus", 2586408642)
 
     public val isSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_select_all_on_focus", 36873697)
+        Internals.getMethodBindPtr("LineEdit", "is_select_all_on_focus", 36873697)
   }
 }

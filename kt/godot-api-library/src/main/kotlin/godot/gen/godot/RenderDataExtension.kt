@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
+import godot.util.Internals
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -21,7 +22,7 @@ private const val ENGINE_CLASS_RENDERDATAEXTENSION_INDEX: Int = 486
 @GodotBaseType
 public open class RenderDataExtension : RenderData() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RENDERDATAEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RENDERDATAEXTENSION_INDEX, scriptIndex)
   }
 
   /**

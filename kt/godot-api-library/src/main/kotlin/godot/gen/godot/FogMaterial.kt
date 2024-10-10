@@ -10,12 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -116,7 +115,7 @@ public open class FogMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_FOGMATERIAL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_FOGMATERIAL_INDEX, scriptIndex)
   }
 
   /**
@@ -172,108 +171,108 @@ public open class FogMaterial : Material() {
 
 
   public final fun setDensity(density: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to density.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to density.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDensityPtr, NIL)
   }
 
   public final fun getDensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlbedo(albedo: Color): Unit {
-    TransferContext.writeArguments(COLOR to albedo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+    Internals.writeArguments(COLOR to albedo)
+    Internals.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
   }
 
   public final fun getAlbedo(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEmission(emission: Color): Unit {
-    TransferContext.writeArguments(COLOR to emission)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+    Internals.writeArguments(COLOR to emission)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
   }
 
   public final fun getEmission(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setHeightFalloff(heightFalloff: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to heightFalloff.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightFalloffPtr, NIL)
+    Internals.writeArguments(DOUBLE to heightFalloff.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightFalloffPtr, NIL)
   }
 
   public final fun getHeightFalloff(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightFalloffPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightFalloffPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeFade(edgeFade: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edgeFade.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeFadePtr, NIL)
+    Internals.writeArguments(DOUBLE to edgeFade.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEdgeFadePtr, NIL)
   }
 
   public final fun getEdgeFade(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeFadePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEdgeFadePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDensityTexture(densityTexture: Texture3D?): Unit {
-    TransferContext.writeArguments(OBJECT to densityTexture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDensityTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to densityTexture)
+    Internals.callMethod(rawPtr, MethodBindings.setDensityTexturePtr, NIL)
   }
 
   public final fun getDensityTexture(): Texture3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDensityTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDensityTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_density", 373806689)
+        Internals.getMethodBindPtr("FogMaterial", "set_density", 373806689)
 
     public val getDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_density", 1740695150)
+        Internals.getMethodBindPtr("FogMaterial", "get_density", 1740695150)
 
     public val setAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_albedo", 2920490490)
+        Internals.getMethodBindPtr("FogMaterial", "set_albedo", 2920490490)
 
     public val getAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_albedo", 3444240500)
+        Internals.getMethodBindPtr("FogMaterial", "get_albedo", 3444240500)
 
     public val setEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_emission", 2920490490)
+        Internals.getMethodBindPtr("FogMaterial", "set_emission", 2920490490)
 
     public val getEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_emission", 3444240500)
+        Internals.getMethodBindPtr("FogMaterial", "get_emission", 3444240500)
 
     public val setHeightFalloffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_height_falloff", 373806689)
+        Internals.getMethodBindPtr("FogMaterial", "set_height_falloff", 373806689)
 
     public val getHeightFalloffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_height_falloff", 1740695150)
+        Internals.getMethodBindPtr("FogMaterial", "get_height_falloff", 1740695150)
 
     public val setEdgeFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_edge_fade", 373806689)
+        Internals.getMethodBindPtr("FogMaterial", "set_edge_fade", 373806689)
 
     public val getEdgeFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_edge_fade", 1740695150)
+        Internals.getMethodBindPtr("FogMaterial", "get_edge_fade", 1740695150)
 
     public val setDensityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "set_density_texture", 1188404210)
+        Internals.getMethodBindPtr("FogMaterial", "set_density_texture", 1188404210)
 
     public val getDensityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogMaterial", "get_density_texture", 373985333)
+        Internals.getMethodBindPtr("FogMaterial", "get_density_texture", 373985333)
   }
 }

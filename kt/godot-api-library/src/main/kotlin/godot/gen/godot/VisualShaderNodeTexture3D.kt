@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -38,27 +37,27 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTURE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODETEXTURE3D_INDEX, scriptIndex)
   }
 
   public final fun setTexture(`value`: Texture3D?): Unit {
-    TransferContext.writeArguments(OBJECT to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to value)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   public final fun getTexture(): Texture3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture3D?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture3D", "set_texture", 1188404210)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "set_texture", 1188404210)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTexture3D", "get_texture", 373985333)
+        Internals.getMethodBindPtr("VisualShaderNodeTexture3D", "get_texture", 373985333)
   }
 }

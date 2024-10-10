@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -97,95 +96,95 @@ public open class CameraAttributes : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CAMERAATTRIBUTES_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CAMERAATTRIBUTES_INDEX, scriptIndex)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExposureMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExposureMultiplierPtr, NIL)
   }
 
   public final fun getExposureMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExposureMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setExposureSensitivity(sensitivity: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sensitivity.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExposureSensitivityPtr, NIL)
+    Internals.writeArguments(DOUBLE to sensitivity.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExposureSensitivityPtr, NIL)
   }
 
   public final fun getExposureSensitivity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExposureSensitivityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureEnabledPtr, NIL)
   }
 
   public final fun isAutoExposureEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoExposureEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoExposureSpeed(exposureSpeed: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to exposureSpeed.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
+    Internals.writeArguments(DOUBLE to exposureSpeed.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureSpeedPtr, NIL)
   }
 
   public final fun getAutoExposureSpeed(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureSpeedPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAutoExposureScale(exposureGrey: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to exposureGrey.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoExposureScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to exposureGrey.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoExposureScalePtr, NIL)
   }
 
   public final fun getAutoExposureScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoExposureScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373806689)
+        Internals.getMethodBindPtr("CameraAttributes", "set_exposure_multiplier", 373806689)
 
     public val getExposureMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributes", "get_exposure_multiplier", 1740695150)
 
     public val setExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373806689)
+        Internals.getMethodBindPtr("CameraAttributes", "set_exposure_sensitivity", 373806689)
 
     public val getExposureSensitivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributes", "get_exposure_sensitivity", 1740695150)
 
     public val setAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2586408642)
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_enabled", 2586408642)
 
     public val isAutoExposureEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36873697)
+        Internals.getMethodBindPtr("CameraAttributes", "is_auto_exposure_enabled", 36873697)
 
     public val setAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373806689)
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_speed", 373806689)
 
     public val getAutoExposureSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributes", "get_auto_exposure_speed", 1740695150)
 
     public val setAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373806689)
+        Internals.getMethodBindPtr("CameraAttributes", "set_auto_exposure_scale", 373806689)
 
     public val getAutoExposureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1740695150)
+        Internals.getMethodBindPtr("CameraAttributes", "get_auto_exposure_scale", 1740695150)
   }
 }

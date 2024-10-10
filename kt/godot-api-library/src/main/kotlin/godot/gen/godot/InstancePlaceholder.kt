@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -37,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_INSTANCEPLACEHOLDER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_INSTANCEPLACEHOLDER_INDEX, scriptIndex)
   }
 
   /**
@@ -49,9 +48,9 @@ public open class InstancePlaceholder internal constructor() : Node() {
    */
   @JvmOverloads
   public final fun getStoredValues(withOrder: Boolean = false): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(BOOL to withOrder)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(BOOL to withOrder)
+    Internals.callMethod(rawPtr, MethodBindings.getStoredValuesPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -64,9 +63,9 @@ public open class InstancePlaceholder internal constructor() : Node() {
   @JvmOverloads
   public final fun createInstance(replace: Boolean = false, customScene: PackedScene? = null):
       Node? {
-    TransferContext.writeArguments(BOOL to replace, OBJECT to customScene)
-    TransferContext.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments(BOOL to replace, OBJECT to customScene)
+    Internals.callMethod(rawPtr, MethodBindings.createInstancePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -74,21 +73,21 @@ public open class InstancePlaceholder internal constructor() : Node() {
    * [createInstance]. Not thread-safe. Use [Object.callDeferred] if calling from a thread.
    */
   public final fun getInstancePath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstancePathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getStoredValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_stored_values", 2230153369)
+        Internals.getMethodBindPtr("InstancePlaceholder", "get_stored_values", 2230153369)
 
     public val createInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "create_instance", 3794612210)
+        Internals.getMethodBindPtr("InstancePlaceholder", "create_instance", 3794612210)
 
     public val getInstancePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InstancePlaceholder", "get_instance_path", 201670096)
+        Internals.getMethodBindPtr("InstancePlaceholder", "get_instance_path", 201670096)
   }
 }

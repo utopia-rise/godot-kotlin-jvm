@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -59,61 +58,61 @@ public open class RDAttachmentFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDATTACHMENTFORMAT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDATTACHMENTFORMAT_INDEX, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFormatPtr, NIL)
   }
 
   public final fun getFormat(): RenderingDevice.DataFormat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
-    return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFormatPtr, LONG)
+    return RenderingDevice.DataFormat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
+    Internals.writeArguments(LONG to pMember.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSamplesPtr, NIL)
   }
 
   public final fun getSamples(): RenderingDevice.TextureSamples {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
-    return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplesPtr, LONG)
+    return RenderingDevice.TextureSamples.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUsageFlags(pMember: Long): Unit {
-    TransferContext.writeArguments(LONG to pMember)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
+    Internals.writeArguments(LONG to pMember)
+    Internals.callMethod(rawPtr, MethodBindings.setUsageFlagsPtr, NIL)
   }
 
   public final fun getUsageFlags(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUsageFlagsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format", 565531219)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "set_format", 565531219)
 
     public val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format", 2235804183)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "get_format", 2235804183)
 
     public val setSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples", 3774171498)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "set_samples", 3774171498)
 
     public val getSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples", 407791724)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "get_samples", 407791724)
 
     public val setUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags", 1286410249)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags", 1286410249)
 
     public val getUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags", 3905245786)
+        Internals.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags", 3905245786)
   }
 }

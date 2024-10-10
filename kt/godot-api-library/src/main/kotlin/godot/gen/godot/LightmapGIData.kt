@@ -9,7 +9,6 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -18,7 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -66,18 +65,18 @@ public open class LightmapGIData : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_LIGHTMAPGIDATA_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_LIGHTMAPGIDATA_INDEX, scriptIndex)
   }
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {
-    TransferContext.writeArguments(ARRAY to lightTextures)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapTexturesPtr, NIL)
+    Internals.writeArguments(ARRAY to lightTextures)
+    Internals.callMethod(rawPtr, MethodBindings.setLightmapTexturesPtr, NIL)
   }
 
   public final fun getLightmapTextures(): VariantArray<TextureLayered> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapTexturesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightmapTexturesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
   /**
@@ -89,8 +88,8 @@ public open class LightmapGIData : Resource() {
    * lightmapper.
    */
   public final fun setUsesSphericalHarmonics(usesSphericalHarmonics: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to usesSphericalHarmonics)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
+    Internals.writeArguments(BOOL to usesSphericalHarmonics)
+    Internals.callMethod(rawPtr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
   }
 
   /**
@@ -98,9 +97,9 @@ public open class LightmapGIData : Resource() {
    * [LightmapGI.directional].
    */
   public final fun isUsingSphericalHarmonics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingSphericalHarmonicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -112,78 +111,78 @@ public open class LightmapGIData : Resource() {
     sliceIndex: Int,
     subInstance: Int,
   ): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addUserPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addUserPtr, NIL)
   }
 
   /**
    * Returns the number of objects that are considered baked within this [LightmapGIData].
    */
   public final fun getUserCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUserCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUserCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the [NodePath] of the baked object at index [userIdx].
    */
   public final fun getUserPath(userIdx: Int): NodePath {
-    TransferContext.writeArguments(LONG to userIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getUserPathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments(LONG to userIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getUserPathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
    * Clear all objects that are considered baked within this [LightmapGIData].
    */
   public final fun clearUsers(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearUsersPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearUsersPtr, NIL)
   }
 
   public final fun setLightTexture(lightTexture: TextureLayered?): Unit {
-    TransferContext.writeArguments(OBJECT to lightTexture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to lightTexture)
+    Internals.callMethod(rawPtr, MethodBindings.setLightTexturePtr, NIL)
   }
 
   public final fun getLightTexture(): TextureLayered? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TextureLayered?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLightmapTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_lightmap_textures", 381264803)
+        Internals.getMethodBindPtr("LightmapGIData", "set_lightmap_textures", 381264803)
 
     public val getLightmapTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_lightmap_textures", 3995934104)
+        Internals.getMethodBindPtr("LightmapGIData", "get_lightmap_textures", 3995934104)
 
     public val setUsesSphericalHarmonicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_uses_spherical_harmonics", 2586408642)
+        Internals.getMethodBindPtr("LightmapGIData", "set_uses_spherical_harmonics", 2586408642)
 
     public val isUsingSphericalHarmonicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "is_using_spherical_harmonics", 36873697)
+        Internals.getMethodBindPtr("LightmapGIData", "is_using_spherical_harmonics", 36873697)
 
     public val addUserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "add_user", 4272570515)
+        Internals.getMethodBindPtr("LightmapGIData", "add_user", 4272570515)
 
     public val getUserCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_count", 3905245786)
+        Internals.getMethodBindPtr("LightmapGIData", "get_user_count", 3905245786)
 
     public val getUserPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_path", 408788394)
+        Internals.getMethodBindPtr("LightmapGIData", "get_user_path", 408788394)
 
     public val clearUsersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "clear_users", 3218959716)
+        Internals.getMethodBindPtr("LightmapGIData", "clear_users", 3218959716)
 
     public val setLightTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_light_texture", 1278366092)
+        Internals.getMethodBindPtr("LightmapGIData", "set_light_texture", 1278366092)
 
     public val getLightTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_light_texture", 3984243839)
+        Internals.getMethodBindPtr("LightmapGIData", "get_light_texture", 3984243839)
   }
 }

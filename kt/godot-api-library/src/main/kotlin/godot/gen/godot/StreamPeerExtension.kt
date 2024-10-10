@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -17,7 +18,7 @@ private const val ENGINE_CLASS_STREAMPEEREXTENSION_INDEX: Int = 554
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STREAMPEEREXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STREAMPEEREXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getAvailableBytes(): Int {

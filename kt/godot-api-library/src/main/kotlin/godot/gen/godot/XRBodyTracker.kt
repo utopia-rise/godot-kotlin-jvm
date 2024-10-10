@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -88,37 +87,37 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRBODYTRACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRBODYTRACKER_INDEX, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to hasData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
+    Internals.writeArguments(BOOL to hasData)
+    Internals.callMethod(rawPtr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
 
   public final fun getHasTrackingData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHasTrackingDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBodyFlags(flags: BodyFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
+    Internals.writeArguments(LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setBodyFlagsPtr, NIL)
   }
 
   public final fun getBodyFlags(): BodyFlags {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
-    return BodyFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodyFlagsPtr, LONG)
+    return BodyFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets flags about the validity of the tracking data for the given body joint.
    */
   public final fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
-    TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointFlagsPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, LONG to flags.flag)
+    Internals.callMethod(rawPtr, MethodBindings.setJointFlagsPtr, NIL)
   }
 
   /**
@@ -126,26 +125,26 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * [XRBodyTracker.JointFlags]).
    */
   public final fun getJointFlags(joint: Joint): JointFlags {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointFlagsPtr, LONG)
-    return JointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getJointFlagsPtr, LONG)
+    return JointFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Sets the transform for the given body joint.
    */
   public final fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTransformPtr, NIL)
+    Internals.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setJointTransformPtr, NIL)
   }
 
   /**
    * Returns the transform for the given body joint.
    */
   public final fun getJointTransform(joint: Joint): Transform3D {
-    TransferContext.writeArguments(LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public sealed interface BodyFlags {
@@ -601,27 +600,27 @@ public open class XRBodyTracker : XRPositionalTracker() {
 
   internal object MethodBindings {
     public val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2586408642)
+        Internals.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2586408642)
 
     public val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36873697)
+        Internals.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36873697)
 
     public val setBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2103235750)
+        Internals.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2103235750)
 
     public val getBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3543166366)
+        Internals.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3543166366)
 
     public val setJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592144999)
+        Internals.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592144999)
 
     public val getJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1030162609)
+        Internals.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1030162609)
 
     public val setJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2635424328)
+        Internals.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2635424328)
 
     public val getJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
+        Internals.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
   }
 }

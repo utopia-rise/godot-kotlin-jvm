@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -31,7 +30,7 @@ private const val ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX: Int = 387
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX, scriptIndex)
   }
 
   /**
@@ -218,26 +217,26 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * Returns the created [OpenXRAPIExtension], which can be used to access the OpenXR API.
    */
   public final fun getOpenxrApi(): OpenXRAPIExtension? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOpenxrApiPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as OpenXRAPIExtension?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOpenxrApiPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as OpenXRAPIExtension?)
   }
 
   /**
    * Registers the extension. This should happen at core module initialization level.
    */
   public final fun registerExtensionWrapper(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.registerExtensionWrapperPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.registerExtensionWrapperPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getOpenxrApiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api", 1637791613)
+        Internals.getMethodBindPtr("OpenXRExtensionWrapperExtension", "get_openxr_api", 1637791613)
 
     public val registerExtensionWrapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRExtensionWrapperExtension", "register_extension_wrapper", 3218959716)
+        Internals.getMethodBindPtr("OpenXRExtensionWrapperExtension", "register_extension_wrapper", 3218959716)
   }
 }

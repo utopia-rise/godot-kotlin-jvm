@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -100,7 +99,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICALBONE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICALBONE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -108,31 +107,31 @@ public open class PhysicalBone2D : RigidBody2D() {
    * it easier to get the [Joint2D] that the [PhysicalBone2D] is autoconfiguring.
    */
   public final fun getJoint(): Joint2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Joint2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Joint2D?)
   }
 
   public final fun getAutoConfigureJoint(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoConfigureJointPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoConfigureJoint(autoConfigureJoint: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to autoConfigureJoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoConfigureJointPtr, NIL)
+    Internals.writeArguments(BOOL to autoConfigureJoint)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoConfigureJointPtr, NIL)
   }
 
   public final fun setSimulatePhysics(simulatePhysics: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to simulatePhysics)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSimulatePhysicsPtr, NIL)
+    Internals.writeArguments(BOOL to simulatePhysics)
+    Internals.callMethod(rawPtr, MethodBindings.setSimulatePhysicsPtr, NIL)
   }
 
   public final fun getSimulatePhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -140,81 +139,81 @@ public open class PhysicalBone2D : RigidBody2D() {
    * the Godot 2D physics engine. When `true`, the PhysicalBone2D node is using physics.
    */
   public final fun isSimulatingPhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBone2dNodepath(nodepath: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to nodepath)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dNodepathPtr, NIL)
+    Internals.writeArguments(NODE_PATH to nodepath)
+    Internals.callMethod(rawPtr, MethodBindings.setBone2dNodepathPtr, NIL)
   }
 
   public final fun getBone2dNodepath(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBone2dNodepathPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setBone2dIndex(boneIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBone2dIndexPtr, NIL)
+    Internals.writeArguments(LONG to boneIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBone2dIndexPtr, NIL)
   }
 
   public final fun getBone2dIndex(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBone2dIndexPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFollowBoneWhenSimulating(followBone: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to followBone)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
+    Internals.writeArguments(BOOL to followBone)
+    Internals.callMethod(rawPtr, MethodBindings.setFollowBoneWhenSimulatingPtr, NIL)
   }
 
   public final fun getFollowBoneWhenSimulating(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFollowBoneWhenSimulatingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_joint", 3582132112)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_joint", 3582132112)
 
     public val getAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint", 36873697)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_auto_configure_joint", 36873697)
 
     public val setAutoConfigureJointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint", 2586408642)
+        Internals.getMethodBindPtr("PhysicalBone2D", "set_auto_configure_joint", 2586408642)
 
     public val setSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics", 2586408642)
+        Internals.getMethodBindPtr("PhysicalBone2D", "set_simulate_physics", 2586408642)
 
     public val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics", 36873697)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_simulate_physics", 36873697)
 
     public val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics", 36873697)
+        Internals.getMethodBindPtr("PhysicalBone2D", "is_simulating_physics", 36873697)
 
     public val setBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath", 1348162250)
+        Internals.getMethodBindPtr("PhysicalBone2D", "set_bone2d_nodepath", 1348162250)
 
     public val getBone2dNodepathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath", 4075236667)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_bone2d_nodepath", 4075236667)
 
     public val setBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index", 1286410249)
+        Internals.getMethodBindPtr("PhysicalBone2D", "set_bone2d_index", 1286410249)
 
     public val getBone2dIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index", 3905245786)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_bone2d_index", 3905245786)
 
     public val setFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating", 2586408642)
+        Internals.getMethodBindPtr("PhysicalBone2D", "set_follow_bone_when_simulating", 2586408642)
 
     public val getFollowBoneWhenSimulatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating", 36873697)
+        Internals.getMethodBindPtr("PhysicalBone2D", "get_follow_bone_when_simulating", 36873697)
   }
 }

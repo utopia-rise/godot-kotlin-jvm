@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -18,7 +17,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -244,7 +243,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PHYSICALBONE3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PHYSICALBONE3D_INDEX, scriptIndex)
   }
 
   /**
@@ -381,208 +380,208 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public final fun applyCentralImpulse(impulse: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to impulse)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
+    Internals.writeArguments(VECTOR3 to impulse)
+    Internals.callMethod(rawPtr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
 
   @JvmOverloads
   public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
-    TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
+    Internals.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
+    Internals.callMethod(rawPtr, MethodBindings.applyImpulsePtr, NIL)
   }
 
   public final fun setJointType(jointType: JointType): Unit {
-    TransferContext.writeArguments(LONG to jointType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointTypePtr, NIL)
+    Internals.writeArguments(LONG to jointType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setJointTypePtr, NIL)
   }
 
   public final fun getJointType(): JointType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointTypePtr, LONG)
-    return PhysicalBone3D.JointType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointTypePtr, LONG)
+    return PhysicalBone3D.JointType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setJointOffset(offset: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointOffsetPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setJointOffsetPtr, NIL)
   }
 
   public final fun getJointOffset(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointOffsetPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun setJointRotation(euler: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to euler)
-    TransferContext.callMethod(rawPtr, MethodBindings.setJointRotationPtr, NIL)
+    Internals.writeArguments(VECTOR3 to euler)
+    Internals.callMethod(rawPtr, MethodBindings.setJointRotationPtr, NIL)
   }
 
   public final fun getJointRotation(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getJointRotationPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getJointRotationPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setBodyOffset(offset: Transform3D): Unit {
-    TransferContext.writeArguments(TRANSFORM3D to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBodyOffsetPtr, NIL)
+    Internals.writeArguments(TRANSFORM3D to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setBodyOffsetPtr, NIL)
   }
 
   public final fun getBodyOffset(): Transform3D {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBodyOffsetPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   public final fun getSimulatePhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSimulatePhysicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun isSimulatingPhysics(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSimulatingPhysicsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getBoneId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMass(mass: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mass.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
+    Internals.writeArguments(DOUBLE to mass.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMassPtr, NIL)
   }
 
   public final fun getMass(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMassPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFriction(friction: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to friction.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
+    Internals.writeArguments(DOUBLE to friction.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFrictionPtr, NIL)
   }
 
   public final fun getFriction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFrictionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBounce(bounce: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bounce.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
+    Internals.writeArguments(DOUBLE to bounce.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBouncePtr, NIL)
   }
 
   public final fun getBounce(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBouncePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGravityScale(gravityScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to gravityScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGravityScalePtr, NIL)
   }
 
   public final fun getGravityScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
+    Internals.writeArguments(LONG to linearDampMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampModePtr, NIL)
   }
 
   public final fun getLinearDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampModePtr, LONG)
+    return PhysicalBone3D.DampMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
+    Internals.writeArguments(LONG to angularDampMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampModePtr, NIL)
   }
 
   public final fun getAngularDampMode(): DampMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
-    return PhysicalBone3D.DampMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampModePtr, LONG)
+    return PhysicalBone3D.DampMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLinearDamp(linearDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to linearDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLinearDampPtr, NIL)
   }
 
   public final fun getLinearDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAngularDamp(angularDamp: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
+    Internals.writeArguments(DOUBLE to angularDamp.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAngularDampPtr, NIL)
   }
 
   public final fun getAngularDamp(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularDampPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to linearVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to linearVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setLinearVelocityPtr, NIL)
   }
 
   public final fun getLinearVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLinearVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to angularVelocity)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to angularVelocity)
+    Internals.callMethod(rawPtr, MethodBindings.setAngularVelocityPtr, NIL)
   }
 
   public final fun getAngularVelocity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUseCustomIntegrator(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseCustomIntegratorPtr, NIL)
   }
 
   public final fun isUsingCustomIntegrator(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingCustomIntegratorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setCanSleep(ableToSleep: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ableToSleep)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
+    Internals.writeArguments(BOOL to ableToSleep)
+    Internals.callMethod(rawPtr, MethodBindings.setCanSleepPtr, NIL)
   }
 
   public final fun isAbleToSleep(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAbleToSleepPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class DampMode(
@@ -634,114 +633,114 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   internal object MethodBindings {
     public val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse", 3460891852)
+        Internals.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse", 3460891852)
 
     public val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_impulse", 2754756483)
+        Internals.getMethodBindPtr("PhysicalBone3D", "apply_impulse", 2754756483)
 
     public val setJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_type", 2289552604)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_joint_type", 2289552604)
 
     public val getJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_type", 931347320)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_joint_type", 931347320)
 
     public val setJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_offset", 2952846383)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_joint_offset", 2952846383)
 
     public val getJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_offset", 3229777777)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_joint_offset", 3229777777)
 
     public val setJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation", 3460891852)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation", 3460891852)
 
     public val getJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation", 3360562783)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation", 3360562783)
 
     public val setBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_body_offset", 2952846383)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_body_offset", 2952846383)
 
     public val getBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_body_offset", 3229777777)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_body_offset", 3229777777)
 
     public val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics", 2240911060)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics", 2240911060)
 
     public val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics", 2240911060)
+        Internals.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics", 2240911060)
 
     public val getBoneIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bone_id", 3905245786)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_bone_id", 3905245786)
 
     public val setMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_mass", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_mass", 373806689)
 
     public val getMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_mass", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_mass", 1740695150)
 
     public val setFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_friction", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_friction", 373806689)
 
     public val getFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_friction", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_friction", 1740695150)
 
     public val setBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_bounce", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_bounce", 373806689)
 
     public val getBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bounce", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_bounce", 1740695150)
 
     public val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale", 373806689)
 
     public val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale", 1740695150)
 
     public val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode", 1244972221)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode", 1244972221)
 
     public val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode", 205884699)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode", 205884699)
 
     public val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode", 1244972221)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode", 1244972221)
 
     public val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode", 205884699)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode", 205884699)
 
     public val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_linear_damp", 373806689)
 
     public val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_linear_damp", 1740695150)
 
     public val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp", 373806689)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_angular_damp", 373806689)
 
     public val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp", 1740695150)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_angular_damp", 1740695150)
 
     public val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity", 3460891852)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity", 3460891852)
 
     public val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity", 3360562783)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity", 3360562783)
 
     public val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity", 3460891852)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity", 3460891852)
 
     public val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity", 3360562783)
+        Internals.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity", 3360562783)
 
     public val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator", 2586408642)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator", 2586408642)
 
     public val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator", 2240911060)
+        Internals.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator", 2240911060)
 
     public val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_can_sleep", 2586408642)
+        Internals.getMethodBindPtr("PhysicalBone3D", "set_can_sleep", 2586408642)
 
     public val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep", 36873697)
+        Internals.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep", 36873697)
   }
 }

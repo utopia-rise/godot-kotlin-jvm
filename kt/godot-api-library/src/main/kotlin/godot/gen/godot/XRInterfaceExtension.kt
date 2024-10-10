@@ -16,7 +16,6 @@ import godot.core.Rect2
 import godot.core.Rect2i
 import godot.core.StringName
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,7 +25,7 @@ import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser._RID
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -46,7 +45,7 @@ private const val ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX: Int = 759
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX, scriptIndex)
   }
 
   /**
@@ -277,21 +276,21 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   public final fun getColorTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorTexturePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun getDepthTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthTexturePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun getVelocityTexture(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVelocityTexturePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   /**
@@ -311,8 +310,8 @@ public open class XRInterfaceExtension : XRInterface() {
     upscale: Double,
     aspectRatio: Double,
   ): Unit {
-    TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
-    TransferContext.callMethod(rawPtr, MethodBindings.addBlitPtr, NIL)
+    Internals.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
+    Internals.callMethod(rawPtr, MethodBindings.addBlitPtr, NIL)
   }
 
   /**
@@ -320,27 +319,27 @@ public open class XRInterfaceExtension : XRInterface() {
    * the interface.
    */
   public final fun getRenderTargetTexture(renderTarget: RID): RID {
-    TransferContext.writeArguments(_RID to renderTarget)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetTexturePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments(_RID to renderTarget)
+    Internals.callMethod(rawPtr, MethodBindings.getRenderTargetTexturePtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_color_texture", 529393457)
+        Internals.getMethodBindPtr("XRInterfaceExtension", "get_color_texture", 529393457)
 
     public val getDepthTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_depth_texture", 529393457)
+        Internals.getMethodBindPtr("XRInterfaceExtension", "get_depth_texture", 529393457)
 
     public val getVelocityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_velocity_texture", 529393457)
+        Internals.getMethodBindPtr("XRInterfaceExtension", "get_velocity_texture", 529393457)
 
     public val addBlitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "add_blit", 258596971)
+        Internals.getMethodBindPtr("XRInterfaceExtension", "add_blit", 258596971)
 
     public val getRenderTargetTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_render_target_texture", 41030802)
+        Internals.getMethodBindPtr("XRInterfaceExtension", "get_render_target_texture", 41030802)
   }
 }

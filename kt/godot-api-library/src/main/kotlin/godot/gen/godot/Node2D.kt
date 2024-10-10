@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Transform2D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
@@ -18,7 +17,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -183,7 +182,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NODE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NODE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -335,66 +334,66 @@ public open class Node2D : CanvasItem() {
 
 
   public final fun setPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setPositionPtr, NIL)
   }
 
   public final fun setRotation(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRotationPtr, NIL)
   }
 
   public final fun setRotationDegrees(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRotationDegreesPtr, NIL)
   }
 
   public final fun setSkew(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSkewPtr, NIL)
   }
 
   public final fun setScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setScalePtr, NIL)
   }
 
   public final fun getPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getRotation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRotationDegrees(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRotationDegreesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getSkew(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkewPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkewPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Applies a rotation to the node, in radians, starting from its current rotation.
    */
   public final fun rotate(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.rotatePtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.rotatePtr, NIL)
   }
 
   /**
@@ -403,8 +402,8 @@ public open class Node2D : CanvasItem() {
    */
   @JvmOverloads
   public final fun moveLocalX(delta: Float, scaled: Boolean = false): Unit {
-    TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveLocalXPtr, NIL)
+    Internals.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
+    Internals.callMethod(rawPtr, MethodBindings.moveLocalXPtr, NIL)
   }
 
   /**
@@ -413,97 +412,97 @@ public open class Node2D : CanvasItem() {
    */
   @JvmOverloads
   public final fun moveLocalY(delta: Float, scaled: Boolean = false): Unit {
-    TransferContext.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
-    TransferContext.callMethod(rawPtr, MethodBindings.moveLocalYPtr, NIL)
+    Internals.writeArguments(DOUBLE to delta.toDouble(), BOOL to scaled)
+    Internals.callMethod(rawPtr, MethodBindings.moveLocalYPtr, NIL)
   }
 
   /**
    * Translates the node by the given [offset] in local coordinates.
    */
   public final fun translate(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.translatePtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.translatePtr, NIL)
   }
 
   /**
    * Adds the [offset] vector to the node's global position.
    */
   public final fun globalTranslate(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.globalTranslatePtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.globalTranslatePtr, NIL)
   }
 
   /**
    * Multiplies the current scale by the [ratio] vector.
    */
   public final fun applyScale(ratio: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to ratio)
-    TransferContext.callMethod(rawPtr, MethodBindings.applyScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to ratio)
+    Internals.callMethod(rawPtr, MethodBindings.applyScalePtr, NIL)
   }
 
   public final fun setGlobalPosition(position: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to position)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
+    Internals.writeArguments(VECTOR2 to position)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalPositionPtr, NIL)
   }
 
   public final fun getGlobalPosition(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalPositionPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setGlobalRotation(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalRotationPtr, NIL)
   }
 
   public final fun setGlobalRotationDegrees(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalRotationDegreesPtr, NIL)
   }
 
   public final fun getGlobalRotation(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalRotationPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getGlobalRotationDegrees(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalRotationDegreesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlobalSkew(radians: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radians.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalSkewPtr, NIL)
+    Internals.writeArguments(DOUBLE to radians.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalSkewPtr, NIL)
   }
 
   public final fun getGlobalSkew(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalSkewPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalSkewPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlobalScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalScalePtr, NIL)
   }
 
   public final fun getGlobalScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlobalScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlobalScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setTransform(xform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformPtr, NIL)
   }
 
   public final fun setGlobalTransform(xform: Transform2D): Unit {
-    TransferContext.writeArguments(TRANSFORM2D to xform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
+    Internals.writeArguments(TRANSFORM2D to xform)
+    Internals.callMethod(rawPtr, MethodBindings.setGlobalTransformPtr, NIL)
   }
 
   /**
@@ -513,8 +512,8 @@ public open class Node2D : CanvasItem() {
    * right.
    */
   public final fun lookAt(point: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.lookAtPtr, NIL)
+    Internals.writeArguments(VECTOR2 to point)
+    Internals.callMethod(rawPtr, MethodBindings.lookAtPtr, NIL)
   }
 
   /**
@@ -523,9 +522,9 @@ public open class Node2D : CanvasItem() {
    * of the returned angle.[/url]
    */
   public final fun getAngleTo(point: Vector2): Float {
-    TransferContext.writeArguments(VECTOR2 to point)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAngleToPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(VECTOR2 to point)
+    Internals.callMethod(rawPtr, MethodBindings.getAngleToPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -535,9 +534,9 @@ public open class Node2D : CanvasItem() {
    * its parent.
    */
   public final fun toLocal(globalPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to globalPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toLocalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(VECTOR2 to globalPoint)
+    Internals.callMethod(rawPtr, MethodBindings.toLocalPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -548,114 +547,111 @@ public open class Node2D : CanvasItem() {
    * incorporate the node's own transformation into its global position.
    */
   public final fun toGlobal(localPoint: Vector2): Vector2 {
-    TransferContext.writeArguments(VECTOR2 to localPoint)
-    TransferContext.callMethod(rawPtr, MethodBindings.toGlobalPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(VECTOR2 to localPoint)
+    Internals.callMethod(rawPtr, MethodBindings.toGlobalPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the [Transform2D] relative to this node's parent.
    */
   public final fun getRelativeTransformToParent(parent: Node?): Transform2D {
-    TransferContext.writeArguments(OBJECT to parent)
-    TransferContext.callMethod(rawPtr, MethodBindings.getRelativeTransformToParentPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments(OBJECT to parent)
+    Internals.callMethod(rawPtr, MethodBindings.getRelativeTransformToParentPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_position", 743155724)
+        Internals.getMethodBindPtr("Node2D", "set_position", 743155724)
 
     public val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_rotation", 373806689)
+        Internals.getMethodBindPtr("Node2D", "set_rotation", 373806689)
 
     public val setRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_rotation_degrees", 373806689)
+        Internals.getMethodBindPtr("Node2D", "set_rotation_degrees", 373806689)
 
-    public val setSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_skew", 373806689)
+    public val setSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_skew", 373806689)
 
-    public val setScalePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "set_scale", 743155724)
+    public val setScalePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "set_scale", 743155724)
 
     public val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_position", 3341600327)
+        Internals.getMethodBindPtr("Node2D", "get_position", 3341600327)
 
     public val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_rotation", 1740695150)
+        Internals.getMethodBindPtr("Node2D", "get_rotation", 1740695150)
 
     public val getRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_rotation_degrees", 1740695150)
+        Internals.getMethodBindPtr("Node2D", "get_rotation_degrees", 1740695150)
 
-    public val getSkewPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "get_skew", 1740695150)
+    public val getSkewPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "get_skew", 1740695150)
 
-    public val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_scale", 3341600327)
+    public val getScalePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "get_scale", 3341600327)
 
-    public val rotatePtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "rotate", 373806689)
+    public val rotatePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "rotate", 373806689)
 
     public val moveLocalXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "move_local_x", 2087892650)
+        Internals.getMethodBindPtr("Node2D", "move_local_x", 2087892650)
 
     public val moveLocalYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "move_local_y", 2087892650)
+        Internals.getMethodBindPtr("Node2D", "move_local_y", 2087892650)
 
-    public val translatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "translate", 743155724)
+    public val translatePtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "translate", 743155724)
 
     public val globalTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "global_translate", 743155724)
+        Internals.getMethodBindPtr("Node2D", "global_translate", 743155724)
 
     public val applyScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "apply_scale", 743155724)
+        Internals.getMethodBindPtr("Node2D", "apply_scale", 743155724)
 
     public val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_position", 743155724)
+        Internals.getMethodBindPtr("Node2D", "set_global_position", 743155724)
 
     public val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_position", 3341600327)
+        Internals.getMethodBindPtr("Node2D", "get_global_position", 3341600327)
 
     public val setGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation", 373806689)
+        Internals.getMethodBindPtr("Node2D", "set_global_rotation", 373806689)
 
     public val setGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_rotation_degrees", 373806689)
+        Internals.getMethodBindPtr("Node2D", "set_global_rotation_degrees", 373806689)
 
     public val getGlobalRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation", 1740695150)
+        Internals.getMethodBindPtr("Node2D", "get_global_rotation", 1740695150)
 
     public val getGlobalRotationDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_rotation_degrees", 1740695150)
+        Internals.getMethodBindPtr("Node2D", "get_global_rotation_degrees", 1740695150)
 
     public val setGlobalSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_skew", 373806689)
+        Internals.getMethodBindPtr("Node2D", "set_global_skew", 373806689)
 
     public val getGlobalSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_skew", 1740695150)
+        Internals.getMethodBindPtr("Node2D", "get_global_skew", 1740695150)
 
     public val setGlobalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_scale", 743155724)
+        Internals.getMethodBindPtr("Node2D", "set_global_scale", 743155724)
 
     public val getGlobalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_global_scale", 3341600327)
+        Internals.getMethodBindPtr("Node2D", "get_global_scale", 3341600327)
 
     public val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_transform", 2761652528)
+        Internals.getMethodBindPtr("Node2D", "set_transform", 2761652528)
 
     public val setGlobalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "set_global_transform", 2761652528)
+        Internals.getMethodBindPtr("Node2D", "set_global_transform", 2761652528)
 
-    public val lookAtPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "look_at", 743155724)
+    public val lookAtPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "look_at", 743155724)
 
     public val getAngleToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_angle_to", 2276447920)
+        Internals.getMethodBindPtr("Node2D", "get_angle_to", 2276447920)
 
-    public val toLocalPtr: VoidPtr = TypeManager.getMethodBindPtr("Node2D", "to_local", 2656412154)
+    public val toLocalPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "to_local", 2656412154)
 
-    public val toGlobalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "to_global", 2656412154)
+    public val toGlobalPtr: VoidPtr = Internals.getMethodBindPtr("Node2D", "to_global", 2656412154)
 
     public val getRelativeTransformToParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node2D", "get_relative_transform_to_parent", 904556875)
+        Internals.getMethodBindPtr("Node2D", "get_relative_transform_to_parent", 904556875)
   }
 }

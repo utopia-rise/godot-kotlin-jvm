@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -66,61 +65,61 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to ceiling.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCeilingDbPtr, NIL)
   }
 
   public final fun getCeilingDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCeilingDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPreGainDb(pPreGain: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pPreGain.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to pPreGain.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPreGainDbPtr, NIL)
   }
 
   public final fun getPreGainDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreGainDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRelease(pRelease: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pRelease.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
+    Internals.writeArguments(DOUBLE to pRelease.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setReleasePtr, NIL)
   }
 
   public final fun getRelease(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReleasePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_ceiling_db", 373806689)
 
     public val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_ceiling_db", 1740695150)
 
     public val setPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373806689)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_pre_gain_db", 373806689)
 
     public val getPreGainDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_pre_gain_db", 1740695150)
 
     public val setReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373806689)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "set_release", 373806689)
 
     public val getReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectHardLimiter", "get_release", 1740695150)
   }
 }

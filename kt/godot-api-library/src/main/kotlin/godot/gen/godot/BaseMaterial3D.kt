@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -1566,7 +1565,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BASEMATERIAL3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BASEMATERIAL3D_INDEX, scriptIndex)
   }
 
   /**
@@ -1773,344 +1772,344 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
 
   public final fun setAlbedo(albedo: Color): Unit {
-    TransferContext.writeArguments(COLOR to albedo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
+    Internals.writeArguments(COLOR to albedo)
+    Internals.callMethod(rawPtr, MethodBindings.setAlbedoPtr, NIL)
   }
 
   public final fun getAlbedo(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlbedoPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTransparency(transparency: Transparency): Unit {
-    TransferContext.writeArguments(LONG to transparency.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
+    Internals.writeArguments(LONG to transparency.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransparencyPtr, NIL)
   }
 
   public final fun getTransparency(): Transparency {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
-    return BaseMaterial3D.Transparency.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransparencyPtr, LONG)
+    return BaseMaterial3D.Transparency.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
-    TransferContext.writeArguments(LONG to alphaAa.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
+    Internals.writeArguments(LONG to alphaAa.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
   public final fun getAlphaAntialiasing(): AlphaAntiAliasing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
-    return BaseMaterial3D.AlphaAntiAliasing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingPtr, LONG)
+    return BaseMaterial3D.AlphaAntiAliasing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAlphaAntialiasingEdge(edge: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edge.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
+    Internals.writeArguments(DOUBLE to edge.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaAntialiasingEdgePtr, NIL)
   }
 
   public final fun getAlphaAntialiasingEdge(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaAntialiasingEdgePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setShadingMode(shadingMode: ShadingMode): Unit {
-    TransferContext.writeArguments(LONG to shadingMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
+    Internals.writeArguments(LONG to shadingMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setShadingModePtr, NIL)
   }
 
   public final fun getShadingMode(): ShadingMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
-    return BaseMaterial3D.ShadingMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getShadingModePtr, LONG)
+    return BaseMaterial3D.ShadingMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSpecular(specular: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to specular.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
+    Internals.writeArguments(DOUBLE to specular.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularPtr, NIL)
   }
 
   public final fun getSpecular(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMetallic(metallic: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to metallic.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
+    Internals.writeArguments(DOUBLE to metallic.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMetallicPtr, NIL)
   }
 
   public final fun getMetallic(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMetallicPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRoughness(roughness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to roughness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to roughness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRoughnessPtr, NIL)
   }
 
   public final fun getRoughness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRoughnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmission(emission: Color): Unit {
-    TransferContext.writeArguments(COLOR to emission)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
+    Internals.writeArguments(COLOR to emission)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionPtr, NIL)
   }
 
   public final fun getEmission(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setEmissionEnergyMultiplier(emissionEnergyMultiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionEnergyMultiplierPtr, NIL)
   }
 
   public final fun getEmissionEnergyMultiplier(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionEnergyMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionIntensity(emissionEnergyMultiplier: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
+    Internals.writeArguments(DOUBLE to emissionEnergyMultiplier.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionIntensityPtr, NIL)
   }
 
   public final fun getEmissionIntensity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionIntensityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setNormalScale(normalScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to normalScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to normalScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setNormalScalePtr, NIL)
   }
 
   public final fun getNormalScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNormalScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRim(rim: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rim.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
+    Internals.writeArguments(DOUBLE to rim.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRimPtr, NIL)
   }
 
   public final fun getRim(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRimPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRimTint(rimTint: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rimTint.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
+    Internals.writeArguments(DOUBLE to rimTint.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRimTintPtr, NIL)
   }
 
   public final fun getRimTint(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRimTintPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearcoat(clearcoat: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to clearcoat.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
+    Internals.writeArguments(DOUBLE to clearcoat.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setClearcoatPtr, NIL)
   }
 
   public final fun getClearcoat(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClearcoatPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearcoatRoughness(clearcoatRoughness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to clearcoatRoughness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to clearcoatRoughness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setClearcoatRoughnessPtr, NIL)
   }
 
   public final fun getClearcoatRoughness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClearcoatRoughnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAnisotropy(anisotropy: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
+    Internals.writeArguments(DOUBLE to anisotropy.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAnisotropyPtr, NIL)
   }
 
   public final fun getAnisotropy(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnisotropyPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setHeightmapScale(heightmapScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to heightmapScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to heightmapScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapScalePtr, NIL)
   }
 
   public final fun getHeightmapScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightmapScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setSubsurfaceScatteringStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSubsurfaceScatteringStrengthPtr, NIL)
   }
 
   public final fun getSubsurfaceScatteringStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubsurfaceScatteringStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransmittanceColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setTransmittanceColorPtr, NIL)
   }
 
   public final fun getTransmittanceColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransmittanceColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTransmittanceDepth(depth: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to depth.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
+    Internals.writeArguments(DOUBLE to depth.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTransmittanceDepthPtr, NIL)
   }
 
   public final fun getTransmittanceDepth(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransmittanceDepthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTransmittanceBoost(boost: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to boost.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
+    Internals.writeArguments(DOUBLE to boost.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTransmittanceBoostPtr, NIL)
   }
 
   public final fun getTransmittanceBoost(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransmittanceBoostPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBacklight(backlight: Color): Unit {
-    TransferContext.writeArguments(COLOR to backlight)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
+    Internals.writeArguments(COLOR to backlight)
+    Internals.callMethod(rawPtr, MethodBindings.setBacklightPtr, NIL)
   }
 
   public final fun getBacklight(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBacklightPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setRefraction(refraction: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to refraction.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
+    Internals.writeArguments(DOUBLE to refraction.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRefractionPtr, NIL)
   }
 
   public final fun getRefraction(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRefractionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPointSize(pointSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to pointSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPointSizePtr, NIL)
   }
 
   public final fun getPointSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPointSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDetailUv(detailUv: DetailUV): Unit {
-    TransferContext.writeArguments(LONG to detailUv.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
+    Internals.writeArguments(LONG to detailUv.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDetailUvPtr, NIL)
   }
 
   public final fun getDetailUv(): DetailUV {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
-    return BaseMaterial3D.DetailUV.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDetailUvPtr, LONG)
+    return BaseMaterial3D.DetailUV.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to blendMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
+    Internals.writeArguments(LONG to blendMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendModePtr, NIL)
   }
 
   public final fun getBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
-    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendModePtr, LONG)
+    return BaseMaterial3D.BlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
-    TransferContext.writeArguments(LONG to depthDrawMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
+    Internals.writeArguments(LONG to depthDrawMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDepthDrawModePtr, NIL)
   }
 
   public final fun getDepthDrawMode(): DepthDrawMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
-    return BaseMaterial3D.DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDepthDrawModePtr, LONG)
+    return BaseMaterial3D.DepthDrawMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
-    TransferContext.writeArguments(LONG to cullMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
+    Internals.writeArguments(LONG to cullMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCullModePtr, NIL)
   }
 
   public final fun getCullMode(): CullMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
-    return BaseMaterial3D.CullMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCullModePtr, LONG)
+    return BaseMaterial3D.CullMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
-    TransferContext.writeArguments(LONG to diffuseMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
+    Internals.writeArguments(LONG to diffuseMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDiffuseModePtr, NIL)
   }
 
   public final fun getDiffuseMode(): DiffuseMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
-    return BaseMaterial3D.DiffuseMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiffuseModePtr, LONG)
+    return BaseMaterial3D.DiffuseMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSpecularMode(specularMode: SpecularMode): Unit {
-    TransferContext.writeArguments(LONG to specularMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
+    Internals.writeArguments(LONG to specularMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularModePtr, NIL)
   }
 
   public final fun getSpecularMode(): SpecularMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
-    return BaseMaterial3D.SpecularMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularModePtr, LONG)
+    return BaseMaterial3D.SpecularMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2120,28 +2119,28 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * setting the corresponding member to `true`. See [Flags] enumerator for options.
    */
   public final fun setFlag(flag: Flags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
+    Internals.writeArguments(LONG to flag.id, BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFlagPtr, NIL)
   }
 
   /**
    * Returns `true`, if the specified flag is enabled. See [Flags] enumerator for options.
    */
   public final fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to flag.id)
+    Internals.callMethod(rawPtr, MethodBindings.getFlagPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTextureFilter(mode: TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
   public final fun getTextureFilter(): TextureFilter {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
-    return BaseMaterial3D.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureFilterPtr, LONG)
+    return BaseMaterial3D.TextureFilter.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -2151,397 +2150,397 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * `true`.
    */
   public final fun setFeature(feature: Feature, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
+    Internals.writeArguments(LONG to feature.id, BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFeaturePtr, NIL)
   }
 
   /**
    * Returns `true`, if the specified [Feature] is enabled.
    */
   public final fun getFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to feature.id)
+    Internals.callMethod(rawPtr, MethodBindings.getFeaturePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
    */
   public final fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
+    Internals.writeArguments(LONG to param.id, OBJECT to texture)
+    Internals.callMethod(rawPtr, MethodBindings.setTexturePtr, NIL)
   }
 
   /**
    * Returns the [Texture2D] associated with the specified [TextureParam].
    */
   public final fun getTexture(`param`: TextureParam): Texture2D? {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to detailBlendMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
+    Internals.writeArguments(LONG to detailBlendMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDetailBlendModePtr, NIL)
   }
 
   public final fun getDetailBlendMode(): BlendMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
-    return BaseMaterial3D.BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDetailBlendModePtr, LONG)
+    return BaseMaterial3D.BlendMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setUv1Scale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setUv1ScalePtr, NIL)
   }
 
   public final fun getUv1Scale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv1ScalePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUv1Offset(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setUv1OffsetPtr, NIL)
   }
 
   public final fun getUv1Offset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv1OffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUv1TriplanarBlendSharpness(sharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to sharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setUv1TriplanarBlendSharpnessPtr, NIL)
   }
 
   public final fun getUv1TriplanarBlendSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv1TriplanarBlendSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUv2Scale(scale: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
+    Internals.writeArguments(VECTOR3 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setUv2ScalePtr, NIL)
   }
 
   public final fun getUv2Scale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv2ScalePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUv2Offset(offset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
+    Internals.writeArguments(VECTOR3 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setUv2OffsetPtr, NIL)
   }
 
   public final fun getUv2Offset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv2OffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setUv2TriplanarBlendSharpness(sharpness: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to sharpness.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setUv2TriplanarBlendSharpnessPtr, NIL)
   }
 
   public final fun getUv2TriplanarBlendSharpness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv2TriplanarBlendSharpnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBillboardMode(mode: BillboardMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setBillboardModePtr, NIL)
   }
 
   public final fun getBillboardMode(): BillboardMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
-    return BaseMaterial3D.BillboardMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBillboardModePtr, LONG)
+    return BaseMaterial3D.BillboardMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setParticlesAnimHFrames(frames: Int): Unit {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimHFramesPtr, NIL)
   }
 
   public final fun getParticlesAnimHFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimHFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimVFrames(frames: Int): Unit {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimVFramesPtr, NIL)
   }
 
   public final fun getParticlesAnimVFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimVFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setParticlesAnimLoop(loop: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to loop)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
+    Internals.writeArguments(BOOL to loop)
+    Internals.callMethod(rawPtr, MethodBindings.setParticlesAnimLoopPtr, NIL)
   }
 
   public final fun getParticlesAnimLoop(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParticlesAnimLoopPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHeightmapDeepParallax(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxPtr, NIL)
   }
 
   public final fun isHeightmapDeepParallaxEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHeightmapDeepParallaxEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHeightmapDeepParallaxMinLayers(layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMinLayersPtr, NIL)
   }
 
   public final fun getHeightmapDeepParallaxMinLayers(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMinLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHeightmapDeepParallaxMaxLayers(layer: Int): Unit {
-    TransferContext.writeArguments(LONG to layer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
+    Internals.writeArguments(LONG to layer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxMaxLayersPtr, NIL)
   }
 
   public final fun getHeightmapDeepParallaxMaxLayers(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxMaxLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setHeightmapDeepParallaxFlipTangent(flip: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
+    Internals.writeArguments(BOOL to flip)
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipTangentPtr, NIL)
   }
 
   public final fun getHeightmapDeepParallaxFlipTangent(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipTangentPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHeightmapDeepParallaxFlipBinormal(flip: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flip)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr, NIL)
+    Internals.writeArguments(BOOL to flip)
+    Internals.callMethod(rawPtr, MethodBindings.setHeightmapDeepParallaxFlipBinormalPtr, NIL)
   }
 
   public final fun getHeightmapDeepParallaxFlipBinormal(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHeightmapDeepParallaxFlipBinormalPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGrow(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGrowPtr, NIL)
   }
 
   public final fun getGrow(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGrowPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionOperator(`operator`: EmissionOperator): Unit {
-    TransferContext.writeArguments(LONG to `operator`.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
+    Internals.writeArguments(LONG to `operator`.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionOperatorPtr, NIL)
   }
 
   public final fun getEmissionOperator(): EmissionOperator {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
-    return BaseMaterial3D.EmissionOperator.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionOperatorPtr, LONG)
+    return BaseMaterial3D.EmissionOperator.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAoLightAffect(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAoLightAffectPtr, NIL)
   }
 
   public final fun getAoLightAffect(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAoLightAffectPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaScissorThreshold(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaScissorThresholdPtr, NIL)
   }
 
   public final fun getAlphaScissorThreshold(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaScissorThresholdPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAlphaHashScale(threshold: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to threshold.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to threshold.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAlphaHashScalePtr, NIL)
   }
 
   public final fun getAlphaHashScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAlphaHashScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGrowEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setGrowEnabledPtr, NIL)
   }
 
   public final fun isGrowEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isGrowEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMetallicTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMetallicTextureChannelPtr, NIL)
   }
 
   public final fun getMetallicTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMetallicTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
   }
 
   public final fun getRoughnessTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRoughnessTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAoTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAoTextureChannelPtr, NIL)
   }
 
   public final fun getAoTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAoTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setRefractionTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
+    Internals.writeArguments(LONG to channel.id)
+    Internals.callMethod(rawPtr, MethodBindings.setRefractionTextureChannelPtr, NIL)
   }
 
   public final fun getRefractionTextureChannel(): TextureChannel {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
-    return BaseMaterial3D.TextureChannel.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRefractionTextureChannelPtr, LONG)
+    return BaseMaterial3D.TextureChannel.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setProximityFadeEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setProximityFadeEnabledPtr, NIL)
   }
 
   public final fun isProximityFadeEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isProximityFadeEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setProximityFadeDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setProximityFadeDistancePtr, NIL)
   }
 
   public final fun getProximityFadeDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProximityFadeDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMsdfPixelRange(range: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to range.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
+    Internals.writeArguments(DOUBLE to range.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
 
   public final fun getMsdfPixelRange(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setMsdfOutlineSize(size: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to size.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to size.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setMsdfOutlineSizePtr, NIL)
   }
 
   public final fun getMsdfOutlineSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsdfOutlineSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFade(mode: DistanceFadeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadePtr, NIL)
   }
 
   public final fun getDistanceFade(): DistanceFadeMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
-    return BaseMaterial3D.DistanceFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadePtr, LONG)
+    return BaseMaterial3D.DistanceFadeMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDistanceFadeMaxDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeMaxDistancePtr, NIL)
   }
 
   public final fun getDistanceFadeMaxDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeMaxDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDistanceFadeMinDistance(distance: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to distance.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to distance.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDistanceFadeMinDistancePtr, NIL)
   }
 
   public final fun getDistanceFadeMinDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDistanceFadeMinDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class TextureParam(
@@ -3311,411 +3310,411 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   internal object MethodBindings {
     public val setAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_albedo", 2920490490)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_albedo", 2920490490)
 
     public val getAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_albedo", 3444240500)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_albedo", 3444240500)
 
     public val setTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transparency", 3435651667)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_transparency", 3435651667)
 
     public val getTransparencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transparency", 990903061)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_transparency", 990903061)
 
     public val setAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing", 3212649852)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing", 3212649852)
 
     public val getAlphaAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing", 2889939400)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing", 2889939400)
 
     public val setAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_alpha_antialiasing_edge", 373806689)
 
     public val getAlphaAntialiasingEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_alpha_antialiasing_edge", 1740695150)
 
     public val setShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_shading_mode", 3368750322)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_shading_mode", 3368750322)
 
     public val getShadingModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_shading_mode", 2132070559)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_shading_mode", 2132070559)
 
     public val setSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_specular", 373806689)
 
     public val getSpecularPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_specular", 1740695150)
 
     public val setMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_metallic", 373806689)
 
     public val getMetallicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_metallic", 1740695150)
 
     public val setRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_roughness", 373806689)
 
     public val getRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_roughness", 1740695150)
 
     public val setEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission", 2920490490)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_emission", 2920490490)
 
     public val getEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission", 3444240500)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_emission", 3444240500)
 
     public val setEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_emission_energy_multiplier", 373806689)
 
     public val getEmissionEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_emission_energy_multiplier", 1740695150)
 
     public val setEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_emission_intensity", 373806689)
 
     public val getEmissionIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_emission_intensity", 1740695150)
 
     public val setNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_normal_scale", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_normal_scale", 373806689)
 
     public val getNormalScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_normal_scale", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_normal_scale", 1740695150)
 
     public val setRimPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_rim", 373806689)
 
     public val getRimPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_rim", 1740695150)
 
     public val setRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_rim_tint", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_rim_tint", 373806689)
 
     public val getRimTintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_rim_tint", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_rim_tint", 1740695150)
 
     public val setClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_clearcoat", 373806689)
 
     public val getClearcoatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_clearcoat", 1740695150)
 
     public val setClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_clearcoat_roughness", 373806689)
 
     public val getClearcoatRoughnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_clearcoat_roughness", 1740695150)
 
     public val setAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_anisotropy", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_anisotropy", 373806689)
 
     public val getAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_anisotropy", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_anisotropy", 1740695150)
 
     public val setHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_scale", 373806689)
 
     public val getHeightmapScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_heightmap_scale", 1740695150)
 
     public val setSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_subsurface_scattering_strength", 373806689)
 
     public val getSubsurfaceScatteringStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_subsurface_scattering_strength", 1740695150)
 
     public val setTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color", 2920490490)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_transmittance_color", 2920490490)
 
     public val getTransmittanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color", 3444240500)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_transmittance_color", 3444240500)
 
     public val setTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_transmittance_depth", 373806689)
 
     public val getTransmittanceDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_transmittance_depth", 1740695150)
 
     public val setTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_transmittance_boost", 373806689)
 
     public val getTransmittanceBoostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_transmittance_boost", 1740695150)
 
     public val setBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_backlight", 2920490490)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_backlight", 2920490490)
 
     public val getBacklightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_backlight", 3444240500)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_backlight", 3444240500)
 
     public val setRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_refraction", 373806689)
 
     public val getRefractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_refraction", 1740695150)
 
     public val setPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_point_size", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_point_size", 373806689)
 
     public val getPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_point_size", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_point_size", 1740695150)
 
     public val setDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_uv", 456801921)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_detail_uv", 456801921)
 
     public val getDetailUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_uv", 2306920512)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_detail_uv", 2306920512)
 
     public val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_blend_mode", 2830186259)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_blend_mode", 2830186259)
 
     public val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_blend_mode", 4022690962)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_blend_mode", 4022690962)
 
     public val setDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode", 1456584748)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_depth_draw_mode", 1456584748)
 
     public val getDepthDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2578197639)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2578197639)
 
     public val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2338909218)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2338909218)
 
     public val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_cull_mode", 1941499586)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_cull_mode", 1941499586)
 
     public val setDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode", 1045299638)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_diffuse_mode", 1045299638)
 
     public val getDiffuseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode", 3973617136)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_diffuse_mode", 3973617136)
 
     public val setSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_specular_mode", 584737147)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_specular_mode", 584737147)
 
     public val getSpecularModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_specular_mode", 2569953298)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_specular_mode", 2569953298)
 
     public val setFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_flag", 3070159527)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_flag", 3070159527)
 
     public val getFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_flag", 1286410065)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_flag", 1286410065)
 
     public val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture_filter", 22904437)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_texture_filter", 22904437)
 
     public val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture_filter", 3289213076)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_texture_filter", 3289213076)
 
     public val setFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_feature", 2819288693)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_feature", 2819288693)
 
     public val getFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_feature", 1965241794)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_feature", 1965241794)
 
     public val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_texture", 464208135)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_texture", 464208135)
 
     public val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_texture", 329605813)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_texture", 329605813)
 
     public val setDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode", 2830186259)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_detail_blend_mode", 2830186259)
 
     public val getDetailBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode", 4022690962)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_detail_blend_mode", 4022690962)
 
     public val setUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale", 3460891852)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv1_scale", 3460891852)
 
     public val getUv1ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale", 3360562783)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv1_scale", 3360562783)
 
     public val setUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset", 3460891852)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv1_offset", 3460891852)
 
     public val getUv1OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset", 3360562783)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv1_offset", 3360562783)
 
     public val setUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv1_triplanar_blend_sharpness", 373806689)
 
     public val getUv1TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv1_triplanar_blend_sharpness", 1740695150)
 
     public val setUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale", 3460891852)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv2_scale", 3460891852)
 
     public val getUv2ScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale", 3360562783)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv2_scale", 3360562783)
 
     public val setUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset", 3460891852)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv2_offset", 3460891852)
 
     public val getUv2OffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset", 3360562783)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv2_offset", 3360562783)
 
     public val setUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_uv2_triplanar_blend_sharpness", 373806689)
 
     public val getUv2TriplanarBlendSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_uv2_triplanar_blend_sharpness", 1740695150)
 
     public val setBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode", 4202036497)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_billboard_mode", 4202036497)
 
     public val getBillboardModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode", 1283840139)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_billboard_mode", 1283840139)
 
     public val setParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames", 1286410249)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_h_frames", 1286410249)
 
     public val getParticlesAnimHFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames", 3905245786)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_h_frames", 3905245786)
 
     public val setParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames", 1286410249)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_v_frames", 1286410249)
 
     public val getParticlesAnimVFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames", 3905245786)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_v_frames", 3905245786)
 
     public val setParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_particles_anim_loop", 2586408642)
 
     public val getParticlesAnimLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_particles_anim_loop", 36873697)
 
     public val setHeightmapDeepParallaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax", 2586408642)
 
     public val isHeightmapDeepParallaxEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "is_heightmap_deep_parallax_enabled", 36873697)
 
     public val setHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers", 1286410249)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_min_layers", 1286410249)
 
     public val getHeightmapDeepParallaxMinLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers", 3905245786)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_min_layers", 3905245786)
 
     public val setHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers", 1286410249)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_max_layers", 1286410249)
 
     public val getHeightmapDeepParallaxMaxLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers", 3905245786)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_max_layers", 3905245786)
 
     public val setHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_tangent", 2586408642)
 
     public val getHeightmapDeepParallaxFlipTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_tangent", 36873697)
 
     public val setHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_heightmap_deep_parallax_flip_binormal", 2586408642)
 
     public val getHeightmapDeepParallaxFlipBinormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_heightmap_deep_parallax_flip_binormal", 36873697)
 
     public val setGrowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_grow", 373806689)
 
     public val getGrowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_grow", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_grow", 1740695150)
 
     public val setEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_emission_operator", 3825128922)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_emission_operator", 3825128922)
 
     public val getEmissionOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_emission_operator", 974205018)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_emission_operator", 974205018)
 
     public val setAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_ao_light_affect", 373806689)
 
     public val getAoLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_ao_light_affect", 1740695150)
 
     public val setAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_alpha_scissor_threshold", 373806689)
 
     public val getAlphaScissorThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_alpha_scissor_threshold", 1740695150)
 
     public val setAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_alpha_hash_scale", 373806689)
 
     public val getAlphaHashScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_alpha_hash_scale", 1740695150)
 
     public val setGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_grow_enabled", 2586408642)
 
     public val isGrowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "is_grow_enabled", 36873697)
 
     public val setMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel", 744167988)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_metallic_texture_channel", 744167988)
 
     public val getMetallicTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel", 568133867)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_metallic_texture_channel", 568133867)
 
     public val setRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel", 744167988)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_roughness_texture_channel", 744167988)
 
     public val getRoughnessTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel", 568133867)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_roughness_texture_channel", 568133867)
 
     public val setAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel", 744167988)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_ao_texture_channel", 744167988)
 
     public val getAoTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel", 568133867)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_ao_texture_channel", 568133867)
 
     public val setRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel", 744167988)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_refraction_texture_channel", 744167988)
 
     public val getRefractionTextureChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel", 568133867)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_refraction_texture_channel", 568133867)
 
     public val setProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled", 2586408642)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_enabled", 2586408642)
 
     public val isProximityFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled", 36873697)
+        Internals.getMethodBindPtr("BaseMaterial3D", "is_proximity_fade_enabled", 36873697)
 
     public val setProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_proximity_fade_distance", 373806689)
 
     public val getProximityFadeDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_proximity_fade_distance", 1740695150)
 
     public val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_msdf_pixel_range", 373806689)
 
     public val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_msdf_pixel_range", 1740695150)
 
     public val setMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_msdf_outline_size", 373806689)
 
     public val getMsdfOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_msdf_outline_size", 1740695150)
 
     public val setDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade", 1379478617)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_distance_fade", 1379478617)
 
     public val getDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade", 2694575734)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_distance_fade", 2694575734)
 
     public val setDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_max_distance", 373806689)
 
     public val getDistanceFadeMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_max_distance", 1740695150)
 
     public val setDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance", 373806689)
+        Internals.getMethodBindPtr("BaseMaterial3D", "set_distance_fade_min_distance", 373806689)
 
     public val getDistanceFadeMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1740695150)
+        Internals.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1740695150)
   }
 }

@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -87,78 +86,76 @@ public open class Slider internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SLIDER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SLIDER_INDEX, scriptIndex)
   }
 
   public final fun setTicks(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTicksPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTicksPtr, NIL)
   }
 
   public final fun getTicks(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTicksPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getTicksOnBorders(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTicksOnBordersPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTicksOnBordersPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTicksOnBorders(ticksOnBorder: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ticksOnBorder)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
+    Internals.writeArguments(BOOL to ticksOnBorder)
+    Internals.callMethod(rawPtr, MethodBindings.setTicksOnBordersPtr, NIL)
   }
 
   public final fun setEditable(editable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to editable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+    Internals.writeArguments(BOOL to editable)
+    Internals.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
   }
 
   public final fun isEditable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScrollable(scrollable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to scrollable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollablePtr, NIL)
+    Internals.writeArguments(BOOL to scrollable)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollablePtr, NIL)
   }
 
   public final fun isScrollable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScrollablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isScrollablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setTicksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_ticks", 1286410249)
+    public val setTicksPtr: VoidPtr = Internals.getMethodBindPtr("Slider", "set_ticks", 1286410249)
 
-    public val getTicksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "get_ticks", 3905245786)
+    public val getTicksPtr: VoidPtr = Internals.getMethodBindPtr("Slider", "get_ticks", 3905245786)
 
     public val getTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "get_ticks_on_borders", 36873697)
+        Internals.getMethodBindPtr("Slider", "get_ticks_on_borders", 36873697)
 
     public val setTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders", 2586408642)
+        Internals.getMethodBindPtr("Slider", "set_ticks_on_borders", 2586408642)
 
     public val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_editable", 2586408642)
+        Internals.getMethodBindPtr("Slider", "set_editable", 2586408642)
 
     public val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "is_editable", 36873697)
+        Internals.getMethodBindPtr("Slider", "is_editable", 36873697)
 
     public val setScrollablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_scrollable", 2586408642)
+        Internals.getMethodBindPtr("Slider", "set_scrollable", 2586408642)
 
     public val isScrollablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "is_scrollable", 36873697)
+        Internals.getMethodBindPtr("Slider", "is_scrollable", 36873697)
   }
 }

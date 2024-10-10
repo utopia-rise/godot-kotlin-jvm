@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -31,7 +30,7 @@ import kotlin.Unit
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMGENERATORPLAYBACK_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMGENERATORPLAYBACK_INDEX, scriptIndex)
   }
 
   /**
@@ -40,9 +39,9 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * in GDScript.
    */
   public final fun pushFrame(frame: Vector2): Boolean {
-    TransferContext.writeArguments(VECTOR2 to frame)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushFramePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(VECTOR2 to frame)
+    Internals.callMethod(rawPtr, MethodBindings.pushFramePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -50,9 +49,9 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * without overflowing it, `false` otherwise.
    */
   public final fun canPushBuffer(amount: Int): Boolean {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canPushBufferPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.canPushBufferPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -61,9 +60,9 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * GDScript.
    */
   public final fun pushBuffer(frames: PackedVector2Array): Boolean {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to frames)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushBufferPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(PACKED_VECTOR2_ARRAY to frames)
+    Internals.callMethod(rawPtr, MethodBindings.pushBufferPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -71,9 +70,9 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * overflowing it. If the result is `0`, the buffer is full.
    */
   public final fun getFramesAvailable(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -81,38 +80,38 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
    * data. This value is reset at the start of the playback.
    */
   public final fun getSkips(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSkipsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSkipsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Clears the audio sample data buffer.
    */
   public final fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val pushFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_frame", 3975407249)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_frame", 3975407249)
 
     public val canPushBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "can_push_buffer", 1116898809)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "can_push_buffer", 1116898809)
 
     public val pushBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_buffer", 1361156557)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "push_buffer", 1361156557)
 
     public val getFramesAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_frames_available", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_frames_available", 3905245786)
 
     public val getSkipsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_skips", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "get_skips", 3905245786)
 
     public val clearBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGeneratorPlayback", "clear_buffer", 3218959716)
+        Internals.getMethodBindPtr("AudioStreamGeneratorPlayback", "clear_buffer", 3218959716)
   }
 }

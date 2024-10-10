@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -37,18 +36,18 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFLOATFUNC_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEFLOATFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
+    Internals.writeArguments(LONG to func.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFunctionPtr, NIL)
   }
 
   public final fun getFunction(): Function {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
-    return VisualShaderNodeFloatFunc.Function.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFunctionPtr, LONG)
+    return VisualShaderNodeFloatFunc.Function.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class Function(
@@ -225,9 +224,9 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
 
   internal object MethodBindings {
     public val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function", 536026177)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatFunc", "set_function", 536026177)
 
     public val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function", 2033948868)
+        Internals.getMethodBindPtr("VisualShaderNodeFloatFunc", "get_function", 2033948868)
   }
 }

@@ -8,6 +8,7 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
+import godot.util.Internals
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
@@ -24,7 +25,7 @@ private const val ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX: Int = 347
 @GodotBaseType
 public open class MultiplayerPeerExtension : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX, scriptIndex)
   }
 
   /**

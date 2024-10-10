@@ -13,7 +13,6 @@ import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.PackedVector3Array
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -24,7 +23,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -78,7 +77,7 @@ public open class Mesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MESH_INDEX, scriptIndex)
   }
 
   /**
@@ -205,14 +204,14 @@ public open class Mesh : Resource() {
   }
 
   public final fun setLightmapSizeHint(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
 
   public final fun getLightmapSizeHint(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLightmapSizeHintPtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   /**
@@ -220,9 +219,9 @@ public open class Mesh : Resource() {
    * **Note:** This is only implemented for [ArrayMesh] and [PrimitiveMesh].
    */
   public final fun getAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
@@ -230,9 +229,9 @@ public open class Mesh : Resource() {
    * triangle.
    */
   public final fun getFaces(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFacesPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -240,9 +239,9 @@ public open class Mesh : Resource() {
    * [MeshInstance3D.getSurfaceOverrideMaterialCount].
    */
   public final fun getSurfaceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSurfaceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -250,18 +249,18 @@ public open class Mesh : Resource() {
    * [ArrayMesh.addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrays(surfIdx: Int): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetArraysPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Returns the blend shape arrays for the requested surface.
    */
   public final fun surfaceGetBlendShapeArrays(surfIdx: Int): VariantArray<VariantArray<Any?>> {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetBlendShapeArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetBlendShapeArraysPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<VariantArray<Any?>>)
   }
 
   /**
@@ -272,8 +271,8 @@ public open class Mesh : Resource() {
    * [MeshInstance3D.setSurfaceOverrideMaterial] instead.
    */
   public final fun surfaceSetMaterial(surfIdx: Int, material: Material?): Unit {
-    TransferContext.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceSetMaterialPtr, NIL)
+    Internals.writeArguments(LONG to surfIdx.toLong(), OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.surfaceSetMaterialPtr, NIL)
   }
 
   /**
@@ -284,27 +283,27 @@ public open class Mesh : Resource() {
    * [MeshInstance3D.getSurfaceOverrideMaterial] instead.
    */
   public final fun surfaceGetMaterial(surfIdx: Int): Material? {
-    TransferContext.writeArguments(LONG to surfIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.surfaceGetMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments(LONG to surfIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.surfaceGetMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   /**
    * Creates a placeholder version of this resource ([PlaceholderMesh]).
    */
   public final fun createPlaceholder(): Resource? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createPlaceholderPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
   }
 
   /**
    * Calculate a [ConcavePolygonShape3D] from the mesh.
    */
   public final fun createTrimeshShape(): ConcavePolygonShape3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.createTrimeshShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.createTrimeshShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
   }
 
   /**
@@ -317,9 +316,9 @@ public open class Mesh : Resource() {
   @JvmOverloads
   public final fun createConvexShape(clean: Boolean = true, simplify: Boolean = false):
       ConvexPolygonShape3D? {
-    TransferContext.writeArguments(BOOL to clean, BOOL to simplify)
-    TransferContext.callMethod(rawPtr, MethodBindings.createConvexShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ConvexPolygonShape3D?)
+    Internals.writeArguments(BOOL to clean, BOOL to simplify)
+    Internals.callMethod(rawPtr, MethodBindings.createConvexShapePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as ConvexPolygonShape3D?)
   }
 
   /**
@@ -328,9 +327,9 @@ public open class Mesh : Resource() {
    * counterclockwise).
    */
   public final fun createOutline(margin: Float): Mesh? {
-    TransferContext.writeArguments(DOUBLE to margin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.createOutlinePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments(DOUBLE to margin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.createOutlinePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   /**
@@ -338,9 +337,9 @@ public open class Mesh : Resource() {
    * types: [PRIMITIVE_TRIANGLES], [PRIMITIVE_TRIANGLE_STRIP].
    */
   public final fun generateTriangleMesh(): TriangleMesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TriangleMesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.generateTriangleMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TriangleMesh?)
   }
 
   public enum class PrimitiveType(
@@ -673,43 +672,43 @@ public open class Mesh : Resource() {
 
   internal object MethodBindings {
     public val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "set_lightmap_size_hint", 1130785943)
+        Internals.getMethodBindPtr("Mesh", "set_lightmap_size_hint", 1130785943)
 
     public val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_lightmap_size_hint", 3690982128)
+        Internals.getMethodBindPtr("Mesh", "get_lightmap_size_hint", 3690982128)
 
-    public val getAabbPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_aabb", 1068685055)
+    public val getAabbPtr: VoidPtr = Internals.getMethodBindPtr("Mesh", "get_aabb", 1068685055)
 
-    public val getFacesPtr: VoidPtr = TypeManager.getMethodBindPtr("Mesh", "get_faces", 497664490)
+    public val getFacesPtr: VoidPtr = Internals.getMethodBindPtr("Mesh", "get_faces", 497664490)
 
     public val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "get_surface_count", 3905245786)
+        Internals.getMethodBindPtr("Mesh", "get_surface_count", 3905245786)
 
     public val surfaceGetArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_arrays", 663333327)
+        Internals.getMethodBindPtr("Mesh", "surface_get_arrays", 663333327)
 
     public val surfaceGetBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays", 663333327)
+        Internals.getMethodBindPtr("Mesh", "surface_get_blend_shape_arrays", 663333327)
 
     public val surfaceSetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_set_material", 3671737478)
+        Internals.getMethodBindPtr("Mesh", "surface_set_material", 3671737478)
 
     public val surfaceGetMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "surface_get_material", 2897466400)
+        Internals.getMethodBindPtr("Mesh", "surface_get_material", 2897466400)
 
     public val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_placeholder", 121922552)
+        Internals.getMethodBindPtr("Mesh", "create_placeholder", 121922552)
 
     public val createTrimeshShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_trimesh_shape", 4160111210)
+        Internals.getMethodBindPtr("Mesh", "create_trimesh_shape", 4160111210)
 
     public val createConvexShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_convex_shape", 2529984628)
+        Internals.getMethodBindPtr("Mesh", "create_convex_shape", 2529984628)
 
     public val createOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "create_outline", 1208642001)
+        Internals.getMethodBindPtr("Mesh", "create_outline", 1208642001)
 
     public val generateTriangleMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
+        Internals.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
   }
 }

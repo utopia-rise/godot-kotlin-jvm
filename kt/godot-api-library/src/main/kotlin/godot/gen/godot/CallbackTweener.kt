@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
@@ -29,7 +28,7 @@ private const val ENGINE_CLASS_CALLBACKTWEENER_INDEX: Int = 150
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CALLBACKTWEENER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CALLBACKTWEENER_INDEX, scriptIndex)
   }
 
   /**
@@ -41,15 +40,15 @@ public open class CallbackTweener : Tweener() {
    * [/codeblock]
    */
   public final fun setDelay(delay: Double): CallbackTweener? {
-    TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CallbackTweener?)
+    Internals.writeArguments(DOUBLE to delay)
+    Internals.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CallbackTweener?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CallbackTweener", "set_delay", 3008182292)
+        Internals.getMethodBindPtr("CallbackTweener", "set_delay", 3008182292)
   }
 }

@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -169,7 +168,7 @@ public open class Parallax2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PARALLAX2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PARALLAX2D_INDEX, scriptIndex)
   }
 
   /**
@@ -354,176 +353,176 @@ public open class Parallax2D : Node2D() {
 
 
   public final fun setScrollScale(scale: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollScalePtr, NIL)
+    Internals.writeArguments(VECTOR2 to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollScalePtr, NIL)
   }
 
   public final fun getScrollScale(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollScalePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollScalePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeatSize(repeatSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to repeatSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatSizePtr, NIL)
+    Internals.writeArguments(VECTOR2 to repeatSize)
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatSizePtr, NIL)
   }
 
   public final fun getRepeatSize(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatSizePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatSizePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRepeatTimes(repeatTimes: Int): Unit {
-    TransferContext.writeArguments(LONG to repeatTimes.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRepeatTimesPtr, NIL)
+    Internals.writeArguments(LONG to repeatTimes.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setRepeatTimesPtr, NIL)
   }
 
   public final fun getRepeatTimes(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRepeatTimesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRepeatTimesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setAutoscroll(autoscroll: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to autoscroll)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoscrollPtr, NIL)
+    Internals.writeArguments(VECTOR2 to autoscroll)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoscrollPtr, NIL)
   }
 
   public final fun getAutoscroll(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoscrollPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoscrollPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScrollOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
   public final fun getScrollOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScrollOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setScreenOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScreenOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setScreenOffsetPtr, NIL)
   }
 
   public final fun getScreenOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScreenOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScreenOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitBegin(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitBeginPtr, NIL)
   }
 
   public final fun getLimitBegin(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLimitBeginPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setLimitEnd(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setLimitEndPtr, NIL)
   }
 
   public final fun getLimitEnd(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLimitEndPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFollowViewport(follow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to follow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFollowViewportPtr, NIL)
+    Internals.writeArguments(BOOL to follow)
+    Internals.callMethod(rawPtr, MethodBindings.setFollowViewportPtr, NIL)
   }
 
   public final fun getFollowViewport(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFollowViewportPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFollowViewportPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIgnoreCameraScroll(ignore: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to ignore)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIgnoreCameraScrollPtr, NIL)
+    Internals.writeArguments(BOOL to ignore)
+    Internals.callMethod(rawPtr, MethodBindings.setIgnoreCameraScrollPtr, NIL)
   }
 
   public final fun isIgnoreCameraScroll(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIgnoreCameraScrollPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIgnoreCameraScrollPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_scroll_scale", 743155724)
 
     public val getScrollScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_scroll_scale", 3341600327)
 
     public val setRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_size", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_repeat_size", 743155724)
 
     public val getRepeatSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_size", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_repeat_size", 3341600327)
 
     public val setRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_repeat_times", 1286410249)
+        Internals.getMethodBindPtr("Parallax2D", "set_repeat_times", 1286410249)
 
     public val getRepeatTimesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_repeat_times", 3905245786)
+        Internals.getMethodBindPtr("Parallax2D", "get_repeat_times", 3905245786)
 
     public val setAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_autoscroll", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_autoscroll", 743155724)
 
     public val getAutoscrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_autoscroll", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_autoscroll", 3341600327)
 
     public val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_scroll_offset", 743155724)
 
     public val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_scroll_offset", 3341600327)
 
     public val setScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_screen_offset", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_screen_offset", 743155724)
 
     public val getScreenOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_screen_offset", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_screen_offset", 3341600327)
 
     public val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_begin", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_limit_begin", 743155724)
 
     public val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_begin", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_limit_begin", 3341600327)
 
     public val setLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_limit_end", 743155724)
+        Internals.getMethodBindPtr("Parallax2D", "set_limit_end", 743155724)
 
     public val getLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_limit_end", 3341600327)
+        Internals.getMethodBindPtr("Parallax2D", "get_limit_end", 3341600327)
 
     public val setFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2586408642)
+        Internals.getMethodBindPtr("Parallax2D", "set_follow_viewport", 2586408642)
 
     public val getFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2240911060)
+        Internals.getMethodBindPtr("Parallax2D", "get_follow_viewport", 2240911060)
 
     public val setIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2586408642)
+        Internals.getMethodBindPtr("Parallax2D", "set_ignore_camera_scroll", 2586408642)
 
     public val isIgnoreCameraScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2240911060)
+        Internals.getMethodBindPtr("Parallax2D", "is_ignore_camera_scroll", 2240911060)
   }
 }

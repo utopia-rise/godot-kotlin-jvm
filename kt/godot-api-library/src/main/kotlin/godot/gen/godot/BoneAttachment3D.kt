@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -72,29 +71,29 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BONEATTACHMENT3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BONEATTACHMENT3D_INDEX, scriptIndex)
   }
 
   public final fun setBoneName(boneName: String): Unit {
-    TransferContext.writeArguments(STRING to boneName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
+    Internals.writeArguments(STRING to boneName)
+    Internals.callMethod(rawPtr, MethodBindings.setBoneNamePtr, NIL)
   }
 
   public final fun getBoneName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setBoneIdx(boneIdx: Int): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBoneIdxPtr, NIL)
+    Internals.writeArguments(LONG to boneIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBoneIdxPtr, NIL)
   }
 
   public final fun getBoneIdx(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBoneIdxPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -103,19 +102,19 @@ public open class BoneAttachment3D : Node3D() {
    * set to override the bone pose.
    */
   public final fun onSkeletonUpdate(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.onSkeletonUpdatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.onSkeletonUpdatePtr, NIL)
   }
 
   public final fun setOverridePose(overridePose: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to overridePose)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOverridePosePtr, NIL)
+    Internals.writeArguments(BOOL to overridePose)
+    Internals.callMethod(rawPtr, MethodBindings.setOverridePosePtr, NIL)
   }
 
   public final fun getOverridePose(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOverridePosePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -124,8 +123,8 @@ public open class BoneAttachment3D : Node3D() {
    * node will use the external [Skeleton3D] node set in [setExternalSkeleton].
    */
   public final fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useExternalSkeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseExternalSkeletonPtr, NIL)
+    Internals.writeArguments(BOOL to useExternalSkeleton)
+    Internals.callMethod(rawPtr, MethodBindings.setUseExternalSkeletonPtr, NIL)
   }
 
   /**
@@ -133,9 +132,9 @@ public open class BoneAttachment3D : Node3D() {
    * attempting to use its parent node as the [Skeleton3D].
    */
   public final fun getUseExternalSkeleton(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -143,53 +142,53 @@ public open class BoneAttachment3D : Node3D() {
    * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
    */
   public final fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to externalSkeleton)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExternalSkeletonPtr, NIL)
+    Internals.writeArguments(NODE_PATH to externalSkeleton)
+    Internals.callMethod(rawPtr, MethodBindings.setExternalSkeletonPtr, NIL)
   }
 
   /**
    * Returns the [NodePath] to the external [Skeleton3D] node, if one has been set.
    */
   public final fun getExternalSkeleton(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_name", 83702148)
+        Internals.getMethodBindPtr("BoneAttachment3D", "set_bone_name", 83702148)
 
     public val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_name", 201670096)
+        Internals.getMethodBindPtr("BoneAttachment3D", "get_bone_name", 201670096)
 
     public val setBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_bone_idx", 1286410249)
+        Internals.getMethodBindPtr("BoneAttachment3D", "set_bone_idx", 1286410249)
 
     public val getBoneIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_bone_idx", 3905245786)
+        Internals.getMethodBindPtr("BoneAttachment3D", "get_bone_idx", 3905245786)
 
     public val onSkeletonUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update", 3218959716)
+        Internals.getMethodBindPtr("BoneAttachment3D", "on_skeleton_update", 3218959716)
 
     public val setOverridePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_override_pose", 2586408642)
+        Internals.getMethodBindPtr("BoneAttachment3D", "set_override_pose", 2586408642)
 
     public val getOverridePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_override_pose", 36873697)
+        Internals.getMethodBindPtr("BoneAttachment3D", "get_override_pose", 36873697)
 
     public val setUseExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_use_external_skeleton", 2586408642)
+        Internals.getMethodBindPtr("BoneAttachment3D", "set_use_external_skeleton", 2586408642)
 
     public val getUseExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_use_external_skeleton", 36873697)
+        Internals.getMethodBindPtr("BoneAttachment3D", "get_use_external_skeleton", 36873697)
 
     public val setExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "set_external_skeleton", 1348162250)
+        Internals.getMethodBindPtr("BoneAttachment3D", "set_external_skeleton", 1348162250)
 
     public val getExternalSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoneAttachment3D", "get_external_skeleton", 4075236667)
+        Internals.getMethodBindPtr("BoneAttachment3D", "get_external_skeleton", 4075236667)
   }
 }

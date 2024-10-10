@@ -8,7 +8,6 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -16,7 +15,7 @@ import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -45,7 +44,7 @@ private const val ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX: Int = 736
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX, scriptIndex)
   }
 
   /**
@@ -58,9 +57,9 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   @JvmOverloads
   public final fun createServer(channelsConfig: VariantArray<Any?> = godot.core.variantArrayOf()):
       Error {
-    TransferContext.writeArguments(ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(ARRAY to channelsConfig)
+    Internals.callMethod(rawPtr, MethodBindings.createServerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -74,9 +73,9 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   @JvmOverloads
   public final fun createClient(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): Error {
-    TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
+    Internals.callMethod(rawPtr, MethodBindings.createClientPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -86,9 +85,9 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   @JvmOverloads
   public final fun createMesh(peerId: Int, channelsConfig: VariantArray<Any?> =
       godot.core.variantArrayOf()): Error {
-    TransferContext.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
-    TransferContext.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to peerId.toLong(), ARRAY to channelsConfig)
+    Internals.callMethod(rawPtr, MethodBindings.createMeshPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -104,9 +103,9 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
     peerId: Int,
     unreliableLifetime: Int = 1,
   ): Error {
-    TransferContext.writeArguments(OBJECT to peer, LONG to peerId.toLong(), LONG to unreliableLifetime.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPeerPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to peer, LONG to peerId.toLong(), LONG to unreliableLifetime.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPeerPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -115,17 +114,17 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * MultiplayerPeer.peer_disconnected] will be emitted.
    */
   public final fun removePeer(peerId: Int): Unit {
-    TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePeerPtr, NIL)
+    Internals.writeArguments(LONG to peerId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removePeerPtr, NIL)
   }
 
   /**
    * Returns `true` if the given [peerId] is in the peers map (it might not be connected though).
    */
   public final fun hasPeer(peerId: Int): Boolean {
-    TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasPeerPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to peerId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasPeerPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -135,9 +134,9 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * connected (all three channels are open).
    */
   public final fun getPeer(peerId: Int): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to peerId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeerPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(LONG to peerId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPeerPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -145,36 +144,36 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
    * [getPeer].
    */
   public final fun getPeers(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPeersPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPeersPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val createServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "create_server", 2865356025)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_server", 2865356025)
 
     public val createClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "create_client", 2641732907)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_client", 2641732907)
 
     public val createMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "create_mesh", 2641732907)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "create_mesh", 2641732907)
 
     public val addPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "add_peer", 4078953270)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "add_peer", 4078953270)
 
     public val removePeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "remove_peer", 1286410249)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "remove_peer", 1286410249)
 
     public val hasPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "has_peer", 3067735520)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "has_peer", 3067735520)
 
     public val getPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peer", 3554694381)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peer", 3554694381)
 
     public val getPeersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peers", 2382534195)
+        Internals.getMethodBindPtr("WebRTCMultiplayerPeer", "get_peers", 2382534195)
   }
 }

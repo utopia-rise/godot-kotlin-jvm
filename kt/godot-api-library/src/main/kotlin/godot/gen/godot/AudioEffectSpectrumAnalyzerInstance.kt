@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Float
 import kotlin.Int
@@ -30,7 +29,8 @@ import kotlin.jvm.JvmOverloads
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE_INDEX,
+        scriptIndex)
   }
 
   /**
@@ -45,9 +45,9 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     toHz: Float,
     mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAGNITUDE_MAX,
   ): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public enum class MagnitudeMode(
@@ -77,6 +77,6 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
 
   internal object MethodBindings {
     public val getMagnitudeForFrequencyRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzerInstance", "get_magnitude_for_frequency_range", 797993915)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzerInstance", "get_magnitude_for_frequency_range", 797993915)
   }
 }

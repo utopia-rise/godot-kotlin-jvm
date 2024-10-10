@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedFloat32Array
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -50,35 +49,35 @@ public open class XRFaceTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRFACETRACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRFACETRACKER_INDEX, scriptIndex)
   }
 
   /**
    * Returns the requested face blend shape weight.
    */
   public final fun getBlendShape(blendShape: BlendShapeEntry): Float {
-    TransferContext.writeArguments(LONG to blendShape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to blendShape.id)
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets a face blend shape weight.
    */
   public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
-    TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapePtr, NIL)
+    Internals.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBlendShapePtr, NIL)
   }
 
   public final fun getBlendShapes(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBlendShapesPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBlendShapes(weights: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
+    Internals.callMethod(rawPtr, MethodBindings.setBlendShapesPtr, NIL)
   }
 
   public enum class BlendShapeEntry(
@@ -676,15 +675,15 @@ public open class XRFaceTracker : XRTracker() {
 
   internal object MethodBindings {
     public val getBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330010046)
+        Internals.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330010046)
 
     public val setBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2352588791)
+        Internals.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2352588791)
 
     public val getBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675695659)
+        Internals.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675695659)
 
     public val setBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2899603908)
+        Internals.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2899603908)
   }
 }

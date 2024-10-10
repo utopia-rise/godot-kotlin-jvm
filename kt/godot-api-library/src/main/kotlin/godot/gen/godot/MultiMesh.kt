@@ -14,7 +14,6 @@ import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.Transform2D
 import godot.core.Transform3D
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
@@ -23,7 +22,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.TRANSFORM3D
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -146,7 +145,7 @@ public open class MultiMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_MULTIMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_MULTIMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -175,103 +174,103 @@ public open class MultiMesh : Resource() {
 
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   public final fun setUseColors(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseColorsPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseColorsPtr, NIL)
   }
 
   public final fun isUsingColors(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingColorsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingColorsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUseCustomData(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseCustomDataPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseCustomDataPtr, NIL)
   }
 
   public final fun isUsingCustomData(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingCustomDataPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingCustomDataPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTransformFormat(format: TransformFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransformFormatPtr, NIL)
+    Internals.writeArguments(LONG to format.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransformFormatPtr, NIL)
   }
 
   public final fun getTransformFormat(): TransformFormat {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTransformFormatPtr, LONG)
-    return MultiMesh.TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTransformFormatPtr, LONG)
+    return MultiMesh.TransformFormat.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setInstanceCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceCountPtr, NIL)
   }
 
   public final fun getInstanceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVisibleInstanceCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleInstanceCountPtr, NIL)
+    Internals.writeArguments(LONG to count.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleInstanceCountPtr, NIL)
   }
 
   public final fun getVisibleInstanceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleInstanceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleInstanceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Sets the [Transform3D] for a specific instance.
    */
   public final fun setInstanceTransform(instance: Int, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM3D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransformPtr, NIL)
+    Internals.writeArguments(LONG to instance.toLong(), TRANSFORM3D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceTransformPtr, NIL)
   }
 
   /**
    * Sets the [Transform2D] for a specific instance.
    */
   public final fun setInstanceTransform2d(instance: Int, transform: Transform2D): Unit {
-    TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM2D to transform)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceTransform2dPtr, NIL)
+    Internals.writeArguments(LONG to instance.toLong(), TRANSFORM2D to transform)
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceTransform2dPtr, NIL)
   }
 
   /**
    * Returns the [Transform3D] of a specific instance.
    */
   public final fun getInstanceTransform(instance: Int): Transform3D {
-    TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransformPtr, TRANSFORM3D)
-    return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
+    Internals.writeArguments(LONG to instance.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceTransformPtr, TRANSFORM3D)
+    return (Internals.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
   /**
    * Returns the [Transform2D] of a specific instance.
    */
   public final fun getInstanceTransform2d(instance: Int): Transform2D {
-    TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceTransform2dPtr, TRANSFORM2D)
-    return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
+    Internals.writeArguments(LONG to instance.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceTransform2dPtr, TRANSFORM2D)
+    return (Internals.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
   /**
@@ -285,17 +284,17 @@ public open class MultiMesh : Resource() {
    * (`Color(1, 1, 1)`).
    */
   public final fun setInstanceColor(instance: Int, color: Color): Unit {
-    TransferContext.writeArguments(LONG to instance.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceColorPtr, NIL)
+    Internals.writeArguments(LONG to instance.toLong(), COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceColorPtr, NIL)
   }
 
   /**
    * Gets a specific instance's color multiplier.
    */
   public final fun getInstanceColor(instance: Int): Color {
-    TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to instance.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
@@ -308,49 +307,48 @@ public open class MultiMesh : Resource() {
    * `INSTANCE_CUSTOM`.
    */
   public final fun setInstanceCustomData(instance: Int, customData: Color): Unit {
-    TransferContext.writeArguments(LONG to instance.toLong(), COLOR to customData)
-    TransferContext.callMethod(rawPtr, MethodBindings.setInstanceCustomDataPtr, NIL)
+    Internals.writeArguments(LONG to instance.toLong(), COLOR to customData)
+    Internals.callMethod(rawPtr, MethodBindings.setInstanceCustomDataPtr, NIL)
   }
 
   /**
    * Returns the custom data that has been set for a specific instance.
    */
   public final fun getInstanceCustomData(instance: Int): Color {
-    TransferContext.writeArguments(LONG to instance.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getInstanceCustomDataPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to instance.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getInstanceCustomDataPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   /**
    * Returns the visibility axis-aligned bounding box in local space.
    */
   public final fun getAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getBuffer(): PackedFloat32Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_FLOAT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
   public final fun setBuffer(buffer: PackedFloat32Array): Unit {
-    TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to buffer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+    Internals.writeArguments(PACKED_FLOAT_32_ARRAY to buffer)
+    Internals.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
   }
 
   public enum class TransformFormat(
@@ -379,79 +377,76 @@ public open class MultiMesh : Resource() {
   public companion object
 
   internal object MethodBindings {
-    public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_mesh", 194775623)
+    public val setMeshPtr: VoidPtr = Internals.getMethodBindPtr("MultiMesh", "set_mesh", 194775623)
 
-    public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_mesh", 1808005922)
+    public val getMeshPtr: VoidPtr = Internals.getMethodBindPtr("MultiMesh", "get_mesh", 1808005922)
 
     public val setUseColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors", 2586408642)
+        Internals.getMethodBindPtr("MultiMesh", "set_use_colors", 2586408642)
 
     public val isUsingColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors", 36873697)
+        Internals.getMethodBindPtr("MultiMesh", "is_using_colors", 36873697)
 
     public val setUseCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data", 2586408642)
+        Internals.getMethodBindPtr("MultiMesh", "set_use_custom_data", 2586408642)
 
     public val isUsingCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data", 36873697)
+        Internals.getMethodBindPtr("MultiMesh", "is_using_custom_data", 36873697)
 
     public val setTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format", 2404750322)
+        Internals.getMethodBindPtr("MultiMesh", "set_transform_format", 2404750322)
 
     public val getTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format", 2444156481)
+        Internals.getMethodBindPtr("MultiMesh", "get_transform_format", 2444156481)
 
     public val setInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count", 1286410249)
+        Internals.getMethodBindPtr("MultiMesh", "set_instance_count", 1286410249)
 
     public val getInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count", 3905245786)
+        Internals.getMethodBindPtr("MultiMesh", "get_instance_count", 3905245786)
 
     public val setVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count", 1286410249)
+        Internals.getMethodBindPtr("MultiMesh", "set_visible_instance_count", 1286410249)
 
     public val getVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3905245786)
+        Internals.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3905245786)
 
     public val setInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform", 3616898986)
+        Internals.getMethodBindPtr("MultiMesh", "set_instance_transform", 3616898986)
 
     public val setInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d", 30160968)
+        Internals.getMethodBindPtr("MultiMesh", "set_instance_transform_2d", 30160968)
 
     public val getInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform", 1965739696)
+        Internals.getMethodBindPtr("MultiMesh", "get_instance_transform", 1965739696)
 
     public val getInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d", 3836996910)
+        Internals.getMethodBindPtr("MultiMesh", "get_instance_transform_2d", 3836996910)
 
     public val setInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color", 2878471219)
+        Internals.getMethodBindPtr("MultiMesh", "set_instance_color", 2878471219)
 
     public val getInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color", 3457211756)
+        Internals.getMethodBindPtr("MultiMesh", "get_instance_color", 3457211756)
 
     public val setInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data", 2878471219)
+        Internals.getMethodBindPtr("MultiMesh", "set_instance_custom_data", 2878471219)
 
     public val getInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3457211756)
+        Internals.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3457211756)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)
+        Internals.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb", 1068685055)
+        Internals.getMethodBindPtr("MultiMesh", "get_custom_aabb", 1068685055)
 
-    public val getAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_aabb", 1068685055)
+    public val getAabbPtr: VoidPtr = Internals.getMethodBindPtr("MultiMesh", "get_aabb", 1068685055)
 
     public val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_buffer", 675695659)
+        Internals.getMethodBindPtr("MultiMesh", "get_buffer", 675695659)
 
     public val setBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer", 2899603908)
+        Internals.getMethodBindPtr("MultiMesh", "set_buffer", 2899603908)
   }
 }

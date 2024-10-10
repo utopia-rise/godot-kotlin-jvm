@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -163,7 +162,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RANGE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RANGE_INDEX, scriptIndex)
   }
 
   /**
@@ -174,44 +173,44 @@ public open class Range : Control() {
   }
 
   public final fun getValue(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getValuePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getValuePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getMin(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMinPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getMax(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getStep(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStepPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getPage(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPagePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPagePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getAsRatio(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAsRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAsRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setValue(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
+    Internals.writeArguments(DOUBLE to value)
+    Internals.callMethod(rawPtr, MethodBindings.setValuePtr, NIL)
   }
 
   /**
@@ -219,77 +218,77 @@ public open class Range : Control() {
    * value_changed] signal.
    */
   public final fun setValueNoSignal(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setValueNoSignalPtr, NIL)
+    Internals.writeArguments(DOUBLE to value)
+    Internals.callMethod(rawPtr, MethodBindings.setValueNoSignalPtr, NIL)
   }
 
   public final fun setMin(minimum: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to minimum)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
+    Internals.writeArguments(DOUBLE to minimum)
+    Internals.callMethod(rawPtr, MethodBindings.setMinPtr, NIL)
   }
 
   public final fun setMax(maximum: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to maximum)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
+    Internals.writeArguments(DOUBLE to maximum)
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPtr, NIL)
   }
 
   public final fun setStep(step: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to step)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
+    Internals.writeArguments(DOUBLE to step)
+    Internals.callMethod(rawPtr, MethodBindings.setStepPtr, NIL)
   }
 
   public final fun setPage(pagesize: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to pagesize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPagePtr, NIL)
+    Internals.writeArguments(DOUBLE to pagesize)
+    Internals.callMethod(rawPtr, MethodBindings.setPagePtr, NIL)
   }
 
   public final fun setAsRatio(`value`: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAsRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to value)
+    Internals.callMethod(rawPtr, MethodBindings.setAsRatioPtr, NIL)
   }
 
   public final fun setUseRoundedValues(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseRoundedValuesPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setUseRoundedValuesPtr, NIL)
   }
 
   public final fun isUsingRoundedValues(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingRoundedValuesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingRoundedValuesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExpRatio(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setExpRatioPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setExpRatioPtr, NIL)
   }
 
   public final fun isRatioExp(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isRatioExpPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isRatioExpPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowGreater(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowGreaterPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowGreaterPtr, NIL)
   }
 
   public final fun isGreaterAllowed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isGreaterAllowedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isGreaterAllowedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowLesser(allow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowLesserPtr, NIL)
+    Internals.writeArguments(BOOL to allow)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowLesserPtr, NIL)
   }
 
   public final fun isLesserAllowed(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLesserAllowedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLesserAllowedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -298,76 +297,76 @@ public open class Range : Control() {
    * group.
    */
   public final fun share(with: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to with)
-    TransferContext.callMethod(rawPtr, MethodBindings.sharePtr, NIL)
+    Internals.writeArguments(OBJECT to with)
+    Internals.callMethod(rawPtr, MethodBindings.sharePtr, NIL)
   }
 
   /**
    * Stops the [Range] from sharing its member variables with any other.
    */
   public final fun unshare(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unsharePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.unsharePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val getValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_value", 1740695150)
+    public val getValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_value", 1740695150)
 
-    public val getMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_min", 1740695150)
+    public val getMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_min", 1740695150)
 
-    public val getMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_max", 1740695150)
+    public val getMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_max", 1740695150)
 
-    public val getStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_step", 1740695150)
+    public val getStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_step", 1740695150)
 
-    public val getPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "get_page", 1740695150)
+    public val getPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "get_page", 1740695150)
 
     public val getAsRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "get_as_ratio", 1740695150)
+        Internals.getMethodBindPtr("Range", "get_as_ratio", 1740695150)
 
-    public val setValuePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_value", 373806689)
+    public val setValuePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_value", 373806689)
 
     public val setValueNoSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_value_no_signal", 373806689)
+        Internals.getMethodBindPtr("Range", "set_value_no_signal", 373806689)
 
-    public val setMinPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_min", 373806689)
+    public val setMinPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_min", 373806689)
 
-    public val setMaxPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_max", 373806689)
+    public val setMaxPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_max", 373806689)
 
-    public val setStepPtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_step", 373806689)
+    public val setStepPtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_step", 373806689)
 
-    public val setPagePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "set_page", 373806689)
+    public val setPagePtr: VoidPtr = Internals.getMethodBindPtr("Range", "set_page", 373806689)
 
     public val setAsRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_as_ratio", 373806689)
+        Internals.getMethodBindPtr("Range", "set_as_ratio", 373806689)
 
     public val setUseRoundedValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_use_rounded_values", 2586408642)
+        Internals.getMethodBindPtr("Range", "set_use_rounded_values", 2586408642)
 
     public val isUsingRoundedValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_using_rounded_values", 36873697)
+        Internals.getMethodBindPtr("Range", "is_using_rounded_values", 36873697)
 
     public val setExpRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_exp_ratio", 2586408642)
+        Internals.getMethodBindPtr("Range", "set_exp_ratio", 2586408642)
 
     public val isRatioExpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_ratio_exp", 36873697)
+        Internals.getMethodBindPtr("Range", "is_ratio_exp", 36873697)
 
     public val setAllowGreaterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_allow_greater", 2586408642)
+        Internals.getMethodBindPtr("Range", "set_allow_greater", 2586408642)
 
     public val isGreaterAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_greater_allowed", 36873697)
+        Internals.getMethodBindPtr("Range", "is_greater_allowed", 36873697)
 
     public val setAllowLesserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "set_allow_lesser", 2586408642)
+        Internals.getMethodBindPtr("Range", "set_allow_lesser", 2586408642)
 
     public val isLesserAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Range", "is_lesser_allowed", 36873697)
+        Internals.getMethodBindPtr("Range", "is_lesser_allowed", 36873697)
 
-    public val sharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "share", 1078189570)
+    public val sharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "share", 1078189570)
 
-    public val unsharePtr: VoidPtr = TypeManager.getMethodBindPtr("Range", "unshare", 3218959716)
+    public val unsharePtr: VoidPtr = Internals.getMethodBindPtr("Range", "unshare", 3218959716)
   }
 }

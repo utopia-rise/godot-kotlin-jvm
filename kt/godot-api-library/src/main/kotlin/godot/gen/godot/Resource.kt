@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.RID
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -124,7 +123,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RESOURCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RESOURCE_INDEX, scriptIndex)
   }
 
   /**
@@ -144,8 +143,8 @@ public open class Resource : RefCounted() {
   }
 
   public final fun setPath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.setPathPtr, NIL)
   }
 
   /**
@@ -153,25 +152,25 @@ public open class Resource : RefCounted() {
    * path. Further attempts to load an overridden resource by path will instead return this resource.
    */
   public final fun takeOverPath(path: String): Unit {
-    TransferContext.writeArguments(STRING to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
+    Internals.writeArguments(STRING to path)
+    Internals.callMethod(rawPtr, MethodBindings.takeOverPathPtr, NIL)
   }
 
   public final fun getPath(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPathPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setNamePtr, NIL)
   }
 
   public final fun getName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -180,20 +179,20 @@ public open class Resource : RefCounted() {
    * ([DisplayServer], [RenderingServer], etc.), so this function will return the original [RID].
    */
   public final fun getRid(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRidPtr, _RID)
+    return (Internals.readReturnValue(_RID) as RID)
   }
 
   public final fun setLocalToScene(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setLocalToScenePtr, NIL)
   }
 
   public final fun isLocalToScene(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isLocalToScenePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -202,9 +201,9 @@ public open class Resource : RefCounted() {
    * Otherwise, returns `null`.
    */
   public final fun getLocalScene(): Node? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Node?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalScenePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Node?)
   }
 
   /**
@@ -213,19 +212,19 @@ public open class Resource : RefCounted() {
    * scene instance.
    */
   public final fun setupLocalToScene(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.setupLocalToScenePtr, NIL)
   }
 
   public final fun setSceneUniqueId(id: String): Unit {
-    TransferContext.writeArguments(STRING to id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
+    Internals.writeArguments(STRING to id)
+    Internals.callMethod(rawPtr, MethodBindings.setSceneUniqueIdPtr, NIL)
   }
 
   public final fun getSceneUniqueId(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSceneUniqueIdPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -243,8 +242,8 @@ public open class Resource : RefCounted() {
    * [/codeblock]
    */
   public final fun emitChanged(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.emitChangedPtr, NIL)
   }
 
   /**
@@ -263,9 +262,9 @@ public open class Resource : RefCounted() {
    */
   @JvmOverloads
   public final fun duplicate(subresources: Boolean = false): Resource? {
-    TransferContext.writeArguments(BOOL to subresources)
-    TransferContext.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+    Internals.writeArguments(BOOL to subresources)
+    Internals.callMethod(rawPtr, MethodBindings.duplicatePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Resource?)
   }
 
   public companion object {
@@ -275,51 +274,51 @@ public open class Resource : RefCounted() {
      * to `y`) and numbers (`0` to `8`). See also [resourceSceneUniqueId].
      */
     public final fun generateSceneUniqueId(): String {
-      TransferContext.writeArguments()
-      TransferContext.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
-      return (TransferContext.readReturnValue(STRING) as String)
+      Internals.writeArguments()
+      Internals.callMethod(0, MethodBindings.generateSceneUniqueIdPtr, STRING)
+      return (Internals.readReturnValue(STRING) as String)
     }
   }
 
   internal object MethodBindings {
-    public val setPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_path", 83702148)
+    public val setPathPtr: VoidPtr = Internals.getMethodBindPtr("Resource", "set_path", 83702148)
 
     public val takeOverPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "take_over_path", 83702148)
+        Internals.getMethodBindPtr("Resource", "take_over_path", 83702148)
 
-    public val getPathPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_path", 201670096)
+    public val getPathPtr: VoidPtr = Internals.getMethodBindPtr("Resource", "get_path", 201670096)
 
-    public val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "set_name", 83702148)
+    public val setNamePtr: VoidPtr = Internals.getMethodBindPtr("Resource", "set_name", 83702148)
 
-    public val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_name", 201670096)
+    public val getNamePtr: VoidPtr = Internals.getMethodBindPtr("Resource", "get_name", 201670096)
 
-    public val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Resource", "get_rid", 2944877500)
+    public val getRidPtr: VoidPtr = Internals.getMethodBindPtr("Resource", "get_rid", 2944877500)
 
     public val setLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "set_local_to_scene", 2586408642)
+        Internals.getMethodBindPtr("Resource", "set_local_to_scene", 2586408642)
 
     public val isLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "is_local_to_scene", 36873697)
+        Internals.getMethodBindPtr("Resource", "is_local_to_scene", 36873697)
 
     public val getLocalScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "get_local_scene", 3160264692)
+        Internals.getMethodBindPtr("Resource", "get_local_scene", 3160264692)
 
     public val setupLocalToScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "setup_local_to_scene", 3218959716)
+        Internals.getMethodBindPtr("Resource", "setup_local_to_scene", 3218959716)
 
     public val generateSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)
+        Internals.getMethodBindPtr("Resource", "generate_scene_unique_id", 2841200299)
 
     public val setSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "set_scene_unique_id", 83702148)
+        Internals.getMethodBindPtr("Resource", "set_scene_unique_id", 83702148)
 
     public val getSceneUniqueIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "get_scene_unique_id", 201670096)
+        Internals.getMethodBindPtr("Resource", "get_scene_unique_id", 201670096)
 
     public val emitChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "emit_changed", 3218959716)
+        Internals.getMethodBindPtr("Resource", "emit_changed", 3218959716)
 
     public val duplicatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Resource", "duplicate", 482882304)
+        Internals.getMethodBindPtr("Resource", "duplicate", 482882304)
   }
 }

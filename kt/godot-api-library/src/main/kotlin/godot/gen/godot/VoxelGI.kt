@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -108,7 +107,7 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VOXELGI_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VOXELGI_INDEX, scriptIndex)
   }
 
   /**
@@ -139,47 +138,47 @@ public open class VoxelGI : VisualInstance3D() {
 
 
   public final fun setProbeData(`data`: VoxelGIData?): Unit {
-    TransferContext.writeArguments(OBJECT to data)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
+    Internals.writeArguments(OBJECT to data)
+    Internals.callMethod(rawPtr, MethodBindings.setProbeDataPtr, NIL)
   }
 
   public final fun getProbeData(): VoxelGIData? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as VoxelGIData?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProbeDataPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as VoxelGIData?)
   }
 
   public final fun setSubdiv(subdiv: Subdiv): Unit {
-    TransferContext.writeArguments(LONG to subdiv.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
+    Internals.writeArguments(LONG to subdiv.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSubdivPtr, NIL)
   }
 
   public final fun getSubdiv(): Subdiv {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
-    return VoxelGI.Subdiv.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubdivPtr, LONG)
+    return VoxelGI.Subdiv.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSize(size: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
+    Internals.writeArguments(VECTOR3 to size)
+    Internals.callMethod(rawPtr, MethodBindings.setSizePtr, NIL)
   }
 
   public final fun getSize(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSizePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
-    TransferContext.writeArguments(OBJECT to cameraAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
+    Internals.writeArguments(OBJECT to cameraAttributes)
+    Internals.callMethod(rawPtr, MethodBindings.setCameraAttributesPtr, NIL)
   }
 
   public final fun getCameraAttributes(): CameraAttributes? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCameraAttributesPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
   /**
@@ -197,16 +196,16 @@ public open class VoxelGI : VisualInstance3D() {
    */
   @JvmOverloads
   public final fun bake(fromNode: Node? = null, createVisualDebug: Boolean = false): Unit {
-    TransferContext.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
-    TransferContext.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
+    Internals.writeArguments(OBJECT to fromNode, BOOL to createVisualDebug)
+    Internals.callMethod(rawPtr, MethodBindings.bakePtr, NIL)
   }
 
   /**
    * Calls [bake] with `create_visual_debug` enabled.
    */
   public final fun debugBake(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.debugBakePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.debugBakePtr, NIL)
   }
 
   public enum class Subdiv(
@@ -250,30 +249,30 @@ public open class VoxelGI : VisualInstance3D() {
 
   internal object MethodBindings {
     public val setProbeDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "set_probe_data", 1637849675)
+        Internals.getMethodBindPtr("VoxelGI", "set_probe_data", 1637849675)
 
     public val getProbeDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "get_probe_data", 1730645405)
+        Internals.getMethodBindPtr("VoxelGI", "get_probe_data", 1730645405)
 
     public val setSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "set_subdiv", 2240898472)
+        Internals.getMethodBindPtr("VoxelGI", "set_subdiv", 2240898472)
 
     public val getSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "get_subdiv", 4261647950)
+        Internals.getMethodBindPtr("VoxelGI", "get_subdiv", 4261647950)
 
-    public val setSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "set_size", 3460891852)
+    public val setSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "set_size", 3460891852)
 
-    public val getSizePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "get_size", 3360562783)
+    public val getSizePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "get_size", 3360562783)
 
     public val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "set_camera_attributes", 2817810567)
+        Internals.getMethodBindPtr("VoxelGI", "set_camera_attributes", 2817810567)
 
     public val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "get_camera_attributes", 3921283215)
+        Internals.getMethodBindPtr("VoxelGI", "get_camera_attributes", 3921283215)
 
-    public val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("VoxelGI", "bake", 2781551026)
+    public val bakePtr: VoidPtr = Internals.getMethodBindPtr("VoxelGI", "bake", 2781551026)
 
     public val debugBakePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VoxelGI", "debug_bake", 3218959716)
+        Internals.getMethodBindPtr("VoxelGI", "debug_bake", 3218959716)
   }
 }

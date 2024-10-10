@@ -10,12 +10,11 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -90,7 +89,7 @@ public open class GLTFSpecGloss : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFSPECGLOSS_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFSPECGLOSS_INDEX, scriptIndex)
   }
 
   /**
@@ -142,91 +141,91 @@ public open class GLTFSpecGloss : Resource() {
 
 
   public final fun getDiffuseImg(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseImgPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiffuseImgPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   public final fun setDiffuseImg(diffuseImg: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to diffuseImg)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseImgPtr, NIL)
+    Internals.writeArguments(OBJECT to diffuseImg)
+    Internals.callMethod(rawPtr, MethodBindings.setDiffuseImgPtr, NIL)
   }
 
   public final fun getDiffuseFactor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiffuseFactorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiffuseFactorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setDiffuseFactor(diffuseFactor: Color): Unit {
-    TransferContext.writeArguments(COLOR to diffuseFactor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDiffuseFactorPtr, NIL)
+    Internals.writeArguments(COLOR to diffuseFactor)
+    Internals.callMethod(rawPtr, MethodBindings.setDiffuseFactorPtr, NIL)
   }
 
   public final fun getGlossFactor(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGlossFactorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGlossFactorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGlossFactor(glossFactor: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to glossFactor.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGlossFactorPtr, NIL)
+    Internals.writeArguments(DOUBLE to glossFactor.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGlossFactorPtr, NIL)
   }
 
   public final fun getSpecularFactor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecularFactorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecularFactorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSpecularFactor(specularFactor: Color): Unit {
-    TransferContext.writeArguments(COLOR to specularFactor)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecularFactorPtr, NIL)
+    Internals.writeArguments(COLOR to specularFactor)
+    Internals.callMethod(rawPtr, MethodBindings.setSpecularFactorPtr, NIL)
   }
 
   public final fun getSpecGlossImg(): Image? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpecGlossImgPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Image?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpecGlossImgPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Image?)
   }
 
   public final fun setSpecGlossImg(specGlossImg: Image?): Unit {
-    TransferContext.writeArguments(OBJECT to specGlossImg)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpecGlossImgPtr, NIL)
+    Internals.writeArguments(OBJECT to specGlossImg)
+    Internals.callMethod(rawPtr, MethodBindings.setSpecGlossImgPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564927088)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564927088)
 
     public val setDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532598488)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532598488)
 
     public val getDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3200896285)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3200896285)
 
     public val setDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2920490490)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2920490490)
 
     public val getGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191475506)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191475506)
 
     public val setGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373806689)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373806689)
 
     public val getSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3200896285)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3200896285)
 
     public val setSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2920490490)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2920490490)
 
     public val getSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564927088)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564927088)
 
     public val setSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532598488)
+        Internals.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532598488)
   }
 }

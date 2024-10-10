@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedStringArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_STRING_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -215,248 +214,248 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SYSTEMFONT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SYSTEMFONT_INDEX, scriptIndex)
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
-    TransferContext.writeArguments(LONG to antialiasing.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAntialiasingPtr, NIL)
+    Internals.writeArguments(LONG to antialiasing.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAntialiasingPtr, NIL)
   }
 
   public final fun getAntialiasing(): TextServer.FontAntialiasing {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAntialiasingPtr, LONG)
-    return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAntialiasingPtr, LONG)
+    return TextServer.FontAntialiasing.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to disableEmbeddedBitmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
+    Internals.writeArguments(BOOL to disableEmbeddedBitmaps)
+    Internals.callMethod(rawPtr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
   }
 
   public final fun getDisableEmbeddedBitmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDisableEmbeddedBitmapsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to generateMipmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGenerateMipmapsPtr, NIL)
+    Internals.writeArguments(BOOL to generateMipmaps)
+    Internals.callMethod(rawPtr, MethodBindings.setGenerateMipmapsPtr, NIL)
   }
 
   public final fun getGenerateMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGenerateMipmapsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to allowSystemFallback)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAllowSystemFallbackPtr, NIL)
+    Internals.writeArguments(BOOL to allowSystemFallback)
+    Internals.callMethod(rawPtr, MethodBindings.setAllowSystemFallbackPtr, NIL)
   }
 
   public final fun isAllowSystemFallback(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAllowSystemFallbackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to forceAutohinter)
-    TransferContext.callMethod(rawPtr, MethodBindings.setForceAutohinterPtr, NIL)
+    Internals.writeArguments(BOOL to forceAutohinter)
+    Internals.callMethod(rawPtr, MethodBindings.setForceAutohinterPtr, NIL)
   }
 
   public final fun isForceAutohinter(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isForceAutohinterPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
-    TransferContext.writeArguments(LONG to hinting.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintingPtr, NIL)
+    Internals.writeArguments(LONG to hinting.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHintingPtr, NIL)
   }
 
   public final fun getHinting(): TextServer.Hinting {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHintingPtr, LONG)
-    return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHintingPtr, LONG)
+    return TextServer.Hinting.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
       Unit {
-    TransferContext.writeArguments(LONG to subpixelPositioning.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSubpixelPositioningPtr, NIL)
+    Internals.writeArguments(LONG to subpixelPositioning.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
 
   public final fun getSubpixelPositioning(): TextServer.SubpixelPositioning {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSubpixelPositioningPtr, LONG)
-    return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSubpixelPositioningPtr, LONG)
+    return TextServer.SubpixelPositioning.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to msdf)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
+    Internals.writeArguments(BOOL to msdf)
+    Internals.callMethod(rawPtr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
   }
 
   public final fun isMultichannelSignedDistanceField(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMultichannelSignedDistanceFieldPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
-    TransferContext.writeArguments(LONG to msdfPixelRange.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
+    Internals.writeArguments(LONG to msdfPixelRange.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
 
   public final fun getMsdfPixelRange(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsdfPixelRangePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setMsdfSize(msdfSize: Int): Unit {
-    TransferContext.writeArguments(LONG to msdfSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMsdfSizePtr, NIL)
+    Internals.writeArguments(LONG to msdfSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMsdfSizePtr, NIL)
   }
 
   public final fun getMsdfSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMsdfSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOversampling(oversampling: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+    Internals.writeArguments(DOUBLE to oversampling.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
   }
 
   public final fun getOversampling(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOversamplingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getFontNames(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontNamesPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setFontNames(names: PackedStringArray): Unit {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontNamesPtr, NIL)
+    Internals.writeArguments(PACKED_STRING_ARRAY to names)
+    Internals.callMethod(rawPtr, MethodBindings.setFontNamesPtr, NIL)
   }
 
   public final fun getFontItalic(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFontItalicPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFontItalic(italic: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to italic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontItalicPtr, NIL)
+    Internals.writeArguments(BOOL to italic)
+    Internals.callMethod(rawPtr, MethodBindings.setFontItalicPtr, NIL)
   }
 
   public final fun setFontWeight(weight: Int): Unit {
-    TransferContext.writeArguments(LONG to weight.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontWeightPtr, NIL)
+    Internals.writeArguments(LONG to weight.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFontWeightPtr, NIL)
   }
 
   public final fun setFontStretch(stretch: Int): Unit {
-    TransferContext.writeArguments(LONG to stretch.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFontStretchPtr, NIL)
+    Internals.writeArguments(LONG to stretch.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFontStretchPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_antialiasing", 1669900)
+        Internals.getMethodBindPtr("SystemFont", "set_antialiasing", 1669900)
 
     public val getAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_antialiasing", 4262718649)
+        Internals.getMethodBindPtr("SystemFont", "get_antialiasing", 4262718649)
 
     public val setDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_disable_embedded_bitmaps", 2586408642)
 
     public val getDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "get_disable_embedded_bitmaps", 36873697)
 
     public val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_generate_mipmaps", 2586408642)
 
     public val getGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "get_generate_mipmaps", 36873697)
 
     public val setAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_allow_system_fallback", 2586408642)
 
     public val isAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "is_allow_system_fallback", 36873697)
 
     public val setForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_force_autohinter", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_force_autohinter", 2586408642)
 
     public val isForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
 
     public val setHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)
+        Internals.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)
 
     public val getHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_hinting", 3683214614)
+        Internals.getMethodBindPtr("SystemFont", "get_hinting", 3683214614)
 
     public val setSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4225742182)
+        Internals.getMethodBindPtr("SystemFont", "set_subpixel_positioning", 4225742182)
 
     public val getSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
+        Internals.getMethodBindPtr("SystemFont", "get_subpixel_positioning", 1069238588)
 
     public val setMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_multichannel_signed_distance_field", 2586408642)
 
     public val isMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "is_multichannel_signed_distance_field", 36873697)
 
     public val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1286410249)
+        Internals.getMethodBindPtr("SystemFont", "set_msdf_pixel_range", 1286410249)
 
     public val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3905245786)
+        Internals.getMethodBindPtr("SystemFont", "get_msdf_pixel_range", 3905245786)
 
     public val setMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_msdf_size", 1286410249)
+        Internals.getMethodBindPtr("SystemFont", "set_msdf_size", 1286410249)
 
     public val getMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_msdf_size", 3905245786)
+        Internals.getMethodBindPtr("SystemFont", "get_msdf_size", 3905245786)
 
     public val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_oversampling", 373806689)
+        Internals.getMethodBindPtr("SystemFont", "set_oversampling", 373806689)
 
     public val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_oversampling", 1740695150)
+        Internals.getMethodBindPtr("SystemFont", "get_oversampling", 1740695150)
 
     public val getFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_names", 1139954409)
+        Internals.getMethodBindPtr("SystemFont", "get_font_names", 1139954409)
 
     public val setFontNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_names", 4015028928)
+        Internals.getMethodBindPtr("SystemFont", "set_font_names", 4015028928)
 
     public val getFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "get_font_italic", 36873697)
+        Internals.getMethodBindPtr("SystemFont", "get_font_italic", 36873697)
 
     public val setFontItalicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_italic", 2586408642)
+        Internals.getMethodBindPtr("SystemFont", "set_font_italic", 2586408642)
 
     public val setFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_weight", 1286410249)
+        Internals.getMethodBindPtr("SystemFont", "set_font_weight", 1286410249)
 
     public val setFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SystemFont", "set_font_stretch", 1286410249)
+        Internals.getMethodBindPtr("SystemFont", "set_font_stretch", 1286410249)
   }
 }

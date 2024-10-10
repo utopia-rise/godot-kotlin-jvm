@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -237,7 +236,7 @@ public open class TextureProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TEXTUREPROGRESSBAR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TEXTUREPROGRESSBAR_INDEX, scriptIndex)
   }
 
   /**
@@ -366,124 +365,124 @@ public open class TextureProgressBar : Range() {
 
 
   public final fun setUnderTexture(tex: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to tex)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUnderTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to tex)
+    Internals.callMethod(rawPtr, MethodBindings.setUnderTexturePtr, NIL)
   }
 
   public final fun getUnderTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUnderTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUnderTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setProgressTexture(tex: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to tex)
-    TransferContext.callMethod(rawPtr, MethodBindings.setProgressTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to tex)
+    Internals.callMethod(rawPtr, MethodBindings.setProgressTexturePtr, NIL)
   }
 
   public final fun getProgressTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProgressTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProgressTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setOverTexture(tex: Texture2D?): Unit {
-    TransferContext.writeArguments(OBJECT to tex)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOverTexturePtr, NIL)
+    Internals.writeArguments(OBJECT to tex)
+    Internals.callMethod(rawPtr, MethodBindings.setOverTexturePtr, NIL)
   }
 
   public final fun getOverTexture(): Texture2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOverTexturePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOverTexturePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setFillMode(mode: Int): Unit {
-    TransferContext.writeArguments(LONG to mode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+    Internals.writeArguments(LONG to mode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
   }
 
   public final fun getFillMode(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTintUnder(tint: Color): Unit {
-    TransferContext.writeArguments(COLOR to tint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintUnderPtr, NIL)
+    Internals.writeArguments(COLOR to tint)
+    Internals.callMethod(rawPtr, MethodBindings.setTintUnderPtr, NIL)
   }
 
   public final fun getTintUnder(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintUnderPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTintUnderPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTintProgress(tint: Color): Unit {
-    TransferContext.writeArguments(COLOR to tint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintProgressPtr, NIL)
+    Internals.writeArguments(COLOR to tint)
+    Internals.callMethod(rawPtr, MethodBindings.setTintProgressPtr, NIL)
   }
 
   public final fun getTintProgress(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintProgressPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTintProgressPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTintOver(tint: Color): Unit {
-    TransferContext.writeArguments(COLOR to tint)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintOverPtr, NIL)
+    Internals.writeArguments(COLOR to tint)
+    Internals.callMethod(rawPtr, MethodBindings.setTintOverPtr, NIL)
   }
 
   public final fun getTintOver(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintOverPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTintOverPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setTextureProgressOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextureProgressOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to offset)
+    Internals.callMethod(rawPtr, MethodBindings.setTextureProgressOffsetPtr, NIL)
   }
 
   public final fun getTextureProgressOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextureProgressOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextureProgressOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setRadialInitialAngle(mode: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mode.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
+    Internals.writeArguments(DOUBLE to mode.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRadialInitialAnglePtr, NIL)
   }
 
   public final fun getRadialInitialAngle(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialInitialAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRadialCenterOffset(mode: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to mode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR2 to mode)
+    Internals.callMethod(rawPtr, MethodBindings.setRadialCenterOffsetPtr, NIL)
   }
 
   public final fun getRadialCenterOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRadialCenterOffsetPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setFillDegrees(mode: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to mode.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
+    Internals.writeArguments(DOUBLE to mode.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFillDegreesPtr, NIL)
   }
 
   public final fun getFillDegrees(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillDegreesPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -491,8 +490,8 @@ public open class TextureProgressBar : Range() {
    * properties.
    */
   public final fun setStretchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
+    Internals.writeArguments(LONG to margin.id, LONG to value.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setStretchMarginPtr, NIL)
   }
 
   /**
@@ -500,20 +499,20 @@ public open class TextureProgressBar : Range() {
    * properties.
    */
   public final fun getStretchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to margin.id)
+    Internals.callMethod(rawPtr, MethodBindings.getStretchMarginPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setNinePatchStretch(stretch: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to stretch)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNinePatchStretchPtr, NIL)
+    Internals.writeArguments(BOOL to stretch)
+    Internals.callMethod(rawPtr, MethodBindings.setNinePatchStretchPtr, NIL)
   }
 
   public final fun getNinePatchStretch(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNinePatchStretchPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNinePatchStretchPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class FillMode(
@@ -577,81 +576,81 @@ public open class TextureProgressBar : Range() {
 
   internal object MethodBindings {
     public val setUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_under_texture", 4051416890)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_under_texture", 4051416890)
 
     public val getUnderTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_under_texture", 3635182373)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_under_texture", 3635182373)
 
     public val setProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_progress_texture", 4051416890)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_progress_texture", 4051416890)
 
     public val getProgressTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_progress_texture", 3635182373)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_progress_texture", 3635182373)
 
     public val setOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_over_texture", 4051416890)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_over_texture", 4051416890)
 
     public val getOverTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_over_texture", 3635182373)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_over_texture", 3635182373)
 
     public val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_mode", 1286410249)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_fill_mode", 1286410249)
 
     public val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_mode", 2455072627)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_fill_mode", 2455072627)
 
     public val setTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_under", 2920490490)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_tint_under", 2920490490)
 
     public val getTintUnderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_under", 3444240500)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_tint_under", 3444240500)
 
     public val setTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_progress", 2920490490)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_tint_progress", 2920490490)
 
     public val getTintProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_progress", 3444240500)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_tint_progress", 3444240500)
 
     public val setTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_tint_over", 2920490490)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_tint_over", 2920490490)
 
     public val getTintOverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_tint_over", 3444240500)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_tint_over", 3444240500)
 
     public val setTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset", 743155724)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_texture_progress_offset", 743155724)
 
     public val getTextureProgressOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset", 3341600327)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_texture_progress_offset", 3341600327)
 
     public val setRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle", 373806689)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_radial_initial_angle", 373806689)
 
     public val getRadialInitialAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle", 191475506)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_radial_initial_angle", 191475506)
 
     public val setRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset", 743155724)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_radial_center_offset", 743155724)
 
     public val getRadialCenterOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset", 1497962370)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_radial_center_offset", 1497962370)
 
     public val setFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_fill_degrees", 373806689)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_fill_degrees", 373806689)
 
     public val getFillDegreesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_fill_degrees", 191475506)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_fill_degrees", 191475506)
 
     public val setStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_stretch_margin", 437707142)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_stretch_margin", 437707142)
 
     public val getStretchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_stretch_margin", 1983885014)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_stretch_margin", 1983885014)
 
     public val setNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch", 2586408642)
+        Internals.getMethodBindPtr("TextureProgressBar", "set_nine_patch_stretch", 2586408642)
 
     public val getNinePatchStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch", 36873697)
+        Internals.getMethodBindPtr("TextureProgressBar", "get_nine_patch_stretch", 36873697)
   }
 }

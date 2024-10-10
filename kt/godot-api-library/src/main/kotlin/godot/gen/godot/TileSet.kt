@@ -10,7 +10,6 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,7 +20,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -112,7 +111,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TILESET_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TILESET_INDEX, scriptIndex)
   }
 
   /**
@@ -145,9 +144,9 @@ public open class TileSet : Resource() {
    * return.
    */
   public final fun getNextSourceId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextSourceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNextSourceIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -159,125 +158,125 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addSource(source: TileSetSource?, atlasSourceIdOverride: Int = -1): Int {
-    TransferContext.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addSourcePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(OBJECT to source, LONG to atlasSourceIdOverride.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addSourcePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Removes the source with the given source ID.
    */
   public final fun removeSource(sourceId: Int): Unit {
-    TransferContext.writeArguments(LONG to sourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeSourcePtr, NIL)
+    Internals.writeArguments(LONG to sourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeSourcePtr, NIL)
   }
 
   /**
    * Changes a source's ID.
    */
   public final fun setSourceId(sourceId: Int, newSourceId: Int): Unit {
-    TransferContext.writeArguments(LONG to sourceId.toLong(), LONG to newSourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceIdPtr, NIL)
+    Internals.writeArguments(LONG to sourceId.toLong(), LONG to newSourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSourceIdPtr, NIL)
   }
 
   /**
    * Returns the number of [TileSetSource] in this TileSet.
    */
   public final fun getSourceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the source ID for source with index [index].
    */
   public final fun getSourceId(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSourceIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns if this TileSet has a source for the given source ID.
    */
   public final fun hasSource(sourceId: Int): Boolean {
-    TransferContext.writeArguments(LONG to sourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSourcePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to sourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasSourcePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the [TileSetSource] with ID [sourceId].
    */
   public final fun getSource(sourceId: Int): TileSetSource? {
-    TransferContext.writeArguments(LONG to sourceId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourcePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TileSetSource?)
+    Internals.writeArguments(LONG to sourceId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSourcePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TileSetSource?)
   }
 
   public final fun setTileShape(shape: TileShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTileShapePtr, NIL)
+    Internals.writeArguments(LONG to shape.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTileShapePtr, NIL)
   }
 
   public final fun getTileShape(): TileShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileShapePtr, LONG)
-    return TileSet.TileShape.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTileShapePtr, LONG)
+    return TileSet.TileShape.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileLayout(layout: TileLayout): Unit {
-    TransferContext.writeArguments(LONG to layout.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTileLayoutPtr, NIL)
+    Internals.writeArguments(LONG to layout.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTileLayoutPtr, NIL)
   }
 
   public final fun getTileLayout(): TileLayout {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileLayoutPtr, LONG)
-    return TileSet.TileLayout.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTileLayoutPtr, LONG)
+    return TileSet.TileLayout.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileOffsetAxis(alignment: TileOffsetAxis): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTileOffsetAxisPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTileOffsetAxisPtr, NIL)
   }
 
   public final fun getTileOffsetAxis(): TileOffsetAxis {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileOffsetAxisPtr, LONG)
-    return TileSet.TileOffsetAxis.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTileOffsetAxisPtr, LONG)
+    return TileSet.TileOffsetAxis.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTileSize(size: Vector2i): Unit {
-    TransferContext.writeArguments(VECTOR2I to size)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTileSizePtr, NIL)
+    Internals.writeArguments(VECTOR2I to size)
+    Internals.callMethod(rawPtr, MethodBindings.setTileSizePtr, NIL)
   }
 
   public final fun getTileSize(): Vector2i {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTileSizePtr, VECTOR2I)
-    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTileSizePtr, VECTOR2I)
+    return (Internals.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public final fun setUvClipping(uvClipping: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to uvClipping)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUvClippingPtr, NIL)
+    Internals.writeArguments(BOOL to uvClipping)
+    Internals.callMethod(rawPtr, MethodBindings.setUvClippingPtr, NIL)
   }
 
   public final fun isUvClipping(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUvClippingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUvClippingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the occlusion layers count.
    */
   public final fun getOcclusionLayersCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOcclusionLayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOcclusionLayersCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -287,8 +286,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addOcclusionLayer(toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addOcclusionLayerPtr, NIL)
+    Internals.writeArguments(LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addOcclusionLayerPtr, NIL)
   }
 
   /**
@@ -296,16 +295,16 @@ public open class TileSet : Resource() {
    * array. Also updates the atlas tiles accordingly.
    */
   public final fun moveOcclusionLayer(layerIndex: Int, toPosition: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveOcclusionLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveOcclusionLayerPtr, NIL)
   }
 
   /**
    * Removes the occlusion layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public final fun removeOcclusionLayer(layerIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeOcclusionLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeOcclusionLayerPtr, NIL)
   }
 
   /**
@@ -313,43 +312,43 @@ public open class TileSet : Resource() {
    * occlusion layer.
    */
   public final fun setOcclusionLayerLightMask(layerIndex: Int, lightMask: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to lightMask.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOcclusionLayerLightMaskPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to lightMask.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOcclusionLayerLightMaskPtr, NIL)
   }
 
   /**
    * Returns the light mask of the occlusion layer.
    */
   public final fun getOcclusionLayerLightMask(layerIndex: Int): Int {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOcclusionLayerLightMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOcclusionLayerLightMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Enables or disables SDF collision for occluders in the given TileSet occlusion layer.
    */
   public final fun setOcclusionLayerSdfCollision(layerIndex: Int, sdfCollision: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), BOOL to sdfCollision)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOcclusionLayerSdfCollisionPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), BOOL to sdfCollision)
+    Internals.callMethod(rawPtr, MethodBindings.setOcclusionLayerSdfCollisionPtr, NIL)
   }
 
   /**
    * Returns if the occluders from this layer use `sdf_collision`.
    */
   public final fun getOcclusionLayerSdfCollision(layerIndex: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getOcclusionLayerSdfCollisionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getOcclusionLayerSdfCollisionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the physics layers count.
    */
   public final fun getPhysicsLayersCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsLayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsLayersCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -359,8 +358,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addPhysicsLayer(toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPhysicsLayerPtr, NIL)
+    Internals.writeArguments(LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPhysicsLayerPtr, NIL)
   }
 
   /**
@@ -368,16 +367,16 @@ public open class TileSet : Resource() {
    * Also updates the atlas tiles accordingly.
    */
   public final fun movePhysicsLayer(layerIndex: Int, toPosition: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.movePhysicsLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.movePhysicsLayerPtr, NIL)
   }
 
   /**
    * Removes the physics layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public final fun removePhysicsLayer(layerIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePhysicsLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removePhysicsLayerPtr, NIL)
   }
 
   /**
@@ -385,8 +384,8 @@ public open class TileSet : Resource() {
    * layer.
    */
   public final fun setPhysicsLayerCollisionLayer(layerIndex: Int, layer: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layer)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsLayerCollisionLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to layer)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsLayerCollisionLayerPtr, NIL)
   }
 
   /**
@@ -394,9 +393,9 @@ public open class TileSet : Resource() {
    * layer are in.
    */
   public final fun getPhysicsLayerCollisionLayer(layerIndex: Int): Long {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsLayerCollisionLayerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsLayerCollisionLayerPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -404,17 +403,17 @@ public open class TileSet : Resource() {
    * layer.
    */
   public final fun setPhysicsLayerCollisionMask(layerIndex: Int, mask: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsLayerCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsLayerCollisionMaskPtr, NIL)
   }
 
   /**
    * Returns the collision mask of bodies on the given TileSet's physics layer.
    */
   public final fun getPhysicsLayerCollisionMask(layerIndex: Int): Long {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsLayerCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsLayerCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -422,26 +421,26 @@ public open class TileSet : Resource() {
    */
   public final fun setPhysicsLayerPhysicsMaterial(layerIndex: Int,
       physicsMaterial: PhysicsMaterial?): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), OBJECT to physicsMaterial)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsLayerPhysicsMaterialPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), OBJECT to physicsMaterial)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsLayerPhysicsMaterialPtr, NIL)
   }
 
   /**
    * Returns the physics material of bodies on the given TileSet's physics layer.
    */
   public final fun getPhysicsLayerPhysicsMaterial(layerIndex: Int): PhysicsMaterial? {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsLayerPhysicsMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsLayerPhysicsMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   /**
    * Returns the terrain sets count.
    */
   public final fun getTerrainSetsCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTerrainSetsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTerrainSetsCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -450,8 +449,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addTerrainSet(toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addTerrainSetPtr, NIL)
+    Internals.writeArguments(LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addTerrainSetPtr, NIL)
   }
 
   /**
@@ -459,16 +458,16 @@ public open class TileSet : Resource() {
    * Also updates the atlas tiles accordingly.
    */
   public final fun moveTerrainSet(terrainSet: Int, toPosition: Int): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveTerrainSetPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveTerrainSetPtr, NIL)
   }
 
   /**
    * Removes the terrain set at index [terrainSet]. Also updates the atlas tiles accordingly.
    */
   public final fun removeTerrainSet(terrainSet: Int): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeTerrainSetPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeTerrainSetPtr, NIL)
   }
 
   /**
@@ -476,26 +475,26 @@ public open class TileSet : Resource() {
    * neighboring tiles' terrains.
    */
   public final fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTerrainSetModePtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTerrainSetModePtr, NIL)
   }
 
   /**
    * Returns a terrain set mode.
    */
   public final fun getTerrainSetMode(terrainSet: Int): TerrainMode {
-    TransferContext.writeArguments(LONG to terrainSet.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTerrainSetModePtr, LONG)
-    return TileSet.TerrainMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to terrainSet.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTerrainSetModePtr, LONG)
+    return TileSet.TerrainMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the number of terrains in the given terrain set.
    */
   public final fun getTerrainsCount(terrainSet: Int): Int {
-    TransferContext.writeArguments(LONG to terrainSet.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTerrainsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to terrainSet.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTerrainsCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -504,8 +503,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addTerrain(terrainSet: Int, toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addTerrainPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addTerrainPtr, NIL)
   }
 
   /**
@@ -517,8 +516,8 @@ public open class TileSet : Resource() {
     terrainIndex: Int,
     toPosition: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveTerrainPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveTerrainPtr, NIL)
   }
 
   /**
@@ -526,8 +525,8 @@ public open class TileSet : Resource() {
    * the atlas tiles accordingly.
    */
   public final fun removeTerrain(terrainSet: Int, terrainIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeTerrainPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeTerrainPtr, NIL)
   }
 
   /**
@@ -538,17 +537,17 @@ public open class TileSet : Resource() {
     terrainIndex: Int,
     name: String,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTerrainNamePtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.setTerrainNamePtr, NIL)
   }
 
   /**
    * Returns a terrain's name.
    */
   public final fun getTerrainName(terrainSet: Int, terrainIndex: Int): String {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTerrainNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTerrainNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -560,26 +559,26 @@ public open class TileSet : Resource() {
     terrainIndex: Int,
     color: Color,
   ): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTerrainColorPtr, NIL)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong(), COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setTerrainColorPtr, NIL)
   }
 
   /**
    * Returns a terrain's color.
    */
   public final fun getTerrainColor(terrainSet: Int, terrainIndex: Int): Color {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getTerrainColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(LONG to terrainSet.toLong(), LONG to terrainIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getTerrainColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   /**
    * Returns the navigation layers count.
    */
   public final fun getNavigationLayersCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayersCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -589,8 +588,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addNavigationLayer(toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addNavigationLayerPtr, NIL)
+    Internals.writeArguments(LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addNavigationLayerPtr, NIL)
   }
 
   /**
@@ -598,16 +597,16 @@ public open class TileSet : Resource() {
    * array. Also updates the atlas tiles accordingly.
    */
   public final fun moveNavigationLayer(layerIndex: Int, toPosition: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveNavigationLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveNavigationLayerPtr, NIL)
   }
 
   /**
    * Removes the navigation layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public final fun removeNavigationLayer(layerIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeNavigationLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeNavigationLayerPtr, NIL)
   }
 
   /**
@@ -615,8 +614,8 @@ public open class TileSet : Resource() {
    * TileSet navigation layer.
    */
   public final fun setNavigationLayerLayers(layerIndex: Int, layers: Long): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layers)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerLayersPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to layers)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayerLayersPtr, NIL)
   }
 
   /**
@@ -624,9 +623,9 @@ public open class TileSet : Resource() {
    * layer.
    */
   public final fun getNavigationLayerLayers(layerIndex: Int): Long {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerLayersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayerLayersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -639,8 +638,8 @@ public open class TileSet : Resource() {
     layerNumber: Int,
     `value`: Boolean,
   ): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNavigationLayerLayerValuePtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setNavigationLayerLayerValuePtr, NIL)
   }
 
   /**
@@ -649,18 +648,18 @@ public open class TileSet : Resource() {
    * and 32.
    */
   public final fun getNavigationLayerLayerValue(layerIndex: Int, layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getNavigationLayerLayerValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getNavigationLayerLayerValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the custom data layers count.
    */
   public final fun getCustomDataLayersCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDataLayersCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomDataLayersCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -670,8 +669,8 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addCustomDataLayer(toPosition: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addCustomDataLayerPtr, NIL)
+    Internals.writeArguments(LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addCustomDataLayerPtr, NIL)
   }
 
   /**
@@ -679,25 +678,25 @@ public open class TileSet : Resource() {
    * array. Also updates the atlas tiles accordingly.
    */
   public final fun moveCustomDataLayer(layerIndex: Int, toPosition: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.moveCustomDataLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to toPosition.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.moveCustomDataLayerPtr, NIL)
   }
 
   /**
    * Removes the custom data layer at index [layerIndex]. Also updates the atlas tiles accordingly.
    */
   public final fun removeCustomDataLayer(layerIndex: Int): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeCustomDataLayerPtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeCustomDataLayerPtr, NIL)
   }
 
   /**
    * Returns the index of the custom data layer identified by the given name.
    */
   public final fun getCustomDataLayerByName(layerName: String): Int {
-    TransferContext.writeArguments(STRING to layerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDataLayerByNamePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(STRING to layerName)
+    Internals.callMethod(rawPtr, MethodBindings.getCustomDataLayerByNamePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -705,34 +704,34 @@ public open class TileSet : Resource() {
    * the layer therefore if the name is already taken it will fail and raise an error.
    */
   public final fun setCustomDataLayerName(layerIndex: Int, layerName: String): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomDataLayerNamePtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), STRING to layerName)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomDataLayerNamePtr, NIL)
   }
 
   /**
    * Returns the name of the custom data layer identified by the given index.
    */
   public final fun getCustomDataLayerName(layerIndex: Int): String {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDataLayerNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCustomDataLayerNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Sets the type of the custom data layer identified by the given index.
    */
   public final fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomDataLayerTypePtr, NIL)
+    Internals.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomDataLayerTypePtr, NIL)
   }
 
   /**
    * Returns the type of the custom data layer identified by the given index.
    */
   public final fun getCustomDataLayerType(layerIndex: Int): VariantType {
-    TransferContext.writeArguments(LONG to layerIndex.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomDataLayerTypePtr, LONG)
-    return VariantType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to layerIndex.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCustomDataLayerTypePtr, LONG)
+    return VariantType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -744,8 +743,8 @@ public open class TileSet : Resource() {
    * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
    */
   public final fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), LONG to sourceTo.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), LONG to sourceTo.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSourceLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -753,26 +752,26 @@ public open class TileSet : Resource() {
    * If the TileSet has no proxy for the given identifier, returns -1.
    */
   public final fun getSourceLevelTileProxy(sourceFrom: Int): Int {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceLevelTileProxyPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to sourceFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSourceLevelTileProxyPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns if there is a source-level proxy for the given source ID.
    */
   public final fun hasSourceLevelTileProxy(sourceFrom: Int): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSourceLevelTileProxyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to sourceFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasSourceLevelTileProxyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Removes a source-level tile proxy.
    */
   public final fun removeSourceLevelTileProxy(sourceFrom: Int): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeSourceLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to sourceFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeSourceLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -789,8 +788,8 @@ public open class TileSet : Resource() {
     sourceTo: Int,
     coordsTo: Vector2i,
   ): Unit {
-    TransferContext.writeArguments(LONG to pSourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCoordsLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to pSourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to sourceTo.toLong(), VECTOR2I to coordsTo)
+    Internals.callMethod(rawPtr, MethodBindings.setCoordsLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -800,26 +799,26 @@ public open class TileSet : Resource() {
    */
   public final fun getCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i):
       VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.getCoordsLevelTileProxyPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
+    Internals.callMethod(rawPtr, MethodBindings.getCoordsLevelTileProxyPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Returns if there is a coodinates-level proxy for the given identifiers.
    */
   public final fun hasCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasCoordsLevelTileProxyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
+    Internals.callMethod(rawPtr, MethodBindings.hasCoordsLevelTileProxyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Removes a coordinates-level proxy for the given identifiers.
    */
   public final fun removeCoordsLevelTileProxy(sourceFrom: Int, coordsFrom: Vector2i): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeCoordsLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom)
+    Internals.callMethod(rawPtr, MethodBindings.removeCoordsLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -837,8 +836,8 @@ public open class TileSet : Resource() {
     coordsTo: Vector2i,
     alternativeTo: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong(), LONG to sourceTo.toLong(), VECTOR2I to coordsTo, LONG to alternativeTo.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAlternativeLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong(), LONG to sourceTo.toLong(), VECTOR2I to coordsTo, LONG to alternativeTo.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAlternativeLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -851,9 +850,9 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Int,
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getAlternativeLevelTileProxyPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getAlternativeLevelTileProxyPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -864,9 +863,9 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAlternativeLevelTileProxyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasAlternativeLevelTileProxyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -877,8 +876,8 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAlternativeLevelTileProxyPtr, NIL)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeAlternativeLevelTileProxyPtr, NIL)
   }
 
   /**
@@ -894,25 +893,25 @@ public open class TileSet : Resource() {
     coordsFrom: Vector2i,
     alternativeFrom: Int,
   ): VariantArray<Any?> {
-    TransferContext.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.mapTileProxyPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments(LONG to sourceFrom.toLong(), VECTOR2I to coordsFrom, LONG to alternativeFrom.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.mapTileProxyPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
    * Clears tile proxies pointing to invalid tiles.
    */
   public final fun cleanupInvalidTileProxies(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.cleanupInvalidTileProxiesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.cleanupInvalidTileProxiesPtr, NIL)
   }
 
   /**
    * Clears all tile proxies.
    */
   public final fun clearTileProxies(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearTileProxiesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearTileProxiesPtr, NIL)
   }
 
   /**
@@ -921,9 +920,9 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun addPattern(pattern: TileMapPattern?, index: Int = -1): Int {
-    TransferContext.writeArguments(OBJECT to pattern, LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.addPatternPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(OBJECT to pattern, LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.addPatternPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -931,26 +930,26 @@ public open class TileSet : Resource() {
    */
   @JvmOverloads
   public final fun getPattern(index: Int = -1): TileMapPattern? {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatternPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TileMapPattern?)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPatternPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TileMapPattern?)
   }
 
   /**
    * Remove the [TileMapPattern] at the given index.
    */
   public final fun removePattern(index: Int): Unit {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removePatternPtr, NIL)
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removePatternPtr, NIL)
   }
 
   /**
    * Returns the number of [TileMapPattern] this tile set handles.
    */
   public final fun getPatternsCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPatternsCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPatternsCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class TileShape(
@@ -1162,261 +1161,261 @@ public open class TileSet : Resource() {
 
   internal object MethodBindings {
     public val getNextSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_next_source_id", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_next_source_id", 3905245786)
 
     public val addSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_source", 1059186179)
+        Internals.getMethodBindPtr("TileSet", "add_source", 1059186179)
 
     public val removeSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_source", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_source", 1286410249)
 
     public val setSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_source_id", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_source_id", 3937882851)
 
     public val getSourceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_source_count", 3905245786)
 
     public val getSourceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_id", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_source_id", 923996154)
 
     public val hasSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_source", 1116898809)
+        Internals.getMethodBindPtr("TileSet", "has_source", 1116898809)
 
     public val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source", 1763540252)
+        Internals.getMethodBindPtr("TileSet", "get_source", 1763540252)
 
     public val setTileShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_shape", 2131427112)
+        Internals.getMethodBindPtr("TileSet", "set_tile_shape", 2131427112)
 
     public val getTileShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_shape", 716918169)
+        Internals.getMethodBindPtr("TileSet", "get_tile_shape", 716918169)
 
     public val setTileLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_layout", 1071216679)
+        Internals.getMethodBindPtr("TileSet", "set_tile_layout", 1071216679)
 
     public val getTileLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_layout", 194628839)
+        Internals.getMethodBindPtr("TileSet", "get_tile_layout", 194628839)
 
     public val setTileOffsetAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_offset_axis", 3300198521)
+        Internals.getMethodBindPtr("TileSet", "set_tile_offset_axis", 3300198521)
 
     public val getTileOffsetAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_offset_axis", 762494114)
+        Internals.getMethodBindPtr("TileSet", "get_tile_offset_axis", 762494114)
 
     public val setTileSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_tile_size", 1130785943)
+        Internals.getMethodBindPtr("TileSet", "set_tile_size", 1130785943)
 
     public val getTileSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_tile_size", 3690982128)
+        Internals.getMethodBindPtr("TileSet", "get_tile_size", 3690982128)
 
     public val setUvClippingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_uv_clipping", 2586408642)
+        Internals.getMethodBindPtr("TileSet", "set_uv_clipping", 2586408642)
 
     public val isUvClippingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "is_uv_clipping", 36873697)
+        Internals.getMethodBindPtr("TileSet", "is_uv_clipping", 36873697)
 
     public val getOcclusionLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layers_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_occlusion_layers_count", 3905245786)
 
     public val addOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_occlusion_layer", 1025054187)
+        Internals.getMethodBindPtr("TileSet", "add_occlusion_layer", 1025054187)
 
     public val moveOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_occlusion_layer", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "move_occlusion_layer", 3937882851)
 
     public val removeOcclusionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_occlusion_layer", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_occlusion_layer", 1286410249)
 
     public val setOcclusionLayerLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_light_mask", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_occlusion_layer_light_mask", 3937882851)
 
     public val getOcclusionLayerLightMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_light_mask", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_occlusion_layer_light_mask", 923996154)
 
     public val setOcclusionLayerSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_occlusion_layer_sdf_collision", 300928843)
+        Internals.getMethodBindPtr("TileSet", "set_occlusion_layer_sdf_collision", 300928843)
 
     public val getOcclusionLayerSdfCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_occlusion_layer_sdf_collision", 1116898809)
+        Internals.getMethodBindPtr("TileSet", "get_occlusion_layer_sdf_collision", 1116898809)
 
     public val getPhysicsLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layers_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_physics_layers_count", 3905245786)
 
     public val addPhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_physics_layer", 1025054187)
+        Internals.getMethodBindPtr("TileSet", "add_physics_layer", 1025054187)
 
     public val movePhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_physics_layer", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "move_physics_layer", 3937882851)
 
     public val removePhysicsLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_physics_layer", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_physics_layer", 1286410249)
 
     public val setPhysicsLayerCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_layer", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_physics_layer_collision_layer", 3937882851)
 
     public val getPhysicsLayerCollisionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_layer", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_physics_layer_collision_layer", 923996154)
 
     public val setPhysicsLayerCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_collision_mask", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_physics_layer_collision_mask", 3937882851)
 
     public val getPhysicsLayerCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_physics_layer_collision_mask", 923996154)
 
     public val setPhysicsLayerPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1018687357)
+        Internals.getMethodBindPtr("TileSet", "set_physics_layer_physics_material", 1018687357)
 
     public val getPhysicsLayerPhysicsMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_physics_layer_physics_material", 788318639)
+        Internals.getMethodBindPtr("TileSet", "get_physics_layer_physics_material", 788318639)
 
     public val getTerrainSetsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_sets_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_terrain_sets_count", 3905245786)
 
     public val addTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_terrain_set", 1025054187)
+        Internals.getMethodBindPtr("TileSet", "add_terrain_set", 1025054187)
 
     public val moveTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_terrain_set", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "move_terrain_set", 3937882851)
 
     public val removeTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_terrain_set", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_terrain_set", 1286410249)
 
     public val setTerrainSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_set_mode", 3943003916)
+        Internals.getMethodBindPtr("TileSet", "set_terrain_set_mode", 3943003916)
 
     public val getTerrainSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_set_mode", 2084469411)
+        Internals.getMethodBindPtr("TileSet", "get_terrain_set_mode", 2084469411)
 
     public val getTerrainsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrains_count", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_terrains_count", 923996154)
 
     public val addTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_terrain", 1230568737)
+        Internals.getMethodBindPtr("TileSet", "add_terrain", 1230568737)
 
     public val moveTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_terrain", 1649997291)
+        Internals.getMethodBindPtr("TileSet", "move_terrain", 1649997291)
 
     public val removeTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_terrain", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "remove_terrain", 3937882851)
 
     public val setTerrainNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_name", 2285447957)
+        Internals.getMethodBindPtr("TileSet", "set_terrain_name", 2285447957)
 
     public val getTerrainNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_name", 1391810591)
+        Internals.getMethodBindPtr("TileSet", "get_terrain_name", 1391810591)
 
     public val setTerrainColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_terrain_color", 3733378741)
+        Internals.getMethodBindPtr("TileSet", "set_terrain_color", 3733378741)
 
     public val getTerrainColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_terrain_color", 2165839948)
+        Internals.getMethodBindPtr("TileSet", "get_terrain_color", 2165839948)
 
     public val getNavigationLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layers_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_navigation_layers_count", 3905245786)
 
     public val addNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_navigation_layer", 1025054187)
+        Internals.getMethodBindPtr("TileSet", "add_navigation_layer", 1025054187)
 
     public val moveNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_navigation_layer", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "move_navigation_layer", 3937882851)
 
     public val removeNavigationLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_navigation_layer", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_navigation_layer", 1286410249)
 
     public val setNavigationLayerLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layers", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_navigation_layer_layers", 3937882851)
 
     public val getNavigationLayerLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layers", 923996154)
+        Internals.getMethodBindPtr("TileSet", "get_navigation_layer_layers", 923996154)
 
     public val setNavigationLayerLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_navigation_layer_layer_value", 1383440665)
+        Internals.getMethodBindPtr("TileSet", "set_navigation_layer_layer_value", 1383440665)
 
     public val getNavigationLayerLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_navigation_layer_layer_value", 2522259332)
+        Internals.getMethodBindPtr("TileSet", "get_navigation_layer_layer_value", 2522259332)
 
     public val getCustomDataLayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layers_count", 3905245786)
+        Internals.getMethodBindPtr("TileSet", "get_custom_data_layers_count", 3905245786)
 
     public val addCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_custom_data_layer", 1025054187)
+        Internals.getMethodBindPtr("TileSet", "add_custom_data_layer", 1025054187)
 
     public val moveCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "move_custom_data_layer", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "move_custom_data_layer", 3937882851)
 
     public val removeCustomDataLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_custom_data_layer", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_custom_data_layer", 1286410249)
 
     public val getCustomDataLayerByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_by_name", 1321353865)
+        Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_by_name", 1321353865)
 
     public val setCustomDataLayerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501894301)
+        Internals.getMethodBindPtr("TileSet", "set_custom_data_layer_name", 501894301)
 
     public val getCustomDataLayerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844755477)
+        Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_name", 844755477)
 
     public val setCustomDataLayerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_custom_data_layer_type", 3492912874)
+        Internals.getMethodBindPtr("TileSet", "set_custom_data_layer_type", 3492912874)
 
     public val getCustomDataLayerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_custom_data_layer_type", 2990820875)
+        Internals.getMethodBindPtr("TileSet", "get_custom_data_layer_type", 2990820875)
 
     public val setSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_source_level_tile_proxy", 3937882851)
+        Internals.getMethodBindPtr("TileSet", "set_source_level_tile_proxy", 3937882851)
 
     public val getSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_source_level_tile_proxy", 3744713108)
+        Internals.getMethodBindPtr("TileSet", "get_source_level_tile_proxy", 3744713108)
 
     public val hasSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_source_level_tile_proxy", 3067735520)
+        Internals.getMethodBindPtr("TileSet", "has_source_level_tile_proxy", 3067735520)
 
     public val removeSourceLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_source_level_tile_proxy", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_source_level_tile_proxy", 1286410249)
 
     public val setCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_coords_level_tile_proxy", 1769939278)
+        Internals.getMethodBindPtr("TileSet", "set_coords_level_tile_proxy", 1769939278)
 
     public val getCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_coords_level_tile_proxy", 2856536371)
+        Internals.getMethodBindPtr("TileSet", "get_coords_level_tile_proxy", 2856536371)
 
     public val hasCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_coords_level_tile_proxy", 3957903770)
+        Internals.getMethodBindPtr("TileSet", "has_coords_level_tile_proxy", 3957903770)
 
     public val removeCoordsLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_coords_level_tile_proxy", 2311374912)
+        Internals.getMethodBindPtr("TileSet", "remove_coords_level_tile_proxy", 2311374912)
 
     public val setAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "set_alternative_level_tile_proxy", 3862385460)
+        Internals.getMethodBindPtr("TileSet", "set_alternative_level_tile_proxy", 3862385460)
 
     public val getAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_alternative_level_tile_proxy", 2303761075)
+        Internals.getMethodBindPtr("TileSet", "get_alternative_level_tile_proxy", 2303761075)
 
     public val hasAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "has_alternative_level_tile_proxy", 180086755)
+        Internals.getMethodBindPtr("TileSet", "has_alternative_level_tile_proxy", 180086755)
 
     public val removeAlternativeLevelTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_alternative_level_tile_proxy", 2328951467)
+        Internals.getMethodBindPtr("TileSet", "remove_alternative_level_tile_proxy", 2328951467)
 
     public val mapTileProxyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "map_tile_proxy", 4267935328)
+        Internals.getMethodBindPtr("TileSet", "map_tile_proxy", 4267935328)
 
     public val cleanupInvalidTileProxiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "cleanup_invalid_tile_proxies", 3218959716)
+        Internals.getMethodBindPtr("TileSet", "cleanup_invalid_tile_proxies", 3218959716)
 
     public val clearTileProxiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "clear_tile_proxies", 3218959716)
+        Internals.getMethodBindPtr("TileSet", "clear_tile_proxies", 3218959716)
 
     public val addPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "add_pattern", 763712015)
+        Internals.getMethodBindPtr("TileSet", "add_pattern", 763712015)
 
     public val getPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_pattern", 4207737510)
+        Internals.getMethodBindPtr("TileSet", "get_pattern", 4207737510)
 
     public val removePatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "remove_pattern", 1286410249)
+        Internals.getMethodBindPtr("TileSet", "remove_pattern", 1286410249)
 
     public val getPatternsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSet", "get_patterns_count", 2455072627)
+        Internals.getMethodBindPtr("TileSet", "get_patterns_count", 2455072627)
   }
 }

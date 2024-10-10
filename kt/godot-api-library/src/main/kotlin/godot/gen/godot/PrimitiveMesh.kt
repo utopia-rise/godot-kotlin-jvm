@@ -10,14 +10,13 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.AABB
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -102,7 +101,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PRIMITIVEMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PRIMITIVEMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -140,14 +139,14 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public final fun setMaterial(material: Material?): Unit {
-    TransferContext.writeArguments(OBJECT to material)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
+    Internals.writeArguments(OBJECT to material)
+    Internals.callMethod(rawPtr, MethodBindings.setMaterialPtr, NIL)
   }
 
   public final fun getMaterial(): Material? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Material?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaterialPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Material?)
   }
 
   /**
@@ -168,101 +167,100 @@ public open class PrimitiveMesh : Mesh() {
    * ```
    */
   public final fun getMeshArrays(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshArraysPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshArraysPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
   public final fun getCustomAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to flipFaces)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
+    Internals.writeArguments(BOOL to flipFaces)
+    Internals.callMethod(rawPtr, MethodBindings.setFlipFacesPtr, NIL)
   }
 
   public final fun getFlipFaces(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFlipFacesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAddUv2(addUv2: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to addUv2)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAddUv2Ptr, NIL)
+    Internals.writeArguments(BOOL to addUv2)
+    Internals.callMethod(rawPtr, MethodBindings.setAddUv2Ptr, NIL)
   }
 
   public final fun getAddUv2(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAddUv2Ptr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUv2Padding(uv2Padding: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to uv2Padding.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
+    Internals.writeArguments(DOUBLE to uv2Padding.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setUv2PaddingPtr, NIL)
   }
 
   public final fun getUv2Padding(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUv2PaddingPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Request an update of this primitive mesh based on its properties.
    */
   public final fun requestUpdate(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.requestUpdatePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.requestUpdatePtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_material", 2757459619)
+        Internals.getMethodBindPtr("PrimitiveMesh", "set_material", 2757459619)
 
     public val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_material", 5934680)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_material", 5934680)
 
     public val getMeshArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_mesh_arrays", 3995934104)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_mesh_arrays", 3995934104)
 
     public val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_custom_aabb", 259215842)
+        Internals.getMethodBindPtr("PrimitiveMesh", "set_custom_aabb", 259215842)
 
     public val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_custom_aabb", 1068685055)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_custom_aabb", 1068685055)
 
     public val setFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_flip_faces", 2586408642)
+        Internals.getMethodBindPtr("PrimitiveMesh", "set_flip_faces", 2586408642)
 
     public val getFlipFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_flip_faces", 36873697)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_flip_faces", 36873697)
 
     public val setAddUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_add_uv2", 2586408642)
+        Internals.getMethodBindPtr("PrimitiveMesh", "set_add_uv2", 2586408642)
 
     public val getAddUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_add_uv2", 36873697)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_add_uv2", 36873697)
 
     public val setUv2PaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "set_uv2_padding", 373806689)
+        Internals.getMethodBindPtr("PrimitiveMesh", "set_uv2_padding", 373806689)
 
     public val getUv2PaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding", 1740695150)
+        Internals.getMethodBindPtr("PrimitiveMesh", "get_uv2_padding", 1740695150)
 
     public val requestUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PrimitiveMesh", "request_update", 3218959716)
+        Internals.getMethodBindPtr("PrimitiveMesh", "request_update", 3218959716)
   }
 }

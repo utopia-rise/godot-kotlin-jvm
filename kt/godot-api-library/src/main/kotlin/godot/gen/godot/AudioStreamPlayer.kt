@@ -9,14 +9,13 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -165,40 +164,40 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {
-    TransferContext.writeArguments(OBJECT to stream)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
+    Internals.writeArguments(OBJECT to stream)
+    Internals.callMethod(rawPtr, MethodBindings.setStreamPtr, NIL)
   }
 
   public final fun getStream(): AudioStream? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioStream?)
   }
 
   public final fun setVolumeDb(volumeDb: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
+    Internals.writeArguments(DOUBLE to volumeDb.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVolumeDbPtr, NIL)
   }
 
   public final fun getVolumeDb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVolumeDbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPitchScale(pitchScale: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to pitchScale.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
   }
 
   public final fun getPitchScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -206,8 +205,8 @@ public open class AudioStreamPlayer : Node() {
    */
   @JvmOverloads
   public final fun play(fromPosition: Float = 0.0f): Unit {
-    TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.playPtr, NIL)
+    Internals.writeArguments(DOUBLE to fromPosition.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.playPtr, NIL)
   }
 
   /**
@@ -215,22 +214,22 @@ public open class AudioStreamPlayer : Node() {
    * sounds are playing.
    */
   public final fun seek(toPosition: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
+    Internals.writeArguments(DOUBLE to toPosition.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.seekPtr, NIL)
   }
 
   /**
    * Stops all sounds from this node.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public final fun isPlaying(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPlayingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -241,64 +240,64 @@ public open class AudioStreamPlayer : Node() {
    * returned position.
    */
   public final fun getPlaybackPosition(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlaybackPositionPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBus(bus: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to bus)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
+    Internals.writeArguments(STRING_NAME to bus)
+    Internals.callMethod(rawPtr, MethodBindings.setBusPtr, NIL)
   }
 
   public final fun getBus(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBusPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setAutoplay(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoplayPtr, NIL)
   }
 
   public final fun isAutoplayEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoplayEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMixTarget(mixTarget: MixTarget): Unit {
-    TransferContext.writeArguments(LONG to mixTarget.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMixTargetPtr, NIL)
+    Internals.writeArguments(LONG to mixTarget.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMixTargetPtr, NIL)
   }
 
   public final fun getMixTarget(): MixTarget {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMixTargetPtr, LONG)
-    return AudioStreamPlayer.MixTarget.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMixTargetPtr, LONG)
+    return AudioStreamPlayer.MixTarget.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStreamPaused(pause: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to pause)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
+    Internals.writeArguments(BOOL to pause)
+    Internals.callMethod(rawPtr, MethodBindings.setStreamPausedPtr, NIL)
   }
 
   public final fun getStreamPaused(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPausedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMaxPolyphony(maxPolyphony: Int): Unit {
-    TransferContext.writeArguments(LONG to maxPolyphony.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
+    Internals.writeArguments(LONG to maxPolyphony.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxPolyphonyPtr, NIL)
   }
 
   public final fun getMaxPolyphony(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxPolyphonyPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -306,9 +305,9 @@ public open class AudioStreamPlayer : Node() {
    * [playing] and [getStreamPlayback].
    */
   public final fun hasStreamPlayback(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasStreamPlaybackPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasStreamPlaybackPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -316,20 +315,20 @@ public open class AudioStreamPlayer : Node() {
    * [play]. If no sounds are playing, this method fails and returns an empty playback.
    */
   public final fun getStreamPlayback(): AudioStreamPlayback? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStreamPlaybackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStreamPlaybackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
   public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
-    TransferContext.writeArguments(LONG to playbackType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
+    Internals.writeArguments(LONG to playbackType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setPlaybackTypePtr, NIL)
   }
 
   public final fun getPlaybackType(): AudioServer.PlaybackType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
-    return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPlaybackTypePtr, LONG)
+    return AudioServer.PlaybackType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class MixTarget(
@@ -363,78 +362,77 @@ public open class AudioStreamPlayer : Node() {
 
   internal object MethodBindings {
     public val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream", 2210767741)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_stream", 2210767741)
 
     public val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream", 160907539)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream", 160907539)
 
     public val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_volume_db", 373806689)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_volume_db", 373806689)
 
     public val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_volume_db", 1740695150)
 
     public val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373806689)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_pitch_scale", 373806689)
 
     public val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale", 1740695150)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_pitch_scale", 1740695150)
 
     public val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "play", 1958160172)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "play", 1958160172)
 
-    public val seekPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "seek", 373806689)
+    public val seekPtr: VoidPtr = Internals.getMethodBindPtr("AudioStreamPlayer", "seek", 373806689)
 
     public val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "stop", 3218959716)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "stop", 3218959716)
 
     public val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_playing", 36873697)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "is_playing", 36873697)
 
     public val getPlaybackPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_position", 191475506)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_playback_position", 191475506)
 
     public val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_bus", 3304788590)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_bus", 3304788590)
 
     public val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_bus", 2002593661)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_bus", 2002593661)
 
     public val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_autoplay", 2586408642)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_autoplay", 2586408642)
 
     public val isAutoplayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled", 36873697)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "is_autoplay_enabled", 36873697)
 
     public val setMixTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_mix_target", 2300306138)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_mix_target", 2300306138)
 
     public val getMixTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172807476)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_mix_target", 172807476)
 
     public val setStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2586408642)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_stream_paused", 2586408642)
 
     public val getStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused", 36873697)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream_paused", 36873697)
 
     public val setMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony", 1286410249)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_max_polyphony", 1286410249)
 
     public val getMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony", 3905245786)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_max_polyphony", 3905245786)
 
     public val hasStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback", 2240911060)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "has_stream_playback", 2240911060)
 
     public val getStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback", 210135309)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_stream_playback", 210135309)
 
     public val setPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "set_playback_type", 725473817)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "set_playback_type", 725473817)
 
     public val getPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer", "get_playback_type", 4011264623)
+        Internals.getMethodBindPtr("AudioStreamPlayer", "get_playback_type", 4011264623)
   }
 }

@@ -10,11 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -41,7 +40,7 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONTAINER_INDEX, scriptIndex)
   }
 
   /**
@@ -71,8 +70,8 @@ public open class Container : Control() {
    * upon request.
    */
   public final fun queueSort(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.queueSortPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.queueSortPtr, NIL)
   }
 
   /**
@@ -80,8 +79,8 @@ public open class Container : Control() {
    * classes.
    */
   public final fun fitChildInRect(child: Control?, rect: Rect2): Unit {
-    TransferContext.writeArguments(OBJECT to child, RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
+    Internals.writeArguments(OBJECT to child, RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.fitChildInRectPtr, NIL)
   }
 
   public companion object {
@@ -99,9 +98,9 @@ public open class Container : Control() {
 
   internal object MethodBindings {
     public val queueSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Container", "queue_sort", 3218959716)
+        Internals.getMethodBindPtr("Container", "queue_sort", 3218959716)
 
     public val fitChildInRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Container", "fit_child_in_rect", 1993438598)
+        Internals.getMethodBindPtr("Container", "fit_child_in_rect", 1993438598)
   }
 }

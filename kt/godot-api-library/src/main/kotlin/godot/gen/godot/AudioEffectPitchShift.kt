@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -69,40 +68,40 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTPITCHSHIFT_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTPITCHSHIFT_INDEX, scriptIndex)
   }
 
   public final fun setPitchScale(rate: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to rate.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to rate.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setPitchScalePtr, NIL)
   }
 
   public final fun getPitchScale(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPitchScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setOversampling(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setOversamplingPtr, NIL)
   }
 
   public final fun getOversampling(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOversamplingPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
-    TransferContext.writeArguments(LONG to size.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+    Internals.writeArguments(LONG to size.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
   }
 
   public final fun getFftSize(): FFTSize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
-    return AudioEffectPitchShift.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    return AudioEffectPitchShift.FFTSize.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(
@@ -153,21 +152,21 @@ public open class AudioEffectPitchShift : AudioEffect() {
 
   internal object MethodBindings {
     public val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale", 373806689)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "set_pitch_scale", 373806689)
 
     public val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "get_pitch_scale", 1740695150)
 
     public val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling", 1286410249)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "set_oversampling", 1286410249)
 
     public val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "get_oversampling", 3905245786)
 
     public val setFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size", 2323518741)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "set_fft_size", 2323518741)
 
     public val getFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size", 2361246789)
+        Internals.getMethodBindPtr("AudioEffectPitchShift", "get_fft_size", 2361246789)
   }
 }

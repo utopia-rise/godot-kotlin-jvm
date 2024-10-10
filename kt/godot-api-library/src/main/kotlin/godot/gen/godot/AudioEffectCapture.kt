@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedVector2Array
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -52,7 +51,7 @@ public open class AudioEffectCapture : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTCAPTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTCAPTURE_INDEX, scriptIndex)
   }
 
   /**
@@ -60,9 +59,9 @@ public open class AudioEffectCapture : AudioEffect() {
    * buffer.
    */
   public final fun canGetBuffer(frames: Int): Boolean {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.canGetBufferPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.canGetBufferPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -73,9 +72,9 @@ public open class AudioEffectCapture : AudioEffect() {
    * you want to use them as 8 or 16-bit integer samples. (`v = 0x7fff * samples[0].x`)
    */
   public final fun getBuffer(frames: Int): PackedVector2Array {
-    TransferContext.writeArguments(LONG to frames.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
+    Internals.writeArguments(LONG to frames.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getBufferPtr, PACKED_VECTOR2_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
@@ -84,85 +83,85 @@ public open class AudioEffectCapture : AudioEffect() {
    * the playback.
    */
   public final fun clearBuffer(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearBufferPtr, NIL)
   }
 
   public final fun setBufferLength(bufferLengthSeconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to bufferLengthSeconds.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Returns the number of frames available to read using [getBuffer].
    */
   public final fun getFramesAvailable(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFramesAvailablePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the number of audio frames discarded from the audio bus due to full buffer.
    */
   public final fun getDiscardedFrames(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDiscardedFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDiscardedFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the total size of the internal ring buffer in frames.
    */
   public final fun getBufferLengthFrames(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferLengthFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the number of audio frames inserted from the audio bus.
    */
   public final fun getPushedFrames(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPushedFramesPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPushedFramesPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val canGetBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1116898809)
+        Internals.getMethodBindPtr("AudioEffectCapture", "can_get_buffer", 1116898809)
 
     public val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2649534757)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer", 2649534757)
 
     public val clearBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3218959716)
+        Internals.getMethodBindPtr("AudioEffectCapture", "clear_buffer", 3218959716)
 
     public val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373806689)
+        Internals.getMethodBindPtr("AudioEffectCapture", "set_buffer_length", 373806689)
 
     public val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191475506)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer_length", 191475506)
 
     public val getFramesAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_frames_available", 3905245786)
 
     public val getDiscardedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_discarded_frames", 3905245786)
 
     public val getBufferLengthFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_buffer_length_frames", 3905245786)
 
     public val getPushedFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3905245786)
+        Internals.getMethodBindPtr("AudioEffectCapture", "get_pushed_frames", 3905245786)
   }
 }

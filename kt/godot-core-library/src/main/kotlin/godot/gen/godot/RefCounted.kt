@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -42,7 +41,7 @@ private const val ENGINE_CLASS_REFCOUNTED_INDEX: Int = 1
 @GodotBaseType
 public open class RefCounted : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_REFCOUNTED_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_REFCOUNTED_INDEX, scriptIndex)
   }
 
   public final override fun _onDestroy(): Unit {
@@ -55,9 +54,9 @@ public open class RefCounted : Object() {
    * Returns whether the initialization was successful.
    */
   public final fun initRef(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.initRefPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.initRefPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -65,9 +64,9 @@ public open class RefCounted : Object() {
    * Returns `true` if the increment was successful, `false` otherwise.
    */
   public final fun reference(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.referencePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.referencePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -75,33 +74,33 @@ public open class RefCounted : Object() {
    * Returns `true` if the object should be freed after the decrement, `false` otherwise.
    */
   public final fun unreference(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.unreferencePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.unreferencePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the current reference count.
    */
   public final fun getReferenceCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getReferenceCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getReferenceCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val initRefPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RefCounted", "init_ref", 2240911060)
+        Internals.getMethodBindPtr("RefCounted", "init_ref", 2240911060)
 
     public val referencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RefCounted", "reference", 2240911060)
+        Internals.getMethodBindPtr("RefCounted", "reference", 2240911060)
 
     public val unreferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RefCounted", "unreference", 2240911060)
+        Internals.getMethodBindPtr("RefCounted", "unreference", 2240911060)
 
     public val getReferenceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RefCounted", "get_reference_count", 3905245786)
+        Internals.getMethodBindPtr("RefCounted", "get_reference_count", 3905245786)
   }
 }

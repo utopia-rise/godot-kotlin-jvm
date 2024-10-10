@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Int
@@ -31,7 +30,7 @@ private const val ENGINE_CLASS_METHODTWEENER_INDEX: Int = 338
 @GodotBaseType
 public open class MethodTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_METHODTWEENER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_METHODTWEENER_INDEX, scriptIndex)
   }
 
   /**
@@ -39,9 +38,9 @@ public open class MethodTweener : Tweener() {
    * there's no delay.
    */
   public final fun setDelay(delay: Double): MethodTweener? {
-    TransferContext.writeArguments(DOUBLE to delay)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
+    Internals.writeArguments(DOUBLE to delay)
+    Internals.callMethod(rawPtr, MethodBindings.setDelayPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   /**
@@ -49,9 +48,9 @@ public open class MethodTweener : Tweener() {
    * transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener? {
-    TransferContext.writeArguments(LONG to trans.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
+    Internals.writeArguments(LONG to trans.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTransPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   /**
@@ -59,21 +58,21 @@ public open class MethodTweener : Tweener() {
    * the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): MethodTweener? {
-    TransferContext.writeArguments(LONG to ease.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
+    Internals.writeArguments(LONG to ease.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEasePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as MethodTweener?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_delay", 266477812)
+        Internals.getMethodBindPtr("MethodTweener", "set_delay", 266477812)
 
     public val setTransPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_trans", 3740975367)
+        Internals.getMethodBindPtr("MethodTweener", "set_trans", 3740975367)
 
     public val setEasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_ease", 315540545)
+        Internals.getMethodBindPtr("MethodTweener", "set_ease", 315540545)
   }
 }

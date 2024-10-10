@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.VariantArray
+import godot.util.Internals
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Int
@@ -23,7 +24,7 @@ private const val ENGINE_CLASS_SCRIPTEXTENSION_INDEX: Int = 506
 @GodotBaseType
 public open class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCRIPTEXTENSION_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCRIPTEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {

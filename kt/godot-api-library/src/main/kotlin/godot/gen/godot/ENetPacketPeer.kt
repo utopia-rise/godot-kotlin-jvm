@@ -8,14 +8,13 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -37,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ENETPACKETPEER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ENETPACKETPEER_INDEX, scriptIndex)
   }
 
   /**
@@ -46,8 +45,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnect(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectPtr, NIL)
+    Internals.writeArguments(LONG to data.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.peerDisconnectPtr, NIL)
   }
 
   /**
@@ -57,8 +56,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnectLater(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectLaterPtr, NIL)
+    Internals.writeArguments(LONG to data.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.peerDisconnectLaterPtr, NIL)
   }
 
   /**
@@ -68,8 +67,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    */
   @JvmOverloads
   public final fun peerDisconnectNow(`data`: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to data.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.peerDisconnectNowPtr, NIL)
+    Internals.writeArguments(LONG to data.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.peerDisconnectNowPtr, NIL)
   }
 
   /**
@@ -77,8 +76,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * intervals, however, this function may be called to ensure more frequent ping requests.
    */
   public final fun ping(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pingPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pingPtr, NIL)
   }
 
   /**
@@ -88,8 +87,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * The default ping interval is `500` milliseconds.
    */
   public final fun pingInterval(pingInterval: Int): Unit {
-    TransferContext.writeArguments(LONG to pingInterval.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pingIntervalPtr, NIL)
+    Internals.writeArguments(LONG to pingInterval.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pingIntervalPtr, NIL)
   }
 
   /**
@@ -97,8 +96,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * disconnection and will timeout on its connection to the local host.
    */
   public final fun reset(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.resetPtr, NIL)
   }
 
   /**
@@ -110,9 +109,9 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     packet: PackedByteArray,
     flags: Int,
   ): Error {
-    TransferContext.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to channel.toLong(), PACKED_BYTE_ARRAY to packet, LONG to flags.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.sendPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -137,8 +136,8 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     acceleration: Int,
     deceleration: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to interval.toLong(), LONG to acceleration.toLong(), LONG to deceleration.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.throttleConfigurePtr, NIL)
+    Internals.writeArguments(LONG to interval.toLong(), LONG to acceleration.toLong(), LONG to deceleration.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.throttleConfigurePtr, NIL)
   }
 
   /**
@@ -156,53 +155,53 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     timeoutMin: Int,
     timeoutMax: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
+    Internals.writeArguments(LONG to timeout.toLong(), LONG to timeoutMin.toLong(), LONG to timeoutMax.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTimeoutPtr, NIL)
   }
 
   /**
    * Returns the IP address of this peer.
    */
   public final fun getRemoteAddress(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemoteAddressPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRemoteAddressPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns the remote port of this peer.
    */
   public final fun getRemotePort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRemotePortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRemotePortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the requested [statistic] for this peer. See [PeerStatistic].
    */
   public final fun getStatistic(statistic: PeerStatistic): Double {
-    TransferContext.writeArguments(LONG to statistic.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatisticPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments(LONG to statistic.id)
+    Internals.callMethod(rawPtr, MethodBindings.getStatisticPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   /**
    * Returns the current peer state. See [PeerState].
    */
   public final fun getState(): PeerState {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
-    return ENetPacketPeer.PeerState.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStatePtr, LONG)
+    return ENetPacketPeer.PeerState.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns the number of channels allocated for communication with peer.
    */
   public final fun getChannels(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getChannelsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getChannelsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -210,9 +209,9 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * valid).
    */
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class PeerState(
@@ -382,46 +381,45 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
 
   internal object MethodBindings {
     public val peerDisconnectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect", 1995695955)
+        Internals.getMethodBindPtr("ENetPacketPeer", "peer_disconnect", 1995695955)
 
     public val peerDisconnectLaterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_later", 1995695955)
+        Internals.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_later", 1995695955)
 
     public val peerDisconnectNowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_now", 1995695955)
+        Internals.getMethodBindPtr("ENetPacketPeer", "peer_disconnect_now", 1995695955)
 
-    public val pingPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "ping", 3218959716)
+    public val pingPtr: VoidPtr = Internals.getMethodBindPtr("ENetPacketPeer", "ping", 3218959716)
 
     public val pingIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "ping_interval", 1286410249)
+        Internals.getMethodBindPtr("ENetPacketPeer", "ping_interval", 1286410249)
 
-    public val resetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "reset", 3218959716)
+    public val resetPtr: VoidPtr = Internals.getMethodBindPtr("ENetPacketPeer", "reset", 3218959716)
 
-    public val sendPtr: VoidPtr = TypeManager.getMethodBindPtr("ENetPacketPeer", "send", 120522849)
+    public val sendPtr: VoidPtr = Internals.getMethodBindPtr("ENetPacketPeer", "send", 120522849)
 
     public val throttleConfigurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "throttle_configure", 1649997291)
+        Internals.getMethodBindPtr("ENetPacketPeer", "throttle_configure", 1649997291)
 
     public val setTimeoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "set_timeout", 1649997291)
+        Internals.getMethodBindPtr("ENetPacketPeer", "set_timeout", 1649997291)
 
     public val getRemoteAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_address", 201670096)
+        Internals.getMethodBindPtr("ENetPacketPeer", "get_remote_address", 201670096)
 
     public val getRemotePortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_remote_port", 3905245786)
+        Internals.getMethodBindPtr("ENetPacketPeer", "get_remote_port", 3905245786)
 
     public val getStatisticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_statistic", 1642578323)
+        Internals.getMethodBindPtr("ENetPacketPeer", "get_statistic", 1642578323)
 
     public val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_state", 711068532)
+        Internals.getMethodBindPtr("ENetPacketPeer", "get_state", 711068532)
 
     public val getChannelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "get_channels", 3905245786)
+        Internals.getMethodBindPtr("ENetPacketPeer", "get_channels", 3905245786)
 
     public val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ENetPacketPeer", "is_active", 36873697)
+        Internals.getMethodBindPtr("ENetPacketPeer", "is_active", 36873697)
   }
 }

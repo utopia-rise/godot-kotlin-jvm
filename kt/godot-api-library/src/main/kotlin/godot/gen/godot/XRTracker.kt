@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -70,61 +69,61 @@ public open class XRTracker internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRTRACKER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRTRACKER_INDEX, scriptIndex)
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
-    return XRServer.TrackerType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerTypePtr, LONG)
+    return XRServer.TrackerType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setTrackerType(type: XRServer.TrackerType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
+    Internals.writeArguments(LONG to type.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerTypePtr, NIL)
   }
 
   public final fun getTrackerName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setTrackerName(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerNamePtr, NIL)
   }
 
   public final fun getTrackerDesc(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerDescPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setTrackerDesc(description: String): Unit {
-    TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
+    Internals.writeArguments(STRING to description)
+    Internals.callMethod(rawPtr, MethodBindings.setTrackerDescPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_type", 2784508102)
+        Internals.getMethodBindPtr("XRTracker", "get_tracker_type", 2784508102)
 
     public val setTrackerTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_type", 3055763575)
+        Internals.getMethodBindPtr("XRTracker", "set_tracker_type", 3055763575)
 
     public val getTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_name", 2002593661)
+        Internals.getMethodBindPtr("XRTracker", "get_tracker_name", 2002593661)
 
     public val setTrackerNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_name", 3304788590)
+        Internals.getMethodBindPtr("XRTracker", "set_tracker_name", 3304788590)
 
     public val getTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "get_tracker_desc", 201670096)
+        Internals.getMethodBindPtr("XRTracker", "get_tracker_desc", 201670096)
 
     public val setTrackerDescPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRTracker", "set_tracker_desc", 83702148)
+        Internals.getMethodBindPtr("XRTracker", "set_tracker_desc", 83702148)
   }
 }

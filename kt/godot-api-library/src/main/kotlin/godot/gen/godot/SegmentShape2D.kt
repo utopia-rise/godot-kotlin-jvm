@@ -9,11 +9,10 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
@@ -53,7 +52,7 @@ public open class SegmentShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SEGMENTSHAPE2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SEGMENTSHAPE2D_INDEX, scriptIndex)
   }
 
   /**
@@ -105,38 +104,36 @@ public open class SegmentShape2D : Shape2D() {
 
 
   public final fun setA(a: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to a)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
+    Internals.writeArguments(VECTOR2 to a)
+    Internals.callMethod(rawPtr, MethodBindings.setAPtr, NIL)
   }
 
   public final fun getA(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun setB(b: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to b)
-    TransferContext.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
+    Internals.writeArguments(VECTOR2 to b)
+    Internals.callMethod(rawPtr, MethodBindings.setBPtr, NIL)
   }
 
   public final fun getB(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setAPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "set_a", 743155724)
+    public val setAPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_a", 743155724)
 
-    public val getAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "get_a", 3341600327)
+    public val getAPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "get_a", 3341600327)
 
-    public val setBPtr: VoidPtr = TypeManager.getMethodBindPtr("SegmentShape2D", "set_b", 743155724)
+    public val setBPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "set_b", 743155724)
 
-    public val getBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "get_b", 3341600327)
+    public val getBPtr: VoidPtr = Internals.getMethodBindPtr("SegmentShape2D", "get_b", 3341600327)
   }
 }

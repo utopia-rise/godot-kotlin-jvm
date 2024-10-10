@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.Plane
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -21,7 +20,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.PLANE
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Float
@@ -40,7 +39,7 @@ private const val ENGINE_CLASS_GEOMETRY3D_INDEX: Int = 10
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINE_CLASS_GEOMETRY3D_INDEX)
+    Internals.getSingleton(this, ENGINE_CLASS_GEOMETRY3D_INDEX)
   }
 
   /**
@@ -48,10 +47,9 @@ public object Geometry3D : Object() {
    */
   @JvmStatic
   public final fun computeConvexMeshPoints(planes: VariantArray<Plane>): PackedVector3Array {
-    TransferContext.writeArguments(ARRAY to planes)
-    TransferContext.callMethod(rawPtr, MethodBindings.computeConvexMeshPointsPtr,
-        PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(ARRAY to planes)
+    Internals.callMethod(rawPtr, MethodBindings.computeConvexMeshPointsPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -61,9 +59,9 @@ public object Geometry3D : Object() {
    */
   @JvmStatic
   public final fun buildBoxPlanes(extents: Vector3): VariantArray<Plane> {
-    TransferContext.writeArguments(VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr, MethodBindings.buildBoxPlanesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
+    Internals.writeArguments(VECTOR3 to extents)
+    Internals.callMethod(rawPtr, MethodBindings.buildBoxPlanesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Plane>)
   }
 
   /**
@@ -80,9 +78,9 @@ public object Geometry3D : Object() {
     sides: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.buildCylinderPlanesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
+    Internals.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.id)
+    Internals.callMethod(rawPtr, MethodBindings.buildCylinderPlanesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Plane>)
   }
 
   /**
@@ -101,9 +99,9 @@ public object Geometry3D : Object() {
     lats: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.buildCapsulePlanesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
+    Internals.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.id)
+    Internals.callMethod(rawPtr, MethodBindings.buildCapsulePlanesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Plane>)
   }
 
   /**
@@ -118,10 +116,10 @@ public object Geometry3D : Object() {
     q1: Vector3,
     q2: Vector3,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to p1, VECTOR3 to p2, VECTOR3 to q1, VECTOR3 to q2)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointsBetweenSegmentsPtr,
+    Internals.writeArguments(VECTOR3 to p1, VECTOR3 to p2, VECTOR3 to q1, VECTOR3 to q2)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPointsBetweenSegmentsPtr,
         PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -134,9 +132,9 @@ public object Geometry3D : Object() {
     s1: Vector3,
     s2: Vector3,
   ): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointToSegmentPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPointToSegmentPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -150,9 +148,9 @@ public object Geometry3D : Object() {
     s1: Vector3,
     s2: Vector3,
   ): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
-    TransferContext.callMethod(rawPtr, MethodBindings.getClosestPointToSegmentUncappedPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to point, VECTOR3 to s1, VECTOR3 to s2)
+    Internals.callMethod(rawPtr, MethodBindings.getClosestPointToSegmentUncappedPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -170,9 +168,9 @@ public object Geometry3D : Object() {
     b: Vector3,
     c: Vector3,
   ): Vector3 {
-    TransferContext.writeArguments(VECTOR3 to point, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr, MethodBindings.getTriangleBarycentricCoordsPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(VECTOR3 to point, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
+    Internals.callMethod(rawPtr, MethodBindings.getTriangleBarycentricCoordsPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -188,9 +186,9 @@ public object Geometry3D : Object() {
     b: Vector3,
     c: Vector3,
   ): Any? {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr, MethodBindings.rayIntersectsTrianglePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(VECTOR3 to from, VECTOR3 to dir, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
+    Internals.callMethod(rawPtr, MethodBindings.rayIntersectsTrianglePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -205,9 +203,9 @@ public object Geometry3D : Object() {
     b: Vector3,
     c: Vector3,
   ): Any? {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
-    TransferContext.callMethod(rawPtr, MethodBindings.segmentIntersectsTrianglePtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to a, VECTOR3 to b, VECTOR3 to c)
+    Internals.callMethod(rawPtr, MethodBindings.segmentIntersectsTrianglePtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -223,10 +221,9 @@ public object Geometry3D : Object() {
     spherePosition: Vector3,
     sphereRadius: Float,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.segmentIntersectsSpherePtr,
-        PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(VECTOR3 to from, VECTOR3 to to, VECTOR3 to spherePosition, DOUBLE to sphereRadius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.segmentIntersectsSpherePtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -242,10 +239,9 @@ public object Geometry3D : Object() {
     height: Float,
     radius: Float,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height.toDouble(), DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.segmentIntersectsCylinderPtr,
-        PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(VECTOR3 to from, VECTOR3 to to, DOUBLE to height.toDouble(), DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.segmentIntersectsCylinderPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -260,10 +256,9 @@ public object Geometry3D : Object() {
     to: Vector3,
     planes: VariantArray<Plane>,
   ): PackedVector3Array {
-    TransferContext.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
-    TransferContext.callMethod(rawPtr, MethodBindings.segmentIntersectsConvexPtr,
-        PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(VECTOR3 to from, VECTOR3 to to, ARRAY to planes)
+    Internals.callMethod(rawPtr, MethodBindings.segmentIntersectsConvexPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -272,9 +267,9 @@ public object Geometry3D : Object() {
    */
   @JvmStatic
   public final fun clipPolygon(points: PackedVector3Array, plane: Plane): PackedVector3Array {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)
-    TransferContext.callMethod(rawPtr, MethodBindings.clipPolygonPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to points, PLANE to plane)
+    Internals.callMethod(rawPtr, MethodBindings.clipPolygonPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
@@ -286,56 +281,55 @@ public object Geometry3D : Object() {
    */
   @JvmStatic
   public final fun tetrahedralizeDelaunay(points: PackedVector3Array): PackedInt32Array {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to points)
-    TransferContext.callMethod(rawPtr, MethodBindings.tetrahedralizeDelaunayPtr,
-        PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to points)
+    Internals.callMethod(rawPtr, MethodBindings.tetrahedralizeDelaunayPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   internal object MethodBindings {
     public val computeConvexMeshPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points", 1936902142)
+        Internals.getMethodBindPtr("Geometry3D", "compute_convex_mesh_points", 1936902142)
 
     public val buildBoxPlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_box_planes", 3622277145)
+        Internals.getMethodBindPtr("Geometry3D", "build_box_planes", 3622277145)
 
     public val buildCylinderPlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_cylinder_planes", 449920067)
+        Internals.getMethodBindPtr("Geometry3D", "build_cylinder_planes", 449920067)
 
     public val buildCapsulePlanesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "build_capsule_planes", 2113592876)
+        Internals.getMethodBindPtr("Geometry3D", "build_capsule_planes", 2113592876)
 
     public val getClosestPointsBetweenSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_points_between_segments", 1056373962)
+        Internals.getMethodBindPtr("Geometry3D", "get_closest_points_between_segments", 1056373962)
 
     public val getClosestPointToSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment", 2168193209)
+        Internals.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment", 2168193209)
 
     public val getClosestPointToSegmentUncappedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment_uncapped", 2168193209)
+        Internals.getMethodBindPtr("Geometry3D", "get_closest_point_to_segment_uncapped", 2168193209)
 
     public val getTriangleBarycentricCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "get_triangle_barycentric_coords", 1362048029)
+        Internals.getMethodBindPtr("Geometry3D", "get_triangle_barycentric_coords", 1362048029)
 
     public val rayIntersectsTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "ray_intersects_triangle", 1718655448)
+        Internals.getMethodBindPtr("Geometry3D", "ray_intersects_triangle", 1718655448)
 
     public val segmentIntersectsTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_triangle", 1718655448)
+        Internals.getMethodBindPtr("Geometry3D", "segment_intersects_triangle", 1718655448)
 
     public val segmentIntersectsSpherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_sphere", 4080141172)
+        Internals.getMethodBindPtr("Geometry3D", "segment_intersects_sphere", 4080141172)
 
     public val segmentIntersectsCylinderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_cylinder", 2361316491)
+        Internals.getMethodBindPtr("Geometry3D", "segment_intersects_cylinder", 2361316491)
 
     public val segmentIntersectsConvexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "segment_intersects_convex", 537425332)
+        Internals.getMethodBindPtr("Geometry3D", "segment_intersects_convex", 537425332)
 
     public val clipPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "clip_polygon", 2603188319)
+        Internals.getMethodBindPtr("Geometry3D", "clip_polygon", 2603188319)
 
     public val tetrahedralizeDelaunayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Geometry3D", "tetrahedralize_delaunay", 1230191221)
+        Internals.getMethodBindPtr("Geometry3D", "tetrahedralize_delaunay", 1230191221)
   }
 }

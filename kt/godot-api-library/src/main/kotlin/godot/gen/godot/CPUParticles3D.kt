@@ -14,7 +14,6 @@ import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -25,7 +24,7 @@ import godot.core.VariantParser.PACKED_COLOR_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -912,7 +911,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CPUPARTICLES3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CPUPARTICLES3D_INDEX, scriptIndex)
   }
 
   /**
@@ -1069,476 +1068,475 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
 
   public final fun setEmitting(emitting: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to emitting)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
+    Internals.writeArguments(BOOL to emitting)
+    Internals.callMethod(rawPtr, MethodBindings.setEmittingPtr, NIL)
   }
 
   public final fun setAmount(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAmountPtr, NIL)
   }
 
   public final fun setLifetime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs)
+    Internals.callMethod(rawPtr, MethodBindings.setLifetimePtr, NIL)
   }
 
   public final fun setOneShot(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setOneShotPtr, NIL)
   }
 
   public final fun setPreProcessTime(secs: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to secs)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
+    Internals.writeArguments(DOUBLE to secs)
+    Internals.callMethod(rawPtr, MethodBindings.setPreProcessTimePtr, NIL)
   }
 
   public final fun setExplosivenessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setExplosivenessRatioPtr, NIL)
   }
 
   public final fun setRandomnessRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRandomnessRatioPtr, NIL)
   }
 
   public final fun setVisibilityAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to aabb)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibilityAabbPtr, NIL)
   }
 
   public final fun setLifetimeRandomness(random: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to random)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLifetimeRandomnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to random)
+    Internals.callMethod(rawPtr, MethodBindings.setLifetimeRandomnessPtr, NIL)
   }
 
   public final fun setUseLocalCoordinates(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseLocalCoordinatesPtr, NIL)
   }
 
   public final fun setFixedFps(fps: Int): Unit {
-    TransferContext.writeArguments(LONG to fps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
+    Internals.writeArguments(LONG to fps.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFixedFpsPtr, NIL)
   }
 
   public final fun setFractionalDelta(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setFractionalDeltaPtr, NIL)
   }
 
   public final fun setSpeedScale(scale: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to scale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
+    Internals.writeArguments(DOUBLE to scale)
+    Internals.callMethod(rawPtr, MethodBindings.setSpeedScalePtr, NIL)
   }
 
   public final fun isEmitting(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEmittingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getAmount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAmountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getLifetime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLifetimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getOneShot(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getOneShotPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getPreProcessTime(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPreProcessTimePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getExplosivenessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExplosivenessRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getRandomnessRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRandomnessRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getVisibilityAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibilityAabbPtr, godot.core.VariantParser.AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun getLifetimeRandomness(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLifetimeRandomnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun getUseLocalCoordinates(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUseLocalCoordinatesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFixedFps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFixedFpsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getFractionalDelta(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFractionalDeltaPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getSpeedScale(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
+    Internals.writeArguments(LONG to order.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDrawOrderPtr, NIL)
   }
 
   public final fun getDrawOrder(): DrawOrder {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
-    return CPUParticles3D.DrawOrder.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDrawOrderPtr, LONG)
+    return CPUParticles3D.DrawOrder.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.setMeshPtr, NIL)
   }
 
   public final fun getMesh(): Mesh? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Mesh?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMeshPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Mesh?)
   }
 
   /**
    * Restarts the particle emitter.
    */
   public final fun restart(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.restartPtr, NIL)
   }
 
   public final fun setDirection(direction: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to direction)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
+    Internals.writeArguments(VECTOR3 to direction)
+    Internals.callMethod(rawPtr, MethodBindings.setDirectionPtr, NIL)
   }
 
   public final fun getDirection(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDirectionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setSpread(degrees: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to degrees.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
+    Internals.writeArguments(DOUBLE to degrees.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setSpreadPtr, NIL)
   }
 
   public final fun getSpread(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSpreadPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlatness(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFlatnessPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFlatnessPtr, NIL)
   }
 
   public final fun getFlatness(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFlatnessPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFlatnessPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets the minimum value for the given parameter.
    */
   public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
+    Internals.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setParamMinPtr, NIL)
   }
 
   /**
    * Returns the minimum value range for the given parameter.
    */
   public final fun getParamMin(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParamMinPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets the maximum value for the given parameter.
    */
   public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
+    Internals.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setParamMaxPtr, NIL)
   }
 
   /**
    * Returns the maximum value range for the given parameter.
    */
   public final fun getParamMax(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParamMaxPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
    * Sets the [Curve] of the parameter specified by [Parameter].
    */
   public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
+    Internals.writeArguments(LONG to param.id, OBJECT to curve)
+    Internals.callMethod(rawPtr, MethodBindings.setParamCurvePtr, NIL)
   }
 
   /**
    * Returns the [Curve] of the parameter specified by [Parameter].
    */
   public final fun getParamCurve(`param`: Parameter): Curve? {
-    TransferContext.writeArguments(LONG to param.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments(LONG to param.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParamCurvePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setColorPtr, NIL)
   }
 
   public final fun getColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setColorRamp(ramp: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to ramp)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
+    Internals.writeArguments(OBJECT to ramp)
+    Internals.callMethod(rawPtr, MethodBindings.setColorRampPtr, NIL)
   }
 
   public final fun getColorRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorRampPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Gradient?)
   }
 
   public final fun setColorInitialRamp(ramp: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to ramp)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorInitialRampPtr, NIL)
+    Internals.writeArguments(OBJECT to ramp)
+    Internals.callMethod(rawPtr, MethodBindings.setColorInitialRampPtr, NIL)
   }
 
   public final fun getColorInitialRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorInitialRampPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Gradient?)
   }
 
   /**
    * Enables or disables the given particle flag (see [ParticleFlags] for options).
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
+    Internals.writeArguments(LONG to particleFlag.id, BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setParticleFlagPtr, NIL)
   }
 
   /**
    * Returns the enabled state of the given particle flag (see [ParticleFlags] for options).
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
-    TransferContext.writeArguments(LONG to particleFlag.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to particleFlag.id)
+    Internals.callMethod(rawPtr, MethodBindings.getParticleFlagPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionShapePtr, NIL)
+    Internals.writeArguments(LONG to shape.id)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionShapePtr, NIL)
   }
 
   public final fun getEmissionShape(): EmissionShape {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionShapePtr, LONG)
-    return CPUParticles3D.EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionShapePtr, LONG)
+    return CPUParticles3D.EmissionShape.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setEmissionSphereRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
   }
 
   public final fun getEmissionSphereRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionSphereRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionBoxExtents(extents: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to extents)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
+    Internals.writeArguments(VECTOR3 to extents)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
   }
 
   public final fun getEmissionBoxExtents(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionBoxExtentsPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionPoints(array: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionPointsPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to array)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionPointsPtr, NIL)
   }
 
   public final fun getEmissionPoints(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionPointsPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setEmissionNormals(array: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to array)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionNormalsPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to array)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionNormalsPtr, NIL)
   }
 
   public final fun getEmissionNormals(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionNormalsPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   public final fun setEmissionColors(array: PackedColorArray): Unit {
-    TransferContext.writeArguments(PACKED_COLOR_ARRAY to array)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionColorsPtr, NIL)
+    Internals.writeArguments(PACKED_COLOR_ARRAY to array)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionColorsPtr, NIL)
   }
 
   public final fun getEmissionColors(): PackedColorArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionColorsPtr, PACKED_COLOR_ARRAY)
+    return (Internals.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
   public final fun setEmissionRingAxis(axis: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to axis)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingAxisPtr, NIL)
+    Internals.writeArguments(VECTOR3 to axis)
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionRingAxisPtr, NIL)
   }
 
   public final fun getEmissionRingAxis(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionRingAxisPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setEmissionRingHeight(height: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to height.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to height.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionRingHeightPtr, NIL)
   }
 
   public final fun getEmissionRingHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionRingHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionRingRadiusPtr, NIL)
   }
 
   public final fun getEmissionRingRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionRingRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to innerRadius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to innerRadius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
   }
 
   public final fun getEmissionRingInnerRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEmissionRingInnerRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun getGravity(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGravityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public final fun setGravity(accelVec: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to accelVec)
-    TransferContext.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
+    Internals.writeArguments(VECTOR3 to accelVec)
+    Internals.callMethod(rawPtr, MethodBindings.setGravityPtr, NIL)
   }
 
   public final fun getSplitScale(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSplitScalePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSplitScalePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSplitScale(splitScale: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to splitScale)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSplitScalePtr, NIL)
+    Internals.writeArguments(BOOL to splitScale)
+    Internals.callMethod(rawPtr, MethodBindings.setSplitScalePtr, NIL)
   }
 
   public final fun getScaleCurveX(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveXPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaleCurveXPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveX(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveXPtr, NIL)
+    Internals.writeArguments(OBJECT to scaleCurve)
+    Internals.callMethod(rawPtr, MethodBindings.setScaleCurveXPtr, NIL)
   }
 
   public final fun getScaleCurveY(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveYPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaleCurveYPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveY(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveYPtr, NIL)
+    Internals.writeArguments(OBJECT to scaleCurve)
+    Internals.callMethod(rawPtr, MethodBindings.setScaleCurveYPtr, NIL)
   }
 
   public final fun getScaleCurveZ(): Curve? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getScaleCurveZPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Curve?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getScaleCurveZPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Curve?)
   }
 
   public final fun setScaleCurveZ(scaleCurve: Curve?): Unit {
-    TransferContext.writeArguments(OBJECT to scaleCurve)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScaleCurveZPtr, NIL)
+    Internals.writeArguments(OBJECT to scaleCurve)
+    Internals.callMethod(rawPtr, MethodBindings.setScaleCurveZPtr, NIL)
   }
 
   /**
@@ -1546,8 +1544,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
    * [ParticleProcessMaterial].
    */
   public final fun convertFromParticles(particles: Node?): Unit {
-    TransferContext.writeArguments(OBJECT to particles)
-    TransferContext.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
+    Internals.writeArguments(OBJECT to particles)
+    Internals.callMethod(rawPtr, MethodBindings.convertFromParticlesPtr, NIL)
   }
 
   public enum class DrawOrder(
@@ -1737,249 +1735,249 @@ public open class CPUParticles3D : GeometryInstance3D() {
 
   internal object MethodBindings {
     public val setEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emitting", 2586408642)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emitting", 2586408642)
 
     public val setAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_amount", 1286410249)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_amount", 1286410249)
 
     public val setLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_lifetime", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_lifetime", 373806689)
 
     public val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_one_shot", 2586408642)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_one_shot", 2586408642)
 
     public val setPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_pre_process_time", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_pre_process_time", 373806689)
 
     public val setExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_explosiveness_ratio", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_explosiveness_ratio", 373806689)
 
     public val setRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_randomness_ratio", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_randomness_ratio", 373806689)
 
     public val setVisibilityAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_visibility_aabb", 259215842)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_visibility_aabb", 259215842)
 
     public val setLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_lifetime_randomness", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_lifetime_randomness", 373806689)
 
     public val setUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_use_local_coordinates", 2586408642)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_use_local_coordinates", 2586408642)
 
     public val setFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_fixed_fps", 1286410249)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_fixed_fps", 1286410249)
 
     public val setFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_fractional_delta", 2586408642)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_fractional_delta", 2586408642)
 
     public val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_speed_scale", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_speed_scale", 373806689)
 
     public val isEmittingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "is_emitting", 36873697)
+        Internals.getMethodBindPtr("CPUParticles3D", "is_emitting", 36873697)
 
     public val getAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_amount", 3905245786)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_amount", 3905245786)
 
     public val getLifetimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_lifetime", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_lifetime", 1740695150)
 
     public val getOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_one_shot", 36873697)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_one_shot", 36873697)
 
     public val getPreProcessTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_pre_process_time", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_pre_process_time", 1740695150)
 
     public val getExplosivenessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_explosiveness_ratio", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_explosiveness_ratio", 1740695150)
 
     public val getRandomnessRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_randomness_ratio", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_randomness_ratio", 1740695150)
 
     public val getVisibilityAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_visibility_aabb", 1068685055)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_visibility_aabb", 1068685055)
 
     public val getLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_lifetime_randomness", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_lifetime_randomness", 1740695150)
 
     public val getUseLocalCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_use_local_coordinates", 36873697)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_use_local_coordinates", 36873697)
 
     public val getFixedFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_fixed_fps", 3905245786)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_fixed_fps", 3905245786)
 
     public val getFractionalDeltaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_fractional_delta", 36873697)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_fractional_delta", 36873697)
 
     public val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_speed_scale", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_speed_scale", 1740695150)
 
     public val setDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_draw_order", 1427401774)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_draw_order", 1427401774)
 
     public val getDrawOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_draw_order", 1321900776)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_draw_order", 1321900776)
 
     public val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_mesh", 194775623)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_mesh", 194775623)
 
     public val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_mesh", 1808005922)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_mesh", 1808005922)
 
     public val restartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "restart", 3218959716)
+        Internals.getMethodBindPtr("CPUParticles3D", "restart", 3218959716)
 
     public val setDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_direction", 3460891852)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_direction", 3460891852)
 
     public val getDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_direction", 3360562783)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_direction", 3360562783)
 
     public val setSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_spread", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_spread", 373806689)
 
     public val getSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_spread", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_spread", 1740695150)
 
     public val setFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_flatness", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_flatness", 373806689)
 
     public val getFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_flatness", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_flatness", 1740695150)
 
     public val setParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_min", 557936109)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_param_min", 557936109)
 
     public val getParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_min", 597646162)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_param_min", 597646162)
 
     public val setParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_max", 557936109)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_param_max", 557936109)
 
     public val getParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_max", 597646162)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_param_max", 597646162)
 
     public val setParamCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_param_curve", 4044142537)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_param_curve", 4044142537)
 
     public val getParamCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_param_curve", 4132790277)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_param_curve", 4132790277)
 
     public val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_color", 2920490490)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_color", 2920490490)
 
     public val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_color", 3444240500)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_color", 3444240500)
 
     public val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_color_ramp", 2756054477)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_color_ramp", 2756054477)
 
     public val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_color_ramp", 132272999)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_color_ramp", 132272999)
 
     public val setColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_color_initial_ramp", 2756054477)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_color_initial_ramp", 2756054477)
 
     public val getColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_color_initial_ramp", 132272999)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_color_initial_ramp", 132272999)
 
     public val setParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_particle_flag", 3515406498)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_particle_flag", 3515406498)
 
     public val getParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_particle_flag", 2845201987)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_particle_flag", 2845201987)
 
     public val setEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_shape", 491823814)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_shape", 491823814)
 
     public val getEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_shape", 2961454842)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_shape", 2961454842)
 
     public val setEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_sphere_radius", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_sphere_radius", 373806689)
 
     public val getEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_sphere_radius", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_sphere_radius", 1740695150)
 
     public val setEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_box_extents", 3460891852)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_box_extents", 3460891852)
 
     public val getEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_box_extents", 3360562783)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_box_extents", 3360562783)
 
     public val setEmissionPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_points", 334873810)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_points", 334873810)
 
     public val getEmissionPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_points", 497664490)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_points", 497664490)
 
     public val setEmissionNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_normals", 334873810)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_normals", 334873810)
 
     public val getEmissionNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_normals", 497664490)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_normals", 497664490)
 
     public val setEmissionColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_colors", 3546319833)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_colors", 3546319833)
 
     public val getEmissionColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_colors", 1392750486)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_colors", 1392750486)
 
     public val setEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_axis", 3460891852)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_ring_axis", 3460891852)
 
     public val getEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_axis", 3360562783)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_ring_axis", 3360562783)
 
     public val setEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_height", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_ring_height", 373806689)
 
     public val getEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_height", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_ring_height", 1740695150)
 
     public val setEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_radius", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_ring_radius", 373806689)
 
     public val getEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_radius", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_ring_radius", 1740695150)
 
     public val setEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_emission_ring_inner_radius", 373806689)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_emission_ring_inner_radius", 373806689)
 
     public val getEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_emission_ring_inner_radius", 1740695150)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_emission_ring_inner_radius", 1740695150)
 
     public val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_gravity", 3360562783)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_gravity", 3360562783)
 
     public val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_gravity", 3460891852)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_gravity", 3460891852)
 
     public val getSplitScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_split_scale", 2240911060)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_split_scale", 2240911060)
 
     public val setSplitScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_split_scale", 2586408642)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_split_scale", 2586408642)
 
     public val getScaleCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_x", 2460114913)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_scale_curve_x", 2460114913)
 
     public val setScaleCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_x", 270443179)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_scale_curve_x", 270443179)
 
     public val getScaleCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_y", 2460114913)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_scale_curve_y", 2460114913)
 
     public val setScaleCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_y", 270443179)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_scale_curve_y", 270443179)
 
     public val getScaleCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "get_scale_curve_z", 2460114913)
+        Internals.getMethodBindPtr("CPUParticles3D", "get_scale_curve_z", 2460114913)
 
     public val setScaleCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "set_scale_curve_z", 270443179)
+        Internals.getMethodBindPtr("CPUParticles3D", "set_scale_curve_z", 270443179)
 
     public val convertFromParticlesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CPUParticles3D", "convert_from_particles", 1078189570)
+        Internals.getMethodBindPtr("CPUParticles3D", "convert_from_particles", 1078189570)
   }
 }

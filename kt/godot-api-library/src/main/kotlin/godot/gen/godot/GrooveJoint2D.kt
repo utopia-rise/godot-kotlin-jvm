@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -53,44 +52,44 @@ public open class GrooveJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GROOVEJOINT2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GROOVEJOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to length.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to length.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setLengthPtr, NIL)
   }
 
   public final fun getLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setInitialOffset(offset: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to offset.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
+    Internals.writeArguments(DOUBLE to offset.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setInitialOffsetPtr, NIL)
   }
 
   public final fun getInitialOffset(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getInitialOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GrooveJoint2D", "set_length", 373806689)
+        Internals.getMethodBindPtr("GrooveJoint2D", "set_length", 373806689)
 
     public val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GrooveJoint2D", "get_length", 1740695150)
+        Internals.getMethodBindPtr("GrooveJoint2D", "get_length", 1740695150)
 
     public val setInitialOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GrooveJoint2D", "set_initial_offset", 373806689)
+        Internals.getMethodBindPtr("GrooveJoint2D", "set_initial_offset", 373806689)
 
     public val getInitialOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GrooveJoint2D", "get_initial_offset", 1740695150)
+        Internals.getMethodBindPtr("GrooveJoint2D", "get_initial_offset", 1740695150)
   }
 }

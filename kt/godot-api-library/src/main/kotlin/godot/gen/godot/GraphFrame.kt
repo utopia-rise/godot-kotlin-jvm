@@ -11,14 +11,13 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -114,7 +113,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GRAPHFRAME_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GRAPHFRAME_INDEX, scriptIndex)
   }
 
   /**
@@ -142,14 +141,14 @@ public open class GraphFrame : GraphElement() {
 
 
   public final fun setTitle(title: String): Unit {
-    TransferContext.writeArguments(STRING to title)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
+    Internals.writeArguments(STRING to title)
+    Internals.callMethod(rawPtr, MethodBindings.setTitlePtr, NIL)
   }
 
   public final fun getTitle(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTitlePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -158,106 +157,106 @@ public open class GraphFrame : GraphElement() {
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
   public final fun getTitlebarHbox(): HBoxContainer? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTitlebarHboxPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
   public final fun setAutoshrinkEnabled(shrink: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to shrink)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to shrink)
+    Internals.callMethod(rawPtr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
 
   public final fun isAutoshrinkEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isAutoshrinkEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
-    TransferContext.writeArguments(LONG to autoshrinkMargin.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
+    Internals.writeArguments(LONG to autoshrinkMargin.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAutoshrinkMarginPtr, NIL)
   }
 
   public final fun getAutoshrinkMargin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutoshrinkMarginPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setDragMargin(dragMargin: Int): Unit {
-    TransferContext.writeArguments(LONG to dragMargin.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
+    Internals.writeArguments(LONG to dragMargin.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setDragMarginPtr, NIL)
   }
 
   public final fun getDragMargin(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDragMarginPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setTintColorEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
 
   public final fun isTintColorEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isTintColorEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTintColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setTintColorPtr, NIL)
   }
 
   public final fun getTintColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTintColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_title", 83702148)
+        Internals.getMethodBindPtr("GraphFrame", "set_title", 83702148)
 
     public val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_title", 201670096)
+        Internals.getMethodBindPtr("GraphFrame", "get_title", 201670096)
 
     public val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_titlebar_hbox", 3590609951)
+        Internals.getMethodBindPtr("GraphFrame", "get_titlebar_hbox", 3590609951)
 
     public val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled", 2586408642)
+        Internals.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled", 2586408642)
 
     public val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled", 36873697)
+        Internals.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled", 36873697)
 
     public val setAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_margin", 1286410249)
+        Internals.getMethodBindPtr("GraphFrame", "set_autoshrink_margin", 1286410249)
 
     public val getAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_autoshrink_margin", 3905245786)
+        Internals.getMethodBindPtr("GraphFrame", "get_autoshrink_margin", 3905245786)
 
     public val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_drag_margin", 1286410249)
+        Internals.getMethodBindPtr("GraphFrame", "set_drag_margin", 1286410249)
 
     public val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_drag_margin", 3905245786)
+        Internals.getMethodBindPtr("GraphFrame", "get_drag_margin", 3905245786)
 
     public val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color_enabled", 2586408642)
+        Internals.getMethodBindPtr("GraphFrame", "set_tint_color_enabled", 2586408642)
 
     public val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_tint_color_enabled", 36873697)
+        Internals.getMethodBindPtr("GraphFrame", "is_tint_color_enabled", 36873697)
 
     public val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color", 2920490490)
+        Internals.getMethodBindPtr("GraphFrame", "set_tint_color", 2920490490)
 
     public val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_tint_color", 3444240500)
+        Internals.getMethodBindPtr("GraphFrame", "get_tint_color", 3444240500)
   }
 }

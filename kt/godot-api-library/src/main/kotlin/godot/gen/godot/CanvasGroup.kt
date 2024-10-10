@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -97,61 +96,61 @@ public open class CanvasGroup : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CANVASGROUP_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CANVASGROUP_INDEX, scriptIndex)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to fitMargin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to fitMargin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setFitMarginPtr, NIL)
   }
 
   public final fun getFitMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFitMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setClearMargin(clearMargin: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to clearMargin.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
+    Internals.writeArguments(DOUBLE to clearMargin.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setClearMarginPtr, NIL)
   }
 
   public final fun getClearMargin(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getClearMarginPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setUseMipmaps(useMipmaps: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to useMipmaps)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
+    Internals.writeArguments(BOOL to useMipmaps)
+    Internals.callMethod(rawPtr, MethodBindings.setUseMipmapsPtr, NIL)
   }
 
   public final fun isUsingMipmaps(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingMipmapsPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setFitMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_fit_margin", 373806689)
+        Internals.getMethodBindPtr("CanvasGroup", "set_fit_margin", 373806689)
 
     public val getFitMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "get_fit_margin", 1740695150)
+        Internals.getMethodBindPtr("CanvasGroup", "get_fit_margin", 1740695150)
 
     public val setClearMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_clear_margin", 373806689)
+        Internals.getMethodBindPtr("CanvasGroup", "set_clear_margin", 373806689)
 
     public val getClearMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "get_clear_margin", 1740695150)
+        Internals.getMethodBindPtr("CanvasGroup", "get_clear_margin", 1740695150)
 
     public val setUseMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "set_use_mipmaps", 2586408642)
+        Internals.getMethodBindPtr("CanvasGroup", "set_use_mipmaps", 2586408642)
 
     public val isUsingMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasGroup", "is_using_mipmaps", 36873697)
+        Internals.getMethodBindPtr("CanvasGroup", "is_using_mipmaps", 36873697)
   }
 }

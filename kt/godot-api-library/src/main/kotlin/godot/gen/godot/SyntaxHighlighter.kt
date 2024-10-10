@@ -8,12 +8,11 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Int
@@ -31,7 +30,7 @@ private const val ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX: Int = 566
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX, scriptIndex)
   }
 
   /**
@@ -74,9 +73,9 @@ public open class SyntaxHighlighter : Resource() {
    * This will color columns 0-4 red, and columns 5-eol in green.
    */
   public final fun getLineSyntaxHighlighting(line: Int): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(LONG to line.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getLineSyntaxHighlightingPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -85,8 +84,8 @@ public open class SyntaxHighlighter : Resource() {
    * cache.
    */
   public final fun updateCache(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.updateCachePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.updateCachePtr, NIL)
   }
 
   /**
@@ -94,32 +93,32 @@ public open class SyntaxHighlighter : Resource() {
    * Then calls overridable method [_clearHighlightingCache].
    */
   public final fun clearHighlightingCache(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearHighlightingCachePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
 
   /**
    * Returns the associated [TextEdit] node.
    */
   public final fun getTextEdit(): TextEdit? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextEditPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as TextEdit?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextEditPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as TextEdit?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getLineSyntaxHighlightingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_line_syntax_highlighting", 3554694381)
+        Internals.getMethodBindPtr("SyntaxHighlighter", "get_line_syntax_highlighting", 3554694381)
 
     public val updateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "update_cache", 3218959716)
+        Internals.getMethodBindPtr("SyntaxHighlighter", "update_cache", 3218959716)
 
     public val clearHighlightingCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "clear_highlighting_cache", 3218959716)
+        Internals.getMethodBindPtr("SyntaxHighlighter", "clear_highlighting_cache", 3218959716)
 
     public val getTextEditPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_text_edit", 1893027089)
+        Internals.getMethodBindPtr("SyntaxHighlighter", "get_text_edit", 1893027089)
   }
 }

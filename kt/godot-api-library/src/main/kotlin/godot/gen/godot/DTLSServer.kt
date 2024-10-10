@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -176,16 +175,16 @@ private const val ENGINE_CLASS_DTLSSERVER_INDEX: Int = 209
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_DTLSSERVER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_DTLSSERVER_INDEX, scriptIndex)
   }
 
   /**
    * Setup the DTLS server to use the given [serverOptions]. See [TLSOptions.server].
    */
   public final fun setup(serverOptions: TLSOptions?): Error {
-    TransferContext.writeArguments(OBJECT to serverOptions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(OBJECT to serverOptions)
+    Internals.callMethod(rawPtr, MethodBindings.setupPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -196,17 +195,17 @@ public open class DTLSServer : RefCounted() {
    * invalid due to cookie exchange.
    */
   public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
-    TransferContext.writeArguments(OBJECT to udpPeer)
-    TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PacketPeerDTLS?)
+    Internals.writeArguments(OBJECT to udpPeer)
+    Internals.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PacketPeerDTLS?)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val setupPtr: VoidPtr = TypeManager.getMethodBindPtr("DTLSServer", "setup", 1262296096)
+    public val setupPtr: VoidPtr = Internals.getMethodBindPtr("DTLSServer", "setup", 1262296096)
 
     public val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DTLSServer", "take_connection", 3946580474)
+        Internals.getMethodBindPtr("DTLSServer", "take_connection", 3946580474)
   }
 }

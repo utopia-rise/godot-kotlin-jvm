@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.String
@@ -50,7 +49,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX, scriptIndex)
   }
 
   /**
@@ -59,32 +58,32 @@ public open class ConfirmationDialog : AcceptDialog() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getCancelButton(): Button? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Button?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCancelButtonPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Button?)
   }
 
   public final fun setCancelButtonText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setCancelButtonTextPtr, NIL)
   }
 
   public final fun getCancelButtonText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCancelButtonTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getCancelButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button", 1856205918)
+        Internals.getMethodBindPtr("ConfirmationDialog", "get_cancel_button", 1856205918)
 
     public val setCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text", 83702148)
+        Internals.getMethodBindPtr("ConfirmationDialog", "set_cancel_button_text", 83702148)
 
     public val getCancelButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text", 201670096)
+        Internals.getMethodBindPtr("ConfirmationDialog", "get_cancel_button_text", 201670096)
   }
 }

@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -70,51 +69,51 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX, scriptIndex)
   }
 
   public final fun setCutoff(freq: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to freq.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCutoffPtr, NIL)
+    Internals.writeArguments(DOUBLE to freq.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCutoffPtr, NIL)
   }
 
   public final fun getCutoff(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCutoffPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCutoffPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setResonance(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setResonancePtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setResonancePtr, NIL)
   }
 
   public final fun getResonance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getResonancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getResonancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setGain(amount: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to amount.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
+    Internals.writeArguments(DOUBLE to amount.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setGainPtr, NIL)
   }
 
   public final fun getGain(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getGainPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDb(amount: FilterDB): Unit {
-    TransferContext.writeArguments(LONG to amount.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDbPtr, NIL)
+    Internals.writeArguments(LONG to amount.id)
+    Internals.callMethod(rawPtr, MethodBindings.setDbPtr, NIL)
   }
 
   public final fun getDb(): FilterDB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDbPtr, LONG)
-    return AudioEffectFilter.FilterDB.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDbPtr, LONG)
+    return AudioEffectFilter.FilterDB.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class FilterDB(
@@ -140,27 +139,27 @@ public open class AudioEffectFilter : AudioEffect() {
 
   internal object MethodBindings {
     public val setCutoffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "set_cutoff", 373806689)
+        Internals.getMethodBindPtr("AudioEffectFilter", "set_cutoff", 373806689)
 
     public val getCutoffPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "get_cutoff", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectFilter", "get_cutoff", 1740695150)
 
     public val setResonancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "set_resonance", 373806689)
+        Internals.getMethodBindPtr("AudioEffectFilter", "set_resonance", 373806689)
 
     public val getResonancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "get_resonance", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectFilter", "get_resonance", 1740695150)
 
     public val setGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "set_gain", 373806689)
+        Internals.getMethodBindPtr("AudioEffectFilter", "set_gain", 373806689)
 
     public val getGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "get_gain", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectFilter", "get_gain", 1740695150)
 
     public val setDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "set_db", 771740901)
+        Internals.getMethodBindPtr("AudioEffectFilter", "set_db", 771740901)
 
     public val getDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectFilter", "get_db", 3981721890)
+        Internals.getMethodBindPtr("AudioEffectFilter", "get_db", 3981721890)
   }
 }

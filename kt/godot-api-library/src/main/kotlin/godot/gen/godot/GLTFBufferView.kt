@@ -8,13 +8,12 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.PackedByteArray
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -111,7 +110,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFBUFFERVIEW_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFBUFFERVIEW_INDEX, scriptIndex)
   }
 
   /**
@@ -120,117 +119,117 @@ public open class GLTFBufferView : Resource() {
    * returned as a [PackedByteArray].
    */
   public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
-    TransferContext.writeArguments(OBJECT to state)
-    TransferContext.callMethod(rawPtr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+    Internals.writeArguments(OBJECT to state)
+    Internals.callMethod(rawPtr, MethodBindings.loadBufferViewDataPtr, PACKED_BYTE_ARRAY)
+    return (Internals.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   public final fun getBuffer(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setBuffer(buffer: Int): Unit {
-    TransferContext.writeArguments(LONG to buffer.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
+    Internals.writeArguments(LONG to buffer.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferPtr, NIL)
   }
 
   public final fun getByteOffset(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getByteOffsetPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteOffset(byteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to byteOffset.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
+    Internals.writeArguments(LONG to byteOffset.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
   public final fun getByteLength(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getByteLengthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteLength(byteLength: Int): Unit {
-    TransferContext.writeArguments(LONG to byteLength.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteLengthPtr, NIL)
+    Internals.writeArguments(LONG to byteLength.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setByteLengthPtr, NIL)
   }
 
   public final fun getByteStride(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getByteStridePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setByteStride(byteStride: Int): Unit {
-    TransferContext.writeArguments(LONG to byteStride.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setByteStridePtr, NIL)
+    Internals.writeArguments(LONG to byteStride.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setByteStridePtr, NIL)
   }
 
   public final fun getIndices(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIndicesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndices(indices: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to indices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
+    Internals.writeArguments(BOOL to indices)
+    Internals.callMethod(rawPtr, MethodBindings.setIndicesPtr, NIL)
   }
 
   public final fun getVertexAttributes(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVertexAttributesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setVertexAttributes(isAttributes: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to isAttributes)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
+    Internals.writeArguments(BOOL to isAttributes)
+    Internals.callMethod(rawPtr, MethodBindings.setVertexAttributesPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val loadBufferViewDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
+        Internals.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
 
     public val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)
 
     public val setBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_buffer", 1286410249)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_buffer", 1286410249)
 
     public val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3905245786)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3905245786)
 
     public val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1286410249)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1286410249)
 
     public val getByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3905245786)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3905245786)
 
     public val setByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1286410249)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1286410249)
 
     public val getByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3905245786)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3905245786)
 
     public val setByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1286410249)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1286410249)
 
     public val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_indices", 36873697)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_indices", 36873697)
 
     public val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_indices", 2586408642)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_indices", 2586408642)
 
     public val getVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36873697)
+        Internals.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36873697)
 
     public val setVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2586408642)
+        Internals.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2586408642)
   }
 }

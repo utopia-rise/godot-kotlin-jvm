@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -59,7 +58,7 @@ public open class SkeletonModification2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX, scriptIndex)
   }
 
   /**
@@ -85,14 +84,14 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public final fun setEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun getEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -100,9 +99,9 @@ public open class SkeletonModification2D : Resource() {
    * modification stack, you can access the Skeleton2D the modification is operating on.
    */
   public final fun getModificationStack(): SkeletonModificationStack2D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getModificationStackPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as SkeletonModificationStack2D?)
   }
 
   /**
@@ -111,28 +110,28 @@ public open class SkeletonModification2D : Resource() {
    * setting the modification up.
    */
   public final fun setIsSetup(isSetup: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to isSetup)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIsSetupPtr, NIL)
+    Internals.writeArguments(BOOL to isSetup)
+    Internals.callMethod(rawPtr, MethodBindings.setIsSetupPtr, NIL)
   }
 
   /**
    * Returns whether this modification has been successfully setup or not.
    */
   public final fun getIsSetup(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getIsSetupPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setExecutionMode(executionMode: Int): Unit {
-    TransferContext.writeArguments(LONG to executionMode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
+    Internals.writeArguments(LONG to executionMode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setExecutionModePtr, NIL)
   }
 
   public final fun getExecutionMode(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getExecutionModePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -145,9 +144,9 @@ public open class SkeletonModification2D : Resource() {
     max: Float,
     invert: Boolean,
   ): Float {
-    TransferContext.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
-    TransferContext.callMethod(rawPtr, MethodBindings.clampAnglePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(DOUBLE to angle.toDouble(), DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), BOOL to invert)
+    Internals.callMethod(rawPtr, MethodBindings.clampAnglePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -155,8 +154,8 @@ public open class SkeletonModification2D : Resource() {
    * modification-specific gizmos.
    */
   public final fun setEditorDrawGizmo(drawGizmo: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to drawGizmo)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorDrawGizmoPtr, NIL)
+    Internals.writeArguments(BOOL to drawGizmo)
+    Internals.callMethod(rawPtr, MethodBindings.setEditorDrawGizmoPtr, NIL)
   }
 
   /**
@@ -164,42 +163,42 @@ public open class SkeletonModification2D : Resource() {
    * modification-specific gizmos.
    */
   public final fun getEditorDrawGizmo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEditorDrawGizmoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModification2D", "set_enabled", 2586408642)
 
     public val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2240911060)
+        Internals.getMethodBindPtr("SkeletonModification2D", "get_enabled", 2240911060)
 
     public val getModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2137761694)
+        Internals.getMethodBindPtr("SkeletonModification2D", "get_modification_stack", 2137761694)
 
     public val setIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModification2D", "set_is_setup", 2586408642)
 
     public val getIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36873697)
+        Internals.getMethodBindPtr("SkeletonModification2D", "get_is_setup", 36873697)
 
     public val setExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModification2D", "set_execution_mode", 1286410249)
 
     public val getExecutionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3905245786)
+        Internals.getMethodBindPtr("SkeletonModification2D", "get_execution_mode", 3905245786)
 
     public val clampAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1229502682)
+        Internals.getMethodBindPtr("SkeletonModification2D", "clamp_angle", 1229502682)
 
     public val setEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2586408642)
+        Internals.getMethodBindPtr("SkeletonModification2D", "set_editor_draw_gizmo", 2586408642)
 
     public val getEditorDrawGizmoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36873697)
+        Internals.getMethodBindPtr("SkeletonModification2D", "get_editor_draw_gizmo", 36873697)
   }
 }

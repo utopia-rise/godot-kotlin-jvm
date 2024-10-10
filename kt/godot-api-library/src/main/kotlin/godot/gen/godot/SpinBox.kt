@@ -7,14 +7,13 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -143,92 +142,92 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SPINBOX_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SPINBOX_INDEX, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id)
+    Internals.callMethod(rawPtr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
   public final fun getHorizontalAlignment(): HorizontalAlignment {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
-    return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHorizontalAlignmentPtr, LONG)
+    return HorizontalAlignment.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSuffix(suffix: String): Unit {
-    TransferContext.writeArguments(STRING to suffix)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
+    Internals.writeArguments(STRING to suffix)
+    Internals.callMethod(rawPtr, MethodBindings.setSuffixPtr, NIL)
   }
 
   public final fun getSuffix(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSuffixPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setPrefix(prefix: String): Unit {
-    TransferContext.writeArguments(STRING to prefix)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
+    Internals.writeArguments(STRING to prefix)
+    Internals.callMethod(rawPtr, MethodBindings.setPrefixPtr, NIL)
   }
 
   public final fun getPrefix(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPrefixPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setEditable(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setEditablePtr, NIL)
   }
 
   public final fun setCustomArrowStep(arrowStep: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to arrowStep)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
+    Internals.writeArguments(DOUBLE to arrowStep)
+    Internals.callMethod(rawPtr, MethodBindings.setCustomArrowStepPtr, NIL)
   }
 
   public final fun getCustomArrowStep(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomArrowStepPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun isEditable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setUpdateOnTextChanged(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setUpdateOnTextChangedPtr, NIL)
   }
 
   public final fun getUpdateOnTextChanged(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getUpdateOnTextChangedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectAllOnFocusPtr, NIL)
   }
 
   public final fun isSelectAllOnFocus(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectAllOnFocusPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Applies the current value of this [SpinBox].
    */
   public final fun apply(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.applyPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.applyPtr, NIL)
   }
 
   /**
@@ -238,59 +237,57 @@ public open class SpinBox : Range() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLineEdit(): LineEdit? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineEditPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as LineEdit?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_horizontal_alignment", 2312603777)
+        Internals.getMethodBindPtr("SpinBox", "set_horizontal_alignment", 2312603777)
 
     public val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_horizontal_alignment", 341400642)
+        Internals.getMethodBindPtr("SpinBox", "get_horizontal_alignment", 341400642)
 
-    public val setSuffixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_suffix", 83702148)
+    public val setSuffixPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "set_suffix", 83702148)
 
     public val getSuffixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_suffix", 201670096)
+        Internals.getMethodBindPtr("SpinBox", "get_suffix", 201670096)
 
-    public val setPrefixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_prefix", 83702148)
+    public val setPrefixPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "set_prefix", 83702148)
 
     public val getPrefixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_prefix", 201670096)
+        Internals.getMethodBindPtr("SpinBox", "get_prefix", 201670096)
 
     public val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_editable", 2586408642)
+        Internals.getMethodBindPtr("SpinBox", "set_editable", 2586408642)
 
     public val setCustomArrowStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_custom_arrow_step", 373806689)
+        Internals.getMethodBindPtr("SpinBox", "set_custom_arrow_step", 373806689)
 
     public val getCustomArrowStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_custom_arrow_step", 1740695150)
+        Internals.getMethodBindPtr("SpinBox", "get_custom_arrow_step", 1740695150)
 
     public val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "is_editable", 36873697)
+        Internals.getMethodBindPtr("SpinBox", "is_editable", 36873697)
 
     public val setUpdateOnTextChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_update_on_text_changed", 2586408642)
+        Internals.getMethodBindPtr("SpinBox", "set_update_on_text_changed", 2586408642)
 
     public val getUpdateOnTextChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_update_on_text_changed", 36873697)
+        Internals.getMethodBindPtr("SpinBox", "get_update_on_text_changed", 36873697)
 
     public val setSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "set_select_all_on_focus", 2586408642)
+        Internals.getMethodBindPtr("SpinBox", "set_select_all_on_focus", 2586408642)
 
     public val isSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "is_select_all_on_focus", 36873697)
+        Internals.getMethodBindPtr("SpinBox", "is_select_all_on_focus", 36873697)
 
-    public val applyPtr: VoidPtr = TypeManager.getMethodBindPtr("SpinBox", "apply", 3218959716)
+    public val applyPtr: VoidPtr = Internals.getMethodBindPtr("SpinBox", "apply", 3218959716)
 
     public val getLineEditPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpinBox", "get_line_edit", 4071694264)
+        Internals.getMethodBindPtr("SpinBox", "get_line_edit", 4071694264)
   }
 }

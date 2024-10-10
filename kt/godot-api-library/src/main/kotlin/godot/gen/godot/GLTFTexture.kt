@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -47,44 +46,44 @@ public open class GLTFTexture : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_GLTFTEXTURE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_GLTFTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun getSrcImage(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSrcImagePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSrcImage(srcImage: Int): Unit {
-    TransferContext.writeArguments(LONG to srcImage.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
+    Internals.writeArguments(LONG to srcImage.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSrcImagePtr, NIL)
   }
 
   public final fun getSampler(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplerPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setSampler(sampler: Int): Unit {
-    TransferContext.writeArguments(LONG to sampler.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
+    Internals.writeArguments(LONG to sampler.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSamplerPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image", 3905245786)
+        Internals.getMethodBindPtr("GLTFTexture", "get_src_image", 3905245786)
 
     public val setSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image", 1286410249)
+        Internals.getMethodBindPtr("GLTFTexture", "set_src_image", 1286410249)
 
     public val getSamplerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler", 3905245786)
+        Internals.getMethodBindPtr("GLTFTexture", "get_sampler", 3905245786)
 
     public val setSamplerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler", 1286410249)
+        Internals.getMethodBindPtr("GLTFTexture", "set_sampler", 1286410249)
   }
 }

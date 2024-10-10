@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -21,7 +20,7 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -189,29 +188,29 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_OPENXRINTERFACE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_OPENXRINTERFACE_INDEX, scriptIndex)
   }
 
   public final fun getDisplayRefreshRate(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDisplayRefreshRatePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDisplayRefreshRate(refreshRate: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to refreshRate.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
+    Internals.writeArguments(DOUBLE to refreshRate.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDisplayRefreshRatePtr, NIL)
   }
 
   public final fun getRenderTargetSizeMultiplier(): Double {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRenderTargetSizeMultiplierPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double)
   }
 
   public final fun setRenderTargetSizeMultiplier(multiplier: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to multiplier)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
+    Internals.writeArguments(DOUBLE to multiplier)
+    Internals.callMethod(rawPtr, MethodBindings.setRenderTargetSizeMultiplierPtr, NIL)
   }
 
   /**
@@ -221,57 +220,57 @@ public open class OpenXRInterface : XRInterface() {
    * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
    */
   public final fun isFoveationSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFoveationSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getFoveationLevel(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFoveationLevelPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFoveationLevel(foveationLevel: Int): Unit {
-    TransferContext.writeArguments(LONG to foveationLevel.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
+    Internals.writeArguments(LONG to foveationLevel.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFoveationLevelPtr, NIL)
   }
 
   public final fun getFoveationDynamic(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFoveationDynamicPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFoveationDynamic(foveationDynamic: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to foveationDynamic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
+    Internals.writeArguments(BOOL to foveationDynamic)
+    Internals.callMethod(rawPtr, MethodBindings.setFoveationDynamicPtr, NIL)
   }
 
   /**
    * Returns `true` if the given action set is active.
    */
   public final fun isActionSetActive(name: String): Boolean {
-    TransferContext.writeArguments(STRING to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to name)
+    Internals.callMethod(rawPtr, MethodBindings.isActionSetActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Sets the given action set as active or inactive.
    */
   public final fun setActionSetActive(name: String, active: Boolean): Unit {
-    TransferContext.writeArguments(STRING to name, BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActionSetActivePtr, NIL)
+    Internals.writeArguments(STRING to name, BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setActionSetActivePtr, NIL)
   }
 
   /**
    * Returns a list of action sets registered with Godot (loaded from the action map at runtime).
    */
   public final fun getActionSets(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getActionSetsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -279,9 +278,9 @@ public open class OpenXRInterface : XRInterface() {
    * supported by the OpenXR runtime and after the interface has been initialized.
    */
   public final fun getAvailableDisplayRefreshRates(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAvailableDisplayRefreshRatesPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -289,8 +288,8 @@ public open class OpenXRInterface : XRInterface() {
    * range for [hand] to [motionRange].
    */
   public final fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
-    TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
+    Internals.writeArguments(LONG to hand.id, LONG to motionRange.id)
+    Internals.callMethod(rawPtr, MethodBindings.setMotionRangePtr, NIL)
   }
 
   /**
@@ -298,9 +297,9 @@ public open class OpenXRInterface : XRInterface() {
    * range for [hand].
    */
   public final fun getMotionRange(hand: Hand): HandMotionRange {
-    TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
-    return OpenXRInterface.HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to hand.id)
+    Internals.callMethod(rawPtr, MethodBindings.getMotionRangePtr, LONG)
+    return OpenXRInterface.HandMotionRange.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -308,18 +307,18 @@ public open class OpenXRInterface : XRInterface() {
    * tracking data for [hand].
    */
   public final fun getHandTrackingSource(hand: Hand): HandTrackedSource {
-    TransferContext.writeArguments(LONG to hand.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
-    return OpenXRInterface.HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to hand.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandTrackingSourcePtr, LONG)
+    return OpenXRInterface.HandTrackedSource.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * If handtracking is enabled, returns flags that inform us of the validity of the tracking data.
    */
   public final fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
-    return HandJointFlagsValue(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointFlagsPtr, LONG)
+    return HandJointFlagsValue(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -327,9 +326,9 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR.
    */
   public final fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointRotationPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   /**
@@ -337,9 +336,9 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public final fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -347,9 +346,9 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR. This is without worldscale applied!
    */
   public final fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -357,9 +356,9 @@ public open class OpenXRInterface : XRInterface() {
    * as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public final fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -367,9 +366,9 @@ public open class OpenXRInterface : XRInterface() {
    * ([hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
    */
   public final fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments(LONG to hand.id, LONG to joint.id)
+    Internals.callMethod(rawPtr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -377,9 +376,9 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandTrackingSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHandTrackingSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -387,9 +386,9 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isHandInteractionSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHandInteractionSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -397,31 +396,31 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** This only returns a valid value after OpenXR has been initialized.
    */
   public final fun isEyeGazeInteractionSupported(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEyeGazeInteractionSupportedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun getVrsMinRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsMinRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsMinRadius(radius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to radius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
 
   public final fun getVrsStrength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVrsStrengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVrsStrength(strength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to strength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to strength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVrsStrengthPtr, NIL)
   }
 
   public enum class Hand(
@@ -716,90 +715,90 @@ public open class OpenXRInterface : XRInterface() {
 
   internal object MethodBindings {
     public val getDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate", 1740695150)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate", 1740695150)
 
     public val setDisplayRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_display_refresh_rate", 373806689)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_display_refresh_rate", 373806689)
 
     public val getRenderTargetSizeMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_render_target_size_multiplier", 1740695150)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_render_target_size_multiplier", 1740695150)
 
     public val setRenderTargetSizeMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_render_target_size_multiplier", 373806689)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_render_target_size_multiplier", 373806689)
 
     public val isFoveationSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_foveation_supported", 36873697)
+        Internals.getMethodBindPtr("OpenXRInterface", "is_foveation_supported", 36873697)
 
     public val getFoveationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_level", 3905245786)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_foveation_level", 3905245786)
 
     public val setFoveationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_level", 1286410249)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_foveation_level", 1286410249)
 
     public val getFoveationDynamicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_foveation_dynamic", 36873697)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_foveation_dynamic", 36873697)
 
     public val setFoveationDynamicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic", 2586408642)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_foveation_dynamic", 2586408642)
 
     public val isActionSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_action_set_active", 3927539163)
+        Internals.getMethodBindPtr("OpenXRInterface", "is_action_set_active", 3927539163)
 
     public val setActionSetActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_action_set_active", 2678287736)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_action_set_active", 2678287736)
 
     public val getActionSetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_action_sets", 3995934104)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_action_sets", 3995934104)
 
     public val getAvailableDisplayRefreshRatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_available_display_refresh_rates", 3995934104)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_available_display_refresh_rates", 3995934104)
 
     public val setMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_motion_range", 855158159)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_motion_range", 855158159)
 
     public val getMotionRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_motion_range", 3955838114)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_motion_range", 3955838114)
 
     public val getHandTrackingSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_tracking_source", 4092421202)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_tracking_source", 4092421202)
 
     public val getHandJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags", 720567706)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_flags", 720567706)
 
     public val getHandJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_rotation", 1974618321)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_rotation", 1974618321)
 
     public val getHandJointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_position", 3529194242)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_position", 3529194242)
 
     public val getHandJointRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_radius", 901522724)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_radius", 901522724)
 
     public val getHandJointLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_linear_velocity", 3529194242)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_linear_velocity", 3529194242)
 
     public val getHandJointAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_hand_joint_angular_velocity", 3529194242)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_hand_joint_angular_velocity", 3529194242)
 
     public val isHandTrackingSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported", 2240911060)
+        Internals.getMethodBindPtr("OpenXRInterface", "is_hand_tracking_supported", 2240911060)
 
     public val isHandInteractionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_hand_interaction_supported", 36873697)
+        Internals.getMethodBindPtr("OpenXRInterface", "is_hand_interaction_supported", 36873697)
 
     public val isEyeGazeInteractionSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported", 2240911060)
+        Internals.getMethodBindPtr("OpenXRInterface", "is_eye_gaze_interaction_supported", 2240911060)
 
     public val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_min_radius", 1740695150)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_vrs_min_radius", 1740695150)
 
     public val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_min_radius", 373806689)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_vrs_min_radius", 373806689)
 
     public val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "get_vrs_strength", 1740695150)
+        Internals.getMethodBindPtr("OpenXRInterface", "get_vrs_strength", 1740695150)
 
     public val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength", 373806689)
+        Internals.getMethodBindPtr("OpenXRInterface", "set_vrs_strength", 373806689)
   }
 }

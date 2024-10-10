@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -18,7 +17,7 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -72,16 +71,16 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_XRCONTROLLER3D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_XRCONTROLLER3D_INDEX, scriptIndex)
   }
 
   /**
    * Returns `true` if the button with the given [name] is pressed.
    */
   public final fun isButtonPressed(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.isButtonPressedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.isButtonPressedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -89,9 +88,9 @@ public open class XRController3D : XRNode3D() {
    * variant will be typed according to the actions configuration.
    */
   public final fun getInput(name: StringName): Any? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
-    return (TransferContext.readReturnValue(ANY) as Any?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getInputPtr, ANY)
+    return (Internals.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -99,9 +98,9 @@ public open class XRController3D : XRNode3D() {
    * sensors.
    */
   public final fun getFloat(name: StringName): Float {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getFloatPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -109,36 +108,36 @@ public open class XRController3D : XRNode3D() {
    * thumbpads found on many controllers.
    */
   public final fun getVector2(name: StringName): Vector2 {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getVector2Ptr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getVector2Ptr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
    * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
-    return XRPositionalTracker.TrackerHand.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTrackerHandPtr, LONG)
+    return XRPositionalTracker.TrackerHand.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val isButtonPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "is_button_pressed", 2619796661)
+        Internals.getMethodBindPtr("XRController3D", "is_button_pressed", 2619796661)
 
     public val getInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_input", 2760726917)
+        Internals.getMethodBindPtr("XRController3D", "get_input", 2760726917)
 
     public val getFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_float", 2349060816)
+        Internals.getMethodBindPtr("XRController3D", "get_float", 2349060816)
 
     public val getVector2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_vector2", 3100822709)
+        Internals.getMethodBindPtr("XRController3D", "get_vector2", 3100822709)
 
     public val getTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_tracker_hand", 4181770860)
+        Internals.getMethodBindPtr("XRController3D", "get_tracker_hand", 4181770860)
   }
 }

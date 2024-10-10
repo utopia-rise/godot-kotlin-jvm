@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -77,7 +76,7 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_STATICBODY2D_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_STATICBODY2D_INDEX, scriptIndex)
   }
 
   /**
@@ -107,57 +106,57 @@ public open class StaticBody2D : PhysicsBody2D() {
 
 
   public final fun setConstantLinearVelocity(vel: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to vel)
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
+    Internals.writeArguments(VECTOR2 to vel)
+    Internals.callMethod(rawPtr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
 
   public final fun setConstantAngularVelocity(vel: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to vel.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
+    Internals.writeArguments(DOUBLE to vel.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
 
   public final fun getConstantLinearVelocity(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantLinearVelocityPtr, VECTOR2)
+    return (Internals.readReturnValue(VECTOR2) as Vector2)
   }
 
   public final fun getConstantAngularVelocity(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getConstantAngularVelocityPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
-    TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
+    Internals.writeArguments(OBJECT to physicsMaterialOverride)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
 
   public final fun getPhysicsMaterialOverride(): PhysicsMaterial? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicsMaterialOverridePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743155724)
+        Internals.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743155724)
 
     public val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373806689)
+        Internals.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373806689)
 
     public val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3341600327)
+        Internals.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3341600327)
 
     public val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1740695150)
+        Internals.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1740695150)
 
     public val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1784508650)
+        Internals.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1784508650)
 
     public val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2521850424)
+        Internals.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2521850424)
   }
 }

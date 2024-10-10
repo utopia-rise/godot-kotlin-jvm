@@ -9,13 +9,12 @@ package godot
 import godot.`annotation`.GodotBaseType
 import godot.core.NodePath
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -45,18 +44,19 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX,
+        scriptIndex)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {
-    TransferContext.writeArguments(LONG to length.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
+    Internals.writeArguments(LONG to length.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicalBoneChainLengthPtr, NIL)
   }
 
   public final fun getPhysicalBoneChainLength(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicalBoneChainLengthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -65,17 +65,17 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * [Skeleton2D].
    */
   public final fun setPhysicalBoneNode(jointIdx: Int, physicalbone2dNode: NodePath): Unit {
-    TransferContext.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to physicalbone2dNode)
-    TransferContext.callMethod(rawPtr, MethodBindings.setPhysicalBoneNodePtr, NIL)
+    Internals.writeArguments(LONG to jointIdx.toLong(), NODE_PATH to physicalbone2dNode)
+    Internals.callMethod(rawPtr, MethodBindings.setPhysicalBoneNodePtr, NIL)
   }
 
   /**
    * Returns the [PhysicalBone2D] node at [jointIdx].
    */
   public final fun getPhysicalBoneNode(jointIdx: Int): NodePath {
-    TransferContext.writeArguments(LONG to jointIdx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPhysicalBoneNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments(LONG to jointIdx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPhysicalBoneNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -83,8 +83,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
    * that are children of the [Skeleton2D].
    */
   public final fun fetchPhysicalBones(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.fetchPhysicalBonesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.fetchPhysicalBonesPtr, NIL)
   }
 
   /**
@@ -95,8 +95,8 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   @JvmOverloads
   public final fun startSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()):
       Unit {
-    TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr, MethodBindings.startSimulationPtr, NIL)
+    Internals.writeArguments(ARRAY to bones)
+    Internals.callMethod(rawPtr, MethodBindings.startSimulationPtr, NIL)
   }
 
   /**
@@ -107,32 +107,32 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
   @JvmOverloads
   public final fun stopSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()):
       Unit {
-    TransferContext.writeArguments(ARRAY to bones)
-    TransferContext.callMethod(rawPtr, MethodBindings.stopSimulationPtr, NIL)
+    Internals.writeArguments(ARRAY to bones)
+    Internals.callMethod(rawPtr, MethodBindings.stopSimulationPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setPhysicalBoneChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length", 1286410249)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_chain_length", 1286410249)
 
     public val getPhysicalBoneChainLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length", 2455072627)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_chain_length", 2455072627)
 
     public val setPhysicalBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node", 2761262315)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "set_physical_bone_node", 2761262315)
 
     public val getPhysicalBoneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node", 408788394)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "get_physical_bone_node", 408788394)
 
     public val fetchPhysicalBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones", 3218959716)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "fetch_physical_bones", 3218959716)
 
     public val startSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation", 2787316981)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "start_simulation", 2787316981)
 
     public val stopSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation", 2787316981)
+        Internals.getMethodBindPtr("SkeletonModification2DPhysicalBones", "stop_simulation", 2787316981)
   }
 }

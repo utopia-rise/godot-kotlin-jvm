@@ -14,7 +14,6 @@ import godot.core.PackedStringArray
 import godot.core.Rect2
 import godot.core.Signal0
 import godot.core.Signal1
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -31,7 +30,7 @@ import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -413,29 +412,29 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RICHTEXTLABEL_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RICHTEXTLABEL_INDEX, scriptIndex)
   }
 
   /**
    * Returns the text without BBCode mark-up.
    */
   public final fun getParsedText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParsedTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Adds raw non-BBCode-parsed text to the tag stack.
    */
   public final fun addText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.addTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.addTextPtr, NIL)
   }
 
   public final fun setText(text: String): Unit {
-    TransferContext.writeArguments(STRING to text)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
+    Internals.writeArguments(STRING to text)
+    Internals.callMethod(rawPtr, MethodBindings.setTextPtr, NIL)
   }
 
   /**
@@ -464,8 +463,8 @@ public open class RichTextLabel : Control() {
     tooltip: String = "",
     sizeInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
-    TransferContext.callMethod(rawPtr, MethodBindings.addImagePtr, NIL)
+    Internals.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    Internals.callMethod(rawPtr, MethodBindings.addImagePtr, NIL)
   }
 
   /**
@@ -486,16 +485,16 @@ public open class RichTextLabel : Control() {
     tooltip: String = "",
     sizeInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
-    TransferContext.callMethod(rawPtr, MethodBindings.updateImagePtr, NIL)
+    Internals.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    Internals.callMethod(rawPtr, MethodBindings.updateImagePtr, NIL)
   }
 
   /**
    * Adds a newline tag to the tag stack.
    */
   public final fun newline(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.newlinePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.newlinePtr, NIL)
   }
 
   /**
@@ -509,18 +508,18 @@ public open class RichTextLabel : Control() {
    */
   @JvmOverloads
   public final fun removeParagraph(paragraph: Int, noInvalidate: Boolean = false): Boolean {
-    TransferContext.writeArguments(LONG to paragraph.toLong(), BOOL to noInvalidate)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeParagraphPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to paragraph.toLong(), BOOL to noInvalidate)
+    Internals.callMethod(rawPtr, MethodBindings.removeParagraphPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Invalidates [paragraph] and all subsequent paragraphs cache.
    */
   public final fun invalidateParagraph(paragraph: Int): Boolean {
-    TransferContext.writeArguments(LONG to paragraph.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.invalidateParagraphPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to paragraph.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.invalidateParagraphPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -530,8 +529,8 @@ public open class RichTextLabel : Control() {
    */
   @JvmOverloads
   public final fun pushFont(font: Font?, fontSize: Int = 0): Unit {
-    TransferContext.writeArguments(OBJECT to font, LONG to fontSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pushFontPtr, NIL)
+    Internals.writeArguments(OBJECT to font, LONG to fontSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pushFontPtr, NIL)
   }
 
   /**
@@ -539,16 +538,16 @@ public open class RichTextLabel : Control() {
    * its duration.
    */
   public final fun pushFontSize(fontSize: Int): Unit {
-    TransferContext.writeArguments(LONG to fontSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pushFontSizePtr, NIL)
+    Internals.writeArguments(LONG to fontSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pushFontSizePtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][font][/code] tag with a normal font to the tag stack.
    */
   public final fun pushNormal(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushNormalPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushNormalPtr, NIL)
   }
 
   /**
@@ -556,16 +555,16 @@ public open class RichTextLabel : Control() {
    * adding a [code skip-lint][b][/code] tag if not currently in a [code skip-lint][i][/code] tag.
    */
   public final fun pushBold(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushBoldPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushBoldPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][font][/code] tag with a bold italics font to the tag stack.
    */
   public final fun pushBoldItalics(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushBoldItalicsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushBoldItalicsPtr, NIL)
   }
 
   /**
@@ -574,24 +573,24 @@ public open class RichTextLabel : Control() {
    * tag.
    */
   public final fun pushItalics(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushItalicsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushItalicsPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][font][/code] tag with a monospace font to the tag stack.
    */
   public final fun pushMono(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushMonoPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushMonoPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][color][/code] tag to the tag stack.
    */
   public final fun pushColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.pushColorPtr, NIL)
   }
 
   /**
@@ -599,8 +598,8 @@ public open class RichTextLabel : Control() {
    * outline size for its duration.
    */
   public final fun pushOutlineSize(outlineSize: Int): Unit {
-    TransferContext.writeArguments(LONG to outlineSize.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pushOutlineSizePtr, NIL)
+    Internals.writeArguments(LONG to outlineSize.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pushOutlineSizePtr, NIL)
   }
 
   /**
@@ -608,8 +607,8 @@ public open class RichTextLabel : Control() {
    * duration.
    */
   public final fun pushOutlineColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushOutlineColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.pushOutlineColorPtr, NIL)
   }
 
   /**
@@ -625,8 +624,8 @@ public open class RichTextLabel : Control() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlagValue(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
-    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushParagraphPtr, NIL)
+    Internals.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
+    Internals.callMethod(rawPtr, MethodBindings.pushParagraphPtr, NIL)
   }
 
   /**
@@ -634,8 +633,8 @@ public open class RichTextLabel : Control() {
    * [tabSize] to determine new margin length.
    */
   public final fun pushIndent(level: Int): Unit {
-    TransferContext.writeArguments(LONG to level.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pushIndentPtr, NIL)
+    Internals.writeArguments(LONG to level.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pushIndentPtr, NIL)
   }
 
   /**
@@ -649,8 +648,8 @@ public open class RichTextLabel : Control() {
     capitalize: Boolean,
     bullet: String = "•",
   ): Unit {
-    TransferContext.writeArguments(LONG to level.toLong(), LONG to type.id, BOOL to capitalize, STRING to bullet)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushListPtr, NIL)
+    Internals.writeArguments(LONG to level.toLong(), LONG to type.id, BOOL to capitalize, STRING to bullet)
+    Internals.callMethod(rawPtr, MethodBindings.pushListPtr, NIL)
   }
 
   /**
@@ -664,8 +663,8 @@ public open class RichTextLabel : Control() {
   @JvmOverloads
   public final fun pushMeta(`data`: Any?, underlineMode: MetaUnderline =
       RichTextLabel.MetaUnderline.META_UNDERLINE_ALWAYS): Unit {
-    TransferContext.writeArguments(ANY to data, LONG to underlineMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushMetaPtr, NIL)
+    Internals.writeArguments(ANY to data, LONG to underlineMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.pushMetaPtr, NIL)
   }
 
   /**
@@ -673,32 +672,32 @@ public open class RichTextLabel : Control() {
    * skip-lint][hint=something]{text}[/hint][/code].
    */
   public final fun pushHint(description: String): Unit {
-    TransferContext.writeArguments(STRING to description)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushHintPtr, NIL)
+    Internals.writeArguments(STRING to description)
+    Internals.callMethod(rawPtr, MethodBindings.pushHintPtr, NIL)
   }
 
   /**
    * Adds language code used for text shaping algorithm and Open-Type font features.
    */
   public final fun pushLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.pushLanguagePtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][u][/code] tag to the tag stack.
    */
   public final fun pushUnderline(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushUnderlinePtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushUnderlinePtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][s][/code] tag to the tag stack.
    */
   public final fun pushStrikethrough(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushStrikethroughPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushStrikethroughPtr, NIL)
   }
 
   /**
@@ -711,8 +710,8 @@ public open class RichTextLabel : Control() {
     inlineAlign: InlineAlignment = InlineAlignment.INLINE_ALIGNMENT_TOP_TO,
     alignToRow: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.id, LONG to alignToRow.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.pushTablePtr, NIL)
+    Internals.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.id, LONG to alignToRow.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.pushTablePtr, NIL)
   }
 
   /**
@@ -729,8 +728,8 @@ public open class RichTextLabel : Control() {
     outlineSize: Int = 0,
     outlineColor: Color = Color(Color(0, 0, 0, 0)),
   ): Unit {
-    TransferContext.writeArguments(STRING to string, OBJECT to font, LONG to size.toLong(), RECT2 to dropcapMargins, COLOR to color, LONG to outlineSize.toLong(), COLOR to outlineColor)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushDropcapPtr, NIL)
+    Internals.writeArguments(STRING to string, OBJECT to font, LONG to size.toLong(), RECT2 to dropcapMargins, COLOR to color, LONG to outlineSize.toLong(), COLOR to outlineColor)
+    Internals.callMethod(rawPtr, MethodBindings.pushDropcapPtr, NIL)
   }
 
   /**
@@ -746,40 +745,40 @@ public open class RichTextLabel : Control() {
     expand: Boolean,
     ratio: Int = 1,
   ): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTableColumnExpandPtr, NIL)
+    Internals.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTableColumnExpandPtr, NIL)
   }
 
   /**
    * Sets color of a table cell. Separate colors for alternating rows can be specified.
    */
   public final fun setCellRowBackgroundColor(oddRowBg: Color, evenRowBg: Color): Unit {
-    TransferContext.writeArguments(COLOR to oddRowBg, COLOR to evenRowBg)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellRowBackgroundColorPtr, NIL)
+    Internals.writeArguments(COLOR to oddRowBg, COLOR to evenRowBg)
+    Internals.callMethod(rawPtr, MethodBindings.setCellRowBackgroundColorPtr, NIL)
   }
 
   /**
    * Sets color of a table cell border.
    */
   public final fun setCellBorderColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellBorderColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setCellBorderColorPtr, NIL)
   }
 
   /**
    * Sets minimum and maximum size overrides for a table cell.
    */
   public final fun setCellSizeOverride(minSize: Vector2, maxSize: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to minSize, VECTOR2 to maxSize)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizeOverridePtr, NIL)
+    Internals.writeArguments(VECTOR2 to minSize, VECTOR2 to maxSize)
+    Internals.callMethod(rawPtr, MethodBindings.setCellSizeOverridePtr, NIL)
   }
 
   /**
    * Sets inner padding of a table cell.
    */
   public final fun setCellPadding(padding: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to padding)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellPaddingPtr, NIL)
+    Internals.writeArguments(RECT2 to padding)
+    Internals.callMethod(rawPtr, MethodBindings.setCellPaddingPtr, NIL)
   }
 
   /**
@@ -790,24 +789,24 @@ public open class RichTextLabel : Control() {
    * padding.
    */
   public final fun pushCell(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushCellPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushCellPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][fgcolor][/code] tag to the tag stack.
    */
   public final fun pushFgcolor(fgcolor: Color): Unit {
-    TransferContext.writeArguments(COLOR to fgcolor)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushFgcolorPtr, NIL)
+    Internals.writeArguments(COLOR to fgcolor)
+    Internals.callMethod(rawPtr, MethodBindings.pushFgcolorPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][bgcolor][/code] tag to the tag stack.
    */
   public final fun pushBgcolor(bgcolor: Color): Unit {
-    TransferContext.writeArguments(COLOR to bgcolor)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushBgcolorPtr, NIL)
+    Internals.writeArguments(COLOR to bgcolor)
+    Internals.callMethod(rawPtr, MethodBindings.pushBgcolorPtr, NIL)
   }
 
   /**
@@ -815,16 +814,16 @@ public open class RichTextLabel : Control() {
    * The environment is directly passed to the effect.
    */
   public final fun pushCustomfx(effect: RichTextEffect?, env: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(OBJECT to effect, DICTIONARY to env)
-    TransferContext.callMethod(rawPtr, MethodBindings.pushCustomfxPtr, NIL)
+    Internals.writeArguments(OBJECT to effect, DICTIONARY to env)
+    Internals.callMethod(rawPtr, MethodBindings.pushCustomfxPtr, NIL)
   }
 
   /**
    * Adds a context marker to the tag stack. See [popContext].
    */
   public final fun pushContext(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.pushContextPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.pushContextPtr, NIL)
   }
 
   /**
@@ -832,8 +831,8 @@ public open class RichTextLabel : Control() {
    * tags if there's no context marker on the stack.
    */
   public final fun popContext(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.popContextPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.popContextPtr, NIL)
   }
 
   /**
@@ -841,16 +840,16 @@ public open class RichTextLabel : Control() {
    * to follow `add_*` methods.
    */
   public final fun pop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.popPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.popPtr, NIL)
   }
 
   /**
    * Terminates all tags opened by `push_*` methods.
    */
   public final fun popAll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.popAllPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.popAllPtr, NIL)
   }
 
   /**
@@ -859,108 +858,107 @@ public open class RichTextLabel : Control() {
    * redrawn. However, setting [text] to an empty [String] also clears the stack.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
+    Internals.writeArguments(LONG to parser.id)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverride(): TextServer.StructuredTextParser {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
-    return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverridePtr, LONG)
+    return TextServer.StructuredTextParser.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to args)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
+    Internals.writeArguments(ARRAY to args)
+    Internals.callMethod(rawPtr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
 
   public final fun getStructuredTextBidiOverrideOptions(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr,
-        ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getStructuredTextBidiOverrideOptionsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
+    Internals.writeArguments(LONG to direction.id)
+    Internals.callMethod(rawPtr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
   public final fun getTextDirection(): Control.TextDirection {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
-    return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextDirectionPtr, LONG)
+    return Control.TextDirection.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setLanguage(language: String): Unit {
-    TransferContext.writeArguments(STRING to language)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(STRING to language)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
+    Internals.writeArguments(LONG to autowrapMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   public final fun getAutowrapMode(): TextServer.AutowrapMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
-    return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAutowrapModePtr, LONG)
+    return TextServer.AutowrapMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMetaUnderline(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMetaUnderlinePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setMetaUnderlinePtr, NIL)
   }
 
   public final fun isMetaUnderlined(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMetaUnderlinedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMetaUnderlinedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setHintUnderline(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setHintUnderlinePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setHintUnderlinePtr, NIL)
   }
 
   public final fun isHintUnderlined(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isHintUnderlinedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isHintUnderlinedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScrollActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollActivePtr, NIL)
   }
 
   public final fun isScrollActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScrollActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isScrollActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setScrollFollow(follow: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to follow)
-    TransferContext.callMethod(rawPtr, MethodBindings.setScrollFollowPtr, NIL)
+    Internals.writeArguments(BOOL to follow)
+    Internals.callMethod(rawPtr, MethodBindings.setScrollFollowPtr, NIL)
   }
 
   public final fun isScrollFollowing(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isScrollFollowingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isScrollFollowingPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -969,110 +967,110 @@ public open class RichTextLabel : Control() {
    * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getVScrollBar(): VScrollBar? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as VScrollBar?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVScrollBarPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as VScrollBar?)
   }
 
   /**
    * Scrolls the window's top line to match [line].
    */
   public final fun scrollToLine(line: Int): Unit {
-    TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.scrollToLinePtr, NIL)
+    Internals.writeArguments(LONG to line.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.scrollToLinePtr, NIL)
   }
 
   /**
    * Scrolls the window's top line to match first line of the [paragraph].
    */
   public final fun scrollToParagraph(paragraph: Int): Unit {
-    TransferContext.writeArguments(LONG to paragraph.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.scrollToParagraphPtr, NIL)
+    Internals.writeArguments(LONG to paragraph.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.scrollToParagraphPtr, NIL)
   }
 
   /**
    * Scrolls to the beginning of the current selection.
    */
   public final fun scrollToSelection(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.scrollToSelectionPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.scrollToSelectionPtr, NIL)
   }
 
   public final fun setTabSize(spaces: Int): Unit {
-    TransferContext.writeArguments(LONG to spaces.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTabSizePtr, NIL)
+    Internals.writeArguments(LONG to spaces.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setTabSizePtr, NIL)
   }
 
   public final fun getTabSize(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTabSizePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTabSizePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setFitContent(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFitContentPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setFitContentPtr, NIL)
   }
 
   public final fun isFitContentEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isFitContentEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isFitContentEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSelectionEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSelectionEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setSelectionEnabledPtr, NIL)
   }
 
   public final fun isSelectionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isSelectionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isSelectionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setContextMenuEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setContextMenuEnabledPtr, NIL)
   }
 
   public final fun isContextMenuEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isContextMenuEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setShortcutKeysEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
   }
 
   public final fun isShortcutKeysEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isShortcutKeysEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDeselectOnFocusLossEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
   }
 
   public final fun isDeselectOnFocusLossEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDeselectOnFocusLossEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDragAndDropSelectionEnabled(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
   }
 
   public final fun isDragAndDropSelectionEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDragAndDropSelectionEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1080,9 +1078,9 @@ public open class RichTextLabel : Control() {
    * Does not include BBCodes.
    */
   public final fun getSelectionFrom(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionFromPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectionFromPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1090,9 +1088,9 @@ public open class RichTextLabel : Control() {
    * Does not include BBCodes.
    */
   public final fun getSelectionTo(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectionToPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectionToPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1100,33 +1098,33 @@ public open class RichTextLabel : Control() {
    * If [selectionEnabled] is `false`, no selection will occur.
    */
   public final fun selectAll(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.selectAllPtr, NIL)
   }
 
   /**
    * Returns the current selection text. Does not include BBCodes.
    */
   public final fun getSelectedText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSelectedTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Clears the current selection.
    */
   public final fun deselect(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.deselectPtr, NIL)
   }
 
   /**
    * The assignment version of [appendText]. Clears the tag stack and inserts the new content.
    */
   public final fun parseBbcode(bbcode: String): Unit {
-    TransferContext.writeArguments(STRING to bbcode)
-    TransferContext.callMethod(rawPtr, MethodBindings.parseBbcodePtr, NIL)
+    Internals.writeArguments(STRING to bbcode)
+    Internals.callMethod(rawPtr, MethodBindings.parseBbcodePtr, NIL)
   }
 
   /**
@@ -1137,14 +1135,14 @@ public open class RichTextLabel : Control() {
    * future method call, append the [text] instead of using [appendText].
    */
   public final fun appendText(bbcode: String): Unit {
-    TransferContext.writeArguments(STRING to bbcode)
-    TransferContext.callMethod(rawPtr, MethodBindings.appendTextPtr, NIL)
+    Internals.writeArguments(STRING to bbcode)
+    Internals.callMethod(rawPtr, MethodBindings.appendTextPtr, NIL)
   }
 
   public final fun getText(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTextPtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -1152,65 +1150,65 @@ public open class RichTextLabel : Control() {
    * otherwise always return `true`.
    */
   public final fun isReady(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isReadyPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isReadyPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setThreaded(threaded: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to threaded)
-    TransferContext.callMethod(rawPtr, MethodBindings.setThreadedPtr, NIL)
+    Internals.writeArguments(BOOL to threaded)
+    Internals.callMethod(rawPtr, MethodBindings.setThreadedPtr, NIL)
   }
 
   public final fun isThreaded(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isThreadedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isThreadedPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setProgressBarDelay(delayMs: Int): Unit {
-    TransferContext.writeArguments(LONG to delayMs.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setProgressBarDelayPtr, NIL)
+    Internals.writeArguments(LONG to delayMs.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setProgressBarDelayPtr, NIL)
   }
 
   public final fun getProgressBarDelay(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getProgressBarDelayPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getProgressBarDelayPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setVisibleCharacters(amount: Int): Unit {
-    TransferContext.writeArguments(LONG to amount.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
+    Internals.writeArguments(LONG to amount.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleCharactersPtr, NIL)
   }
 
   public final fun getVisibleCharacters(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleCharactersPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun getVisibleCharactersBehavior(): TextServer.VisibleCharactersBehavior {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
-    return TextServer.VisibleCharactersBehavior.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleCharactersBehaviorPtr, LONG)
+    return TextServer.VisibleCharactersBehavior.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior):
       Unit {
-    TransferContext.writeArguments(LONG to behavior.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
+    Internals.writeArguments(LONG to behavior.id)
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
   }
 
   public final fun setVisibleRatio(ratio: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to ratio.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
+    Internals.writeArguments(DOUBLE to ratio.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVisibleRatioPtr, NIL)
   }
 
   public final fun getVisibleRatio(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleRatioPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1220,9 +1218,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getCharacterLine(character: Int): Int {
-    TransferContext.writeArguments(LONG to character.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCharacterLinePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to character.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCharacterLinePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1232,29 +1230,29 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getCharacterParagraph(character: Int): Int {
-    TransferContext.writeArguments(LONG to character.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCharacterParagraphPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to character.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCharacterParagraphPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the total number of characters from text tags. Does not include BBCodes.
    */
   public final fun getTotalCharacterCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTotalCharacterCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setUseBbcode(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseBbcodePtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseBbcodePtr, NIL)
   }
 
   public final fun isUsingBbcode(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingBbcodePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingBbcodePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -1263,9 +1261,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getLineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1274,9 +1272,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleLineCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleLineCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleLineCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1284,9 +1282,9 @@ public open class RichTextLabel : Control() {
    * Considers wrapped text as one paragraph.
    */
   public final fun getParagraphCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParagraphCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParagraphCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1296,9 +1294,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getVisibleParagraphCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVisibleParagraphCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVisibleParagraphCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1307,9 +1305,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentHeight(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContentHeightPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getContentHeightPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1318,9 +1316,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getContentWidth(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getContentWidthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getContentWidthPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -1329,9 +1327,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getLineOffset(line: Int): Float {
-    TransferContext.writeArguments(LONG to line.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getLineOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to line.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getLineOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1340,9 +1338,9 @@ public open class RichTextLabel : Control() {
    * document. Use [isReady] or [signal finished] to determine whether document is fully loaded.
    */
   public final fun getParagraphOffset(paragraph: Int): Float {
-    TransferContext.writeArguments(LONG to paragraph.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getParagraphOffsetPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments(LONG to paragraph.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getParagraphOffsetPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -1350,20 +1348,20 @@ public open class RichTextLabel : Control() {
    */
   public final fun parseExpressionsForValues(expressions: PackedStringArray):
       Dictionary<Any?, Any?> {
-    TransferContext.writeArguments(PACKED_STRING_ARRAY to expressions)
-    TransferContext.callMethod(rawPtr, MethodBindings.parseExpressionsForValuesPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments(PACKED_STRING_ARRAY to expressions)
+    Internals.callMethod(rawPtr, MethodBindings.parseExpressionsForValuesPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setEffects(effects: VariantArray<Any?>): Unit {
-    TransferContext.writeArguments(ARRAY to effects)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEffectsPtr, NIL)
+    Internals.writeArguments(ARRAY to effects)
+    Internals.callMethod(rawPtr, MethodBindings.setEffectsPtr, NIL)
   }
 
   public final fun getEffects(): VariantArray<Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEffectsPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEffectsPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
   /**
@@ -1392,8 +1390,8 @@ public open class RichTextLabel : Control() {
    * [/codeblock]
    */
   public final fun installEffect(effect: Any?): Unit {
-    TransferContext.writeArguments(ANY to effect)
-    TransferContext.callMethod(rawPtr, MethodBindings.installEffectPtr, NIL)
+    Internals.writeArguments(ANY to effect)
+    Internals.callMethod(rawPtr, MethodBindings.installEffectPtr, NIL)
   }
 
   /**
@@ -1445,9 +1443,9 @@ public open class RichTextLabel : Control() {
    * you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getMenu(): PopupMenu? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PopupMenu?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMenuPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PopupMenu?)
   }
 
   /**
@@ -1455,17 +1453,17 @@ public open class RichTextLabel : Control() {
    * performance (so the creation of the menu is avoided).
    */
   public final fun isMenuVisible(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isMenuVisiblePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Executes a given action as defined in the [MenuItems] enum.
    */
   public final fun menuOption(option: Int): Unit {
-    TransferContext.writeArguments(LONG to option.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
+    Internals.writeArguments(LONG to option.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.menuOptionPtr, NIL)
   }
 
   public enum class ListType(
@@ -1639,353 +1637,352 @@ public open class RichTextLabel : Control() {
 
   internal object MethodBindings {
     public val getParsedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_parsed_text", 201670096)
+        Internals.getMethodBindPtr("RichTextLabel", "get_parsed_text", 201670096)
 
     public val addTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "add_text", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "add_text", 83702148)
 
     public val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_text", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "set_text", 83702148)
 
     public val addImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 3017663154)
+        Internals.getMethodBindPtr("RichTextLabel", "add_image", 3017663154)
 
     public val updateImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 815048486)
+        Internals.getMethodBindPtr("RichTextLabel", "update_image", 815048486)
 
     public val newlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "newline", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "newline", 3218959716)
 
     public val removeParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "remove_paragraph", 3262369265)
+        Internals.getMethodBindPtr("RichTextLabel", "remove_paragraph", 3262369265)
 
     public val invalidateParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "invalidate_paragraph", 3067735520)
+        Internals.getMethodBindPtr("RichTextLabel", "invalidate_paragraph", 3067735520)
 
     public val pushFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_font", 2347424842)
+        Internals.getMethodBindPtr("RichTextLabel", "push_font", 2347424842)
 
     public val pushFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_font_size", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "push_font_size", 1286410249)
 
     public val pushNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_normal", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_normal", 3218959716)
 
     public val pushBoldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_bold", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_bold", 3218959716)
 
     public val pushBoldItalicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_bold_italics", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_bold_italics", 3218959716)
 
     public val pushItalicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_italics", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_italics", 3218959716)
 
     public val pushMonoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_mono", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_mono", 3218959716)
 
     public val pushColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_color", 2920490490)
+        Internals.getMethodBindPtr("RichTextLabel", "push_color", 2920490490)
 
     public val pushOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_size", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "push_outline_size", 1286410249)
 
     public val pushOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_outline_color", 2920490490)
+        Internals.getMethodBindPtr("RichTextLabel", "push_outline_color", 2920490490)
 
     public val pushParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_paragraph", 3089306873)
+        Internals.getMethodBindPtr("RichTextLabel", "push_paragraph", 3089306873)
 
     public val pushIndentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_indent", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "push_indent", 1286410249)
 
     public val pushListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_list", 3017143144)
+        Internals.getMethodBindPtr("RichTextLabel", "push_list", 3017143144)
 
     public val pushMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_meta", 2206155733)
+        Internals.getMethodBindPtr("RichTextLabel", "push_meta", 2206155733)
 
     public val pushHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_hint", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "push_hint", 83702148)
 
     public val pushLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_language", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "push_language", 83702148)
 
     public val pushUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_underline", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_underline", 3218959716)
 
     public val pushStrikethroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_strikethrough", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_strikethrough", 3218959716)
 
     public val pushTablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_table", 2623499273)
+        Internals.getMethodBindPtr("RichTextLabel", "push_table", 2623499273)
 
     public val pushDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
+        Internals.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
 
     public val setTableColumnExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 2185176273)
+        Internals.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 2185176273)
 
     public val setCellRowBackgroundColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
+        Internals.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
 
     public val setCellBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_border_color", 2920490490)
+        Internals.getMethodBindPtr("RichTextLabel", "set_cell_border_color", 2920490490)
 
     public val setCellSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_size_override", 3108078480)
+        Internals.getMethodBindPtr("RichTextLabel", "set_cell_size_override", 3108078480)
 
     public val setCellPaddingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_padding", 2046264180)
+        Internals.getMethodBindPtr("RichTextLabel", "set_cell_padding", 2046264180)
 
     public val pushCellPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_cell", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_cell", 3218959716)
 
     public val pushFgcolorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_fgcolor", 2920490490)
+        Internals.getMethodBindPtr("RichTextLabel", "push_fgcolor", 2920490490)
 
     public val pushBgcolorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_bgcolor", 2920490490)
+        Internals.getMethodBindPtr("RichTextLabel", "push_bgcolor", 2920490490)
 
     public val pushCustomfxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_customfx", 2337942958)
+        Internals.getMethodBindPtr("RichTextLabel", "push_customfx", 2337942958)
 
     public val pushContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_context", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "push_context", 3218959716)
 
     public val popContextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "pop_context", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "pop_context", 3218959716)
 
-    public val popPtr: VoidPtr = TypeManager.getMethodBindPtr("RichTextLabel", "pop", 3218959716)
+    public val popPtr: VoidPtr = Internals.getMethodBindPtr("RichTextLabel", "pop", 3218959716)
 
     public val popAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "pop_all", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "pop_all", 3218959716)
 
-    public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("RichTextLabel", "clear", 3218959716)
 
     public val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override", 55961453)
+        Internals.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override", 55961453)
 
     public val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override", 3385126229)
+        Internals.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override", 3385126229)
 
     public val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override_options", 381264803)
+        Internals.getMethodBindPtr("RichTextLabel", "set_structured_text_bidi_override_options", 381264803)
 
     public val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override_options", 3995934104)
+        Internals.getMethodBindPtr("RichTextLabel", "get_structured_text_bidi_override_options", 3995934104)
 
     public val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_text_direction", 119160795)
+        Internals.getMethodBindPtr("RichTextLabel", "set_text_direction", 119160795)
 
     public val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_text_direction", 797257663)
+        Internals.getMethodBindPtr("RichTextLabel", "get_text_direction", 797257663)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_language", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "set_language", 83702148)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_language", 201670096)
+        Internals.getMethodBindPtr("RichTextLabel", "get_language", 201670096)
 
     public val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_autowrap_mode", 3289138044)
+        Internals.getMethodBindPtr("RichTextLabel", "set_autowrap_mode", 3289138044)
 
     public val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_autowrap_mode", 1549071663)
+        Internals.getMethodBindPtr("RichTextLabel", "get_autowrap_mode", 1549071663)
 
     public val setMetaUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_meta_underline", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_meta_underline", 2586408642)
 
     public val isMetaUnderlinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_meta_underlined", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_meta_underlined", 36873697)
 
     public val setHintUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_hint_underline", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_hint_underline", 2586408642)
 
     public val isHintUnderlinedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_hint_underlined", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_hint_underlined", 36873697)
 
     public val setScrollActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_active", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_scroll_active", 2586408642)
 
     public val isScrollActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_active", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_scroll_active", 36873697)
 
     public val setScrollFollowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_follow", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_scroll_follow", 2586408642)
 
     public val isScrollFollowingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_following", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_scroll_following", 36873697)
 
     public val getVScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_v_scroll_bar", 2630340773)
+        Internals.getMethodBindPtr("RichTextLabel", "get_v_scroll_bar", 2630340773)
 
     public val scrollToLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_line", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "scroll_to_line", 1286410249)
 
     public val scrollToParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_paragraph", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "scroll_to_paragraph", 1286410249)
 
     public val scrollToSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "scroll_to_selection", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "scroll_to_selection", 3218959716)
 
     public val setTabSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_tab_size", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "set_tab_size", 1286410249)
 
     public val getTabSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_tab_size", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_tab_size", 3905245786)
 
     public val setFitContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_fit_content", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_fit_content", 2586408642)
 
     public val isFitContentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_fit_content_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_fit_content_enabled", 36873697)
 
     public val setSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_selection_enabled", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_selection_enabled", 2586408642)
 
     public val isSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_selection_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_selection_enabled", 36873697)
 
     public val setContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_context_menu_enabled", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_context_menu_enabled", 2586408642)
 
     public val isContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_context_menu_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_context_menu_enabled", 36873697)
 
     public val setShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_shortcut_keys_enabled", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_shortcut_keys_enabled", 2586408642)
 
     public val isShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_shortcut_keys_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_shortcut_keys_enabled", 36873697)
 
     public val setDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_deselect_on_focus_loss_enabled", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_deselect_on_focus_loss_enabled", 2586408642)
 
     public val isDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_deselect_on_focus_loss_enabled", 36873697)
 
     public val setDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_drag_and_drop_selection_enabled", 2586408642)
 
     public val isDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_drag_and_drop_selection_enabled", 36873697)
 
     public val getSelectionFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_from", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_selection_from", 3905245786)
 
     public val getSelectionToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selection_to", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_selection_to", 3905245786)
 
     public val selectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "select_all", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "select_all", 3218959716)
 
     public val getSelectedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_selected_text", 201670096)
+        Internals.getMethodBindPtr("RichTextLabel", "get_selected_text", 201670096)
 
     public val deselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "deselect", 3218959716)
+        Internals.getMethodBindPtr("RichTextLabel", "deselect", 3218959716)
 
     public val parseBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "parse_bbcode", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "parse_bbcode", 83702148)
 
     public val appendTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "append_text", 83702148)
+        Internals.getMethodBindPtr("RichTextLabel", "append_text", 83702148)
 
     public val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_text", 201670096)
+        Internals.getMethodBindPtr("RichTextLabel", "get_text", 201670096)
 
     public val isReadyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_ready", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_ready", 36873697)
 
     public val setThreadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_threaded", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_threaded", 2586408642)
 
     public val isThreadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_threaded", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_threaded", 36873697)
 
     public val setProgressBarDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_progress_bar_delay", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "set_progress_bar_delay", 1286410249)
 
     public val getProgressBarDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_progress_bar_delay", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_progress_bar_delay", 3905245786)
 
     public val setVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "set_visible_characters", 1286410249)
 
     public val getVisibleCharactersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_visible_characters", 3905245786)
 
     public val getVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_characters_behavior", 258789322)
+        Internals.getMethodBindPtr("RichTextLabel", "get_visible_characters_behavior", 258789322)
 
     public val setVisibleCharactersBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_characters_behavior", 3383839701)
+        Internals.getMethodBindPtr("RichTextLabel", "set_visible_characters_behavior", 3383839701)
 
     public val setVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_visible_ratio", 373806689)
+        Internals.getMethodBindPtr("RichTextLabel", "set_visible_ratio", 373806689)
 
     public val getVisibleRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_ratio", 1740695150)
+        Internals.getMethodBindPtr("RichTextLabel", "get_visible_ratio", 1740695150)
 
     public val getCharacterLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_line", 3744713108)
+        Internals.getMethodBindPtr("RichTextLabel", "get_character_line", 3744713108)
 
     public val getCharacterParagraphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_character_paragraph", 3744713108)
+        Internals.getMethodBindPtr("RichTextLabel", "get_character_paragraph", 3744713108)
 
     public val getTotalCharacterCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_total_character_count", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_total_character_count", 3905245786)
 
     public val setUseBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_use_bbcode", 2586408642)
+        Internals.getMethodBindPtr("RichTextLabel", "set_use_bbcode", 2586408642)
 
     public val isUsingBbcodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_using_bbcode", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_using_bbcode", 36873697)
 
     public val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_count", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_line_count", 3905245786)
 
     public val getVisibleLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_line_count", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_visible_line_count", 3905245786)
 
     public val getParagraphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_count", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_paragraph_count", 3905245786)
 
     public val getVisibleParagraphCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_paragraph_count", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_visible_paragraph_count", 3905245786)
 
     public val getContentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_height", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_content_height", 3905245786)
 
     public val getContentWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_content_width", 3905245786)
+        Internals.getMethodBindPtr("RichTextLabel", "get_content_width", 3905245786)
 
     public val getLineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_offset", 4025615559)
+        Internals.getMethodBindPtr("RichTextLabel", "get_line_offset", 4025615559)
 
     public val getParagraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_paragraph_offset", 4025615559)
+        Internals.getMethodBindPtr("RichTextLabel", "get_paragraph_offset", 4025615559)
 
     public val parseExpressionsForValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "parse_expressions_for_values", 1522900837)
+        Internals.getMethodBindPtr("RichTextLabel", "parse_expressions_for_values", 1522900837)
 
     public val setEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "set_effects", 381264803)
+        Internals.getMethodBindPtr("RichTextLabel", "set_effects", 381264803)
 
     public val getEffectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_effects", 2915620761)
+        Internals.getMethodBindPtr("RichTextLabel", "get_effects", 2915620761)
 
     public val installEffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "install_effect", 1114965689)
+        Internals.getMethodBindPtr("RichTextLabel", "install_effect", 1114965689)
 
     public val getMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "get_menu", 229722558)
+        Internals.getMethodBindPtr("RichTextLabel", "get_menu", 229722558)
 
     public val isMenuVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "is_menu_visible", 36873697)
+        Internals.getMethodBindPtr("RichTextLabel", "is_menu_visible", 36873697)
 
     public val menuOptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "menu_option", 1286410249)
+        Internals.getMethodBindPtr("RichTextLabel", "menu_option", 1286410249)
   }
 }

@@ -13,7 +13,6 @@ import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -27,7 +26,7 @@ import godot.core.VariantParser.QUATERNION
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -218,7 +217,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_ANIMATIONMIXER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_ANIMATIONMIXER_INDEX, scriptIndex)
   }
 
   /**
@@ -246,34 +245,34 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun addAnimationLibrary(name: StringName, library: AnimationLibrary?): Error {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to library)
-    TransferContext.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(STRING_NAME to name, OBJECT to library)
+    Internals.callMethod(rawPtr, MethodBindings.addAnimationLibraryPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Removes the [AnimationLibrary] associated with the key [name].
    */
   public final fun removeAnimationLibrary(name: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeAnimationLibraryPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.removeAnimationLibraryPtr, NIL)
   }
 
   /**
    * Moves the [AnimationLibrary] associated with the key [name] to the key [newname].
    */
   public final fun renameAnimationLibrary(name: StringName, newname: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
-    TransferContext.callMethod(rawPtr, MethodBindings.renameAnimationLibraryPtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, STRING_NAME to newname)
+    Internals.callMethod(rawPtr, MethodBindings.renameAnimationLibraryPtr, NIL)
   }
 
   /**
    * Returns `true` if the [AnimationMixer] stores an [AnimationLibrary] with key [name].
    */
   public final fun hasAnimationLibrary(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationLibraryPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasAnimationLibraryPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -281,27 +280,27 @@ public open class AnimationMixer internal constructor() : Node() {
    * To get the [AnimationMixer]'s global animation library, use `get_animation_library("")`.
    */
   public final fun getAnimationLibrary(name: StringName): AnimationLibrary? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as AnimationLibrary?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationLibraryPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as AnimationLibrary?)
   }
 
   /**
    * Returns the list of stored library keys.
    */
   public final fun getAnimationLibraryList(): VariantArray<StringName> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationLibraryListPtr, ARRAY)
-    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationLibraryListPtr, ARRAY)
+    return (Internals.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
    * Returns `true` if the [AnimationMixer] stores an [Animation] with key [name].
    */
   public final fun hasAnimation(name: StringName): Boolean {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.hasAnimationPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -309,106 +308,106 @@ public open class AnimationMixer internal constructor() : Node() {
    * returned and an error is logged.
    */
   public final fun getAnimation(name: StringName): Animation? {
-    TransferContext.writeArguments(STRING_NAME to name)
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Animation?)
+    Internals.writeArguments(STRING_NAME to name)
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as Animation?)
   }
 
   /**
    * Returns the list of stored animation keys.
    */
   public final fun getAnimationList(): PackedStringArray {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAnimationListPtr, PACKED_STRING_ARRAY)
+    return (Internals.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   public final fun setActive(active: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to active)
-    TransferContext.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
+    Internals.writeArguments(BOOL to active)
+    Internals.callMethod(rawPtr, MethodBindings.setActivePtr, NIL)
   }
 
   public final fun isActive(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isActivePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDeterministic(deterministic: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to deterministic)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDeterministicPtr, NIL)
+    Internals.writeArguments(BOOL to deterministic)
+    Internals.callMethod(rawPtr, MethodBindings.setDeterministicPtr, NIL)
   }
 
   public final fun isDeterministic(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDeterministicPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDeterministicPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setRootNode(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootNodePtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setRootNodePtr, NIL)
   }
 
   public final fun getRootNode(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootNodePtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootNodePtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   public final fun setCallbackModeProcess(mode: AnimationCallbackModeProcess): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeProcessPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCallbackModeProcessPtr, NIL)
   }
 
   public final fun getCallbackModeProcess(): AnimationCallbackModeProcess {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeProcessPtr, LONG)
-    return AnimationMixer.AnimationCallbackModeProcess.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCallbackModeProcessPtr, LONG)
+    return AnimationMixer.AnimationCallbackModeProcess.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCallbackModeMethod(mode: AnimationCallbackModeMethod): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCallbackModeMethodPtr, NIL)
   }
 
   public final fun getCallbackModeMethod(): AnimationCallbackModeMethod {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeMethodPtr, LONG)
-    return AnimationMixer.AnimationCallbackModeMethod.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCallbackModeMethodPtr, LONG)
+    return AnimationMixer.AnimationCallbackModeMethod.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCallbackModeDiscrete(mode: AnimationCallbackModeDiscrete): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
+    Internals.writeArguments(LONG to mode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCallbackModeDiscretePtr, NIL)
   }
 
   public final fun getCallbackModeDiscrete(): AnimationCallbackModeDiscrete {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCallbackModeDiscretePtr, LONG)
-    return AnimationMixer.AnimationCallbackModeDiscrete.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCallbackModeDiscretePtr, LONG)
+    return AnimationMixer.AnimationCallbackModeDiscrete.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setAudioMaxPolyphony(maxPolyphony: Int): Unit {
-    TransferContext.writeArguments(LONG to maxPolyphony.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
+    Internals.writeArguments(LONG to maxPolyphony.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setAudioMaxPolyphonyPtr, NIL)
   }
 
   public final fun getAudioMaxPolyphony(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAudioMaxPolyphonyPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setRootMotionTrack(path: NodePath): Unit {
-    TransferContext.writeArguments(NODE_PATH to path)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRootMotionTrackPtr, NIL)
+    Internals.writeArguments(NODE_PATH to path)
+    Internals.callMethod(rawPtr, MethodBindings.setRootMotionTrackPtr, NIL)
   }
 
   public final fun getRootMotionTrack(): NodePath {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
-    return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionTrackPtr, NODE_PATH)
+    return (Internals.readReturnValue(NODE_PATH) as NodePath)
   }
 
   /**
@@ -449,9 +448,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionPosition(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionPositionPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionPositionPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -471,9 +470,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionRotation(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionRotationPtr, QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionRotationPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   /**
@@ -499,9 +498,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```
    */
   public final fun getRootMotionScale(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionScalePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionScalePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -531,9 +530,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionPositionAccumulator(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionPositionAccumulatorPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionPositionAccumulatorPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -566,10 +565,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionRotationAccumulator(): Quaternion {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionRotationAccumulatorPtr,
-        QUATERNION)
-    return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionRotationAccumulatorPtr, QUATERNION)
+    return (Internals.readReturnValue(QUATERNION) as Quaternion)
   }
 
   /**
@@ -598,9 +596,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * useful for some simple use cases.
    */
   public final fun getRootMotionScaleAccumulator(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRootMotionScaleAccumulatorPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRootMotionScaleAccumulatorPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
@@ -608,16 +606,16 @@ public open class AnimationMixer internal constructor() : Node() {
    * forces it to update the cache again.
    */
   public final fun clearCaches(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearCachesPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearCachesPtr, NIL)
   }
 
   /**
    * Manually advance the animations by the specified time (in seconds).
    */
   public final fun advance(delta: Double): Unit {
-    TransferContext.writeArguments(DOUBLE to delta)
-    TransferContext.callMethod(rawPtr, MethodBindings.advancePtr, NIL)
+    Internals.writeArguments(DOUBLE to delta)
+    Internals.callMethod(rawPtr, MethodBindings.advancePtr, NIL)
   }
 
   /**
@@ -638,28 +636,28 @@ public open class AnimationMixer internal constructor() : Node() {
     transType: Tween.TransitionType = Tween.TransitionType.TRANS_LINEAR,
     easeType: Tween.EaseType = Tween.EaseType.EASE_IN,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.capturePtr, NIL)
+    Internals.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+    Internals.callMethod(rawPtr, MethodBindings.capturePtr, NIL)
   }
 
   public final fun setResetOnSaveEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setResetOnSaveEnabledPtr, NIL)
   }
 
   public final fun isResetOnSaveEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isResetOnSaveEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the key of [animation] or an empty [StringName] if not found.
    */
   public final fun findAnimation(animation: Animation?): StringName {
-    TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(OBJECT to animation)
+    Internals.callMethod(rawPtr, MethodBindings.findAnimationPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   /**
@@ -667,9 +665,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * if not found.
    */
   public final fun findAnimationLibrary(animation: Animation?): StringName {
-    TransferContext.writeArguments(OBJECT to animation)
-    TransferContext.callMethod(rawPtr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments(OBJECT to animation)
+    Internals.callMethod(rawPtr, MethodBindings.findAnimationLibraryPtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public enum class AnimationCallbackModeProcess(
@@ -767,117 +765,117 @@ public open class AnimationMixer internal constructor() : Node() {
 
   internal object MethodBindings {
     public val addAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "add_animation_library", 618909818)
+        Internals.getMethodBindPtr("AnimationMixer", "add_animation_library", 618909818)
 
     public val removeAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "remove_animation_library", 3304788590)
+        Internals.getMethodBindPtr("AnimationMixer", "remove_animation_library", 3304788590)
 
     public val renameAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "rename_animation_library", 3740211285)
+        Internals.getMethodBindPtr("AnimationMixer", "rename_animation_library", 3740211285)
 
     public val hasAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation_library", 2619796661)
+        Internals.getMethodBindPtr("AnimationMixer", "has_animation_library", 2619796661)
 
     public val getAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library", 147342321)
+        Internals.getMethodBindPtr("AnimationMixer", "get_animation_library", 147342321)
 
     public val getAnimationLibraryListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_library_list", 3995934104)
+        Internals.getMethodBindPtr("AnimationMixer", "get_animation_library_list", 3995934104)
 
     public val hasAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "has_animation", 2619796661)
+        Internals.getMethodBindPtr("AnimationMixer", "has_animation", 2619796661)
 
     public val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation", 2933122410)
+        Internals.getMethodBindPtr("AnimationMixer", "get_animation", 2933122410)
 
     public val getAnimationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_animation_list", 1139954409)
+        Internals.getMethodBindPtr("AnimationMixer", "get_animation_list", 1139954409)
 
     public val setActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_active", 2586408642)
+        Internals.getMethodBindPtr("AnimationMixer", "set_active", 2586408642)
 
     public val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "is_active", 36873697)
+        Internals.getMethodBindPtr("AnimationMixer", "is_active", 36873697)
 
     public val setDeterministicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_deterministic", 2586408642)
+        Internals.getMethodBindPtr("AnimationMixer", "set_deterministic", 2586408642)
 
     public val isDeterministicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "is_deterministic", 36873697)
+        Internals.getMethodBindPtr("AnimationMixer", "is_deterministic", 36873697)
 
     public val setRootNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_node", 1348162250)
+        Internals.getMethodBindPtr("AnimationMixer", "set_root_node", 1348162250)
 
     public val getRootNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_node", 4075236667)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_node", 4075236667)
 
     public val setCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_process", 2153733086)
+        Internals.getMethodBindPtr("AnimationMixer", "set_callback_mode_process", 2153733086)
 
     public val getCallbackModeProcessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_process", 1394468472)
+        Internals.getMethodBindPtr("AnimationMixer", "get_callback_mode_process", 1394468472)
 
     public val setCallbackModeMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_method", 742218271)
+        Internals.getMethodBindPtr("AnimationMixer", "set_callback_mode_method", 742218271)
 
     public val getCallbackModeMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_method", 489449656)
+        Internals.getMethodBindPtr("AnimationMixer", "get_callback_mode_method", 489449656)
 
     public val setCallbackModeDiscretePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_callback_mode_discrete", 1998944670)
+        Internals.getMethodBindPtr("AnimationMixer", "set_callback_mode_discrete", 1998944670)
 
     public val getCallbackModeDiscretePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_callback_mode_discrete", 3493168860)
+        Internals.getMethodBindPtr("AnimationMixer", "get_callback_mode_discrete", 3493168860)
 
     public val setAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony", 1286410249)
+        Internals.getMethodBindPtr("AnimationMixer", "set_audio_max_polyphony", 1286410249)
 
     public val getAudioMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_audio_max_polyphony", 3905245786)
+        Internals.getMethodBindPtr("AnimationMixer", "get_audio_max_polyphony", 3905245786)
 
     public val setRootMotionTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_root_motion_track", 1348162250)
+        Internals.getMethodBindPtr("AnimationMixer", "set_root_motion_track", 1348162250)
 
     public val getRootMotionTrackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_track", 4075236667)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_track", 4075236667)
 
     public val getRootMotionPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position", 3360562783)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_position", 3360562783)
 
     public val getRootMotionRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation", 1222331677)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation", 1222331677)
 
     public val getRootMotionScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale", 3360562783)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_scale", 3360562783)
 
     public val getRootMotionPositionAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_position_accumulator", 3360562783)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_position_accumulator", 3360562783)
 
     public val getRootMotionRotationAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation_accumulator", 1222331677)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_rotation_accumulator", 1222331677)
 
     public val getRootMotionScaleAccumulatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "get_root_motion_scale_accumulator", 3360562783)
+        Internals.getMethodBindPtr("AnimationMixer", "get_root_motion_scale_accumulator", 3360562783)
 
     public val clearCachesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "clear_caches", 3218959716)
+        Internals.getMethodBindPtr("AnimationMixer", "clear_caches", 3218959716)
 
     public val advancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "advance", 373806689)
+        Internals.getMethodBindPtr("AnimationMixer", "advance", 373806689)
 
     public val capturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "capture", 1333632127)
+        Internals.getMethodBindPtr("AnimationMixer", "capture", 1333632127)
 
     public val setResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled", 2586408642)
+        Internals.getMethodBindPtr("AnimationMixer", "set_reset_on_save_enabled", 2586408642)
 
     public val isResetOnSaveEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "is_reset_on_save_enabled", 36873697)
+        Internals.getMethodBindPtr("AnimationMixer", "is_reset_on_save_enabled", 36873697)
 
     public val findAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation", 1559484580)
+        Internals.getMethodBindPtr("AnimationMixer", "find_animation", 1559484580)
 
     public val findAnimationLibraryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationMixer", "find_animation_library", 1559484580)
+        Internals.getMethodBindPtr("AnimationMixer", "find_animation_library", 1559484580)
   }
 }

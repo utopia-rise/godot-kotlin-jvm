@@ -10,7 +10,6 @@ import godot.`annotation`.GodotBaseType
 import godot.core.Callable
 import godot.core.Signal0
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -19,7 +18,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -153,7 +152,7 @@ public open class UndoRedo : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_UNDOREDO_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_UNDOREDO_INDEX, scriptIndex)
   }
 
   /**
@@ -170,8 +169,8 @@ public open class UndoRedo : Object() {
     mergeMode: MergeMode = UndoRedo.MergeMode.MERGE_DISABLE,
     backwardUndoOps: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, BOOL to backwardUndoOps)
-    TransferContext.callMethod(rawPtr, MethodBindings.createActionPtr, NIL)
+    Internals.writeArguments(STRING to name, LONG to mergeMode.id, BOOL to backwardUndoOps)
+    Internals.callMethod(rawPtr, MethodBindings.createActionPtr, NIL)
   }
 
   /**
@@ -180,8 +179,8 @@ public open class UndoRedo : Object() {
    */
   @JvmOverloads
   public final fun commitAction(execute: Boolean = true): Unit {
-    TransferContext.writeArguments(BOOL to execute)
-    TransferContext.callMethod(rawPtr, MethodBindings.commitActionPtr, NIL)
+    Internals.writeArguments(BOOL to execute)
+    Internals.callMethod(rawPtr, MethodBindings.commitActionPtr, NIL)
   }
 
   /**
@@ -189,25 +188,25 @@ public open class UndoRedo : Object() {
    * method or property change (see [commitAction]).
    */
   public final fun isCommittingAction(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isCommittingActionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isCommittingActionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Register a [Callable] that will be called when the action is committed.
    */
   public final fun addDoMethod(callable: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.addDoMethodPtr, NIL)
+    Internals.writeArguments(CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.addDoMethodPtr, NIL)
   }
 
   /**
    * Register a [Callable] that will be called when the action is undone.
    */
   public final fun addUndoMethod(callable: Callable): Unit {
-    TransferContext.writeArguments(CALLABLE to callable)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUndoMethodPtr, NIL)
+    Internals.writeArguments(CALLABLE to callable)
+    Internals.callMethod(rawPtr, MethodBindings.addUndoMethodPtr, NIL)
   }
 
   /**
@@ -218,8 +217,8 @@ public open class UndoRedo : Object() {
     `property`: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.addDoPropertyPtr, NIL)
+    Internals.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.addDoPropertyPtr, NIL)
   }
 
   /**
@@ -230,8 +229,8 @@ public open class UndoRedo : Object() {
     `property`: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUndoPropertyPtr, NIL)
+    Internals.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
+    Internals.callMethod(rawPtr, MethodBindings.addUndoPropertyPtr, NIL)
   }
 
   /**
@@ -249,8 +248,8 @@ public open class UndoRedo : Object() {
    * [/codeblock]
    */
   public final fun addDoReference(`object`: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to `object`)
-    TransferContext.callMethod(rawPtr, MethodBindings.addDoReferencePtr, NIL)
+    Internals.writeArguments(OBJECT to `object`)
+    Internals.callMethod(rawPtr, MethodBindings.addDoReferencePtr, NIL)
   }
 
   /**
@@ -268,8 +267,8 @@ public open class UndoRedo : Object() {
    * [/codeblock]
    */
   public final fun addUndoReference(`object`: Object?): Unit {
-    TransferContext.writeArguments(OBJECT to `object`)
-    TransferContext.callMethod(rawPtr, MethodBindings.addUndoReferencePtr, NIL)
+    Internals.writeArguments(OBJECT to `object`)
+    Internals.callMethod(rawPtr, MethodBindings.addUndoReferencePtr, NIL)
   }
 
   /**
@@ -277,8 +276,8 @@ public open class UndoRedo : Object() {
    * another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
    */
   public final fun startForceKeepInMergeEnds(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.startForceKeepInMergeEndsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.startForceKeepInMergeEndsPtr, NIL)
   }
 
   /**
@@ -286,35 +285,35 @@ public open class UndoRedo : Object() {
    * [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
    */
   public final fun endForceKeepInMergeEnds(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.endForceKeepInMergeEndsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.endForceKeepInMergeEndsPtr, NIL)
   }
 
   /**
    * Returns how many elements are in the history.
    */
   public final fun getHistoryCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getHistoryCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getHistoryCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Gets the index of the current action.
    */
   public final fun getCurrentAction(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentActionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentActionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Gets the action name from its index.
    */
   public final fun getActionName(id: Int): String {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getActionNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getActionNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
@@ -324,35 +323,35 @@ public open class UndoRedo : Object() {
    */
   @JvmOverloads
   public final fun clearHistory(increaseVersion: Boolean = true): Unit {
-    TransferContext.writeArguments(BOOL to increaseVersion)
-    TransferContext.callMethod(rawPtr, MethodBindings.clearHistoryPtr, NIL)
+    Internals.writeArguments(BOOL to increaseVersion)
+    Internals.callMethod(rawPtr, MethodBindings.clearHistoryPtr, NIL)
   }
 
   /**
    * Gets the name of the current action, equivalent to `get_action_name(get_current_action())`.
    */
   public final fun getCurrentActionName(): String {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCurrentActionNamePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCurrentActionNamePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   /**
    * Returns `true` if an "undo" action is available.
    */
   public final fun hasUndo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasUndoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasUndoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if a "redo" action is available.
    */
   public final fun hasRedo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.hasRedoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.hasRedoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -361,38 +360,38 @@ public open class UndoRedo : Object() {
    * This is useful mostly to check if something changed from a saved version.
    */
   public final fun getVersion(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVersionPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVersionPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setMaxSteps(maxSteps: Int): Unit {
-    TransferContext.writeArguments(LONG to maxSteps.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
+    Internals.writeArguments(LONG to maxSteps.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setMaxStepsPtr, NIL)
   }
 
   public final fun getMaxSteps(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMaxStepsPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMaxStepsPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Redo the last action.
    */
   public final fun redo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.redoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.redoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Undo the last action.
    */
   public final fun undo(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.undoPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.undoPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class MergeMode(
@@ -428,68 +427,68 @@ public open class UndoRedo : Object() {
 
   internal object MethodBindings {
     public val createActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "create_action", 3171901514)
+        Internals.getMethodBindPtr("UndoRedo", "create_action", 3171901514)
 
     public val commitActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "commit_action", 3216645846)
+        Internals.getMethodBindPtr("UndoRedo", "commit_action", 3216645846)
 
     public val isCommittingActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "is_committing_action", 36873697)
+        Internals.getMethodBindPtr("UndoRedo", "is_committing_action", 36873697)
 
     public val addDoMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_method", 1611583062)
+        Internals.getMethodBindPtr("UndoRedo", "add_do_method", 1611583062)
 
     public val addUndoMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_method", 1611583062)
+        Internals.getMethodBindPtr("UndoRedo", "add_undo_method", 1611583062)
 
     public val addDoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_property", 1017172818)
+        Internals.getMethodBindPtr("UndoRedo", "add_do_property", 1017172818)
 
     public val addUndoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_property", 1017172818)
+        Internals.getMethodBindPtr("UndoRedo", "add_undo_property", 1017172818)
 
     public val addDoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_reference", 3975164845)
+        Internals.getMethodBindPtr("UndoRedo", "add_do_reference", 3975164845)
 
     public val addUndoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_reference", 3975164845)
+        Internals.getMethodBindPtr("UndoRedo", "add_undo_reference", 3975164845)
 
     public val startForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3218959716)
+        Internals.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3218959716)
 
     public val endForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3218959716)
+        Internals.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3218959716)
 
     public val getHistoryCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_history_count", 2455072627)
+        Internals.getMethodBindPtr("UndoRedo", "get_history_count", 2455072627)
 
     public val getCurrentActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action", 2455072627)
+        Internals.getMethodBindPtr("UndoRedo", "get_current_action", 2455072627)
 
     public val getActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_action_name", 990163283)
+        Internals.getMethodBindPtr("UndoRedo", "get_action_name", 990163283)
 
     public val clearHistoryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "clear_history", 3216645846)
+        Internals.getMethodBindPtr("UndoRedo", "clear_history", 3216645846)
 
     public val getCurrentActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action_name", 201670096)
+        Internals.getMethodBindPtr("UndoRedo", "get_current_action_name", 201670096)
 
-    public val hasUndoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
+    public val hasUndoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
 
-    public val hasRedoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
+    public val hasRedoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
 
     public val getVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_version", 3905245786)
+        Internals.getMethodBindPtr("UndoRedo", "get_version", 3905245786)
 
     public val setMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps", 1286410249)
+        Internals.getMethodBindPtr("UndoRedo", "set_max_steps", 1286410249)
 
     public val getMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps", 3905245786)
+        Internals.getMethodBindPtr("UndoRedo", "get_max_steps", 3905245786)
 
-    public val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo", 2240911060)
+    public val redoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "redo", 2240911060)
 
-    public val undoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "undo", 2240911060)
+    public val undoPtr: VoidPtr = Internals.getMethodBindPtr("UndoRedo", "undo", 2240911060)
   }
 }

@@ -8,10 +8,9 @@ package godot
 
 import godot.`annotation`.GodotBaseType
 import godot.core.Signal0
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -44,27 +43,27 @@ public open class ScrollBar internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_SCROLLBAR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_SCROLLBAR_INDEX, scriptIndex)
   }
 
   public final fun setCustomStep(step: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to step.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
+    Internals.writeArguments(DOUBLE to step.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCustomStepPtr, NIL)
   }
 
   public final fun getCustomStep(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCustomStepPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollBar", "set_custom_step", 373806689)
+        Internals.getMethodBindPtr("ScrollBar", "set_custom_step", 373806689)
 
     public val getCustomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ScrollBar", "get_custom_step", 1740695150)
+        Internals.getMethodBindPtr("ScrollBar", "get_custom_step", 1740695150)
   }
 }

@@ -7,13 +7,12 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -35,7 +34,7 @@ private const val ENGINE_CLASS_TCPSERVER_INDEX: Int = 568
 @GodotBaseType
 public open class TCPServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TCPSERVER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TCPSERVER_INDEX, scriptIndex)
   }
 
   /**
@@ -50,72 +49,72 @@ public open class TCPServer : RefCounted() {
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
-    TransferContext.writeArguments(LONG to port.toLong(), STRING to bindAddress)
-    TransferContext.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
-    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments(LONG to port.toLong(), STRING to bindAddress)
+    Internals.callMethod(rawPtr, MethodBindings.listenPtr, LONG)
+    return Error.from(Internals.readReturnValue(LONG) as Long)
   }
 
   /**
    * Returns `true` if a connection is available for taking.
    */
   public final fun isConnectionAvailable(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isConnectionAvailablePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns `true` if the server is currently listening for connections.
    */
   public final fun isListening(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isListeningPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the local port this server is listening to.
    */
   public final fun getLocalPort(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLocalPortPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * If a connection is available, returns a StreamPeerTCP with the connection.
    */
   public final fun takeConnection(): StreamPeerTCP? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.takeConnectionPtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
 
   /**
    * Stops listening.
    */
   public final fun stop(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.stopPtr, NIL)
   }
 
   public companion object
 
   internal object MethodBindings {
-    public val listenPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "listen", 3167955072)
+    public val listenPtr: VoidPtr = Internals.getMethodBindPtr("TCPServer", "listen", 3167955072)
 
     public val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available", 36873697)
+        Internals.getMethodBindPtr("TCPServer", "is_connection_available", 36873697)
 
     public val isListeningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_listening", 36873697)
+        Internals.getMethodBindPtr("TCPServer", "is_listening", 36873697)
 
     public val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "get_local_port", 3905245786)
+        Internals.getMethodBindPtr("TCPServer", "get_local_port", 3905245786)
 
     public val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "take_connection", 30545006)
+        Internals.getMethodBindPtr("TCPServer", "take_connection", 30545006)
 
-    public val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop", 3218959716)
+    public val stopPtr: VoidPtr = Internals.getMethodBindPtr("TCPServer", "stop", 3218959716)
   }
 }

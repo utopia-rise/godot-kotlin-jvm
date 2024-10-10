@@ -7,6 +7,7 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
+import godot.util.Internals
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
@@ -20,7 +21,7 @@ private const val ENGINE_CLASS_VBOXCONTAINER_INDEX: Int = 613
 @GodotBaseType
 public open class VBoxContainer : BoxContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VBOXCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VBOXCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

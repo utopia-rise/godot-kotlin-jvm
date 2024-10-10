@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Double
 import kotlin.Float
@@ -67,40 +66,40 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX, scriptIndex)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to seconds.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBufferLengthPtr, NIL)
   }
 
   public final fun getBufferLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBufferLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setTapBackPos(seconds: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seconds.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
+    Internals.writeArguments(DOUBLE to seconds.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setTapBackPosPtr, NIL)
   }
 
   public final fun getTapBackPos(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getTapBackPosPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
-    TransferContext.writeArguments(LONG to size.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
+    Internals.writeArguments(LONG to size.id)
+    Internals.callMethod(rawPtr, MethodBindings.setFftSizePtr, NIL)
   }
 
   public final fun getFftSize(): FFTSize {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
-    return AudioEffectSpectrumAnalyzer.FFTSize.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFftSizePtr, LONG)
+    return AudioEffectSpectrumAnalyzer.FFTSize.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class FFTSize(
@@ -151,21 +150,21 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
 
   internal object MethodBindings {
     public val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_buffer_length", 373806689)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_buffer_length", 373806689)
 
     public val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_buffer_length", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_buffer_length", 1740695150)
 
     public val setTapBackPosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_tap_back_pos", 373806689)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_tap_back_pos", 373806689)
 
     public val getTapBackPosPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_tap_back_pos", 1740695150)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_tap_back_pos", 1740695150)
 
     public val setFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_fft_size", 1202879215)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "set_fft_size", 1202879215)
 
     public val getFftSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_fft_size", 3925405343)
+        Internals.getMethodBindPtr("AudioEffectSpectrumAnalyzer", "get_fft_size", 3925405343)
   }
 }

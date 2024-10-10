@@ -11,13 +11,12 @@ import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Color
 import godot.core.Dictionary
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Any
 import kotlin.Boolean
@@ -122,7 +121,7 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CODEHIGHLIGHTER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CODEHIGHLIGHTER_INDEX, scriptIndex)
   }
 
   /**
@@ -228,53 +227,53 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * The keyword cannot contain any symbols except '_'.
    */
   public final fun addKeywordColor(keyword: String, color: Color): Unit {
-    TransferContext.writeArguments(STRING to keyword, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.addKeywordColorPtr, NIL)
+    Internals.writeArguments(STRING to keyword, COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.addKeywordColorPtr, NIL)
   }
 
   /**
    * Removes the keyword.
    */
   public final fun removeKeywordColor(keyword: String): Unit {
-    TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeKeywordColorPtr, NIL)
+    Internals.writeArguments(STRING to keyword)
+    Internals.callMethod(rawPtr, MethodBindings.removeKeywordColorPtr, NIL)
   }
 
   /**
    * Returns `true` if the keyword exists, else `false`.
    */
   public final fun hasKeywordColor(keyword: String): Boolean {
-    TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasKeywordColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to keyword)
+    Internals.callMethod(rawPtr, MethodBindings.hasKeywordColorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the color for a keyword.
    */
   public final fun getKeywordColor(keyword: String): Color {
-    TransferContext.writeArguments(STRING to keyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(STRING to keyword)
+    Internals.callMethod(rawPtr, MethodBindings.getKeywordColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setKeywordColors(keywords: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to keywords)
-    TransferContext.callMethod(rawPtr, MethodBindings.setKeywordColorsPtr, NIL)
+    Internals.writeArguments(DICTIONARY to keywords)
+    Internals.callMethod(rawPtr, MethodBindings.setKeywordColorsPtr, NIL)
   }
 
   /**
    * Removes all keywords.
    */
   public final fun clearKeywordColors(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearKeywordColorsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearKeywordColorsPtr, NIL)
   }
 
   public final fun getKeywordColors(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getKeywordColorsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getKeywordColorsPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -283,53 +282,53 @@ public open class CodeHighlighter : SyntaxHighlighter() {
    * It will not be highlighted if preceded by a '.'.
    */
   public final fun addMemberKeywordColor(memberKeyword: String, color: Color): Unit {
-    TransferContext.writeArguments(STRING to memberKeyword, COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.addMemberKeywordColorPtr, NIL)
+    Internals.writeArguments(STRING to memberKeyword, COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.addMemberKeywordColorPtr, NIL)
   }
 
   /**
    * Removes the member keyword.
    */
   public final fun removeMemberKeywordColor(memberKeyword: String): Unit {
-    TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeMemberKeywordColorPtr, NIL)
+    Internals.writeArguments(STRING to memberKeyword)
+    Internals.callMethod(rawPtr, MethodBindings.removeMemberKeywordColorPtr, NIL)
   }
 
   /**
    * Returns `true` if the member keyword exists, else `false`.
    */
   public final fun hasMemberKeywordColor(memberKeyword: String): Boolean {
-    TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasMemberKeywordColorPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to memberKeyword)
+    Internals.callMethod(rawPtr, MethodBindings.hasMemberKeywordColorPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Returns the color for a member keyword.
    */
   public final fun getMemberKeywordColor(memberKeyword: String): Color {
-    TransferContext.writeArguments(STRING to memberKeyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments(STRING to memberKeyword)
+    Internals.callMethod(rawPtr, MethodBindings.getMemberKeywordColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setMemberKeywordColors(memberKeyword: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to memberKeyword)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMemberKeywordColorsPtr, NIL)
+    Internals.writeArguments(DICTIONARY to memberKeyword)
+    Internals.callMethod(rawPtr, MethodBindings.setMemberKeywordColorsPtr, NIL)
   }
 
   /**
    * Removes all member keywords.
    */
   public final fun clearMemberKeywordColors(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearMemberKeywordColorsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearMemberKeywordColorsPtr, NIL)
   }
 
   public final fun getMemberKeywordColors(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMemberKeywordColorsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMemberKeywordColorsPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   /**
@@ -345,175 +344,175 @@ public open class CodeHighlighter : SyntaxHighlighter() {
     color: Color,
     lineOnly: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING to startKey, STRING to endKey, COLOR to color, BOOL to lineOnly)
-    TransferContext.callMethod(rawPtr, MethodBindings.addColorRegionPtr, NIL)
+    Internals.writeArguments(STRING to startKey, STRING to endKey, COLOR to color, BOOL to lineOnly)
+    Internals.callMethod(rawPtr, MethodBindings.addColorRegionPtr, NIL)
   }
 
   /**
    * Removes the color region that uses that start key.
    */
   public final fun removeColorRegion(startKey: String): Unit {
-    TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, MethodBindings.removeColorRegionPtr, NIL)
+    Internals.writeArguments(STRING to startKey)
+    Internals.callMethod(rawPtr, MethodBindings.removeColorRegionPtr, NIL)
   }
 
   /**
    * Returns `true` if the start key exists, else `false`.
    */
   public final fun hasColorRegion(startKey: String): Boolean {
-    TransferContext.writeArguments(STRING to startKey)
-    TransferContext.callMethod(rawPtr, MethodBindings.hasColorRegionPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(STRING to startKey)
+    Internals.callMethod(rawPtr, MethodBindings.hasColorRegionPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setColorRegions(colorRegions: Dictionary<Any?, Any?>): Unit {
-    TransferContext.writeArguments(DICTIONARY to colorRegions)
-    TransferContext.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
+    Internals.writeArguments(DICTIONARY to colorRegions)
+    Internals.callMethod(rawPtr, MethodBindings.setColorRegionsPtr, NIL)
   }
 
   /**
    * Removes all color regions.
    */
   public final fun clearColorRegions(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearColorRegionsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearColorRegionsPtr, NIL)
   }
 
   public final fun getColorRegions(): Dictionary<Any?, Any?> {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getColorRegionsPtr, DICTIONARY)
-    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getColorRegionsPtr, DICTIONARY)
+    return (Internals.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
   public final fun setFunctionColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFunctionColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setFunctionColorPtr, NIL)
   }
 
   public final fun getFunctionColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFunctionColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFunctionColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setNumberColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setNumberColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setNumberColorPtr, NIL)
   }
 
   public final fun getNumberColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNumberColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNumberColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setSymbolColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSymbolColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setSymbolColorPtr, NIL)
   }
 
   public final fun getSymbolColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSymbolColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSymbolColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public final fun setMemberVariableColor(color: Color): Unit {
-    TransferContext.writeArguments(COLOR to color)
-    TransferContext.callMethod(rawPtr, MethodBindings.setMemberVariableColorPtr, NIL)
+    Internals.writeArguments(COLOR to color)
+    Internals.callMethod(rawPtr, MethodBindings.setMemberVariableColorPtr, NIL)
   }
 
   public final fun getMemberVariableColor(): Color {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getMemberVariableColorPtr, COLOR)
-    return (TransferContext.readReturnValue(COLOR) as Color)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getMemberVariableColorPtr, COLOR)
+    return (Internals.readReturnValue(COLOR) as Color)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val addKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_keyword_color", 1636512886)
+        Internals.getMethodBindPtr("CodeHighlighter", "add_keyword_color", 1636512886)
 
     public val removeKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_keyword_color", 83702148)
+        Internals.getMethodBindPtr("CodeHighlighter", "remove_keyword_color", 83702148)
 
     public val hasKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_keyword_color", 3927539163)
+        Internals.getMethodBindPtr("CodeHighlighter", "has_keyword_color", 3927539163)
 
     public val getKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_color", 3855908743)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_keyword_color", 3855908743)
 
     public val setKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_keyword_colors", 4155329257)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_keyword_colors", 4155329257)
 
     public val clearKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors", 3218959716)
+        Internals.getMethodBindPtr("CodeHighlighter", "clear_keyword_colors", 3218959716)
 
     public val getKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_keyword_colors", 3102165223)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_keyword_colors", 3102165223)
 
     public val addMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color", 1636512886)
+        Internals.getMethodBindPtr("CodeHighlighter", "add_member_keyword_color", 1636512886)
 
     public val removeMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color", 83702148)
+        Internals.getMethodBindPtr("CodeHighlighter", "remove_member_keyword_color", 83702148)
 
     public val hasMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color", 3927539163)
+        Internals.getMethodBindPtr("CodeHighlighter", "has_member_keyword_color", 3927539163)
 
     public val getMemberKeywordColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color", 3855908743)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_member_keyword_color", 3855908743)
 
     public val setMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors", 4155329257)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_member_keyword_colors", 4155329257)
 
     public val clearMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors", 3218959716)
+        Internals.getMethodBindPtr("CodeHighlighter", "clear_member_keyword_colors", 3218959716)
 
     public val getMemberKeywordColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors", 3102165223)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_member_keyword_colors", 3102165223)
 
     public val addColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "add_color_region", 2924977451)
+        Internals.getMethodBindPtr("CodeHighlighter", "add_color_region", 2924977451)
 
     public val removeColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "remove_color_region", 83702148)
+        Internals.getMethodBindPtr("CodeHighlighter", "remove_color_region", 83702148)
 
     public val hasColorRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "has_color_region", 3927539163)
+        Internals.getMethodBindPtr("CodeHighlighter", "has_color_region", 3927539163)
 
     public val setColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_color_regions", 4155329257)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_color_regions", 4155329257)
 
     public val clearColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "clear_color_regions", 3218959716)
+        Internals.getMethodBindPtr("CodeHighlighter", "clear_color_regions", 3218959716)
 
     public val getColorRegionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_color_regions", 3102165223)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_color_regions", 3102165223)
 
     public val setFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_function_color", 2920490490)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_function_color", 2920490490)
 
     public val getFunctionColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_function_color", 3444240500)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_function_color", 3444240500)
 
     public val setNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_number_color", 2920490490)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_number_color", 2920490490)
 
     public val getNumberColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_number_color", 3444240500)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_number_color", 3444240500)
 
     public val setSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_symbol_color", 2920490490)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_symbol_color", 2920490490)
 
     public val getSymbolColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_symbol_color", 3444240500)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_symbol_color", 3444240500)
 
     public val setMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "set_member_variable_color", 2920490490)
+        Internals.getMethodBindPtr("CodeHighlighter", "set_member_variable_color", 2920490490)
 
     public val getMemberVariableColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CodeHighlighter", "get_member_variable_color", 3444240500)
+        Internals.getMethodBindPtr("CodeHighlighter", "get_member_variable_color", 3444240500)
   }
 }

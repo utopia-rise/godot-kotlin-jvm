@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -74,51 +73,51 @@ public open class ProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_PROGRESSBAR_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_PROGRESSBAR_INDEX, scriptIndex)
   }
 
   public final fun setFillMode(mode: Int): Unit {
-    TransferContext.writeArguments(LONG to mode.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
+    Internals.writeArguments(LONG to mode.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setFillModePtr, NIL)
   }
 
   public final fun getFillMode(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFillModePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setShowPercentage(visible: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to visible)
-    TransferContext.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
+    Internals.writeArguments(BOOL to visible)
+    Internals.callMethod(rawPtr, MethodBindings.setShowPercentagePtr, NIL)
   }
 
   public final fun isPercentageShown(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isPercentageShownPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setIndeterminate(indeterminate: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to indeterminate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
+    Internals.writeArguments(BOOL to indeterminate)
+    Internals.callMethod(rawPtr, MethodBindings.setIndeterminatePtr, NIL)
   }
 
   public final fun isIndeterminate(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isIndeterminatePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEditorPreviewIndeterminate(previewIndeterminate: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to previewIndeterminate)
-    TransferContext.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
+    Internals.writeArguments(BOOL to previewIndeterminate)
+    Internals.callMethod(rawPtr, MethodBindings.setEditorPreviewIndeterminatePtr, NIL)
   }
 
   public final fun isEditorPreviewIndeterminateEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isEditorPreviewIndeterminateEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class FillMode(
@@ -160,27 +159,27 @@ public open class ProgressBar : Range() {
 
   internal object MethodBindings {
     public val setFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_fill_mode", 1286410249)
+        Internals.getMethodBindPtr("ProgressBar", "set_fill_mode", 1286410249)
 
     public val getFillModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "get_fill_mode", 2455072627)
+        Internals.getMethodBindPtr("ProgressBar", "get_fill_mode", 2455072627)
 
     public val setShowPercentagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_show_percentage", 2586408642)
+        Internals.getMethodBindPtr("ProgressBar", "set_show_percentage", 2586408642)
 
     public val isPercentageShownPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_percentage_shown", 36873697)
+        Internals.getMethodBindPtr("ProgressBar", "is_percentage_shown", 36873697)
 
     public val setIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_indeterminate", 2586408642)
+        Internals.getMethodBindPtr("ProgressBar", "set_indeterminate", 2586408642)
 
     public val isIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_indeterminate", 36873697)
+        Internals.getMethodBindPtr("ProgressBar", "is_indeterminate", 36873697)
 
     public val setEditorPreviewIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate", 2586408642)
+        Internals.getMethodBindPtr("ProgressBar", "set_editor_preview_indeterminate", 2586408642)
 
     public val isEditorPreviewIndeterminateEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled", 36873697)
+        Internals.getMethodBindPtr("ProgressBar", "is_editor_preview_indeterminate_enabled", 36873697)
   }
 }

@@ -13,7 +13,6 @@ import godot.core.AABB
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,7 +23,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Double
@@ -347,7 +346,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_NAVIGATIONMESH_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_NAVIGATIONMESH_INDEX, scriptIndex)
   }
 
   /**
@@ -401,36 +400,36 @@ public open class NavigationMesh : Resource() {
 
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
-    TransferContext.writeArguments(LONG to samplePartitionType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
+    Internals.writeArguments(LONG to samplePartitionType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSamplePartitionTypePtr, NIL)
   }
 
   public final fun getSamplePartitionType(): SamplePartitionType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
-    return NavigationMesh.SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSamplePartitionTypePtr, LONG)
+    return NavigationMesh.SamplePartitionType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
-    TransferContext.writeArguments(LONG to geometryType.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
+    Internals.writeArguments(LONG to geometryType.id)
+    Internals.callMethod(rawPtr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
 
   public final fun getParsedGeometryType(): ParsedGeometryType {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
-    return NavigationMesh.ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getParsedGeometryTypePtr, LONG)
+    return NavigationMesh.ParsedGeometryType.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setCollisionMask(mask: Long): Unit {
-    TransferContext.writeArguments(LONG to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
+    Internals.writeArguments(LONG to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskPtr, NIL)
   }
 
   public final fun getCollisionMask(): Long {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -438,8 +437,8 @@ public open class NavigationMesh : Resource() {
    * a [layerNumber] between 1 and 32.
    */
   public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
+    Internals.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
+    Internals.callMethod(rawPtr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
@@ -447,292 +446,292 @@ public open class NavigationMesh : Resource() {
    * [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
-    TransferContext.writeArguments(LONG to layerNumber.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to layerNumber.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getCollisionMaskValuePtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setSourceGeometryMode(mask: SourceGeometryMode): Unit {
-    TransferContext.writeArguments(LONG to mask.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
+    Internals.writeArguments(LONG to mask.id)
+    Internals.callMethod(rawPtr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
 
   public final fun getSourceGeometryMode(): SourceGeometryMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
-    return NavigationMesh.SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceGeometryModePtr, LONG)
+    return NavigationMesh.SourceGeometryMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public final fun setSourceGroupName(mask: StringName): Unit {
-    TransferContext.writeArguments(STRING_NAME to mask)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
+    Internals.writeArguments(STRING_NAME to mask)
+    Internals.callMethod(rawPtr, MethodBindings.setSourceGroupNamePtr, NIL)
   }
 
   public final fun getSourceGroupName(): StringName {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
-    return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSourceGroupNamePtr, STRING_NAME)
+    return (Internals.readReturnValue(STRING_NAME) as StringName)
   }
 
   public final fun setCellSize(cellSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to cellSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCellSizePtr, NIL)
   }
 
   public final fun getCellSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setCellHeight(cellHeight: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to cellHeight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to cellHeight.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setCellHeightPtr, NIL)
   }
 
   public final fun getCellHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCellHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setBorderSize(borderSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to borderSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setBorderSizePtr, NIL)
   }
 
   public final fun getBorderSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getBorderSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentHeight(agentHeight: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to agentHeight.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
+    Internals.writeArguments(DOUBLE to agentHeight.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAgentHeightPtr, NIL)
   }
 
   public final fun getAgentHeight(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAgentHeightPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentRadius(agentRadius: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
+    Internals.writeArguments(DOUBLE to agentRadius.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAgentRadiusPtr, NIL)
   }
 
   public final fun getAgentRadius(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAgentRadiusPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentMaxClimb(agentMaxClimb: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to agentMaxClimb.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
+    Internals.writeArguments(DOUBLE to agentMaxClimb.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAgentMaxClimbPtr, NIL)
   }
 
   public final fun getAgentMaxClimb(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAgentMaxClimbPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setAgentMaxSlope(agentMaxSlope: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to agentMaxSlope.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
+    Internals.writeArguments(DOUBLE to agentMaxSlope.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setAgentMaxSlopePtr, NIL)
   }
 
   public final fun getAgentMaxSlope(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getAgentMaxSlopePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionMinSize(regionMinSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to regionMinSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to regionMinSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRegionMinSizePtr, NIL)
   }
 
   public final fun getRegionMinSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRegionMinSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setRegionMergeSize(regionMergeSize: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to regionMergeSize.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
+    Internals.writeArguments(DOUBLE to regionMergeSize.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setRegionMergeSizePtr, NIL)
   }
 
   public final fun getRegionMergeSize(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRegionMergeSizePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeMaxLength(edgeMaxLength: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edgeMaxLength.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
+    Internals.writeArguments(DOUBLE to edgeMaxLength.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEdgeMaxLengthPtr, NIL)
   }
 
   public final fun getEdgeMaxLength(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEdgeMaxLengthPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setEdgeMaxError(edgeMaxError: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to edgeMaxError.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
+    Internals.writeArguments(DOUBLE to edgeMaxError.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setEdgeMaxErrorPtr, NIL)
   }
 
   public final fun getEdgeMaxError(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getEdgeMaxErrorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setVerticesPerPolygon(verticesPerPolygon: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to verticesPerPolygon.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
+    Internals.writeArguments(DOUBLE to verticesPerPolygon.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setVerticesPerPolygonPtr, NIL)
   }
 
   public final fun getVerticesPerPolygon(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticesPerPolygonPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDetailSampleDistance(detailSampleDist: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to detailSampleDist.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
+    Internals.writeArguments(DOUBLE to detailSampleDist.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDetailSampleDistancePtr, NIL)
   }
 
   public final fun getDetailSampleDistance(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDetailSampleDistancePtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setDetailSampleMaxError(detailSampleMaxError: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to detailSampleMaxError.toDouble())
-    TransferContext.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
+    Internals.writeArguments(DOUBLE to detailSampleMaxError.toDouble())
+    Internals.callMethod(rawPtr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
   }
 
   public final fun getDetailSampleMaxError(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDetailSampleMaxErrorPtr, DOUBLE)
+    return (Internals.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFilterLowHangingObstacles(filterLowHangingObstacles: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to filterLowHangingObstacles)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
+    Internals.writeArguments(BOOL to filterLowHangingObstacles)
+    Internals.callMethod(rawPtr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
   }
 
   public final fun getFilterLowHangingObstacles(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilterLowHangingObstaclesPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterLedgeSpans(filterLedgeSpans: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to filterLedgeSpans)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
+    Internals.writeArguments(BOOL to filterLedgeSpans)
+    Internals.callMethod(rawPtr, MethodBindings.setFilterLedgeSpansPtr, NIL)
   }
 
   public final fun getFilterLedgeSpans(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilterLedgeSpansPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to filterWalkableLowHeightSpans)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
+    Internals.writeArguments(BOOL to filterWalkableLowHeightSpans)
+    Internals.callMethod(rawPtr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
   }
 
   public final fun getFilterWalkableLowHeightSpans(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilterWalkableLowHeightSpansPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFilterBakingAabb(bakingAabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to bakingAabb)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
+    Internals.writeArguments(godot.core.VariantParser.AABB to bakingAabb)
+    Internals.callMethod(rawPtr, MethodBindings.setFilterBakingAabbPtr, NIL)
   }
 
   public final fun getFilterBakingAabb(): AABB {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilterBakingAabbPtr,
         godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    return (Internals.readReturnValue(godot.core.VariantParser.AABB) as AABB)
   }
 
   public final fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to bakingAabbOffset)
-    TransferContext.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
+    Internals.writeArguments(VECTOR3 to bakingAabbOffset)
+    Internals.callMethod(rawPtr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
   }
 
   public final fun getFilterBakingAabbOffset(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getFilterBakingAabbOffsetPtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   /**
    * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
    */
   public final fun setVertices(vertices: PackedVector3Array): Unit {
-    TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
-    TransferContext.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
+    Internals.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
+    Internals.callMethod(rawPtr, MethodBindings.setVerticesPtr, NIL)
   }
 
   /**
    * Returns a [PackedVector3Array] containing all the vertices being used to create the polygons.
    */
   public final fun getVertices(): PackedVector3Array {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getVerticesPtr, PACKED_VECTOR3_ARRAY)
+    return (Internals.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
   public final fun addPolygon(polygon: PackedInt32Array): Unit {
-    TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
-    TransferContext.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
+    Internals.writeArguments(PACKED_INT_32_ARRAY to polygon)
+    Internals.callMethod(rawPtr, MethodBindings.addPolygonPtr, NIL)
   }
 
   /**
    * Returns the number of polygons in the navigation mesh.
    */
   public final fun getPolygonCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns a [PackedInt32Array] containing the indices of the vertices of a created polygon.
    */
   public final fun getPolygon(idx: Int): PackedInt32Array {
-    TransferContext.writeArguments(LONG to idx.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
-    return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
+    Internals.writeArguments(LONG to idx.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getPolygonPtr, PACKED_INT_32_ARRAY)
+    return (Internals.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
   /**
    * Clears the array of polygons, but it doesn't clear the array of vertices.
    */
   public final fun clearPolygons(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPolygonsPtr, NIL)
   }
 
   /**
@@ -740,16 +739,16 @@ public open class NavigationMesh : Resource() {
    * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
   public final fun createFromMesh(mesh: Mesh?): Unit {
-    TransferContext.writeArguments(OBJECT to mesh)
-    TransferContext.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
+    Internals.writeArguments(OBJECT to mesh)
+    Internals.callMethod(rawPtr, MethodBindings.createFromMeshPtr, NIL)
   }
 
   /**
    * Clears the internal arrays for vertices and polygon indices.
    */
   public final fun clear(): Unit {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.clearPtr, NIL)
   }
 
   public enum class SamplePartitionType(
@@ -854,177 +853,176 @@ public open class NavigationMesh : Resource() {
 
   internal object MethodBindings {
     public val setSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type", 2472437533)
+        Internals.getMethodBindPtr("NavigationMesh", "set_sample_partition_type", 2472437533)
 
     public val getSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type", 833513918)
+        Internals.getMethodBindPtr("NavigationMesh", "get_sample_partition_type", 833513918)
 
     public val setParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type", 3064713163)
+        Internals.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type", 3064713163)
 
     public val getParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type", 3928011953)
+        Internals.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type", 3928011953)
 
     public val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask", 1286410249)
+        Internals.getMethodBindPtr("NavigationMesh", "set_collision_mask", 1286410249)
 
     public val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask", 3905245786)
+        Internals.getMethodBindPtr("NavigationMesh", "get_collision_mask", 3905245786)
 
     public val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value", 300928843)
+        Internals.getMethodBindPtr("NavigationMesh", "set_collision_mask_value", 300928843)
 
     public val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value", 1116898809)
+        Internals.getMethodBindPtr("NavigationMesh", "get_collision_mask_value", 1116898809)
 
     public val setSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode", 2700825194)
+        Internals.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode", 2700825194)
 
     public val getSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode", 2770484141)
+        Internals.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode", 2770484141)
 
     public val setSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name", 3304788590)
+        Internals.getMethodBindPtr("NavigationMesh", "set_source_group_name", 3304788590)
 
     public val getSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name", 2002593661)
+        Internals.getMethodBindPtr("NavigationMesh", "get_source_group_name", 2002593661)
 
     public val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_cell_size", 373806689)
 
     public val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_cell_size", 1740695150)
 
     public val setCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_cell_height", 373806689)
 
     public val getCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_cell_height", 1740695150)
 
     public val setBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_border_size", 373806689)
 
     public val getBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_border_size", 1740695150)
 
     public val setAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_agent_height", 373806689)
 
     public val getAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_agent_height", 1740695150)
 
     public val setAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_agent_radius", 373806689)
 
     public val getAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius", 191475506)
+        Internals.getMethodBindPtr("NavigationMesh", "get_agent_radius", 191475506)
 
     public val setAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_agent_max_climb", 373806689)
 
     public val getAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_agent_max_climb", 1740695150)
 
     public val setAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_agent_max_slope", 373806689)
 
     public val getAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_agent_max_slope", 1740695150)
 
     public val setRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_region_min_size", 373806689)
 
     public val getRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_region_min_size", 1740695150)
 
     public val setRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_region_merge_size", 373806689)
 
     public val getRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_region_merge_size", 1740695150)
 
     public val setEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_edge_max_length", 373806689)
 
     public val getEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_edge_max_length", 1740695150)
 
     public val setEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_edge_max_error", 373806689)
 
     public val getEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_edge_max_error", 1740695150)
 
     public val setVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon", 373806689)
 
     public val getVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon", 1740695150)
 
     public val setDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance", 373806689)
 
     public val getDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance", 1740695150)
 
     public val setDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error", 373806689)
+        Internals.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error", 373806689)
 
     public val getDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error", 1740695150)
+        Internals.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error", 1740695150)
 
     public val setFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles", 2586408642)
+        Internals.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles", 2586408642)
 
     public val getFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles", 36873697)
+        Internals.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles", 36873697)
 
     public val setFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans", 2586408642)
+        Internals.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans", 2586408642)
 
     public val getFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans", 36873697)
+        Internals.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans", 36873697)
 
     public val setFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans", 2586408642)
+        Internals.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans", 2586408642)
 
     public val getFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans", 36873697)
+        Internals.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans", 36873697)
 
     public val setFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb", 259215842)
+        Internals.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb", 259215842)
 
     public val getFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb", 1068685055)
+        Internals.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb", 1068685055)
 
     public val setFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset", 3460891852)
+        Internals.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset", 3460891852)
 
     public val getFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset", 3360562783)
+        Internals.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset", 3360562783)
 
     public val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices", 334873810)
+        Internals.getMethodBindPtr("NavigationMesh", "set_vertices", 334873810)
 
     public val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices", 497664490)
+        Internals.getMethodBindPtr("NavigationMesh", "get_vertices", 497664490)
 
     public val addPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon", 3614634198)
+        Internals.getMethodBindPtr("NavigationMesh", "add_polygon", 3614634198)
 
     public val getPolygonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count", 3905245786)
+        Internals.getMethodBindPtr("NavigationMesh", "get_polygon_count", 3905245786)
 
     public val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon", 3668444399)
+        Internals.getMethodBindPtr("NavigationMesh", "get_polygon", 3668444399)
 
     public val clearPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons", 3218959716)
+        Internals.getMethodBindPtr("NavigationMesh", "clear_polygons", 3218959716)
 
     public val createFromMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh", 194775623)
+        Internals.getMethodBindPtr("NavigationMesh", "create_from_mesh", 194775623)
 
-    public val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "clear", 3218959716)
+    public val clearPtr: VoidPtr = Internals.getMethodBindPtr("NavigationMesh", "clear", 3218959716)
   }
 }

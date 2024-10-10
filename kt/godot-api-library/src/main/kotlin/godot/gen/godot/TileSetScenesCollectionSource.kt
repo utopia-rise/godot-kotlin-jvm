@@ -7,12 +7,11 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -62,34 +61,34 @@ private const val ENGINE_CLASS_TILESETSCENESCOLLECTIONSOURCE_INDEX: Int = 599
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_TILESETSCENESCOLLECTIONSOURCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_TILESETSCENESCOLLECTIONSOURCE_INDEX, scriptIndex)
   }
 
   /**
    * Returns the number or scene tiles this TileSet source has.
    */
   public final fun getSceneTilesCount(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneTilesCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getSceneTilesCountPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns the scene tile ID of the scene tile at [index].
    */
   public final fun getSceneTileId(index: Int): Int {
-    TransferContext.writeArguments(LONG to index.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(LONG to index.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSceneTileIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
    * Returns whether this TileSet source has a scene tile with [id].
    */
   public final fun hasSceneTileId(id: Int): Boolean {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.hasSceneTileIdPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.hasSceneTileIdPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -98,9 +97,9 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    */
   @JvmOverloads
   public final fun createSceneTile(packedScene: PackedScene?, idOverride: Int = -1): Int {
-    TransferContext.writeArguments(OBJECT to packedScene, LONG to idOverride.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.createSceneTilePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments(OBJECT to packedScene, LONG to idOverride.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.createSceneTilePtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -108,8 +107,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * an ID equal to [newId].
    */
   public final fun setSceneTileId(id: Int, newId: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileIdPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.setSceneTileIdPtr, NIL)
   }
 
   /**
@@ -117,17 +116,17 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
   public final fun setSceneTileScene(id: Int, packedScene: PackedScene?): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileScenePtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
+    Internals.callMethod(rawPtr, MethodBindings.setSceneTileScenePtr, NIL)
   }
 
   /**
    * Returns the [PackedScene] resource of scene tile with [id].
    */
   public final fun getSceneTileScene(id: Int): PackedScene? {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileScenePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as PackedScene?)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSceneTileScenePtr, OBJECT)
+    return (Internals.readReturnValue(OBJECT) as PackedScene?)
   }
 
   /**
@@ -135,70 +134,70 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
    * might be useful for scenes that are not visible.
    */
   public final fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)
-    TransferContext.callMethod(rawPtr, MethodBindings.setSceneTileDisplayPlaceholderPtr, NIL)
+    Internals.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)
+    Internals.callMethod(rawPtr, MethodBindings.setSceneTileDisplayPlaceholderPtr, NIL)
   }
 
   /**
    * Returns whether the scene tile with [id] displays a placeholder in the editor.
    */
   public final fun getSceneTileDisplayPlaceholder(id: Int): Boolean {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.getSceneTileDisplayPlaceholderPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.getSceneTileDisplayPlaceholderPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   /**
    * Remove the scene tile with [id].
    */
   public final fun removeSceneTile(id: Int): Unit {
-    TransferContext.writeArguments(LONG to id.toLong())
-    TransferContext.callMethod(rawPtr, MethodBindings.removeSceneTilePtr, NIL)
+    Internals.writeArguments(LONG to id.toLong())
+    Internals.callMethod(rawPtr, MethodBindings.removeSceneTilePtr, NIL)
   }
 
   /**
    * Returns the scene ID a following call to [createSceneTile] would return.
    */
   public final fun getNextSceneTileId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getNextSceneTileIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getNextSceneTileIdPtr, LONG)
+    return (Internals.readReturnValue(LONG) as Long).toInt()
   }
 
   public companion object
 
   internal object MethodBindings {
     public val getSceneTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2455072627)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2455072627)
 
     public val getSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3744713108)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3744713108)
 
     public val hasSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3067735520)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3067735520)
 
     public val createSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1117465415)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1117465415)
 
     public val setSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3937882851)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3937882851)
 
     public val setSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3435852839)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3435852839)
 
     public val getSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511017218)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511017218)
 
     public val setSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300928843)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300928843)
 
     public val getSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1116898809)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1116898809)
 
     public val removeSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1286410249)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1286410249)
 
     public val getNextSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3905245786)
+        Internals.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3905245786)
   }
 }

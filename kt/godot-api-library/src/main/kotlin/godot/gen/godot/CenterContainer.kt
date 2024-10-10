@@ -7,10 +7,9 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -38,27 +37,27 @@ public open class CenterContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_CENTERCONTAINER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_CENTERCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setUseTopLeft(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
+    Internals.writeArguments(BOOL to enable)
+    Internals.callMethod(rawPtr, MethodBindings.setUseTopLeftPtr, NIL)
   }
 
   public final fun isUsingTopLeft(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isUsingTopLeftPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isUsingTopLeftPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setUseTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "set_use_top_left", 2586408642)
+        Internals.getMethodBindPtr("CenterContainer", "set_use_top_left", 2586408642)
 
     public val isUsingTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "is_using_top_left", 36873697)
+        Internals.getMethodBindPtr("CenterContainer", "is_using_top_left", 36873697)
   }
 }

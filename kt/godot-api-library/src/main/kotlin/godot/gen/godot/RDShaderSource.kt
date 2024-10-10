@@ -7,11 +7,10 @@
 package godot
 
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -97,7 +96,7 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_RDSHADERSOURCE_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_RDSHADERSOURCE_INDEX, scriptIndex)
   }
 
   /**
@@ -106,8 +105,8 @@ public open class RDShaderSource : RefCounted() {
    * [sourceVertex].
    */
   public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to source)
-    TransferContext.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
+    Internals.writeArguments(LONG to stage.id, STRING to source)
+    Internals.callMethod(rawPtr, MethodBindings.setStageSourcePtr, NIL)
   }
 
   /**
@@ -116,35 +115,35 @@ public open class RDShaderSource : RefCounted() {
    * [sourceVertex].
    */
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
-    return (TransferContext.readReturnValue(STRING) as String)
+    Internals.writeArguments(LONG to stage.id)
+    Internals.callMethod(rawPtr, MethodBindings.getStageSourcePtr, STRING)
+    return (Internals.readReturnValue(STRING) as String)
   }
 
   public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
-    TransferContext.writeArguments(LONG to language.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
+    Internals.writeArguments(LONG to language.id)
+    Internals.callMethod(rawPtr, MethodBindings.setLanguagePtr, NIL)
   }
 
   public final fun getLanguage(): RenderingDevice.ShaderLanguage {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
-    return RenderingDevice.ShaderLanguage.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getLanguagePtr, LONG)
+    return RenderingDevice.ShaderLanguage.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_stage_source", 620821314)
+        Internals.getMethodBindPtr("RDShaderSource", "set_stage_source", 620821314)
 
     public val getStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_stage_source", 3354920045)
+        Internals.getMethodBindPtr("RDShaderSource", "get_stage_source", 3354920045)
 
     public val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_language", 3422186742)
+        Internals.getMethodBindPtr("RDShaderSource", "set_language", 3422186742)
 
     public val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_language", 1063538261)
+        Internals.getMethodBindPtr("RDShaderSource", "get_language", 1063538261)
   }
 }

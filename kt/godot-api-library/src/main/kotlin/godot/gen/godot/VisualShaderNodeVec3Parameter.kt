@@ -9,12 +9,11 @@ package godot
 import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
-import godot.core.TypeManager
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Boolean
 import kotlin.Int
@@ -53,7 +52,7 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC3PARAMETER_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_VISUALSHADERNODEVEC3PARAMETER_INDEX, scriptIndex)
   }
 
   /**
@@ -81,40 +80,40 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
 
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
+    Internals.writeArguments(BOOL to enabled)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
 
   public final fun isDefaultValueEnabled(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.isDefaultValueEnabledPtr, BOOL)
+    return (Internals.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setDefaultValue(`value`: Vector3): Unit {
-    TransferContext.writeArguments(VECTOR3 to value)
-    TransferContext.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
+    Internals.writeArguments(VECTOR3 to value)
+    Internals.callMethod(rawPtr, MethodBindings.setDefaultValuePtr, NIL)
   }
 
   public final fun getDefaultValue(): Vector3 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, VECTOR3)
-    return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getDefaultValuePtr, VECTOR3)
+    return (Internals.readReturnValue(VECTOR3) as Vector3)
   }
 
   public companion object
 
   internal object MethodBindings {
     public val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Parameter", "set_default_value_enabled", 2586408642)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Parameter", "set_default_value_enabled", 2586408642)
 
     public val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Parameter", "is_default_value_enabled", 36873697)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Parameter", "is_default_value_enabled", 36873697)
 
     public val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Parameter", "set_default_value", 3460891852)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Parameter", "set_default_value", 3460891852)
 
     public val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Parameter", "get_default_value", 3360562783)
+        Internals.getMethodBindPtr("VisualShaderNodeVec3Parameter", "get_default_value", 3360562783)
   }
 }

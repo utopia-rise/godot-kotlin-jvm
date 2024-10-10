@@ -10,11 +10,10 @@ import godot.`annotation`.CoreTypeHelper
 import godot.`annotation`.CoreTypeLocalCopy
 import godot.`annotation`.GodotBaseType
 import godot.core.Rect2
-import godot.core.TypeManager
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import godot.core.memory.TransferContext
+import godot.util.Internals
 import godot.util.VoidPtr
 import kotlin.Int
 import kotlin.Long
@@ -60,7 +59,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINE_CLASS_BACKBUFFERCOPY_INDEX, scriptIndex)
+    Internals.callConstructor(this, ENGINE_CLASS_BACKBUFFERCOPY_INDEX, scriptIndex)
   }
 
   /**
@@ -88,25 +87,25 @@ public open class BackBufferCopy : Node2D() {
 
 
   public final fun setRect(rect: Rect2): Unit {
-    TransferContext.writeArguments(RECT2 to rect)
-    TransferContext.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
+    Internals.writeArguments(RECT2 to rect)
+    Internals.callMethod(rawPtr, MethodBindings.setRectPtr, NIL)
   }
 
   public final fun getRect(): Rect2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
-    return (TransferContext.readReturnValue(RECT2) as Rect2)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getRectPtr, RECT2)
+    return (Internals.readReturnValue(RECT2) as Rect2)
   }
 
   public final fun setCopyMode(copyMode: CopyMode): Unit {
-    TransferContext.writeArguments(LONG to copyMode.id)
-    TransferContext.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
+    Internals.writeArguments(LONG to copyMode.id)
+    Internals.callMethod(rawPtr, MethodBindings.setCopyModePtr, NIL)
   }
 
   public final fun getCopyMode(): CopyMode {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
-    return BackBufferCopy.CopyMode.from(TransferContext.readReturnValue(LONG) as Long)
+    Internals.writeArguments()
+    Internals.callMethod(rawPtr, MethodBindings.getCopyModePtr, LONG)
+    return BackBufferCopy.CopyMode.from(Internals.readReturnValue(LONG) as Long)
   }
 
   public enum class CopyMode(
@@ -141,15 +140,15 @@ public open class BackBufferCopy : Node2D() {
 
   internal object MethodBindings {
     public val setRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "set_rect", 2046264180)
+        Internals.getMethodBindPtr("BackBufferCopy", "set_rect", 2046264180)
 
     public val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "get_rect", 1639390495)
+        Internals.getMethodBindPtr("BackBufferCopy", "get_rect", 1639390495)
 
     public val setCopyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "set_copy_mode", 1713538590)
+        Internals.getMethodBindPtr("BackBufferCopy", "set_copy_mode", 1713538590)
 
     public val getCopyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "get_copy_mode", 3271169440)
+        Internals.getMethodBindPtr("BackBufferCopy", "get_copy_mode", 3271169440)
   }
 }
