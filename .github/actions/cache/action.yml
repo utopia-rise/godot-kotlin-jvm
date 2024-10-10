@@ -11,6 +11,10 @@ inputs:
     description: Username of self-hosted s3
   s3-password:
     description: Password of self-hosted s3
+  s3-user-readonly:
+    description: Readonly username of self-hosted s3
+  s3-password-readonly:
+    description: Readonly password of self-hosted s3
   s3-host:
     description: Host of self-hosted s3
   s3-bucket:
@@ -37,6 +41,7 @@ runs:
           core.exportVariable('PREPARED_REF', ref);
 
     - name: Setup s3 cache
+      id: cache_setup
       if: ${{ inputs.s3-host != '' }}
       uses: philiplehmann/minio-cache@v1.2.10
       with:
@@ -49,7 +54,19 @@ runs:
         key: ${{ inputs.key }}-${{ env.PREPARED_REF }}
         path: ${{ inputs.path }}
 
-
+    - name: Use master cache if specific cache was missed
+      if: ${{ steps.cache_setup.outputs.cache-hit == 'false' }}
+      uses: philiplehmann/minio-cache@v1.2.10
+      with:
+        endpoint: ${{inputs.s3-host}}
+        port: 443
+        insecure: false
+        accessKey: ${{inputs.s3-user-readonly}}
+        secretKey: ${{inputs.s3-password-readonly}}
+        bucket: ${{inputs.s3-bucket}}
+        key: ${{ inputs.key }}-refs_heads_master # use master cache readonly if no cache hit
+        path: ${{ inputs.path }}
+      continue-on-error: true
 
     # ==================================================================================================================
     # fork cache setup
