@@ -98,7 +98,7 @@
     ]
   },
   {
-    "name" : "godot.global.GDPrint$Bridge",
+    "name" : "godot.core.bridge.GodotPrint",
     "fields" : [
       { "name" : "INSTANCE" }
     ],

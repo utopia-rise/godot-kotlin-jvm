@@ -5,7 +5,7 @@
 
 namespace bridges {
 
-    JVM_SINGLETON_WRAPPER(GDPrintBridge, "godot.global.GDPrint$Bridge") {
+    JVM_SINGLETON_WRAPPER(GDPrintBridge, "godot.core.bridge.GodotPrint") {
         SINGLETON_CLASS(GDPrintBridge)
 
         // clang-format off

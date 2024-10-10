@@ -1,5 +1,7 @@
 package godot.util
 
+import godot.core.bridge.GodotPrint
+
 private const val ESCAPE = '\u001B'
 private const val RESET = "$ESCAPE[0m"
 
@@ -28,7 +30,7 @@ internal object JVMLogging {
 }
 
 internal object GodotLogging {
-    fun info(message: String) = GD.print("Godot-JVM: ", message)
-    fun warning(message: String) = GD.pushWarning("Godot-JVM: ", message)
-    fun error(message: String) = GD.printErr("Godot-JVM: ", message)
+    fun info(message: String) = GodotPrint.print("Godot-JVM: $message")
+    fun warning(message: String) = GodotPrint.pushWarning("Godot-JVM: $message")
+    fun error(message: String) = GodotPrint.printErr("Godot-JVM: $message")
 }

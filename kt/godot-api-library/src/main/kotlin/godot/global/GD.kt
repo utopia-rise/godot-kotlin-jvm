@@ -12,11 +12,9 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.core.memory.MemoryManager
-import godot.extensions.asStatic
-import godot.extensions.loadAs
-import godot.util.nullptr
-import src.main.kotlin.godot.global.GDRandom
+import godot.Object
 
+import godot.util.nullptr
 
 object GD : GDMath, GDCore, GDRandom, GDPrint {
     override var rng = RandomNumberGenerator().asStatic()

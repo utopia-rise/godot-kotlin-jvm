@@ -1,15 +1,12 @@
 package godot.api
 
-import godot.core.VariantParser
-import godot.core.memory.TransferContext
-
+import godot.core.bridge.GodotPrint
 
 internal interface GDPrint {
 
     /** Converts one or more arguments to strings in the best way possible and prints them to the console.**/
     fun print(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.print()
+        GodotPrint.print(args.joinToString(""))
     }
 
     /**
@@ -32,26 +29,22 @@ internal interface GDPrint {
      * Note: Output displayed in the editor supports clickable [url=address]text[/url] tags. The [url] tag's address value is handled by OS.shell_open when clicked.
      * **/
     fun printRich(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.printRich()
+        GodotPrint.printRich(args.joinToString(""))
     }
 
     /** If verbose mode is enabled (OS.is_stdout_verbose returning true), converts one or more arguments of any type to string in the best way possible and prints them to the console.**/
     fun printVerbose(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.printVerbose()
+        GodotPrint.printVerbose(args.joinToString(""))
     }
 
     /** Converts one or more arguments to strings in the best way possible and prints them as error to the console.**/
     fun printErr(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.printErr()
+        GodotPrint.printErr(args.joinToString(""))
     }
 
     /** Prints the args without any modifications to the console.**/
     fun printRaw(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.printRaw()
+        GodotPrint.printRaw(args.joinToString(""))
     }
 
     /** Prints one or more arguments to the console with a space between each argument.**/
@@ -62,26 +55,13 @@ internal interface GDPrint {
 
     /** Pushes an error message to Godot's built-in debugger and to the OS terminal.**/
     fun pushError(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.pushError()
+        GodotPrint.pushError(args.joinToString(""))
     }
 
     /** Pushes a warning message to Godot's built-in debugger and to the OS terminal.**/
     fun pushWarning(vararg args: Any?) {
-        TransferContext.writeArguments(VariantParser.STRING to args.joinToString(""))
-        Bridge.pushWarning()
+        GodotPrint.pushWarning(args.joinToString(""))
     }
 
     fun printStacktrace() = print(Thread.currentThread().stackTrace.joinToString("\n"))
-
-    private object Bridge {
-        external fun print()
-        external fun printRich()
-        external fun printVerbose()
-        external fun printErr()
-        external fun printRaw()
-        external fun pushError()
-        external fun pushWarning()
-
-    }
 }

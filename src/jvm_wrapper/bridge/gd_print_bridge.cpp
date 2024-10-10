@@ -1,5 +1,4 @@
-#include "gd_print_bridge.h"
-
+#include "godot_print_bridge.h"
 #include "jvm_wrapper/memory/transfer_context.h"
 
 using namespace bridges;
