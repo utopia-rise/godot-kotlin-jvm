@@ -4,6 +4,8 @@ on:
     inputs:
       godot-version:
         type: string
+      jvm-version:
+        type: string
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-linux_assemble
