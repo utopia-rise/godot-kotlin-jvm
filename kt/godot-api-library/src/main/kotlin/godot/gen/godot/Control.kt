@@ -49,6 +49,24 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_CONTROL_INDEX: Int = 195
+
+public infix fun Long.or(other: godot.Control.SizeFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Control.SizeFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Control.SizeFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Control.SizeFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Control.SizeFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Control.SizeFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.Control.SizeFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Control.SizeFlags): Long = this.rem(other.flag)
+
 /**
  * Base class for all UI-related nodes. [Control] features a bounding rectangle that defines its
  * extents, an anchor position relative to its parent control or the current viewport, and offsets
@@ -684,7 +702,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONTROL, scriptIndex)
+    callConstructor(ENGINE_CLASS_CONTROL_INDEX, scriptIndex)
   }
 
   /**
@@ -3223,19 +3241,3 @@ public open class Control : CanvasItem() {
         TypeManager.getMethodBindPtr("Control", "is_localizing_numeral_system", 36873697)
   }
 }
-
-public infix fun Long.or(other: godot.Control.SizeFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.Control.SizeFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.Control.SizeFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.Control.SizeFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.Control.SizeFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.Control.SizeFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.Control.SizeFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.Control.SizeFlags): Long = this.rem(other.flag)

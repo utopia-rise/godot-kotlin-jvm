@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX: Int = 93
+
 /**
  * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
  * limiters predict volume peaks, and will smoothly apply gain reduction when a peak crosses the
@@ -64,7 +66,7 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTHARDLIMITER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {

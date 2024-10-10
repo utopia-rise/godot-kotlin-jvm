@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ENVIRONMENT_INDEX: Int = 218
+
 /**
  * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
  * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
@@ -1260,7 +1262,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ENVIRONMENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_ENVIRONMENT_INDEX, scriptIndex)
   }
 
   /**

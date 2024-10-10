@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SHADERGLOBALSOVERRIDE_INDEX: Int = 514
+
 /**
  * Similar to how a [WorldEnvironment] node can be used to override the environment while a specific
  * scene is loaded, [ShaderGlobalsOverride] can be used to override global shader parameters
@@ -27,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ShaderGlobalsOverride : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SHADERGLOBALSOVERRIDE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SHADERGLOBALSOVERRIDE_INDEX, scriptIndex)
   }
 
   public companion object

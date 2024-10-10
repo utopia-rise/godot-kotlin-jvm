@@ -27,6 +27,24 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_RESOURCESAVER_INDEX: Int = 12
+
+public infix fun Long.or(other: godot.ResourceSaver.SaverFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.ResourceSaver.SaverFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.ResourceSaver.SaverFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.ResourceSaver.SaverFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.ResourceSaver.SaverFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.ResourceSaver.SaverFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.ResourceSaver.SaverFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.ResourceSaver.SaverFlags): Long = this.rem(other.flag)
+
 /**
  * A singleton for saving resource types to the filesystem.
  * It uses the many [ResourceFormatSaver] classes registered in the engine (either built-in or from
@@ -36,7 +54,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object ResourceSaver : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RESOURCESAVER)
+    getSingleton(ENGINE_CLASS_RESOURCESAVER_INDEX)
   }
 
   /**
@@ -179,19 +197,3 @@ public object ResourceSaver : Object() {
         TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
   }
 }
-
-public infix fun Long.or(other: godot.ResourceSaver.SaverFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.ResourceSaver.SaverFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.ResourceSaver.SaverFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.ResourceSaver.SaverFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.ResourceSaver.SaverFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.ResourceSaver.SaverFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.ResourceSaver.SaverFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.ResourceSaver.SaverFlags): Long = this.rem(other.flag)

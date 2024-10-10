@@ -19,10 +19,12 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX: Int = 426
+
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX, scriptIndex)
   }
 
   /**

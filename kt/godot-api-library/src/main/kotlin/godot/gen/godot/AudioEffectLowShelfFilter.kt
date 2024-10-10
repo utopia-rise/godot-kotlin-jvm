@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOEFFECTLOWSHELFFILTER_INDEX: Int = 99
+
 /**
  * Reduces all frequencies below the [AudioEffectFilter.cutoffHz].
  */
 @GodotBaseType
 public open class AudioEffectLowShelfFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTLOWSHELFFILTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTLOWSHELFFILTER_INDEX, scriptIndex)
   }
 
   public companion object

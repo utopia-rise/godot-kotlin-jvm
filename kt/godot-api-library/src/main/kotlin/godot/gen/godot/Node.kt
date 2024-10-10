@@ -51,6 +51,26 @@ import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
 
+private const val ENGINE_CLASS_NODE_INDEX: Int = 368
+
+public infix fun Long.or(other: godot.Node.ProcessThreadMessages): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Node.ProcessThreadMessages): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Node.ProcessThreadMessages): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Node.ProcessThreadMessages): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Node.ProcessThreadMessages): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Node.ProcessThreadMessages): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.Node.ProcessThreadMessages): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Node.ProcessThreadMessages): Long = this.rem(other.flag)
+
 /**
  * Nodes are Godot's building blocks. They can be assigned as the child of another node, resulting
  * in a tree arrangement. A given node can contain any number of nodes as children with the requirement
@@ -362,7 +382,7 @@ public open class Node : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_NODE_INDEX, scriptIndex)
   }
 
   public inline fun <reified FUNCTION : KFunction0<*>> rpc(function: FUNCTION): Error =
@@ -3029,21 +3049,3 @@ public open class Node : Object() {
         TypeManager.getMethodBindPtr("Node", "notify_thread_safe", 1286410249)
   }
 }
-
-public infix fun Long.or(other: godot.Node.ProcessThreadMessages): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.Node.ProcessThreadMessages): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.Node.ProcessThreadMessages): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.Node.ProcessThreadMessages): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.Node.ProcessThreadMessages): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.Node.ProcessThreadMessages): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.Node.ProcessThreadMessages): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.Node.ProcessThreadMessages): Long = this.rem(other.flag)

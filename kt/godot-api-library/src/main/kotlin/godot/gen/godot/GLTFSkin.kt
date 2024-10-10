@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFSKIN_INDEX: Int = 245
+
 @GodotBaseType
 public open class GLTFSkin : Resource() {
   public final inline var skinRoot: Int
@@ -110,7 +112,7 @@ public open class GLTFSkin : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFSKIN, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFSKIN_INDEX, scriptIndex)
   }
 
   public final fun getSkinRoot(): Int {

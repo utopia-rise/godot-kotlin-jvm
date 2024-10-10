@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GRIDCONTAINER_INDEX: Int = 269
+
 /**
  * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified
  * by the [columns] property, whereas the number of rows depends on how many are needed for the child
@@ -40,7 +42,7 @@ public open class GridContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRIDCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_GRIDCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setColumns(columns: Int): Unit {

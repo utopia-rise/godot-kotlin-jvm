@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX: Int = 390
+
 /**
  * This object stores suggested bindings for an interaction profile. Interaction profiles define the
  * metadata for a tracked XR device such as an XR controller.
@@ -56,7 +58,7 @@ public open class OpenXRInteractionProfile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILE, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX, scriptIndex)
   }
 
   public final fun setInteractionProfilePath(interactionProfilePath: String): Unit {

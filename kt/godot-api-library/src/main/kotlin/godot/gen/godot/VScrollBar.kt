@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VSCROLLBAR_INDEX: Int = 615
+
 /**
  * A vertical scrollbar, typically used to navigate through content that extends beyond the visible
  * height of a control. It is a [Range]-based control and goes from top (min) to bottom (max). Note
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VScrollBar : ScrollBar() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VSCROLLBAR, scriptIndex)
+    callConstructor(ENGINE_CLASS_VSCROLLBAR_INDEX, scriptIndex)
   }
 
   public companion object

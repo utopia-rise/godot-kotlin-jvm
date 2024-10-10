@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEUINTFUNC_INDEX: Int = 711
+
 /**
  * Accept an unsigned integer scalar (`x`) to the input port and transform it according to
  * [function].
@@ -36,7 +38,7 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEUINTFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEUINTFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

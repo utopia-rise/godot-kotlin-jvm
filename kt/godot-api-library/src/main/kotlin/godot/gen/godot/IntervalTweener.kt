@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_INTERVALTWEENER_INDEX: Int = 303
+
 /**
  * [IntervalTweener] is used to make delays in a tweening sequence. See [Tween.tweenInterval] for
  * more usage information.
@@ -20,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class IntervalTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INTERVALTWEENER, scriptIndex)
+    callConstructor(ENGINE_CLASS_INTERVALTWEENER_INDEX, scriptIndex)
   }
 
   public companion object

@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PHYSICALBONE2D_INDEX: Int = 413
+
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
  * [Skeleton2D] react to physics.
@@ -98,7 +100,7 @@ public open class PhysicalBone2D : RigidBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICALBONE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICALBONE2D_INDEX, scriptIndex)
   }
 
   /**

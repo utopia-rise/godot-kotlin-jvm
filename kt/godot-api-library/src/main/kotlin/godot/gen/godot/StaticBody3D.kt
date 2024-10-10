@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_STATICBODY3D_INDEX: Int = 551
+
 /**
  * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved
  * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
@@ -73,7 +75,7 @@ public open class StaticBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STATICBODY3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_STATICBODY3D_INDEX, scriptIndex)
   }
 
   /**

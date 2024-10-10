@@ -39,6 +39,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONAGENT3D_INDEX: Int = 352
+
 /**
  * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
  * calculation can be used by the parent node to dynamically move it along the path. Requires
@@ -496,7 +498,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONAGENT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONAGENT3D_INDEX, scriptIndex)
   }
 
   /**

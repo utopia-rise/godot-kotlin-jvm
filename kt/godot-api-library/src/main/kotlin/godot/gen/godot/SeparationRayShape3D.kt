@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SEPARATIONRAYSHAPE3D_INDEX: Int = 512
+
 /**
  * A 3D ray shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D]. When a [SeparationRayShape3D] collides with an object, it tries to separate
@@ -54,7 +56,7 @@ public open class SeparationRayShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SEPARATIONRAYSHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

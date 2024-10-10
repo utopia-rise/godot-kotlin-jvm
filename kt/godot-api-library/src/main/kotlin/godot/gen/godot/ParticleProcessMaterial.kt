@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PARTICLEPROCESSMATERIAL_INDEX: Int = 408
+
 /**
  * [ParticleProcessMaterial] defines particle properties and behavior. It is used in the
  * `process_material` of the [GPUParticles2D] and [GPUParticles3D] nodes. Some of this material's
@@ -1367,7 +1369,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PARTICLEPROCESSMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_PARTICLEPROCESSMATERIAL_INDEX, scriptIndex)
   }
 
   /**

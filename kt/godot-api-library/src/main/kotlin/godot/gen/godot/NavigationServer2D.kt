@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_NAVIGATIONSERVER2D_INDEX: Int = 32
+
 /**
  * NavigationServer2D is the server that handles navigation maps, regions and agents. It does not
  * handle A* navigation from [AStar2D] or [AStarGrid2D].
@@ -76,7 +78,7 @@ public object NavigationServer2D : Object() {
   public val navigationDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NAVIGATIONSERVER2D)
+    getSingleton(ENGINE_CLASS_NAVIGATIONSERVER2D_INDEX)
   }
 
   /**

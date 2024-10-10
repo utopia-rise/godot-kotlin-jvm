@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX: Int = 454
+
 /**
  * [ProceduralSkyMaterial] provides a way to create an effective background quickly by defining
  * procedural parameters for the sun, the sky and the ground. The sky and ground are defined by a main
@@ -209,7 +211,7 @@ public open class ProceduralSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PROCEDURALSKYMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX, scriptIndex)
   }
 
   /**

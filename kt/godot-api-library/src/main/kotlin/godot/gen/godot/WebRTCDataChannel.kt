@@ -36,7 +36,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCDATACHANNEL, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBRTCDATACHANNEL_INDEX, scriptIndex)
   }
 
   /**

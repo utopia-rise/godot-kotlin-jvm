@@ -11,10 +11,12 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_GDJSCRIPT_INDEX: Int = 259
+
 @GodotBaseType
 public open class GdjScript : JvmScript() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GDJSCRIPT, scriptIndex)
+    callConstructor(ENGINE_CLASS_GDJSCRIPT_INDEX, scriptIndex)
   }
 
   public companion object

@@ -20,6 +20,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PINJOINT3D_INDEX: Int = 434
+
 /**
  * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely
  * rotate. For example, a [RigidBody3D] can be attached to a [StaticBody3D] to create a pendulum or a
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PINJOINT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PINJOINT3D_INDEX, scriptIndex)
   }
 
   /**

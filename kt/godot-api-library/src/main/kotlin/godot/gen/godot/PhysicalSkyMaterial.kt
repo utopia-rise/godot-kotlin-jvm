@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX: Int = 416
+
 /**
  * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on
  * physical properties. This results in a substantially more realistic sky than the
@@ -174,7 +176,7 @@ public open class PhysicalSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICALSKYMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX, scriptIndex)
   }
 
   /**

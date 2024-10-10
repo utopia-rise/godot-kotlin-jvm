@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CANVASTEXTURE_INDEX: Int = 162
+
 /**
  * [CanvasTexture] is an alternative to [ImageTexture] for 2D rendering. It allows using normal maps
  * and specular maps in any node that inherits from [CanvasItem]. [CanvasTexture] also allows
@@ -128,7 +130,7 @@ public open class CanvasTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CANVASTEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_CANVASTEXTURE_INDEX, scriptIndex)
   }
 
   /**

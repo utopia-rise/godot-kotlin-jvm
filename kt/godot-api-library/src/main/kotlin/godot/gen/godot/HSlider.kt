@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_HSLIDER_INDEX: Int = 277
+
 /**
  * A horizontal slider, used to adjust a value by moving a grabber along a horizontal axis. It is a
  * [Range]-based control and goes from left (min) to right (max).
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HSlider : Slider() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HSLIDER, scriptIndex)
+    callConstructor(ENGINE_CLASS_HSLIDER_INDEX, scriptIndex)
   }
 
   public companion object

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVEC4CONSTANT_INDEX: Int = 722
+
 /**
  * A constant 4D vector, which can be used as an input node.
  */
@@ -38,7 +40,7 @@ public open class VisualShaderNodeVec4Constant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVEC4CONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC4CONSTANT_INDEX, scriptIndex)
   }
 
   /**

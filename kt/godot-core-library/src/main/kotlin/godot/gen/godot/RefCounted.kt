@@ -18,6 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_REFCOUNTED_INDEX: Int = 1
+
 /**
  * Base class for any object that keeps a reference count. [Resource] and many other helper objects
  * inherit this class.
@@ -40,7 +42,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RefCounted : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_REFCOUNTED, scriptIndex)
+    callConstructor(ENGINE_CLASS_REFCOUNTED_INDEX, scriptIndex)
   }
 
   public final override fun _onDestroy(): Unit {

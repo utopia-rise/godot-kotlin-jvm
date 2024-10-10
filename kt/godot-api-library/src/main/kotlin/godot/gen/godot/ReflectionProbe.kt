@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_REFLECTIONPROBE_INDEX: Int = 481
+
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
  * to simulate different material roughnesses.
@@ -244,7 +246,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_REFLECTIONPROBE, scriptIndex)
+    callConstructor(ENGINE_CLASS_REFLECTIONPROBE_INDEX, scriptIndex)
   }
 
   /**

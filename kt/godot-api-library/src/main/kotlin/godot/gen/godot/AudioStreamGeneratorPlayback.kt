@@ -31,7 +31,7 @@ import kotlin.Unit
 public open class AudioStreamGeneratorPlayback internal constructor() :
     AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMGENERATORPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMGENERATORPLAYBACK_INDEX, scriptIndex)
   }
 
   /**

@@ -36,6 +36,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CPUPARTICLES3D_INDEX: Int = 142
+
 /**
  * CPU-based 3D particle node used to create a variety of particle systems and effects.
  * See also [GPUParticles3D], which provides the same functionality with hardware acceleration, but
@@ -910,7 +912,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CPUPARTICLES3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CPUPARTICLES3D_INDEX, scriptIndex)
   }
 
   /**

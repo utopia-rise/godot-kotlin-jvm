@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BONEMAP_INDEX: Int = 134
+
 /**
  * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
  * names.
@@ -52,7 +54,7 @@ public open class BoneMap : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BONEMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_BONEMAP_INDEX, scriptIndex)
   }
 
   public final fun getProfile(): SkeletonProfile? {

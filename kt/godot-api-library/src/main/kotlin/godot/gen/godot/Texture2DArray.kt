@@ -15,6 +15,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTURE2DARRAY_INDEX: Int = 580
+
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear
  * interpolation between the [Image]s, i.e. no blending. See also [Cubemap] and [CubemapArray], which
@@ -30,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture2DArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURE2DARRAY, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTURE2DARRAY_INDEX, scriptIndex)
   }
 
   /**

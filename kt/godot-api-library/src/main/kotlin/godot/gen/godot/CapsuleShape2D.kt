@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CAPSULESHAPE2D_INDEX: Int = 164
+
 /**
  * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
@@ -50,7 +52,7 @@ public open class CapsuleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CAPSULESHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CAPSULESHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

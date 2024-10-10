@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKINTERACTIVE, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKINTERACTIVE_INDEX, scriptIndex)
   }
 
   /**

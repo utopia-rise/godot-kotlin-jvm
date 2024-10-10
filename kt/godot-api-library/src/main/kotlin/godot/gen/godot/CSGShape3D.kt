@@ -132,7 +132,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGSHAPE3D_INDEX, scriptIndex)
   }
 
   /**

@@ -21,6 +21,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX: Int = 118
+
 /**
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
  * usage.
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX, scriptIndex)
   }
 
   /**

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX: Int = 691
+
 /**
  * Translates to `smoothstep(edge0, edge1, x)` in the shader language.
  * Returns `0.0` if `x` is smaller than `edge0` and `1.0` if `x` is larger than `edge1`. Otherwise,
@@ -37,7 +39,7 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESMOOTHSTEP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

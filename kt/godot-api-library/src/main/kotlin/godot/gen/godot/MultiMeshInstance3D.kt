@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX: Int = 345
+
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
  * [MultiMesh] resource.
@@ -38,7 +40,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIMESHINSTANCE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

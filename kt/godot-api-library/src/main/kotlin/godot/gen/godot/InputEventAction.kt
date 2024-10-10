@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTACTION_INDEX: Int = 291
+
 /**
  * Contains a generic action which can be targeted from several types of inputs. Actions and their
  * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
@@ -85,7 +87,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTACTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTACTION_INDEX, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {

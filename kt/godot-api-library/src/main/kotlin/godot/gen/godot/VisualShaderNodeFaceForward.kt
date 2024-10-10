@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEFACEFORWARD_INDEX: Int = 652
+
 /**
  * Translates to `faceforward(N, I, Nref)` in the shader language. The function has three vector
  * parameters: `N`, the vector to orient, `I`, the incident vector, and `Nref`, the reference vector.
@@ -20,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeFaceForward : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFACEFORWARD, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFACEFORWARD_INDEX, scriptIndex)
   }
 
   public companion object

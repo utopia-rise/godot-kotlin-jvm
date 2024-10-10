@@ -38,6 +38,24 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MESH_INDEX: Int = 331
+
+public infix fun Long.or(other: godot.Mesh.ArrayFormat): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.Mesh.ArrayFormat): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.Mesh.ArrayFormat): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.Mesh.ArrayFormat): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.Mesh.ArrayFormat): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.Mesh.ArrayFormat): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.Mesh.ArrayFormat): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.Mesh.ArrayFormat): Long = this.rem(other.flag)
+
 /**
  * Mesh is a type of [Resource] that contains vertex array-based geometry, divided in *surfaces*.
  * Each surface contains a completely separate array and a material used to draw it. Design wise, a
@@ -60,7 +78,7 @@ public open class Mesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_MESH_INDEX, scriptIndex)
   }
 
   /**
@@ -695,19 +713,3 @@ public open class Mesh : Resource() {
         TypeManager.getMethodBindPtr("Mesh", "generate_triangle_mesh", 3476533166)
   }
 }
-
-public infix fun Long.or(other: godot.Mesh.ArrayFormat): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.Mesh.ArrayFormat): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.Mesh.ArrayFormat): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.Mesh.ArrayFormat): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.Mesh.ArrayFormat): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.Mesh.ArrayFormat): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.Mesh.ArrayFormat): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.Mesh.ArrayFormat): Long = this.rem(other.flag)

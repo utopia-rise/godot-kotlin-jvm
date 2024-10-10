@@ -35,6 +35,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_LABEL_INDEX: Int = 313
+
 /**
  * A control for displaying plain text. It gives you control over the horizontal and vertical
  * alignment and can wrap the text inside the node's bounding rectangle. It doesn't support bold,
@@ -278,7 +280,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LABEL, scriptIndex)
+    callConstructor(ENGINE_CLASS_LABEL_INDEX, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

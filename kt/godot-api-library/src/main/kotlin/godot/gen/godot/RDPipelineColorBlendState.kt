@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX: Int = 461
+
 /**
  * This object is used by [RenderingDevice].
  */
@@ -77,7 +79,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATE, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX, scriptIndex)
   }
 
   /**

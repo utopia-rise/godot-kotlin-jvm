@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_HSPLITCONTAINER_INDEX: Int = 278
+
 /**
  * A container that accepts only two child controls, then arranges them horizontally and creates a
  * divisor between them. The divisor can be dragged around to change the size relation between the
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HSplitContainer : SplitContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HSPLITCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_HSPLITCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

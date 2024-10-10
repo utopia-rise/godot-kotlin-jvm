@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TABBAR_INDEX: Int = 569
+
 /**
  * A control that provides a horizontal bar with tabs. Similar to [TabContainer] but is only in
  * charge of drawing tabs, not interacting with children.
@@ -227,7 +229,7 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TABBAR, scriptIndex)
+    callConstructor(ENGINE_CLASS_TABBAR_INDEX, scriptIndex)
   }
 
   public final fun setTabCount(count: Int): Unit {

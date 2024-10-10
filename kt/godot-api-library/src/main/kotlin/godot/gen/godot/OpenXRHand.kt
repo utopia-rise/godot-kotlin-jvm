@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRHAND_INDEX: Int = 388
+
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
  * [XROrigin3D] node, tracking will update its position to the player's tracked hand Palm joint
@@ -91,7 +93,7 @@ public open class OpenXRHand : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRHAND, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRHAND_INDEX, scriptIndex)
   }
 
   public final fun setHand(hand: Hands): Unit {

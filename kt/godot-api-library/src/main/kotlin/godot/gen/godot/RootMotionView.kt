@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ROOTMOTIONVIEW_INDEX: Int = 502
+
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to
  * a character. When working with 3D animations, a popular technique is for animators to use the root
@@ -97,7 +99,7 @@ public open class RootMotionView : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ROOTMOTIONVIEW, scriptIndex)
+    callConstructor(ENGINE_CLASS_ROOTMOTIONVIEW_INDEX, scriptIndex)
   }
 
   /**

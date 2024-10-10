@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILESETSOURCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILESETSOURCE_INDEX, scriptIndex)
   }
 
   /**

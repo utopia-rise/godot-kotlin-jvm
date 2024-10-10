@@ -87,7 +87,7 @@ public open class Slider internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SLIDER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SLIDER_INDEX, scriptIndex)
   }
 
   public final fun setTicks(count: Int): Unit {

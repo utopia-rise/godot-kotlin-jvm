@@ -24,10 +24,12 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX: Int = 504
+
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENEREPLICATIONCONFIG, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX, scriptIndex)
   }
 
   /**

@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODESDFRAYMARCH_INDEX: Int = 687
+
 /**
  * Casts a ray against the screen SDF (signed-distance field) and returns the distance travelled.
  */
 @GodotBaseType
 public open class VisualShaderNodeSDFRaymarch : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESDFRAYMARCH, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESDFRAYMARCH_INDEX, scriptIndex)
   }
 
   public companion object

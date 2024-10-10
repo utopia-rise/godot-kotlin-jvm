@@ -54,7 +54,7 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISION3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESCOLLISION3D_INDEX, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

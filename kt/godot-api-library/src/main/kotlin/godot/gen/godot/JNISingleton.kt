@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_JNISINGLETON_INDEX: Int = 305
+
 /**
  * The JNISingleton is implemented only in the Android export. It's used to call methods and connect
  * signals from an Android plugin written in Java or Kotlin. Methods and signals can be called and
@@ -21,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JNISingleton : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_JNISINGLETON, scriptIndex)
+    callConstructor(ENGINE_CLASS_JNISINGLETON_INDEX, scriptIndex)
   }
 
   public companion object

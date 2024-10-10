@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_TORUSMESH_INDEX: Int = 601
+
 /**
  * Class representing a torus [PrimitiveMesh].
  */
@@ -71,7 +73,7 @@ public open class TorusMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TORUSMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_TORUSMESH_INDEX, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEIS_INDEX: Int = 666
+
 /**
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEIS, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEIS_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

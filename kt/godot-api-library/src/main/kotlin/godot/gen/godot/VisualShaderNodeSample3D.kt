@@ -35,7 +35,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESAMPLE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESAMPLE3D_INDEX, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

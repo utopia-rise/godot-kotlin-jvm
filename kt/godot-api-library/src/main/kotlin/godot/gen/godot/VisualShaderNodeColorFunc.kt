@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECOLORFUNC_INDEX: Int = 637
+
 /**
  * Accept a [Color] to the input port and transform it according to [function].
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLORFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOLORFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

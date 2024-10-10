@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BACKBUFFERCOPY_INDEX: Int = 129
+
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the
  * [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen
@@ -58,7 +60,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BACKBUFFERCOPY, scriptIndex)
+    callConstructor(ENGINE_CLASS_BACKBUFFERCOPY_INDEX, scriptIndex)
   }
 
   /**

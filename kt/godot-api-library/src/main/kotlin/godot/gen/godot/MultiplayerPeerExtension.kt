@@ -14,6 +14,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX: Int = 347
+
 /**
  * This class is designed to be inherited from a GDExtension plugin to implement custom networking
  * layers for the multiplayer API (such as WebRTC). All the methods below **must** be implemented to
@@ -22,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MultiplayerPeerExtension : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERPEEREXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX, scriptIndex)
   }
 
   /**

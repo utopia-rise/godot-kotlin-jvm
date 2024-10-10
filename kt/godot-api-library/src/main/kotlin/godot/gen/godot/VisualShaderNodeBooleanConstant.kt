@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX: Int = 633
+
 /**
  * Has only one output port and no inputs.
  * Translated to [code skip-lint]bool[/code] in the shader language.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANCONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX, scriptIndex)
   }
 
   public final fun setConstant(constant: Boolean): Unit {

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX: Int = 642
+
 /**
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
  * channel as scalar.
@@ -59,7 +61,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECUBEMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX: Int = 540
+
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling
  * system.
@@ -38,7 +40,7 @@ public open class SphereOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPHEREOCCLUDER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

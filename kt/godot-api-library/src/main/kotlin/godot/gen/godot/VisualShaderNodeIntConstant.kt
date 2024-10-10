@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEINTCONSTANT_INDEX: Int = 662
+
 /**
  * Translated to [code skip-lint]int[/code] in the shader language.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINTCONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINTCONSTANT_INDEX, scriptIndex)
   }
 
   public final fun setConstant(constant: Int): Unit {

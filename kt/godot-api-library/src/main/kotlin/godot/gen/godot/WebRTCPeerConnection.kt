@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX: Int = 737
+
 /**
  * A WebRTC connection between the local computer and a remote peer. Provides an interface to
  * connect, maintain and monitor the connection.
@@ -65,7 +67,7 @@ public open class WebRTCPeerConnection : RefCounted() {
   public val dataChannelReceived: Signal1<WebRTCDataChannel> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX, scriptIndex)
   }
 
   /**

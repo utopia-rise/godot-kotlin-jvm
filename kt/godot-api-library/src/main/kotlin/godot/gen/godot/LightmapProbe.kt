@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_LIGHTMAPPROBE_INDEX: Int = 319
+
 /**
  * [LightmapProbe] represents the position of a single manually placed probe for dynamic object
  * lighting with [LightmapGI]. Lightmap probes affect the lighting of [GeometryInstance3D]-derived
@@ -26,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class LightmapProbe : Node3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPPROBE, scriptIndex)
+    callConstructor(ENGINE_CLASS_LIGHTMAPPROBE_INDEX, scriptIndex)
   }
 
   public companion object

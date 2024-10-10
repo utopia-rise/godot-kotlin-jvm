@@ -21,6 +21,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX: Int = 566
+
 /**
  * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The
  * associated [TextEdit] will call into the [SyntaxHighlighter] on an as-needed basis.
@@ -29,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SYNTAXHIGHLIGHTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX, scriptIndex)
   }
 
   /**

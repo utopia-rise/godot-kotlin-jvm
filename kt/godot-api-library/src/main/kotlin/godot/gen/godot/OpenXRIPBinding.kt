@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRIPBINDING_INDEX: Int = 389
+
 /**
  * This binding resource binds an [OpenXRAction] to inputs or outputs. As most controllers have left
  * hand and right versions that are handled by the same interaction profile we can specify multiple
@@ -56,7 +58,7 @@ public open class OpenXRIPBinding : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRIPBINDING, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRIPBINDING_INDEX, scriptIndex)
   }
 
   public final fun setAction(action: OpenXRAction?): Unit {

@@ -23,6 +23,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_XMLPARSER_INDEX: Int = 748
+
 /**
  * Provides a low-level interface for creating parsers for
  * [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom
@@ -67,7 +69,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XMLParser : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XMLPARSER, scriptIndex)
+    callConstructor(ENGINE_CLASS_XMLPARSER_INDEX, scriptIndex)
   }
 
   /**

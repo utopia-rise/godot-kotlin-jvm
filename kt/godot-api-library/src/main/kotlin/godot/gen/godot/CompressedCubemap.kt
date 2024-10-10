@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_COMPRESSEDCUBEMAP_INDEX: Int = 184
+
 /**
  * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is
  * created by importing other image formats with the import system. [CompressedCubemap] can use one of
@@ -32,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CompressedCubemap : CompressedTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDCUBEMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_COMPRESSEDCUBEMAP_INDEX, scriptIndex)
   }
 
   public companion object

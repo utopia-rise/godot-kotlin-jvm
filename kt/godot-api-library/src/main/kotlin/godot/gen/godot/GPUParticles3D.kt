@@ -36,6 +36,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLES3D_INDEX: Int = 251
+
 /**
  * 3D particle node used to create a variety of particle systems and effects. [GPUParticles3D]
  * features an emitter that generates some number of particles at a given rate.
@@ -413,7 +415,7 @@ public open class GPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLES3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLES3D_INDEX, scriptIndex)
   }
 
   /**

@@ -34,6 +34,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFNODE_INDEX: Int = 241
+
 /**
  * Represents a GLTF node. GLTF nodes may have names, transforms, children (other GLTF nodes), and
  * more specialized properties (represented by their own classes).
@@ -199,7 +201,7 @@ public open class GLTFNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFNODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFNODE_INDEX, scriptIndex)
   }
 
   /**

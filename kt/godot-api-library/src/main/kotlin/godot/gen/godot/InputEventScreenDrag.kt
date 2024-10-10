@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTSCREENDRAG_INDEX: Int = 300
+
 /**
  * Stores information about screen drag events. See [Node.Input].
  */
@@ -153,7 +155,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTSCREENDRAG, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTSCREENDRAG_INDEX, scriptIndex)
   }
 
   /**

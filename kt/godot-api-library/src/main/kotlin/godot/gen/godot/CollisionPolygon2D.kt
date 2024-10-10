@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX: Int = 175
+
 /**
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
  * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
@@ -97,7 +99,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONPOLYGON2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

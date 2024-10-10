@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPRITE3D_INDEX: Int = 547
+
 /**
  * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from
  * a larger atlas texture, or a frame from a sprite sheet animation. See also [SpriteBase3D] where
@@ -133,7 +135,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPRITE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPRITE3D_INDEX, scriptIndex)
   }
 
   /**

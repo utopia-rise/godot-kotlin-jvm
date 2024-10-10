@@ -218,7 +218,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONMIXER, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONMIXER_INDEX, scriptIndex)
   }
 
   /**

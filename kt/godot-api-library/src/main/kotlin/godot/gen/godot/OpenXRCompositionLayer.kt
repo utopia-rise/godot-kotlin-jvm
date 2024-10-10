@@ -87,7 +87,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYER, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYER_INDEX, scriptIndex)
   }
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {

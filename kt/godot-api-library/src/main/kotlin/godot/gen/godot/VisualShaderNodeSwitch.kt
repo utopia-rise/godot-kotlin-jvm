@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODESWITCH_INDEX: Int = 693
+
 /**
  * Returns an associated value of the [opType] type if the provided boolean value is `true` or
  * `false`.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESWITCH, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESWITCH_INDEX, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

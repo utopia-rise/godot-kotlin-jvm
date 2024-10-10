@@ -92,7 +92,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERAPI, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIPLAYERAPI_INDEX, scriptIndex)
   }
 
   /**

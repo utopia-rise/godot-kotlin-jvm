@@ -152,7 +152,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONOBJECT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLLISIONOBJECT3D_INDEX, scriptIndex)
   }
 
   /**

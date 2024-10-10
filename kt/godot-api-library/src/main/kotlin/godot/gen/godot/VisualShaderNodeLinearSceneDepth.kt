@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODELINEARSCENEDEPTH_INDEX: Int = 667
+
 /**
  * This node can be used in fragment shaders.
  */
 @GodotBaseType
 public open class VisualShaderNodeLinearSceneDepth : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODELINEARSCENEDEPTH, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODELINEARSCENEDEPTH_INDEX, scriptIndex)
   }
 
   public companion object

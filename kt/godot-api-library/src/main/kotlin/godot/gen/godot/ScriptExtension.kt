@@ -18,10 +18,12 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SCRIPTEXTENSION_INDEX: Int = 506
+
 @GodotBaseType
 public open class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPTEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCRIPTEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _editorCanReloadFromFile(): Boolean {

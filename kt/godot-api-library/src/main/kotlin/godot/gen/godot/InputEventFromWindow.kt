@@ -36,7 +36,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTFROMWINDOW, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTFROMWINDOW_INDEX, scriptIndex)
   }
 
   public final fun setWindowId(id: Long): Unit {

@@ -35,6 +35,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADER_INDEX: Int = 631
+
 /**
  * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s
  * do not require coding, they share the same logic with script shaders. They use [VisualShaderNode]s
@@ -56,7 +58,7 @@ public open class VisualShader : Shader() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADER_INDEX, scriptIndex)
   }
 
   /**

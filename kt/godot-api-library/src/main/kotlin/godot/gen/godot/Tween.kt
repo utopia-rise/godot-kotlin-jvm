@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TWEEN_INDEX: Int = 607
+
 /**
  * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a
  * range of values. The name *tween* comes from *in-betweening*, an animation technique where you
@@ -182,7 +184,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TWEEN, scriptIndex)
+    callConstructor(ENGINE_CLASS_TWEEN_INDEX, scriptIndex)
   }
 
   /**

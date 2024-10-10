@@ -24,6 +24,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX: Int = 528
+
 /**
  * This modification takes the transforms of [PhysicalBone2D] nodes and applies them to [Bone2D]
  * nodes. This allows the [Bone2D] nodes to react to physics thanks to the linked [PhysicalBone2D]
@@ -43,7 +45,7 @@ public open class SkeletonModification2DPhysicalBones : SkeletonModification2D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DPHYSICALBONES, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX, scriptIndex)
   }
 
   public final fun setPhysicalBoneChainLength(length: Int): Unit {

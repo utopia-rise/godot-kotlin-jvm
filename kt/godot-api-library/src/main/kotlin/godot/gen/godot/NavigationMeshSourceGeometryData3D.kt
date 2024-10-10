@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX: Int = 357
+
 /**
  * Container for parsed source geometry data used in navigation mesh baking.
  */
@@ -62,7 +64,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX, scriptIndex)
   }
 
   /**

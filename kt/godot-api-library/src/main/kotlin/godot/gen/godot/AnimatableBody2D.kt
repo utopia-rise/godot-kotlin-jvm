@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATABLEBODY2D_INDEX: Int = 43
+
 /**
  * An animatable 2D physics body. It can't be moved by external forces or contacts, but can be moved
  * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
@@ -42,7 +44,7 @@ public open class AnimatableBody2D : StaticBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATABLEBODY2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATABLEBODY2D_INDEX, scriptIndex)
   }
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {

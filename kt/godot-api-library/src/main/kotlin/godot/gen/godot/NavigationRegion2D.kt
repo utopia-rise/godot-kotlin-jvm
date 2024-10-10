@@ -28,6 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_NAVIGATIONREGION2D_INDEX: Int = 365
+
 /**
  * A traversable 2D region based on a [NavigationPolygon] that [NavigationAgent2D]s can use for
  * pathfinding.
@@ -129,7 +131,7 @@ public open class NavigationRegion2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONREGION2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONREGION2D_INDEX, scriptIndex)
   }
 
   /**

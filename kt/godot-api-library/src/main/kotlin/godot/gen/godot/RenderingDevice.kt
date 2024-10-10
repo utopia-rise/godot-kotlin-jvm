@@ -44,6 +44,96 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
+public infix fun Long.or(other: godot.RenderingDevice.BarrierMask): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.BarrierMask): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.BarrierMask): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.BarrierMask): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.BarrierMask): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.BarrierMask): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.BarrierMask): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.TextureUsageBits): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.TextureUsageBits): Long =
+    this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.StorageBufferUsage): Long =
+    this.rem(other.flag)
+
+public infix fun Long.or(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
+    this.rem(other.flag)
+
 /**
  * [RenderingDevice] is an abstraction for working with modern low-level graphics APIs such as
  * Vulkan. Compared to [RenderingServer] (which works with Godot's own rendering subsystems),
@@ -69,7 +159,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERINGDEVICE, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERINGDEVICE_INDEX, scriptIndex)
   }
 
   /**
@@ -4662,93 +4752,3 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "get_driver_resource", 501815484)
   }
 }
-
-public infix fun Long.or(other: godot.RenderingDevice.BarrierMask): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RenderingDevice.BarrierMask): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RenderingDevice.BarrierMask): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RenderingDevice.BarrierMask): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RenderingDevice.BarrierMask): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RenderingDevice.BarrierMask): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RenderingDevice.BarrierMask): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.RenderingDevice.TextureUsageBits): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RenderingDevice.TextureUsageBits): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RenderingDevice.StorageBufferUsage): Long =
-    this.rem(other.flag)
-
-public infix fun Long.or(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RenderingDevice.PipelineDynamicStateFlags): Long =
-    this.rem(other.flag)

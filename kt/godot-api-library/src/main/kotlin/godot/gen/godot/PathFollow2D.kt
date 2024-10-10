@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PATHFOLLOW2D_INDEX: Int = 411
+
 /**
  * This node takes its parent [Path2D], and returns the coordinates of a point within it, given a
  * distance from the first vertex.
@@ -121,7 +123,7 @@ public open class PathFollow2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PATHFOLLOW2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PATHFOLLOW2D_INDEX, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

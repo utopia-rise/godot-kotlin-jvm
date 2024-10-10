@@ -25,6 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ACCEPTDIALOG_INDEX: Int = 42
+
 /**
  * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same
  * result. However, the [signal confirmed] and [signal canceled] signals allow to make the two actions
@@ -110,7 +112,7 @@ public open class AcceptDialog : Window() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ACCEPTDIALOG, scriptIndex)
+    callConstructor(ENGINE_CLASS_ACCEPTDIALOG_INDEX, scriptIndex)
   }
 
   /**

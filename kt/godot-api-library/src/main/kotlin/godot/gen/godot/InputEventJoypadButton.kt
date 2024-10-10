@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTJOYPADBUTTON_INDEX: Int = 292
+
 /**
  * Input event type for gamepad buttons. For gamepad analog sticks and joysticks, see
  * [InputEventJoypadMotion].
@@ -60,7 +62,7 @@ public open class InputEventJoypadButton : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTJOYPADBUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTJOYPADBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {

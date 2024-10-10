@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPRITE2D_INDEX: Int = 546
+
 /**
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas
  * texture, or a frame from a sprite sheet animation.
@@ -193,7 +195,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPRITE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPRITE2D_INDEX, scriptIndex)
   }
 
   /**

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOBUSLAYOUT_INDEX: Int = 78
+
 /**
  * Stores position, muting, solo, bypass, effects, effect position, volume, and the connections
  * between buses. See [AudioServer] for usage.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioBusLayout : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOBUSLAYOUT, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOBUSLAYOUT_INDEX, scriptIndex)
   }
 
   public companion object

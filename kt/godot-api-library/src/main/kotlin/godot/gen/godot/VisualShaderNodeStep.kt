@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODESTEP_INDEX: Int = 692
+
 /**
  * Translates to `step(edge, x)` in the shader language.
  * Returns `0.0` if `x` is smaller than `edge` and `1.0` otherwise.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESTEP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESTEP_INDEX, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

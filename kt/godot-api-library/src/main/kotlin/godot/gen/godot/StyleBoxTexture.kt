@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_STYLEBOXTEXTURE_INDEX: Int = 562
+
 /**
  * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox
  * performs a 3×3 scaling of a texture, where only the center cell is fully stretched. This makes it
@@ -214,7 +216,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STYLEBOXTEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_STYLEBOXTEXTURE_INDEX, scriptIndex)
   }
 
   /**

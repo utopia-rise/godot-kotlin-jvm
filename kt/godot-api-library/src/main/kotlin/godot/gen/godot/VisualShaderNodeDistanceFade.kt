@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEDISTANCEFADE_INDEX: Int = 649
+
 /**
  * The distance fade effect fades out each pixel based on its distance to another object.
  */
 @GodotBaseType
 public open class VisualShaderNodeDistanceFade : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEDISTANCEFADE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEDISTANCEFADE_INDEX, scriptIndex)
   }
 
   public companion object

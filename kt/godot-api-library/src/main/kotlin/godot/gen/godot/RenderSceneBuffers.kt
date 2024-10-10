@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneBuffers internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEBUFFERS, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERSCENEBUFFERS_INDEX, scriptIndex)
   }
 
   /**

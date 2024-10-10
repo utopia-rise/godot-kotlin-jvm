@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX: Int = 249
+
 /**
  * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify
  * how to sample data from the texture's base image, when rendering the texture on an object.
@@ -71,7 +73,7 @@ public open class GLTFTextureSampler : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFTEXTURESAMPLER, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX, scriptIndex)
   }
 
   public final fun getMagFilter(): Int {

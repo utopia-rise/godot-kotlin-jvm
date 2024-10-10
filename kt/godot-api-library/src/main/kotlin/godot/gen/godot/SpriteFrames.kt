@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SPRITEFRAMES_INDEX: Int = 548
+
 /**
  * Sprite frame library for an [AnimatedSprite2D] or [AnimatedSprite3D] node. Contains frames and
  * animation data for playback.
@@ -35,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SpriteFrames : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPRITEFRAMES, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPRITEFRAMES_INDEX, scriptIndex)
   }
 
   /**

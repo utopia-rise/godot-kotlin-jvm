@@ -86,7 +86,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTWITHMODIFIERS, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTWITHMODIFIERS_INDEX, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

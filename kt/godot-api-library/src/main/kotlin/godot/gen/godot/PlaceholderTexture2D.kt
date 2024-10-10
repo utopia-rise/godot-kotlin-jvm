@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PLACEHOLDERTEXTURE2D_INDEX: Int = 439
+
 /**
  * This class is used when loading a project that uses a [Texture2D] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -45,7 +47,7 @@ public open class PlaceholderTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERTEXTURE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PLACEHOLDERTEXTURE2D_INDEX, scriptIndex)
   }
 
   /**

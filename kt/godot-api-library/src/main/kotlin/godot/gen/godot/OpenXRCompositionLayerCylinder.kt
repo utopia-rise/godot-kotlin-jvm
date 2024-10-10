@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX: Int = 384
+
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
  * cylinder.
@@ -72,7 +74,7 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYERCYLINDER, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

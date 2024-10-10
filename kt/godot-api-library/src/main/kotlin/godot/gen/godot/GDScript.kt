@@ -16,6 +16,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_GDSCRIPT_INDEX: Int = 231
+
 /**
  * A script implemented in the GDScript programming language, saved with the `.gd` extension. The
  * script extends the functionality of all objects that instantiate it.
@@ -26,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDScript : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GDSCRIPT, scriptIndex)
+    callConstructor(ENGINE_CLASS_GDSCRIPT_INDEX, scriptIndex)
   }
 
   /**

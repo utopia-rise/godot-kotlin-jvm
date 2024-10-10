@@ -30,7 +30,7 @@ import kotlin.jvm.JvmOverloads
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE_INDEX, scriptIndex)
   }
 
   /**

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_REMOTETRANSFORM3D_INDEX: Int = 485
+
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
  * remote node) in the scene.
@@ -84,7 +86,7 @@ public open class RemoteTransform3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_REMOTETRANSFORM3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_REMOTETRANSFORM3D_INDEX, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

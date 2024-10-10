@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX: Int = 63
+
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
  * connected by [AnimationNodeStateMachineTransition].
@@ -165,7 +167,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINETRANSITION, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX, scriptIndex)
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {

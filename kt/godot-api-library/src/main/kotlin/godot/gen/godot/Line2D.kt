@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_LINE2D_INDEX: Int = 321
+
 /**
  * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.
  * [Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended
@@ -214,7 +216,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LINE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_LINE2D_INDEX, scriptIndex)
   }
 
   /**

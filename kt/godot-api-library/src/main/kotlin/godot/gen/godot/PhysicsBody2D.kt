@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSBODY2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSBODY2D_INDEX, scriptIndex)
   }
 
   /**

@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTKEY_INDEX: Int = 294
+
 /**
  * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It
  * can also be received in [Node.UnhandledKeyInput].
@@ -161,7 +163,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTKEY, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTKEY_INDEX, scriptIndex)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

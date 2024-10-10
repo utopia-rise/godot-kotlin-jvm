@@ -25,13 +25,15 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX: Int = 432
+
 /**
  * Describes the motion and collision result from [PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONRESULT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX, scriptIndex)
   }
 
   /**

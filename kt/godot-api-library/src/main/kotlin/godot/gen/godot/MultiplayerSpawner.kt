@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MULTIPLAYERSPAWNER_INDEX: Int = 348
+
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).
  * Also supports custom node spawns through [spawn], calling [spawnFunction] on all peers.
@@ -90,7 +92,7 @@ public open class MultiplayerSpawner : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERSPAWNER, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIPLAYERSPAWNER_INDEX, scriptIndex)
   }
 
   /**

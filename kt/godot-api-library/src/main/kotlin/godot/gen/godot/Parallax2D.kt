@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PARALLAX2D_INDEX: Int = 405
+
 /**
  * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to
  * the camera movement using [scrollScale]. This creates an illusion of depth in a 2D game. If manual
@@ -167,7 +169,7 @@ public open class Parallax2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PARALLAX2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PARALLAX2D_INDEX, scriptIndex)
   }
 
   /**

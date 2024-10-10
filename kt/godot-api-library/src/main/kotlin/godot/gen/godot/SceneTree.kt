@@ -36,6 +36,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SCENETREE_INDEX: Int = 505
+
 /**
  * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,
  * as well as scenes themselves. Nodes can be added, fetched and removed. The whole scene tree (and
@@ -243,7 +245,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENETREE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCENETREE_INDEX, scriptIndex)
   }
 
   public final fun getRoot(): Window? {

@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DJIGGLE_INDEX: Int = 526
+
 /**
  * This modification moves a series of bones, typically called a bone chain, towards a target. What
  * makes this modification special is that it calculates the velocity and acceleration for each bone in
@@ -128,7 +130,7 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DJIGGLE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DJIGGLE_INDEX, scriptIndex)
   }
 
   /**

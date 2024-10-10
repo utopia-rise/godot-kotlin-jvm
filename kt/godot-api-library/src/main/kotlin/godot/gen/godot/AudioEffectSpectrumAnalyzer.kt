@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX: Int = 106
+
 /**
  * This audio effect does not affect sound output, but can be used for real-time audio
  * visualizations.
@@ -65,7 +67,7 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTSPECTRUMANALYZER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX, scriptIndex)
   }
 
   public final fun setBufferLength(seconds: Float): Unit {

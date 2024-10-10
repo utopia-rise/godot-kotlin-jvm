@@ -52,7 +52,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PACKETPEER, scriptIndex)
+    callConstructor(ENGINE_CLASS_PACKETPEER_INDEX, scriptIndex)
   }
 
   /**

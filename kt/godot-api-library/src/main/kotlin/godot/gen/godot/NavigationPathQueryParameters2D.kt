@@ -30,6 +30,32 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS2D_INDEX: Int = 360
+
+public infix fun Long.or(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.or(other.flag)
+
+public infix fun Long.xor(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.xor(other.flag)
+
+public infix fun Long.and(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.and(other.flag)
+
+public operator fun Long.plus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
+    = this.times(other.flag)
+
+public operator fun Long.div(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
+    this.rem(other.flag)
+
 /**
  * By changing various properties of this object, such as the start and target position, you can
  * configure path queries to the [NavigationServer2D].
@@ -143,7 +169,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYPARAMETERS2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS2D_INDEX, scriptIndex)
   }
 
   /**
@@ -477,27 +503,3 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
         TypeManager.getMethodBindPtr("NavigationPathQueryParameters2D", "get_simplify_epsilon", 1740695150)
   }
 }
-
-public infix fun Long.or(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
-    this.or(other.flag)
-
-public infix fun Long.xor(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
-    this.xor(other.flag)
-
-public infix fun Long.and(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
-    this.and(other.flag)
-
-public operator fun Long.plus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
-    = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
-    = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long
-    = this.times(other.flag)
-
-public operator fun Long.div(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.NavigationPathQueryParameters2D.PathMetadataFlags): Long =
-    this.rem(other.flag)

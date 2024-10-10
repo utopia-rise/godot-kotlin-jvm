@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLLISIONSHAPE3D_INDEX: Int = 178
+
 /**
  * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
  * give a detection shape to an [Area3D] or turn a [PhysicsBody3D] into a solid object.
@@ -50,7 +52,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLLISIONSHAPE3D_INDEX, scriptIndex)
   }
 
   /**

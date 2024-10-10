@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTMIDI_INDEX: Int = 295
+
 /**
  * InputEventMIDI stores information about messages from
  * [url=https://en.wikipedia.org/wiki/MIDI]MIDI[/url] (Musical Instrument Digital Interface) devices.
@@ -203,7 +205,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMIDI, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTMIDI_INDEX, scriptIndex)
   }
 
   public final fun setChannel(channel: Int): Unit {

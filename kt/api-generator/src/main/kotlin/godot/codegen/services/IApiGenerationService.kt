@@ -11,7 +11,6 @@ import java.io.File
 interface IApiGenerationService {
     fun generateSingleton(singletonClass: EnrichedClass): FileSpec
     fun generateClass(clazz: EnrichedClass): FileSpec
-    fun generateEngineIndexesForClass(fileSpecBuilder: FileSpec.Builder, clazz: EnrichedClass)
     fun generateEnum(enum: EnrichedEnum, containingClassName: String? = null): Pair<List<TypeSpec>, List<FunSpec>>
     fun generateConstant(constant: EnrichedConstant, containingClassName: String?): PropertySpec
 

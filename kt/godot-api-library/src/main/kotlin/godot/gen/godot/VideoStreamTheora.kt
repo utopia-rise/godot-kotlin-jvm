@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VIDEOSTREAMTHEORA_INDEX: Int = 624
+
 /**
  * [VideoStream] resource handling the [url=https://www.theora.org/]Ogg Theora[/url] video format
  * with `.ogv` extension. The Theora codec is decoded on the CPU.
@@ -20,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VideoStreamTheora : VideoStream() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAMTHEORA, scriptIndex)
+    callConstructor(ENGINE_CLASS_VIDEOSTREAMTHEORA_INDEX, scriptIndex)
   }
 
   public companion object

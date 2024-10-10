@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX: Int = 193
+
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
  * its Cancel button can have a different outcome from pressing the OK button. The order of the two
@@ -48,7 +50,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONFIRMATIONDIALOG, scriptIndex)
+    callConstructor(ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX, scriptIndex)
   }
 
   /**

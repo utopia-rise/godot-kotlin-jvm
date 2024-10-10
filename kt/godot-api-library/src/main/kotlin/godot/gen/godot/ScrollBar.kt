@@ -44,7 +44,7 @@ public open class ScrollBar internal constructor() : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCROLLBAR, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCROLLBAR_INDEX, scriptIndex)
   }
 
   public final fun setCustomStep(step: Float): Unit {

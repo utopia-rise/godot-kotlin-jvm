@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BASEBUTTON_INDEX: Int = 130
+
 /**
  * [BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
  */
@@ -175,7 +177,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BASEBUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_BASEBUTTON_INDEX, scriptIndex)
   }
 
   /**

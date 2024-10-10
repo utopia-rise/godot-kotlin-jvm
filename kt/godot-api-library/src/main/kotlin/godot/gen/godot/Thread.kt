@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_THREAD_INDEX: Int = 592
+
 /**
  * A unit of execution in a process. Can run methods on [Object]s simultaneously. The use of
  * synchronization via [Mutex] or [Semaphore] is advised if working with shared objects.
@@ -39,7 +41,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Thread : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_THREAD, scriptIndex)
+    callConstructor(ENGINE_CLASS_THREAD_INDEX, scriptIndex)
   }
 
   /**

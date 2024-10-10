@@ -28,7 +28,7 @@ import kotlin.Unit
 public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
     {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEGROUPBASE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEGROUPBASE_INDEX, scriptIndex)
   }
 
   /**

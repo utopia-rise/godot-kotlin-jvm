@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_HSEPARATOR_INDEX: Int = 276
+
 /**
  * A horizontal separator used for separating other controls that are arranged **vertically**.
  * [HSeparator] is purely visual and normally drawn as a [StyleBoxLine].
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HSeparator : Separator() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HSEPARATOR, scriptIndex)
+    callConstructor(ENGINE_CLASS_HSEPARATOR_INDEX, scriptIndex)
   }
 
   public companion object

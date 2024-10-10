@@ -19,6 +19,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOLISTENER3D_INDEX: Int = 109
+
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
  * location sounds are heard from. This can be used to listen from a location different from the
@@ -27,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOLISTENER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOLISTENER3D_INDEX, scriptIndex)
   }
 
   /**

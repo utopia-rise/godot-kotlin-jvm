@@ -55,6 +55,91 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
+public infix fun Long.or(other: godot.TextServer.JustificationFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.JustificationFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.JustificationFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.JustificationFlag): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.JustificationFlag): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.JustificationFlag): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.JustificationFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.JustificationFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.LineBreakFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.LineBreakFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.LineBreakFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.LineBreakFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.LineBreakFlag): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.LineBreakFlag): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.LineBreakFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.LineBreakFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.TextOverrunFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.TextOverrunFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.TextOverrunFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.TextOverrunFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.TextOverrunFlag): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.TextOverrunFlag): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.TextOverrunFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.TextOverrunFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.GraphemeFlag): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.GraphemeFlag): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.GraphemeFlag): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.GraphemeFlag): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.GraphemeFlag): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.GraphemeFlag): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.GraphemeFlag): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.GraphemeFlag): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.TextServer.FontStyle): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.TextServer.FontStyle): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.TextServer.FontStyle): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.TextServer.FontStyle): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.TextServer.FontStyle): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.TextServer.FontStyle): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.TextServer.FontStyle): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.TextServer.FontStyle): Long = this.rem(other.flag)
+
 /**
  * [TextServer] is the API backend for managing fonts and rendering text.
  * **Note:** This is a low-level API, consider using [TextLine], [TextParagraph], and [Font] classes
@@ -74,7 +159,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVER, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTSERVER_INDEX, scriptIndex)
   }
 
   /**
@@ -3936,88 +4021,3 @@ public open class TextServer internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("TextServer", "parse_structured_text", 3310685015)
   }
 }
-
-public infix fun Long.or(other: godot.TextServer.JustificationFlag): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.TextServer.JustificationFlag): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.TextServer.JustificationFlag): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.TextServer.JustificationFlag): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.TextServer.JustificationFlag): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.TextServer.JustificationFlag): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.TextServer.JustificationFlag): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.TextServer.JustificationFlag): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.TextServer.LineBreakFlag): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.TextServer.LineBreakFlag): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.TextServer.LineBreakFlag): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.TextServer.LineBreakFlag): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.TextServer.LineBreakFlag): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.TextServer.LineBreakFlag): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.TextServer.LineBreakFlag): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.TextServer.LineBreakFlag): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.TextServer.TextOverrunFlag): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.TextServer.TextOverrunFlag): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.TextServer.TextOverrunFlag): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.TextServer.TextOverrunFlag): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.TextServer.TextOverrunFlag): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.TextServer.TextOverrunFlag): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.TextServer.TextOverrunFlag): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.TextServer.TextOverrunFlag): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.TextServer.GraphemeFlag): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.TextServer.GraphemeFlag): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.TextServer.GraphemeFlag): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.TextServer.GraphemeFlag): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.TextServer.GraphemeFlag): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.TextServer.GraphemeFlag): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.TextServer.GraphemeFlag): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.TextServer.GraphemeFlag): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.TextServer.FontStyle): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.TextServer.FontStyle): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.TextServer.FontStyle): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.TextServer.FontStyle): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.TextServer.FontStyle): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.TextServer.FontStyle): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.TextServer.FontStyle): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.TextServer.FontStyle): Long = this.rem(other.flag)

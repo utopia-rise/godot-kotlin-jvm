@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COMPOSITOREFFECT_INDEX: Int = 183
+
 /**
  * This resource defines a custom rendering effect that can be applied to [Viewport]s through the
  * viewports' [Environment]. You can implement a callback that is called during rendering at a given
@@ -133,7 +135,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPOSITOREFFECT, scriptIndex)
+    callConstructor(ENGINE_CLASS_COMPOSITOREFFECT_INDEX, scriptIndex)
   }
 
   /**

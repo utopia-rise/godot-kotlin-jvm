@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SOFTBODY3D_INDEX: Int = 538
+
 /**
  * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,
  * or other flexible materials.
@@ -181,7 +183,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SOFTBODY3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SOFTBODY3D_INDEX, scriptIndex)
   }
 
   /**

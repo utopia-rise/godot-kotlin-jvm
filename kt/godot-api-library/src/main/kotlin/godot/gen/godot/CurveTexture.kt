@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CURVETEXTURE_INDEX: Int = 205
+
 /**
  * A 1D texture where pixel brightness corresponds to points on a [Curve] resource, either in
  * grayscale or in red. This visual representation simplifies the task of saving curves as image files.
@@ -64,7 +66,7 @@ public open class CurveTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CURVETEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_CURVETEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

@@ -41,6 +41,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_POLYGON2D_INDEX: Int = 445
+
 /**
  * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final
  * point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with
@@ -229,7 +231,7 @@ public open class Polygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POLYGON2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_POLYGON2D_INDEX, scriptIndex)
   }
 
   /**

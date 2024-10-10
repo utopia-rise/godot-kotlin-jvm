@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECOLOROP_INDEX: Int = 638
+
 /**
  * Applies [operator] to two color inputs.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOLOROP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOLOROP_INDEX, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NOISETEXTURE2D_INDEX: Int = 371
+
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
  * desired size. [NoiseTexture2D] can also generate normal map textures.
@@ -191,7 +193,7 @@ public open class NoiseTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NOISETEXTURE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NOISETEXTURE2D_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

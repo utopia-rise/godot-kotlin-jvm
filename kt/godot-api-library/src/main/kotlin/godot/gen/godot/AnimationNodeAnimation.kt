@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATIONNODEANIMATION_INDEX: Int = 53
+
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation]
  * property. Used as an input for [AnimationNode]s that blend animations together.
@@ -118,7 +120,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEANIMATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODEANIMATION_INDEX, scriptIndex)
   }
 
   public final fun setAnimation(name: StringName): Unit {

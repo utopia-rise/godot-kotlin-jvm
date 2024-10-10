@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE2D_INDEX: Int = 744
+
 /**
  * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an
  * infinite straight line that forces all physics bodies to stay above it. The line's normal determines
@@ -60,7 +62,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_WORLDBOUNDARYSHAPE2D_INDEX, scriptIndex)
   }
 
   /**

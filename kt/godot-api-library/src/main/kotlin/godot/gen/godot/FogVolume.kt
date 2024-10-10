@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_FOGVOLUME_INDEX: Int = 226
+
 /**
  * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s
  * can also remove volumetric fog from specific areas if using a [FogMaterial] with a negative
@@ -86,7 +88,7 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FOGVOLUME, scriptIndex)
+    callConstructor(ENGINE_CLASS_FOGVOLUME_INDEX, scriptIndex)
   }
 
   /**

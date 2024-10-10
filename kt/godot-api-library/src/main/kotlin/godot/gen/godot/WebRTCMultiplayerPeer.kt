@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX: Int = 736
+
 /**
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
  * can be used as a [MultiplayerAPI.multiplayerPeer].
@@ -43,7 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCMULTIPLAYERPEER, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX, scriptIndex)
   }
 
   /**

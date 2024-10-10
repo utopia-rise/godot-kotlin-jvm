@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MESHINSTANCE2D_INDEX: Int = 334
+
 /**
  * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
  * existing [Sprite2D] via a tool in the editor toolbar. Select the [Sprite2D] node, then choose
@@ -54,7 +56,7 @@ public open class MeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHINSTANCE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_MESHINSTANCE2D_INDEX, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

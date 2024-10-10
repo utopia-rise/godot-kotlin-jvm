@@ -402,7 +402,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LIGHT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_LIGHT3D_INDEX, scriptIndex)
   }
 
   /**

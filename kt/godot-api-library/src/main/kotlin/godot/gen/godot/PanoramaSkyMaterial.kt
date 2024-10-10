@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX: Int = 404
+
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
  * functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of
@@ -68,7 +70,7 @@ public open class PanoramaSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PANORAMASKYMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setPanorama(texture: Texture2D?): Unit {

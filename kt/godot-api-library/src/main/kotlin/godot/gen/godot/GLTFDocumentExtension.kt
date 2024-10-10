@@ -18,6 +18,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX: Int = 237
+
 /**
  * Extends the functionality of the [GLTFDocument] class by allowing you to run arbitrary code at
  * various stages of GLTF import or export.
@@ -30,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFDOCUMENTEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX, scriptIndex)
   }
 
   /**

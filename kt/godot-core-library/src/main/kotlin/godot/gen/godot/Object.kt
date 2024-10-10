@@ -36,6 +36,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_OBJECT_INDEX: Int = 0
+
 /**
  * An advanced [Variant] type. All classes in the engine inherit from Object. Each class may define
  * new properties, methods or signals, which are available to all inheriting classes. For example, a
@@ -96,7 +98,7 @@ public open class Object : KtObject() {
   public val propertyListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OBJECT, scriptIndex)
+    callConstructor(ENGINE_CLASS_OBJECT_INDEX, scriptIndex)
   }
 
   /**

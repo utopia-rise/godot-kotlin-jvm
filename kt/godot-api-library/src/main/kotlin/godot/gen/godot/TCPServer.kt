@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TCPSERVER_INDEX: Int = 568
+
 /**
  * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
  * incoming connection.
@@ -33,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TCPServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TCPSERVER, scriptIndex)
+    callConstructor(ENGINE_CLASS_TCPSERVER_INDEX, scriptIndex)
   }
 
   /**

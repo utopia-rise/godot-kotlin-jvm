@@ -55,7 +55,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPT, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCRIPT_INDEX, scriptIndex)
   }
 
   /**

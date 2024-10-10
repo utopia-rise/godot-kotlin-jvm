@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEDATA, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERSCENEDATA_INDEX, scriptIndex)
   }
 
   /**

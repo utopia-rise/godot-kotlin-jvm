@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MARKER3D_INDEX: Int = 327
+
 /**
  * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross
  * in the 3D editor at all times.
@@ -37,7 +39,7 @@ public open class Marker3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MARKER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_MARKER3D_INDEX, scriptIndex)
   }
 
   public final fun setGizmoExtents(extents: Float): Unit {

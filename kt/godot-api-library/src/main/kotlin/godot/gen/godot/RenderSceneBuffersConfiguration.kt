@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX: Int = 488
+
 /**
  * This configuration object is created and populated by the render engine on a viewport change and
  * used to (re)configure a [RenderSceneBuffers] object.
@@ -136,7 +138,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEBUFFERSCONFIGURATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX, scriptIndex)
   }
 
   /**

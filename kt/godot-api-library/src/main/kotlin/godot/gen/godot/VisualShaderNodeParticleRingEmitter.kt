@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERINGEMITTER_INDEX: Int = 680
+
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in ring shape with the
  * specified inner and outer radii and height.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeParticleRingEmitter : VisualShaderNodeParticleEmitter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLERINGEMITTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLERINGEMITTER_INDEX, scriptIndex)
   }
 
   public companion object

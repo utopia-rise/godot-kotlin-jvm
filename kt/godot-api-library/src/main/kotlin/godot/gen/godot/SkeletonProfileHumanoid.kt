@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX: Int = 534
+
 /**
  * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for
  * standardization, so all parameters are read-only.
@@ -76,7 +78,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkeletonProfileHumanoid : SkeletonProfile() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONPROFILEHUMANOID, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX, scriptIndex)
   }
 
   public companion object

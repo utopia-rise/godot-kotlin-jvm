@@ -116,7 +116,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_DIRACCESS, scriptIndex)
+    callConstructor(ENGINE_CLASS_DIRACCESS_INDEX, scriptIndex)
   }
 
   /**

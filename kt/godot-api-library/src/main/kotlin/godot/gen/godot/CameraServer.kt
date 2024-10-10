@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_CAMERASERVER_INDEX: Int = 29
+
 /**
  * The [CameraServer] keeps track of different cameras accessible in Godot. These are external
  * cameras such as webcams or the cameras on your phone.
@@ -46,7 +48,7 @@ public object CameraServer : Object() {
   public val cameraFeedRemoved: Signal1<Long> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_CAMERASERVER)
+    getSingleton(ENGINE_CLASS_CAMERASERVER_INDEX)
   }
 
   /**

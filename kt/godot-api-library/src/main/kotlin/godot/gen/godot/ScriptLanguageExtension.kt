@@ -20,10 +20,12 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX: Int = 507
+
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPTLANGUAGEEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getName(): String {

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEREMAP_INDEX: Int = 684
+
 /**
  * Remap will transform the input range into output range, e.g. you can change a `0..1` value to
  * `-2..2` etc. See [@GlobalScope.remap] for more details.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeRemap : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEREMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEREMAP_INDEX, scriptIndex)
   }
 
   public companion object

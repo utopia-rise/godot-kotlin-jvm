@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATABLEBODY3D_INDEX: Int = 44
+
 /**
  * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
  * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
@@ -42,7 +44,7 @@ public open class AnimatableBody3D : StaticBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATABLEBODY3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATABLEBODY3D_INDEX, scriptIndex)
   }
 
   public final fun setSyncToPhysics(enable: Boolean): Unit {

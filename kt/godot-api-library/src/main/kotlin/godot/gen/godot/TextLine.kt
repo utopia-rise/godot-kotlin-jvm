@@ -42,6 +42,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TEXTLINE_INDEX: Int = 572
+
 /**
  * Abstraction over [TextServer] for handling a single line of text.
  */
@@ -148,7 +150,7 @@ public open class TextLine : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTLINE, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTLINE_INDEX, scriptIndex)
   }
 
   /**

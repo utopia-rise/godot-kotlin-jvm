@@ -34,6 +34,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PHYSICSSHAPEQUERYPARAMETERS3D_INDEX: Int = 428
+
 /**
  * By changing various properties of this object, such as the shape, you can configure the
  * parameters for [PhysicsDirectSpaceState3D.intersectShape].
@@ -181,7 +183,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSSHAPEQUERYPARAMETERS3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSSHAPEQUERYPARAMETERS3D_INDEX, scriptIndex)
   }
 
   /**

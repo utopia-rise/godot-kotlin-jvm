@@ -13,7 +13,7 @@ class EnrichedClass(val internal: Class) : TypedTrait, IDocumented {
     val signals = internal.signals?.toEnriched() ?: listOf()
     val name = internal.name.escapeUnderscore()
     val inherits = internal.inherits?.escapeUnderscore()
-    val engineClassDBIndexName = "ENGINECLASS_${internal.name.uppercase(Locale.US)}"
+    val engineClassDBIndexName = "ENGINE_CLASS_${internal.name.uppercase(Locale.US)}_INDEX"
     val properties= internal.properties?.toEnriched() ?: listOf()
     val methods = internal.methods?.toEnriched(engineClassDBIndexName) ?: listOf()
     val apiType = ApiType.from(internal.apiType)

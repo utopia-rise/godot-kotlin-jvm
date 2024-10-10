@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_XRCAMERA3D_INDEX: Int = 752
+
 /**
  * This is a helper spatial node for our camera; note that, if stereoscopic rendering is applicable
  * (VR-HMD), most of the camera properties are ignored, as the HMD information overrides them. The only
@@ -24,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRCamera3D : Camera3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRCAMERA3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRCAMERA3D_INDEX, scriptIndex)
   }
 
   public companion object

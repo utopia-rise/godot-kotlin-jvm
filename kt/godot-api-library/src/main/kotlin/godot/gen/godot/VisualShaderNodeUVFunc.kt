@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEUVFUNC_INDEX: Int = 714
+
 /**
  * UV functions are similar to [Vector2] functions, but the input port of this node uses the
  * shader's UV value by default.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEUVFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEUVFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

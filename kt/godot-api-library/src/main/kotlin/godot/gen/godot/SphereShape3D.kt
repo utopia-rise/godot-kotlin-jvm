@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPHERESHAPE3D_INDEX: Int = 541
+
 /**
  * A 3D sphere shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
@@ -39,7 +41,7 @@ public open class SphereShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPHERESHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPHERESHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

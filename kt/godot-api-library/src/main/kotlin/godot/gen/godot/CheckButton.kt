@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_CHECKBUTTON_INDEX: Int = 171
+
 /**
  * [CheckButton] is a toggle button displayed as a check field. It's similar to [CheckBox] in
  * functionality, but it has a different appearance. To follow established UX patterns, it's
@@ -22,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CheckButton : Button() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CHECKBUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_CHECKBUTTON_INDEX, scriptIndex)
   }
 
   public companion object

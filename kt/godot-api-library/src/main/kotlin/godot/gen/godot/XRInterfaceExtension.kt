@@ -38,13 +38,15 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX: Int = 759
+
 /**
  * External XR interface plugins should inherit from this class.
  */
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACEEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX, scriptIndex)
   }
 
   /**

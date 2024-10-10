@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_IMMEDIATEMESH_INDEX: Int = 288
+
 /**
  * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.
  * Here's a sample on how to generate a triangular face:
@@ -55,7 +57,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMMEDIATEMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_IMMEDIATEMESH_INDEX, scriptIndex)
   }
 
   /**

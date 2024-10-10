@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NOISETEXTURE3D_INDEX: Int = 372
+
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
  * desired size.
@@ -151,7 +153,7 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NOISETEXTURE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NOISETEXTURE3D_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

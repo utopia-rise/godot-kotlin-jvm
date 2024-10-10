@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX: Int = 656
+
 /**
  * Translated to `uniform float` in the shader language.
  */
@@ -97,7 +99,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {

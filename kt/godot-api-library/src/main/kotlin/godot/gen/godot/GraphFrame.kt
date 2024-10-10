@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GRAPHFRAME_INDEX: Int = 267
+
 /**
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
  * configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved,
@@ -112,7 +114,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRAPHFRAME, scriptIndex)
+    callConstructor(ENGINE_CLASS_GRAPHFRAME_INDEX, scriptIndex)
   }
 
   /**

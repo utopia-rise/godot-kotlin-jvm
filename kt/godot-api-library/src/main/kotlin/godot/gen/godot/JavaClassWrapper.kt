@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_JAVACLASSWRAPPER_INDEX: Int = 26
+
 /**
  * The JavaClassWrapper singleton provides a way for the Godot application to send and receive data
  * through the [url=https://developer.android.com/training/articles/perf-jni]Java Native
@@ -27,7 +29,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object JavaClassWrapper : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_JAVACLASSWRAPPER)
+    getSingleton(ENGINE_CLASS_JAVACLASSWRAPPER_INDEX)
   }
 
   /**

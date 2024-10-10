@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORREFRACT_INDEX: Int = 730
+
 /**
  * Translated to `refract(I, N, eta)` in the shader language, where `I` is the incident vector, `N`
  * is the normal vector and `eta` is the ratio of the indices of the refraction.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeVectorRefract : VisualShaderNodeVectorBase() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORREFRACT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVECTORREFRACT_INDEX, scriptIndex)
   }
 
   public companion object

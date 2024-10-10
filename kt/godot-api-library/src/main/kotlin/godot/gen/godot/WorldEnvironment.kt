@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WORLDENVIRONMENT_INDEX: Int = 746
+
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
  * The parameters defined in the [WorldEnvironment] can be overridden by an [Environment] node set
@@ -63,7 +65,7 @@ public open class WorldEnvironment : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WORLDENVIRONMENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_WORLDENVIRONMENT_INDEX, scriptIndex)
   }
 
   public final fun setEnvironment(env: Environment?): Unit {

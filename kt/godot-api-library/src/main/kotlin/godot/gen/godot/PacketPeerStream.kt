@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PACKETPEERSTREAM_INDEX: Int = 400
+
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
  * using packet based code with StreamPeers. PacketPeerStream implements a custom protocol over the
@@ -57,7 +59,7 @@ public open class PacketPeerStream : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PACKETPEERSTREAM, scriptIndex)
+    callConstructor(ENGINE_CLASS_PACKETPEERSTREAM_INDEX, scriptIndex)
   }
 
   public final fun setStreamPeer(peer: StreamPeer?): Unit {

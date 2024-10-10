@@ -34,6 +34,27 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+public infix fun Long.or(other: godot.FileAccess.UnixPermissionFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.FileAccess.UnixPermissionFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.FileAccess.UnixPermissionFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.FileAccess.UnixPermissionFlags): Long =
+    this.rem(other.flag)
+
 /**
  * This class can be used to permanently store data in the user device's file system and to read
  * from it. This is useful for store game save data or player configuration files.
@@ -101,7 +122,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FILEACCESS, scriptIndex)
+    callConstructor(ENGINE_CLASS_FILEACCESS_INDEX, scriptIndex)
   }
 
   /**
@@ -1105,24 +1126,3 @@ public open class FileAccess internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
   }
 }
-
-public infix fun Long.or(other: godot.FileAccess.UnixPermissionFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.FileAccess.UnixPermissionFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.FileAccess.UnixPermissionFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.FileAccess.UnixPermissionFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.FileAccess.UnixPermissionFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.FileAccess.UnixPermissionFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.FileAccess.UnixPermissionFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.FileAccess.UnixPermissionFlags): Long =
-    this.rem(other.flag)

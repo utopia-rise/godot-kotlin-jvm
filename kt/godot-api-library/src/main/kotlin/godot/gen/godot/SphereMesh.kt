@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPHEREMESH_INDEX: Int = 539
+
 /**
  * Class representing a spherical [PrimitiveMesh].
  */
@@ -85,7 +87,7 @@ public open class SphereMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPHEREMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPHEREMESH_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SkinReference internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKINREFERENCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKINREFERENCE_INDEX, scriptIndex)
   }
 
   /**

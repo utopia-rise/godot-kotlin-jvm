@@ -94,7 +94,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRINTERFACE, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRINTERFACE_INDEX, scriptIndex)
   }
 
   /**

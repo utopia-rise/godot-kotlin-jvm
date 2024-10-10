@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX: Int = 623
+
 /**
  * A control used for playback of [VideoStream] resources.
  * Supported video formats are [url=https://www.theora.org/]Ogg Theora[/url] (`.ogv`,
@@ -168,7 +170,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAMPLAYER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {

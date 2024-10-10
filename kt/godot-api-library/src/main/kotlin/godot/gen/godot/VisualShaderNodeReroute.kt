@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX: Int = 685
+
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid
  * connections.
@@ -28,7 +30,7 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
     get() = getPortType()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEREROUTE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX, scriptIndex)
   }
 
   /**

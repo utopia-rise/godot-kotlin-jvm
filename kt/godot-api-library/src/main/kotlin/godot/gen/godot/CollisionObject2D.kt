@@ -156,7 +156,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONOBJECT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLLISIONOBJECT2D_INDEX, scriptIndex)
   }
 
   /**

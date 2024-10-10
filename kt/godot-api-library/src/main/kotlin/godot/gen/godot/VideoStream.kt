@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VIDEOSTREAM_INDEX: Int = 621
+
 /**
  * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used
  * as resource types to play back videos in [VideoStreamPlayer].
@@ -39,7 +41,7 @@ public open class VideoStream : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAM, scriptIndex)
+    callConstructor(ENGINE_CLASS_VIDEOSTREAM_INDEX, scriptIndex)
   }
 
   /**

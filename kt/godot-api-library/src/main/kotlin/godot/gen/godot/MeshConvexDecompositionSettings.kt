@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX: Int = 332
+
 /**
  * Parameters to be used with a [Mesh] convex decomposition operation.
  */
@@ -174,7 +176,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHCONVEXDECOMPOSITIONSETTINGS, scriptIndex)
+    callConstructor(ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX, scriptIndex)
   }
 
   public final fun setMaxConcavity(maxConcavity: Float): Unit {

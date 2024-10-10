@@ -37,6 +37,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_RIGIDBODY3D_INDEX: Int = 501
+
 /**
  * [RigidBody3D] implements full 3D physics. It cannot be controlled directly, instead, you must
  * apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the
@@ -441,7 +443,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RIGIDBODY3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_RIGIDBODY3D_INDEX, scriptIndex)
   }
 
   /**

@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_LIGHTMAPGI_INDEX: Int = 317
+
 /**
  * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide
  * high-quality indirect lighting with very little light leaking. [LightmapGI] can also provide rough
@@ -313,7 +315,7 @@ public open class LightmapGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPGI, scriptIndex)
+    callConstructor(ENGINE_CLASS_LIGHTMAPGI_INDEX, scriptIndex)
   }
 
   /**

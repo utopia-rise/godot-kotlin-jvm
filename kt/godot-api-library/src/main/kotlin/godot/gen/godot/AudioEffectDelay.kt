@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX: Int = 86
+
 /**
  * Plays input signal back after a period of time. The delayed signal may be played back multiple
  * times to create the sound of a repeating, decaying echo. Delay effects range from a subtle echo
@@ -174,7 +176,7 @@ public open class AudioEffectDelay : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTDELAY, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX, scriptIndex)
   }
 
   public final fun setDry(amount: Float): Unit {

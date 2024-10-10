@@ -15,6 +15,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_ENGINEPROFILER_INDEX: Int = 217
+
 /**
  * This class can be used to implement custom profilers that are able to interact with the engine
  * and editor debugger.
@@ -23,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ENGINEPROFILER, scriptIndex)
+    callConstructor(ENGINE_CLASS_ENGINEPROFILER_INDEX, scriptIndex)
   }
 
   /**

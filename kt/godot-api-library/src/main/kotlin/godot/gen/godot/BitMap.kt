@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_BITMAP_INDEX: Int = 131
+
 /**
  * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix
  * (every matrix element takes only one bit) and query the values using natural cartesian coordinates.
@@ -37,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class BitMap : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BITMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_BITMAP_INDEX, scriptIndex)
   }
 
   /**

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODERANDOMRANGE_INDEX: Int = 683
+
 /**
  * Random range node will output a pseudo-random scalar value in the specified range, based on the
  * seed. The value is always the same for the given seed and range, so you should provide a changing
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeRandomRange : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODERANDOMRANGE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODERANDOMRANGE_INDEX, scriptIndex)
   }
 
   public companion object

@@ -28,6 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_TRANSLATIONSERVER_INDEX: Int = 17
+
 /**
  * The server that manages all language translations. Translations can be added to or removed from
  * it.
@@ -35,7 +37,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object TranslationServer : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_TRANSLATIONSERVER)
+    getSingleton(ENGINE_CLASS_TRANSLATIONSERVER_INDEX)
   }
 
   /**

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTSERVERDUMMY_INDEX: Int = 576
+
 /**
  * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when
  * rendering text is not needed, as text servers are resource-intensive. It can also be used for
@@ -32,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVERDUMMY, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTSERVERDUMMY_INDEX, scriptIndex)
   }
 
   public companion object

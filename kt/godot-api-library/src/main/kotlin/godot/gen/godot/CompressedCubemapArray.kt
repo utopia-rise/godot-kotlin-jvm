@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_COMPRESSEDCUBEMAPARRAY_INDEX: Int = 185
+
 /**
  * A cubemap array that is loaded from a `.ccubearray` file. This file format is internal to Godot;
  * it is created by importing other image formats with the import system. [CompressedCubemapArray] can
@@ -32,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CompressedCubemapArray : CompressedTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDCUBEMAPARRAY, scriptIndex)
+    callConstructor(ENGINE_CLASS_COMPRESSEDCUBEMAPARRAY_INDEX, scriptIndex)
   }
 
   public companion object

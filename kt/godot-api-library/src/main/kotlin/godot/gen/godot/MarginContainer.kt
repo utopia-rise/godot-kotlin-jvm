@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_MARGINCONTAINER_INDEX: Int = 325
+
 /**
  * [MarginContainer] adds an adjustable margin on each side of its child controls. The margins are
  * added around all children, not around each individual one. To control the [MarginContainer]'s
@@ -40,7 +42,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MarginContainer : Container() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MARGINCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_MARGINCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

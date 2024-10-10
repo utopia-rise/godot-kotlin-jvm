@@ -36,7 +36,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURELAYEREDRD, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTURELAYEREDRD_INDEX, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

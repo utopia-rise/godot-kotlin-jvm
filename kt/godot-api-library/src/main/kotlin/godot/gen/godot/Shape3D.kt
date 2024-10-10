@@ -58,7 +58,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

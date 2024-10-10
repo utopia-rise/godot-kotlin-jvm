@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SHADER_INDEX: Int = 513
+
 /**
  * A custom shader program implemented in the Godot shading language, saved with the `.gdshader`
  * extension.
@@ -51,7 +53,7 @@ public open class Shader : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SHADER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SHADER_INDEX, scriptIndex)
   }
 
   /**

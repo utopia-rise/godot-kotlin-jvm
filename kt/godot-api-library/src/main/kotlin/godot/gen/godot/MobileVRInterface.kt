@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MOBILEVRINTERFACE_INDEX: Int = 341
+
 /**
  * This is a generic mobile VR implementation where you need to provide details about the phone and
  * HMD used. It does not rely on any existing framework. This is the most basic interface we have. For
@@ -161,7 +163,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MOBILEVRINTERFACE, scriptIndex)
+    callConstructor(ENGINE_CLASS_MOBILEVRINTERFACE_INDEX, scriptIndex)
   }
 
   /**

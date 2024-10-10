@@ -67,7 +67,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENETREETIMER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCENETREETIMER_INDEX, scriptIndex)
   }
 
   public final fun setTimeLeft(time: Double): Unit {

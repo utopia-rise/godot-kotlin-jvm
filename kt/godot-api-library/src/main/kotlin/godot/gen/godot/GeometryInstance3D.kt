@@ -31,6 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX: Int = 261
+
 /**
  * Base node for geometry-based visual instances. Shares some common functionality like visibility
  * and custom materials.
@@ -255,7 +257,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GEOMETRYINSTANCE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX, scriptIndex)
   }
 
   /**

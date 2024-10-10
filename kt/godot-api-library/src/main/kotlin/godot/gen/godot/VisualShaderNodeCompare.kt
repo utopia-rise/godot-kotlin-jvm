@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX: Int = 641
+
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
  * instruction in shader code.
@@ -58,7 +60,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOMPARE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX, scriptIndex)
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {

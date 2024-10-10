@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_PHYSICSSERVER2DMANAGER_INDEX: Int = 4
+
 /**
  * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for
  * setting the default implementation.
@@ -30,7 +32,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PHYSICSSERVER2DMANAGER)
+    getSingleton(ENGINE_CLASS_PHYSICSSERVER2DMANAGER_INDEX)
   }
 
   /**

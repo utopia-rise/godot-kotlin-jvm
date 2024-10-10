@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VFLOWCONTAINER_INDEX: Int = 614
+
 /**
  * A variant of [FlowContainer] that can only arrange its child controls vertically, wrapping them
  * around at the borders. This is similar to how text in a book wraps around when no more words can fit
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VFlowContainer : FlowContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VFLOWCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VFLOWCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

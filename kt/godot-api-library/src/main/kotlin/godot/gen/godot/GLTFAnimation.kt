@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFANIMATION_INDEX: Int = 233
+
 @GodotBaseType
 public open class GLTFAnimation : Resource() {
   /**
@@ -46,7 +48,7 @@ public open class GLTFAnimation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFANIMATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFANIMATION_INDEX, scriptIndex)
   }
 
   public final fun getOriginalName(): String {

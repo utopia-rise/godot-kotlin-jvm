@@ -26,6 +26,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_VOXELGI_INDEX: Int = 732
+
 /**
  * [VoxelGI]s are used to provide high-quality real-time indirect light and reflections to scenes.
  * They precompute the effect of objects that emit light and the effect of static geometry to simulate
@@ -106,7 +108,7 @@ public open class VoxelGI : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VOXELGI, scriptIndex)
+    callConstructor(ENGINE_CLASS_VOXELGI_INDEX, scriptIndex)
   }
 
   /**

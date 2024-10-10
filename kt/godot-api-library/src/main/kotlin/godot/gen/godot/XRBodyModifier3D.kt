@@ -21,6 +21,27 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRBODYMODIFIER3D_INDEX: Int = 750
+
+public infix fun Long.or(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.XRBodyModifier3D.BodyUpdate): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.XRBodyModifier3D.BodyUpdate): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.XRBodyModifier3D.BodyUpdate): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.rem(other.flag)
+
 /**
  * This node uses body tracking data from an [XRBodyTracker] to pose the skeleton of a body mesh.
  * Positioning of the body is performed by creating an [XRNode3D] ancestor of the body mesh driven
@@ -65,7 +86,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRBODYMODIFIER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRBODYMODIFIER3D_INDEX, scriptIndex)
   }
 
   public final fun setBodyTracker(trackerName: StringName): Unit {
@@ -215,22 +236,3 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
         TypeManager.getMethodBindPtr("XRBodyModifier3D", "get_bone_update", 1309305964)
   }
 }
-
-public infix fun Long.or(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.XRBodyModifier3D.BodyUpdate): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.XRBodyModifier3D.BodyUpdate): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.XRBodyModifier3D.BodyUpdate): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.rem(other.flag)

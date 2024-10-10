@@ -21,6 +21,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_IMAGETEXTURE3D_INDEX: Int = 287
+
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
  * [ImageTextureLayered].
@@ -31,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMAGETEXTURE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_IMAGETEXTURE3D_INDEX, scriptIndex)
   }
 
   /**

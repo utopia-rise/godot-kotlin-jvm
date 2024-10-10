@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_FLOWCONTAINER_INDEX: Int = 224
+
 /**
  * A container that arranges its child controls horizontally or vertically and wraps them around at
  * the borders. This is similar to how text in a book wraps around when no more words can fit on a
@@ -79,7 +81,7 @@ public open class FlowContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FLOWCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_FLOWCONTAINER_INDEX, scriptIndex)
   }
 
   /**

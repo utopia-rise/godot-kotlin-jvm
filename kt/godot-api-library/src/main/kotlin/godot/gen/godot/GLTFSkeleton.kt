@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFSKELETON_INDEX: Int = 244
+
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {
   public final inline var joints: PackedInt32Array
@@ -62,7 +64,7 @@ public open class GLTFSkeleton : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFSKELETON, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFSKELETON_INDEX, scriptIndex)
   }
 
   public final fun getJoints(): PackedInt32Array {

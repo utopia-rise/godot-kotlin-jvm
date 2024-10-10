@@ -30,6 +30,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX: Int = 349
+
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
  * Visibility can be handled directly with [setVisibilityFor] or as-needed with
@@ -135,7 +137,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERSYNCHRONIZER, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

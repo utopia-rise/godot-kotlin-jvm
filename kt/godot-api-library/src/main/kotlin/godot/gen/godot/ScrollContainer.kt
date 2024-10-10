@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SCROLLCONTAINER_INDEX: Int = 508
+
 /**
  * A container used to provide a child control with scrollbars when needed. Scrollbars will
  * automatically be drawn at the right (for vertical) or bottom (for horizontal) and will enable
@@ -157,7 +159,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCROLLCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCROLLCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setHScroll(`value`: Int): Unit {

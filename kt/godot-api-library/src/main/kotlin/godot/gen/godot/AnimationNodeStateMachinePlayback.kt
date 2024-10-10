@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_INDEX: Int = 62
+
 /**
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
  * Retrieve with `$AnimationTree.get("parameters/playback")`.
@@ -45,7 +47,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINEPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_INDEX, scriptIndex)
   }
 
   /**

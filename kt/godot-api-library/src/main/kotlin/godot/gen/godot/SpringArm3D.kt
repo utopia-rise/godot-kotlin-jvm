@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPRINGARM3D_INDEX: Int = 545
+
 /**
  * [SpringArm3D] casts a ray or a shape along its Z axis and moves all its direct children to the
  * collision point, with an optional margin. This is useful for 3rd person cameras that move closer to
@@ -91,7 +93,7 @@ public open class SpringArm3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPRINGARM3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPRINGARM3D_INDEX, scriptIndex)
   }
 
   /**

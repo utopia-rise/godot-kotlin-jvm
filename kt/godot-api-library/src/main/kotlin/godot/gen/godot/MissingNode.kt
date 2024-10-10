@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MISSINGNODE_INDEX: Int = 339
+
 /**
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely
  * this type was supplied by an extension that is no longer loaded). It can't be manually instantiated
@@ -64,7 +66,7 @@ public open class MissingNode : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MISSINGNODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_MISSINGNODE_INDEX, scriptIndex)
   }
 
   public final fun setOriginalClass(name: String): Unit {

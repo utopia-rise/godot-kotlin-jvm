@@ -14,10 +14,12 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_WEBRTCDATACHANNELEXTENSION_INDEX: Int = 735
+
 @GodotBaseType
 public open class WebRTCDataChannelExtension : WebRTCDataChannel() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCDATACHANNELEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBRTCDATACHANNELEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getAvailablePacketCount(): Int {

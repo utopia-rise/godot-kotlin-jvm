@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PACKEDSCENE_INDEX: Int = 397
+
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be
  * performed on the scene resource itself.
@@ -100,7 +102,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PACKEDSCENE, scriptIndex)
+    callConstructor(ENGINE_CLASS_PACKEDSCENE_INDEX, scriptIndex)
   }
 
   /**

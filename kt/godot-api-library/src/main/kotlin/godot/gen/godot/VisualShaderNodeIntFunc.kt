@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEINTFUNC_INDEX: Int = 663
+
 /**
  * Accept an integer scalar (`x`) to the input port and transform it according to [function].
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINTFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINTFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX: Int = 68
+
 /**
  * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].
  * Animations can be connected to the inputs and transition times can be specified.
@@ -112,7 +114,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODETRANSITION, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX, scriptIndex)
   }
 
   public final fun setInputCount(inputCount: Int): Unit {

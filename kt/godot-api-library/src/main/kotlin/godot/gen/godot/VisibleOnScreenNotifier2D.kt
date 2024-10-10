@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX: Int = 628
+
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
  * region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal,
@@ -57,7 +59,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISIBLEONSCREENNOTIFIER2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX, scriptIndex)
   }
 
   /**

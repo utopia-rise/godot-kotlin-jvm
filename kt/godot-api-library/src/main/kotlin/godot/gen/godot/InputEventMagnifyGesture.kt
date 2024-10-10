@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX: Int = 296
+
 /**
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches
  * the touch screen and used for zooming in/out.
@@ -41,7 +43,7 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMAGNIFYGESTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX, scriptIndex)
   }
 
   public final fun setFactor(factor: Float): Unit {

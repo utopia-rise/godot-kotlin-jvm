@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEINTPARAMETER_INDEX: Int = 665
+
 /**
  * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
  * accepted values.
@@ -97,7 +99,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINTPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINTPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setHint(hint: Hint): Unit {

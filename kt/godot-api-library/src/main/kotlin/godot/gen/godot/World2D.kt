@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WORLD2D_INDEX: Int = 742
+
 /**
  * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.
  * 2D nodes register their resources into the current 2D world.
@@ -56,7 +58,7 @@ public open class World2D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WORLD2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_WORLD2D_INDEX, scriptIndex)
   }
 
   public final fun getCanvas(): RID {

@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLLISIONSHAPE2D_INDEX: Int = 177
+
 /**
  * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can
  * give a detection shape to an [Area2D] or turn a [PhysicsBody2D] into a solid object.
@@ -96,7 +98,7 @@ public open class CollisionShape2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLLISIONSHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLLISIONSHAPE2D_INDEX, scriptIndex)
   }
 
   /**

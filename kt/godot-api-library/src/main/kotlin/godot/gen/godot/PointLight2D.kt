@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_POINTLIGHT2D_INDEX: Int = 443
+
 /**
  * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.
  */
@@ -76,7 +78,7 @@ public open class PointLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POINTLIGHT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_POINTLIGHT2D_INDEX, scriptIndex)
   }
 
   /**

@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CSGMESH3D_INDEX: Int = 146
+
 /**
  * This CSG node allows you to use any mesh resource as a CSG shape, provided it is closed, does not
  * self-intersect, does not contain internal faces and has no edges that connect to more than two
@@ -58,7 +60,7 @@ public open class CSGMesh3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGMESH3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGMESH3D_INDEX, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CANVASITEMMATERIAL_INDEX: Int = 159
+
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.
  * They specialize in describing blend and lighting behaviors for textures. Use a [ShaderMaterial] to
@@ -106,7 +108,7 @@ public open class CanvasItemMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CANVASITEMMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_CANVASITEMMATERIAL_INDEX, scriptIndex)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {

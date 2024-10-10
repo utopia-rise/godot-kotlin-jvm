@@ -16,6 +16,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX: Int = 393
+
 /**
  * An optimized translation, used by default for CSV Translations. Uses real-time compressed
  * translations, which results in very small dictionaries.
@@ -23,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPTIMIZEDTRANSLATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX, scriptIndex)
   }
 
   /**

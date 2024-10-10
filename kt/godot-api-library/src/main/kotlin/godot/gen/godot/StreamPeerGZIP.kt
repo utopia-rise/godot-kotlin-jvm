@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_STREAMPEERGZIP_INDEX: Int = 555
+
 /**
  * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This
  * is particularly useful when compressing or decompressing files that have to be sent through the
@@ -35,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerGZIP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STREAMPEERGZIP, scriptIndex)
+    callConstructor(ENGINE_CLASS_STREAMPEERGZIP_INDEX, scriptIndex)
   }
 
   /**

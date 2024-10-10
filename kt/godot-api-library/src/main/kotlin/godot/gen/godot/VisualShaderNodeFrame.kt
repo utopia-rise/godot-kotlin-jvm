@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX: Int = 657
+
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
  * organization.
@@ -93,7 +95,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFRAME, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX, scriptIndex)
   }
 
   /**

@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX: Int = 464
+
 /**
  * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is
  * being performed when rendering using [RenderingDevice].
@@ -111,7 +113,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINEMULTISAMPLESTATE, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX, scriptIndex)
   }
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {

@@ -714,7 +714,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VIEWPORT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VIEWPORT_INDEX, scriptIndex)
   }
 
   /**

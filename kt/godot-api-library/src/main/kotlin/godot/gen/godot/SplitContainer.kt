@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPLITCONTAINER_INDEX: Int = 543
+
 /**
  * A container that accepts only two child controls, then arranges them horizontally or vertically
  * and creates a divisor between them. The divisor can be dragged around to change the size relation
@@ -80,7 +82,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPLITCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPLITCONTAINER_INDEX, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {

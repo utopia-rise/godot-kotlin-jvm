@@ -18,6 +18,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_X509CERTIFICATE_INDEX: Int = 747
+
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
  * like any other [Resource].
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class X509Certificate : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_X509CERTIFICATE, scriptIndex)
+    callConstructor(ENGINE_CLASS_X509CERTIFICATE_INDEX, scriptIndex)
   }
 
   /**

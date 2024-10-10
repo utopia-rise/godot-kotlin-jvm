@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRFACEMODIFIER3D_INDEX: Int = 755
+
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
  * The
@@ -55,7 +57,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRFACEMODIFIER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRFACEMODIFIER3D_INDEX, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

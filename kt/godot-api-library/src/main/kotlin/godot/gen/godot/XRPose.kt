@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRPOSE_INDEX: Int = 762
+
 /**
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially
  * tracked.
@@ -116,7 +118,7 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRPOSE, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRPOSE_INDEX, scriptIndex)
   }
 
   /**

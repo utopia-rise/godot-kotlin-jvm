@@ -81,7 +81,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_JOINT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_JOINT3D_INDEX, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

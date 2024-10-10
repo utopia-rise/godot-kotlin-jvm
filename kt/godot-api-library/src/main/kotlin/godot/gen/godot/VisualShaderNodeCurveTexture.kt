@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECURVETEXTURE_INDEX: Int = 644
+
 /**
  * Comes with a built-in editor for texture's curves.
  */
@@ -34,7 +36,7 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECURVETEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECURVETEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setTexture(texture: CurveTexture?): Unit {

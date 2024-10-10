@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX: Int = 675
+
 /**
  * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
  * configured sub-emitter and also allows to customize how its emitted. Requires a sub-emitter assigned
@@ -37,7 +39,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMIT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX, scriptIndex)
   }
 
   public final fun setFlags(flags: EmitFlags): Unit {

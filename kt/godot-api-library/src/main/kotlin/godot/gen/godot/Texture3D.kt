@@ -22,6 +22,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTURE3D_INDEX: Int = 583
+
 /**
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
  * all the functions necessary for accessing the derived resource types. [Texture3D] is the base class
@@ -33,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTURE3D_INDEX, scriptIndex)
   }
 
   /**

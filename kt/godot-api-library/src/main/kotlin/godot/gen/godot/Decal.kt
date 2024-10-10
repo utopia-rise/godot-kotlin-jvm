@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_DECAL_INDEX: Int = 211
+
 /**
  * [Decal]s are used to project a texture onto a [Mesh] in the scene. Use Decals to add detail to a
  * scene without affecting the underlying [Mesh]. They are often used to add weathering to building,
@@ -280,7 +282,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_DECAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_DECAL_INDEX, scriptIndex)
   }
 
   /**

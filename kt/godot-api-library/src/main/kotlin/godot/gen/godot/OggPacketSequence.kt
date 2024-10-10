@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX: Int = 377
+
 /**
  * A sequence of Ogg packets.
  */
@@ -64,7 +66,7 @@ public open class OggPacketSequence : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OGGPACKETSEQUENCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX, scriptIndex)
   }
 
   public final fun setPacketData(packetData: VariantArray<VariantArray<Any?>>): Unit {

@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CAMERA2D_INDEX: Int = 151
+
 /**
  * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node.
  * This makes it easier (and faster) to program scrollable scenes than manually changing the position
@@ -388,7 +390,7 @@ public open class Camera2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CAMERA2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CAMERA2D_INDEX, scriptIndex)
   }
 
   /**

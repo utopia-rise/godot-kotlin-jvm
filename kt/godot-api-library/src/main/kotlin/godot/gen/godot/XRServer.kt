@@ -37,6 +37,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_XRSERVER_INDEX: Int = 37
+
 /**
  * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the
  * processing.
@@ -86,7 +88,7 @@ public object XRServer : Object() {
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_XRSERVER)
+    getSingleton(ENGINE_CLASS_XRSERVER_INDEX)
   }
 
   @JvmStatic

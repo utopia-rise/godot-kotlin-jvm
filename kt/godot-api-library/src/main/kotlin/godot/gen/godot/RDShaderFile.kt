@@ -24,6 +24,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_RDSHADERFILE_INDEX: Int = 468
+
 /**
  * Compiled shader file in SPIR-V form.
  * See also [RDShaderSource]. [RDShaderFile] is only meant to be used with the [RenderingDevice]
@@ -46,7 +48,7 @@ public open class RDShaderFile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDSHADERFILE, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDSHADERFILE_INDEX, scriptIndex)
   }
 
   /**

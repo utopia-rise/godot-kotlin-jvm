@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SPOTLIGHT3D_INDEX: Int = 544
+
 /**
  * A Spotlight is a type of [Light3D] node that emits lights in a specific direction, in the shape
  * of a cone. The light is attenuated through the distance. This attenuation can be configured by
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SpotLight3D : Light3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SPOTLIGHT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SPOTLIGHT3D_INDEX, scriptIndex)
   }
 
   public companion object

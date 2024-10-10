@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRACTION_INDEX: Int = 381
+
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
  * triggers, etc.) and outputs (haptics).
@@ -73,7 +75,7 @@ public open class OpenXRAction : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRACTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRACTION_INDEX, scriptIndex)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

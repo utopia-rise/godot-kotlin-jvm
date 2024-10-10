@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_INDEX: Int = 254
+
 /**
  * A box-shaped attractor with varying directions and strengths defined in it that influences
  * particles from [GPUParticles3D] nodes.
@@ -61,7 +63,7 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORVECTORFIELD3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_INDEX, scriptIndex)
   }
 
   /**

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_POLYGONOCCLUDER3D_INDEX: Int = 446
+
 /**
  * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling
  * system. When an [OccluderInstance3D] with a [PolygonOccluder3D] is selected in the editor, an editor
@@ -44,7 +46,7 @@ public open class PolygonOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POLYGONOCCLUDER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_POLYGONOCCLUDER3D_INDEX, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

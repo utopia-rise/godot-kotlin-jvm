@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTSERVERADVANCED_INDEX: Int = 575
+
 /**
  * An implementation of [TextServer] that uses HarfBuzz, ICU and SIL Graphite to support BiDi,
  * complex text layouts and contextual OpenType features. This is Godot's default primary [TextServer]
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVERADVANCED, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTSERVERADVANCED_INDEX, scriptIndex)
   }
 
   public companion object

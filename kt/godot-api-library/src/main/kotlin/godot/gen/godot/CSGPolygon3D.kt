@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CSGPOLYGON3D_INDEX: Int = 147
+
 /**
  * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also
  * [CSGMesh3D] for using 3D meshes as CSG nodes.
@@ -230,7 +232,7 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGPOLYGON3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGPOLYGON3D_INDEX, scriptIndex)
   }
 
   public final fun setPolygon(polygon: PackedVector2Array): Unit {

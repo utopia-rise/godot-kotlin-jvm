@@ -45,7 +45,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PACKEDDATACONTAINERREF, scriptIndex)
+    callConstructor(ENGINE_CLASS_PACKEDDATACONTAINERREF_INDEX, scriptIndex)
   }
 
   /**

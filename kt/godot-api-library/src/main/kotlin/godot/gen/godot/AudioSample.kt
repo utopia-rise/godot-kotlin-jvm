@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSAMPLE_INDEX: Int = 110
+
 /**
  * Base class for audio samples.
  */
 @GodotBaseType
 public open class AudioSample : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSAMPLE, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSAMPLE_INDEX, scriptIndex)
   }
 
   public companion object

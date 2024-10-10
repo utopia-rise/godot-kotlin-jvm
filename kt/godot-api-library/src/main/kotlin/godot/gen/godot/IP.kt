@@ -27,6 +27,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_IP_INDEX: Int = 8
+
 /**
  * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different
  * classes (see [StreamPeerTCP] and [TCPServer]). IP provides DNS hostname resolution support, both
@@ -46,7 +48,7 @@ public object IP : Object() {
   public final const val RESOLVER_INVALID_ID: Long = -1
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_IP)
+    getSingleton(ENGINE_CLASS_IP_INDEX)
   }
 
   /**

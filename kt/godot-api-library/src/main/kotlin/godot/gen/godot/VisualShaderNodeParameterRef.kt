@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX: Int = 671
+
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
  * different shaders or shader stages easily.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETERREF, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {

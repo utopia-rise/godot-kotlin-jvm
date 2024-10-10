@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MESHTEXTURE_INDEX: Int = 337
+
 /**
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and
  * region drawing is not supported.
@@ -62,7 +64,7 @@ public open class MeshTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHTEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_MESHTEXTURE_INDEX, scriptIndex)
   }
 
   /**

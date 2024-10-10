@@ -37,7 +37,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLEEMITTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMITTER_INDEX, scriptIndex)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {

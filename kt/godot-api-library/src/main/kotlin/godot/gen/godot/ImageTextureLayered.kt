@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTextureLayered internal constructor() : TextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMAGETEXTURELAYERED, scriptIndex)
+    callConstructor(ENGINE_CLASS_IMAGETEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**

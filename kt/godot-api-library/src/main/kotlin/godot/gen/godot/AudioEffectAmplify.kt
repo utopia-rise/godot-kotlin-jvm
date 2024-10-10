@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX: Int = 80
+
 /**
  * Increases or decreases the volume being routed through the audio bus.
  */
@@ -37,7 +39,7 @@ public open class AudioEffectAmplify : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTAMPLIFY, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX, scriptIndex)
   }
 
   public final fun setVolumeDb(volume: Float): Unit {

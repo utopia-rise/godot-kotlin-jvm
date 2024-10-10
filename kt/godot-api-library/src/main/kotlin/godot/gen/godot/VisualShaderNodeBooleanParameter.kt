@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANPARAMETER_INDEX: Int = 634
+
 /**
  * Translated to `uniform bool` in the shader language.
  */
@@ -46,7 +48,7 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEBOOLEANPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEBOOLEANPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {

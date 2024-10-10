@@ -24,13 +24,15 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT2D_INDEX: Int = 431
+
 /**
  * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONRESULT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSTESTMOTIONRESULT2D_INDEX, scriptIndex)
   }
 
   /**

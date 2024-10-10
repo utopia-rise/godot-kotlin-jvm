@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_STYLEBOXFLAT_INDEX: Int = 560
+
 /**
  * By configuring various properties of this style box, you can achieve many common looks without
  * the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
@@ -345,7 +347,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STYLEBOXFLAT, scriptIndex)
+    callConstructor(ENGINE_CLASS_STYLEBOXFLAT_INDEX, scriptIndex)
   }
 
   /**

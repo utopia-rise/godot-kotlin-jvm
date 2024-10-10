@@ -34,6 +34,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_ENGINE_INDEX: Int = 14
+
 /**
  * The [Engine] singleton allows you to query and modify the project's run-time parameters, such as
  * frames per second, time scale, and others. It also stores information about the current build of
@@ -42,7 +44,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Engine : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_ENGINE)
+    getSingleton(ENGINE_CLASS_ENGINE_INDEX)
   }
 
   @JvmStatic

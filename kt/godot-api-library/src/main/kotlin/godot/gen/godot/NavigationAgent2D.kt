@@ -39,6 +39,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX: Int = 351
+
 /**
  * A 2D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
  * calculation can be used by the parent node to dynamically move it along the path. Requires
@@ -449,7 +451,7 @@ public open class NavigationAgent2D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONAGENT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX, scriptIndex)
   }
 
   /**

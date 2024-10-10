@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAYPARAMETER_INDEX: Int = 696
+
 /**
  * This parameter allows to provide a collection of textures for the shader. You can use
  * [VisualShaderNodeTexture2DArray] to extract the textures from array.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTexture2DArrayParameter : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTURE2DARRAYPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAYPARAMETER_INDEX, scriptIndex)
   }
 
   public companion object

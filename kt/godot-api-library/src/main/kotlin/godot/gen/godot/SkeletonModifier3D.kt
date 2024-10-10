@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFIER3D_INDEX: Int = 532
+
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
  * If there is [AnimationMixer], modification always performs after playback process of the
@@ -63,7 +65,7 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFIER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFIER3D_INDEX, scriptIndex)
   }
 
   /**

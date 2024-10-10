@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TILESETATLASSOURCE_INDEX: Int = 598
+
 /**
  * An atlas is a grid of tiles laid out on a texture. Each tile in the grid must be exposed using
  * [createTile]. Those tiles are then indexed using their coordinates in the grid.
@@ -113,7 +115,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILESETATLASSOURCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILESETATLASSOURCE_INDEX, scriptIndex)
   }
 
   /**

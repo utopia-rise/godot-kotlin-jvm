@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TRIANGLEMESH_INDEX: Int = 605
+
 /**
  * Mesh type used internally for collision calculations.
  */
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TRIANGLEMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_TRIANGLEMESH_INDEX, scriptIndex)
   }
 
   public companion object

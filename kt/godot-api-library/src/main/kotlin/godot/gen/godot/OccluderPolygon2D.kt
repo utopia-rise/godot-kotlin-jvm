@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OCCLUDERPOLYGON2D_INDEX: Int = 375
+
 /**
  * Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].
  */
@@ -62,7 +64,7 @@ public open class OccluderPolygon2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OCCLUDERPOLYGON2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_OCCLUDERPOLYGON2D_INDEX, scriptIndex)
   }
 
   public final fun setClosed(closed: Boolean): Unit {

@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_TUBETRAILMESH_INDEX: Int = 606
+
 /**
  * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed
  * of a number of cylindrical sections, each with the same [sectionLength] and number of
@@ -129,7 +131,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TUBETRAILMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_TUBETRAILMESH_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

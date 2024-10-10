@@ -98,7 +98,7 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TREEITEM, scriptIndex)
+    callConstructor(ENGINE_CLASS_TREEITEM_INDEX, scriptIndex)
   }
 
   /**

@@ -35,7 +35,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORBASE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVECTORBASE_INDEX, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTRECORD_INDEX: Int = 104
+
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
  * "Master" audio bus, this includes all audio output by Godot.
@@ -46,7 +48,7 @@ public open class AudioEffectRecord : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTRECORD, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTRECORD_INDEX, scriptIndex)
   }
 
   /**

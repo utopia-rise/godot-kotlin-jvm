@@ -11,10 +11,12 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_OGGPACKETSEQUENCEPLAYBACK_INDEX: Int = 378
+
 @GodotBaseType
 public open class OggPacketSequencePlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OGGPACKETSEQUENCEPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_OGGPACKETSEQUENCEPLAYBACK_INDEX, scriptIndex)
   }
 
   public companion object

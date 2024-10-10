@@ -15,6 +15,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_CUBEMAP_INDEX: Int = 200
+
 /**
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking
  * reflections in 3D rendering (see [ReflectionProbe]). It can be used to make an object look as if
@@ -31,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Cubemap : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CUBEMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_CUBEMAP_INDEX, scriptIndex)
   }
 
   /**

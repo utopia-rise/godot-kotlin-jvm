@@ -17,6 +17,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_MAINLOOP_INDEX: Int = 324
+
 /**
  * [MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by
  * [SceneTree], which is the default game loop implementation used in Godot projects, though it is also
@@ -85,7 +87,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MAINLOOP, scriptIndex)
+    callConstructor(ENGINE_CLASS_MAINLOOP_INDEX, scriptIndex)
   }
 
   /**

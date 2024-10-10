@@ -46,6 +46,29 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_RICHTEXTLABEL_INDEX: Int = 499
+
+public infix fun Long.or(other: godot.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RichTextLabel.ImageUpdateMask): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RichTextLabel.ImageUpdateMask): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RichTextLabel.ImageUpdateMask): Long =
+    this.rem(other.flag)
+
 /**
  * A control for displaying text that can contain custom fonts, images, and basic formatting.
  * [RichTextLabel] manages these as an internal tag stack. It also adapts itself to given
@@ -390,7 +413,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RICHTEXTLABEL, scriptIndex)
+    callConstructor(ENGINE_CLASS_RICHTEXTLABEL_INDEX, scriptIndex)
   }
 
   /**
@@ -1966,24 +1989,3 @@ public open class RichTextLabel : Control() {
         TypeManager.getMethodBindPtr("RichTextLabel", "menu_option", 1286410249)
   }
 }
-
-public infix fun Long.or(other: godot.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RichTextLabel.ImageUpdateMask): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RichTextLabel.ImageUpdateMask): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RichTextLabel.ImageUpdateMask): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RichTextLabel.ImageUpdateMask): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RichTextLabel.ImageUpdateMask): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RichTextLabel.ImageUpdateMask): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RichTextLabel.ImageUpdateMask): Long =
-    this.rem(other.flag)

@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GRADIENT_INDEX: Int = 262
+
 /**
  * This resource describes a color transition by defining a set of colored points and how to
  * interpolate between them.
@@ -87,7 +89,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRADIENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_GRADIENT_INDEX, scriptIndex)
   }
 
   /**

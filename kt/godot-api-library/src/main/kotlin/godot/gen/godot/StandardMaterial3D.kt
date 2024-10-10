@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_STANDARDMATERIAL3D_INDEX: Int = 549
+
 /**
  * [StandardMaterial3D]'s properties are inherited from [BaseMaterial3D]. [StandardMaterial3D] uses
  * separate textures for ambient occlusion, roughness and metallic maps. To use a single ORM map for
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class StandardMaterial3D : BaseMaterial3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STANDARDMATERIAL3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_STANDARDMATERIAL3D_INDEX, scriptIndex)
   }
 
   public companion object

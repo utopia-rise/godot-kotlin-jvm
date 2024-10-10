@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOEFFECTHIGHPASSFILTER_INDEX: Int = 94
+
 /**
  * Cuts frequencies lower than the [AudioEffectFilter.cutoffHz] and allows higher frequencies to
  * pass.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectHighPassFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTHIGHPASSFILTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTHIGHPASSFILTER_INDEX, scriptIndex)
   }
 
   public companion object

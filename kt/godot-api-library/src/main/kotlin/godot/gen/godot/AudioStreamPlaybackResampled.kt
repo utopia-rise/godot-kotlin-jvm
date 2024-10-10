@@ -17,10 +17,12 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX: Int = 120
+
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKRESAMPLED, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX, scriptIndex)
   }
 
   public open fun _getStreamSamplingRate(): Float {

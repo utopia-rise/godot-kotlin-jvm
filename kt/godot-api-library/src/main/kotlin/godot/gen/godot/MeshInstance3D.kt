@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MESHINSTANCE3D_INDEX: Int = 335
+
 /**
  * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by
  * creating an instance of it. This is the class most often used render 3D geometry and can be used to
@@ -72,7 +74,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MESHINSTANCE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_MESHINSTANCE3D_INDEX, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

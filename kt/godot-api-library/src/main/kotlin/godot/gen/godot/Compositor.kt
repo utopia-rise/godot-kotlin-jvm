@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COMPOSITOR_INDEX: Int = 182
+
 /**
  * The compositor resource stores attributes used to customize how a [Viewport] is rendered.
  */
@@ -36,7 +38,7 @@ public open class Compositor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPOSITOR, scriptIndex)
+    callConstructor(ENGINE_CLASS_COMPOSITOR_INDEX, scriptIndex)
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {

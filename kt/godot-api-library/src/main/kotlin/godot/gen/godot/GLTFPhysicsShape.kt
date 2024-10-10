@@ -34,6 +34,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX: Int = 243
+
 /**
  * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` GLTF
  * extensions. This class is an intermediary between the GLTF data and Godot's nodes, and it's
@@ -130,7 +132,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFPHYSICSSHAPE, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX, scriptIndex)
   }
 
   /**

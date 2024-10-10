@@ -35,6 +35,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CPUPARTICLES2D_INDEX: Int = 141
+
 /**
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
  * See also [GPUParticles2D], which provides the same functionality with hardware acceleration, but
@@ -797,7 +799,7 @@ public open class CPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CPUPARTICLES2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CPUPARTICLES2D_INDEX, scriptIndex)
   }
 
   /**

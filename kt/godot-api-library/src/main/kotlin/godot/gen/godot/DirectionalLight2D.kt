@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX: Int = 212
+
 /**
  * A directional light is a type of [Light2D] node that models an infinite number of parallel rays
  * covering the entire scene. It is used for lights with strong intensity that are located far away
@@ -56,7 +58,7 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_DIRECTIONALLIGHT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX, scriptIndex)
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {

@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TILESET_INDEX: Int = 597
+
 /**
  * A TileSet is a library of tiles for a [TileMap]. A TileSet handles a list of [TileSetSource],
  * each of them storing a set of tiles.
@@ -110,7 +112,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILESET, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILESET_INDEX, scriptIndex)
   }
 
   /**

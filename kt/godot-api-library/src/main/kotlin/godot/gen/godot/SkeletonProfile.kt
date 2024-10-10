@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONPROFILE_INDEX: Int = 533
+
 /**
  * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
  * [Skeleton3D], [Skin], [Animation], and some other nodes are rewritten based on the parameters of
@@ -97,7 +99,7 @@ public open class SkeletonProfile : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONPROFILE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONPROFILE_INDEX, scriptIndex)
   }
 
   public final fun setRootBone(boneName: StringName): Unit {

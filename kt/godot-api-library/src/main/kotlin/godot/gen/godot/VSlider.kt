@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VSLIDER_INDEX: Int = 617
+
 /**
  * A vertical slider, used to adjust a value by moving a grabber along a vertical axis. It is a
  * [Range]-based control and goes from bottom (min) to top (max). Note that this direction is the
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VSlider : Slider() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VSLIDER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VSLIDER_INDEX, scriptIndex)
   }
 
   public companion object

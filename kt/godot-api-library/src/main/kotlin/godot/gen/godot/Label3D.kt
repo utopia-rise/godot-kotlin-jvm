@@ -36,6 +36,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_LABEL3D_INDEX: Int = 314
+
 /**
  * A node for displaying plain text in 3D space. By adjusting various properties of this node, you
  * can configure things such as the text's appearance and whether it always faces the camera.
@@ -419,7 +421,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LABEL3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_LABEL3D_INDEX, scriptIndex)
   }
 
   /**

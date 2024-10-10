@@ -61,7 +61,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FONT, scriptIndex)
+    callConstructor(ENGINE_CLASS_FONT_INDEX, scriptIndex)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {

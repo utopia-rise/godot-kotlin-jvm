@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRCOMPOSITIONLAYERQUAD_INDEX: Int = 386
+
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on a quad.
  */
@@ -38,7 +40,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRCOMPOSITIONLAYERQUAD, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRCOMPOSITIONLAYERQUAD_INDEX, scriptIndex)
   }
 
   /**

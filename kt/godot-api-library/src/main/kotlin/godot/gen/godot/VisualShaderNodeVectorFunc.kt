@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORFUNC_INDEX: Int = 727
+
 /**
  * A visual shader node able to perform different functions using vectors.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVECTORFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVECTORFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

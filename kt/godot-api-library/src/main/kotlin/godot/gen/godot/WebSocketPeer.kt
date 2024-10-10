@@ -28,6 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_WEBSOCKETPEER_INDEX: Int = 740
+
 /**
  * This class represents WebSocket connection, and can be used as a WebSocket client (RFC
  * 6455-compliant) or as a remote peer of a WebSocket server.
@@ -127,7 +129,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBSOCKETPEER, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBSOCKETPEER_INDEX, scriptIndex)
   }
 
   /**

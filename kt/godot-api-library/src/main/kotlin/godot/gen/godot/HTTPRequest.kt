@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_HTTPREQUEST_INDEX: Int = 280
+
 /**
  * A node with the ability to send HTTP requests. Uses [HTTPClient] internally.
  * Can be used to make HTTP requests, i.e. download or upload files or web content via HTTP.
@@ -296,7 +298,7 @@ public open class HTTPRequest : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HTTPREQUEST, scriptIndex)
+    callConstructor(ENGINE_CLASS_HTTPREQUEST_INDEX, scriptIndex)
   }
 
   /**

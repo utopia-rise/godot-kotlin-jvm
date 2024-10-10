@@ -22,6 +22,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PROPERTYTWEENER_INDEX: Int = 456
+
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
  * more usage information.
@@ -31,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PROPERTYTWEENER, scriptIndex)
+    callConstructor(ENGINE_CLASS_PROPERTYTWEENER_INDEX, scriptIndex)
   }
 
   /**

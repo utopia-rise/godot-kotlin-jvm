@@ -75,6 +75,27 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_RENDERINGSERVER_INDEX: Int = 34
+
+public infix fun Long.or(other: godot.RenderingServer.ArrayFormat): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.RenderingServer.ArrayFormat): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.RenderingServer.ArrayFormat): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.RenderingServer.ArrayFormat): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.RenderingServer.ArrayFormat): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.RenderingServer.ArrayFormat): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.RenderingServer.ArrayFormat): Long = this.rem(other.flag)
+
 /**
  * The rendering server is the API backend for everything visible. The whole scene system mounts on
  * it to display. The rendering server is completely opaque: the internals are entirely
@@ -186,7 +207,7 @@ public object RenderingServer : Object() {
   public val framePostDraw: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_RENDERINGSERVER)
+    getSingleton(ENGINE_CLASS_RENDERINGSERVER_INDEX)
   }
 
   /**
@@ -10741,22 +10762,3 @@ public object RenderingServer : Object() {
         TypeManager.getMethodBindPtr("RenderingServer", "has_feature", 598462696)
   }
 }
-
-public infix fun Long.or(other: godot.RenderingServer.ArrayFormat): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.RenderingServer.ArrayFormat): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.RenderingServer.ArrayFormat): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.RenderingServer.ArrayFormat): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.RenderingServer.ArrayFormat): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.RenderingServer.ArrayFormat): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.RenderingServer.ArrayFormat): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.RenderingServer.ArrayFormat): Long = this.rem(other.flag)

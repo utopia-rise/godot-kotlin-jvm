@@ -22,6 +22,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_CONTAINER_INDEX: Int = 194
+
 /**
  * Base class for all GUI containers. A [Container] automatically arranges its child controls in a
  * certain way. This class can be inherited to make custom container types.
@@ -39,7 +41,7 @@ public open class Container : Control() {
   public val sortChildren: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_CONTAINER_INDEX, scriptIndex)
   }
 
   /**

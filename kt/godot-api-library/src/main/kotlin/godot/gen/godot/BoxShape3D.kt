@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BOXSHAPE3D_INDEX: Int = 138
+
 /**
  * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
@@ -41,7 +43,7 @@ public open class BoxShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BOXSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_BOXSHAPE3D_INDEX, scriptIndex)
   }
 
   /**

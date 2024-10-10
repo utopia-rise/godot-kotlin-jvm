@@ -23,6 +23,40 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRBODYTRACKER_INDEX: Int = 751
+
+public infix fun Long.or(other: godot.XRBodyTracker.BodyFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.XRBodyTracker.BodyFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.XRBodyTracker.BodyFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.XRBodyTracker.BodyFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.XRBodyTracker.BodyFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.XRBodyTracker.BodyFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.XRBodyTracker.BodyFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.XRBodyTracker.BodyFlags): Long = this.rem(other.flag)
+
+public infix fun Long.or(other: godot.XRBodyTracker.JointFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.XRBodyTracker.JointFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.XRBodyTracker.JointFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.XRBodyTracker.JointFlags): Long = this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.XRBodyTracker.JointFlags): Long = this.minus(other.flag)
+
+public operator fun Long.times(other: godot.XRBodyTracker.JointFlags): Long = this.times(other.flag)
+
+public operator fun Long.div(other: godot.XRBodyTracker.JointFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.XRBodyTracker.JointFlags): Long = this.rem(other.flag)
+
 /**
  * A body tracking system will create an instance of this object and add it to the [XRServer]. This
  * tracking system will then obtain skeleton data, convert it to the Godot Humanoid skeleton and store
@@ -54,7 +88,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRBODYTRACKER, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRBODYTRACKER_INDEX, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -591,35 +625,3 @@ public open class XRBodyTracker : XRPositionalTracker() {
         TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
   }
 }
-
-public infix fun Long.or(other: godot.XRBodyTracker.BodyFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.XRBodyTracker.BodyFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.XRBodyTracker.BodyFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.XRBodyTracker.BodyFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.XRBodyTracker.BodyFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.XRBodyTracker.BodyFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.XRBodyTracker.BodyFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.XRBodyTracker.BodyFlags): Long = this.rem(other.flag)
-
-public infix fun Long.or(other: godot.XRBodyTracker.JointFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.XRBodyTracker.JointFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.XRBodyTracker.JointFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.XRBodyTracker.JointFlags): Long = this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.XRBodyTracker.JointFlags): Long = this.minus(other.flag)
-
-public operator fun Long.times(other: godot.XRBodyTracker.JointFlags): Long = this.times(other.flag)
-
-public operator fun Long.div(other: godot.XRBodyTracker.JointFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.XRBodyTracker.JointFlags): Long = this.rem(other.flag)

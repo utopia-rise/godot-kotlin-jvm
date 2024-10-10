@@ -49,7 +49,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVARYING, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVARYING_INDEX, scriptIndex)
   }
 
   public final fun setVaryingName(name: String): Unit {

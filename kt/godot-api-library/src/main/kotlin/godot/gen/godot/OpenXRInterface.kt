@@ -35,6 +35,29 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRINTERFACE_INDEX: Int = 392
+
+public infix fun Long.or(other: godot.OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.OpenXRInterface.HandJointFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.OpenXRInterface.HandJointFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.OpenXRInterface.HandJointFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.OpenXRInterface.HandJointFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.OpenXRInterface.HandJointFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.OpenXRInterface.HandJointFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.OpenXRInterface.HandJointFlags): Long =
+    this.rem(other.flag)
+
 /**
  * The OpenXR interface allows Godot to interact with OpenXR runtimes and make it possible to create
  * XR experiences and games.
@@ -166,7 +189,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRINTERFACE, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRINTERFACE_INDEX, scriptIndex)
   }
 
   public final fun getDisplayRefreshRate(): Float {
@@ -780,24 +803,3 @@ public open class OpenXRInterface : XRInterface() {
         TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength", 373806689)
   }
 }
-
-public infix fun Long.or(other: godot.OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.OpenXRInterface.HandJointFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.OpenXRInterface.HandJointFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.OpenXRInterface.HandJointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.OpenXRInterface.HandJointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.OpenXRInterface.HandJointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.OpenXRInterface.HandJointFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.OpenXRInterface.HandJointFlags): Long =
-    this.rem(other.flag)

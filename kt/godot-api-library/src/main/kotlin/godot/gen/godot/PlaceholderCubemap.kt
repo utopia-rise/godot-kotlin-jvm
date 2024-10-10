@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PLACEHOLDERCUBEMAP_INDEX: Int = 435
+
 /**
  * This class replaces a [Cubemap] or a [Cubemap]-derived class in 2 conditions:
  * - In dedicated server mode, where the image data shouldn't affect game logic. This allows
@@ -22,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderCubemap : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERCUBEMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_PLACEHOLDERCUBEMAP_INDEX, scriptIndex)
   }
 
   public companion object

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PANELCONTAINER_INDEX: Int = 403
+
 /**
  * A container that keeps its child controls within the area of a [StyleBox]. Useful for giving
  * controls an outline.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PanelContainer : Container() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PANELCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_PANELCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

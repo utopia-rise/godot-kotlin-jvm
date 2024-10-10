@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTMOUSEBUTTON_INDEX: Int = 297
+
 /**
  * Stores information about mouse click events. See [Node.Input].
  * **Note:** On Wear OS devices, rotary input is mapped to [MOUSE_BUTTON_WHEEL_UP] and
@@ -91,7 +93,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSEBUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTMOUSEBUTTON_INDEX, scriptIndex)
   }
 
   public final fun setFactor(factor: Float): Unit {

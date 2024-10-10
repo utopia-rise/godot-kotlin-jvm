@@ -12,10 +12,12 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_STREAMPEEREXTENSION_INDEX: Int = 554
+
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STREAMPEEREXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_STREAMPEEREXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getAvailableBytes(): Int {

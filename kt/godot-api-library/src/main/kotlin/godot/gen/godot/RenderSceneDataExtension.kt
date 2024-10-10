@@ -17,13 +17,15 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RENDERSCENEDATAEXTENSION_INDEX: Int = 491
+
 /**
  * This class allows for a RenderSceneData implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderSceneDataExtension : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEDATAEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERSCENEDATAEXTENSION_INDEX, scriptIndex)
   }
 
   /**

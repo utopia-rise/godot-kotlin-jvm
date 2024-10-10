@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX: Int = 564
+
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
  * combined size of the [SubViewport]s as minimum size, unless [stretch] is enabled.
@@ -60,7 +62,7 @@ public open class SubViewportContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SUBVIEWPORTCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX, scriptIndex)
   }
 
   /**

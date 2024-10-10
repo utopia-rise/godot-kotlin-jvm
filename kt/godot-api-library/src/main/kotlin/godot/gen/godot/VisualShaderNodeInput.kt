@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX: Int = 661
+
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference
  * for the list of available built-ins for each shader type (check `Tutorials` section for link).
@@ -43,7 +45,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINPUT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX, scriptIndex)
   }
 
   public final fun setInputName(name: String): Unit {

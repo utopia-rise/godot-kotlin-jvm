@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOSTREAMMP3_INDEX: Int = 115
+
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
  */
@@ -109,7 +111,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMMP3, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMMP3_INDEX, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {

@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOSTREAMOGGVORBIS_INDEX: Int = 117
+
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
  * formats. It offers functionality for loading and playing back Ogg Vorbis files, as well as managing
@@ -94,7 +96,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMOGGVORBIS, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMOGGVORBIS_INDEX, scriptIndex)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {

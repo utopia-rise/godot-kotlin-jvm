@@ -26,6 +26,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TRANSLATION_INDEX: Int = 603
+
 /**
  * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
  * strings to their individual translations, and they also provide convenience methods for
@@ -45,7 +47,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TRANSLATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_TRANSLATION_INDEX, scriptIndex)
   }
 
   /**

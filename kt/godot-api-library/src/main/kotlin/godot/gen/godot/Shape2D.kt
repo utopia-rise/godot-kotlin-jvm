@@ -56,7 +56,7 @@ public open class Shape2D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTPITCHSHIFT_INDEX: Int = 103
+
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
  * with minimal effect on transients.
@@ -67,7 +69,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTPITCHSHIFT, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTPITCHSHIFT_INDEX, scriptIndex)
   }
 
   public final fun setPitchScale(rate: Float): Unit {

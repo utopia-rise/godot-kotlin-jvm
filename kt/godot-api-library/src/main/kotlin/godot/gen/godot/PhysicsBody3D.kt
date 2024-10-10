@@ -104,7 +104,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSBODY3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSBODY3D_INDEX, scriptIndex)
   }
 
   /**

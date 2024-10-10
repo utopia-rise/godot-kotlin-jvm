@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MATERIAL_INDEX: Int = 328
+
 /**
  * [Material] is a base resource used for coloring and shading geometry. All materials inherit from
  * it and almost all [VisualInstance3D] derived nodes carry a [Material]. A few flags and parameters
@@ -66,7 +68,7 @@ public open class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_MATERIAL_INDEX, scriptIndex)
   }
 
   /**

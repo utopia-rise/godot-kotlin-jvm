@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RENDERDATARD_INDEX: Int = 487
+
 /**
  * This object manages all render data for the rendering device based renderers.
  * **Note:** This is an internal rendering server object only exposed for GDExtension plugins.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderDataRD : RenderData() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERDATARD, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERDATARD_INDEX, scriptIndex)
   }
 
   public companion object

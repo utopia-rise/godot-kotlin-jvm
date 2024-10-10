@@ -44,6 +44,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ITEMLIST_INDEX: Int = 304
+
 /**
  * This control provides a vertical list of selectable items that may be in a single or in multiple
  * columns, with each item having options for text and an icon. Tooltips are supported and may be
@@ -264,7 +266,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ITEMLIST, scriptIndex)
+    callConstructor(ENGINE_CLASS_ITEMLIST_INDEX, scriptIndex)
   }
 
   /**

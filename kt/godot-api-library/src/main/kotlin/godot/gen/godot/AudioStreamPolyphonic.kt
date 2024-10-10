@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX: Int = 125
+
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
  * single player.
@@ -41,7 +43,7 @@ public open class AudioStreamPolyphonic : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPOLYPHONIC, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX, scriptIndex)
   }
 
   public final fun setPolyphony(voices: Int): Unit {

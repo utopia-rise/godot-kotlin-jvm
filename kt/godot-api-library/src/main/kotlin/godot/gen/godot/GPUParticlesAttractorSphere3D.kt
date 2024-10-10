@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTORSPHERE3D_INDEX: Int = 253
+
 /**
  * A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to
  * attract particles towards its origin, or to push them away from its origin.
@@ -42,7 +44,7 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTORSPHERE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESATTRACTORSPHERE3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

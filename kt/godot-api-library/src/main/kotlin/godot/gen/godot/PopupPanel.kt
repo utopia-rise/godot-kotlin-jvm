@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_POPUPPANEL_INDEX: Int = 450
+
 /**
  * A popup with a configurable panel background. Any child controls added to this node will be
  * stretched to fit the panel's size (similar to how [PanelContainer] works). If you are making
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PopupPanel : Popup() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POPUPPANEL, scriptIndex)
+    callConstructor(ENGINE_CLASS_POPUPPANEL_INDEX, scriptIndex)
   }
 
   public companion object

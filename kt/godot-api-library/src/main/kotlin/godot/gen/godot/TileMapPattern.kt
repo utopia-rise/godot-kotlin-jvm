@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TILEMAPPATTERN_INDEX: Int = 596
+
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
  * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
@@ -32,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class TileMapPattern : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILEMAPPATTERN, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILEMAPPATTERN_INDEX, scriptIndex)
   }
 
   /**

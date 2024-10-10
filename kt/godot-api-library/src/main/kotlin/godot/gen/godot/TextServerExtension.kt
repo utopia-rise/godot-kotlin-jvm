@@ -31,13 +31,15 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX: Int = 577
+
 /**
  * External [TextServer] implementations should inherit from this class.
  */
 @GodotBaseType
 public open class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTSERVEREXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX, scriptIndex)
   }
 
   /**

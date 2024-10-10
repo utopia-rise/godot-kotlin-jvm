@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_LABELSETTINGS_INDEX: Int = 315
+
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
  * It will take priority over the properties defined in [Control.theme]. The resource can be shared
@@ -140,7 +142,7 @@ public open class LabelSettings : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LABELSETTINGS, scriptIndex)
+    callConstructor(ENGINE_CLASS_LABELSETTINGS_INDEX, scriptIndex)
   }
 
   /**

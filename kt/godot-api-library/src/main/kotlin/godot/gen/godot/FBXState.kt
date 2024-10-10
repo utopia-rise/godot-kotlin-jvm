@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_FBXSTATE_INDEX: Int = 221
+
 /**
  * The FBXState handles the state data imported from FBX files.
  */
@@ -36,7 +38,7 @@ public open class FBXState : GLTFState() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FBXSTATE, scriptIndex)
+    callConstructor(ENGINE_CLASS_FBXSTATE_INDEX, scriptIndex)
   }
 
   public final fun getAllowGeometryHelperNodes(): Boolean {

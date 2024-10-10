@@ -30,6 +30,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SHAPECAST2D_INDEX: Int = 517
+
 /**
  * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction
  * determined by [targetPosition]. This is similar to [RayCast2D], but it allows for sweeping a region
@@ -146,7 +148,7 @@ public open class ShapeCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SHAPECAST2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SHAPECAST2D_INDEX, scriptIndex)
   }
 
   /**

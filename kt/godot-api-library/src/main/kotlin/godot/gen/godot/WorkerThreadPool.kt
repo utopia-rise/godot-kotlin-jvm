@@ -25,6 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_WORKERTHREADPOOL_INDEX: Int = 24
+
 /**
  * The [WorkerThreadPool] singleton allocates a set of [Thread]s (called worker threads) on project
  * startup and provides methods for offloading tasks to them. This can be used for simple
@@ -77,7 +79,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object WorkerThreadPool : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_WORKERTHREADPOOL)
+    getSingleton(ENGINE_CLASS_WORKERTHREADPOOL_INDEX)
   }
 
   /**

@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PRIMITIVEMESH_INDEX: Int = 452
+
 /**
  * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples
  * include [BoxMesh], [CapsuleMesh], [CylinderMesh], [PlaneMesh], [PrismMesh], and [SphereMesh].
@@ -100,7 +102,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PRIMITIVEMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_PRIMITIVEMESH_INDEX, scriptIndex)
   }
 
   /**

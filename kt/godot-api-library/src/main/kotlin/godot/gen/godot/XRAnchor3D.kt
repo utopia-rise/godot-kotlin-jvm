@@ -18,6 +18,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_XRANCHOR3D_INDEX: Int = 749
+
 /**
  * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR
  * platform to a position within the game world. For example, as long as plane detection in ARKit is
@@ -33,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRANCHOR3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRANCHOR3D_INDEX, scriptIndex)
   }
 
   /**

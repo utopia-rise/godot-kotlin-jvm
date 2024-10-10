@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX: Int = 640
+
 /**
  * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
  * the [VisualShader] editor it behaves exactly like [VisualShaderNodeFrame].
@@ -37,7 +39,7 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODECOMMENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX, scriptIndex)
   }
 
   public final fun setDescription(description: String): Unit {

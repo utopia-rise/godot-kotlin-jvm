@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX: Int = 374
+
 /**
  * Occlusion culling can improve rendering performance in closed/semi-open areas by hiding geometry
  * that is occluded by other objects.
@@ -112,7 +114,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OCCLUDERINSTANCE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX, scriptIndex)
   }
 
   public final fun setBakeMask(mask: Long): Unit {

@@ -37,6 +37,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLES2D_INDEX: Int = 250
+
 /**
  * 2D particle node used to create a variety of particle systems and effects. [GPUParticles2D]
  * features an emitter that generates some number of particles at a given rate.
@@ -382,7 +384,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLES2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLES2D_INDEX, scriptIndex)
   }
 
   /**

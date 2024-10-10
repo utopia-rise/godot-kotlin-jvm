@@ -71,7 +71,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSE, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTMOUSE_INDEX, scriptIndex)
   }
 
   /**

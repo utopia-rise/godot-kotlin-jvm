@@ -15,7 +15,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCRIPTLANGUAGE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCRIPTLANGUAGE_INDEX, scriptIndex)
   }
 
   public enum class ScriptNameCasing(

@@ -20,7 +20,6 @@ import com.squareup.kotlinpoet.UNIT
 import com.squareup.kotlinpoet.asClassName
 import godot.codegen.constants.VOID_PTR
 import godot.codegen.constants.jvmReservedMethods
-import godot.codegen.exceptions.ClassGenerationException
 import godot.codegen.extensions.applyJvmNameIfNecessary
 import godot.codegen.extensions.getDefaultValueKotlinString
 import godot.codegen.extensions.getTypeClassName
@@ -60,13 +59,10 @@ import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
-import org.gradle.api.reporting.Report.OutputType
 import java.io.File
 import java.util.*
 
 private const val methodBindingsInnerClassName = "MethodBindings"
-
-
 
 class ApiGenerationService(
     private val classGraphService: IClassGraphService,
@@ -75,8 +71,8 @@ class ApiGenerationService(
 ) : IApiGenerationService {
     private var nextEngineClassIndex = 0
 
-    override fun  generateCore(outputDir: File) {
-        val apiClasses = apiService.getClasses().filter{
+    override fun generateCore(outputDir: File) {
+        val apiClasses = apiService.getClasses().filter {
             it.name == "Object" || it.name == "RefCounted"
         }
 
@@ -112,7 +108,6 @@ class ApiGenerationService(
 
         //TODO: generateEngineTypesRegistration
 
-        val engineIndexFile = FileSpec.builder(godotPackage, "EngineIndexes")
         val registrationFileSpec = RegistrationFileSpec()
 
         //We first generate singletons so that their index in engine types and engine singleton lists are same.
@@ -122,7 +117,6 @@ class ApiGenerationService(
             }
 
             generateSingleton(singleton).writeTo(outputDir)
-            generateEngineIndexesForClass(engineIndexFile, singleton)
             generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
         }
 
@@ -131,39 +125,44 @@ class ApiGenerationService(
                 apiService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
             }
 
-            if(enrichedClass.name != "Object" && enrichedClass.name != "RefCounted") {
+            if (enrichedClass.name != "Object" && enrichedClass.name != "RefCounted") {
                 generateClass(enrichedClass).writeTo(outputDir)
             }
-            generateEngineIndexesForClass(engineIndexFile, enrichedClass)
             generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
         }
 
-        engineIndexFile.build().writeTo(outputDir)
         registrationFileSpec.build().writeTo(outputDir)
     }
 
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
+        val fileBuilder = FileSpec.builder(godotPackage, singletonClass.name)
+        fileBuilder.generateEngineIndexesForClass(singletonClass)
+
         val singletonTypeName = singletonClass.getTypeClassName()
         val baseClass = singletonClass.inherits ?: GodotKotlinJvmTypes.obj
-        val classTypeBuilder = TypeSpec
+        val singletonBuilder = TypeSpec
             .objectBuilder(singletonTypeName.className)
             .superclass(ClassName(godotPackage, baseClass))
-
-        classTypeBuilder.generateSingletonConstructor(singletonClass.engineClassDBIndexName)
+            .generateSingletonConstructor(singletonClass.engineClassDBIndexName)
 
         return generateCommonsForClass(
-            classTypeBuilder,
+            fileBuilder,
+            singletonBuilder,
             singletonClass,
             true,
-            classTypeBuilder
-
+            singletonBuilder
         )
     }
 
     override fun generateClass(clazz: EnrichedClass): FileSpec {
+        val fileBuilder = FileSpec.builder(godotPackage, clazz.name)
+
         val className = clazz.getTypeClassName()
-        val classTypeBuilder = TypeSpec.classBuilder(className.className).addModifiers(KModifier.OPEN)
+
+        val classTypeBuilder = TypeSpec
+            .classBuilder(className.className)
+            .addModifiers(KModifier.OPEN)
 
         if (!clazz.internal.isInstantiable) {
             classTypeBuilder.primaryConstructor(
@@ -171,6 +170,8 @@ class ApiGenerationService(
                     .addModifiers(KModifier.INTERNAL)
                     .build()
             )
+        } else {
+            fileBuilder.generateEngineIndexesForClass(clazz)
         }
 
         val baseClass = clazz.inherits
@@ -180,24 +181,22 @@ class ApiGenerationService(
 
         classTypeBuilder.generateClassConstructor(clazz.engineClassDBIndexName)
 
-        return generateCommonsForClass(classTypeBuilder, clazz, false)
+        return generateCommonsForClass(fileBuilder, classTypeBuilder, clazz, false)
     }
 
     private fun generateCommonsForClass(
+        fileBuilder: FileSpec.Builder,
         classTypeBuilder: TypeSpec.Builder,
         enrichedClass: EnrichedClass,
         isSingleton: Boolean,
         constantsTypeReceiver: TypeSpec.Builder = TypeSpec.companionObjectBuilder()
     ): FileSpec {
-        val name = enrichedClass.name
-        val methodBindPtrReceiver = TypeSpec
-            .objectBuilder(methodBindingsInnerClassName)
-            .addModifiers(KModifier.INTERNAL)
 
         classTypeBuilder
             .addKdoc(enrichedClass)
             .addAnnotation(GODOT_BASE_TYPE)
 
+        val name = enrichedClass.name
         if (name == GodotKotlinJvmTypes.obj) {
             classTypeBuilder.superclass(KT_OBJECT)
         }
@@ -220,10 +219,6 @@ class ApiGenerationService(
 
         for (constant in enrichedClass.constants) {
             constantsTypeReceiver.addProperty(generateConstant(constant, name))
-        }
-
-        for (method in enrichedClass.methods.filter { !it.internal.isVirtual }) {
-            methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
         }
 
         for (method in enrichedClass.methods.filter { it.internal.isStatic }) {
@@ -261,13 +256,17 @@ class ApiGenerationService(
             }
         }
 
+        val methodBindPtrReceiver = TypeSpec
+            .objectBuilder(methodBindingsInnerClassName)
+            .addModifiers(KModifier.INTERNAL)
+
+        for (method in enrichedClass.methods.filter { !it.internal.isVirtual }) {
+            methodBindPtrReceiver.addProperty(generateMethodVoidPtr(enrichedClass, method))
+        }
+
         val generatedClass = classTypeBuilder
             .addType(methodBindPtrReceiver.build())
             .build()
-
-        val fileBuilder = FileSpec
-            .builder(godotPackage, generatedClass.name ?: throw ClassGenerationException(enrichedClass))
-            .addType(generatedClass)
 
         for (enumExtension in enumExtensions) {
             fileBuilder.addFunction(enumExtension)
@@ -277,22 +276,21 @@ class ApiGenerationService(
             fileBuilder.addImport(import.pckge, import.name)
         }
 
-        fileBuilder.generateSuppressWarnings()
-
         return fileBuilder
+            .addType(generatedClass)
+            .generateSuppressWarnings()
             .addFileComment(GENERATED_COMMENT)
             .build()
     }
 
-    override fun generateEngineIndexesForClass(fileSpecBuilder: FileSpec.Builder, clazz: EnrichedClass) {
-        fileSpecBuilder.addProperty(
+    private fun FileSpec.Builder.generateEngineIndexesForClass(clazz: EnrichedClass) {
+        addProperty(
             PropertySpec
                 .builder(clazz.engineClassDBIndexName, INT, KModifier.CONST)
                 .initializer("%L", nextEngineClassIndex)
-                .addModifiers(KModifier.INTERNAL)
+                .addModifiers(KModifier.PRIVATE)
                 .build()
         )
-
         ++nextEngineClassIndex
     }
 
@@ -793,21 +791,7 @@ class ApiGenerationService(
         }
     }
 
-    private fun TypeSpec.Builder.generateClassConstructor(classIndexName: String) {
-        addFunction(
-            FunSpec.builder("new")
-                .addModifiers(KModifier.OVERRIDE)
-                .addParameter("scriptIndex", Int::class)
-                .returns(Unit::class)
-                .addStatement(
-                    "callConstructor(%M, scriptIndex)",
-                    MemberName(godotPackage, classIndexName),
-                )
-                .build()
-        )
-    }
-
-    private fun TypeSpec.Builder.generateSingletonConstructor(classIndexName: String) {
+    private fun TypeSpec.Builder.generateSingletonConstructor(classIndexName: String): TypeSpec.Builder {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
@@ -819,6 +803,22 @@ class ApiGenerationService(
                 )
                 .build()
         )
+        return this
+    }
+
+    private fun TypeSpec.Builder.generateClassConstructor(classIndexName: String): TypeSpec.Builder {
+        addFunction(
+            FunSpec.builder("new")
+                .addModifiers(KModifier.OVERRIDE)
+                .addParameter("scriptIndex", Int::class)
+                .returns(Unit::class)
+                .addStatement(
+                    "callConstructor(%M, scriptIndex)",
+                    MemberName(godotPackage, classIndexName),
+                )
+                .build()
+        )
+        return this
     }
 
     private fun buildCallArgumentsString(
@@ -971,7 +971,7 @@ class ApiGenerationService(
         return this
     }
 
-    private fun FileSpec.Builder.generateSuppressWarnings() {
+    private fun FileSpec.Builder.generateSuppressWarnings(): FileSpec.Builder {
         addAnnotation(
             AnnotationSpec.builder(ClassName("kotlin", "Suppress"))
                 .addMember(
@@ -982,6 +982,7 @@ class ApiGenerationService(
                 )
                 .build()
         )
+        return this
     }
 
     private fun generateCommonRegistrationForClass(

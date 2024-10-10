@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX: Int = 622
+
 /**
  * This class is intended to be overridden by video decoder extensions with custom implementations
  * of [VideoStream].
@@ -29,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class VideoStreamPlayback : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VIDEOSTREAMPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX, scriptIndex)
   }
 
   /**

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEINTOP_INDEX: Int = 664
+
 /**
  * Applies [operator] to two integer inputs: `a` and `b`.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEINTOP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEINTOP_INDEX, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_PERFORMANCE_INDEX: Int = 2
+
 /**
  * This class provides access to a number of different monitors related to performance, such as
  * memory usage, draw calls, and FPS. These are the same as the values displayed in the **Monitor** tab
@@ -47,7 +49,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Performance : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_PERFORMANCE)
+    getSingleton(ENGINE_CLASS_PERFORMANCE_INDEX)
   }
 
   /**

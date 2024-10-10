@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLECONEVELOCITY_INDEX: Int = 674
+
 /**
  * This node can be used in "start" step of particle shader. It defines the initial velocity of the
  * particles, making them move in cone shape starting from the center, with a given spread.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeParticleConeVelocity : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLECONEVELOCITY, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLECONEVELOCITY_INDEX, scriptIndex)
   }
 
   public companion object

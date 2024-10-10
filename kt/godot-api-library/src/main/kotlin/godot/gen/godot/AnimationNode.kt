@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATIONNODE_INDEX: Int = 50
+
 /**
  * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create
  * custom ones with custom blending formulas.
@@ -92,7 +94,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODE_INDEX, scriptIndex)
   }
 
   /**

@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX: Int = 92
+
 /**
  * Allows frequencies other than the [cutoffHz] to pass.
  */
@@ -68,7 +70,7 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTFILTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX, scriptIndex)
   }
 
   public final fun setCutoff(freq: Float): Unit {

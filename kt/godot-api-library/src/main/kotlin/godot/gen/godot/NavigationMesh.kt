@@ -35,6 +35,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONMESH_INDEX: Int = 355
+
 /**
  * A navigation mesh is a collection of polygons that define which areas of an environment are
  * traversable to aid agents in pathfinding through complicated spaces.
@@ -345,7 +347,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONMESH_INDEX, scriptIndex)
   }
 
   /**

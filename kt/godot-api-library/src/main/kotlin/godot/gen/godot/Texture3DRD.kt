@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_TEXTURE3DRD_INDEX: Int = 584
+
 /**
  * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
  * texture for materials, meshes, etc.
@@ -36,7 +38,7 @@ public open class Texture3DRD : Texture3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURE3DRD, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTURE3DRD_INDEX, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

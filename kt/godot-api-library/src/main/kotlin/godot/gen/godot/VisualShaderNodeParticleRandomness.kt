@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX: Int = 679
+
 /**
  * Randomness node will output pseudo-random values of the given type based on the specified minimum
  * and maximum values.
@@ -36,7 +38,7 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARTICLERANDOMNESS, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

@@ -20,6 +20,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_UNIFORMSETCACHERD_INDEX: Int = 612
+
 /**
  * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a
  * uniform set and reuse it in subsequent calls for as long as the uniform set exists. Uniform set will
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_UNIFORMSETCACHERD, scriptIndex)
+    callConstructor(ENGINE_CLASS_UNIFORMSETCACHERD_INDEX, scriptIndex)
   }
 
   public companion object {

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CYLINDERSHAPE3D_INDEX: Int = 208
+
 /**
  * A 3D cylinder shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape3D].
@@ -52,7 +54,7 @@ public open class CylinderShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CYLINDERSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CYLINDERSHAPE3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

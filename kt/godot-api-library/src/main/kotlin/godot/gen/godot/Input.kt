@@ -40,6 +40,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_INPUT_INDEX: Int = 18
+
 /**
  * The [Input] singleton handles key presses, mouse buttons and movement, gamepads, and input
  * actions. Actions and their events can be set in the **Input Map** tab in **Project > Project
@@ -57,7 +59,7 @@ public object Input : Object() {
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_INPUT)
+    getSingleton(ENGINE_CLASS_INPUT_INDEX)
   }
 
   /**

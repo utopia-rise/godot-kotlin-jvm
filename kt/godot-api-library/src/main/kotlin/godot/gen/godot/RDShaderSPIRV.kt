@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RDSHADERSPIRV_INDEX: Int = 469
+
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
  * code for various shader stages, as well as possible compilation error messages. SPIR-V is a
@@ -147,7 +149,7 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDSHADERSPIRV, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDSHADERSPIRV_INDEX, scriptIndex)
   }
 
   /**

@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_FOGMATERIAL_INDEX: Int = 225
+
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
  * If you need more advanced effects, use a custom
@@ -114,7 +116,7 @@ public open class FogMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_FOGMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_FOGMATERIAL_INDEX, scriptIndex)
   }
 
   /**

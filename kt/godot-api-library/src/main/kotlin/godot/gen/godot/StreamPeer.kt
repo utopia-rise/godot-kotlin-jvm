@@ -53,7 +53,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STREAMPEER, scriptIndex)
+    callConstructor(ENGINE_CLASS_STREAMPEER_INDEX, scriptIndex)
   }
 
   /**

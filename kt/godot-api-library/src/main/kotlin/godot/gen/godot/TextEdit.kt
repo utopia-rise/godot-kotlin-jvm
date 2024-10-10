@@ -47,6 +47,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TEXTEDIT_INDEX: Int = 571
+
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
  * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
@@ -569,7 +571,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTEDIT, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTEDIT_INDEX, scriptIndex)
   }
 
   /**

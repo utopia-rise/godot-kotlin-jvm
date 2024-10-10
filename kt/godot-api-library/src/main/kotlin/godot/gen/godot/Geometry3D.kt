@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_GEOMETRY3D_INDEX: Int = 10
+
 /**
  * Provides a set of helper functions to create geometric shapes, compute intersections between
  * shapes, and process various other geometric operations in 3D.
@@ -38,7 +40,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object Geometry3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_GEOMETRY3D)
+    getSingleton(ENGINE_CLASS_GEOMETRY3D_INDEX)
   }
 
   /**

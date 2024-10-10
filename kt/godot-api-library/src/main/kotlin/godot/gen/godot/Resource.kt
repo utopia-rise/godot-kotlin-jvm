@@ -25,6 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_RESOURCE_INDEX: Int = 493
+
 /**
  * Resource is the base class for all Godot-specific resource types, serving primarily as data
  * containers. Since they inherit from [RefCounted], resources are reference-counted and freed when no
@@ -122,7 +124,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RESOURCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_RESOURCE_INDEX, scriptIndex)
   }
 
   /**

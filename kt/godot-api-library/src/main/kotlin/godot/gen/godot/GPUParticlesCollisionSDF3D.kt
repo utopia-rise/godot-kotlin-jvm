@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX: Int = 257
+
 /**
  * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.
  * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for
@@ -115,7 +117,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONSDF3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX, scriptIndex)
   }
 
   /**

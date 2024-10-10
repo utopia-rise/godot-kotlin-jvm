@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX: Int = 731
+
 /**
  * The WorldPositionFromDepth node reconstructs the depth position of the pixel in world space. This
  * can be used to obtain world space UVs for projection mapping like Caustics.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeWorldPositionFromDepth : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX, scriptIndex)
   }
 
   public companion object

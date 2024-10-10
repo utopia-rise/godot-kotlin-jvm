@@ -42,7 +42,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGPRIMITIVE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGPRIMITIVE3D_INDEX, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_INDEX, scriptIndex)
   }
 
   /**

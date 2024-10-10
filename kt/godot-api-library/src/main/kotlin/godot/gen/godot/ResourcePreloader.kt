@@ -22,6 +22,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RESOURCEPRELOADER_INDEX: Int = 496
+
 /**
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the
  * resources are ready to use and can be retrieved from the preloader. You can add the resources using
@@ -32,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourcePreloader : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RESOURCEPRELOADER, scriptIndex)
+    callConstructor(ENGINE_CLASS_RESOURCEPRELOADER_INDEX, scriptIndex)
   }
 
   /**

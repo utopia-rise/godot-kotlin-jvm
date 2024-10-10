@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MISSINGRESOURCE_INDEX: Int = 340
+
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most
  * likely this type was supplied by an extension that is no longer loaded). It can't be manually
@@ -53,7 +55,7 @@ public open class MissingResource : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MISSINGRESOURCE, scriptIndex)
+    callConstructor(ENGINE_CLASS_MISSINGRESOURCE_INDEX, scriptIndex)
   }
 
   public final fun setOriginalClass(name: String): Unit {

@@ -284,7 +284,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CANVASITEM, scriptIndex)
+    callConstructor(ENGINE_CLASS_CANVASITEM_INDEX, scriptIndex)
   }
 
   /**

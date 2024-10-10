@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RENDERSCENEDATARD_INDEX: Int = 492
+
 /**
  * Object holds scene data related to rendering a single frame of a viewport.
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderSceneDataRD : RenderSceneData() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RENDERSCENEDATARD, scriptIndex)
+    callConstructor(ENGINE_CLASS_RENDERSCENEDATARD_INDEX, scriptIndex)
   }
 
   public companion object

@@ -26,6 +26,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINE_INDEX: Int = 61
+
 /**
  * Contains multiple [AnimationRootNode]s representing animation states, connected in a graph. State
  * transitions can be configured to happen automatically or via code, using a shortest-path algorithm.
@@ -87,7 +89,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODESTATEMACHINE, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODESTATEMACHINE_INDEX, scriptIndex)
   }
 
   /**

@@ -18,6 +18,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX: Int = 391
+
 /**
  * This class allows OpenXR core and extensions to register metadata relating to supported
  * interaction devices such as controllers, trackers, haptic devices, etc. It is primarily used by the
@@ -27,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRINTERACTIONPROFILEMETADATA, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX, scriptIndex)
   }
 
   /**

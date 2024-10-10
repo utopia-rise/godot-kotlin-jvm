@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DCCDIK_INDEX: Int = 524
+
 /**
  * This [SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse
  * Kinematics, or CCDIK, to manipulate a chain of bones in a [Skeleton2D] so it reaches a defined
@@ -77,7 +79,7 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DCCDIK, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DCCDIK_INDEX, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

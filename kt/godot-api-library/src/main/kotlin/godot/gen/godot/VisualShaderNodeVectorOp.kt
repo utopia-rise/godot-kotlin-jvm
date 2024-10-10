@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTOROP_INDEX: Int = 729
+
 /**
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVECTOROP, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVECTOROP_INDEX, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

@@ -57,7 +57,7 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERTEXTURELAYERED, scriptIndex)
+    callConstructor(ENGINE_CLASS_PLACEHOLDERTEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**

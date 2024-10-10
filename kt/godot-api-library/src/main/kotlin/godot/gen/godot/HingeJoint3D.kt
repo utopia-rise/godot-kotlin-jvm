@@ -22,6 +22,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_HINGEJOINT3D_INDEX: Int = 283
+
 /**
  * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
  * another physics body. For example, Body A can be a [StaticBody3D] representing a door hinge that a
@@ -30,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HINGEJOINT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_HINGEJOINT3D_INDEX, scriptIndex)
   }
 
   /**

@@ -50,7 +50,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {

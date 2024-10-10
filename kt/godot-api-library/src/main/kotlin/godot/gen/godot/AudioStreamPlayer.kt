@@ -28,6 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX: Int = 121
+
 /**
  * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
  * interfaces, menus, or background music.
@@ -163,7 +165,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

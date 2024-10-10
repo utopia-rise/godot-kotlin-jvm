@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX: Int = 745
+
 /**
  * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an
  * infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines
@@ -41,7 +43,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WORLDBOUNDARYSHAPE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX, scriptIndex)
   }
 
   /**

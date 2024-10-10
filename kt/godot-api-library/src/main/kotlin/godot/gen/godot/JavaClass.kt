@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_JAVACLASS_INDEX: Int = 308
+
 /**
  * Represents an object from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
  * **Note:** This class only works on Android. For any other build, this class does nothing.
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaClass : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_JAVACLASS, scriptIndex)
+    callConstructor(ENGINE_CLASS_JAVACLASS_INDEX, scriptIndex)
   }
 
   public companion object

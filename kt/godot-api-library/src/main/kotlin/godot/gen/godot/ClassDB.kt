@@ -31,13 +31,15 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_CLASSDB_INDEX: Int = 15
+
 /**
  * Provides access to metadata stored for every available class.
  */
 @GodotBaseType
 public object ClassDB : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_CLASSDB)
+    getSingleton(ENGINE_CLASS_CLASSDB_INDEX)
   }
 
   /**

@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Node3DGizmo internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NODE3DGIZMO, scriptIndex)
+    callConstructor(ENGINE_CLASS_NODE3DGIZMO_INDEX, scriptIndex)
   }
 
   public companion object

@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_CRYPTO_INDEX: Int = 198
+
 /**
  * The Crypto class provides access to advanced cryptographic functionalities.
  * Currently, this includes asymmetric key encryption/decryption, signing/verification, and
@@ -100,7 +102,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Crypto : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CRYPTO, scriptIndex)
+    callConstructor(ENGINE_CLASS_CRYPTO_INDEX, scriptIndex)
   }
 
   /**

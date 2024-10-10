@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX: Int = 653
+
 /**
  * Translated to [code skip-lint]float[/code] in the shader language.
  */
@@ -36,7 +38,7 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEFLOATCONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX, scriptIndex)
   }
 
   public final fun setConstant(constant: Float): Unit {

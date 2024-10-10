@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX: Int = 462
+
 /**
  * Controls how blending between source and destination fragments is performed when using
  * [RenderingDevice].
@@ -211,7 +213,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX, scriptIndex)
   }
 
   /**

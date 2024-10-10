@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SEPARATIONRAYSHAPE2D_INDEX: Int = 511
+
 /**
  * A 2D ray shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D]. When a [SeparationRayShape2D] collides with an object, it tries to separate
@@ -54,7 +56,7 @@ public open class SeparationRayShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SEPARATIONRAYSHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SEPARATIONRAYSHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

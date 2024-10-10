@@ -32,6 +32,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_OS_INDEX: Int = 13
+
 /**
  * The [OS] class wraps the most common functionalities for communicating with the host operating
  * system, such as the video driver, delays, environment variables, execution of binaries, command
@@ -43,7 +45,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object OS : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_OS)
+    getSingleton(ENGINE_CLASS_OS_INDEX)
   }
 
   /**

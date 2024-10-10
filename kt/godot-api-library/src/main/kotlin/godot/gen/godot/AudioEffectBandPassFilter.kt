@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOEFFECTBANDPASSFILTER_INDEX: Int = 82
+
 /**
  * Attenuates the frequencies inside of a range around the [AudioEffectFilter.cutoffHz] and cuts
  * frequencies outside of this band.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectBandPassFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTBANDPASSFILTER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTBANDPASSFILTER_INDEX, scriptIndex)
   }
 
   public companion object

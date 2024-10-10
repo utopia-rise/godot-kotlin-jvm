@@ -18,6 +18,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_INDEX: Int = 419
+
 /**
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
  * be overridden. When these methods are overridden, they will be called instead of the internal
@@ -28,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_INDEX, scriptIndex)
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

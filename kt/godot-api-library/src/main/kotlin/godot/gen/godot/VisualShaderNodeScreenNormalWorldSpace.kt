@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE_INDEX: Int = 689
+
 /**
  * The ScreenNormalWorldSpace node allows to create outline effects.
  */
 @GodotBaseType
 public open class VisualShaderNodeScreenNormalWorldSpace : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE_INDEX, scriptIndex)
   }
 
   public companion object

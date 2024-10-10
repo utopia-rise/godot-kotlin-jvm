@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PLACEHOLDERMESH_INDEX: Int = 438
+
 /**
  * This class is used when loading a project that uses a [Mesh] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -42,7 +44,7 @@ public open class PlaceholderMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_PLACEHOLDERMESH_INDEX, scriptIndex)
   }
 
   /**

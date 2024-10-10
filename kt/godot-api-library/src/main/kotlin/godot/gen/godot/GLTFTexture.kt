@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFTEXTURE_INDEX: Int = 248
+
 @GodotBaseType
 public open class GLTFTexture : Resource() {
   /**
@@ -45,7 +47,7 @@ public open class GLTFTexture : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFTEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun getSrcImage(): Int {

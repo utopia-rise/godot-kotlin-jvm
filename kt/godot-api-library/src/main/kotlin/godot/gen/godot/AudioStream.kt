@@ -25,6 +25,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAM_INDEX: Int = 112
+
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and
  * support WAV (via [AudioStreamWAV]) and Ogg (via [AudioStreamOggVorbis]) file formats.
@@ -37,7 +39,7 @@ public open class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAM, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAM_INDEX, scriptIndex)
   }
 
   /**

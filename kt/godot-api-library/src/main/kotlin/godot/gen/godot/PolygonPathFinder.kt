@@ -29,10 +29,12 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_POLYGONPATHFINDER_INDEX: Int = 447
+
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POLYGONPATHFINDER, scriptIndex)
+    callConstructor(ENGINE_CLASS_POLYGONPATHFINDER_INDEX, scriptIndex)
   }
 
   public final fun setup(points: PackedVector2Array, connections: PackedInt32Array): Unit {

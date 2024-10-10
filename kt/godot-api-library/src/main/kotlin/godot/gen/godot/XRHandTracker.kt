@@ -28,6 +28,27 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRHANDTRACKER_INDEX: Int = 758
+
+public infix fun Long.or(other: godot.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.XRHandTracker.HandJointFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.XRHandTracker.HandJointFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.XRHandTracker.HandJointFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.XRHandTracker.HandJointFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.XRHandTracker.HandJointFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.XRHandTracker.HandJointFlags): Long = this.div(other.flag)
+
+public operator fun Long.rem(other: godot.XRHandTracker.HandJointFlags): Long = this.rem(other.flag)
+
 /**
  * A hand tracking system will create an instance of this object and add it to the [XRServer]. This
  * tracking system will then obtain skeleton data, convert it to the Godot Humanoid hand skeleton and
@@ -59,7 +80,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRHANDTRACKER, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRHANDTRACKER_INDEX, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -447,22 +468,3 @@ public open class XRHandTracker : XRPositionalTracker() {
         TypeManager.getMethodBindPtr("XRHandTracker", "get_hand_joint_angular_velocity", 547240792)
   }
 }
-
-public infix fun Long.or(other: godot.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.XRHandTracker.HandJointFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.XRHandTracker.HandJointFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.XRHandTracker.HandJointFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.XRHandTracker.HandJointFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.XRHandTracker.HandJointFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.XRHandTracker.HandJointFlags): Long = this.div(other.flag)
-
-public operator fun Long.rem(other: godot.XRHandTracker.HandJointFlags): Long = this.rem(other.flag)

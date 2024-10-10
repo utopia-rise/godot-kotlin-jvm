@@ -22,6 +22,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX: Int = 387
+
 /**
  * [OpenXRExtensionWrapperExtension] allows clients to implement OpenXR extensions with GDExtension.
  * The extension should be registered with [registerExtensionWrapper].
@@ -29,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRExtensionWrapperExtension : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXREXTENSIONWRAPPEREXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX, scriptIndex)
   }
 
   /**

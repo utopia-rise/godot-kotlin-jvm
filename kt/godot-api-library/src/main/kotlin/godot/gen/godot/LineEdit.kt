@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_LINEEDIT_INDEX: Int = 322
+
 /**
  * [LineEdit] provides an input field for editing a single line of text. It features many built-in
  * shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
@@ -445,7 +447,7 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LINEEDIT, scriptIndex)
+    callConstructor(ENGINE_CLASS_LINEEDIT_INDEX, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

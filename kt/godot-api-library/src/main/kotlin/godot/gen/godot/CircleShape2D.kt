@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CIRCLESHAPE2D_INDEX: Int = 172
+
 /**
  * A 2D circle shape, intended for use in physics. Usually used to provide a shape for a
  * [CollisionShape2D].
@@ -39,7 +41,7 @@ public open class CircleShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CIRCLESHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CIRCLESHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

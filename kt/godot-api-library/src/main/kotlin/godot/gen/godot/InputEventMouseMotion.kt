@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTMOUSEMOTION_INDEX: Int = 298
+
 /**
  * Stores information about a mouse or a pen motion. This includes relative position, absolute
  * position, and velocity. See [Node.Input].
@@ -141,7 +143,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTMOUSEMOTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTMOUSEMOTION_INDEX, scriptIndex)
   }
 
   /**

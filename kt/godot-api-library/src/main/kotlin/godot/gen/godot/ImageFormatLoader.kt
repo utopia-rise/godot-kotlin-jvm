@@ -13,6 +13,27 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 
+public infix fun Long.or(other: godot.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
+
+public infix fun Long.xor(other: godot.ImageFormatLoader.LoaderFlags): Long = this.xor(other.flag)
+
+public infix fun Long.and(other: godot.ImageFormatLoader.LoaderFlags): Long = this.and(other.flag)
+
+public operator fun Long.plus(other: godot.ImageFormatLoader.LoaderFlags): Long =
+    this.plus(other.flag)
+
+public operator fun Long.minus(other: godot.ImageFormatLoader.LoaderFlags): Long =
+    this.minus(other.flag)
+
+public operator fun Long.times(other: godot.ImageFormatLoader.LoaderFlags): Long =
+    this.times(other.flag)
+
+public operator fun Long.div(other: godot.ImageFormatLoader.LoaderFlags): Long =
+    this.div(other.flag)
+
+public operator fun Long.rem(other: godot.ImageFormatLoader.LoaderFlags): Long =
+    this.rem(other.flag)
+
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
  * but you can choose to implement support for additional image formats by extending
@@ -21,7 +42,7 @@ import kotlin.jvm.JvmInline
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMAGEFORMATLOADER, scriptIndex)
+    callConstructor(ENGINE_CLASS_IMAGEFORMATLOADER_INDEX, scriptIndex)
   }
 
   public sealed interface LoaderFlags {
@@ -94,24 +115,3 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
 
   internal object MethodBindings
 }
-
-public infix fun Long.or(other: godot.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
-
-public infix fun Long.xor(other: godot.ImageFormatLoader.LoaderFlags): Long = this.xor(other.flag)
-
-public infix fun Long.and(other: godot.ImageFormatLoader.LoaderFlags): Long = this.and(other.flag)
-
-public operator fun Long.plus(other: godot.ImageFormatLoader.LoaderFlags): Long =
-    this.plus(other.flag)
-
-public operator fun Long.minus(other: godot.ImageFormatLoader.LoaderFlags): Long =
-    this.minus(other.flag)
-
-public operator fun Long.times(other: godot.ImageFormatLoader.LoaderFlags): Long =
-    this.times(other.flag)
-
-public operator fun Long.div(other: godot.ImageFormatLoader.LoaderFlags): Long =
-    this.div(other.flag)
-
-public operator fun Long.rem(other: godot.ImageFormatLoader.LoaderFlags): Long =
-    this.rem(other.flag)

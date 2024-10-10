@@ -81,7 +81,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETER_INDEX, scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {

@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVEC2PARAMETER_INDEX: Int = 719
+
 /**
  * Translated to `uniform vec2` in the shader language.
  */
@@ -51,7 +53,7 @@ public open class VisualShaderNodeVec2Parameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVEC2PARAMETER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC2PARAMETER_INDEX, scriptIndex)
   }
 
   /**

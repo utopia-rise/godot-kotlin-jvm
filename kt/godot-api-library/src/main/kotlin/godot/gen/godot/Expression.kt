@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_EXPRESSION_INDEX: Int = 219
+
 /**
  * An expression can be made of any arithmetic operation, built-in math function call, method call
  * of a passed instance, or built-in type construction call.
@@ -79,7 +81,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_EXPRESSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_EXPRESSION_INDEX, scriptIndex)
   }
 
   /**

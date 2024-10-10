@@ -24,6 +24,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TIMER_INDEX: Int = 600
+
 /**
  * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the
  * engine. When a timer reaches the end of its [waitTime], it will emit the [signal timeout] signal.
@@ -119,7 +121,7 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TIMER, scriptIndex)
+    callConstructor(ENGINE_CLASS_TIMER_INDEX, scriptIndex)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {

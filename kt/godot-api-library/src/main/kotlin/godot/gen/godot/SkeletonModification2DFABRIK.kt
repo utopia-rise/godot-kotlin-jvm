@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX: Int = 525
+
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse
  * Kinematics, or FABRIK, to rotate a bone chain so that it reaches a target.
@@ -69,7 +71,7 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2DFABRIK, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX, scriptIndex)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX: Int = 344
+
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
  * Usage is the same as [MultiMeshInstance3D].
@@ -53,7 +55,7 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIMESHINSTANCE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMFUNC_INDEX: Int = 706
+
 /**
  * Computes an inverse or transpose function on the provided [Transform3D].
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMFUNC, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMFUNC_INDEX, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

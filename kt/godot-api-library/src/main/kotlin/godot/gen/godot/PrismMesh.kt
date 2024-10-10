@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PRISMMESH_INDEX: Int = 453
+
 /**
  * Class representing a prism-shaped [PrimitiveMesh].
  */
@@ -88,7 +90,7 @@ public open class PrismMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PRISMMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_PRISMMESH_INDEX, scriptIndex)
   }
 
   /**

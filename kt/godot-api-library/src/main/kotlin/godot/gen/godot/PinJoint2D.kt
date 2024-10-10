@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PINJOINT2D_INDEX: Int = 433
+
 /**
  * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely
  * rotate. For example, a [RigidBody2D] can be attached to a [StaticBody2D] to create a pendulum or a
@@ -96,7 +98,7 @@ public open class PinJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PINJOINT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PINJOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setSoftness(softness: Float): Unit {

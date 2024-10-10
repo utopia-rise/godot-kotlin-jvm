@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BOXCONTAINER_INDEX: Int = 135
+
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them
  * automatically when their minimum size changes.
@@ -52,7 +54,7 @@ public open class BoxContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BOXCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_BOXCONTAINER_INDEX, scriptIndex)
   }
 
   /**

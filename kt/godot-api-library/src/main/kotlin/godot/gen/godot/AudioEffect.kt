@@ -12,6 +12,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOEFFECT_INDEX: Int = 79
+
 /**
  * The base [Resource] for every audio effect. In the editor, an audio effect can be added to the
  * current bus layout through the Audio panel. At run-time, it is also possible to manipulate audio
@@ -24,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECT, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECT_INDEX, scriptIndex)
   }
 
   /**

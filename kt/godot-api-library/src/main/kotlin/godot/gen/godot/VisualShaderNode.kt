@@ -63,7 +63,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODE_INDEX, scriptIndex)
   }
 
   /**

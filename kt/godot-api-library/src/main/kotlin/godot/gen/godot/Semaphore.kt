@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SEMAPHORE_INDEX: Int = 510
+
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
  * zero on creation. For a binary version, see [Mutex].
@@ -32,7 +34,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Semaphore : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SEMAPHORE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SEMAPHORE_INDEX, scriptIndex)
   }
 
   /**

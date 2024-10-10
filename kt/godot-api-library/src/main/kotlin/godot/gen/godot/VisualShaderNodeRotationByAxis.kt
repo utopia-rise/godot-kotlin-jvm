@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEROTATIONBYAXIS_INDEX: Int = 686
+
 /**
  * RotationByAxis node will transform the vertices of a mesh with specified axis and angle in
  * radians. It can be used to rotate an object in an arbitrary axis.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeRotationByAxis : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEROTATIONBYAXIS, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEROTATIONBYAXIS_INDEX, scriptIndex)
   }
 
   public companion object

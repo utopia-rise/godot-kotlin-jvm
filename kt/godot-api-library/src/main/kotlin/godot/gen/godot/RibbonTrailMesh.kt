@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RIBBONTRAILMESH_INDEX: Int = 497
+
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
  * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
@@ -102,7 +104,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RIBBONTRAILMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_RIBBONTRAILMESH_INDEX, scriptIndex)
   }
 
   public final fun setSize(size: Float): Unit {

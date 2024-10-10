@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BUTTON_INDEX: Int = 139
+
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them
  * according to the current [Theme].
@@ -206,7 +208,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_BUTTON_INDEX, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

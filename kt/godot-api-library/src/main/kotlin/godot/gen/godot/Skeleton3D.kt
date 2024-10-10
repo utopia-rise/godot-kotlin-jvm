@@ -43,6 +43,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SKELETON3D_INDEX: Int = 521
+
 /**
  * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and
  * animation (see [Animation]). It can also use ragdoll physics.
@@ -135,7 +137,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETON3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETON3D_INDEX, scriptIndex)
   }
 
   /**

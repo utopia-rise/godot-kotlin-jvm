@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEMULTIPLYADD_INDEX: Int = 669
+
 /**
  * Uses three operands to compute `(a * b + c)` expression.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEMULTIPLYADD, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEMULTIPLYADD_INDEX, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

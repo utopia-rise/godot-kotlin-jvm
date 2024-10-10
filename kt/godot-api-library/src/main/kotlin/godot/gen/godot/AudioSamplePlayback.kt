@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSAMPLEPLAYBACK_INDEX: Int = 111
+
 /**
  * Meta class for playing back audio samples.
  */
 @GodotBaseType
 public open class AudioSamplePlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSAMPLEPLAYBACK, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSAMPLEPLAYBACK_INDEX, scriptIndex)
   }
 
   public companion object

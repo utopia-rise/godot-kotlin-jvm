@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX: Int = 362
+
 /**
  * This class stores the result of a 2D navigation path query from the [NavigationServer2D].
  */
@@ -79,7 +81,7 @@ public open class NavigationPathQueryResult2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPATHQUERYRESULT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX, scriptIndex)
   }
 
   public final fun setPath(path: PackedVector2Array): Unit {

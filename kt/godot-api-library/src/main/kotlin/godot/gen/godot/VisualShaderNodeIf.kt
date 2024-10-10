@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEIF_INDEX: Int = 660
+
 /**
  * This visual shader node has six input ports:
  * - Port **1** and **2** provide the two floating-point numbers `a` and `b` that will be compared.
@@ -22,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeIf : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEIF, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEIF_INDEX, scriptIndex)
   }
 
   public companion object

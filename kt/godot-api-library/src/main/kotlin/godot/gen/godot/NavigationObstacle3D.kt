@@ -31,6 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONOBSTACLE3D_INDEX: Int = 359
+
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
  * can not cross or overlap and are restricted to a plane projection. This means the y-axis of the
@@ -164,7 +166,7 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONOBSTACLE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONOBSTACLE3D_INDEX, scriptIndex)
   }
 
   /**

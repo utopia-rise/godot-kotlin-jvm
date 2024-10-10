@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX: Int = 127
+
 /**
  * This is a stream that can be fitted with sub-streams, which will be played in-sync. The streams
  * being at exactly the same time when play is pressed, and will end when the last of them ends. If one
@@ -41,7 +43,7 @@ public open class AudioStreamSynchronized : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMSYNCHRONIZED, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SCENEMULTIPLAYER_INDEX: Int = 503
+
 /**
  * This class is the default implementation of [MultiplayerAPI], used to provide multiplayer
  * functionalities in Godot Engine.
@@ -179,7 +181,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENEMULTIPLAYER, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCENEMULTIPLAYER_INDEX, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

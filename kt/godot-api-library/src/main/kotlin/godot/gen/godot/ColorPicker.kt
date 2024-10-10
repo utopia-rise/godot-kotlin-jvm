@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLORPICKER_INDEX: Int = 179
+
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide
  * functionalities like a color sampler (eyedropper), color modes, and presets.
@@ -175,7 +177,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COLORPICKER, scriptIndex)
+    callConstructor(ENGINE_CLASS_COLORPICKER_INDEX, scriptIndex)
   }
 
   /**

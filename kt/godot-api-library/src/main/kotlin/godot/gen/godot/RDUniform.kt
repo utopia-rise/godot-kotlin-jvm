@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_RDUNIFORM_INDEX: Int = 473
+
 /**
  * This object is used by [RenderingDevice].
  */
@@ -50,7 +52,7 @@ public open class RDUniform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RDUNIFORM, scriptIndex)
+    callConstructor(ENGINE_CLASS_RDUNIFORM_INDEX, scriptIndex)
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {

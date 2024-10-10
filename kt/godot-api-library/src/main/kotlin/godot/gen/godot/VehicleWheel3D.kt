@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VEHICLEWHEEL3D_INDEX: Int = 620
+
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.
  * This node also acts as a collider to detect if the wheel is touching a surface.
@@ -216,7 +218,7 @@ public open class VehicleWheel3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VEHICLEWHEEL3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_VEHICLEWHEEL3D_INDEX, scriptIndex)
   }
 
   public final fun setRadius(length: Float): Unit {

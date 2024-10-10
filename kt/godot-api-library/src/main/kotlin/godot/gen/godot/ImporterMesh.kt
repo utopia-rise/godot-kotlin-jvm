@@ -33,6 +33,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_IMPORTERMESH_INDEX: Int = 289
+
 /**
  * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based
  * geometry, divided in *surfaces*. Each surface contains a completely separate array and a material
@@ -45,7 +47,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_IMPORTERMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_IMPORTERMESH_INDEX, scriptIndex)
   }
 
   /**

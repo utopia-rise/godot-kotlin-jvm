@@ -40,7 +40,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTGESTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTGESTURE_INDEX, scriptIndex)
   }
 
   /**

@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NOISE, scriptIndex)
+    callConstructor(ENGINE_CLASS_NOISE_INDEX, scriptIndex)
   }
 
   /**

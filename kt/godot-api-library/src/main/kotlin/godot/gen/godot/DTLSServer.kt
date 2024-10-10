@@ -17,6 +17,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_DTLSSERVER_INDEX: Int = 209
+
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
  * [PacketPeerUDP] to [PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the
@@ -174,7 +176,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_DTLSSERVER, scriptIndex)
+    callConstructor(ENGINE_CLASS_DTLSSERVER_INDEX, scriptIndex)
   }
 
   /**

@@ -91,7 +91,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESATTRACTOR3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESATTRACTOR3D_INDEX, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

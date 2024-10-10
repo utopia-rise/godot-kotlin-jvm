@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX: Int = 531
+
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
  * This controls the order of the modifications and how they are applied. Modification order is
@@ -72,7 +74,7 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATIONSTACK2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX, scriptIndex)
   }
 
   /**

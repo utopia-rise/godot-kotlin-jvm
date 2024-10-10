@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BONEATTACHMENT3D_INDEX: Int = 133
+
 /**
  * This node selects a bone in a [Skeleton3D] and attaches to it. This means that the
  * [BoneAttachment3D] node will either dynamically copy or override the 3D transform of the selected
@@ -70,7 +72,7 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BONEATTACHMENT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_BONEATTACHMENT3D_INDEX, scriptIndex)
   }
 
   public final fun setBoneName(boneName: String): Unit {

@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_LIGHTMAPPER, scriptIndex)
+    callConstructor(ENGINE_CLASS_LIGHTMAPPER_INDEX, scriptIndex)
   }
 
   public companion object

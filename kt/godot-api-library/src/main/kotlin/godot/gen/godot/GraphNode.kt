@@ -30,6 +30,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_GRAPHNODE_INDEX: Int = 268
+
 /**
  * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its
  * child controls. [GraphNode] is derived from [Container] and it is responsible for placing its
@@ -79,7 +81,7 @@ public open class GraphNode : GraphElement() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRAPHNODE, scriptIndex)
+    callConstructor(ENGINE_CLASS_GRAPHNODE_INDEX, scriptIndex)
   }
 
   public open fun _drawPort(

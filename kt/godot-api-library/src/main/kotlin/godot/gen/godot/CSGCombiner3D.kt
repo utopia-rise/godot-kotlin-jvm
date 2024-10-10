@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_CSGCOMBINER3D_INDEX: Int = 144
+
 /**
  * For complex arrangements of shapes, it is sometimes needed to add structure to your CSG nodes.
  * The CSGCombiner3D node allows you to create this structure. The node encapsulates the result of the
@@ -26,7 +28,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CSGCombiner3D : CSGShape3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGCOMBINER3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGCOMBINER3D_INDEX, scriptIndex)
   }
 
   public companion object

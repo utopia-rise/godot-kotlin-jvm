@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONBOX3D_INDEX: Int = 255
+
 /**
  * A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.
@@ -44,7 +46,7 @@ public open class GPUParticlesCollisionBox3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GPUPARTICLESCOLLISIONBOX3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GPUPARTICLESCOLLISIONBOX3D_INDEX, scriptIndex)
   }
 
   /**

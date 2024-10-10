@@ -13,6 +13,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RICHTEXTEFFECT_INDEX: Int = 498
+
 /**
  * A custom effect for a [RichTextLabel], which can be loaded in the [RichTextLabel] inspector or
  * using [RichTextLabel.installEffect].
@@ -35,7 +37,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RichTextEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_RICHTEXTEFFECT, scriptIndex)
+    callConstructor(ENGINE_CLASS_RICHTEXTEFFECT_INDEX, scriptIndex)
   }
 
   /**

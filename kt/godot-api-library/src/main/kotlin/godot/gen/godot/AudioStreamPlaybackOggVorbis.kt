@@ -11,10 +11,12 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKOGGVORBIS_INDEX: Int = 119
+
 @GodotBaseType
 public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMPLAYBACKOGGVORBIS, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMPLAYBACKOGGVORBIS_INDEX, scriptIndex)
   }
 
   public companion object

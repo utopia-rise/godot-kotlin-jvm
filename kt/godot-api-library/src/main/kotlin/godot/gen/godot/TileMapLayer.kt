@@ -36,6 +36,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TILEMAPLAYER_INDEX: Int = 595
+
 /**
  * Node for 2D tile-based maps. A [TileMapLayer] uses a [TileSet] which contain a list of tiles
  * which are used to create grid-based maps. Unlike the [TileMap] node, which is deprecated,
@@ -193,7 +195,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILEMAPLAYER, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILEMAPLAYER_INDEX, scriptIndex)
   }
 
   /**

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VSPLITCONTAINER_INDEX: Int = 618
+
 /**
  * A container that accepts only two child controls, then arranges them vertically and creates a
  * divisor between them. The divisor can be dragged around to change the size relation between the
@@ -19,7 +21,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VSplitContainer : SplitContainer() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VSPLITCONTAINER, scriptIndex)
+    callConstructor(ENGINE_CLASS_VSPLITCONTAINER_INDEX, scriptIndex)
   }
 
   public companion object

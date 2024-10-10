@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFLIGHT_INDEX: Int = 239
+
 /**
  * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.
  */
@@ -118,7 +120,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFLIGHT, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFLIGHT_INDEX, scriptIndex)
   }
 
   /**

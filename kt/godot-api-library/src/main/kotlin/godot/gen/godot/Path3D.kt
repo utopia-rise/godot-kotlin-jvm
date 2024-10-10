@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PATH3D_INDEX: Int = 410
+
 /**
  * Can have [PathFollow3D] child nodes moving along the [Curve3D]. See [PathFollow3D] for more
  * information on the usage.
@@ -43,7 +45,7 @@ public open class Path3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PATH3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PATH3D_INDEX, scriptIndex)
   }
 
   public final fun setCurve(curve: Curve3D?): Unit {

@@ -334,7 +334,7 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     get() = getVisibilityState()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBXRINTERFACE, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBXRINTERFACE_INDEX, scriptIndex)
   }
 
   /**

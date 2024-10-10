@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVEC2CONSTANT_INDEX: Int = 718
+
 /**
  * A constant [Vector2], which can be used as an input node.
  */
@@ -38,7 +40,7 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEVEC2CONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEVEC2CONSTANT_INDEX, scriptIndex)
   }
 
   /**

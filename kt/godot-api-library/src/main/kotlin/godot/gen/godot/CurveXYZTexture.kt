@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CURVEXYZTEXTURE_INDEX: Int = 206
+
 /**
  * A 1D texture where the red, green, and blue color channels correspond to points on 3 [Curve]
  * resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving
@@ -74,7 +76,7 @@ public open class CurveXYZTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CURVEXYZTEXTURE, scriptIndex)
+    callConstructor(ENGINE_CLASS_CURVEXYZTEXTURE_INDEX, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

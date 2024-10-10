@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Separator internal constructor() : Control() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SEPARATOR, scriptIndex)
+    callConstructor(ENGINE_CLASS_SEPARATOR_INDEX, scriptIndex)
   }
 
   public companion object

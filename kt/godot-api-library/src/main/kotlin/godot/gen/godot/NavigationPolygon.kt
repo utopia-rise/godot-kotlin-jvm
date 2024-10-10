@@ -36,6 +36,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX: Int = 364
+
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],
  * or by adding vertices and convex polygon indices arrays manually.
@@ -208,7 +210,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NAVIGATIONPOLYGON, scriptIndex)
+    callConstructor(ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX, scriptIndex)
   }
 
   /**

@@ -87,7 +87,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MULTIPLAYERPEER, scriptIndex)
+    callConstructor(ENGINE_CLASS_MULTIPLAYERPEER_INDEX, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {

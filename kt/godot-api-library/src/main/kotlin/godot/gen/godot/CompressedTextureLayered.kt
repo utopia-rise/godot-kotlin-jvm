@@ -34,7 +34,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_COMPRESSEDTEXTURELAYERED, scriptIndex)
+    callConstructor(ENGINE_CLASS_COMPRESSEDTEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX: Int = 704
+
 /**
  * A constant [Transform3D], which can be used as an input node.
  */
@@ -38,7 +40,7 @@ public open class VisualShaderNodeTransformConstant : VisualShaderNodeConstant()
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCONSTANT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX, scriptIndex)
   }
 
   /**

@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_CRYPTOKEY_INDEX: Int = 199
+
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
  * [Resource].
@@ -31,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CryptoKey : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CRYPTOKEY, scriptIndex)
+    callConstructor(ENGINE_CLASS_CRYPTOKEY_INDEX, scriptIndex)
   }
 
   /**

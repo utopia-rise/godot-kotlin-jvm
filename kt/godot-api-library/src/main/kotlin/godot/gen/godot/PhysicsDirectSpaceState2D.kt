@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSDIRECTSPACESTATE2D_INDEX, scriptIndex)
   }
 
   /**

@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PARALLAXBACKGROUND_INDEX: Int = 406
+
 /**
  * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.
  * Each [ParallaxLayer] can move at a different speed using [ParallaxLayer.motionOffset]. This creates
@@ -109,7 +111,7 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PARALLAXBACKGROUND, scriptIndex)
+    callConstructor(ENGINE_CLASS_PARALLAXBACKGROUND_INDEX, scriptIndex)
   }
 
   /**

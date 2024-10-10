@@ -15,10 +15,12 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX: Int = 738
+
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_WEBRTCPEERCONNECTIONEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getConnectionState(): WebRTCPeerConnection.ConnectionState {

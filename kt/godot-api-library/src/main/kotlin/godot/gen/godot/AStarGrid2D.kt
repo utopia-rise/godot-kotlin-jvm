@@ -37,6 +37,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ASTARGRID2D_INDEX: Int = 41
+
 /**
  * [AStarGrid2D] is a variant of [AStar2D] that is specialized for partial 2D grids. It is simpler
  * to use because it doesn't require you to manually create points and connect them together. This
@@ -187,7 +189,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ASTARGRID2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_ASTARGRID2D_INDEX, scriptIndex)
   }
 
   /**

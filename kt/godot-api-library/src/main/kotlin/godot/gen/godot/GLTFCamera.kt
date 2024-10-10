@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFCAMERA_INDEX: Int = 235
+
 /**
  * Represents a camera as defined by the base GLTF spec.
  */
@@ -94,7 +96,7 @@ public open class GLTFCamera : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFCAMERA, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFCAMERA_INDEX, scriptIndex)
   }
 
   /**

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_REMOTETRANSFORM2D_INDEX: Int = 484
+
 /**
  * RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node (called the
  * remote node) in the scene.
@@ -84,7 +86,7 @@ public open class RemoteTransform2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_REMOTETRANSFORM2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_REMOTETRANSFORM2D_INDEX, scriptIndex)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {

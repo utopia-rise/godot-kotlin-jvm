@@ -25,7 +25,7 @@ public open class Tweener internal constructor() : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TWEENER, scriptIndex)
+    callConstructor(ENGINE_CLASS_TWEENER_INDEX, scriptIndex)
   }
 
   public companion object

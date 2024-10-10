@@ -37,6 +37,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CHARFXTRANSFORM_INDEX: Int = 167
+
 /**
  * By setting various properties on this object, you can control how individual characters will be
  * displayed in a [RichTextEffect].
@@ -212,7 +214,7 @@ public open class CharFXTransform : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CHARFXTRANSFORM, scriptIndex)
+    callConstructor(ENGINE_CLASS_CHARFXTRANSFORM_INDEX, scriptIndex)
   }
 
   /**

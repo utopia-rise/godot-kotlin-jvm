@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_OPENXRACTIONMAP_INDEX: Int = 382
+
 /**
  * OpenXR uses an action system similar to Godots Input map system to bind inputs and outputs on
  * various types of XR controllers to named actions. OpenXR specifies more detail on these inputs and
@@ -59,7 +61,7 @@ public open class OpenXRActionMap : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_OPENXRACTIONMAP, scriptIndex)
+    callConstructor(ENGINE_CLASS_OPENXRACTIONMAP_INDEX, scriptIndex)
   }
 
   public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {

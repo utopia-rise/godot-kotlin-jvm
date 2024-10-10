@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_GDEXTENSIONMANAGER_INDEX: Int = 22
+
 /**
  * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
  * libraries in the project.
@@ -39,7 +41,7 @@ public object GDExtensionManager : Object() {
   public val extensionsReloaded: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_GDEXTENSIONMANAGER)
+    getSingleton(ENGINE_CLASS_GDEXTENSIONMANAGER_INDEX)
   }
 
   /**

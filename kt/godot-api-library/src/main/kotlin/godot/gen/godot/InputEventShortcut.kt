@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX: Int = 302
+
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
  * and [Node.UnhandledInput]. It is typically sent by the editor's Command Palette to trigger actions,
@@ -37,7 +39,7 @@ public open class InputEventShortcut : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTSHORTCUT, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX, scriptIndex)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {

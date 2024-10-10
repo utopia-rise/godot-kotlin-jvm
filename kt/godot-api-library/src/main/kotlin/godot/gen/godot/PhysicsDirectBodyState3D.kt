@@ -164,7 +164,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSDIRECTBODYSTATE3D_INDEX, scriptIndex)
   }
 
   /**

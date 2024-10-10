@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX: Int = 523
+
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
  * in a [Skeleton2D] can be mixed and matched together to create complex interactions.
@@ -57,7 +59,7 @@ public open class SkeletonModification2D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKELETONMODIFICATION2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX, scriptIndex)
   }
 
   /**

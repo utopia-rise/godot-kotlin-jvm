@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CSGTORUS3D_INDEX: Int = 149
+
 /**
  * This node allows you to create a torus for use with the CSG system.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
@@ -101,7 +103,7 @@ public open class CSGTorus3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CSGTORUS3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CSGTORUS3D_INDEX, scriptIndex)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

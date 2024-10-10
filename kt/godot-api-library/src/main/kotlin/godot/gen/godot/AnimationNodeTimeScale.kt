@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_ANIMATIONNODETIMESCALE_INDEX: Int = 66
+
 /**
  * Allows to scale the speed of the animation (or reverse it) in any child [AnimationNode]s. Setting
  * it to `0.0` will pause the animation.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeTimeScale : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODETIMESCALE, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODETIMESCALE_INDEX, scriptIndex)
   }
 
   public companion object

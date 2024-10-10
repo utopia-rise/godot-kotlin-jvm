@@ -11,13 +11,15 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODESDFTOSCREENUV_INDEX: Int = 688
+
 /**
  * Translates to `sdf_to_screen_uv(sdf_pos)` in the shader language.
  */
 @GodotBaseType
 public open class VisualShaderNodeSDFToScreenUV : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODESDFTOSCREENUV, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODESDFTOSCREENUV_INDEX, scriptIndex)
   }
 
   public companion object

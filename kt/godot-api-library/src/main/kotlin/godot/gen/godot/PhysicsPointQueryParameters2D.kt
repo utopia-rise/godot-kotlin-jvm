@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS2D_INDEX: Int = 422
+
 /**
  * By changing various properties of this object, such as the point position, you can configure the
  * parameters for [PhysicsDirectSpaceState2D.intersectPoint].
@@ -110,7 +112,7 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSPOINTQUERYPARAMETERS2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS2D_INDEX, scriptIndex)
   }
 
   /**

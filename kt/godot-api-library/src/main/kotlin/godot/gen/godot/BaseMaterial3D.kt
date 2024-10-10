@@ -1566,7 +1566,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_BASEMATERIAL3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_BASEMATERIAL3D_INDEX, scriptIndex)
   }
 
   /**

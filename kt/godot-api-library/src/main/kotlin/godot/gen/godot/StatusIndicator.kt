@@ -28,6 +28,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_STATUSINDICATOR_INDEX: Int = 552
+
 @GodotBaseType
 public open class StatusIndicator : Node() {
   /**
@@ -82,7 +84,7 @@ public open class StatusIndicator : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_STATUSINDICATOR, scriptIndex)
+    callConstructor(ENGINE_CLASS_STATUSINDICATOR_INDEX, scriptIndex)
   }
 
   public final fun setTooltip(tooltip: String): Unit {

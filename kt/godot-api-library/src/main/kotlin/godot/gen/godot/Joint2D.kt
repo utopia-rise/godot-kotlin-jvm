@@ -80,7 +80,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_JOINT2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_JOINT2D_INDEX, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

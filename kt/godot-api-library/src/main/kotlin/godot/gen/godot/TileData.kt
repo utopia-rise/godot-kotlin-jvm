@@ -40,6 +40,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TILEDATA_INDEX: Int = 593
+
 /**
  * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset
  * editor, but it can be modified at runtime using [TileMap.TileDataRuntimeUpdate].
@@ -177,7 +179,7 @@ public open class TileData : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TILEDATA, scriptIndex)
+    callConstructor(ENGINE_CLASS_TILEDATA_INDEX, scriptIndex)
   }
 
   /**

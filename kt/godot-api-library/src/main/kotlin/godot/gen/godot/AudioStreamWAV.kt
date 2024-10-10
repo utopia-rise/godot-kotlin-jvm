@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOSTREAMWAV_INDEX: Int = 128
+
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
  * [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for
@@ -125,7 +127,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMWAV, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMWAV_INDEX, scriptIndex)
   }
 
   public final fun setData(`data`: PackedByteArray): Unit {

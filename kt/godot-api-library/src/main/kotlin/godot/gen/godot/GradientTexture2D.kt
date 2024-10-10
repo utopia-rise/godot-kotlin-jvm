@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX: Int = 264
+
 /**
  * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
  * to transform a color transition into different patterns such as a linear or a radial gradient. The
@@ -133,7 +135,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GRADIENTTEXTURE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX, scriptIndex)
   }
 
   /**

@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX: Int = 189
+
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
  * it's in [CollisionPolygon2D.BUILD_SEGMENTS] mode.
@@ -54,7 +56,7 @@ public open class ConcavePolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_CONCAVEPOLYGONSHAPE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX, scriptIndex)
   }
 
   public final fun setSegments(segments: PackedVector2Array): Unit {

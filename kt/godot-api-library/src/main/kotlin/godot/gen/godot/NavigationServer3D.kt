@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
+private const val ENGINE_CLASS_NAVIGATIONSERVER3D_INDEX: Int = 33
+
 /**
  * NavigationServer3D is the server that handles navigation maps, regions and agents. It does not
  * handle A* navigation from [AStar3D].
@@ -82,7 +84,7 @@ public object NavigationServer3D : Object() {
   public val avoidanceDebugChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    getSingleton(ENGINECLASS_NAVIGATIONSERVER3D)
+    getSingleton(ENGINE_CLASS_NAVIGATIONSERVER3D_INDEX)
   }
 
   /**

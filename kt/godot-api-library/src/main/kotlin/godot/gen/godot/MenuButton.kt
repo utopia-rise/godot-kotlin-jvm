@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_MENUBUTTON_INDEX: Int = 330
+
 /**
  * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
  * use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's
@@ -59,7 +61,7 @@ public open class MenuButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MENUBUTTON, scriptIndex)
+    callConstructor(ENGINE_CLASS_MENUBUTTON_INDEX, scriptIndex)
   }
 
   /**

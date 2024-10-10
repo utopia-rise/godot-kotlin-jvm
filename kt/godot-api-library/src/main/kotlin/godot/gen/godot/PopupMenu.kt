@@ -33,6 +33,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_POPUPMENU_INDEX: Int = 449
+
 /**
  * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context
  * menus.
@@ -173,7 +175,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POPUPMENU, scriptIndex)
+    callConstructor(ENGINE_CLASS_POPUPMENU_INDEX, scriptIndex)
   }
 
   /**

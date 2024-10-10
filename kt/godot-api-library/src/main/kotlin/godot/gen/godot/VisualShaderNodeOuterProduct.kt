@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEOUTERPRODUCT_INDEX: Int = 670
+
 /**
  * `OuterProduct` treats the first parameter `c` as a column vector (matrix with one column) and the
  * second parameter `r` as a row vector (matrix with one row) and does a linear algebraic matrix
@@ -20,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeOuterProduct : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEOUTERPRODUCT, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEOUTERPRODUCT_INDEX, scriptIndex)
   }
 
   public companion object

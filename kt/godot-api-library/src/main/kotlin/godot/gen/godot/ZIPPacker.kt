@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ZIPPACKER_INDEX: Int = 765
+
 /**
  * This class implements a writer that allows storing the multiple blobs in a zip archive.
  * [codeblock]
@@ -40,7 +42,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ZIPPACKER, scriptIndex)
+    callConstructor(ENGINE_CLASS_ZIPPACKER_INDEX, scriptIndex)
   }
 
   /**

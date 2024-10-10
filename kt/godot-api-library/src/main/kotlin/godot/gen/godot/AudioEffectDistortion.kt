@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX: Int = 87
+
 /**
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.
  * By distorting the waveform the frequency content changes, which will often make the sound
@@ -88,7 +90,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTDISTORTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {

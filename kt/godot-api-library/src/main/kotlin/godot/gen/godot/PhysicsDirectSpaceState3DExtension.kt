@@ -20,6 +20,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION_INDEX: Int = 420
+
 /**
  * This class extends [PhysicsDirectSpaceState3D] by providing additional virtual methods that can
  * be overridden. When these methods are overridden, they will be called instead of the internal
@@ -30,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3DEXTENSION_INDEX, scriptIndex)
   }
 
   public open fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3 {

@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PLACEHOLDERMATERIAL_INDEX: Int = 437
+
 /**
  * This class is used when loading a project that uses a [Material] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are
@@ -22,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderMaterial : Material() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PLACEHOLDERMATERIAL, scriptIndex)
+    callConstructor(ENGINE_CLASS_PLACEHOLDERMATERIAL_INDEX, scriptIndex)
   }
 
   public companion object

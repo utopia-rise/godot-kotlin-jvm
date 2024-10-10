@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCOMPOSE_INDEX: Int = 703
+
 /**
  * Creates a 4×4 transform matrix using four vectors of type `vec3`. Each vector is one row in the
  * matrix and the last column is a `vec4(0, 0, 0, 1)`.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTransformCompose : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETRANSFORMCOMPOSE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETRANSFORMCOMPOSE_INDEX, scriptIndex)
   }
 
   public companion object

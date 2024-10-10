@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_UNDOREDO_INDEX: Int = 611
+
 /**
  * UndoRedo works by registering methods and property changes inside "actions". You can create an
  * action, then provide ways to do and undo this action using function calls and property changes, then
@@ -151,7 +153,7 @@ public open class UndoRedo : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_UNDOREDO, scriptIndex)
+    callConstructor(ENGINE_CLASS_UNDOREDO_INDEX, scriptIndex)
   }
 
   /**

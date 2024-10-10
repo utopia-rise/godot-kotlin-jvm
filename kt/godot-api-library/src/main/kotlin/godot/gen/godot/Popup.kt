@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_POPUP_INDEX: Int = 448
+
 /**
  * [Popup] is a base class for contextual windows and panels with fixed position. It's a modal by
  * default (see [Window.popupWindow]) and provides methods for implementing custom popup behavior.
@@ -24,7 +26,7 @@ public open class Popup : Window() {
   public val popupHide: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_POPUP, scriptIndex)
+    callConstructor(ENGINE_CLASS_POPUP_INDEX, scriptIndex)
   }
 
   public companion object

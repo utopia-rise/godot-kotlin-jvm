@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS3D_INDEX: Int = 430
+
 /**
  * By changing various properties of this object, such as the motion, you can configure the
  * parameters for [PhysicsServer3D.bodyTestMotion].
@@ -139,7 +141,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSTESTMOTIONPARAMETERS3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS3D_INDEX, scriptIndex)
   }
 
   /**

@@ -23,10 +23,12 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SKIN_INDEX: Int = 535
+
 @GodotBaseType
 public open class Skin : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SKIN, scriptIndex)
+    callConstructor(ENGINE_CLASS_SKIN_INDEX, scriptIndex)
   }
 
   public final fun setBindCount(bindCount: Int): Unit {

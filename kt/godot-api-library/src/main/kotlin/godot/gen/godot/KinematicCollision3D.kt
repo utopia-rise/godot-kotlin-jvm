@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_KINEMATICCOLLISION3D_INDEX: Int = 311
+
 /**
  * Holds collision data from the movement of a [PhysicsBody3D], usually from
  * [PhysicsBody3D.moveAndCollide]. When a [PhysicsBody3D] is moved, it stops if it detects a collision
@@ -35,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class KinematicCollision3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_KINEMATICCOLLISION3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_KINEMATICCOLLISION3D_INDEX, scriptIndex)
   }
 
   /**

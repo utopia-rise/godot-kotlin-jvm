@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX: Int = 97
+
 /**
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
  * over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects
@@ -71,7 +73,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOEFFECTLIMITER, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX, scriptIndex)
   }
 
   public final fun setCeilingDb(ceiling: Float): Unit {

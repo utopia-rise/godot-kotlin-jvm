@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_ANIMATIONTREE_INDEX: Int = 71
+
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].
  * **Note:** When linked with an [AnimationPlayer], several properties and methods of the
@@ -71,7 +73,7 @@ public open class AnimationTree : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONTREE, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONTREE_INDEX, scriptIndex)
   }
 
   public final fun setTreeRoot(animationNode: AnimationRootNode?): Unit {

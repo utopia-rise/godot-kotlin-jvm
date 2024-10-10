@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATIONNODEBLENDSPACE2D_INDEX: Int = 57
+
 /**
  * A resource used by [AnimationNodeBlendTree].
  * [AnimationNodeBlendSpace1D] represents a virtual 2D space on which [AnimationRootNode]s are
@@ -141,7 +143,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATIONNODEBLENDSPACE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATIONNODEBLENDSPACE2D_INDEX, scriptIndex)
   }
 
   /**

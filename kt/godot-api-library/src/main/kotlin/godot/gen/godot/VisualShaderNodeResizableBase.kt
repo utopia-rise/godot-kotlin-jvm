@@ -38,7 +38,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODERESIZABLEBASE, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODERESIZABLEBASE_INDEX, scriptIndex)
   }
 
   /**

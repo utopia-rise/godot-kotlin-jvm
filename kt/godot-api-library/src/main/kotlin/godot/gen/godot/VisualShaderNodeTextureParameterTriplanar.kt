@@ -11,6 +11,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETERTRIPLANAR_INDEX: Int = 700
+
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader, with support for
  * triplanar mapping.
@@ -18,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTextureParameterTriplanar : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODETEXTUREPARAMETERTRIPLANAR, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETERTRIPLANAR_INDEX, scriptIndex)
   }
 
   public companion object

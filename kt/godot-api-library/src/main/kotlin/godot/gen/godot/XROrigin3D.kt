@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRORIGIN3D_INDEX: Int = 761
+
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of
  * our tracking space to the virtual location within our game world.
@@ -62,7 +64,7 @@ public open class XROrigin3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_XRORIGIN3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_XRORIGIN3D_INDEX, scriptIndex)
   }
 
   public final fun setWorldScale(worldScale: Float): Unit {

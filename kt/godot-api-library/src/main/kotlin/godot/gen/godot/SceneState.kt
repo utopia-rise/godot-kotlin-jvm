@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_SCENESTATE, scriptIndex)
+    callConstructor(ENGINE_CLASS_SCENESTATE_INDEX, scriptIndex)
   }
 
   /**

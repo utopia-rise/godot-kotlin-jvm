@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEMIX_INDEX: Int = 668
+
 /**
  * Translates to `mix(a, b, weight)` in the shader language.
  */
@@ -35,7 +37,7 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_VISUALSHADERNODEMIX, scriptIndex)
+    callConstructor(ENGINE_CLASS_VISUALSHADERNODEMIX_INDEX, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

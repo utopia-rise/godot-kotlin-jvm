@@ -20,6 +20,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TEXTURELAYERED_INDEX: Int = 588
+
 /**
  * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but
  * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
@@ -32,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_TEXTURELAYERED, scriptIndex)
+    callConstructor(ENGINE_CLASS_TEXTURELAYERED_INDEX, scriptIndex)
   }
 
   /**

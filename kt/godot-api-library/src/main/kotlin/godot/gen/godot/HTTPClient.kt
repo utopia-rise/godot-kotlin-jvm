@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_HTTPCLIENT_INDEX: Int = 279
+
 /**
  * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests
  * to download web content, upload files and other data or to communicate with various services, among
@@ -102,7 +104,7 @@ public open class HTTPClient : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_HTTPCLIENT, scriptIndex)
+    callConstructor(ENGINE_CLASS_HTTPCLIENT_INDEX, scriptIndex)
   }
 
   /**

@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PROGRESSBAR_INDEX: Int = 455
+
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to
  * left.
@@ -72,7 +74,7 @@ public open class ProgressBar : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PROGRESSBAR, scriptIndex)
+    callConstructor(ENGINE_CLASS_PROGRESSBAR_INDEX, scriptIndex)
   }
 
   public final fun setFillMode(mode: Int): Unit {

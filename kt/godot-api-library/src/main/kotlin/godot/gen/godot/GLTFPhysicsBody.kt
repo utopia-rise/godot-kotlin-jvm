@@ -33,6 +33,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GLTFPHYSICSBODY_INDEX: Int = 242
+
 /**
  * Represents a physics body as an intermediary between the `OMI_physics_body` GLTF data and Godot's
  * nodes, and it's abstracted in a way that allows adding support for different GLTF physics extensions
@@ -151,7 +153,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GLTFPHYSICSBODY, scriptIndex)
+    callConstructor(ENGINE_CLASS_GLTFPHYSICSBODY_INDEX, scriptIndex)
   }
 
   /**

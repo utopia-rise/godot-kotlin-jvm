@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_AUDIOSTREAMINTERACTIVE_INDEX: Int = 114
+
 /**
  * This is an audio stream that can playback music interactively, combining clips and a transition
  * table. Clips must be added first, and the transition rules via the [addTransition]. Additionally,
@@ -63,7 +65,7 @@ public open class AudioStreamInteractive : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_AUDIOSTREAMINTERACTIVE, scriptIndex)
+    callConstructor(ENGINE_CLASS_AUDIOSTREAMINTERACTIVE_INDEX, scriptIndex)
   }
 
   public final fun setClipCount(clipCount: Int): Unit {

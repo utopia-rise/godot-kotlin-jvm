@@ -18,6 +18,8 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION_INDEX: Int = 417
+
 /**
  * This class extends [PhysicsDirectBodyState2D] by providing additional virtual methods that can be
  * overridden. When these methods are overridden, they will be called instead of the internal methods
@@ -27,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_PHYSICSDIRECTBODYSTATE2DEXTENSION_INDEX, scriptIndex)
   }
 
   /**

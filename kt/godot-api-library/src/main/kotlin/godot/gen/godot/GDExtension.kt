@@ -18,6 +18,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_GDEXTENSION_INDEX: Int = 230
+
 /**
  * The [GDExtension] resource type represents a
  * [url=https://en.wikipedia.org/wiki/Shared_library]shared library[/url] which can expand the
@@ -29,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GDEXTENSION, scriptIndex)
+    callConstructor(ENGINE_CLASS_GDEXTENSION_INDEX, scriptIndex)
   }
 
   /**

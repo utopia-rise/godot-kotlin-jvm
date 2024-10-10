@@ -26,6 +26,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_REGEXMATCH_INDEX: Int = 483
+
 /**
  * Contains the results of a single [RegEx] match returned by [RegEx.search] and [RegEx.searchAll].
  * It can be used to find the position and range of the match and its capturing groups, and it can
@@ -57,7 +59,7 @@ public open class RegExMatch : RefCounted() {
     get() = getStrings()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_REGEXMATCH, scriptIndex)
+    callConstructor(ENGINE_CLASS_REGEXMATCH_INDEX, scriptIndex)
   }
 
   public final fun getSubject(): String {

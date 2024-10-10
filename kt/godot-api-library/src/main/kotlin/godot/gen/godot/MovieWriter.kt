@@ -21,6 +21,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_MOVIEWRITER_INDEX: Int = 342
+
 /**
  * Godot can record videos with non-real-time simulation. Like the `--fixed-fps`
  * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url], this forces
@@ -57,7 +59,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_MOVIEWRITER, scriptIndex)
+    callConstructor(ENGINE_CLASS_MOVIEWRITER_INDEX, scriptIndex)
   }
 
   /**

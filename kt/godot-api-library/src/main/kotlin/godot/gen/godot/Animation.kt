@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATION_INDEX: Int = 48
+
 /**
  * This resource holds data that can be used to animate anything in the engine. Animations are
  * divided into tracks and each track must be linked to a node. The state of that node can be changed
@@ -122,7 +124,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ANIMATION, scriptIndex)
+    callConstructor(ENGINE_CLASS_ANIMATION_INDEX, scriptIndex)
   }
 
   /**

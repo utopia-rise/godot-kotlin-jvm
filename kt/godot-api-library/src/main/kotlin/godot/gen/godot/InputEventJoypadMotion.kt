@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX: Int = 293
+
 /**
  * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a
  * time. For gamepad buttons, see [InputEventJoypadButton].
@@ -51,7 +53,7 @@ public open class InputEventJoypadMotion : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_INPUTEVENTJOYPADMOTION, scriptIndex)
+    callConstructor(ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX, scriptIndex)
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {

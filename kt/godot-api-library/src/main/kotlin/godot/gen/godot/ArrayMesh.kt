@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ARRAYMESH_INDEX: Int = 74
+
 /**
  * The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.
  * The most basic example is the creation of a single triangle:
@@ -130,7 +132,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_ARRAYMESH, scriptIndex)
+    callConstructor(ENGINE_CLASS_ARRAYMESH_INDEX, scriptIndex)
   }
 
   /**

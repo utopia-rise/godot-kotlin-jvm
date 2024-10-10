@@ -29,6 +29,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_NODE2D_INDEX: Int = 369
+
 /**
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including
  * physics objects and sprites, inherit from Node2D. Use Node2D as a parent node to move, scale and
@@ -181,7 +183,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_NODE2D, scriptIndex)
+    callConstructor(ENGINE_CLASS_NODE2D_INDEX, scriptIndex)
   }
 
   /**

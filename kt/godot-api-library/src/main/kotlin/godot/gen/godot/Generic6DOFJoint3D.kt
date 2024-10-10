@@ -22,6 +22,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_GENERIC6DOFJOINT3D_INDEX: Int = 260
+
 /**
  * The [Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of
  * joints by locking the rotation and translation of certain axes.
@@ -31,7 +33,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Generic6DOFJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    callConstructor(ENGINECLASS_GENERIC6DOFJOINT3D, scriptIndex)
+    callConstructor(ENGINE_CLASS_GENERIC6DOFJOINT3D_INDEX, scriptIndex)
   }
 
   public final fun setParamX(`param`: Param, `value`: Float): Unit {
