@@ -24,6 +24,11 @@ jobs:
           repository: godotengine/godot
           ref: ${{ inputs.godot-version }}
 
+      - name: Clone Godot JVM module.
+        uses: actions/checkout@v4
+        with:
+          path: modules/kotlin_jvm
+
       # Python must be kept below 3.12
       #https://github.com/KhronosGroup/MoltenVK/blob/3b9e335fe8fc8a72cf6099acbd54128889445c0a/.github/workflows/CI.yml#L44
       - name: Setup python and scons
