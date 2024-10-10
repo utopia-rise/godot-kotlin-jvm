@@ -12,7 +12,7 @@ If you are looking for the documentation for Godot Kotlin/Native; you can find i
 
 ## State
 
-This project is in alpha, it is by no means production ready.
+This project is in Beta. While you can fully use the binding, please note that there might still be breaking API changes. We welcome any suggestions you have for improving the project and its API.
 
 ## Project templates and demos
 
@@ -27,8 +27,8 @@ and limitations which will not be or cannot be adressed in the near forseable fu
 
 - Each registered constructor must have a unique number of arguments, constructor overloading is not yet supported.
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet).
-- No plugin support, you cannot use Godot Kotlin/JVM to write plugins and addons yet.
-- We support desktop OS (Linux, MacOS, Windows), Android and iOS.
+- No addon support, you cannot use Godot Kotlin/JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
+- Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support
 
 ### Bug reporting and questions
 
@@ -46,7 +46,7 @@ While Kotlin and Godot supports a wide range of platforms, this module for the m
 - Windows X64
 - Linux X64
 - MacOS X64 / arm64
-- Android (arm64v8)
+- Android (arm64v8, x86_64)
 - iOS (arm64v8)
 
 ## Versioning
