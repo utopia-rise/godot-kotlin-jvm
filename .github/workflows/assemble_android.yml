@@ -1,4 +1,4 @@
-name: 🐧 Assemble Linux
+name: 🤖 Assemble Android
 on:
   workflow_call:
     inputs:
