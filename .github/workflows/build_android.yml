@@ -24,32 +24,32 @@ jobs:
           - name: Build android debug (arm32)
             cache-name: export_template_debug_android_arm32
             target: template_debug
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm32
+            sconsflags: arch=arm32
 
           - name: Build android release (arm32)
             cache-name: export_template_release_android_arm32
             target: template_release
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm32
+            sconsflags: arch=arm32
 
           - name: Build android debug (arm64)
             cache-name: export_template_debug_android_arm64
             target: template_debug
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+            sconsflags: arch=arm64
 
           - name: Build android release (arm64)
             cache-name: export_template_release_android_arm64
             target: template_release
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+            sconsflags: arch=arm64
 
           - name: Build android debug (x86_64)
             cache-name: export_template_debug_android_x86_64
             target: template_debug
-            sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
+            sconsflags: arch=x86_64
 
           - name: Build android release (x86_64)
             cache-name: export_template_release_android_x86_64
             target: template_release
-            sconsflags: ${{ env.SCONSFLAGS }} arch=x86_64
+            sconsflags: arch=x86_64
 
     steps:
       - name: Maximize build space

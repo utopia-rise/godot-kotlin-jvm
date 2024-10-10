@@ -20,12 +20,12 @@ jobs:
           - name: Build ios debug (arm64)
             cache-name: export_template_debug_ios_arm64
             target: template_debug
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+            sconsflags: arch=arm64
 
           - name: Build ios release (arm64)
             cache-name: export_template_release_ios_arm64
             target: template_release
-            sconsflags: ${{ env.SCONSFLAGS }} arch=arm64
+            sconsflags: arch=arm64
 
     steps:
       - name: Clone Godot Engine
