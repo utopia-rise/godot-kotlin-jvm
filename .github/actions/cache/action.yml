@@ -30,7 +30,7 @@ runs:
     - name: Prepare GitHub ref
       if: ${{ inputs.s3-host != '' }}
       id: prepare_ref
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7.0.1
       with:
         script: |
           const ref = process.env.GITHUB_REF.replace(/\//g, '_');
