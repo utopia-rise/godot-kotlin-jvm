@@ -158,6 +158,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   test-macos:
     name: 🍎 Test Macos
@@ -170,6 +171,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   test-windows:
     name: 🪟 Test Windows
@@ -182,6 +184,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   test-linux-exports:
     name: 🐧 Test Linux Exports
@@ -194,6 +197,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   test-macos-exports:
     name: 🍎 Test Macos Exports
@@ -206,6 +210,7 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
 
   test-windows-exports:
     name: 🪟 Test Windows Exports
@@ -218,3 +223,4 @@ jobs:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
+    secrets: inherit
