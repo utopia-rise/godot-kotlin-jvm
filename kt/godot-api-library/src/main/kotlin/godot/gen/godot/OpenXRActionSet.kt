@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRACTIONSET_INDEX: Int = 383
+private const val ENGINE_CLASS_OPENXRACTIONSET_INDEX: Int = 423
 
 /**
  * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODESTEP_INDEX: Int = 692
+private const val ENGINE_CLASS_VISUALSHADERNODESTEP_INDEX: Int = 774
 
 /**
  * Translates to `step(edge, x)` in the shader language.

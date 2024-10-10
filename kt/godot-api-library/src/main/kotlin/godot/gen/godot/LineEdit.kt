@@ -30,7 +30,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_LINEEDIT_INDEX: Int = 322
+private const val ENGINE_CLASS_LINEEDIT_INDEX: Int = 357
 
 /**
  * [LineEdit] provides an input field for editing a single line of text. It features many built-in

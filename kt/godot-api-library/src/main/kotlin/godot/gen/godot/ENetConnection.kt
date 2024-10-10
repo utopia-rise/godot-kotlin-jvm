@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ENETCONNECTION_INDEX: Int = 214
+private const val ENGINE_CLASS_ENETCONNECTION_INDEX: Int = 229
 
 /**
  * ENet's purpose is to provide a relatively thin, simple and robust network communication layer on

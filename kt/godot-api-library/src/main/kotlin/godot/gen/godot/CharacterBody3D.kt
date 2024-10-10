@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CHARACTERBODY3D_INDEX: Int = 169
+private const val ENGINE_CLASS_CHARACTERBODY3D_INDEX: Int = 180
 
 /**
  * [CharacterBody3D] is a specialized class for physics bodies that are meant to be user-controlled.

@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RAYCAST2D_INDEX: Int = 477
+private const val ENGINE_CLASS_RAYCAST2D_INDEX: Int = 527
 
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest

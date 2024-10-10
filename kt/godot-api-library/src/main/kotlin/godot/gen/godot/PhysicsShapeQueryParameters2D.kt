@@ -33,7 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSSHAPEQUERYPARAMETERS2D_INDEX: Int = 427
+private const val ENGINE_CLASS_PHYSICSSHAPEQUERYPARAMETERS2D_INDEX: Int = 476
 
 /**
  * By changing various properties of this object, such as the shape, you can configure the

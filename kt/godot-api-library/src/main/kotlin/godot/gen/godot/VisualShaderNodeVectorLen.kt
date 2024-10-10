@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVECTORLEN_INDEX: Int = 728
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORLEN_INDEX: Int = 813
 
 /**
  * Translated to `length(p0)` in the shader language.

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CONVEXPOLYGONSHAPE2D_INDEX: Int = 196
+private const val ENGINE_CLASS_CONVEXPOLYGONSHAPE2D_INDEX: Int = 210
 
 /**
  * A 2D convex polygon shape, intended for use in physics. Used internally in [CollisionPolygon2D]

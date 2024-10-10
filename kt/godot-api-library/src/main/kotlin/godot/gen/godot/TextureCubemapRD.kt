@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURECUBEMAPRD_INDEX: Int = 587
+private const val ENGINE_CLASS_TEXTURECUBEMAPRD_INDEX: Int = 656
 
 /**
  * This texture class allows you to use a cubemap texture created directly on the [RenderingDevice]

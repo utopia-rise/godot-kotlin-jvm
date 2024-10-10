@@ -40,7 +40,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_POLYGON2D_INDEX: Int = 445
+private const val ENGINE_CLASS_POLYGON2D_INDEX: Int = 495
 
 /**
  * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final

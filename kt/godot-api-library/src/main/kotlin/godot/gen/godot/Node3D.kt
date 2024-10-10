@@ -38,7 +38,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_NODE3D_INDEX: Int = 370
+private const val ENGINE_CLASS_NODE3D_INDEX: Int = 407
 
 /**
  * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game

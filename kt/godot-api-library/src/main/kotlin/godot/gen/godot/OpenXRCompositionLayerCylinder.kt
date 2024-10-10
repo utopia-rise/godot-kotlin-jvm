@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX: Int = 384
+private const val ENGINE_CLASS_OPENXRCOMPOSITIONLAYERCYLINDER_INDEX: Int = 425
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a

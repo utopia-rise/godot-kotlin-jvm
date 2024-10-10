@@ -46,7 +46,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TEXTEDIT_INDEX: Int = 571
+private const val ENGINE_CLASS_TEXTEDIT_INDEX: Int = 639
 
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax

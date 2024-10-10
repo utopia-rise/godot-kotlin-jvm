@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODESWITCH_INDEX: Int = 693
+private const val ENGINE_CLASS_VISUALSHADERNODESWITCH_INDEX: Int = 775
 
 /**
  * Returns an associated value of the [opType] type if the provided boolean value is `true` or

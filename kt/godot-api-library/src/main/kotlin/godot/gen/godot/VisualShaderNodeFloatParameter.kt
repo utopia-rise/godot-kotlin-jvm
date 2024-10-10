@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX: Int = 656
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATPARAMETER_INDEX: Int = 732
 
 /**
  * Translated to `uniform float` in the shader language.

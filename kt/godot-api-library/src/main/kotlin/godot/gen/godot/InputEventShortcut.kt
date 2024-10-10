@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX: Int = 302
+private const val ENGINE_CLASS_INPUTEVENTSHORTCUT_INDEX: Int = 328
 
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],

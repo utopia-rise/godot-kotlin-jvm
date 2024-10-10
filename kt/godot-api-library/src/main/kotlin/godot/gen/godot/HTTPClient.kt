@@ -30,7 +30,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_HTTPCLIENT_INDEX: Int = 279
+private const val ENGINE_CLASS_HTTPCLIENT_INDEX: Int = 299
 
 /**
  * Hyper-text transfer protocol client (sometimes called "User Agent"). Used to make HTTP requests

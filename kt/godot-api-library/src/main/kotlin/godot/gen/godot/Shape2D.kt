@@ -33,6 +33,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SHAPE2D_INDEX: Int = 578
+
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
  * **Performance:** Primitive shapes, especially [CircleShape2D], are fast to check collisions

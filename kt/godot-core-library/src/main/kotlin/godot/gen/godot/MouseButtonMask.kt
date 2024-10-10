@@ -74,7 +74,7 @@ public sealed interface MouseButtonMask {
 }
 
 @JvmInline
-internal value class MouseButtonMaskValue internal constructor(
+public value class MouseButtonMaskValue(
   public override val flag: Long,
 ) : MouseButtonMask
 

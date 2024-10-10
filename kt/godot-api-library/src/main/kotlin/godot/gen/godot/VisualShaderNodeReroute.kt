@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX: Int = 685
+private const val ENGINE_CLASS_VISUALSHADERNODEREROUTE_INDEX: Int = 765
 
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid

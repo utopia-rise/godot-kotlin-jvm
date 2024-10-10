@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMITTER_INDEX: Int = 755
+
 /**
  * Particle emitter nodes can be used in "start" step of particle shaders and they define the
  * starting position of the particles. Connect them to the Position output port.

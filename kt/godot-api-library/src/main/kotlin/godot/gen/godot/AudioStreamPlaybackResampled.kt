@@ -16,7 +16,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX: Int = 120
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKRESAMPLED_INDEX: Int = 126
 
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {

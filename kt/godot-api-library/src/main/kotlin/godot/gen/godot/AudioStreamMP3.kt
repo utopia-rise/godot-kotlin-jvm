@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMMP3_INDEX: Int = 115
+private const val ENGINE_CLASS_AUDIOSTREAMMP3_INDEX: Int = 118
 
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.

@@ -17,7 +17,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HMACCONTEXT_INDEX: Int = 274
+private const val ENGINE_CLASS_HMACCONTEXT_INDEX: Int = 294
 
 /**
  * The HMACContext class is useful for advanced HMAC use cases, such as streaming the message as it

@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX: Int = 175
+private const val ENGINE_CLASS_COLLISIONPOLYGON2D_INDEX: Int = 188
 
 /**
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The

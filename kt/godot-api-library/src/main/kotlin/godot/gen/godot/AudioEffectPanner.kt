@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTPANNER_INDEX: Int = 101
+private const val ENGINE_CLASS_AUDIOEFFECTPANNER_INDEX: Int = 102
 
 /**
  * Determines how much of an audio signal is sent to the left and right buses.

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLECONEVELOCITY_INDEX: Int = 674
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLECONEVELOCITY_INDEX: Int = 753
 
 /**
  * This node can be used in "start" step of particle shader. It defines the initial velocity of the

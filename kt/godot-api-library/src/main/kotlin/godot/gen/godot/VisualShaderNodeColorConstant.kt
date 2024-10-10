@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOLORCONSTANT_INDEX: Int = 636
+private const val ENGINE_CLASS_VISUALSHADERNODECOLORCONSTANT_INDEX: Int = 711
 
 /**
  * Has two output ports representing RGB and alpha channels of [Color].

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTPHASER_INDEX: Int = 102
+private const val ENGINE_CLASS_AUDIOEFFECTPHASER_INDEX: Int = 103
 
 /**
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted

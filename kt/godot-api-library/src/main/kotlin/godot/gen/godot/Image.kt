@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_IMAGE_INDEX: Int = 284
+private const val ENGINE_CLASS_IMAGE_INDEX: Int = 304
 
 /**
  * Native image datatype. Contains image data which can be converted to an [ImageTexture] and

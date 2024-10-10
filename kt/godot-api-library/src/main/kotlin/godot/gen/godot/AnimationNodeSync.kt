@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONNODESYNC_INDEX: Int = 65
+private const val ENGINE_CLASS_ANIMATIONNODESYNC_INDEX: Int = 66
 
 /**
  * An animation node used to combine, mix, or blend two or more animations together while keeping

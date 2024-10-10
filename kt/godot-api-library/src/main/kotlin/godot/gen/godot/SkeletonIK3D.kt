@@ -34,7 +34,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SKELETONIK3D_INDEX: Int = 522
+private const val ENGINE_CLASS_SKELETONIK3D_INDEX: Int = 585
 
 /**
  * SkeletonIK3D is used to rotate all bones of a [Skeleton3D] bone chain a way that places the end

@@ -37,7 +37,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX: Int = 759
+private const val ENGINE_CLASS_XRINTERFACEEXTENSION_INDEX: Int = 847
 
 /**
  * External XR interface plugins should inherit from this class.

@@ -21,7 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX: Int = 387
+private const val ENGINE_CLASS_OPENXREXTENSIONWRAPPEREXTENSION_INDEX: Int = 428
 
 /**
  * [OpenXRExtensionWrapperExtension] allows clients to implement OpenXR extensions with GDExtension.

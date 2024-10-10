@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_LIGHTMAPPERRD_INDEX: Int = 320
+private const val ENGINE_CLASS_LIGHTMAPPERRD_INDEX: Int = 355
 
 /**
  * LightmapperRD ("RD" stands for [RenderingDevice]) is the built-in GPU-based lightmapper for use

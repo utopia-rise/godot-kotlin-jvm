@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX: Int = 93
+private const val ENGINE_CLASS_AUDIOEFFECTHARDLIMITER_INDEX: Int = 94
 
 /**
  * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard

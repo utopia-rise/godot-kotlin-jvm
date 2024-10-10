@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VIDEOSTREAM_INDEX: Int = 621
+private const val ENGINE_CLASS_VIDEOSTREAM_INDEX: Int = 694
 
 /**
  * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used

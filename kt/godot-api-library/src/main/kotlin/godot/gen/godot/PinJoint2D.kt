@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PINJOINT2D_INDEX: Int = 433
+private const val ENGINE_CLASS_PINJOINT2D_INDEX: Int = 482
 
 /**
  * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely

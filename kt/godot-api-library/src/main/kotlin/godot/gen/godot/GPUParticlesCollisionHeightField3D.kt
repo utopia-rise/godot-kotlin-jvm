@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_INDEX: Int = 256
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONHEIGHTFIELD3D_INDEX: Int = 276
 
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.

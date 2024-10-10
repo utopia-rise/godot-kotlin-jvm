@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX: Int = 622
+private const val ENGINE_CLASS_VIDEOSTREAMPLAYBACK_INDEX: Int = 695
 
 /**
  * This class is intended to be overridden by video decoder extensions with custom implementations

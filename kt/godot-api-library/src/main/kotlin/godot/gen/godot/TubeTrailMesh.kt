@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TUBETRAILMESH_INDEX: Int = 606
+private const val ENGINE_CLASS_TUBETRAILMESH_INDEX: Int = 678
 
 /**
  * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed

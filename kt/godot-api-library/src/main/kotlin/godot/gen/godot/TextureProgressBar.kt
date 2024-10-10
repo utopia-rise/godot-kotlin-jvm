@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TEXTUREPROGRESSBAR_INDEX: Int = 589
+private const val ENGINE_CLASS_TEXTUREPROGRESSBAR_INDEX: Int = 659
 
 /**
  * TextureProgressBar works like [ProgressBar], but uses up to 3 textures instead of Godot's [Theme]

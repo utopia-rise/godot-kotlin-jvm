@@ -20,7 +20,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX: Int = 566
+private const val ENGINE_CLASS_SYNTAXHIGHLIGHTER_INDEX: Int = 633
 
 /**
  * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The

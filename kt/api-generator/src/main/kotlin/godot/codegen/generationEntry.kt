@@ -20,6 +20,8 @@ import godot.codegen.services.impl.AwaitGenerationService
 import godot.codegen.services.impl.ClassGraphService
 import godot.codegen.services.impl.ApiService
 import godot.codegen.services.impl.ApiGenerationService
+import godot.codegen.services.impl.LambdaCallableGenerationService
+import godot.codegen.services.impl.SignalGenerationService
 import godot.tools.common.constants.Constraints
 import java.io.File
 
@@ -44,8 +46,11 @@ fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     val generationService: IApiGenerationService = ApiGenerationService(classGraphService, apiService, nativeStructureRepository)
     generationService.generateCore(coreDir)
     generationService.generateApi(apiDir)
+
+    LambdaCallableGenerationService().generate(coreDir, apiDir)
+    SignalGenerationService().generate(coreDir, apiDir)
 }
 
 fun generateCoroutine(outputDir: File) {
-    AwaitGenerationService.generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
+    AwaitGenerationService.generate(outputDir)
 }

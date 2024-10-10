@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX: Int = 462
+private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATEATTACHMENT_INDEX: Int = 512
 
 /**
  * Controls how blending between source and destination fragments is performed when using

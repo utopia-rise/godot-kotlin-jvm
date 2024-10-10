@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX: Int = 640
+private const val ENGINE_CLASS_VISUALSHADERNODECOMMENT_INDEX: Int = 715
 
 /**
  * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In

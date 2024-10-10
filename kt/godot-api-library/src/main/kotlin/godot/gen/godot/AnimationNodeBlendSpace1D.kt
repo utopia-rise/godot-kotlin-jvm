@@ -26,7 +26,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONNODEBLENDSPACE1D_INDEX: Int = 56
+private const val ENGINE_CLASS_ANIMATIONNODEBLENDSPACE1D_INDEX: Int = 57
 
 /**
  * A resource used by [AnimationNodeBlendTree].

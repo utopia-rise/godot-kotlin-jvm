@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CANVASMODULATE_INDEX: Int = 161
+private const val ENGINE_CLASS_CANVASMODULATE_INDEX: Int = 172
 
 /**
  * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a

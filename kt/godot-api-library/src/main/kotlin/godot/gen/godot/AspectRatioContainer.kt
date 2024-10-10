@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ASPECTRATIOCONTAINER_INDEX: Int = 76
+private const val ENGINE_CLASS_ASPECTRATIOCONTAINER_INDEX: Int = 77
 
 /**
  * A container type that arranges its child controls in a way that preserves their proportions

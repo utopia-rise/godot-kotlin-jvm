@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX: Int = 653
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATCONSTANT_INDEX: Int = 729
 
 /**
  * Translated to [code skip-lint]float[/code] in the shader language.

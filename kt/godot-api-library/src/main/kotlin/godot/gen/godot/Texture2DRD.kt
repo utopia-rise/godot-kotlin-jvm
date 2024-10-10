@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TEXTURE2DRD_INDEX: Int = 582
+private const val ENGINE_CLASS_TEXTURE2DRD_INDEX: Int = 651
 
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a

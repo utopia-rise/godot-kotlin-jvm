@@ -34,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRPOSITIONALTRACKER_INDEX: Int = 763
+private const val ENGINE_CLASS_XRPOSITIONALTRACKER_INDEX: Int = 851
 
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor

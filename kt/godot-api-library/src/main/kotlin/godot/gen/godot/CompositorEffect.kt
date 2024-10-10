@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COMPOSITOREFFECT_INDEX: Int = 183
+private const val ENGINE_CLASS_COMPOSITOREFFECT_INDEX: Int = 196
 
 /**
  * This resource defines a custom rendering effect that can be applied to [Viewport]s through the

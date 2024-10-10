@@ -22,6 +22,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_INSTANCEPLACEHOLDER_INDEX: Int = 330
+
 /**
  * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it
  * to be replaced by an [InstancePlaceholder] when running the game, this will not replace the node in

@@ -33,7 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_THEME_INDEX: Int = 591
+private const val ENGINE_CLASS_THEME_INDEX: Int = 661
 
 /**
  * A resource used for styling/skinning [Control] and [Window] nodes. While individual controls can

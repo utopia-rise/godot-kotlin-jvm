@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MESHINSTANCE2D_INDEX: Int = 334
+private const val ENGINE_CLASS_MESHINSTANCE2D_INDEX: Int = 369
 
 /**
  * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX: Int = 540
+private const val ENGINE_CLASS_SPHEREOCCLUDER3D_INDEX: Int = 605
 
 /**
  * [SphereOccluder3D] stores a sphere shape that can be used by the engine's occlusion culling

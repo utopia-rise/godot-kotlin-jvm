@@ -24,7 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OPENXRAPIEXTENSION_INDEX: Int = 380
+private const val ENGINE_CLASS_OPENXRAPIEXTENSION_INDEX: Int = 420
 
 /**
  * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to

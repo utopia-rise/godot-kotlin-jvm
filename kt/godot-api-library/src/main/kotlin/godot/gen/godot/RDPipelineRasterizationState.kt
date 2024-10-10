@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDPIPELINERASTERIZATIONSTATE_INDEX: Int = 465
+private const val ENGINE_CLASS_RDPIPELINERASTERIZATIONSTATE_INDEX: Int = 515
 
 /**
  * This object is used by [RenderingDevice].

@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MULTIMESH_INDEX: Int = 343
+private const val ENGINE_CLASS_MULTIMESH_INDEX: Int = 378
 
 /**
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance3D] nodes can be

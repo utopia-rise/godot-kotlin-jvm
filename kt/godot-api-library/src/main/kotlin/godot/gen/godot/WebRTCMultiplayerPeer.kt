@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX: Int = 736
+private const val ENGINE_CLASS_WEBRTCMULTIPLAYERPEER_INDEX: Int = 822
 
 /**
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that

@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MISSINGRESOURCE_INDEX: Int = 340
+private const val ENGINE_CLASS_MISSINGRESOURCE_INDEX: Int = 375
 
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most

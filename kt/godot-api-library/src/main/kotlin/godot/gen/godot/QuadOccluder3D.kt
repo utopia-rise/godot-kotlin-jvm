@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_QUADOCCLUDER3D_INDEX: Int = 458
+private const val ENGINE_CLASS_QUADOCCLUDER3D_INDEX: Int = 508
 
 /**
  * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling

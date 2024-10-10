@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPHERESHAPE3D_INDEX: Int = 541
+private const val ENGINE_CLASS_SPHERESHAPE3D_INDEX: Int = 606
 
 /**
  * A 3D sphere shape, intended for use in physics. Usually used to provide a shape for a

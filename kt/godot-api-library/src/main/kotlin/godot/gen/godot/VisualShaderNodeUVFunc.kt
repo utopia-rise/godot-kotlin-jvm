@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEUVFUNC_INDEX: Int = 714
+private const val ENGINE_CLASS_VISUALSHADERNODEUVFUNC_INDEX: Int = 797
 
 /**
  * UV functions are similar to [Vector2] functions, but the input port of this node uses the

@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OCCLUDERPOLYGON2D_INDEX: Int = 375
+private const val ENGINE_CLASS_OCCLUDERPOLYGON2D_INDEX: Int = 415
 
 /**
  * Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].

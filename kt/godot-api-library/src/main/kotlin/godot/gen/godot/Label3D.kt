@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LABEL3D_INDEX: Int = 314
+private const val ENGINE_CLASS_LABEL3D_INDEX: Int = 346
 
 /**
  * A node for displaying plain text in 3D space. By adjusting various properties of this node, you

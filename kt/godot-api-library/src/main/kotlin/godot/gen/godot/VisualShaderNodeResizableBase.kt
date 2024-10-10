@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODERESIZABLEBASE_INDEX: Int = 766
+
 /**
  * Resizable nodes have a handle that allows the user to adjust their size as needed.
  */

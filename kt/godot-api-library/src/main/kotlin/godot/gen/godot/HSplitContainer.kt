@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HSPLITCONTAINER_INDEX: Int = 278
+private const val ENGINE_CLASS_HSPLITCONTAINER_INDEX: Int = 298
 
 /**
  * A container that accepts only two child controls, then arranges them horizontally and creates a

@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTCAPTURE_INDEX: Int = 83
+private const val ENGINE_CLASS_AUDIOEFFECTCAPTURE_INDEX: Int = 84
 
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect

@@ -21,7 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODECUSTOM_INDEX: Int = 646
+private const val ENGINE_CLASS_VISUALSHADERNODECUSTOM_INDEX: Int = 722
 
 /**
  * By inheriting this class you can create a custom [VisualShader] script addon which will be

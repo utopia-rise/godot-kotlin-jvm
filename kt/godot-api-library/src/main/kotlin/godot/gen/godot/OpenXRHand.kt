@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRHAND_INDEX: Int = 388
+private const val ENGINE_CLASS_OPENXRHAND_INDEX: Int = 429
 
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an

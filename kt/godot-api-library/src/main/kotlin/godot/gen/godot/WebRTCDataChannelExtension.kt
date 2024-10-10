@@ -15,7 +15,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_WEBRTCDATACHANNELEXTENSION_INDEX: Int = 735
+private const val ENGINE_CLASS_WEBRTCDATACHANNELEXTENSION_INDEX: Int = 821
 
 @GodotBaseType
 public open class WebRTCDataChannelExtension : WebRTCDataChannel() {

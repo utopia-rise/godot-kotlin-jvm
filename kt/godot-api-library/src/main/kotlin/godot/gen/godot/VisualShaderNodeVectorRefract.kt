@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVECTORREFRACT_INDEX: Int = 730
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORREFRACT_INDEX: Int = 815
 
 /**
  * Translated to `refract(I, N, eta)` in the shader language, where `I` is the incident vector, `N`

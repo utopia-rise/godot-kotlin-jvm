@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONTREE_INDEX: Int = 71
+private const val ENGINE_CLASS_ANIMATIONTREE_INDEX: Int = 72
 
 /**
  * A node used for advanced animation transitions in an [AnimationPlayer].

@@ -17,7 +17,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_X509CERTIFICATE_INDEX: Int = 747
+private const val ENGINE_CLASS_X509CERTIFICATE_INDEX: Int = 834
 
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved

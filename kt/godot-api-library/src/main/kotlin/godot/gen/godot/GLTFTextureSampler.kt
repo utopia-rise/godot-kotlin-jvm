@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX: Int = 249
+private const val ENGINE_CLASS_GLTFTEXTURESAMPLER_INDEX: Int = 267
 
 /**
  * Represents a texture sampler as defined by the base GLTF spec. Texture samplers in GLTF specify

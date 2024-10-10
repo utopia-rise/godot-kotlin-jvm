@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURE2DARRAYRD_INDEX: Int = 581
+private const val ENGINE_CLASS_TEXTURE2DARRAYRD_INDEX: Int = 650
 
 /**
  * This texture array class allows you to use a 2D array texture created directly on the

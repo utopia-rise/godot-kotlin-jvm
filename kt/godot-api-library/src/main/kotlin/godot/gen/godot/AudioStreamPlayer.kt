@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX: Int = 121
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYER_INDEX: Int = 128
 
 /**
  * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user

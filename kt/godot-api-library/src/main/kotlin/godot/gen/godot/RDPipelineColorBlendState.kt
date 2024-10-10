@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX: Int = 461
+private const val ENGINE_CLASS_RDPIPELINECOLORBLENDSTATE_INDEX: Int = 511
 
 /**
  * This object is used by [RenderingDevice].

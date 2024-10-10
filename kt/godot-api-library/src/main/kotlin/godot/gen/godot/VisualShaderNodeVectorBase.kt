@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORBASE_INDEX: Int = 808
+
 /**
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */

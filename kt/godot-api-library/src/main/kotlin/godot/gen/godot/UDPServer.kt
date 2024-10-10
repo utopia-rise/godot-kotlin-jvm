@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_UDPSERVER_INDEX: Int = 608
+private const val ENGINE_CLASS_UDPSERVER_INDEX: Int = 681
 
 /**
  * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new

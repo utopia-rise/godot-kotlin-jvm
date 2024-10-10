@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PANEL_INDEX: Int = 402
+private const val ENGINE_CLASS_PANEL_INDEX: Int = 445
 
 /**
  * [Panel] is a GUI control that displays a [StyleBox]. See also [PanelContainer].

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SCROLLBAR_INDEX: Int = 567
+
 /**
  * Abstract base class for scrollbars, typically used to navigate through content that extends
  * beyond the visible area of a control. Scrollbars are [Range]-based controls.

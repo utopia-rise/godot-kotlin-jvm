@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ZIPPACKER_INDEX: Int = 765
+private const val ENGINE_CLASS_ZIPPACKER_INDEX: Int = 854
 
 /**
  * This class implements a writer that allows storing the multiple blobs in a zip archive.

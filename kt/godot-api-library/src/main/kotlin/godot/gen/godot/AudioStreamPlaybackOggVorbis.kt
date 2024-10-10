@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKOGGVORBIS_INDEX: Int = 119
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKOGGVORBIS_INDEX: Int = 123
 
 @GodotBaseType
 public open class AudioStreamPlaybackOggVorbis : AudioStreamPlaybackResampled() {

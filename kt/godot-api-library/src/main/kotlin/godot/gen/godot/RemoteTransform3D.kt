@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_REMOTETRANSFORM3D_INDEX: Int = 485
+private const val ENGINE_CLASS_REMOTETRANSFORM3D_INDEX: Int = 535
 
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the

@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINE_INDEX: Int = 61
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINE_INDEX: Int = 62
 
 /**
  * Contains multiple [AnimationRootNode]s representing animation states, connected in a graph. State

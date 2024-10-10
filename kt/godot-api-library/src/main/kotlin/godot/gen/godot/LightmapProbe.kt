@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_LIGHTMAPPROBE_INDEX: Int = 319
+private const val ENGINE_CLASS_LIGHTMAPPROBE_INDEX: Int = 353
 
 /**
  * [LightmapProbe] represents the position of a single manually placed probe for dynamic object

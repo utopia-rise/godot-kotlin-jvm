@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CRYPTOKEY_INDEX: Int = 199
+private const val ENGINE_CLASS_CRYPTOKEY_INDEX: Int = 213
 
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other

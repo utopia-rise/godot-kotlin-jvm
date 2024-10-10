@@ -23,6 +23,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RENDERSCENEDATA_INDEX: Int = 543
+
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
  * **Note:** This is an internal rendering server object, do not instantiate this from script.

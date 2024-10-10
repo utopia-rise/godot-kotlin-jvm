@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX: Int = 92
+private const val ENGINE_CLASS_AUDIOEFFECTFILTER_INDEX: Int = 93
 
 /**
  * Allows frequencies other than the [cutoffHz] to pass.

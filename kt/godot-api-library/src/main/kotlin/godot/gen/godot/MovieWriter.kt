@@ -20,7 +20,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MOVIEWRITER_INDEX: Int = 342
+private const val ENGINE_CLASS_MOVIEWRITER_INDEX: Int = 377
 
 /**
  * Godot can record videos with non-real-time simulation. Like the `--fixed-fps`

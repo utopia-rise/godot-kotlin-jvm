@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_INDEX: Int = 677
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEMULTIPLYBYAXISANGLE_INDEX: Int = 757
 
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to

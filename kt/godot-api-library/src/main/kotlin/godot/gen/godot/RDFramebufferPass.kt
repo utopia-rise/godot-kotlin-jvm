@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDFRAMEBUFFERPASS_INDEX: Int = 460
+private const val ENGINE_CLASS_RDFRAMEBUFFERPASS_INDEX: Int = 510
 
 /**
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with

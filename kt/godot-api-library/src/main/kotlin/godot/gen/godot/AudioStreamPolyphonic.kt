@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX: Int = 125
+private const val ENGINE_CLASS_AUDIOSTREAMPOLYPHONIC_INDEX: Int = 132
 
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a

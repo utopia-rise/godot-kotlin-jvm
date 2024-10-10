@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_NAVIGATIONREGION3D_INDEX: Int = 366
+private const val ENGINE_CLASS_NAVIGATIONREGION3D_INDEX: Int = 403
 
 /**
  * A traversable 3D region based on a [NavigationMesh] that [NavigationAgent3D]s can use for

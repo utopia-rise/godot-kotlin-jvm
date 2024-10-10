@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_REMOTETRANSFORM2D_INDEX: Int = 484
+private const val ENGINE_CLASS_REMOTETRANSFORM2D_INDEX: Int = 534
 
 /**
  * RemoteTransform2D pushes its own [Transform2D] to another [Node2D] derived node (called the

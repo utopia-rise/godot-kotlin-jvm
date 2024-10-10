@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PARTICLEPROCESSMATERIAL_INDEX: Int = 408
+private const val ENGINE_CLASS_PARTICLEPROCESSMATERIAL_INDEX: Int = 451
 
 /**
  * [ParticleProcessMaterial] defines particle properties and behavior. It is used in the

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEINTFUNC_INDEX: Int = 663
+private const val ENGINE_CLASS_VISUALSHADERNODEINTFUNC_INDEX: Int = 740
 
 /**
  * Accept an integer scalar (`x`) to the input port and transform it according to [function].

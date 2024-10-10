@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CPUPARTICLES3D_INDEX: Int = 142
+private const val ENGINE_CLASS_CPUPARTICLES3D_INDEX: Int = 150
 
 /**
  * CPU-based 3D particle node used to create a variety of particle systems and effects.

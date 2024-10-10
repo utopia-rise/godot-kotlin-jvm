@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SHAPE3D_INDEX: Int = 579
+
 /**
  * Abstract base class for all 3D shapes, intended for use in physics.
  * **Performance:** Primitive shapes, especially [SphereShape3D], are fast to check collisions

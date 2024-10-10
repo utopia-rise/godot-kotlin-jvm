@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX: Int = 257
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONSDF3D_INDEX: Int = 277
 
 /**
  * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.

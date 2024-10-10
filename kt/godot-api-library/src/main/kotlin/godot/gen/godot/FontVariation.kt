@@ -29,7 +29,7 @@ import kotlin.UninitializedPropertyAccessException
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FONTVARIATION_INDEX: Int = 228
+private const val ENGINE_CLASS_FONTVARIATION_INDEX: Int = 246
 
 /**
  * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType

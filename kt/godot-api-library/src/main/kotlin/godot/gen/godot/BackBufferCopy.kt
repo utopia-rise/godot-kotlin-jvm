@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BACKBUFFERCOPY_INDEX: Int = 129
+private const val ENGINE_CLASS_BACKBUFFERCOPY_INDEX: Int = 136
 
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the

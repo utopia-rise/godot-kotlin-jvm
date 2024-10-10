@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PARALLAXBACKGROUND_INDEX: Int = 406
+private const val ENGINE_CLASS_PARALLAXBACKGROUND_INDEX: Int = 449
 
 /**
  * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.

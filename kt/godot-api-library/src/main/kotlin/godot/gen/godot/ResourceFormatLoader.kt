@@ -20,7 +20,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RESOURCEFORMATLOADER_INDEX: Int = 494
+private const val ENGINE_CLASS_RESOURCEFORMATLOADER_INDEX: Int = 548
 
 /**
  * Godot loads resources in the editor or in exported games using ResourceFormatLoaders. They are

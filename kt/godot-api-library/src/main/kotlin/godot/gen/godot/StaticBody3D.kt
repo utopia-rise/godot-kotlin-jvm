@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STATICBODY3D_INDEX: Int = 551
+private const val ENGINE_CLASS_STATICBODY3D_INDEX: Int = 617
 
 /**
  * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved

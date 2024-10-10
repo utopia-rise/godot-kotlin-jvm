@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MULTIPLAYERAPI_INDEX: Int = 381
+
 /**
  * Base class for high-level multiplayer API implementations. See also [MultiplayerPeer].
  * By default, [SceneTree] has a reference to an implementation of this class and uses it to provide

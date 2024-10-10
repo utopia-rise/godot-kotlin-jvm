@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMFUNC_INDEX: Int = 706
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMFUNC_INDEX: Int = 789
 
 /**
  * Computes an inverse or transpose function on the provided [Transform3D].

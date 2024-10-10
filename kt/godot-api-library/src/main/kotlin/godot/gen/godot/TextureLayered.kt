@@ -19,7 +19,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURELAYERED_INDEX: Int = 588
+private const val ENGINE_CLASS_TEXTURELAYERED_INDEX: Int = 657
 
 /**
  * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but

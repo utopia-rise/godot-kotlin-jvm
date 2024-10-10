@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX: Int = 488
+private const val ENGINE_CLASS_RENDERSCENEBUFFERSCONFIGURATION_INDEX: Int = 540
 
 /**
  * This configuration object is created and populated by the render engine on a viewport change and

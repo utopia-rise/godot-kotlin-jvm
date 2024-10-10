@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_FRAMEBUFFERCACHERD_INDEX: Int = 229
+private const val ENGINE_CLASS_FRAMEBUFFERCACHERD_INDEX: Int = 247
 
 /**
  * Framebuffer cache manager for Rendering Device based renderers. Provides a way to create a

@@ -21,6 +21,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_MULTIPLAYERPEER_INDEX: Int = 383
+
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
  * unique IDs to each of them. See also [MultiplayerAPI].

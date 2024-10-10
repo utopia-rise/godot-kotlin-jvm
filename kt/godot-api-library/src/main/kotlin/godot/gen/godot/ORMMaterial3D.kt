@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ORMMATERIAL3D_INDEX: Int = 373
+private const val ENGINE_CLASS_ORMMATERIAL3D_INDEX: Int = 412
 
 /**
  * ORMMaterial3D's properties are inherited from [BaseMaterial3D]. Unlike [StandardMaterial3D],

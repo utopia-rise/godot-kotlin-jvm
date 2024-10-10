@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_LIGHT2D_INDEX: Int = 348
+
 /**
  * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
  * constants), and various other parameters (range and shadows-related).

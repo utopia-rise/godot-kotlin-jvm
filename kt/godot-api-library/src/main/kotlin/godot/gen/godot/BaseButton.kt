@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BASEBUTTON_INDEX: Int = 130
+private const val ENGINE_CLASS_BASEBUTTON_INDEX: Int = 137
 
 /**
  * [BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.

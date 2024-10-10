@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_JAVACLASS_INDEX: Int = 308
+private const val ENGINE_CLASS_JAVACLASS_INDEX: Int = 336
 
 /**
  * Represents an object from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].

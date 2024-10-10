@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVEC3CONSTANT_INDEX: Int = 720
+private const val ENGINE_CLASS_VISUALSHADERNODEVEC3CONSTANT_INDEX: Int = 804
 
 /**
  * A constant [Vector3], which can be used as an input node.

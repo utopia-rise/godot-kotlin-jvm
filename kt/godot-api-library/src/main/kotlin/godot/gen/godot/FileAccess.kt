@@ -33,6 +33,8 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_FILEACCESS_INDEX: Int = 239
+
 public infix fun Long.or(other: godot.FileAccess.UnixPermissionFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.FileAccess.UnixPermissionFlags): Long = this.xor(other.flag)
@@ -758,7 +760,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class UnixPermissionFlagsValue internal constructor(
+  public value class UnixPermissionFlagsValue(
     public override val flag: Long,
   ) : UnixPermissionFlags
 

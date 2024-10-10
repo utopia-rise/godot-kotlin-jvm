@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CYLINDERSHAPE3D_INDEX: Int = 208
+private const val ENGINE_CLASS_CYLINDERSHAPE3D_INDEX: Int = 222
 
 /**
  * A 3D cylinder shape, intended for use in physics. Usually used to provide a shape for a

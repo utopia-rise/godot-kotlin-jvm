@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_REGEXMATCH_INDEX: Int = 483
+private const val ENGINE_CLASS_REGEXMATCH_INDEX: Int = 533
 
 /**
  * Contains the results of a single [RegEx] match returned by [RegEx.search] and [RegEx.searchAll].

@@ -28,7 +28,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_POLYGONPATHFINDER_INDEX: Int = 447
+private const val ENGINE_CLASS_POLYGONPATHFINDER_INDEX: Int = 497
 
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {

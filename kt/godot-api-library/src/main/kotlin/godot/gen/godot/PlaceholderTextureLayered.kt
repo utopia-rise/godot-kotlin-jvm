@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_PLACEHOLDERTEXTURELAYERED_INDEX: Int = 491
+
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
  * - When running the project exported in dedicated server mode, only the texture's dimensions are

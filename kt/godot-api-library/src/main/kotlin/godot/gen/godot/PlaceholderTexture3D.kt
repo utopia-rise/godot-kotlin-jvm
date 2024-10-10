@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PLACEHOLDERTEXTURE3D_INDEX: Int = 441
+private const val ENGINE_CLASS_PLACEHOLDERTEXTURE3D_INDEX: Int = 490
 
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:

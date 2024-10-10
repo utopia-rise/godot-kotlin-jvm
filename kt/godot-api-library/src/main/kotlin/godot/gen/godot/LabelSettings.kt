@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LABELSETTINGS_INDEX: Int = 315
+private const val ENGINE_CLASS_LABELSETTINGS_INDEX: Int = 347
 
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].

@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_TEXTURELAYEREDRD_INDEX: Int = 658
+
 /**
  * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
  * directly, but contains all the functions necessary for accessing the derived resource types.

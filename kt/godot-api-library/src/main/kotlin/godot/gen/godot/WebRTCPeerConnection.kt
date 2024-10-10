@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX: Int = 737
+private const val ENGINE_CLASS_WEBRTCPEERCONNECTION_INDEX: Int = 823
 
 /**
  * A WebRTC connection between the local computer and a remote peer. Provides an interface to

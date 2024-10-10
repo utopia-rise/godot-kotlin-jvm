@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LIGHTMAPGI_INDEX: Int = 317
+private const val ENGINE_CLASS_LIGHTMAPGI_INDEX: Int = 351
 
 /**
  * The [LightmapGI] node is used to compute and store baked lightmaps. Lightmaps are used to provide

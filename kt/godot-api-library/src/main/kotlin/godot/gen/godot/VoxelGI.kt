@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_VOXELGI_INDEX: Int = 732
+private const val ENGINE_CLASS_VOXELGI_INDEX: Int = 817
 
 /**
  * [VoxelGI]s are used to provide high-quality real-time indirect light and reflections to scenes.

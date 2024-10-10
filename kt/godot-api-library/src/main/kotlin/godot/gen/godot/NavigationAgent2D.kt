@@ -38,7 +38,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX: Int = 351
+private const val ENGINE_CLASS_NAVIGATIONAGENT2D_INDEX: Int = 388
 
 /**
  * A 2D agent used to pathfind to a position while avoiding static and dynamic obstacles. The

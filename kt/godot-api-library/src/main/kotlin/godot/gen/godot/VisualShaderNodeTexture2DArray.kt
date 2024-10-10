@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAY_INDEX: Int = 695
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAY_INDEX: Int = 777
 
 /**
  * Translated to `uniform sampler2DArray` in the shader language.

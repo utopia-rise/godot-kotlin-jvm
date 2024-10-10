@@ -50,7 +50,7 @@ import kotlin.reflect.KFunction7
 import kotlin.reflect.KFunction8
 import kotlin.reflect.KFunction9
 
-private const val ENGINE_CLASS_NODE_INDEX: Int = 368
+private const val ENGINE_CLASS_NODE_INDEX: Int = 405
 
 public infix fun Long.or(other: godot.Node.ProcessThreadMessages): Long = this.or(other.flag)
 
@@ -2298,7 +2298,7 @@ public open class Node : Object() {
   }
 
   @JvmInline
-  internal value class ProcessThreadMessagesValue internal constructor(
+  public value class ProcessThreadMessagesValue(
     public override val flag: Long,
   ) : ProcessThreadMessages
 

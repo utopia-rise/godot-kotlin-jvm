@@ -14,7 +14,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CUBEMAP_INDEX: Int = 200
+private const val ENGINE_CLASS_CUBEMAP_INDEX: Int = 214
 
 /**
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking

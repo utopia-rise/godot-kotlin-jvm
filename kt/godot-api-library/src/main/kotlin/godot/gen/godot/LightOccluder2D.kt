@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LIGHTOCCLUDER2D_INDEX: Int = 316
+private const val ENGINE_CLASS_LIGHTOCCLUDER2D_INDEX: Int = 350
 
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an

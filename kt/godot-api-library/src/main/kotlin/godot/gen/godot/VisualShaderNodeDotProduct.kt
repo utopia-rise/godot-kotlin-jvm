@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEDOTPRODUCT_INDEX: Int = 650
+private const val ENGINE_CLASS_VISUALSHADERNODEDOTPRODUCT_INDEX: Int = 726
 
 /**
  * Translates to `dot(a, b)` in the shader language.

@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETER_INDEX: Int = 782
+
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader.
  */

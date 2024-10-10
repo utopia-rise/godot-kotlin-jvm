@@ -44,7 +44,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_WINDOW_INDEX: Int = 741
+private const val ENGINE_CLASS_WINDOW_INDEX: Int = 828
 
 /**
  * A node that creates a window. The window can either be a native system window or embedded inside

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OMNILIGHT3D_INDEX: Int = 379
+private const val ENGINE_CLASS_OMNILIGHT3D_INDEX: Int = 419
 
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is

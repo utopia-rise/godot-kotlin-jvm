@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PARALLAX2D_INDEX: Int = 405
+private const val ENGINE_CLASS_PARALLAX2D_INDEX: Int = 448
 
 /**
  * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to

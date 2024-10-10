@@ -26,7 +26,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MESHLIBRARY_INDEX: Int = 336
+private const val ENGINE_CLASS_MESHLIBRARY_INDEX: Int = 371
 
 /**
  * A library of meshes. Contains a list of [Mesh] resources, each with a name and ID. Each item can

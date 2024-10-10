@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTKEY_INDEX: Int = 294
+private const val ENGINE_CLASS_INPUTEVENTKEY_INDEX: Int = 319
 
 /**
  * An input event for keys on a keyboard. Supports key presses, key releases and [echo] events. It

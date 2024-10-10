@@ -21,7 +21,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ENETMULTIPLAYERPEER_INDEX: Int = 215
+private const val ENGINE_CLASS_ENETMULTIPLAYERPEER_INDEX: Int = 230
 
 /**
  * A MultiplayerPeer implementation that should be passed to [MultiplayerAPI.multiplayerPeer] after

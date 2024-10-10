@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PROPERTYTWEENER_INDEX: Int = 456
+private const val ENGINE_CLASS_PROPERTYTWEENER_INDEX: Int = 506
 
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for

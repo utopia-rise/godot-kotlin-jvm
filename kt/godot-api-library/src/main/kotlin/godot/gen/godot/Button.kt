@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BUTTON_INDEX: Int = 139
+private const val ENGINE_CLASS_BUTTON_INDEX: Int = 147
 
 /**
  * [Button] is the standard themed button. It can contain text and an icon, and it will display them

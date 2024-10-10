@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOLORFUNC_INDEX: Int = 637
+private const val ENGINE_CLASS_VISUALSHADERNODECOLORFUNC_INDEX: Int = 712
 
 /**
  * Accept a [Color] to the input port and transform it according to [function].

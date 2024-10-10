@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVECTORDISTANCE_INDEX: Int = 726
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORDISTANCE_INDEX: Int = 811
 
 /**
  * Calculates distance from point represented by vector `p0` to vector `p1`.

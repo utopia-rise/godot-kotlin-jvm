@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PANELCONTAINER_INDEX: Int = 403
+private const val ENGINE_CLASS_PANELCONTAINER_INDEX: Int = 446
 
 /**
  * A container that keeps its child controls within the area of a [StyleBox]. Useful for giving

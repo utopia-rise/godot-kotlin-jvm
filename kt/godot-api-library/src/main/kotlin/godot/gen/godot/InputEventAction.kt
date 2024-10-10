@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTACTION_INDEX: Int = 291
+private const val ENGINE_CLASS_INPUTEVENTACTION_INDEX: Int = 314
 
 /**
  * Contains a generic action which can be targeted from several types of inputs. Actions and their

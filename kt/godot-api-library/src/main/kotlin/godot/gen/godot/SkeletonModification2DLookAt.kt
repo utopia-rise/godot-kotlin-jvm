@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DLOOKAT_INDEX: Int = 527
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DLOOKAT_INDEX: Int = 590
 
 /**
  * This [SkeletonModification2D] rotates a bone to look a target. This is extremely helpful for

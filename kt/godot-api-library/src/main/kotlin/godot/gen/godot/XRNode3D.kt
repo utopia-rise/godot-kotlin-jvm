@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRNODE3D_INDEX: Int = 760
+private const val ENGINE_CLASS_XRNODE3D_INDEX: Int = 848
 
 /**
  * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have

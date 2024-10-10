@@ -12,6 +12,7 @@ import godot.core.PackedStringArray
 import godot.core.PackedVector2Array
 import godot.core.PackedVector3Array
 import godot.Object
+import godot.extensions.asStatic
 import godot.util.Internals
 
 import godot.util.nullptr

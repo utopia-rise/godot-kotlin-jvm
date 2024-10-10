@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COMPRESSEDTEXTURE2D_INDEX: Int = 186
+private const val ENGINE_CLASS_COMPRESSEDTEXTURE2D_INDEX: Int = 199
 
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is

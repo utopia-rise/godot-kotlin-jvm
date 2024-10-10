@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CURVETEXTURE_INDEX: Int = 205
+private const val ENGINE_CLASS_CURVETEXTURE_INDEX: Int = 219
 
 /**
  * A 1D texture where pixel brightness corresponds to points on a [Curve] resource, either in

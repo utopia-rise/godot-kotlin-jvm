@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX: Int = 661
+private const val ENGINE_CLASS_VISUALSHADERNODEINPUT_INDEX: Int = 738
 
 /**
  * Gives access to input variables (built-ins) available for the shader. See the shading reference

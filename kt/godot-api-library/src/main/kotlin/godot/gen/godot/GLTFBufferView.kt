@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFBUFFERVIEW_INDEX: Int = 234
+private const val ENGINE_CLASS_GLTFBUFFERVIEW_INDEX: Int = 252
 
 /**
  * GLTFBufferView is a data structure representing GLTF a `bufferView` that would be found in the

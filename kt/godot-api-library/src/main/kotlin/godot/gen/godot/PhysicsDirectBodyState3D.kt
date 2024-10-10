@@ -34,6 +34,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PHYSICSDIRECTBODYSTATE3D_INDEX: Int = 464
+
 /**
  * Provides direct access to a physics body in the [PhysicsServer3D], allowing safe changes to
  * physics properties. This object is passed via the direct state callback of [RigidBody3D], and is

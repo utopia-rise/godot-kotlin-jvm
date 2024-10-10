@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VIEWPORTTEXTURE_INDEX: Int = 625
+private const val ENGINE_CLASS_VIEWPORTTEXTURE_INDEX: Int = 699
 
 /**
  * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEDERIVATIVEFUNC_INDEX: Int = 647
+private const val ENGINE_CLASS_VISUALSHADERNODEDERIVATIVEFUNC_INDEX: Int = 723
 
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.

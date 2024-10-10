@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX: Int = 296
+private const val ENGINE_CLASS_INPUTEVENTMAGNIFYGESTURE_INDEX: Int = 321
 
 /**
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches

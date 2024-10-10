@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MENUBAR_INDEX: Int = 329
+private const val ENGINE_CLASS_MENUBAR_INDEX: Int = 364
 
 /**
  * A horizontal menu bar that creates a [MenuButton] for each [PopupMenu] child. New items are

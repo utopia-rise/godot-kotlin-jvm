@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICALBONE2D_INDEX: Int = 413
+private const val ENGINE_CLASS_PHYSICALBONE2D_INDEX: Int = 456
 
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a

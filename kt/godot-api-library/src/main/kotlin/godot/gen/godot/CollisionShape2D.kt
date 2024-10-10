@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLLISIONSHAPE2D_INDEX: Int = 177
+private const val ENGINE_CLASS_COLLISIONSHAPE2D_INDEX: Int = 190
 
 /**
  * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can

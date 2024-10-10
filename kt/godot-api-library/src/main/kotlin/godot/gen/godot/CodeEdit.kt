@@ -39,7 +39,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CODEEDIT_INDEX: Int = 173
+private const val ENGINE_CLASS_CODEEDIT_INDEX: Int = 184
 
 /**
  * CodeEdit is a specialized [TextEdit] designed for editing plain text code files. It has many

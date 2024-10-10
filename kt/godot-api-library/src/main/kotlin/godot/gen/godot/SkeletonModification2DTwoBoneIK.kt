@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DTWOBONEIK_INDEX: Int = 530
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DTWOBONEIK_INDEX: Int = 593
 
 /**
  * This [SkeletonModification2D] uses an algorithm typically called TwoBoneIK. This algorithm works

@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ENETPACKETPEER_INDEX: Int = 231
+
 /**
  * A PacketPeer implementation representing a peer of an [ENetConnection].
  * This class cannot be instantiated directly but can be retrieved during [ENetConnection.service]

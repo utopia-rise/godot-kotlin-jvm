@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSMATERIAL_INDEX: Int = 421
+private const val ENGINE_CLASS_PHYSICSMATERIAL_INDEX: Int = 470
 
 /**
  * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is

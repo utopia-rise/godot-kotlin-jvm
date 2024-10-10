@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX: Int = 679
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERANDOMNESS_INDEX: Int = 759
 
 /**
  * Randomness node will output pseudo-random values of the given type based on the specified minimum

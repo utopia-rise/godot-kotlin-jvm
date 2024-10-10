@@ -19,6 +19,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_IMAGETEXTURELAYERED_INDEX: Int = 309
+
 /**
  * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but
  * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].

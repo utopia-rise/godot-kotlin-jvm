@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX: Int = 293
+private const val ENGINE_CLASS_INPUTEVENTJOYPADMOTION_INDEX: Int = 318
 
 /**
  * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a

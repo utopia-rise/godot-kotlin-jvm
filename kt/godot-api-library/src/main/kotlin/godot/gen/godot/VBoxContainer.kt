@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VBOXCONTAINER_INDEX: Int = 613
+private const val ENGINE_CLASS_VBOXCONTAINER_INDEX: Int = 686
 
 /**
  * A variant of [BoxContainer] that can only arrange its child controls vertically. Child controls

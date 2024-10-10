@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TEXTURERECT_INDEX: Int = 590
+private const val ENGINE_CLASS_TEXTURERECT_INDEX: Int = 660
 
 /**
  * A control that displays a texture, for example an icon inside a GUI. The texture's placement can

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEDETERMINANT_INDEX: Int = 648
+private const val ENGINE_CLASS_VISUALSHADERNODEDETERMINANT_INDEX: Int = 724
 
 /**
  * Translates to `determinant(x)` in the shader language.

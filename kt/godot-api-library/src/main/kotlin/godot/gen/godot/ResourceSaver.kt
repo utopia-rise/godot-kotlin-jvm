@@ -178,7 +178,7 @@ public object ResourceSaver : Object() {
   }
 
   @JvmInline
-  internal value class SaverFlagsValue internal constructor(
+  public value class SaverFlagsValue(
     public override val flag: Long,
   ) : SaverFlags
 

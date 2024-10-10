@@ -15,6 +15,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_JVMSCRIPT_INDEX: Int = 341
+
 @GodotBaseType
 public open class JvmScript internal constructor() : Script() {
   public override fun new(scriptIndex: Int): Unit {

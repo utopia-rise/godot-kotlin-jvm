@@ -17,6 +17,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_OCCLUDER3D_INDEX: Int = 413
+
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.

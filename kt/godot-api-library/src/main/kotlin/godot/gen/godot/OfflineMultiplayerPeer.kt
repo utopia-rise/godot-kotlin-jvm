@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OFFLINEMULTIPLAYERPEER_INDEX: Int = 376
+private const val ENGINE_CLASS_OFFLINEMULTIPLAYERPEER_INDEX: Int = 416
 
 /**
  * This is the default [MultiplayerAPI.multiplayerPeer] for the [Node.multiplayer]. It mimics the

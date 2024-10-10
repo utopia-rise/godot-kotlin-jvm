@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_MULTIPLAYERSPAWNER_INDEX: Int = 348
+private const val ENGINE_CLASS_MULTIPLAYERSPAWNER_INDEX: Int = 385
 
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).

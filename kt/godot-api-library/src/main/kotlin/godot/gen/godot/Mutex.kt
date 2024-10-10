@@ -16,7 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MUTEX_INDEX: Int = 350
+private const val ENGINE_CLASS_MUTEX_INDEX: Int = 387
 
 /**
  * A synchronization mutex (mutual exclusion). This is used to synchronize multiple [Thread]s, and

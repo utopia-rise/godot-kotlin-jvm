@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEINTOP_INDEX: Int = 664
+private const val ENGINE_CLASS_VISUALSHADERNODEINTOP_INDEX: Int = 741
 
 /**
  * Applies [operator] to two integer inputs: `a` and `b`.

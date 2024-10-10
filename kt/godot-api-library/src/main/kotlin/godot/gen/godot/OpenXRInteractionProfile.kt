@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX: Int = 390
+private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILE_INDEX: Int = 431
 
 /**
  * This object stores suggested bindings for an interaction profile. Interaction profiles define the

@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLORPICKERBUTTON_INDEX: Int = 180
+private const val ENGINE_CLASS_COLORPICKERBUTTON_INDEX: Int = 193
 
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will

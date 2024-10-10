@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX: Int = 345
+private const val ENGINE_CLASS_MULTIMESHINSTANCE3D_INDEX: Int = 380
 
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a

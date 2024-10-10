@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTCHORUS_INDEX: Int = 84
+private const val ENGINE_CLASS_AUDIOEFFECTCHORUS_INDEX: Int = 85
 
 /**
  * Adds a chorus audio effect. The effect applies a filter with voices to duplicate the audio source

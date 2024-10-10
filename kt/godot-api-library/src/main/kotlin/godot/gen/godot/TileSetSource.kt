@@ -19,6 +19,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TILESETSOURCE_INDEX: Int = 670
+
 /**
  * Exposes a set of tiles for a [TileSet] resource.
  * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative

@@ -14,7 +14,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURE2DARRAY_INDEX: Int = 580
+private const val ENGINE_CLASS_TEXTURE2DARRAY_INDEX: Int = 649
 
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear

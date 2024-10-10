@@ -42,7 +42,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SKELETON3D_INDEX: Int = 521
+private const val ENGINE_CLASS_SKELETON3D_INDEX: Int = 584
 
 /**
  * [Skeleton3D] provides an interface for managing a hierarchy of bones, including pose, rest and

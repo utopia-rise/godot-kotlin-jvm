@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ANIMATIONNODETIMESCALE_INDEX: Int = 66
+private const val ENGINE_CLASS_ANIMATIONNODETIMESCALE_INDEX: Int = 67
 
 /**
  * Allows to scale the speed of the animation (or reverse it) in any child [AnimationNode]s. Setting

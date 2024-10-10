@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SEMAPHORE_INDEX: Int = 510
+private const val ENGINE_CLASS_SEMAPHORE_INDEX: Int = 570
 
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to

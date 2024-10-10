@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX: Int = 534
+private const val ENGINE_CLASS_SKELETONPROFILEHUMANOID_INDEX: Int = 597
 
 /**
  * A [SkeletonProfile] as a preset that is optimized for the human form. This exists for

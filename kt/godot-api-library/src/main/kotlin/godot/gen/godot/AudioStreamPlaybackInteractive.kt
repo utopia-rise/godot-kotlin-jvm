@@ -17,6 +17,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKINTERACTIVE_INDEX: Int = 122
+
 /**
  * Playback component of [AudioStreamInteractive]. Contains functions to change the currently played
  * clip.

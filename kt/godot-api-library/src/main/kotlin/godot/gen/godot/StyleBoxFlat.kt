@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STYLEBOXFLAT_INDEX: Int = 560
+private const val ENGINE_CLASS_STYLEBOXFLAT_INDEX: Int = 627
 
 /**
  * By configuring various properties of this style box, you can achieve many common looks without

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEREMAP_INDEX: Int = 684
+private const val ENGINE_CLASS_VISUALSHADERNODEREMAP_INDEX: Int = 764
 
 /**
  * Remap will transform the input range into output range, e.g. you can change a `0..1` value to

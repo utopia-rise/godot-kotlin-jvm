@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FBXSTATE_INDEX: Int = 221
+private const val ENGINE_CLASS_FBXSTATE_INDEX: Int = 237
 
 /**
  * The FBXState handles the state data imported from FBX files.

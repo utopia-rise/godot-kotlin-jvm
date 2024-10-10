@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_JSONRPC_INDEX: Int = 307
+private const val ENGINE_CLASS_JSONRPC_INDEX: Int = 335
 
 /**
  * [url=https://www.jsonrpc.org/]JSON-RPC[/url] is a standard which wraps a method call in a [JSON]

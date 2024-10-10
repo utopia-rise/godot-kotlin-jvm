@@ -34,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONMESH_INDEX: Int = 355
+private const val ENGINE_CLASS_NAVIGATIONMESH_INDEX: Int = 392
 
 /**
  * A navigation mesh is a collection of polygons that define which areas of an environment are

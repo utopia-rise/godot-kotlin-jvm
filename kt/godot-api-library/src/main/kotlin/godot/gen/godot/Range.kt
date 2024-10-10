@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RANGE_INDEX: Int = 476
+private const val ENGINE_CLASS_RANGE_INDEX: Int = 526
 
 /**
  * Range is an abstract base class for controls that represent a number within a range, using a

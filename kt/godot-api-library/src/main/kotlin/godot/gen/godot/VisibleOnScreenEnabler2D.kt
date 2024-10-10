@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISIBLEONSCREENENABLER2D_INDEX: Int = 626
+private const val ENGINE_CLASS_VISIBLEONSCREENENABLER2D_INDEX: Int = 700
 
 /**
  * [VisibleOnScreenEnabler2D] contains a rectangular region of 2D space and a target node. The

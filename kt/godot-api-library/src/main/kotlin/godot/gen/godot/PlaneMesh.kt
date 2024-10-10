@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PLANEMESH_INDEX: Int = 442
+private const val ENGINE_CLASS_PLANEMESH_INDEX: Int = 492
 
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By

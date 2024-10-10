@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONBOX3D_INDEX: Int = 255
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONBOX3D_INDEX: Int = 275
 
 /**
  * A box-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.

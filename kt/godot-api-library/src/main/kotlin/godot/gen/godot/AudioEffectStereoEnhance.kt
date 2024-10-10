@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTSTEREOENHANCE_INDEX: Int = 107
+private const val ENGINE_CLASS_AUDIOEFFECTSTEREOENHANCE_INDEX: Int = 109
 
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.

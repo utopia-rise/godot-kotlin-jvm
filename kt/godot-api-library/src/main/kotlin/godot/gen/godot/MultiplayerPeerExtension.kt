@@ -15,7 +15,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX: Int = 347
+private const val ENGINE_CLASS_MULTIPLAYERPEEREXTENSION_INDEX: Int = 384
 
 /**
  * This class is designed to be inherited from a GDExtension plugin to implement custom networking

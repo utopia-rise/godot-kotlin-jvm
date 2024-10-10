@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SEGMENTSHAPE2D_INDEX: Int = 509
+private const val ENGINE_CLASS_SEGMENTSHAPE2D_INDEX: Int = 569
 
 /**
  * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a

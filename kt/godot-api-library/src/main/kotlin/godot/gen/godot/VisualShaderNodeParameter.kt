@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEPARAMETER_INDEX: Int = 749
+
 /**
  * A parameter represents a variable in the shader which is set externally, i.e. from the
  * [ShaderMaterial]. Parameters are exposed as properties in the [ShaderMaterial] and can be assigned

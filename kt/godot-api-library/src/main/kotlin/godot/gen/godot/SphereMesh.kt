@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPHEREMESH_INDEX: Int = 539
+private const val ENGINE_CLASS_SPHEREMESH_INDEX: Int = 604
 
 /**
  * Class representing a spherical [PrimitiveMesh].

@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_POINTLIGHT2D_INDEX: Int = 443
+private const val ENGINE_CLASS_POINTLIGHT2D_INDEX: Int = 493
 
 /**
  * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.

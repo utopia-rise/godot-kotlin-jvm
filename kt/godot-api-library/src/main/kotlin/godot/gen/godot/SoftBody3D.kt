@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SOFTBODY3D_INDEX: Int = 538
+private const val ENGINE_CLASS_SOFTBODY3D_INDEX: Int = 603
 
 /**
  * A deformable 3D physics mesh. Used to create elastic or deformable objects such as cloth, rubber,

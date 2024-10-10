@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEMULTIPLYADD_INDEX: Int = 669
+private const val ENGINE_CLASS_VISUALSHADERNODEMULTIPLYADD_INDEX: Int = 746
 
 /**
  * Uses three operands to compute `(a * b + c)` expression.

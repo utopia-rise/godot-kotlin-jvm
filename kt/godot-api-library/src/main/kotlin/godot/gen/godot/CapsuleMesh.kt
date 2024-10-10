@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAPSULEMESH_INDEX: Int = 163
+private const val ENGINE_CLASS_CAPSULEMESH_INDEX: Int = 174
 
 /**
  * Class representing a capsule-shaped [PrimitiveMesh].

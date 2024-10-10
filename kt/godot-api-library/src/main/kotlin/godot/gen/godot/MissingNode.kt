@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MISSINGNODE_INDEX: Int = 339
+private const val ENGINE_CLASS_MISSINGNODE_INDEX: Int = 374
 
 /**
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely

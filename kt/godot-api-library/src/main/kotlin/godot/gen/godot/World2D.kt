@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_WORLD2D_INDEX: Int = 742
+private const val ENGINE_CLASS_WORLD2D_INDEX: Int = 829
 
 /**
  * Class that has everything pertaining to a 2D world: A physics space, a canvas, and a sound space.

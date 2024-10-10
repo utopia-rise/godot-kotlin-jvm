@@ -35,7 +35,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILEMAPLAYER_INDEX: Int = 595
+private const val ENGINE_CLASS_TILEMAPLAYER_INDEX: Int = 665
 
 /**
  * Node for 2D tile-based maps. A [TileMapLayer] uses a [TileSet] which contain a list of tiles

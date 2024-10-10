@@ -25,6 +25,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CSGSHAPE3D_INDEX: Int = 157
+
 /**
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
  * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a

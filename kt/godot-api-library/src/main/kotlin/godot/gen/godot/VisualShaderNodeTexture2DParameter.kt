@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DPARAMETER_INDEX: Int = 697
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DPARAMETER_INDEX: Int = 779
 
 /**
  * Translated to `uniform sampler2D` in the shader language.

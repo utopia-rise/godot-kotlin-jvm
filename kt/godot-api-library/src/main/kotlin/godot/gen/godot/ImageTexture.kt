@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_IMAGETEXTURE_INDEX: Int = 286
+private const val ENGINE_CLASS_IMAGETEXTURE_INDEX: Int = 307
 
 /**
  * A [Texture2D] based on an [Image]. For an image to be displayed, an [ImageTexture] has to be

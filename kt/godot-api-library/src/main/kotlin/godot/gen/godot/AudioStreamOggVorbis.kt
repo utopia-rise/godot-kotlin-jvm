@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMOGGVORBIS_INDEX: Int = 117
+private const val ENGINE_CLASS_AUDIOSTREAMOGGVORBIS_INDEX: Int = 120
 
 /**
  * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file

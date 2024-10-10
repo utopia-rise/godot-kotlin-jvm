@@ -13,7 +13,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PACKETPEEREXTENSION_INDEX: Int = 399
+private const val ENGINE_CLASS_PACKETPEEREXTENSION_INDEX: Int = 442
 
 @GodotBaseType
 public open class PacketPeerExtension : PacketPeer() {

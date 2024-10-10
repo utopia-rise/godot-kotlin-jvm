@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX: Int = 633
+private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANCONSTANT_INDEX: Int = 708
 
 /**
  * Has only one output port and no inputs.

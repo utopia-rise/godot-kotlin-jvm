@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDPIPELINEDEPTHSTENCILSTATE_INDEX: Int = 463
+private const val ENGINE_CLASS_RDPIPELINEDEPTHSTENCILSTATE_INDEX: Int = 513
 
 /**
  * [RDPipelineDepthStencilState] controls the way depth and stencil comparisons are performed when

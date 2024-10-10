@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX: Int = 564
+private const val ENGINE_CLASS_SUBVIEWPORTCONTAINER_INDEX: Int = 631
 
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the

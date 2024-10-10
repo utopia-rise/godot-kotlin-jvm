@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODESDFRAYMARCH_INDEX: Int = 687
+private const val ENGINE_CLASS_VISUALSHADERNODESDFRAYMARCH_INDEX: Int = 768
 
 /**
  * Casts a ray against the screen SDF (signed-distance field) and returns the distance travelled.

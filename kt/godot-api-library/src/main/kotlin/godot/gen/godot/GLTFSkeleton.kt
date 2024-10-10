@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFSKELETON_INDEX: Int = 244
+private const val ENGINE_CLASS_GLTFSKELETON_INDEX: Int = 262
 
 @GodotBaseType
 public open class GLTFSkeleton : Resource() {

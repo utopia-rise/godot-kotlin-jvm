@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_JNISINGLETON_INDEX: Int = 305
+private const val ENGINE_CLASS_JNISINGLETON_INDEX: Int = 333
 
 /**
  * The JNISingleton is implemented only in the Android export. It's used to call methods and connect

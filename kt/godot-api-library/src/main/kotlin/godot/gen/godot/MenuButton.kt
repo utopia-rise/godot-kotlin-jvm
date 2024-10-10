@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MENUBUTTON_INDEX: Int = 330
+private const val ENGINE_CLASS_MENUBUTTON_INDEX: Int = 365
 
 /**
  * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],

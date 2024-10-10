@@ -14,6 +14,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmInline
 
+private const val ENGINE_CLASS_IMAGEFORMATLOADER_INDEX: Int = 305
+
 public infix fun Long.or(other: godot.ImageFormatLoader.LoaderFlags): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.ImageFormatLoader.LoaderFlags): Long = this.xor(other.flag)
@@ -108,7 +110,7 @@ public open class ImageFormatLoader internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class LoaderFlagsValue internal constructor(
+  public value class LoaderFlagsValue(
     public override val flag: Long,
   ) : LoaderFlags
 

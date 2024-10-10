@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRORIGIN3D_INDEX: Int = 761
+private const val ENGINE_CLASS_XRORIGIN3D_INDEX: Int = 849
 
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of

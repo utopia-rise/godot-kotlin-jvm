@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEIS_INDEX: Int = 666
+private const val ENGINE_CLASS_VISUALSHADERNODEIS_INDEX: Int = 743
 
 /**
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.

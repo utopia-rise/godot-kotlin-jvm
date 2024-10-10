@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSAMPLEPLAYBACK_INDEX: Int = 111
+private const val ENGINE_CLASS_AUDIOSAMPLEPLAYBACK_INDEX: Int = 113
 
 /**
  * Meta class for playing back audio samples.

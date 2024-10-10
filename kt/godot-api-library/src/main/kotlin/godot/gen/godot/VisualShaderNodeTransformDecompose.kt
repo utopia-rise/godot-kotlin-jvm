@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMDECOMPOSE_INDEX: Int = 705
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMDECOMPOSE_INDEX: Int = 788
 
 /**
  * Takes a 4×4 transform matrix and decomposes it into four `vec3` values, one from each row of the

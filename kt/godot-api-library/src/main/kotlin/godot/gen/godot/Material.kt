@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MATERIAL_INDEX: Int = 328
+private const val ENGINE_CLASS_MATERIAL_INDEX: Int = 363
 
 /**
  * [Material] is a base resource used for coloring and shading geometry. All materials inherit from

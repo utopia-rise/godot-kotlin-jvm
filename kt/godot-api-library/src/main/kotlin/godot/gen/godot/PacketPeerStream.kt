@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PACKETPEERSTREAM_INDEX: Int = 400
+private const val ENGINE_CLASS_PACKETPEERSTREAM_INDEX: Int = 443
 
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for

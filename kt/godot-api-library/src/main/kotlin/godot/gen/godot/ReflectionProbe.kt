@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_REFLECTIONPROBE_INDEX: Int = 481
+private const val ENGINE_CLASS_REFLECTIONPROBE_INDEX: Int = 531
 
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur

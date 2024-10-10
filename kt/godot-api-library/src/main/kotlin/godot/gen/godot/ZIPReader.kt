@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ZIPREADER_INDEX: Int = 766
+private const val ENGINE_CLASS_ZIPREADER_INDEX: Int = 855
 
 /**
  * This class implements a reader that can extract the content of individual files inside a zip

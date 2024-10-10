@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAPSULESHAPE2D_INDEX: Int = 164
+private const val ENGINE_CLASS_CAPSULESHAPE2D_INDEX: Int = 175
 
 /**
  * A 2D capsule shape, intended for use in physics. Usually used to provide a shape for a

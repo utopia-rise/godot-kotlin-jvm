@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_WEBSOCKETPEER_INDEX: Int = 740
+private const val ENGINE_CLASS_WEBSOCKETPEER_INDEX: Int = 826
 
 /**
  * This class represents WebSocket connection, and can be used as a WebSocket client (RFC

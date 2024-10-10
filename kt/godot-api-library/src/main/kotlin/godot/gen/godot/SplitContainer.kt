@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPLITCONTAINER_INDEX: Int = 543
+private const val ENGINE_CLASS_SPLITCONTAINER_INDEX: Int = 608
 
 /**
  * A container that accepts only two child controls, then arranges them horizontally or vertically

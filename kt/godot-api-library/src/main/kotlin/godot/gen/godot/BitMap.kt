@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_BITMAP_INDEX: Int = 131
+private const val ENGINE_CLASS_BITMAP_INDEX: Int = 139
 
 /**
  * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix

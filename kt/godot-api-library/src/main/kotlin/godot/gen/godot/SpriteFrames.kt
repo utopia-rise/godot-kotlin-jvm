@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SPRITEFRAMES_INDEX: Int = 548
+private const val ENGINE_CLASS_SPRITEFRAMES_INDEX: Int = 614
 
 /**
  * Sprite frame library for an [AnimatedSprite2D] or [AnimatedSprite3D] node. Contains frames and

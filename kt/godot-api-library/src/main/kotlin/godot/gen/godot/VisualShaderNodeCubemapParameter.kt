@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODECUBEMAPPARAMETER_INDEX: Int = 643
+private const val ENGINE_CLASS_VISUALSHADERNODECUBEMAPPARAMETER_INDEX: Int = 719
 
 /**
  * Translated to `uniform samplerCube` in the shader language. The output value can be used as port

@@ -26,7 +26,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_OPTIONBUTTON_INDEX: Int = 394
+private const val ENGINE_CLASS_OPTIONBUTTON_INDEX: Int = 435
 
 /**
  * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.

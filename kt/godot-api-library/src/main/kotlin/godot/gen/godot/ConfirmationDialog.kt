@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX: Int = 193
+private const val ENGINE_CLASS_CONFIRMATIONDIALOG_INDEX: Int = 207
 
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing

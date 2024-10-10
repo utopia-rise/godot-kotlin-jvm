@@ -30,7 +30,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_HTTPREQUEST_INDEX: Int = 280
+private const val ENGINE_CLASS_HTTPREQUEST_INDEX: Int = 300
 
 /**
  * A node with the ability to send HTTP requests. Uses [HTTPClient] internally.

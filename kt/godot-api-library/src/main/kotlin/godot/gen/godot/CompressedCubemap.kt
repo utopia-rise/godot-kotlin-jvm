@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_COMPRESSEDCUBEMAP_INDEX: Int = 184
+private const val ENGINE_CLASS_COMPRESSEDCUBEMAP_INDEX: Int = 197
 
 /**
  * A cubemap that is loaded from a `.ccube` file. This file format is internal to Godot; it is

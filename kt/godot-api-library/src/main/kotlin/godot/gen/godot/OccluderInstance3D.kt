@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX: Int = 374
+private const val ENGINE_CLASS_OCCLUDERINSTANCE3D_INDEX: Int = 414
 
 /**
  * Occlusion culling can improve rendering performance in closed/semi-open areas by hiding geometry

@@ -34,7 +34,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RIGIDBODY2D_INDEX: Int = 500
+private const val ENGINE_CLASS_RIGIDBODY2D_INDEX: Int = 555
 
 /**
  * [RigidBody2D] implements full 2D physics. It cannot be controlled directly, instead, you must

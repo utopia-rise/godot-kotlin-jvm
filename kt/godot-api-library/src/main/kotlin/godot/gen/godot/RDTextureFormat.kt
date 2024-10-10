@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDTEXTUREFORMAT_INDEX: Int = 471
+private const val ENGINE_CLASS_RDTEXTUREFORMAT_INDEX: Int = 521
 
 /**
  * This object is used by [RenderingDevice].

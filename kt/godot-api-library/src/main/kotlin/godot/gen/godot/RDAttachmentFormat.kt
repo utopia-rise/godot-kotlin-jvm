@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDATTACHMENTFORMAT_INDEX: Int = 459
+private const val ENGINE_CLASS_RDATTACHMENTFORMAT_INDEX: Int = 509
 
 /**
  * This object is used by [RenderingDevice].

@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BOXSHAPE3D_INDEX: Int = 138
+private const val ENGINE_CLASS_BOXSHAPE3D_INDEX: Int = 146
 
 /**
  * A 3D box shape, intended for use in physics. Usually used to provide a shape for a

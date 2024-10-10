@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SHAPECAST3D_INDEX: Int = 518
+private const val ENGINE_CLASS_SHAPECAST3D_INDEX: Int = 581
 
 /**
  * Shape casting allows to detect collision objects by sweeping its [shape] along the cast direction

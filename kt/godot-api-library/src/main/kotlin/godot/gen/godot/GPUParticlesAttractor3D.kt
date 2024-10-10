@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTOR3D_INDEX: Int = 270
+
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
  * them away from the attractor's origin.

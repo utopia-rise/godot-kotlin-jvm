@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CANVASGROUP_INDEX: Int = 158
+private const val ENGINE_CLASS_CANVASGROUP_INDEX: Int = 168
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw

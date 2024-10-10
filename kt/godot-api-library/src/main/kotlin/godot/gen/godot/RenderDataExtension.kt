@@ -14,7 +14,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RENDERDATAEXTENSION_INDEX: Int = 486
+private const val ENGINE_CLASS_RENDERDATAEXTENSION_INDEX: Int = 537
 
 /**
  * This class allows for a RenderData implementation to be made in GDExtension.

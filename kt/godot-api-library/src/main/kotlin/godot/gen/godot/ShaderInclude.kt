@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SHADERINCLUDE_INDEX: Int = 515
+private const val ENGINE_CLASS_SHADERINCLUDE_INDEX: Int = 576
 
 /**
  * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a

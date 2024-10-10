@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TABCONTAINER_INDEX: Int = 570
+private const val ENGINE_CLASS_TABCONTAINER_INDEX: Int = 638
 
 /**
  * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's

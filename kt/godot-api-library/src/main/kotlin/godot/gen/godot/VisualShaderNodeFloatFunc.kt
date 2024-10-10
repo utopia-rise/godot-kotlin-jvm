@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFLOATFUNC_INDEX: Int = 654
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATFUNC_INDEX: Int = 730
 
 /**
  * Accept a floating-point scalar (`x`) to the input port and transform it according to [function].

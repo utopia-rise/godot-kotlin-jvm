@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPRITE3D_INDEX: Int = 547
+private const val ENGINE_CLASS_SPRITE3D_INDEX: Int = 612
 
 /**
  * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from

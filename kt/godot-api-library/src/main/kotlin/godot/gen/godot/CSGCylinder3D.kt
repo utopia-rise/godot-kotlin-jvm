@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGCYLINDER3D_INDEX: Int = 145
+private const val ENGINE_CLASS_CSGCYLINDER3D_INDEX: Int = 153
 
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.

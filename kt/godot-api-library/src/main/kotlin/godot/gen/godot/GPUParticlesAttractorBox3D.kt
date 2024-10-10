@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESATTRACTORBOX3D_INDEX: Int = 252
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTORBOX3D_INDEX: Int = 271
 
 /**
  * A box-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to

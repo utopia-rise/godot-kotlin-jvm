@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX: Int = 416
+private const val ENGINE_CLASS_PHYSICALSKYMATERIAL_INDEX: Int = 459
 
 /**
  * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on

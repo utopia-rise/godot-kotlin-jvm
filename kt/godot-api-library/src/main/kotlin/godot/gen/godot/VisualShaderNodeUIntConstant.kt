@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEUINTCONSTANT_INDEX: Int = 710
+private const val ENGINE_CLASS_VISUALSHADERNODEUINTCONSTANT_INDEX: Int = 793
 
 /**
  * Translated to `uint` in the shader language.

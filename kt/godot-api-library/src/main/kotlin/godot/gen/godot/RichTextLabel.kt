@@ -45,7 +45,7 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RICHTEXTLABEL_INDEX: Int = 499
+private const val ENGINE_CLASS_RICHTEXTLABEL_INDEX: Int = 554
 
 public infix fun Long.or(other: godot.RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
 
@@ -1629,7 +1629,7 @@ public open class RichTextLabel : Control() {
   }
 
   @JvmInline
-  internal value class ImageUpdateMaskValue internal constructor(
+  public value class ImageUpdateMaskValue(
     public override val flag: Long,
   ) : ImageUpdateMask
 

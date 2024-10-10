@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PLACEHOLDERCUBEMAPARRAY_INDEX: Int = 436
+private const val ENGINE_CLASS_PLACEHOLDERCUBEMAPARRAY_INDEX: Int = 485
 
 /**
  * This class replaces a [CubemapArray] or a [CubemapArray]-derived class in 2 conditions:

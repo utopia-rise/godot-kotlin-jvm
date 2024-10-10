@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDSHADERSPIRV_INDEX: Int = 469
+private const val ENGINE_CLASS_RDSHADERSPIRV_INDEX: Int = 519
 
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]

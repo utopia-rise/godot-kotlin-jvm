@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX: Int = 531
+private const val ENGINE_CLASS_SKELETONMODIFICATIONSTACK2D_INDEX: Int = 594
 
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.

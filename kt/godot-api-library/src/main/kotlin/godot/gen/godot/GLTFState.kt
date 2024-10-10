@@ -36,7 +36,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFSTATE_INDEX: Int = 247
+private const val ENGINE_CLASS_GLTFSTATE_INDEX: Int = 265
 
 /**
  * Contains all nodes and resources of a GLTF file. This is used by [GLTFDocument] as data storage,

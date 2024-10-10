@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX: Int = 106
+private const val ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZER_INDEX: Int = 107
 
 /**
  * This audio effect does not affect sound output, but can be used for real-time audio

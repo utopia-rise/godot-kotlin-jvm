@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RANDOMNUMBERGENERATOR_INDEX: Int = 475
+private const val ENGINE_CLASS_RANDOMNUMBERGENERATOR_INDEX: Int = 525
 
 /**
  * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses

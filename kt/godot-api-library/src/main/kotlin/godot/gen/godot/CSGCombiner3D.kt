@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CSGCOMBINER3D_INDEX: Int = 144
+private const val ENGINE_CLASS_CSGCOMBINER3D_INDEX: Int = 152
 
 /**
  * For complex arrangements of shapes, it is sometimes needed to add structure to your CSG nodes.

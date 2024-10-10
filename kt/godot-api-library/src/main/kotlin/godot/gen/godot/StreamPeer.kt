@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_STREAMPEER_INDEX: Int = 619
+
 /**
  * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
  * provides an API for sending and receiving data through streams as raw data or strings.

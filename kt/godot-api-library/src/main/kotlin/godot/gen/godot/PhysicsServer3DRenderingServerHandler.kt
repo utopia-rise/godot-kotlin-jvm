@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX: Int = 426
+private const val ENGINE_CLASS_PHYSICSSERVER3DRENDERINGSERVERHANDLER_INDEX: Int = 475
 
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {

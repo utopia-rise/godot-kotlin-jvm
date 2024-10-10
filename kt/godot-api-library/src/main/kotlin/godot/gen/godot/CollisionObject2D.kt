@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLLISIONOBJECT2D_INDEX: Int = 186
+
 /**
  * Abstract base class for 2D physics objects. [CollisionObject2D] can hold any number of [Shape2D]s
  * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not

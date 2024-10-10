@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFRESNEL_INDEX: Int = 658
+private const val ENGINE_CLASS_VISUALSHADERNODEFRESNEL_INDEX: Int = 734
 
 /**
  * Returns falloff based on the dot product of surface normal and view direction of camera (pass

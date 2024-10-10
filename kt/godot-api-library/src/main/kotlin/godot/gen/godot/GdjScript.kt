@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GDJSCRIPT_INDEX: Int = 259
+private const val ENGINE_CLASS_GDJSCRIPT_INDEX: Int = 279
 
 @GodotBaseType
 public open class GdjScript : JvmScript() {

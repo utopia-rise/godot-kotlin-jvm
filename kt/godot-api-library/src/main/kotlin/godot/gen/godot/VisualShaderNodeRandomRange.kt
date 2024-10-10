@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODERANDOMRANGE_INDEX: Int = 683
+private const val ENGINE_CLASS_VISUALSHADERNODERANDOMRANGE_INDEX: Int = 763
 
 /**
  * Random range node will output a pseudo-random scalar value in the specified range, based on the

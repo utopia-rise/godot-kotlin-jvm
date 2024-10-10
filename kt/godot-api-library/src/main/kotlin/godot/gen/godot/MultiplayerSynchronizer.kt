@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX: Int = 349
+private const val ENGINE_CLASS_MULTIPLAYERSYNCHRONIZER_INDEX: Int = 386
 
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.

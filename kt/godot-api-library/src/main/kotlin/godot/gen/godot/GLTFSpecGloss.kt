@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFSPECGLOSS_INDEX: Int = 246
+private const val ENGINE_CLASS_GLTFSPECGLOSS_INDEX: Int = 264
 
 /**
  * KHR_materials_pbrSpecularGlossiness is an archived GLTF extension. This means that it is

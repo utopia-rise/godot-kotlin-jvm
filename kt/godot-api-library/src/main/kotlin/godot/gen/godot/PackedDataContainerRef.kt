@@ -15,6 +15,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_PACKEDDATACONTAINERREF_INDEX: Int = 438
+
 /**
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
  * [PackedDataContainerRef] (only applies to [Array] and [Dictionary]). Their data can be retrieved the

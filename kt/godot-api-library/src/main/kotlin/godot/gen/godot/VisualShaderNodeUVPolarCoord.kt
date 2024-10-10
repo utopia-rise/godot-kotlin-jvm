@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEUVPOLARCOORD_INDEX: Int = 715
+private const val ENGINE_CLASS_VISUALSHADERNODEUVPOLARCOORD_INDEX: Int = 798
 
 /**
  * UV polar coord node will transform UV values into polar coordinates, with specified scale, zoom

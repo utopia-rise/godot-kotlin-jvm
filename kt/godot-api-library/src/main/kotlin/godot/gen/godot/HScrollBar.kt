@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HSCROLLBAR_INDEX: Int = 275
+private const val ENGINE_CLASS_HSCROLLBAR_INDEX: Int = 295
 
 /**
  * A horizontal scrollbar, typically used to navigate through content that extends beyond the

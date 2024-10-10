@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGTORUS3D_INDEX: Int = 149
+private const val ENGINE_CLASS_CSGTORUS3D_INDEX: Int = 159
 
 /**
  * This node allows you to create a torus for use with the CSG system.

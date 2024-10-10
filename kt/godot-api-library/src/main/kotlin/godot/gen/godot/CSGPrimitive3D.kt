@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_CSGPRIMITIVE3D_INDEX: Int = 156
+
 /**
  * Parent class for various CSG primitives. It contains code and functionality that is common
  * between them. It cannot be used directly. Instead use one of the various classes that inherit from

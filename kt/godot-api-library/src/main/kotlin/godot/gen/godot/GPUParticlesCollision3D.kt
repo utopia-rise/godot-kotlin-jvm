@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISION3D_INDEX: Int = 274
+
 /**
  * Particle collision shapes can be used to make particles stop or bounce against them.
  * Particle collision shapes work in real-time and can be moved, rotated and scaled during gameplay.

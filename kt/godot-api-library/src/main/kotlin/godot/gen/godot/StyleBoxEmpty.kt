@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_STYLEBOXEMPTY_INDEX: Int = 559
+private const val ENGINE_CLASS_STYLEBOXEMPTY_INDEX: Int = 626
 
 /**
  * An empty [StyleBox] that can be used to display nothing instead of the default style (e.g. it can

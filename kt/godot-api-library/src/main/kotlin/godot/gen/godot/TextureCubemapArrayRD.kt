@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURECUBEMAPARRAYRD_INDEX: Int = 586
+private const val ENGINE_CLASS_TEXTURECUBEMAPARRAYRD_INDEX: Int = 655
 
 /**
  * This texture class allows you to use a cubemap array texture created directly on the

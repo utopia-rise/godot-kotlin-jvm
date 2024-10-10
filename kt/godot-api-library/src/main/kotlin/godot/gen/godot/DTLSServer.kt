@@ -16,7 +16,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_DTLSSERVER_INDEX: Int = 209
+private const val ENGINE_CLASS_DTLSSERVER_INDEX: Int = 223
 
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected

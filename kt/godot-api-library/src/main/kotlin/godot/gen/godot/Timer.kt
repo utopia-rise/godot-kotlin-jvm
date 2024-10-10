@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TIMER_INDEX: Int = 600
+private const val ENGINE_CLASS_TIMER_INDEX: Int = 671
 
 /**
  * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the

@@ -26,7 +26,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SKELETON2D_INDEX: Int = 520
+private const val ENGINE_CLASS_SKELETON2D_INDEX: Int = 583
 
 /**
  * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest

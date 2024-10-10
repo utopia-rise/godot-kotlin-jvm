@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAMERAFEED_INDEX: Int = 156
+private const val ENGINE_CLASS_CAMERAFEED_INDEX: Int = 166
 
 /**
  * A camera feed gives you access to a single physical camera attached to your device. When enabled,

@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOLORPARAMETER_INDEX: Int = 639
+private const val ENGINE_CLASS_VISUALSHADERNODECOLORPARAMETER_INDEX: Int = 714
 
 /**
  * Translated to `uniform vec4` in the shader language.

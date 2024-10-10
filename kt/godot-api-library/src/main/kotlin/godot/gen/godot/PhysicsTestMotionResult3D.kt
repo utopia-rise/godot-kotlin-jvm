@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX: Int = 432
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT3D_INDEX: Int = 481
 
 /**
  * Describes the motion and collision result from [PhysicsServer3D.bodyTestMotion].

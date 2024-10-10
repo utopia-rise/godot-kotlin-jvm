@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_GLTFDOCUMENT_INDEX: Int = 236
+private const val ENGINE_CLASS_GLTFDOCUMENT_INDEX: Int = 254
 
 /**
  * GLTFDocument supports reading data from a glTF file, buffer, or Godot scene. This data can then

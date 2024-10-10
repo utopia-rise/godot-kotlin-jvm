@@ -34,7 +34,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_LABEL_INDEX: Int = 313
+private const val ENGINE_CLASS_LABEL_INDEX: Int = 345
 
 /**
  * A control for displaying plain text. It gives you control over the horizontal and vertical

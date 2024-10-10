@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_POINTMESH_INDEX: Int = 444
+private const val ENGINE_CLASS_POINTMESH_INDEX: Int = 494
 
 /**
  * The PointMesh is made from a single point. Instead of relying on triangles, points are rendered

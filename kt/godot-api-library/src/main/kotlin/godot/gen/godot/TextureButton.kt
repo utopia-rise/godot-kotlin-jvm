@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TEXTUREBUTTON_INDEX: Int = 585
+private const val ENGINE_CLASS_TEXTUREBUTTON_INDEX: Int = 654
 
 /**
  * [TextureButton] has the same functionality as [Button], except it uses sprites instead of Godot's

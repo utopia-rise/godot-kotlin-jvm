@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX: Int = 523
+private const val ENGINE_CLASS_SKELETONMODIFICATION2D_INDEX: Int = 586
 
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes

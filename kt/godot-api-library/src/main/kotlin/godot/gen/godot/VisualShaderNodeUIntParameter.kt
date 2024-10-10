@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEUINTPARAMETER_INDEX: Int = 713
+private const val ENGINE_CLASS_VISUALSHADERNODEUINTPARAMETER_INDEX: Int = 796
 
 /**
  * A [VisualShaderNodeParameter] of type unsigned [int]. Offers additional customization for range

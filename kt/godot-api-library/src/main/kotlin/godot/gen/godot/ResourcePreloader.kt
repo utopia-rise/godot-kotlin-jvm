@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RESOURCEPRELOADER_INDEX: Int = 496
+private const val ENGINE_CLASS_RESOURCEPRELOADER_INDEX: Int = 551
 
 /**
  * This node is used to preload sub-resources inside a scene, so when the scene is loaded, all the

@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FOGVOLUME_INDEX: Int = 226
+private const val ENGINE_CLASS_FOGVOLUME_INDEX: Int = 243
 
 /**
  * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s

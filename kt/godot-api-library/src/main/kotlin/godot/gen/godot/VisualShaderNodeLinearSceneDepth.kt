@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODELINEARSCENEDEPTH_INDEX: Int = 667
+private const val ENGINE_CLASS_VISUALSHADERNODELINEARSCENEDEPTH_INDEX: Int = 744
 
 /**
  * This node can be used in fragment shaders.

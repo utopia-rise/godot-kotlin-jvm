@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAMERAATTRIBUTES_INDEX: Int = 153
+private const val ENGINE_CLASS_CAMERAATTRIBUTES_INDEX: Int = 163
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.

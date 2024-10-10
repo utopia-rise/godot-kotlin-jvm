@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONPROFILE_INDEX: Int = 533
+private const val ENGINE_CLASS_SKELETONPROFILE_INDEX: Int = 596
 
 /**
  * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in

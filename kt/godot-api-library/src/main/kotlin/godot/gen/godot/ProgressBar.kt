@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PROGRESSBAR_INDEX: Int = 455
+private const val ENGINE_CLASS_PROGRESSBAR_INDEX: Int = 505
 
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to

@@ -39,7 +39,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_GRIDMAP_INDEX: Int = 270
+private const val ENGINE_CLASS_GRIDMAP_INDEX: Int = 290
 
 /**
  * GridMap lets you place meshes on a grid interactively. It works both from the editor and from

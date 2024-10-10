@@ -13,7 +13,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECT_INDEX: Int = 79
+private const val ENGINE_CLASS_AUDIOEFFECT_INDEX: Int = 80
 
 /**
  * The base [Resource] for every audio effect. In the editor, an audio effect can be added to the

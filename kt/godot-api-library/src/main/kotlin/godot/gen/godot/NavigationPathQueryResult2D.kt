@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX: Int = 362
+private const val ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT2D_INDEX: Int = 399
 
 /**
  * This class stores the result of a 2D navigation path query from the [NavigationServer2D].

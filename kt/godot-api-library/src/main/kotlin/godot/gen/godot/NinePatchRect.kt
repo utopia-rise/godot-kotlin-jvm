@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NINEPATCHRECT_INDEX: Int = 367
+private const val ENGINE_CLASS_NINEPATCHRECT_INDEX: Int = 404
 
 /**
  * Also known as 9-slice panels, [NinePatchRect] produces clean panels of any size based on a small

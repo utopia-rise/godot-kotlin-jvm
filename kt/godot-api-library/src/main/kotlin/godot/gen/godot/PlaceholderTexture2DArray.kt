@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PLACEHOLDERTEXTURE2DARRAY_INDEX: Int = 440
+private const val ENGINE_CLASS_PLACEHOLDERTEXTURE2DARRAY_INDEX: Int = 489
 
 /**
  * This class is used when loading a project that uses a [Texture2D] subclass in 2 conditions:

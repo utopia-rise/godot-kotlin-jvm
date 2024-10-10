@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTSERVERADVANCED_INDEX: Int = 575
+private const val ENGINE_CLASS_TEXTSERVERADVANCED_INDEX: Int = 644
 
 /**
  * An implementation of [TextServer] that uses HarfBuzz, ICU and SIL Graphite to support BiDi,

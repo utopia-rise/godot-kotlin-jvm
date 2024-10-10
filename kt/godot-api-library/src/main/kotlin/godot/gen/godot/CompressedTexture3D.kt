@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COMPRESSEDTEXTURE3D_INDEX: Int = 188
+private const val ENGINE_CLASS_COMPRESSEDTEXTURE3D_INDEX: Int = 201
 
 /**
  * [CompressedTexture3D] is the VRAM-compressed counterpart of [ImageTexture3D]. The file extension

@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLES3D_INDEX: Int = 251
+private const val ENGINE_CLASS_GPUPARTICLES3D_INDEX: Int = 269
 
 /**
  * 3D particle node used to create a variety of particle systems and effects. [GPUParticles3D]

@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRFACETRACKER_INDEX: Int = 756
+private const val ENGINE_CLASS_XRFACETRACKER_INDEX: Int = 843
 
 /**
  * An instance of this object represents a tracked face and its corresponding blend shapes. The

@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX: Int = 86
+private const val ENGINE_CLASS_AUDIOEFFECTDELAY_INDEX: Int = 87
 
 /**
  * Plays input signal back after a period of time. The delayed signal may be played back multiple

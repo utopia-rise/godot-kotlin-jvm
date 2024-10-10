@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVEC2CONSTANT_INDEX: Int = 718
+private const val ENGINE_CLASS_VISUALSHADERNODEVEC2CONSTANT_INDEX: Int = 802
 
 /**
  * A constant [Vector2], which can be used as an input node.

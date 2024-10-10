@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_AUDIOSTREAMINTERACTIVE_INDEX: Int = 114
+private const val ENGINE_CLASS_AUDIOSTREAMINTERACTIVE_INDEX: Int = 117
 
 /**
  * This is an audio stream that can playback music interactively, combining clips and a transition

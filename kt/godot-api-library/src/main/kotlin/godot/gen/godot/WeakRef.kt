@@ -15,7 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_WEAKREF_INDEX: Int = 734
+private const val ENGINE_CLASS_WEAKREF_INDEX: Int = 819
 
 /**
  * A weakref can hold a [RefCounted] without contributing to the reference counter. A weakref can be

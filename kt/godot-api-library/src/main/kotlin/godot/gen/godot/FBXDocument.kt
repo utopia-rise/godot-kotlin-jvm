@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_FBXDOCUMENT_INDEX: Int = 220
+private const val ENGINE_CLASS_FBXDOCUMENT_INDEX: Int = 236
 
 /**
  * The FBXDocument handles FBX documents. It provides methods to append data from buffers or files,

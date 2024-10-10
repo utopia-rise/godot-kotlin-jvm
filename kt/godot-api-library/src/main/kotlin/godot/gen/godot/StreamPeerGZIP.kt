@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_STREAMPEERGZIP_INDEX: Int = 555
+private const val ENGINE_CLASS_STREAMPEERGZIP_INDEX: Int = 622
 
 /**
  * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This

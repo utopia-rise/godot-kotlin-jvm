@@ -75,7 +75,7 @@ public sealed interface MethodFlags {
 }
 
 @JvmInline
-internal value class MethodFlagsValue internal constructor(
+public value class MethodFlagsValue(
   public override val flag: Long,
 ) : MethodFlags
 

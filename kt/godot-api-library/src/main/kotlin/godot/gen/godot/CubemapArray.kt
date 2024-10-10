@@ -14,7 +14,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CUBEMAPARRAY_INDEX: Int = 201
+private const val ENGINE_CLASS_CUBEMAPARRAY_INDEX: Int = 215
 
 /**
  * [CubemapArray]s are made of an array of [Cubemap]s. Like [Cubemap]s, they are made of multiple

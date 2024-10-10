@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDSHADERSOURCE_INDEX: Int = 470
+private const val ENGINE_CLASS_RDSHADERSOURCE_INDEX: Int = 520
 
 /**
  * Shader source code in text form.

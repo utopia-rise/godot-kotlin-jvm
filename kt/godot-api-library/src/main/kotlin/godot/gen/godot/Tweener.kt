@@ -13,6 +13,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_TWEENER_INDEX: Int = 680
+
 /**
  * Tweeners are objects that perform a specific animating task, e.g. interpolating a property or
  * calling a method at a given time. A [Tweener] can't be created manually, you need to use a dedicated

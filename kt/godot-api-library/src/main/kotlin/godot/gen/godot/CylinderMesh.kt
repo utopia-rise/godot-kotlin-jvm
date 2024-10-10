@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CYLINDERMESH_INDEX: Int = 207
+private const val ENGINE_CLASS_CYLINDERMESH_INDEX: Int = 221
 
 /**
  * Class representing a cylindrical [PrimitiveMesh]. This class can be used to create cones by

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX: Int = 344
+private const val ENGINE_CLASS_MULTIMESHINSTANCE2D_INDEX: Int = 379
 
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.

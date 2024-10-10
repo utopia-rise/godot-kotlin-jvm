@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SYSTEMFONT_INDEX: Int = 567
+private const val ENGINE_CLASS_SYSTEMFONT_INDEX: Int = 634
 
 /**
  * [SystemFont] loads a font from a system font with the first matching name from [fontNames].

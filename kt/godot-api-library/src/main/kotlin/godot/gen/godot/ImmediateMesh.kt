@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_IMMEDIATEMESH_INDEX: Int = 288
+private const val ENGINE_CLASS_IMMEDIATEMESH_INDEX: Int = 310
 
 /**
  * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.

@@ -13,6 +13,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RESOURCEIMPORTER_INDEX: Int = 550
+
 /**
  * This is the base class for Godot's resource importers. To implement your own resource importers
  * using editor plugins, see [EditorImportPlugin].

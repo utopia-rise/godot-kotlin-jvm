@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CANVASITEMMATERIAL_INDEX: Int = 159
+private const val ENGINE_CLASS_CANVASITEMMATERIAL_INDEX: Int = 170
 
 /**
  * [CanvasItemMaterial]s provide a means of modifying the textures associated with a CanvasItem.

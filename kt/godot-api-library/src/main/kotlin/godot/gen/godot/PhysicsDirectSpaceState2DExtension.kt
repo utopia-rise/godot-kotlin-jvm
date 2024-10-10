@@ -17,7 +17,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_INDEX: Int = 419
+private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE2DEXTENSION_INDEX: Int = 467
 
 /**
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRIDCONTAINER_INDEX: Int = 269
+private const val ENGINE_CLASS_GRIDCONTAINER_INDEX: Int = 289
 
 /**
  * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified

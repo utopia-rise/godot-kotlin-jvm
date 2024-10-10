@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SLIDER_INDEX: Int = 601
+
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
  * vertical axis. Sliders are [Range]-based controls.

@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WEBRTCDATACHANNEL_INDEX: Int = 820
+
 @GodotBaseType
 public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**

@@ -29,7 +29,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XRCONTROLLER3D_INDEX: Int = 753
+private const val ENGINE_CLASS_XRCONTROLLER3D_INDEX: Int = 840
 
 /**
  * This is a helper spatial node that is linked to the tracking of controllers. It also offers

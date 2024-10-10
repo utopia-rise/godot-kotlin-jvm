@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BUTTONGROUP_INDEX: Int = 140
+private const val ENGINE_CLASS_BUTTONGROUP_INDEX: Int = 148
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio

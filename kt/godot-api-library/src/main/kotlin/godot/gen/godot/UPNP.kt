@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_UPNP_INDEX: Int = 609
+private const val ENGINE_CLASS_UPNP_INDEX: Int = 682
 
 /**
  * This class can be used to discover compatible [UPNPDevice]s on the local network and execute

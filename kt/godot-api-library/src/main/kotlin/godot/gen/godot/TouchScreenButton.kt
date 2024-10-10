@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TOUCHSCREENBUTTON_INDEX: Int = 602
+private const val ENGINE_CLASS_TOUCHSCREENBUTTON_INDEX: Int = 673
 
 /**
  * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for

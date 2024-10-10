@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SEPARATOR_INDEX: Int = 573
+
 /**
  * Abstract base class for separators, used for separating other controls. [Separator]s are purely
  * visual and normally drawn as a [StyleBoxLine].

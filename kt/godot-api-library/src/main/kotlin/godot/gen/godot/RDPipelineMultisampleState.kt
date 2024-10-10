@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX: Int = 464
+private const val ENGINE_CLASS_RDPIPELINEMULTISAMPLESTATE_INDEX: Int = 514
 
 /**
  * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is

@@ -18,7 +18,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MAINLOOP_INDEX: Int = 324
+private const val ENGINE_CLASS_MAINLOOP_INDEX: Int = 359
 
 /**
  * [MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by

@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BOXCONTAINER_INDEX: Int = 135
+private const val ENGINE_CLASS_BOXCONTAINER_INDEX: Int = 143
 
 /**
  * A container that arranges its child controls horizontally or vertically, rearranging them

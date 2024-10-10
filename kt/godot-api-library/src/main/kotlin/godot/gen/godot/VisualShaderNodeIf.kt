@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEIF_INDEX: Int = 660
+private const val ENGINE_CLASS_VISUALSHADERNODEIF_INDEX: Int = 737
 
 /**
  * This visual shader node has six input ports:

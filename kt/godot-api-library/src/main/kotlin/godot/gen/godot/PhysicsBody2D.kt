@@ -26,6 +26,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PHYSICSBODY2D_INDEX: Int = 460
+
 /**
  * [PhysicsBody2D] is an abstract base class for 2D game objects affected by physics. All 2D physics
  * bodies inherit from it.

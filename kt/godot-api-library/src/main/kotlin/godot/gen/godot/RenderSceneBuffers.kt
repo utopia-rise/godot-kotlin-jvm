@@ -15,6 +15,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_RENDERSCENEBUFFERS_INDEX: Int = 539
+
 /**
  * Abstract scene buffers object, created for each viewport for which 3D rendering is done. It
  * manages any additional buffers used during rendering and will discard buffers when the viewport is

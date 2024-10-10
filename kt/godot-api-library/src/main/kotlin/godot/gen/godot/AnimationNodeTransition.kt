@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX: Int = 68
+private const val ENGINE_CLASS_ANIMATIONNODETRANSITION_INDEX: Int = 69
 
 /**
  * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].

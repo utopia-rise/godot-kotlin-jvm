@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE_INDEX: Int = 694
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE_INDEX: Int = 776
 
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to

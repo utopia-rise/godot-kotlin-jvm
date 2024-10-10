@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BOXOCCLUDER3D_INDEX: Int = 137
+private const val ENGINE_CLASS_BOXOCCLUDER3D_INDEX: Int = 145
 
 /**
  * [BoxOccluder3D] stores a cuboid shape that can be used by the engine's occlusion culling system.

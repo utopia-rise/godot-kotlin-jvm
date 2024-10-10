@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKY_INDEX: Int = 536
+private const val ENGINE_CLASS_SKY_INDEX: Int = 600
 
 /**
  * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits

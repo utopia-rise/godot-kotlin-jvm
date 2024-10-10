@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAYPARAMETER_INDEX: Int = 696
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURE2DARRAYPARAMETER_INDEX: Int = 778
 
 /**
  * This parameter allows to provide a collection of textures for the shader. You can use

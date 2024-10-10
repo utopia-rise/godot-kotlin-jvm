@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PATH2D_INDEX: Int = 409
+private const val ENGINE_CLASS_PATH2D_INDEX: Int = 452
 
 /**
  * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more

@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISIBLEONSCREENENABLER3D_INDEX: Int = 627
+private const val ENGINE_CLASS_VISIBLEONSCREENENABLER3D_INDEX: Int = 701
 
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target

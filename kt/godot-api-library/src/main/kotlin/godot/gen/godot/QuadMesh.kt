@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_QUADMESH_INDEX: Int = 457
+private const val ENGINE_CLASS_QUADMESH_INDEX: Int = 507
 
 /**
  * Class representing a square [PrimitiveMesh]. This flat mesh does not have a thickness. By

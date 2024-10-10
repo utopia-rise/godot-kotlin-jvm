@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTPANGESTURE_INDEX: Int = 299
+private const val ENGINE_CLASS_INPUTEVENTPANGESTURE_INDEX: Int = 325
 
 /**
  * Stores information about pan gestures. A pan gesture is performed when the user swipes the touch

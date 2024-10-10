@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSTREAMMICROPHONE_INDEX: Int = 116
+private const val ENGINE_CLASS_AUDIOSTREAMMICROPHONE_INDEX: Int = 119
 
 /**
  * When used directly in an [AudioStreamPlayer] node, [AudioStreamMicrophone] plays back microphone

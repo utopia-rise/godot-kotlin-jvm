@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVARYINGSETTER_INDEX: Int = 717
+private const val ENGINE_CLASS_VISUALSHADERNODEVARYINGSETTER_INDEX: Int = 801
 
 /**
  * Inputs a value to a varying defined in the shader. You need to first create a varying that can be

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HBOXCONTAINER_INDEX: Int = 272
+private const val ENGINE_CLASS_HBOXCONTAINER_INDEX: Int = 292
 
 /**
  * A variant of [BoxContainer] that can only arrange its child controls horizontally. Child controls

@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DCCDIK_INDEX: Int = 524
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DCCDIK_INDEX: Int = 587
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Cyclic Coordinate Descent Inverse

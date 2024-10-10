@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETERTRIPLANAR_INDEX: Int = 700
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTUREPARAMETERTRIPLANAR_INDEX: Int = 783
 
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader, with support for

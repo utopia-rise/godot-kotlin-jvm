@@ -20,6 +20,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_AUDIOEFFECTSPECTRUMANALYZERINSTANCE_INDEX: Int = 108
+
 /**
  * The runtime part of an [AudioEffectSpectrumAnalyzer], which can be used to query the magnitude of
  * a frequency range on its host bus.

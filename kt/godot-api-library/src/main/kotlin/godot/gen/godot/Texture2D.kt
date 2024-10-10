@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TEXTURE2D_INDEX: Int = 579
+private const val ENGINE_CLASS_TEXTURE2D_INDEX: Int = 648
 
 /**
  * A texture works by registering an image in the video hardware, which then can be used in 3D

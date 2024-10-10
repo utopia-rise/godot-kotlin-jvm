@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BOXMESH_INDEX: Int = 136
+private const val ENGINE_CLASS_BOXMESH_INDEX: Int = 144
 
 /**
  * Generate an axis-aligned box [PrimitiveMesh].

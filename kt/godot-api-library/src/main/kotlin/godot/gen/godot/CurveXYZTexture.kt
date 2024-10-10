@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CURVEXYZTEXTURE_INDEX: Int = 206
+private const val ENGINE_CLASS_CURVEXYZTEXTURE_INDEX: Int = 220
 
 /**
  * A 1D texture where the red, green, and blue color channels correspond to points on 3 [Curve]

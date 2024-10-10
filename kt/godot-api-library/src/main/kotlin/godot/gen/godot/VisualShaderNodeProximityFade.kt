@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPROXIMITYFADE_INDEX: Int = 682
+private const val ENGINE_CLASS_VISUALSHADERNODEPROXIMITYFADE_INDEX: Int = 762
 
 /**
  * The proximity fade effect fades out each pixel based on its distance to another object.

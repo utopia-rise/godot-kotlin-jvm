@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PLACEHOLDERMESH_INDEX: Int = 438
+private const val ENGINE_CLASS_PLACEHOLDERMESH_INDEX: Int = 487
 
 /**
  * This class is used when loading a project that uses a [Mesh] subclass in 2 conditions:

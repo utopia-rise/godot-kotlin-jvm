@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTSERVERDUMMY_INDEX: Int = 576
+private const val ENGINE_CLASS_TEXTSERVERDUMMY_INDEX: Int = 645
 
 /**
  * A dummy [TextServer] interface that doesn't do anything. Useful for freeing up memory when

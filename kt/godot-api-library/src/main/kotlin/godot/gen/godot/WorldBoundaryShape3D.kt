@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX: Int = 745
+private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE3D_INDEX: Int = 832
 
 /**
  * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an

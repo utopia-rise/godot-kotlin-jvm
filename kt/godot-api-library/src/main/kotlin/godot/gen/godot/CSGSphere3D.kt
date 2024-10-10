@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGSPHERE3D_INDEX: Int = 148
+private const val ENGINE_CLASS_CSGSPHERE3D_INDEX: Int = 158
 
 /**
  * This node allows you to create a sphere for use with the CSG system.

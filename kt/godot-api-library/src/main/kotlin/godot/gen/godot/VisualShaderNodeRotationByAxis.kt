@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEROTATIONBYAXIS_INDEX: Int = 686
+private const val ENGINE_CLASS_VISUALSHADERNODEROTATIONBYAXIS_INDEX: Int = 767
 
 /**
  * RotationByAxis node will transform the vertices of a mesh with specified axis and angle in

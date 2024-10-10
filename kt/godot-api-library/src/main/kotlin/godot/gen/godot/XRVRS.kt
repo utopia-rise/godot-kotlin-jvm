@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRVRS_INDEX: Int = 764
+private const val ENGINE_CLASS_XRVRS_INDEX: Int = 853
 
 /**
  * This class is used by various XR interfaces to generate VRS textures that can be used to speed up

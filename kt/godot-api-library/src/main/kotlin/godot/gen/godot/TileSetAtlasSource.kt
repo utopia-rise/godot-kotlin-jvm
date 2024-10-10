@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILESETATLASSOURCE_INDEX: Int = 598
+private const val ENGINE_CLASS_TILESETATLASSOURCE_INDEX: Int = 668
 
 /**
  * An atlas is a grid of tiles laid out on a texture. Each tile in the grid must be exposed using

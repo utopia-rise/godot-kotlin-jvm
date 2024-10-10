@@ -6451,7 +6451,7 @@ public object RenderingServer : Object() {
   }
 
   @JvmInline
-  internal value class ArrayFormatValue internal constructor(
+  public value class ArrayFormatValue(
     public override val flag: Long,
   ) : ArrayFormat
 

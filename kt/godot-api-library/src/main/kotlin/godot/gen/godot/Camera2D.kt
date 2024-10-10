@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAMERA2D_INDEX: Int = 151
+private const val ENGINE_CLASS_CAMERA2D_INDEX: Int = 161
 
 /**
  * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node.

@@ -4,8 +4,6 @@ import godot.Object
 import godot.core.memory.MemoryManager
 import godot.tools.common.extensions.convertToSnakeCase
 
-private val connectMethodName = "connect".asStringName()
-
 open class Signal internal constructor(
     val godotObject: Object,
     val name: StringName
@@ -24,17 +22,6 @@ open class Signal internal constructor(
         callable: Callable,
         flags: Int = 0
     ) = godotObject.connect(name, callable, flags.toLong())
-
-    fun connectThreadSafe(
-        callable: Callable,
-        flags: Int = 0
-    ): Any? {
-        return if(godotObject is Node){
-            godotObject.callThreadSafe(connectMethodName, name, callable, flags.toLong())
-        } else {
-            godotObject.connect(name, callable, flags.toLong())
-        }
-    }
 
     fun disconnect(callable: Callable) = godotObject.disconnect(name, callable)
 

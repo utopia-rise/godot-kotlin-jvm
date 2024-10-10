@@ -17,7 +17,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX: Int = 391
+private const val ENGINE_CLASS_OPENXRINTERACTIONPROFILEMETADATA_INDEX: Int = 432
 
 /**
  * This class allows OpenXR core and extensions to register metadata relating to supported

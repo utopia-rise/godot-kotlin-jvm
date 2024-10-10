@@ -14,7 +14,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RENDERSCENEBUFFERSEXTENSION_INDEX: Int = 489
+private const val ENGINE_CLASS_RENDERSCENEBUFFERSEXTENSION_INDEX: Int = 541
 
 /**
  * This class allows for a RenderSceneBuffer implementation to be made in GDExtension.

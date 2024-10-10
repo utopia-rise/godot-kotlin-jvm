@@ -46,7 +46,6 @@ import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
-import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GODOT_ERROR
@@ -98,9 +97,6 @@ class ApiGenerationService(
                 .build()
                 .writeTo(outputDir)
         }
-
-        LambdaCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
-        SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
     }
 
     override fun generateApi(outputDir: File) {
@@ -157,6 +153,7 @@ class ApiGenerationService(
 
     override fun generateClass(clazz: EnrichedClass): FileSpec {
         val fileBuilder = FileSpec.builder(godotPackage, clazz.name)
+        fileBuilder.generateEngineIndexesForClass(clazz)
 
         val className = clazz.getTypeClassName()
 
@@ -170,8 +167,6 @@ class ApiGenerationService(
                     .addModifiers(KModifier.INTERNAL)
                     .build()
             )
-        } else {
-            fileBuilder.generateEngineIndexesForClass(clazz)
         }
 
         val baseClass = clazz.inherits
@@ -308,7 +303,7 @@ class ApiGenerationService(
 
             val bitFlagValueClass = TypeSpec.classBuilder(bitFlagValueClassName)
                 .addSuperinterface(bitFieldInterfaceName)
-                .addModifiers(KModifier.INTERNAL, KModifier.VALUE)
+                .addModifiers(KModifier.VALUE)
                 .addAnnotation(JvmInline::class)
                 .addProperty(
                     PropertySpec.builder(BIT_FLAG_VALUE_MEMBER, LONG)
@@ -318,7 +313,6 @@ class ApiGenerationService(
                 )
                 .primaryConstructor(
                     FunSpec.constructorBuilder()
-                        .addModifiers(KModifier.INTERNAL)
                         .addParameter(
                             ParameterSpec
                                 .builder(BIT_FLAG_VALUE_MEMBER, LONG)

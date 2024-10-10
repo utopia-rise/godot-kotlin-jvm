@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTRECORD_INDEX: Int = 104
+private const val ENGINE_CLASS_AUDIOEFFECTRECORD_INDEX: Int = 105
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the

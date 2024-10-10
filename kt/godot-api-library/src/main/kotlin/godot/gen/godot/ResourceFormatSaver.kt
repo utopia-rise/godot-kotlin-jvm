@@ -17,7 +17,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RESOURCEFORMATSAVER_INDEX: Int = 495
+private const val ENGINE_CLASS_RESOURCEFORMATSAVER_INDEX: Int = 549
 
 /**
  * The engine can save resources when you do it from the editor, or when you use the [ResourceSaver]

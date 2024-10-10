@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_FILEDIALOG_INDEX: Int = 223
+private const val ENGINE_CLASS_FILEDIALOG_INDEX: Int = 240
 
 /**
  * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It

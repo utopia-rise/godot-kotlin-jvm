@@ -20,7 +20,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION_INDEX: Int = 418
+private const val ENGINE_CLASS_PHYSICSDIRECTBODYSTATE3DEXTENSION_INDEX: Int = 465
 
 /**
  * This class extends [PhysicsDirectBodyState3D] by providing additional virtual methods that can be

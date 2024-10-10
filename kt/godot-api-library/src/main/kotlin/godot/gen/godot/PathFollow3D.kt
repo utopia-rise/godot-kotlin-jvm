@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PATHFOLLOW3D_INDEX: Int = 412
+private const val ENGINE_CLASS_PATHFOLLOW3D_INDEX: Int = 455
 
 /**
  * This node takes its parent [Path3D], and returns the coordinates of a point within it, given a

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTHIGHSHELFFILTER_INDEX: Int = 95
+private const val ENGINE_CLASS_AUDIOEFFECTHIGHSHELFFILTER_INDEX: Int = 96
 
 /**
  * Reduces all frequencies above the [AudioEffectFilter.cutoffHz].

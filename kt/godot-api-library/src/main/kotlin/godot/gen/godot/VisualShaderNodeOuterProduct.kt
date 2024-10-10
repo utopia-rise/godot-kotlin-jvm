@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEOUTERPRODUCT_INDEX: Int = 670
+private const val ENGINE_CLASS_VISUALSHADERNODEOUTERPRODUCT_INDEX: Int = 747
 
 /**
  * `OuterProduct` treats the first parameter `c` as a column vector (matrix with one column) and the

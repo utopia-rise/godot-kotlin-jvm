@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_INDEX: Int = 676
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEMESHEMITTER_INDEX: Int = 756
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned

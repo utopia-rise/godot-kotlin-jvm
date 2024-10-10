@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPINBOX_INDEX: Int = 542
+private const val ENGINE_CLASS_SPINBOX_INDEX: Int = 607
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point

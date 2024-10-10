@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT3D_INDEX: Int = 363
+private const val ENGINE_CLASS_NAVIGATIONPATHQUERYRESULT3D_INDEX: Int = 400
 
 /**
  * This class stores the result of a 3D navigation path query from the [NavigationServer3D].

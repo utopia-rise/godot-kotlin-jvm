@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SUBVIEWPORT_INDEX: Int = 563
+private const val ENGINE_CLASS_SUBVIEWPORT_INDEX: Int = 630
 
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be

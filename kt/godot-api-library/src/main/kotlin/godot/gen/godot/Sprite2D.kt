@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SPRITE2D_INDEX: Int = 546
+private const val ENGINE_CLASS_SPRITE2D_INDEX: Int = 611
 
 /**
  * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas

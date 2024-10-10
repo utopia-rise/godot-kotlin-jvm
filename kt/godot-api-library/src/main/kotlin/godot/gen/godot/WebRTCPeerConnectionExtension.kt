@@ -16,7 +16,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX: Int = 738
+private const val ENGINE_CLASS_WEBRTCPEERCONNECTIONEXTENSION_INDEX: Int = 824
 
 @GodotBaseType
 public open class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {

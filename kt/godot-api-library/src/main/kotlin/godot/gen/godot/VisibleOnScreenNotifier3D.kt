@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISIBLEONSCREENNOTIFIER3D_INDEX: Int = 629
+private const val ENGINE_CLASS_VISIBLEONSCREENNOTIFIER3D_INDEX: Int = 703
 
 /**
  * [VisibleOnScreenNotifier3D] represents a box-shaped region of 3D space. When any part of this

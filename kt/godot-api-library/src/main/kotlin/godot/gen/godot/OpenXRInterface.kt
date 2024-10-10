@@ -34,7 +34,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRINTERFACE_INDEX: Int = 392
+private const val ENGINE_CLASS_OPENXRINTERFACE_INDEX: Int = 433
 
 public infix fun Long.or(other: godot.OpenXRInterface.HandJointFlags): Long = this.or(other.flag)
 
@@ -707,7 +707,7 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   @JvmInline
-  internal value class HandJointFlagsValue internal constructor(
+  public value class HandJointFlagsValue(
     public override val flag: Long,
   ) : HandJointFlags
 

@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NOISETEXTURE3D_INDEX: Int = 372
+private const val ENGINE_CLASS_NOISETEXTURE3D_INDEX: Int = 411
 
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your

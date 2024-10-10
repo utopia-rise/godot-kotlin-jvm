@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYER2D_INDEX: Int = 122
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYER2D_INDEX: Int = 129
 
 /**
  * Plays audio that is attenuated with distance to the listener.

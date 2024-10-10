@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGMESH3D_INDEX: Int = 146
+private const val ENGINE_CLASS_CSGMESH3D_INDEX: Int = 154
 
 /**
  * This CSG node allows you to use any mesh resource as a CSG shape, provided it is closed, does not

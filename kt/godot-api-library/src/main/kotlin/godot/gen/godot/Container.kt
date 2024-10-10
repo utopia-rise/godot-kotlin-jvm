@@ -21,7 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CONTAINER_INDEX: Int = 194
+private const val ENGINE_CLASS_CONTAINER_INDEX: Int = 208
 
 /**
  * Base class for all GUI containers. A [Container] automatically arranges its child controls in a

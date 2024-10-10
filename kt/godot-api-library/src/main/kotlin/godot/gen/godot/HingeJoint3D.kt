@@ -21,7 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HINGEJOINT3D_INDEX: Int = 283
+private const val ENGINE_CLASS_HINGEJOINT3D_INDEX: Int = 303
 
 /**
  * A physics joint that restricts the rotation of a 3D physics body around an axis relative to

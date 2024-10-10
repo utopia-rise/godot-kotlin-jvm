@@ -16,7 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CALLBACKTWEENER_INDEX: Int = 150
+private const val ENGINE_CLASS_CALLBACKTWEENER_INDEX: Int = 160
 
 /**
  * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for

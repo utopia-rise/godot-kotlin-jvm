@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECURVETEXTURE_INDEX: Int = 644
+private const val ENGINE_CLASS_VISUALSHADERNODECURVETEXTURE_INDEX: Int = 720
 
 /**
  * Comes with a built-in editor for texture's curves.

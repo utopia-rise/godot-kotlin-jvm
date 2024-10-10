@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_REGEX_INDEX: Int = 482
+private const val ENGINE_CLASS_REGEX_INDEX: Int = 532
 
 /**
  * A regular expression (or regex) is a compact language that can be used to recognize strings that

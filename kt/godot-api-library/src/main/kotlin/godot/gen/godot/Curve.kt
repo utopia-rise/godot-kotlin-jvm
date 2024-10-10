@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CURVE_INDEX: Int = 202
+private const val ENGINE_CLASS_CURVE_INDEX: Int = 216
 
 /**
  * This resource describes a mathematical curve by defining a set of points and tangents at each

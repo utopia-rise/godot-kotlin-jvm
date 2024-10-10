@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RENDERDATARD_INDEX: Int = 487
+private const val ENGINE_CLASS_RENDERDATARD_INDEX: Int = 538
 
 /**
  * This object manages all render data for the rendering device based renderers.

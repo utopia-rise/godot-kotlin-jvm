@@ -22,7 +22,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XMLPARSER_INDEX: Int = 748
+private const val ENGINE_CLASS_XMLPARSER_INDEX: Int = 835
 
 /**
  * Provides a low-level interface for creating parsers for

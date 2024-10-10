@@ -35,7 +35,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SCENETREE_INDEX: Int = 505
+private const val ENGINE_CLASS_SCENETREE_INDEX: Int = 561
 
 /**
  * As one of the most important classes, the [SceneTree] manages the hierarchy of nodes in a scene,

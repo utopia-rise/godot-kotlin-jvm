@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PACKETPEERDTLS_INDEX: Int = 398
+private const val ENGINE_CLASS_PACKETPEERDTLS_INDEX: Int = 441
 
 /**
  * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is

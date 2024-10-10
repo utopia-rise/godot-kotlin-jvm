@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PATHFOLLOW2D_INDEX: Int = 411
+private const val ENGINE_CLASS_PATHFOLLOW2D_INDEX: Int = 454
 
 /**
  * This node takes its parent [Path2D], and returns the coordinates of a point within it, given a

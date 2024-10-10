@@ -38,7 +38,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ARRAYMESH_INDEX: Int = 74
+private const val ENGINE_CLASS_ARRAYMESH_INDEX: Int = 75
 
 /**
  * The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.

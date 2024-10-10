@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONLINK3D_INDEX: Int = 354
+private const val ENGINE_CLASS_NAVIGATIONLINK3D_INDEX: Int = 391
 
 /**
  * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These

@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEOUTPUT_INDEX: Int = 748
+
 /**
  * This visual shader node is present in all shader graphs in form of "Output" block with multiple
  * output value ports.

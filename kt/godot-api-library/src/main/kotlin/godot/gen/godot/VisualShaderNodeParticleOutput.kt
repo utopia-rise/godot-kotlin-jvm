@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEOUTPUT_INDEX: Int = 678
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEOUTPUT_INDEX: Int = 758
 
 /**
  * This node defines how particles are emitted. It allows to customize e.g. position and velocity.

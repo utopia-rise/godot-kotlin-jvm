@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PACKEDSCENE_INDEX: Int = 397
+private const val ENGINE_CLASS_PACKEDSCENE_INDEX: Int = 439
 
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be

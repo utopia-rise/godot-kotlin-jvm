@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_INTERVALTWEENER_INDEX: Int = 303
+private const val ENGINE_CLASS_INTERVALTWEENER_INDEX: Int = 331
 
 /**
  * [IntervalTweener] is used to make delays in a tweening sequence. See [Tween.tweenInterval] for

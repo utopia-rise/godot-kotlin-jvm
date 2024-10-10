@@ -31,7 +31,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CURVE3D_INDEX: Int = 204
+private const val ENGINE_CLASS_CURVE3D_INDEX: Int = 218
 
 /**
  * This class describes a Bézier curve in 3D space. It is mainly used to give a shape to a [Path3D],

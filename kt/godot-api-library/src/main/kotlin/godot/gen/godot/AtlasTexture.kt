@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ATLASTEXTURE_INDEX: Int = 77
+private const val ENGINE_CLASS_ATLASTEXTURE_INDEX: Int = 78
 
 /**
  * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An

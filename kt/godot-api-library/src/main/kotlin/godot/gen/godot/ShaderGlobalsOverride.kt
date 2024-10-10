@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SHADERGLOBALSOVERRIDE_INDEX: Int = 514
+private const val ENGINE_CLASS_SHADERGLOBALSOVERRIDE_INDEX: Int = 575
 
 /**
  * Similar to how a [WorldEnvironment] node can be used to override the environment while a specific

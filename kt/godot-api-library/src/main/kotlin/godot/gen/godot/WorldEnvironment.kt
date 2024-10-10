@@ -16,7 +16,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_WORLDENVIRONMENT_INDEX: Int = 746
+private const val ENGINE_CLASS_WORLDENVIRONMENT_INDEX: Int = 833
 
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.

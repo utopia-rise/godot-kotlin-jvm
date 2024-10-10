@@ -16,7 +16,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOLISTENER2D_INDEX: Int = 108
+private const val ENGINE_CLASS_AUDIOLISTENER2D_INDEX: Int = 110
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEINTCONSTANT_INDEX: Int = 662
+private const val ENGINE_CLASS_VISUALSHADERNODEINTCONSTANT_INDEX: Int = 739
 
 /**
  * Translated to [code skip-lint]int[/code] in the shader language.

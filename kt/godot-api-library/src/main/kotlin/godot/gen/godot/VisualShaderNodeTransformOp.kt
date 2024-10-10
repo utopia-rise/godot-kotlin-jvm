@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMOP_INDEX: Int = 707
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMOP_INDEX: Int = 790
 
 /**
  * Applies [operator] to two transform (4×4 matrices) inputs.

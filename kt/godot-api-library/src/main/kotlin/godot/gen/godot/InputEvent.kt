@@ -32,6 +32,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_INPUTEVENT_INDEX: Int = 313
+
 /**
  * Abstract base class of all types of input events. See [Node.Input].
  */

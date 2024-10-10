@@ -37,7 +37,7 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_MESH_INDEX: Int = 331
+private const val ENGINE_CLASS_MESH_INDEX: Int = 366
 
 public infix fun Long.or(other: godot.Mesh.ArrayFormat): Long = this.or(other.flag)
 
@@ -641,7 +641,7 @@ public open class Mesh : Resource() {
   }
 
   @JvmInline
-  internal value class ArrayFormatValue internal constructor(
+  public value class ArrayFormatValue(
     public override val flag: Long,
   ) : ArrayFormat
 

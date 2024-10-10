@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_NODE2D_INDEX: Int = 369
+private const val ENGINE_CLASS_NODE2D_INDEX: Int = 406
 
 /**
  * A 2D game object, with a transform (position, rotation, and scale). All 2D nodes, including

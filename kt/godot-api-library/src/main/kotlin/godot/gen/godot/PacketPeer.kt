@@ -24,6 +24,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PACKETPEER_INDEX: Int = 440
+
 /**
  * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
  * an API for sending and receiving packets both as raw data or variables. This makes it easy to

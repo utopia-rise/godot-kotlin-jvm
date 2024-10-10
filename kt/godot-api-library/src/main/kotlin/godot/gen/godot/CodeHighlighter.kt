@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CODEHIGHLIGHTER_INDEX: Int = 174
+private const val ENGINE_CLASS_CODEHIGHLIGHTER_INDEX: Int = 185
 
 /**
  * By adjusting various properties of this resource, you can change the colors of strings, comments,

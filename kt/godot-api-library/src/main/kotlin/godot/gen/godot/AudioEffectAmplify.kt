@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX: Int = 80
+private const val ENGINE_CLASS_AUDIOEFFECTAMPLIFY_INDEX: Int = 81
 
 /**
  * Increases or decreases the volume being routed through the audio bus.

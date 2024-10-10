@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRACTIONMAP_INDEX: Int = 382
+private const val ENGINE_CLASS_OPENXRACTIONMAP_INDEX: Int = 422
 
 /**
  * OpenXR uses an action system similar to Godots Input map system to bind inputs and outputs on

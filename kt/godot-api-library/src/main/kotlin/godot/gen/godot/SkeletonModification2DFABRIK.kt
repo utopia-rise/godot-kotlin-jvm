@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX: Int = 525
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DFABRIK_INDEX: Int = 588
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse

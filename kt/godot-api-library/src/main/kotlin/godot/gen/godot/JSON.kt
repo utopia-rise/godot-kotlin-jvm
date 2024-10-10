@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_JSON_INDEX: Int = 306
+private const val ENGINE_CLASS_JSON_INDEX: Int = 334
 
 /**
  * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful

@@ -17,7 +17,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_METHODTWEENER_INDEX: Int = 338
+private const val ENGINE_CLASS_METHODTWEENER_INDEX: Int = 373
 
 /**
  * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls

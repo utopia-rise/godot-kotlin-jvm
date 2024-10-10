@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STYLEBOX_INDEX: Int = 558
+private const val ENGINE_CLASS_STYLEBOX_INDEX: Int = 625
 
 /**
  * [StyleBox] is an abstract base class for drawing stylized boxes for UI elements. It is used for

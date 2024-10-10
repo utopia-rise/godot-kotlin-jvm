@@ -48,7 +48,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SURFACETOOL_INDEX: Int = 565
+private const val ENGINE_CLASS_SURFACETOOL_INDEX: Int = 632
 
 /**
  * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It

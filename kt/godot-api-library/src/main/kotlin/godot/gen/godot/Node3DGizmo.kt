@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_NODE3DGIZMO_INDEX: Int = 408
+
 /**
  * This abstract class helps connect the [Node3D] scene with the editor-specific [EditorNode3DGizmo]
  * class.

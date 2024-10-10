@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANPARAMETER_INDEX: Int = 634
+private const val ENGINE_CLASS_VISUALSHADERNODEBOOLEANPARAMETER_INDEX: Int = 709
 
 /**
  * Translated to `uniform bool` in the shader language.

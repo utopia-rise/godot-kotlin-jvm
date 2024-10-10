@@ -17,7 +17,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XRANCHOR3D_INDEX: Int = 749
+private const val ENGINE_CLASS_XRANCHOR3D_INDEX: Int = 836
 
 /**
  * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR

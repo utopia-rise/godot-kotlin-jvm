@@ -45,7 +45,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_GRAPHEDIT_INDEX: Int = 265
+private const val ENGINE_CLASS_GRAPHEDIT_INDEX: Int = 285
 
 /**
  * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main

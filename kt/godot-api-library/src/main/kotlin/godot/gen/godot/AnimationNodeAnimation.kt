@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONNODEANIMATION_INDEX: Int = 53
+private const val ENGINE_CLASS_ANIMATIONNODEANIMATION_INDEX: Int = 54
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation]

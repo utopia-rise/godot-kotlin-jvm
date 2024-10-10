@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RIBBONTRAILMESH_INDEX: Int = 497
+private const val ENGINE_CLASS_RIBBONTRAILMESH_INDEX: Int = 552
 
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is

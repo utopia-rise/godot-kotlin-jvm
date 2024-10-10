@@ -32,7 +32,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_IMPORTERMESH_INDEX: Int = 289
+private const val ENGINE_CLASS_IMPORTERMESH_INDEX: Int = 311
 
 /**
  * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based

@@ -33,7 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TEXTMESH_INDEX: Int = 573
+private const val ENGINE_CLASS_TEXTMESH_INDEX: Int = 641
 
 /**
  * Generate an [PrimitiveMesh] from the text.

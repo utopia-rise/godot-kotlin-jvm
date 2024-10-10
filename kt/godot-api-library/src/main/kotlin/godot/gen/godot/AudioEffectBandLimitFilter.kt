@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTBANDLIMITFILTER_INDEX: Int = 81
+private const val ENGINE_CLASS_AUDIOEFFECTBANDLIMITFILTER_INDEX: Int = 82
 
 /**
  * Limits the frequencies in a range around the [AudioEffectFilter.cutoffHz] and allows frequencies

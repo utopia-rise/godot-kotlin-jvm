@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX: Int = 691
+private const val ENGINE_CLASS_VISUALSHADERNODESMOOTHSTEP_INDEX: Int = 773
 
 /**
  * Translates to `smoothstep(edge0, edge1, x)` in the shader language.

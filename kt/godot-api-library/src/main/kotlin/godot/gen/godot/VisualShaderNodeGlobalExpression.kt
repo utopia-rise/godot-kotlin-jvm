@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEGLOBALEXPRESSION_INDEX: Int = 659
+private const val ENGINE_CLASS_VISUALSHADERNODEGLOBALEXPRESSION_INDEX: Int = 735
 
 /**
  * Custom Godot Shader Language expression, which is placed on top of the generated shader. You can

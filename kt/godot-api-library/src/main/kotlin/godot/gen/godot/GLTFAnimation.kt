@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFANIMATION_INDEX: Int = 233
+private const val ENGINE_CLASS_GLTFANIMATION_INDEX: Int = 251
 
 @GodotBaseType
 public open class GLTFAnimation : Resource() {

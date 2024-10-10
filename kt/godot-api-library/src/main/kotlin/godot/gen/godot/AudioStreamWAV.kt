@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMWAV_INDEX: Int = 128
+private const val ENGINE_CLASS_AUDIOSTREAMWAV_INDEX: Int = 135
 
 /**
  * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an

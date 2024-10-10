@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX: Int = 642
+private const val ENGINE_CLASS_VISUALSHADERNODECUBEMAP_INDEX: Int = 718
 
 /**
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha

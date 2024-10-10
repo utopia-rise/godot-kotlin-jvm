@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILESETSCENESCOLLECTIONSOURCE_INDEX: Int = 599
+private const val ENGINE_CLASS_TILESETSCENESCOLLECTIONSOURCE_INDEX: Int = 669
 
 /**
  * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically

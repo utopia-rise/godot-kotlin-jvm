@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE2D_INDEX: Int = 744
+private const val ENGINE_CLASS_WORLDBOUNDARYSHAPE2D_INDEX: Int = 831
 
 /**
  * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an

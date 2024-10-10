@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACKPOLYPHONIC_INDEX: Int = 125
+
 /**
  * Playback instance for [AudioStreamPolyphonic]. After setting the `stream` property of
  * [AudioStreamPlayer], [AudioStreamPlayer2D], or [AudioStreamPlayer3D], the playback instance can be

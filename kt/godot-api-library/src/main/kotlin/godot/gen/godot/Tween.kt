@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TWEEN_INDEX: Int = 607
+private const val ENGINE_CLASS_TWEEN_INDEX: Int = 679
 
 /**
  * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a

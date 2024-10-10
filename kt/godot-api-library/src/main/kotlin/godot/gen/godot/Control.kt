@@ -48,7 +48,7 @@ import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CONTROL_INDEX: Int = 195
+private const val ENGINE_CLASS_CONTROL_INDEX: Int = 209
 
 public infix fun Long.or(other: godot.Control.SizeFlags): Long = this.or(other.flag)
 
@@ -2594,7 +2594,7 @@ public open class Control : CanvasItem() {
   }
 
   @JvmInline
-  internal value class SizeFlagsValue internal constructor(
+  public value class SizeFlagsValue(
     public override val flag: Long,
   ) : SizeFlags
 

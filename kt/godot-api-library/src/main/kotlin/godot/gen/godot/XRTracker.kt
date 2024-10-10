@@ -21,6 +21,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRTRACKER_INDEX: Int = 852
+
 /**
  * This object is the base of all XR trackers.
  */

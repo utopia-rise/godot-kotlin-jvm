@@ -22,7 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_AUDIOSTREAMRANDOMIZER_INDEX: Int = 126
+private const val ENGINE_CLASS_AUDIOSTREAMRANDOMIZER_INDEX: Int = 133
 
 /**
  * Picks a random AudioStream from the pool, depending on the playback mode, and applies random

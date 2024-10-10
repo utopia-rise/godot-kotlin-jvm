@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HSLIDER_INDEX: Int = 277
+private const val ENGINE_CLASS_HSLIDER_INDEX: Int = 297
 
 /**
  * A horizontal slider, used to adjust a value by moving a grabber along a horizontal axis. It is a

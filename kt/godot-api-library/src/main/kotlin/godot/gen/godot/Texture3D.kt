@@ -21,7 +21,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURE3D_INDEX: Int = 583
+private const val ENGINE_CLASS_TEXTURE3D_INDEX: Int = 652
 
 /**
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains

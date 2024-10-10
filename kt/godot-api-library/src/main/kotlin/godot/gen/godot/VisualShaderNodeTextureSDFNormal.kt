@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURESDFNORMAL_INDEX: Int = 702
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURESDFNORMAL_INDEX: Int = 785
 
 /**
  * Translates to `texture_sdf_normal(sdf_pos)` in the shader language.

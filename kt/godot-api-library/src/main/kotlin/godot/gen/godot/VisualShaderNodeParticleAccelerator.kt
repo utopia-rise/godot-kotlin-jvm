@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEACCELERATOR_INDEX: Int = 672
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEACCELERATOR_INDEX: Int = 751
 
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the

@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFMESH_INDEX: Int = 240
+private const val ENGINE_CLASS_GLTFMESH_INDEX: Int = 258
 
 /**
  * GLTFMesh handles 3D mesh data imported from GLTF files. It includes properties for blend

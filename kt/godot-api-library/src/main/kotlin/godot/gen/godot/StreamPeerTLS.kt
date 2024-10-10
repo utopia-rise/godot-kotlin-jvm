@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_STREAMPEERTLS_INDEX: Int = 557
+private const val ENGINE_CLASS_STREAMPEERTLS_INDEX: Int = 624
 
 /**
  * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or

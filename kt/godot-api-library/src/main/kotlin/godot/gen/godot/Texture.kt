@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTURE_INDEX: Int = 578
+private const val ENGINE_CLASS_TEXTURE_INDEX: Int = 647
 
 /**
  * [Texture] is the base class for all texture types. Common texture types are [Texture2D] and

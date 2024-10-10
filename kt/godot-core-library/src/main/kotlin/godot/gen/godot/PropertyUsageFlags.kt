@@ -141,7 +141,7 @@ public sealed interface PropertyUsageFlags {
 }
 
 @JvmInline
-internal value class PropertyUsageFlagsValue internal constructor(
+public value class PropertyUsageFlagsValue(
   public override val flag: Long,
 ) : PropertyUsageFlags
 

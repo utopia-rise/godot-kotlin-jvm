@@ -24,7 +24,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSTREAM_INDEX: Int = 112
+private const val ENGINE_CLASS_AUDIOSTREAM_INDEX: Int = 114
 
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and

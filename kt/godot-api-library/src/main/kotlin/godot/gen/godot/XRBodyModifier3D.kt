@@ -20,7 +20,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRBODYMODIFIER3D_INDEX: Int = 750
+private const val ENGINE_CLASS_XRBODYMODIFIER3D_INDEX: Int = 837
 
 public infix fun Long.or(other: godot.XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
 
@@ -180,7 +180,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   @JvmInline
-  internal value class BodyUpdateValue internal constructor(
+  public value class BodyUpdateValue(
     public override val flag: Long,
   ) : BodyUpdate
 

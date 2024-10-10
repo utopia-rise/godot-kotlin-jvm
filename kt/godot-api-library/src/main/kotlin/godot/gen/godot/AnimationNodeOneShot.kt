@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONNODEONESHOT_INDEX: Int = 59
+private const val ENGINE_CLASS_ANIMATIONNODEONESHOT_INDEX: Int = 60
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a

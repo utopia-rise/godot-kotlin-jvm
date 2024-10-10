@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSAMPLE_INDEX: Int = 110
+private const val ENGINE_CLASS_AUDIOSAMPLE_INDEX: Int = 112
 
 /**
  * Base class for audio samples.

@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SEPARATIONRAYSHAPE3D_INDEX: Int = 512
+private const val ENGINE_CLASS_SEPARATIONRAYSHAPE3D_INDEX: Int = 572
 
 /**
  * A 3D ray shape, intended for use in physics. Usually used to provide a shape for a

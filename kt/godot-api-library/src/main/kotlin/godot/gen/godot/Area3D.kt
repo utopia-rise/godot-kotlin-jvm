@@ -36,7 +36,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AREA3D_INDEX: Int = 73
+private const val ENGINE_CLASS_AREA3D_INDEX: Int = 74
 
 /**
  * [Area3D] is a region of 3D space defined by one or multiple [CollisionShape3D] or

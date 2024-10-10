@@ -22,7 +22,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SKIN_INDEX: Int = 535
+private const val ENGINE_CLASS_SKIN_INDEX: Int = 598
 
 @GodotBaseType
 public open class Skin : Resource() {

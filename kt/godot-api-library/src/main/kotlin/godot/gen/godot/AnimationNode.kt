@@ -38,7 +38,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONNODE_INDEX: Int = 50
+private const val ENGINE_CLASS_ANIMATIONNODE_INDEX: Int = 51
 
 /**
  * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create

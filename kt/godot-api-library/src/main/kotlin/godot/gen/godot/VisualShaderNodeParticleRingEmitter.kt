@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERINGEMITTER_INDEX: Int = 680
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLERINGEMITTER_INDEX: Int = 760
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in ring shape with the

@@ -30,7 +30,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONOBSTACLE3D_INDEX: Int = 359
+private const val ENGINE_CLASS_NAVIGATIONOBSTACLE3D_INDEX: Int = 396
 
 /**
  * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines

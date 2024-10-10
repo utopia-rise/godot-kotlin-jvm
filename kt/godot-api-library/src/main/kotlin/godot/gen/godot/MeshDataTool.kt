@@ -32,7 +32,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_MESHDATATOOL_INDEX: Int = 333
+private const val ENGINE_CLASS_MESHDATATOOL_INDEX: Int = 368
 
 /**
  * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit

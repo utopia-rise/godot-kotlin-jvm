@@ -34,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADER_INDEX: Int = 631
+private const val ENGINE_CLASS_VISUALSHADER_INDEX: Int = 705
 
 /**
  * This class provides a graph-like visual editor for creating a [Shader]. Although [VisualShader]s

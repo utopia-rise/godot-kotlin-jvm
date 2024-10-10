@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VFLOWCONTAINER_INDEX: Int = 614
+private const val ENGINE_CLASS_VFLOWCONTAINER_INDEX: Int = 687
 
 /**
  * A variant of [FlowContainer] that can only arrange its child controls vertically, wrapping them

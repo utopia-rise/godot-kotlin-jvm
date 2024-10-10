@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ENVIRONMENT_INDEX: Int = 218
+private const val ENGINE_CLASS_ENVIRONMENT_INDEX: Int = 234
 
 /**
  * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment

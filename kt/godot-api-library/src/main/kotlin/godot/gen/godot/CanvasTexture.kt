@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CANVASTEXTURE_INDEX: Int = 162
+private const val ENGINE_CLASS_CANVASTEXTURE_INDEX: Int = 173
 
 /**
  * [CanvasTexture] is an alternative to [ImageTexture] for 2D rendering. It allows using normal maps

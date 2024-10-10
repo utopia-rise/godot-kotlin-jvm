@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SCROLLCONTAINER_INDEX: Int = 508
+private const val ENGINE_CLASS_SCROLLCONTAINER_INDEX: Int = 568
 
 /**
  * A container used to provide a child control with scrollbars when needed. Scrollbars will

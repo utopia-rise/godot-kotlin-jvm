@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRPOSE_INDEX: Int = 762
+private const val ENGINE_CLASS_XRPOSE_INDEX: Int = 850
 
 /**
  * XR runtimes often identify multiple locations on devices such as controllers that are spatially

@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SHORTCUT_INDEX: Int = 519
+private const val ENGINE_CLASS_SHORTCUT_INDEX: Int = 582
 
 /**
  * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also

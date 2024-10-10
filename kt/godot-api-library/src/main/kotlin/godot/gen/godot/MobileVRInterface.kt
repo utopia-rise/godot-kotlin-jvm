@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MOBILEVRINTERFACE_INDEX: Int = 341
+private const val ENGINE_CLASS_MOBILEVRINTERFACE_INDEX: Int = 376
 
 /**
  * This is a generic mobile VR implementation where you need to provide details about the phone and

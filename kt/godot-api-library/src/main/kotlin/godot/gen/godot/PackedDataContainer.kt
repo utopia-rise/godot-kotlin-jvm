@@ -17,7 +17,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PACKEDDATACONTAINER_INDEX: Int = 396
+private const val ENGINE_CLASS_PACKEDDATACONTAINER_INDEX: Int = 437
 
 /**
  * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is

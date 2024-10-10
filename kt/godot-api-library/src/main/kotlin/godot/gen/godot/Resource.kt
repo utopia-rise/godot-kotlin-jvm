@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RESOURCE_INDEX: Int = 493
+private const val ENGINE_CLASS_RESOURCE_INDEX: Int = 547
 
 /**
  * Resource is the base class for all Godot-specific resource types, serving primarily as data

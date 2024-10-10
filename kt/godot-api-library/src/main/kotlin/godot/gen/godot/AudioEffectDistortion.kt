@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX: Int = 87
+private const val ENGINE_CLASS_AUDIOEFFECTDISTORTION_INDEX: Int = 88
 
 /**
  * Different types are available: clip, tan, lo-fi (bit crushing), overdrive, or waveshape.

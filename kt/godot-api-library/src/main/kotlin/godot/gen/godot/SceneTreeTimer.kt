@@ -18,6 +18,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SCENETREETIMER_INDEX: Int = 562
+
 /**
  * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
  * [SceneTree.createTimer].

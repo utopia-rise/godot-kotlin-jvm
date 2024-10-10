@@ -21,7 +21,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX: Int = 507
+private const val ENGINE_CLASS_SCRIPTLANGUAGEEXTENSION_INDEX: Int = 566
 
 @GodotBaseType
 public open class ScriptLanguageExtension : ScriptLanguage() {

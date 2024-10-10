@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LIGHTMAPGIDATA_INDEX: Int = 318
+private const val ENGINE_CLASS_LIGHTMAPGIDATA_INDEX: Int = 352
 
 /**
  * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is

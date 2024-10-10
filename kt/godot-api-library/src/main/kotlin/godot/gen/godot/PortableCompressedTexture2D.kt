@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PORTABLECOMPRESSEDTEXTURE2D_INDEX: Int = 451
+private const val ENGINE_CLASS_PORTABLECOMPRESSEDTEXTURE2D_INDEX: Int = 501
 
 /**
  * This class allows storing compressed textures as self contained (not imported) resources.

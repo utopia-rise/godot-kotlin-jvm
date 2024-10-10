@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CRYPTO_INDEX: Int = 198
+private const val ENGINE_CLASS_CRYPTO_INDEX: Int = 212
 
 /**
  * The Crypto class provides access to advanced cryptographic functionalities.

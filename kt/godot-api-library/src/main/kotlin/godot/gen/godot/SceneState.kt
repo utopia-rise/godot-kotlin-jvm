@@ -31,6 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SCENESTATE_INDEX: Int = 560
+
 /**
  * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts
  * associated with a scene. They cannot be modified from a [SceneState], only accessed. Useful for

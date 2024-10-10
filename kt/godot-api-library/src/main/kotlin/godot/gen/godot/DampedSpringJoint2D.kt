@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_DAMPEDSPRINGJOINT2D_INDEX: Int = 210
+private const val ENGINE_CLASS_DAMPEDSPRINGJOINT2D_INDEX: Int = 224
 
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a

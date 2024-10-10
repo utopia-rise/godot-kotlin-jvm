@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VSEPARATOR_INDEX: Int = 616
+private const val ENGINE_CLASS_VSEPARATOR_INDEX: Int = 689
 
 /**
  * A vertical separator used for separating other controls that are arranged **horizontally**.

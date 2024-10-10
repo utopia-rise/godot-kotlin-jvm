@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_GRAPHNODE_INDEX: Int = 268
+private const val ENGINE_CLASS_GRAPHNODE_INDEX: Int = 288
 
 /**
  * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its

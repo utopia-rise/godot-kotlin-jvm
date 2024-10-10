@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEBOXEMITTER_INDEX: Int = 673
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEBOXEMITTER_INDEX: Int = 752
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in box shape with the

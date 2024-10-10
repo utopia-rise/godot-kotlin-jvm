@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ROOTMOTIONVIEW_INDEX: Int = 502
+private const val ENGINE_CLASS_ROOTMOTIONVIEW_INDEX: Int = 557
 
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to

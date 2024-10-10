@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONLINK2D_INDEX: Int = 353
+private const val ENGINE_CLASS_NAVIGATIONLINK2D_INDEX: Int = 390
 
 /**
  * A link between two positions on [NavigationRegion2D]s that agents can be routed through. These

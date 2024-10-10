@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PINJOINT3D_INDEX: Int = 434
+private const val ENGINE_CLASS_PINJOINT3D_INDEX: Int = 483
 
 /**
  * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely

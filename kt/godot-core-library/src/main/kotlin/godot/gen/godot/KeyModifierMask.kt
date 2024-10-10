@@ -82,7 +82,7 @@ public sealed interface KeyModifierMask {
 }
 
 @JvmInline
-internal value class KeyModifierMaskValue internal constructor(
+public value class KeyModifierMaskValue(
   public override val flag: Long,
 ) : KeyModifierMask
 

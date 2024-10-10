@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX: Int = 212
+private const val ENGINE_CLASS_DIRECTIONALLIGHT2D_INDEX: Int = 227
 
 /**
  * A directional light is a type of [Light2D] node that models an infinite number of parallel rays

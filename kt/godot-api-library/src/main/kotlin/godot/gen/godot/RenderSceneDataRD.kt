@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_RENDERSCENEDATARD_INDEX: Int = 492
+private const val ENGINE_CLASS_RENDERSCENEDATARD_INDEX: Int = 545
 
 /**
  * Object holds scene data related to rendering a single frame of a viewport.

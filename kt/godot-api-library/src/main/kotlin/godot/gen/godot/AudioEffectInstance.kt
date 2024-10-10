@@ -14,7 +14,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTINSTANCE_INDEX: Int = 96
+private const val ENGINE_CLASS_AUDIOEFFECTINSTANCE_INDEX: Int = 97
 
 /**
  * An audio effect instance manipulates the audio it receives for a given effect. This instance is

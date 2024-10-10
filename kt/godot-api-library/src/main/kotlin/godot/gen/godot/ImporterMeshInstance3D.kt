@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_IMPORTERMESHINSTANCE3D_INDEX: Int = 290
+private const val ENGINE_CLASS_IMPORTERMESHINSTANCE3D_INDEX: Int = 312
 
 @GodotBaseType
 public open class ImporterMeshInstance3D : Node3D() {

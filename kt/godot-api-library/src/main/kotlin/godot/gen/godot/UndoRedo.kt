@@ -30,7 +30,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_UNDOREDO_INDEX: Int = 611
+private const val ENGINE_CLASS_UNDOREDO_INDEX: Int = 684
 
 /**
  * UndoRedo works by registering methods and property changes inside "actions". You can create an

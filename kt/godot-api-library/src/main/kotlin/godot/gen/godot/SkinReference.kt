@@ -16,6 +16,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SKINREFERENCE_INDEX: Int = 599
+
 /**
  * An internal object containing a mapping from a [Skin] used within the context of a particular
  * [MeshInstance3D] to refer to the skeleton's [RID] in the RenderingServer.

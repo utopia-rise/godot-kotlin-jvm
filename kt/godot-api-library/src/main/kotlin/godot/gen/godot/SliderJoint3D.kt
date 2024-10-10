@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SLIDERJOINT3D_INDEX: Int = 537
+private const val ENGINE_CLASS_SLIDERJOINT3D_INDEX: Int = 602
 
 /**
  * A physics joint that restricts the movement of a 3D physics body along an axis relative to

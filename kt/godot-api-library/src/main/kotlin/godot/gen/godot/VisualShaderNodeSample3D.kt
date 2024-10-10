@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODESAMPLE3D_INDEX: Int = 770
+
 /**
  * A virtual class, use the descendants instead.
  */

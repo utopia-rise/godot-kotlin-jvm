@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDSAMPLERSTATE_INDEX: Int = 467
+private const val ENGINE_CLASS_RDSAMPLERSTATE_INDEX: Int = 517
 
 /**
  * This object is used by [RenderingDevice].

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVECTORCOMPOSE_INDEX: Int = 724
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTORCOMPOSE_INDEX: Int = 809
 
 /**
  * Creates a `vec2`, `vec3` or `vec4` using scalar values that can be provided from separate inputs.

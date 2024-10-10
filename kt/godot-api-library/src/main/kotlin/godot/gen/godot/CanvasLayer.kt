@@ -32,7 +32,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CANVASLAYER_INDEX: Int = 160
+private const val ENGINE_CLASS_CANVASLAYER_INDEX: Int = 171
 
 /**
  * [CanvasItem]-derived nodes that are direct or indirect children of a [CanvasLayer] will be drawn

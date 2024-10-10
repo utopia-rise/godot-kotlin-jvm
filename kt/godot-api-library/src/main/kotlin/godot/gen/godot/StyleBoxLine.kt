@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STYLEBOXLINE_INDEX: Int = 561
+private const val ENGINE_CLASS_STYLEBOXLINE_INDEX: Int = 628
 
 /**
  * A [StyleBox] that displays a single line of a given color and thickness. The line can be either

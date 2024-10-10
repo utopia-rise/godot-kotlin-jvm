@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VIDEOSTREAMTHEORA_INDEX: Int = 624
+private const val ENGINE_CLASS_VIDEOSTREAMTHEORA_INDEX: Int = 697
 
 /**
  * [VideoStream] resource handling the [url=https://www.theora.org/]Ogg Theora[/url] video format

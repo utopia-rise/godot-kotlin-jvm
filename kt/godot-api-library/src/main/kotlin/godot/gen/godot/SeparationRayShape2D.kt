@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SEPARATIONRAYSHAPE2D_INDEX: Int = 511
+private const val ENGINE_CLASS_SEPARATIONRAYSHAPE2D_INDEX: Int = 571
 
 /**
  * A 2D ray shape, intended for use in physics. Usually used to provide a shape for a

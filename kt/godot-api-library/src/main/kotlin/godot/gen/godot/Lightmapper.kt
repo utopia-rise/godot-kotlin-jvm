@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_LIGHTMAPPER_INDEX: Int = 354
+
 /**
  * This class should be extended by custom lightmapper classes. Lightmappers can then be used with
  * [LightmapGI] to provide fast baked global illumination in 3D.

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOBUSLAYOUT_INDEX: Int = 78
+private const val ENGINE_CLASS_AUDIOBUSLAYOUT_INDEX: Int = 79
 
 /**
  * Stores position, muting, solo, bypass, effects, effect position, volume, and the connections

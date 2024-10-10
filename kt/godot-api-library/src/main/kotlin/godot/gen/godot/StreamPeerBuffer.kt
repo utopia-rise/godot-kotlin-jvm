@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STREAMPEERBUFFER_INDEX: Int = 553
+private const val ENGINE_CLASS_STREAMPEERBUFFER_INDEX: Int = 620
 
 /**
  * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle

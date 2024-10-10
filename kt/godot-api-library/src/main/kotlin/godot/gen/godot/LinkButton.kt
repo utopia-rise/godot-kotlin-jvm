@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_LINKBUTTON_INDEX: Int = 323
+private const val ENGINE_CLASS_LINKBUTTON_INDEX: Int = 358
 
 /**
  * A button that represents a link. This type of button is primarily used for interactions that

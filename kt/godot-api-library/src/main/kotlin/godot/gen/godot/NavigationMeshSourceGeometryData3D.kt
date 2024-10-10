@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX: Int = 357
+private const val ENGINE_CLASS_NAVIGATIONMESHSOURCEGEOMETRYDATA3D_INDEX: Int = 394
 
 /**
  * Container for parsed source geometry data used in navigation mesh baking.

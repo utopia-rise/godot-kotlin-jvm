@@ -32,7 +32,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX: Int = 577
+private const val ENGINE_CLASS_TEXTSERVEREXTENSION_INDEX: Int = 646
 
 /**
  * External [TextServer] implementations should inherit from this class.

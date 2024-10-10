@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_UNIFORMSETCACHERD_INDEX: Int = 612
+private const val ENGINE_CLASS_UNIFORMSETCACHERD_INDEX: Int = 685
 
 /**
  * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a

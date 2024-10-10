@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTMOUSEMOTION_INDEX: Int = 298
+private const val ENGINE_CLASS_INPUTEVENTMOUSEMOTION_INDEX: Int = 324
 
 /**
  * Stores information about a mouse or a pen motion. This includes relative position, absolute

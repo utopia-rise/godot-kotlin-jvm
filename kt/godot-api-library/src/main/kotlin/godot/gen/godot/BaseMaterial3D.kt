@@ -29,6 +29,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_BASEMATERIAL3D_INDEX: Int = 138
+
 /**
  * This class serves as a default material with a wide variety of rendering features and properties
  * without the need to write shader code. See the tutorial below for details.

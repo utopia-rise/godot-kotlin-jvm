@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODESDFTOSCREENUV_INDEX: Int = 688
+private const val ENGINE_CLASS_VISUALSHADERNODESDFTOSCREENUV_INDEX: Int = 769
 
 /**
  * Translates to `sdf_to_screen_uv(sdf_pos)` in the shader language.

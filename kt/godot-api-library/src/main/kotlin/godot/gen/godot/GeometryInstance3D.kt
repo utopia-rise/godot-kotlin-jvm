@@ -30,7 +30,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX: Int = 261
+private const val ENGINE_CLASS_GEOMETRYINSTANCE3D_INDEX: Int = 281
 
 /**
  * Base node for geometry-based visual instances. Shares some common functionality like visibility

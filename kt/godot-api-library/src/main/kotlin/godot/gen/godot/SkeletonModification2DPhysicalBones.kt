@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX: Int = 528
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DPHYSICALBONES_INDEX: Int = 591
 
 /**
  * This modification takes the transforms of [PhysicalBone2D] nodes and applies them to [Bone2D]

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ANIMATIONNODEBLEND2_INDEX: Int = 54
+private const val ENGINE_CLASS_ANIMATIONNODEBLEND2_INDEX: Int = 55
 
 /**
  * A resource to add to an [AnimationNodeBlendTree]. Blends two animations linearly based on the

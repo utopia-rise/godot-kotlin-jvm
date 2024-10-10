@@ -13,7 +13,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_POPUP_INDEX: Int = 448
+private const val ENGINE_CLASS_POPUP_INDEX: Int = 498
 
 /**
  * [Popup] is a base class for contextual windows and panels with fixed position. It's a modal by

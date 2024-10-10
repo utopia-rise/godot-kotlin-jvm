@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RECTANGLESHAPE2D_INDEX: Int = 479
+private const val ENGINE_CLASS_RECTANGLESHAPE2D_INDEX: Int = 529
 
 /**
  * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a

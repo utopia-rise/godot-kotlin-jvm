@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GROOVEJOINT2D_INDEX: Int = 271
+private const val ENGINE_CLASS_GROOVEJOINT2D_INDEX: Int = 291
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For

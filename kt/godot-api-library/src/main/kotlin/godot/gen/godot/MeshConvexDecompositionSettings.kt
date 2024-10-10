@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX: Int = 332
+private const val ENGINE_CLASS_MESHCONVEXDECOMPOSITIONSETTINGS_INDEX: Int = 367
 
 /**
  * Parameters to be used with a [Mesh] convex decomposition operation.

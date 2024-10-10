@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTNOTCHFILTER_INDEX: Int = 100
+private const val ENGINE_CLASS_AUDIOEFFECTNOTCHFILTER_INDEX: Int = 101
 
 /**
  * Attenuates frequencies in a narrow band around the [AudioEffectFilter.cutoffHz] and cuts

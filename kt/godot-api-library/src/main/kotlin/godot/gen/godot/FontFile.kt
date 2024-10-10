@@ -44,7 +44,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FONTFILE_INDEX: Int = 227
+private const val ENGINE_CLASS_FONTFILE_INDEX: Int = 245
 
 /**
  * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as

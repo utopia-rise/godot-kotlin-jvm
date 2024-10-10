@@ -17,6 +17,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTFROMWINDOW_INDEX: Int = 315
+
 /**
  * InputEventFromWindow represents events specifically received by windows. This includes mouse
  * events, keyboard events in focused windows or touch screen actions.

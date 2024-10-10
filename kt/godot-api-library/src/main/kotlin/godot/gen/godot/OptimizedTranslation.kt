@@ -15,7 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX: Int = 393
+private const val ENGINE_CLASS_OPTIMIZEDTRANSLATION_INDEX: Int = 434
 
 /**
  * An optimized translation, used by default for CSV Translations. Uses real-time compressed

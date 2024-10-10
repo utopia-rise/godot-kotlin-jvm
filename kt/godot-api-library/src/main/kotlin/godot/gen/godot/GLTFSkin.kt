@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFSKIN_INDEX: Int = 245
+private const val ENGINE_CLASS_GLTFSKIN_INDEX: Int = 263
 
 @GodotBaseType
 public open class GLTFSkin : Resource() {

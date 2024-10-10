@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PHYSICSRAYQUERYPARAMETERS2D_INDEX: Int = 424
+private const val ENGINE_CLASS_PHYSICSRAYQUERYPARAMETERS2D_INDEX: Int = 473
 
 /**
  * By changing various properties of this object, such as the ray position, you can configure the

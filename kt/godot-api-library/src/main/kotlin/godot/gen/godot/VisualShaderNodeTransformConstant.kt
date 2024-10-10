@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX: Int = 704
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCONSTANT_INDEX: Int = 787
 
 /**
  * A constant [Transform3D], which can be used as an input node.

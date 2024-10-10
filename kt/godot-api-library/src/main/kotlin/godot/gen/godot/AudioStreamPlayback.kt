@@ -20,7 +20,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX: Int = 118
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYBACK_INDEX: Int = 121
 
 /**
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for

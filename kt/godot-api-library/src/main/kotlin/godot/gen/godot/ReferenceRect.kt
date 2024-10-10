@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_REFERENCERECT_INDEX: Int = 480
+private const val ENGINE_CLASS_REFERENCERECT_INDEX: Int = 530
 
 /**
  * A rectangle box that displays only a colored border around its rectangle. It is used to visualize

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLLISIONSHAPE3D_INDEX: Int = 178
+private const val ENGINE_CLASS_COLLISIONSHAPE3D_INDEX: Int = 191
 
 /**
  * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can

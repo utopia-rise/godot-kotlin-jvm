@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALINSTANCE3D_INDEX: Int = 630
+private const val ENGINE_CLASS_VISUALINSTANCE3D_INDEX: Int = 704
 
 /**
  * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D

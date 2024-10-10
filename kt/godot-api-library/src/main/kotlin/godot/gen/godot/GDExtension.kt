@@ -17,7 +17,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GDEXTENSION_INDEX: Int = 230
+private const val ENGINE_CLASS_GDEXTENSION_INDEX: Int = 248
 
 /**
  * The [GDExtension] resource type represents a

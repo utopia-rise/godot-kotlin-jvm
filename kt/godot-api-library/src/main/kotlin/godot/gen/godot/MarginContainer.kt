@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MARGINCONTAINER_INDEX: Int = 325
+private const val ENGINE_CLASS_MARGINCONTAINER_INDEX: Int = 360
 
 /**
  * [MarginContainer] adds an adjustable margin on each side of its child controls. The margins are

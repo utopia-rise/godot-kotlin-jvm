@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_INDEX: Int = 62
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINEPLAYBACK_INDEX: Int = 63
 
 /**
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].

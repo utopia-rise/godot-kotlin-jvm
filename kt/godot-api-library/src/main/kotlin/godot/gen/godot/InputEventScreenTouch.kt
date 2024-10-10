@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTSCREENTOUCH_INDEX: Int = 301
+private const val ENGINE_CLASS_INPUTEVENTSCREENTOUCH_INDEX: Int = 327
 
 /**
  * Stores information about multi-touch press/release input events. Supports touch press, touch

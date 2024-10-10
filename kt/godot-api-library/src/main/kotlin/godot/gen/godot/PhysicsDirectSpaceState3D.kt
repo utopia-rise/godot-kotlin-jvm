@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PHYSICSDIRECTSPACESTATE3D_INDEX: Int = 468
+
 /**
  * Provides direct access to a physics space in the [PhysicsServer3D]. It's used mainly to do
  * queries against objects and areas residing in a given space.

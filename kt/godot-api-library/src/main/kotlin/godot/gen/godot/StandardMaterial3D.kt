@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_STANDARDMATERIAL3D_INDEX: Int = 549
+private const val ENGINE_CLASS_STANDARDMATERIAL3D_INDEX: Int = 615
 
 /**
  * [StandardMaterial3D]'s properties are inherited from [BaseMaterial3D]. [StandardMaterial3D] uses

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX: Int = 731
+private const val ENGINE_CLASS_VISUALSHADERNODEWORLDPOSITIONFROMDEPTH_INDEX: Int = 816
 
 /**
  * The WorldPositionFromDepth node reconstructs the depth position of the pixel in world space. This

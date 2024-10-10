@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODESCREENUVTOSDF_INDEX: Int = 690
+private const val ENGINE_CLASS_VISUALSHADERNODESCREENUVTOSDF_INDEX: Int = 772
 
 /**
  * Translates to `screen_uv_to_sdf(uv)` in the shader language. If the UV port isn't connected,

@@ -35,7 +35,7 @@ abstract class LambdaCallable<R : Any?>(
         ret
     }
 
-    internal abstract fun invokeKt(): R
+    protected abstract fun invokeKt(): R
 
     internal companion object : ParametersReader()
 

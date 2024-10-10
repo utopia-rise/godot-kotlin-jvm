@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PATH3D_INDEX: Int = 410
+private const val ENGINE_CLASS_PATH3D_INDEX: Int = 453
 
 /**
  * Can have [PathFollow3D] child nodes moving along the [Curve3D]. See [PathFollow3D] for more

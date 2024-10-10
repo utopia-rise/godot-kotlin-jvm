@@ -41,7 +41,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TEXTLINE_INDEX: Int = 572
+private const val ENGINE_CLASS_TEXTLINE_INDEX: Int = 640
 
 /**
  * Abstraction over [TextServer] for handling a single line of text.

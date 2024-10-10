@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BONEATTACHMENT3D_INDEX: Int = 133
+private const val ENGINE_CLASS_BONEATTACHMENT3D_INDEX: Int = 141
 
 /**
  * This node selects a bone in a [Skeleton3D] and attaches to it. This means that the

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECLAMP_INDEX: Int = 635
+private const val ENGINE_CLASS_VISUALSHADERNODECLAMP_INDEX: Int = 710
 
 /**
  * Constrains a value to lie between `min` and `max` values.

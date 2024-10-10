@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TLSOPTIONS_INDEX: Int = 636
+
 /**
  * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
  * classes.

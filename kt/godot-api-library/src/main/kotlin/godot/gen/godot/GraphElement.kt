@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRAPHELEMENT_INDEX: Int = 266
+private const val ENGINE_CLASS_GRAPHELEMENT_INDEX: Int = 286
 
 /**
  * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements

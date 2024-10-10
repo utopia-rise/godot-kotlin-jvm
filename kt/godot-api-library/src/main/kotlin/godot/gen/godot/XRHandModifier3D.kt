@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRHANDMODIFIER3D_INDEX: Int = 757
+private const val ENGINE_CLASS_XRHANDMODIFIER3D_INDEX: Int = 844
 
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_VISUALSHADERNODEVARYING_INDEX: Int = 799
+
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
  * shader to Fragment shader.

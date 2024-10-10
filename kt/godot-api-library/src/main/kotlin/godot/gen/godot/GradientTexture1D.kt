@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRADIENTTEXTURE1D_INDEX: Int = 263
+private const val ENGINE_CLASS_GRADIENTTEXTURE1D_INDEX: Int = 283
 
 /**
  * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is

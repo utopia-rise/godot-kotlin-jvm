@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLESPHEREEMITTER_INDEX: Int = 681
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLESPHEREEMITTER_INDEX: Int = 761
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in sphere shape with the

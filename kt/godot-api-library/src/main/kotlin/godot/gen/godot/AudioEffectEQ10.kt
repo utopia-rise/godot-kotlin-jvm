@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTEQ10_INDEX: Int = 89
+private const val ENGINE_CLASS_AUDIOEFFECTEQ10_INDEX: Int = 90
 
 /**
  * Frequency bands:

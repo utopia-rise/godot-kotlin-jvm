@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CONFIGFILE_INDEX: Int = 192
+private const val ENGINE_CLASS_CONFIGFILE_INDEX: Int = 206
 
 /**
  * This helper class can be used to store [Variant] values on the filesystem using INI-style

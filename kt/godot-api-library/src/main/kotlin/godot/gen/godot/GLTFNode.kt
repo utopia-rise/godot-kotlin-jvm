@@ -33,7 +33,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFNODE_INDEX: Int = 241
+private const val ENGINE_CLASS_GLTFNODE_INDEX: Int = 259
 
 /**
  * Represents a GLTF node. GLTF nodes may have names, transforms, children (other GLTF nodes), and

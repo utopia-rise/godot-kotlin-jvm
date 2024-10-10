@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PHYSICALBONE3D_INDEX: Int = 414
+private const val ENGINE_CLASS_PHYSICALBONE3D_INDEX: Int = 457
 
 /**
  * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]

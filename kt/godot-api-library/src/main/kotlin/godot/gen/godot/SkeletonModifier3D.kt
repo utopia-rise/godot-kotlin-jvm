@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFIER3D_INDEX: Int = 532
+private const val ENGINE_CLASS_SKELETONMODIFIER3D_INDEX: Int = 595
 
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.

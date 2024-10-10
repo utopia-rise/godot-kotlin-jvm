@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_TRIANGLEMESH_INDEX: Int = 605
+private const val ENGINE_CLASS_TRIANGLEMESH_INDEX: Int = 677
 
 /**
  * Mesh type used internally for collision calculations.

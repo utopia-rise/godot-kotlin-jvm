@@ -33,7 +33,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONPLAYER_INDEX: Int = 69
+private const val ENGINE_CLASS_ANIMATIONPLAYER_INDEX: Int = 70
 
 /**
  * An animation player is used for general-purpose playback of animations. It contains a dictionary

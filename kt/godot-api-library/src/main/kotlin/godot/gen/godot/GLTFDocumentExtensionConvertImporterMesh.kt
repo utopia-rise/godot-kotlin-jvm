@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSIONCONVERTIMPORTERMESH_INDEX: Int = 238
+private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSIONCONVERTIMPORTERMESH_INDEX: Int = 256
 
 @GodotBaseType
 public open class GLTFDocumentExtensionConvertImporterMesh : GLTFDocumentExtension() {

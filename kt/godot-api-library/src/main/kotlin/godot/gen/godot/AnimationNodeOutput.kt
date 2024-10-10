@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ANIMATIONNODEOUTPUT_INDEX: Int = 60
+private const val ENGINE_CLASS_ANIMATIONNODEOUTPUT_INDEX: Int = 61
 
 /**
  * A node created automatically in an [AnimationNodeBlendTree] that outputs the final animation.

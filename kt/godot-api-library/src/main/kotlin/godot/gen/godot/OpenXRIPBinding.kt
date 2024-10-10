@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRIPBINDING_INDEX: Int = 389
+private const val ENGINE_CLASS_OPENXRIPBINDING_INDEX: Int = 430
 
 /**
  * This binding resource binds an [OpenXRAction] to inputs or outputs. As most controllers have left

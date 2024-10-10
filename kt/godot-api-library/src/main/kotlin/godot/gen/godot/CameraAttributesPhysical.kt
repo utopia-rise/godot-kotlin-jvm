@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAMERAATTRIBUTESPHYSICAL_INDEX: Int = 154
+private const val ENGINE_CLASS_CAMERAATTRIBUTESPHYSICAL_INDEX: Int = 164
 
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's

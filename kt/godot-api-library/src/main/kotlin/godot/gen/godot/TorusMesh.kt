@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_TORUSMESH_INDEX: Int = 601
+private const val ENGINE_CLASS_TORUSMESH_INDEX: Int = 672
 
 /**
  * Class representing a torus [PrimitiveMesh].

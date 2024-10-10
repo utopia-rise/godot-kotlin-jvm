@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_STREAMPEERTCP_INDEX: Int = 556
+private const val ENGINE_CLASS_STREAMPEERTCP_INDEX: Int = 623
 
 /**
  * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or

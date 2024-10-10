@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTMIDI_INDEX: Int = 295
+private const val ENGINE_CLASS_INPUTEVENTMIDI_INDEX: Int = 320
 
 /**
  * InputEventMIDI stores information about messages from

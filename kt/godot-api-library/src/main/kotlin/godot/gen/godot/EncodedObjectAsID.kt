@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ENCODEDOBJECTASID_INDEX: Int = 216
+private const val ENGINE_CLASS_ENCODEDOBJECTASID_INDEX: Int = 232
 
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as

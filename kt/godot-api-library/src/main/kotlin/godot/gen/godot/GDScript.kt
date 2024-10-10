@@ -15,7 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GDSCRIPT_INDEX: Int = 231
+private const val ENGINE_CLASS_GDSCRIPT_INDEX: Int = 249
 
 /**
  * A script implemented in the GDScript programming language, saved with the `.gd` extension. The

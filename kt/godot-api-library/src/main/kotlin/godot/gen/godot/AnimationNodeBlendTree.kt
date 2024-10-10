@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_ANIMATIONNODEBLENDTREE_INDEX: Int = 58
+private const val ENGINE_CLASS_ANIMATIONNODEBLENDTREE_INDEX: Int = 59
 
 /**
  * This animation node may contain a sub-tree of any other type animation nodes, such as

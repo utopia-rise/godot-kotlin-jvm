@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRADIENT_INDEX: Int = 262
+private const val ENGINE_CLASS_GRADIENT_INDEX: Int = 282
 
 /**
  * This resource describes a color transition by defining a set of colored points and how to

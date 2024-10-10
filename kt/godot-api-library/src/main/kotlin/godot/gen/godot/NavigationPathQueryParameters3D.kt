@@ -29,7 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS3D_INDEX: Int = 361
+private const val ENGINE_CLASS_NAVIGATIONPATHQUERYPARAMETERS3D_INDEX: Int = 398
 
 public infix fun Long.or(other: godot.NavigationPathQueryParameters3D.PathMetadataFlags): Long =
     this.or(other.flag)
@@ -440,7 +440,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   @JvmInline
-  internal value class PathMetadataFlagsValue internal constructor(
+  public value class PathMetadataFlagsValue(
     public override val flag: Long,
   ) : PathMetadataFlags
 

@@ -20,6 +20,8 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODEGROUPBASE_INDEX: Int = 736
+
 /**
  * Currently, has no direct usage, use the derived classes instead.
  */

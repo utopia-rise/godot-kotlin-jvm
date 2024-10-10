@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XRCONTROLLERTRACKER_INDEX: Int = 754
+private const val ENGINE_CLASS_XRCONTROLLERTRACKER_INDEX: Int = 841
 
 /**
  * An instance of this object represents a controller that is tracked.

@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_NAVIGATIONREGION2D_INDEX: Int = 365
+private const val ENGINE_CLASS_NAVIGATIONREGION2D_INDEX: Int = 402
 
 /**
  * A traversable 2D region based on a [NavigationPolygon] that [NavigationAgent2D]s can use for

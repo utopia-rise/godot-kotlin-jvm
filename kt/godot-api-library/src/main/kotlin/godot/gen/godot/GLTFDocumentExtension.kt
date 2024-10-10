@@ -19,7 +19,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX: Int = 237
+private const val ENGINE_CLASS_GLTFDOCUMENTEXTENSION_INDEX: Int = 255
 
 /**
  * Extends the functionality of the [GLTFDocument] class by allowing you to run arbitrary code at

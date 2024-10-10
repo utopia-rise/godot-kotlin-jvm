@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFLOATOP_INDEX: Int = 655
+private const val ENGINE_CLASS_VISUALSHADERNODEFLOATOP_INDEX: Int = 731
 
 /**
  * Applies [operator] to two floating-point inputs: `a` and `b`.

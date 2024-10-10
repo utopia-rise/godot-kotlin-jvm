@@ -22,7 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRBODYTRACKER_INDEX: Int = 751
+private const val ENGINE_CLASS_XRBODYTRACKER_INDEX: Int = 838
 
 public infix fun Long.or(other: godot.XRBodyTracker.BodyFlags): Long = this.or(other.flag)
 
@@ -204,7 +204,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   @JvmInline
-  internal value class BodyFlagsValue internal constructor(
+  public value class BodyFlagsValue(
     public override val flag: Long,
   ) : BodyFlags
 
@@ -592,7 +592,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   @JvmInline
-  internal value class JointFlagsValue internal constructor(
+  public value class JointFlagsValue(
     public override val flag: Long,
   ) : JointFlags
 

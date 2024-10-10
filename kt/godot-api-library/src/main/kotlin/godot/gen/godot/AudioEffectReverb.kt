@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTREVERB_INDEX: Int = 105
+private const val ENGINE_CLASS_AUDIOEFFECTREVERB_INDEX: Int = 106
 
 /**
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open

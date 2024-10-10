@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ANIMATIONROOTNODE_INDEX: Int = 70
+private const val ENGINE_CLASS_ANIMATIONROOTNODE_INDEX: Int = 71
 
 /**
  * [AnimationRootNode] is a base class for [AnimationNode]s that hold a complete animation. A

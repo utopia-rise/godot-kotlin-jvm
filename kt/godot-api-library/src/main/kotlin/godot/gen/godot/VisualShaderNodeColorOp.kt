@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOLOROP_INDEX: Int = 638
+private const val ENGINE_CLASS_VISUALSHADERNODECOLOROP_INDEX: Int = 713
 
 /**
  * Applies [operator] to two color inputs.

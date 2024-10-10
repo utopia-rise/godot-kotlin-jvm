@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FOGMATERIAL_INDEX: Int = 225
+private const val ENGINE_CLASS_FOGMATERIAL_INDEX: Int = 242
 
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.

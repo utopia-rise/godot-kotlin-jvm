@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX: Int = 377
+private const val ENGINE_CLASS_OGGPACKETSEQUENCE_INDEX: Int = 417
 
 /**
  * A sequence of Ogg packets.

@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_OPENXRACTION_INDEX: Int = 381
+private const val ENGINE_CLASS_OPENXRACTION_INDEX: Int = 421
 
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,

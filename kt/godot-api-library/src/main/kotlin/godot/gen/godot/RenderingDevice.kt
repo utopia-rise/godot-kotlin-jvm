@@ -43,6 +43,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_RENDERINGDEVICE_INDEX: Int = 546
+
 public infix fun Long.or(other: godot.RenderingDevice.BarrierMask): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.RenderingDevice.BarrierMask): Long = this.xor(other.flag)
@@ -2946,7 +2948,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   @JvmInline
-  internal value class BarrierMaskValue internal constructor(
+  public value class BarrierMaskValue(
     public override val flag: Long,
   ) : BarrierMask
 
@@ -3128,7 +3130,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   @JvmInline
-  internal value class TextureUsageBitsValue internal constructor(
+  public value class TextureUsageBitsValue(
     public override val flag: Long,
   ) : TextureUsageBits
 
@@ -3442,7 +3444,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   @JvmInline
-  internal value class StorageBufferUsageValue internal constructor(
+  public value class StorageBufferUsageValue(
     public override val flag: Long,
   ) : StorageBufferUsage
 
@@ -4059,7 +4061,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   @JvmInline
-  internal value class PipelineDynamicStateFlagsValue internal constructor(
+  public value class PipelineDynamicStateFlagsValue(
     public override val flag: Long,
   ) : PipelineDynamicStateFlags
 

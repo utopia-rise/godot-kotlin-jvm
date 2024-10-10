@@ -13,7 +13,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_STREAMPEEREXTENSION_INDEX: Int = 554
+private const val ENGINE_CLASS_STREAMPEEREXTENSION_INDEX: Int = 621
 
 @GodotBaseType
 public open class StreamPeerExtension : StreamPeer() {

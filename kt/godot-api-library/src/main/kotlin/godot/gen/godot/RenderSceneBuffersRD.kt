@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RENDERSCENEBUFFERSRD_INDEX: Int = 490
+private const val ENGINE_CLASS_RENDERSCENEBUFFERSRD_INDEX: Int = 542
 
 /**
  * This object manages all 3D rendering buffers for the rendering device based renderers. An

@@ -30,7 +30,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS2D_INDEX: Int = 429
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS2D_INDEX: Int = 478
 
 /**
  * By changing various properties of this object, such as the motion, you can configure the

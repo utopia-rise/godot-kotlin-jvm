@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX: Int = 623
+private const val ENGINE_CLASS_VIDEOSTREAMPLAYER_INDEX: Int = 696
 
 /**
  * A control used for playback of [VideoStream] resources.

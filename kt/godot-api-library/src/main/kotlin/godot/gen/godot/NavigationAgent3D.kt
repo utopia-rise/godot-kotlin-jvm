@@ -38,7 +38,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONAGENT3D_INDEX: Int = 352
+private const val ENGINE_CLASS_NAVIGATIONAGENT3D_INDEX: Int = 389
 
 /**
  * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The

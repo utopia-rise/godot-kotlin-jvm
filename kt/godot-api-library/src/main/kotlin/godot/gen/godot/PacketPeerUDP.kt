@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PACKETPEERUDP_INDEX: Int = 401
+private const val ENGINE_CLASS_PACKETPEERUDP_INDEX: Int = 444
 
 /**
  * UDP packet peer. Can be used to send raw UDP packets as well as [Variant]s.

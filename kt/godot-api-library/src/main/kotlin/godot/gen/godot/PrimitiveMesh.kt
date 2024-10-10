@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PRIMITIVEMESH_INDEX: Int = 452
+private const val ENGINE_CLASS_PRIMITIVEMESH_INDEX: Int = 502
 
 /**
  * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples

@@ -31,6 +31,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_SCRIPT_INDEX: Int = 563
+
 /**
  * A class stored as a resource. A script extends the functionality of all objects that instantiate
  * it.

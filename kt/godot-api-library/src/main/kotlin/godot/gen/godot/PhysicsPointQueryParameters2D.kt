@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS2D_INDEX: Int = 422
+private const val ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS2D_INDEX: Int = 471
 
 /**
  * By changing various properties of this object, such as the point position, you can configure the

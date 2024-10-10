@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX: Int = 675
+private const val ENGINE_CLASS_VISUALSHADERNODEPARTICLEEMIT_INDEX: Int = 754
 
 /**
  * This node internally calls `emit_subparticle` shader method. It will emit a particle from the

@@ -19,6 +19,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_INPUTEVENTGESTURE_INDEX: Int = 316
+
 /**
  * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
  * can't be emulated using mouse, because they typically require multi-touch.

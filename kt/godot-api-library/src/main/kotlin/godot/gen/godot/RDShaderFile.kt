@@ -23,7 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_RDSHADERFILE_INDEX: Int = 468
+private const val ENGINE_CLASS_RDSHADERFILE_INDEX: Int = 518
 
 /**
  * Compiled shader file in SPIR-V form.

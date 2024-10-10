@@ -39,7 +39,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILEDATA_INDEX: Int = 593
+private const val ENGINE_CLASS_TILEDATA_INDEX: Int = 663
 
 /**
  * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset

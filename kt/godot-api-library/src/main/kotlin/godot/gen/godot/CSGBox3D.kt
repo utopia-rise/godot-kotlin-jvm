@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGBOX3D_INDEX: Int = 143
+private const val ENGINE_CLASS_CSGBOX3D_INDEX: Int = 151
 
 /**
  * This node allows you to create a box for use with the CSG system.

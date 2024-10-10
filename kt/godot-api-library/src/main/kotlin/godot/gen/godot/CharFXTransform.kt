@@ -36,7 +36,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CHARFXTRANSFORM_INDEX: Int = 167
+private const val ENGINE_CLASS_CHARFXTRANSFORM_INDEX: Int = 178
 
 /**
  * By setting various properties on this object, you can control how individual characters will be

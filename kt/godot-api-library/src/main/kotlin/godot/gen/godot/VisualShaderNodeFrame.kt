@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX: Int = 657
+private const val ENGINE_CLASS_VISUALSHADERNODEFRAME_INDEX: Int = 733
 
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve

@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_COMPRESSEDTEXTURE2DARRAY_INDEX: Int = 187
+private const val ENGINE_CLASS_COMPRESSEDTEXTURE2DARRAY_INDEX: Int = 200
 
 /**
  * A texture array that is loaded from a `.ctexarray` file. This file format is internal to Godot;

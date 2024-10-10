@@ -23,6 +23,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_JOINT3D_INDEX: Int = 340
+
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
  * ([nodeA] and [nodeB]) and apply a constraint. If only one body is defined, it is attached to a fixed

@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYER3D_INDEX: Int = 123
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYER3D_INDEX: Int = 130
 
 /**
  * Plays audio with positional sound effects, based on the relative position of the audio listener.

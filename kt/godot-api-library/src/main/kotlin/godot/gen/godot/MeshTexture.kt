@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_MESHTEXTURE_INDEX: Int = 337
+private const val ENGINE_CLASS_MESHTEXTURE_INDEX: Int = 372
 
 /**
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and

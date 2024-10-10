@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PARALLAXLAYER_INDEX: Int = 407
+private const val ENGINE_CLASS_PARALLAXLAYER_INDEX: Int = 450
 
 /**
  * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set

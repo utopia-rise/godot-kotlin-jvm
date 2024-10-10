@@ -39,6 +39,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_XRINTERFACE_INDEX: Int = 846
+
 /**
  * This class needs to be implemented to make an AR or VR platform available to Godot and these
  * should be implemented as C++ modules or GDExtension modules. Part of the interface is exposed to

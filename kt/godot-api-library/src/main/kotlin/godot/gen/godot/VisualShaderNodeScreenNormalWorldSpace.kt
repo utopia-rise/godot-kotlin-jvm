@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE_INDEX: Int = 689
+private const val ENGINE_CLASS_VISUALSHADERNODESCREENNORMALWORLDSPACE_INDEX: Int = 771
 
 /**
  * The ScreenNormalWorldSpace node allows to create outline effects.

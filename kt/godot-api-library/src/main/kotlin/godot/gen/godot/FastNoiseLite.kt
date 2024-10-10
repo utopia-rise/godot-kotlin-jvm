@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_FASTNOISELITE_INDEX: Int = 222
+private const val ENGINE_CLASS_FASTNOISELITE_INDEX: Int = 238
 
 /**
  * This class generates noise using the FastNoiseLite library, which is a collection of several

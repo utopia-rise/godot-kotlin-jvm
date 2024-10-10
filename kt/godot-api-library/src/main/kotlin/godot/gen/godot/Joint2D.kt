@@ -24,6 +24,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_JOINT2D_INDEX: Int = 339
+
 /**
  * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
  * ([nodeA] and [nodeB]) and apply a constraint.

@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTCOMPRESSOR_INDEX: Int = 85
+private const val ENGINE_CLASS_AUDIOEFFECTCOMPRESSOR_INDEX: Int = 86
 
 /**
  * Dynamic range compressor reduces the level of the sound when the amplitude goes over a certain

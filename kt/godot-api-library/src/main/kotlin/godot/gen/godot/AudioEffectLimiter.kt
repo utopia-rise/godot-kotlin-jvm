@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX: Int = 97
+private const val ENGINE_CLASS_AUDIOEFFECTLIMITER_INDEX: Int = 98
 
 /**
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going

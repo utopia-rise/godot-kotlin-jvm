@@ -43,6 +43,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_CANVASITEM_INDEX: Int = 169
+
 /**
  * Abstract base class for everything in 2D space. Canvas items are laid out in a tree; children
  * inherit and extend their parent's transform. [CanvasItem] is extended by [Control] for GUI-related

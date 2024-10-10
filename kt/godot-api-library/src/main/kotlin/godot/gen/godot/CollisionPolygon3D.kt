@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLLISIONPOLYGON3D_INDEX: Int = 176
+private const val ENGINE_CLASS_COLLISIONPOLYGON3D_INDEX: Int = 189
 
 /**
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and

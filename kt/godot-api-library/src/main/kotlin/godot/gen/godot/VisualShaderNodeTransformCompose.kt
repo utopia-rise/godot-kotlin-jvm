@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCOMPOSE_INDEX: Int = 703
+private const val ENGINE_CLASS_VISUALSHADERNODETRANSFORMCOMPOSE_INDEX: Int = 786
 
 /**
  * Creates a 4×4 transform matrix using four vectors of type `vec3`. Each vector is one row in the

@@ -13,6 +13,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_SCRIPTLANGUAGE_INDEX: Int = 565
+
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {

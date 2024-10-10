@@ -21,21 +21,24 @@ import com.squareup.kotlinpoet.asClassName
 import godot.codegen.services.ISignalGenerationService
 import godot.codegen.utils.GenericClassNameInfo
 import godot.tools.common.constants.AS_CALLABLE_UTIL_FUNCTION
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GODOT_CALLABLE
 import godot.tools.common.constants.GODOT_ERROR
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.kotlinReflectPackage
+import java.io.File
 import kotlin.reflect.KCallable
 
 class SignalGenerationService : ISignalGenerationService {
 
-    override fun generate(maxArgumentCount: Int): FileSpec {
+    override fun generate(coreDir: File, apiDir: File) {
         val signalFileSpec = FileSpec.builder(godotCorePackage, "Signals")
+        val signalExtFileSpec = FileSpec.builder(godotCorePackage, "SignalsExt")
 
 
-        for (argCount in 0..maxArgumentCount) {
+        for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
             val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
 
@@ -44,10 +47,12 @@ class SignalGenerationService : ISignalGenerationService {
             signalFileSpec.addFunction(generateFakeSignalConstructor(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalDelegate(argCount, genericClassNameInfo))
             signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, false))
-            signalFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, true))
+
+            signalExtFileSpec.addFunction(generateThreadSafeExtension(argCount, genericClassNameInfo))
+            signalExtFileSpec.addFunction(generateSignalExtension(genericClassNameInfo, true))
         }
 
-        return signalFileSpec
+        signalFileSpec
             .addAnnotation(
                 AnnotationSpec
                     .builder(Suppress::class)
@@ -58,7 +63,30 @@ class SignalGenerationService : ISignalGenerationService {
             )
             .indent("    ")
             .build()
+            .writeTo(coreDir)
 
+        signalExtFileSpec
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(Suppress::class)
+                    .addMember("\"PackageDirectoryMismatch\"")
+                    .addMember("\"NOTHING_TO_INLINE\"")
+                    .addMember("\"UNUSED_PARAMETER\"")
+                    .build()
+            )
+            .addAnnotation(
+                AnnotationSpec
+                    .builder(JvmName::class)
+                    .addMember("\"SignalsExt\"")
+                    .build()
+            )
+            .indent("    ")
+            .addImport(
+                "godot.extensions",
+                "connectThreadSafeVararg"
+            )
+            .build()
+            .writeTo(apiDir)
     }
 
 
@@ -125,19 +153,6 @@ class SignalGenerationService : ISignalGenerationService {
                         .addCode(generateConnectionCodeBlock())
                         .build(),
 
-                    FunSpec.builder(CONNECT_THREAD_SAFE_METHOD_NAME)
-                        .addTypeVariable(godotObjectBoundTypeVariable)
-                        .addParameters(
-                            listOf(
-                                ParameterSpec.builder(TARGET_PARAMETER_NAME, godotObjectBoundTypeVariable).build(),
-                                ParameterSpec.builder(METHOD_PARAMETER_NAME, lambdaTypeName).build(),
-                                flagsParameter
-                            )
-                        )
-                        .returns(ANY.copy(nullable = true))
-                        .addCode(generateConnectionCodeBlock(false, true))
-                        .build(),
-
                     FunSpec.builder(DISCONNECT_METHOD_NAME)
                         .addTypeVariable(godotObjectBoundTypeVariable)
                         .addParameters(
@@ -152,6 +167,32 @@ class SignalGenerationService : ISignalGenerationService {
                 )
             )
             .addType(generateSignalCompanion(argCount, genericClassNameInfo))
+            .build()
+    }
+
+    private fun generateThreadSafeExtension(argCount: Int, genericClassNameInfo: GenericClassNameInfo): FunSpec {
+        val flagsParameter = ParameterSpec.builder(FLAGS_PARAMETER_NAME, INT)
+            .defaultValue("0")
+            .build()
+
+        val lambdaTypeName = LambdaTypeName.get(
+            receiver = godotObjectBoundTypeVariable,
+            parameters = genericClassNameInfo.toParameterSpecList(),
+            returnType = UNIT
+        )
+
+        return genericClassNameInfo
+            .toExtensionFunSpecBuilder(CONNECT_THREAD_SAFE_METHOD_NAME)
+            .addTypeVariable(godotObjectBoundTypeVariable)
+            .addParameters(
+                listOf(
+                    ParameterSpec.builder(TARGET_PARAMETER_NAME, godotObjectBoundTypeVariable).build(),
+                    ParameterSpec.builder(METHOD_PARAMETER_NAME, lambdaTypeName).build(),
+                    flagsParameter
+                )
+            )
+            .returns(ANY.copy(nullable = true))
+            .addCode(generateConnectionCodeBlock(false, true))
             .build()
     }
 
@@ -353,7 +394,7 @@ class SignalGenerationService : ISignalGenerationService {
 
         private const val EMIT_METHOD_NAME = "emit"
         private const val CONNECT_METHOD_NAME = "connect"
-        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafe"
+        private const val CONNECT_THREAD_SAFE_METHOD_NAME = "connectThreadSafeVararg"
         private const val DISCONNECT_METHOD_NAME = "disconnect"
         private const val SIGNAL_METHOD_NAME = "signal"
         private const val JAVA_CREATE_METHOD_NAME = "javaCreate"

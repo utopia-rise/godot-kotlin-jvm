@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_SPRITEBASE3D_INDEX: Int = 613
+
 /**
  * A node that displays 2D texture information in a 3D environment. See also [Sprite3D] where many
  * other properties are defined.

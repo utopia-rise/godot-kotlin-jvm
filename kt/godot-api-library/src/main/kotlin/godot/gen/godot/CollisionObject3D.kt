@@ -32,6 +32,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_COLLISIONOBJECT3D_INDEX: Int = 187
+
 /**
  * Abstract base class for 3D physics objects. [CollisionObject3D] can hold any number of [Shape3D]s
  * for collision. Each shape must be assigned to a *shape owner*. Shape owners are not nodes and do not

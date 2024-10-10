@@ -19,7 +19,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_AUDIOEFFECTEQ_INDEX: Int = 88
+private const val ENGINE_CLASS_AUDIOEFFECTEQ_INDEX: Int = 89
 
 /**
  * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies

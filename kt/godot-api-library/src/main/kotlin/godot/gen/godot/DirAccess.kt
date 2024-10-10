@@ -25,6 +25,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_DIRACCESS_INDEX: Int = 226
+
 /**
  * This class is used to manage directories and their content, even outside of the project folder.
  * [DirAccess] can't be instantiated directly. Instead it is created with a static method that takes

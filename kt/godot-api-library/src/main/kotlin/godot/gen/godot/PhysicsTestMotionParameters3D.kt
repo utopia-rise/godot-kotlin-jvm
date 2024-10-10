@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS3D_INDEX: Int = 430
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONPARAMETERS3D_INDEX: Int = 479
 
 /**
  * By changing various properties of this object, such as the motion, you can configure the

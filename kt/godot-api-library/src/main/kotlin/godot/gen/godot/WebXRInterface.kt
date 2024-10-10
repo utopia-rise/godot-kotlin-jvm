@@ -31,6 +31,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
+private const val ENGINE_CLASS_WEBXRINTERFACE_INDEX: Int = 827
+
 /**
  * WebXR is an open standard that allows creating VR and AR applications that run in the web
  * browser.

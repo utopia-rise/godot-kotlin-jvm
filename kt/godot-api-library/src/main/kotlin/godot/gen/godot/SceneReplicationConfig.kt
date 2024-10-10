@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX: Int = 504
+private const val ENGINE_CLASS_SCENEREPLICATIONCONFIG_INDEX: Int = 559
 
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {

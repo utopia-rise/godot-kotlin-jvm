@@ -20,7 +20,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_IMAGETEXTURE3D_INDEX: Int = 287
+private const val ENGINE_CLASS_IMAGETEXTURE3D_INDEX: Int = 308
 
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also

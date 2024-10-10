@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CIRCLESHAPE2D_INDEX: Int = 172
+private const val ENGINE_CLASS_CIRCLESHAPE2D_INDEX: Int = 183
 
 /**
  * A 2D circle shape, intended for use in physics. Usually used to provide a shape for a

@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX: Int = 127
+private const val ENGINE_CLASS_AUDIOSTREAMSYNCHRONIZED_INDEX: Int = 134
 
 /**
  * This is a stream that can be fitted with sub-streams, which will be played in-sync. The streams

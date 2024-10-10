@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS3D_INDEX: Int = 423
+private const val ENGINE_CLASS_PHYSICSPOINTQUERYPARAMETERS3D_INDEX: Int = 472
 
 /**
  * By changing various properties of this object, such as the point position, you can configure the

@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VEHICLEWHEEL3D_INDEX: Int = 620
+private const val ENGINE_CLASS_VEHICLEWHEEL3D_INDEX: Int = 693
 
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.

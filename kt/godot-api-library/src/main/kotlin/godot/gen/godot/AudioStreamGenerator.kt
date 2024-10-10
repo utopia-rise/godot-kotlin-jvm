@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMGENERATOR_INDEX: Int = 113
+private const val ENGINE_CLASS_AUDIOSTREAMGENERATOR_INDEX: Int = 115
 
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;

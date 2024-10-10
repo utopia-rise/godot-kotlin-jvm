@@ -35,7 +35,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX: Int = 364
+private const val ENGINE_CLASS_NAVIGATIONPOLYGON_INDEX: Int = 401
 
 /**
  * A navigation mesh can be created either by baking it with the help of the [NavigationServer2D],

@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX: Int = 628
+private const val ENGINE_CLASS_VISIBLEONSCREENNOTIFIER2D_INDEX: Int = 702
 
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this

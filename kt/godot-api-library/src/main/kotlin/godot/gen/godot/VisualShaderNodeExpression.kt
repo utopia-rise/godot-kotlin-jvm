@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEEXPRESSION_INDEX: Int = 651
+private const val ENGINE_CLASS_VISUALSHADERNODEEXPRESSION_INDEX: Int = 727
 
 /**
  * Custom Godot Shading Language expression, with a custom number of input and output ports.

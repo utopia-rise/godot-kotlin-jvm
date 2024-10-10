@@ -15,7 +15,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DSTACKHOLDER_INDEX: Int = 529
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DSTACKHOLDER_INDEX: Int = 592
 
 /**
  * This [SkeletonModification2D] holds a reference to a [SkeletonModificationStack2D], allowing you

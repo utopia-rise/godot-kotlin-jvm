@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_OGGPACKETSEQUENCEPLAYBACK_INDEX: Int = 378
+private const val ENGINE_CLASS_OGGPACKETSEQUENCEPLAYBACK_INDEX: Int = 418
 
 @GodotBaseType
 public open class OggPacketSequencePlayback : RefCounted() {

@@ -26,7 +26,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_COLORPICKER_INDEX: Int = 179
+private const val ENGINE_CLASS_COLORPICKER_INDEX: Int = 192
 
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide

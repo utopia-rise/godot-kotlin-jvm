@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_HEIGHTMAPSHAPE3D_INDEX: Int = 282
+private const val ENGINE_CLASS_HEIGHTMAPSHAPE3D_INDEX: Int = 302
 
 /**
  * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a

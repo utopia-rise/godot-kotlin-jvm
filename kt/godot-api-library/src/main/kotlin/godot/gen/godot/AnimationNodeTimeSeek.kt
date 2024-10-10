@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_ANIMATIONNODETIMESEEK_INDEX: Int = 67
+private const val ENGINE_CLASS_ANIMATIONNODETIMESEEK_INDEX: Int = 68
 
 /**
  * This animation node can be used to cause a seek command to happen to any sub-children of the

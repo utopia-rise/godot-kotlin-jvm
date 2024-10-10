@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CONVEXPOLYGONSHAPE3D_INDEX: Int = 197
+private const val ENGINE_CLASS_CONVEXPOLYGONSHAPE3D_INDEX: Int = 211
 
 /**
  * A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a

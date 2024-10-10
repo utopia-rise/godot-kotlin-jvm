@@ -31,7 +31,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFLIGHT_INDEX: Int = 239
+private const val ENGINE_CLASS_GLTFLIGHT_INDEX: Int = 257
 
 /**
  * Represents a light as defined by the `KHR_lights_punctual` GLTF extension.

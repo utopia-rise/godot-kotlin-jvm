@@ -42,6 +42,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_VIEWPORT_INDEX: Int = 698
+
 /**
  * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport.
  * Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.

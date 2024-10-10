@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_RDVERTEXATTRIBUTE_INDEX: Int = 474
+private const val ENGINE_CLASS_RDVERTEXATTRIBUTE_INDEX: Int = 524
 
 /**
  * This object is used by [RenderingDevice].

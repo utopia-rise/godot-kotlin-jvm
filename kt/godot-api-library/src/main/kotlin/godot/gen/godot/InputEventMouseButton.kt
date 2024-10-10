@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_INPUTEVENTMOUSEBUTTON_INDEX: Int = 297
+private const val ENGINE_CLASS_INPUTEVENTMOUSEBUTTON_INDEX: Int = 323
 
 /**
  * Stores information about mouse click events. See [Node.Input].

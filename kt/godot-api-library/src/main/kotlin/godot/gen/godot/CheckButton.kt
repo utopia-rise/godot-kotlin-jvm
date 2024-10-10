@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CHECKBUTTON_INDEX: Int = 171
+private const val ENGINE_CLASS_CHECKBUTTON_INDEX: Int = 182
 
 /**
  * [CheckButton] is a toggle button displayed as a check field. It's similar to [CheckBox] in

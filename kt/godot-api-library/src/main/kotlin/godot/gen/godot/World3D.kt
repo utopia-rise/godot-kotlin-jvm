@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_WORLD3D_INDEX: Int = 743
+private const val ENGINE_CLASS_WORLD3D_INDEX: Int = 830
 
 /**
  * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound

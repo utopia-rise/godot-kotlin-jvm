@@ -27,6 +27,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_NOISE_INDEX: Int = 409
+
 /**
  * This class defines the interface for noise generation libraries to inherit from.
  * A default [getSeamlessImage] implementation is provided for libraries that do not provide

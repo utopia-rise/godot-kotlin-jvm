@@ -23,7 +23,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT2D_INDEX: Int = 431
+private const val ENGINE_CLASS_PHYSICSTESTMOTIONRESULT2D_INDEX: Int = 480
 
 /**
  * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].

@@ -32,7 +32,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFPHYSICSBODY_INDEX: Int = 242
+private const val ENGINE_CLASS_GLTFPHYSICSBODY_INDEX: Int = 260
 
 /**
  * Represents a physics body as an intermediary between the `OMI_physics_body` GLTF data and Godot's

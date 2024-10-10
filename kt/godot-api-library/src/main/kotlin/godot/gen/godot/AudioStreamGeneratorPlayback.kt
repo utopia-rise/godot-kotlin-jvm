@@ -22,6 +22,8 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_AUDIOSTREAMGENERATORPLAYBACK_INDEX: Int = 116
+
 /**
  * This class is meant to be used with [AudioStreamGenerator] to play back the generated audio in
  * real-time.

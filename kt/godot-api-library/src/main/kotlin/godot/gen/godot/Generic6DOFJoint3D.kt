@@ -21,7 +21,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_GENERIC6DOFJOINT3D_INDEX: Int = 260
+private const val ENGINE_CLASS_GENERIC6DOFJOINT3D_INDEX: Int = 280
 
 /**
  * The [Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of

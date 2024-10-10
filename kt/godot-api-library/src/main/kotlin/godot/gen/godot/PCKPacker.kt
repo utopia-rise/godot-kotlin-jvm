@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PCKPACKER_INDEX: Int = 395
+private const val ENGINE_CLASS_PCKPACKER_INDEX: Int = 436
 
 /**
  * The [PCKPacker] is used to create packages that can be loaded into a running project using

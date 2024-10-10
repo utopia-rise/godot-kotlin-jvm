@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VOXELGIDATA_INDEX: Int = 733
+private const val ENGINE_CLASS_VOXELGIDATA_INDEX: Int = 818
 
 /**
  * [VoxelGIData] contains baked voxel global illumination for use in a [VoxelGI] node. [VoxelGIData]

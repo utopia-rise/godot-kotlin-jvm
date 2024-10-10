@@ -17,7 +17,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_MULTIPLAYERAPIEXTENSION_INDEX: Int = 346
+private const val ENGINE_CLASS_MULTIPLAYERAPIEXTENSION_INDEX: Int = 382
 
 /**
  * This class can be used to augment or replace the default [MultiplayerAPI] implementation via

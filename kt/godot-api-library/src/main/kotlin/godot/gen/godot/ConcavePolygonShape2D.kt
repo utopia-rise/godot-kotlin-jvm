@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX: Int = 189
+private const val ENGINE_CLASS_CONCAVEPOLYGONSHAPE2D_INDEX: Int = 203
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when

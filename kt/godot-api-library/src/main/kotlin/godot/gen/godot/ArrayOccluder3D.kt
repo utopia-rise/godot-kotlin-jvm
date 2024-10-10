@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ARRAYOCCLUDER3D_INDEX: Int = 75
+private const val ENGINE_CLASS_ARRAYOCCLUDER3D_INDEX: Int = 76
 
 /**
  * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion

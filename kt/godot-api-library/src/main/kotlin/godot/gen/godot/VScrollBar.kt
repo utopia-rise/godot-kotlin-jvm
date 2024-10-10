@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VSCROLLBAR_INDEX: Int = 615
+private const val ENGINE_CLASS_VSCROLLBAR_INDEX: Int = 688
 
 /**
  * A vertical scrollbar, typically used to navigate through content that extends beyond the visible

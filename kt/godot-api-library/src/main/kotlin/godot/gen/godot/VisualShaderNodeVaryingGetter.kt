@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVARYINGGETTER_INDEX: Int = 716
+private const val ENGINE_CLASS_VISUALSHADERNODEVARYINGGETTER_INDEX: Int = 800
 
 /**
  * Outputs a value of a varying defined in the shader. You need to first create a varying that can

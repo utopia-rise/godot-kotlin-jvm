@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_SPOTLIGHT3D_INDEX: Int = 544
+private const val ENGINE_CLASS_SPOTLIGHT3D_INDEX: Int = 609
 
 /**
  * A Spotlight is a type of [Light3D] node that emits lights in a specific direction, in the shape

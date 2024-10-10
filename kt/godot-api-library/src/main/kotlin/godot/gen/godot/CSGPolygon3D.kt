@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CSGPOLYGON3D_INDEX: Int = 147
+private const val ENGINE_CLASS_CSGPOLYGON3D_INDEX: Int = 155
 
 /**
  * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also

@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX: Int = 641
+private const val ENGINE_CLASS_VISUALSHADERNODECOMPARE_INDEX: Int = 716
 
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`

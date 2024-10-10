@@ -21,7 +21,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX: Int = 404
+private const val ENGINE_CLASS_PANORAMASKYMATERIAL_INDEX: Int = 447
 
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]

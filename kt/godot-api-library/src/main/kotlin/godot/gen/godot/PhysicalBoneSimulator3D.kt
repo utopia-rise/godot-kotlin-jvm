@@ -22,7 +22,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_PHYSICALBONESIMULATOR3D_INDEX: Int = 415
+private const val ENGINE_CLASS_PHYSICALBONESIMULATOR3D_INDEX: Int = 458
 
 /**
  * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to

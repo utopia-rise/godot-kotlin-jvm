@@ -17,7 +17,7 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_IMAGEFORMATLOADEREXTENSION_INDEX: Int = 285
+private const val ENGINE_CLASS_IMAGEFORMATLOADEREXTENSION_INDEX: Int = 306
 
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),

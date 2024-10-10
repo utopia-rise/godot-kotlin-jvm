@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODETEXTURESDF_INDEX: Int = 701
+private const val ENGINE_CLASS_VISUALSHADERNODETEXTURESDF_INDEX: Int = 784
 
 /**
  * Translates to `texture_sdf(sdf_pos)` in the shader language.

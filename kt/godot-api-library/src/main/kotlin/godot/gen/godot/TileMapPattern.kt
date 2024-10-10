@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILEMAPPATTERN_INDEX: Int = 596
+private const val ENGINE_CLASS_TILEMAPPATTERN_INDEX: Int = 666
 
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].

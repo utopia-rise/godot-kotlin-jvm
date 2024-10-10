@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_PLACEHOLDERMATERIAL_INDEX: Int = 437
+private const val ENGINE_CLASS_PLACEHOLDERMATERIAL_INDEX: Int = 486
 
 /**
  * This class is used when loading a project that uses a [Material] subclass in 2 conditions:

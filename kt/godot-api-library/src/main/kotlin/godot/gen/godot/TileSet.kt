@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TILESET_INDEX: Int = 597
+private const val ENGINE_CLASS_TILESET_INDEX: Int = 667
 
 /**
  * A TileSet is a library of tiles for a [TileMap]. A TileSet handles a list of [TileSetSource],

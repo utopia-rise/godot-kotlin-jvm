@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_MESHINSTANCE3D_INDEX: Int = 335
+private const val ENGINE_CLASS_MESHINSTANCE3D_INDEX: Int = 370
 
 /**
  * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by

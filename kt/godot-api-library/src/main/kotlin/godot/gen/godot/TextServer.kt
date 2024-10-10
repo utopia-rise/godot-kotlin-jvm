@@ -54,6 +54,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TEXTSERVER_INDEX: Int = 643
+
 public infix fun Long.or(other: godot.TextServer.JustificationFlag): Long = this.or(other.flag)
 
 public infix fun Long.xor(other: godot.TextServer.JustificationFlag): Long = this.xor(other.flag)
@@ -2663,7 +2665,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class JustificationFlagValue internal constructor(
+  public value class JustificationFlagValue(
     public override val flag: Long,
   ) : JustificationFlag
 
@@ -2773,7 +2775,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class LineBreakFlagValue internal constructor(
+  public value class LineBreakFlagValue(
     public override val flag: Long,
   ) : LineBreakFlag
 
@@ -2925,7 +2927,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class TextOverrunFlagValue internal constructor(
+  public value class TextOverrunFlagValue(
     public override val flag: Long,
   ) : TextOverrunFlag
 
@@ -3015,7 +3017,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class GraphemeFlagValue internal constructor(
+  public value class GraphemeFlagValue(
     public override val flag: Long,
   ) : GraphemeFlag
 
@@ -3293,7 +3295,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   @JvmInline
-  internal value class FontStyleValue internal constructor(
+  public value class FontStyleValue(
     public override val flag: Long,
   ) : FontStyle
 

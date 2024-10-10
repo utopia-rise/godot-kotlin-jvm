@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GLTFCAMERA_INDEX: Int = 235
+private const val ENGINE_CLASS_GLTFCAMERA_INDEX: Int = 253
 
 /**
  * Represents a camera as defined by the base GLTF spec.

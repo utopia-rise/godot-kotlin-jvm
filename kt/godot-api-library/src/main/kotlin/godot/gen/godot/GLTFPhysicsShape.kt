@@ -33,7 +33,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX: Int = 243
+private const val ENGINE_CLASS_GLTFPHYSICSSHAPE_INDEX: Int = 261
 
 /**
  * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` GLTF

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESATTRACTORSPHERE3D_INDEX: Int = 253
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTORSPHERE3D_INDEX: Int = 272
 
 /**
  * A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to

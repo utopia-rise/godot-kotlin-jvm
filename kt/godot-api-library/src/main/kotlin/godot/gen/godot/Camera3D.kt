@@ -39,7 +39,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_CAMERA3D_INDEX: Int = 152
+private const val ENGINE_CLASS_CAMERA3D_INDEX: Int = 162
 
 /**
  * [Camera3D] is a special node that displays what is visible from its current location. Cameras

@@ -23,7 +23,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_AUDIOSTREAMPLAYLIST_INDEX: Int = 124
+private const val ENGINE_CLASS_AUDIOSTREAMPLAYLIST_INDEX: Int = 131
 
 @GodotBaseType
 public open class AudioStreamPlaylist : AudioStream() {

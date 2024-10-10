@@ -22,7 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_UPNPDEVICE_INDEX: Int = 610
+private const val ENGINE_CLASS_UPNPDEVICE_INDEX: Int = 683
 
 /**
  * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.

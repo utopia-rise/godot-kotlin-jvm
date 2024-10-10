@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX: Int = 63
+private const val ENGINE_CLASS_ANIMATIONNODESTATEMACHINETRANSITION_INDEX: Int = 64
 
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONSPHERE3D_INDEX: Int = 258
+private const val ENGINE_CLASS_GPUPARTICLESCOLLISIONSPHERE3D_INDEX: Int = 278
 
 /**
  * A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.

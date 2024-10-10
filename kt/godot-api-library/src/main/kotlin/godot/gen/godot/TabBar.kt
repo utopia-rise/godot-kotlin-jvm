@@ -30,7 +30,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TABBAR_INDEX: Int = 569
+private const val ENGINE_CLASS_TABBAR_INDEX: Int = 637
 
 /**
  * A control that provides a horizontal bar with tabs. Similar to [TabContainer] but is only in

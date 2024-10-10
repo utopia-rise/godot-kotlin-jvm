@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_CHECKBOX_INDEX: Int = 170
+private const val ENGINE_CLASS_CHECKBOX_INDEX: Int = 181
 
 /**
  * [CheckBox] allows the user to choose one of only two possible options. It's similar to

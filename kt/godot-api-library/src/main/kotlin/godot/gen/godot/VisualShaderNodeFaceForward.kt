@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_VISUALSHADERNODEFACEFORWARD_INDEX: Int = 652
+private const val ENGINE_CLASS_VISUALSHADERNODEFACEFORWARD_INDEX: Int = 728
 
 /**
  * Translates to `faceforward(N, I, Nref)` in the shader language. The function has three vector

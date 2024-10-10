@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_FONT_INDEX: Int = 244
+
 /**
  * Abstract base class for different font types. It has methods for drawing text and font character
  * introspection.

@@ -18,7 +18,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VEHICLEBODY3D_INDEX: Int = 619
+private const val ENGINE_CLASS_VEHICLEBODY3D_INDEX: Int = 692
 
 /**
  * This physics body implements all the physics logic needed to simulate a car. It is based on the

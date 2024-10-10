@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEVECTOROP_INDEX: Int = 729
+private const val ENGINE_CLASS_VISUALSHADERNODEVECTOROP_INDEX: Int = 814
 
 /**
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.

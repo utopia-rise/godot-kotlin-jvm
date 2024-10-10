@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CAMERATEXTURE_INDEX: Int = 157
+private const val ENGINE_CLASS_CAMERATEXTURE_INDEX: Int = 167
 
 /**
  * This texture gives access to the camera texture provided by a [CameraFeed].

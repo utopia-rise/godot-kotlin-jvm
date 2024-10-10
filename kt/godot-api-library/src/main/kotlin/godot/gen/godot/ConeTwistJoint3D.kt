@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_CONETWISTJOINT3D_INDEX: Int = 191
+private const val ENGINE_CLASS_CONETWISTJOINT3D_INDEX: Int = 205
 
 /**
  * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket

@@ -29,7 +29,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STYLEBOXTEXTURE_INDEX: Int = 562
+private const val ENGINE_CLASS_STYLEBOXTEXTURE_INDEX: Int = 629
 
 /**
  * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox

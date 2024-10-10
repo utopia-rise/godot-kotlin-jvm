@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_INDEX: Int = 254
+private const val ENGINE_CLASS_GPUPARTICLESATTRACTORVECTORFIELD3D_INDEX: Int = 273
 
 /**
  * A box-shaped attractor with varying directions and strengths defined in it that influences

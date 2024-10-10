@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_VISUALSHADERNODECONSTANT_INDEX: Int = 717
+
 /**
  * This is an abstract class. See the derived types for descriptions of the possible values.
  */

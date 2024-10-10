@@ -19,7 +19,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_BONEMAP_INDEX: Int = 134
+private const val ENGINE_CLASS_BONEMAP_INDEX: Int = 142
 
 /**
  * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key

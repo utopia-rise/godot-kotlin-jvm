@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_SCENEMULTIPLAYER_INDEX: Int = 503
+private const val ENGINE_CLASS_SCENEMULTIPLAYER_INDEX: Int = 558
 
 /**
  * This class is the default implementation of [MultiplayerAPI], used to provide multiplayer

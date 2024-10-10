@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_KINEMATICCOLLISION3D_INDEX: Int = 311
+private const val ENGINE_CLASS_KINEMATICCOLLISION3D_INDEX: Int = 343
 
 /**
  * Holds collision data from the movement of a [PhysicsBody3D], usually from

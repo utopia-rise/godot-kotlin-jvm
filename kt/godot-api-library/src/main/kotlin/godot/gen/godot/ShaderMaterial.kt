@@ -20,7 +20,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SHADERMATERIAL_INDEX: Int = 516
+private const val ENGINE_CLASS_SHADERMATERIAL_INDEX: Int = 577
 
 /**
  * A material that uses a custom [Shader] program to render visual items (canvas items, meshes,

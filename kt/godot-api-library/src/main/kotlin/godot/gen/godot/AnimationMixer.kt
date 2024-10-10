@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_ANIMATIONMIXER_INDEX: Int = 50
+
 /**
  * Base class for [AnimationPlayer] and [AnimationTree] to manage animation lists. It also has
  * general properties and methods for playback and blending.

@@ -44,7 +44,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TEXTPARAGRAPH_INDEX: Int = 574
+private const val ENGINE_CLASS_TEXTPARAGRAPH_INDEX: Int = 642
 
 /**
  * Abstraction over [TextServer] for handling a single paragraph of text.

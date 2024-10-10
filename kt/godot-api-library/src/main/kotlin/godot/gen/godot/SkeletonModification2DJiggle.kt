@@ -28,7 +28,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_SKELETONMODIFICATION2DJIGGLE_INDEX: Int = 526
+private const val ENGINE_CLASS_SKELETONMODIFICATION2DJIGGLE_INDEX: Int = 589
 
 /**
  * This modification moves a series of bones, typically called a bone chain, towards a target. What

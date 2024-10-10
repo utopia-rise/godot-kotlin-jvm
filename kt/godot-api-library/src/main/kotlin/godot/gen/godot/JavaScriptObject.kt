@@ -12,6 +12,8 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
+private const val ENGINE_CLASS_JAVASCRIPTOBJECT_INDEX: Int = 338
+
 /**
  * JavaScriptObject is used to interact with JavaScript objects retrieved or created via
  * [JavaScriptBridge.getInterface], [JavaScriptBridge.createObject], or

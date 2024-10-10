@@ -12,7 +12,7 @@ import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_XRCAMERA3D_INDEX: Int = 752
+private const val ENGINE_CLASS_XRCAMERA3D_INDEX: Int = 839
 
 /**
  * This is a helper spatial node for our camera; note that, if stereoscopic rendering is applicable

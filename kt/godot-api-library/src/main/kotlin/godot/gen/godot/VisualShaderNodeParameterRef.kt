@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX: Int = 671
+private const val ENGINE_CLASS_VISUALSHADERNODEPARAMETERREF_INDEX: Int = 750
 
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in

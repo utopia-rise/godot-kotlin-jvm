@@ -17,7 +17,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
-private const val ENGINE_CLASS_HASHINGCONTEXT_INDEX: Int = 281
+private const val ENGINE_CLASS_HASHINGCONTEXT_INDEX: Int = 301
 
 /**
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple

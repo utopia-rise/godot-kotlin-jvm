@@ -25,7 +25,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX: Int = 454
+private const val ENGINE_CLASS_PROCEDURALSKYMATERIAL_INDEX: Int = 504
 
 /**
  * [ProceduralSkyMaterial] provides a way to create an effective background quickly by defining

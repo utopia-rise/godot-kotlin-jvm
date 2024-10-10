@@ -27,7 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmInline
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_XRHANDTRACKER_INDEX: Int = 758
+private const val ENGINE_CLASS_XRHANDTRACKER_INDEX: Int = 845
 
 public infix fun Long.or(other: godot.XRHandTracker.HandJointFlags): Long = this.or(other.flag)
 
@@ -417,7 +417,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   @JvmInline
-  internal value class HandJointFlagsValue internal constructor(
+  public value class HandJointFlagsValue(
     public override val flag: Long,
   ) : HandJointFlags
 

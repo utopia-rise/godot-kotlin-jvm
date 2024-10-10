@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRAPHFRAME_INDEX: Int = 267
+private const val ENGINE_CLASS_GRAPHFRAME_INDEX: Int = 287
 
 /**
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be

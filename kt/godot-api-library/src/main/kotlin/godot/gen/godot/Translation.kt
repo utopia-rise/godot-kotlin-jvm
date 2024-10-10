@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_TRANSLATION_INDEX: Int = 603
+private const val ENGINE_CLASS_TRANSLATION_INDEX: Int = 674
 
 /**
  * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of

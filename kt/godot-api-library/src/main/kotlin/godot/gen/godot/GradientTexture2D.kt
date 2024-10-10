@@ -24,7 +24,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX: Int = 264
+private const val ENGINE_CLASS_GRADIENTTEXTURE2D_INDEX: Int = 284
 
 /**
  * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able

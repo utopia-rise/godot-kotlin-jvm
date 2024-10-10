@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 
-private const val ENGINE_CLASS_STATUSINDICATOR_INDEX: Int = 552
+private const val ENGINE_CLASS_STATUSINDICATOR_INDEX: Int = 618
 
 @GodotBaseType
 public open class StatusIndicator : Node() {

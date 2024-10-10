@@ -39,6 +39,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_TREEITEM_INDEX: Int = 676
+
 /**
  * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
  * to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is

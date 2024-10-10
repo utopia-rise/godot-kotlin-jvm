@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
-private const val ENGINE_CLASS_LINE2D_INDEX: Int = 321
+private const val ENGINE_CLASS_LINE2D_INDEX: Int = 356
 
 /**
  * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.

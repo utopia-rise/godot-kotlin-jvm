@@ -28,6 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
+private const val ENGINE_CLASS_PHYSICSBODY3D_INDEX: Int = 461
+
 /**
  * [PhysicsBody3D] is an abstract base class for 3D game objects affected by physics. All 3D physics
  * bodies inherit from it.
