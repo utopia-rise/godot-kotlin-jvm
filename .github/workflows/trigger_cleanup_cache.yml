@@ -54,6 +54,7 @@ jobs:
               # Check if the folder is older than 7 days
               if [ $age_days -gt 7 ]; then
                 # Delete the folder
+                echo "Cleaning cache $folder"
                 mc rm --recursive --force s3/$S3_BUCKET/$folder
               fi
             fi
