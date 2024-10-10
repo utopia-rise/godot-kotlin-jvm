@@ -28,10 +28,10 @@ import godot.codegen.services.impl.LambdaCallableGenerationService
 import godot.codegen.services.impl.SignalGenerationService
 import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 import java.io.File
 
-fun File.generateApiFrom(jsonSource: File) {
+fun generateApiFrom(jsonSource: File, coreDir: File, apiDir: File) {
     val apiDescription = ObjectMapper().readValue(jsonSource, object : TypeReference<ApiDescription>() {})
 
     val classRepository: ClassRepository = JsonClassRepository(apiDescription.classes.toEnriched())
@@ -53,7 +53,7 @@ fun File.generateApiFrom(jsonSource: File) {
 
     //TODO: generateEngineTypesRegistration
 
-    val engineIndexFile = FileSpec.builder(godotApiPackage, "EngineIndexes")
+    val engineIndexFile = FileSpec.builder(godotPackage, "EngineIndexes")
     val registrationFileSpec = RegistrationFileSpec()
 
     //We first generate singletons so that their index in engine types and engine singleton lists are same.
@@ -62,7 +62,7 @@ fun File.generateApiFrom(jsonSource: File) {
             classService.updatePropertyIfShouldUseSuper(singleton.name, property.name)
         }
 
-        generationService.generateSingleton(singleton).writeTo(this)
+        generationService.generateSingleton(singleton).writeTo(apiDir)
         generationService.generateEngineIndexesForClass(engineIndexFile, singleton)
         generationService.generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
     }
@@ -72,17 +72,17 @@ fun File.generateApiFrom(jsonSource: File) {
             classService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
         }
 
-        generationService.generateClass(enrichedClass).writeTo(this)
+        generationService.generateClass(enrichedClass).writeTo(apiDir)
         generationService.generateEngineIndexesForClass(engineIndexFile, enrichedClass)
         generationService.generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
     }
 
-    engineIndexFile.build().writeTo(this)
-    registrationFileSpec.build().writeTo(this)
+    engineIndexFile.build().writeTo(apiDir)
+    registrationFileSpec.build().writeTo(apiDir)
 
     for (enum in enumService.getGlobalEnums()) {
         val enumAndExtensions = generationService.generateEnum(enum)
-        val fileBuilder = FileSpec.builder(godotApiPackage, enum.name)
+        val fileBuilder = FileSpec.builder(godotPackage, enum.name)
         for (typeSpec in enumAndExtensions.first) {
             fileBuilder.addType(typeSpec)
         }
@@ -93,13 +93,13 @@ fun File.generateApiFrom(jsonSource: File) {
         fileBuilder
             .addFileComment(GENERATED_COMMENT)
             .build()
-            .writeTo(this)
+            .writeTo(coreDir)
     }
 
-    LambdaCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
-    SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
+    LambdaCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(coreDir)
+    SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(coreDir)
 }
 
-fun File.generateCoroutine() {
-    AwaitGenerationService.generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(this)
+fun generateCoroutine(outputDir: File) {
+    AwaitGenerationService.generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
 }

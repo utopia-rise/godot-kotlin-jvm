@@ -3,10 +3,10 @@ package godot.codegen.poet
 import com.squareup.kotlinpoet.FileSpec
 import com.squareup.kotlinpoet.FunSpec
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.godotApiPackage
+import godot.tools.common.constants.godotPackage
 
 class RegistrationFileSpec {
-    val registrationFile = FileSpec.builder(godotApiPackage, "RegisterEngineTypes")
+    val registrationFile = FileSpec.builder(godotPackage, "RegisterEngineTypes")
     val registerVariantMappingFunBuilder = FunSpec.builder("registerVariantMapping")
     val registerMethodsFunBuilder = FunSpec.builder("registerEngineTypeMethods")
     val registerTypesFunBuilder = FunSpec.builder("registerEngineTypes")
