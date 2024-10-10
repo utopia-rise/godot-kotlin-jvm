@@ -54,6 +54,8 @@ jobs:
           s3-bucket: ${{ secrets.S3_BUCKET }}
           s3-user: ${{ secrets.S3_USER }}
           s3-password: ${{ secrets.S3_PASSWORD }}
+          s3-user-readonly: ${{ secrets.S3_USER_READONLY }}
+          s3-password-readonly: ${{ secrets.S3_PASSWORD_READONLY }}
         continue-on-error: true
 
       - name: Download windows editor ${{ matrix.target }}
