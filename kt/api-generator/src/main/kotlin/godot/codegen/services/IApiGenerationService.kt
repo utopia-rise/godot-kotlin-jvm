@@ -6,8 +6,9 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import godot.codegen.models.enriched.*
 import godot.codegen.poet.RegistrationFileSpec
+import java.io.File
 
-interface IGenerationService {
+interface IApiGenerationService {
     fun generateSingleton(singletonClass: EnrichedClass): FileSpec
     fun generateClass(clazz: EnrichedClass): FileSpec
     fun generateEngineIndexesForClass(fileSpecBuilder: FileSpec.Builder, clazz: EnrichedClass)
@@ -22,4 +23,7 @@ interface IGenerationService {
         registrationFileSpec: RegistrationFileSpec,
         singleton: EnrichedClass
     )
+
+    fun generateCore(outputDir: File)
+    fun generateApi(outputDir: File)
 }

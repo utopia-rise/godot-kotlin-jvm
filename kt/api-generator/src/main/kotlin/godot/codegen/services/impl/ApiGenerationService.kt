@@ -39,14 +39,15 @@ import godot.codegen.models.enriched.isSameSignature
 import godot.codegen.poet.RegistrationFileSpec
 import godot.codegen.repositories.INativeStructureRepository
 import godot.codegen.rpc.RpcFunctionMode
+import godot.codegen.services.IApiService
 import godot.codegen.services.IClassGraphService
-import godot.codegen.services.IEnumService
-import godot.codegen.services.IGenerationService
+import godot.codegen.services.IApiGenerationService
 import godot.codegen.traits.CallableTrait
 import godot.codegen.traits.addKdoc
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.CORE_TYPE_HELPER
 import godot.tools.common.constants.CORE_TYPE_LOCAL_COPY
+import godot.tools.common.constants.Constraints
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GODOT_BASE_TYPE
 import godot.tools.common.constants.GODOT_ERROR
@@ -59,16 +60,88 @@ import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_PARSER_LONG
 import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
+import org.gradle.api.reporting.Report.OutputType
+import java.io.File
 import java.util.*
 
 private const val methodBindingsInnerClassName = "MethodBindings"
 
-class GenerationService(
+
+
+class ApiGenerationService(
     private val classGraphService: IClassGraphService,
-    private val enumService: IEnumService,
+    private val apiService: IApiService,
     private val nativeStructureRepository: INativeStructureRepository
-) : IGenerationService {
+) : IApiGenerationService {
     private var nextEngineClassIndex = 0
+
+    override fun  generateCore(outputDir: File) {
+        val apiClasses = apiService.getClasses().filter{
+            it.name == "Object" || it.name == "RefCounted"
+        }
+
+        for (enrichedClass in apiClasses) {
+            for (property in enrichedClass.properties) {
+                apiService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
+            }
+            generateClass(enrichedClass).writeTo(outputDir)
+        }
+
+        for (enum in apiService.getGlobalEnums()) {
+            val enumAndExtensions = generateEnum(enum)
+            val fileBuilder = FileSpec.builder(godotPackage, enum.name)
+            for (typeSpec in enumAndExtensions.first) {
+                fileBuilder.addType(typeSpec)
+            }
+            for (extension in enumAndExtensions.second) {
+                fileBuilder.addFunction(extension)
+            }
+
+            fileBuilder
+                .addFileComment(GENERATED_COMMENT)
+                .build()
+                .writeTo(outputDir)
+        }
+
+        LambdaCallableGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
+        SignalGenerationService().generate(Constraints.MAX_FUNCTION_ARG_COUNT).writeTo(outputDir)
+    }
+
+    override fun generateApi(outputDir: File) {
+        apiService.findGetSetMethodsAndUpdateProperties()
+
+        //TODO: generateEngineTypesRegistration
+
+        val engineIndexFile = FileSpec.builder(godotPackage, "EngineIndexes")
+        val registrationFileSpec = RegistrationFileSpec()
+
+        //We first generate singletons so that their index in engine types and engine singleton lists are same.
+        for (singleton in apiService.getSingletons()) {
+            for (property in singleton.properties) {
+                apiService.updatePropertyIfShouldUseSuper(singleton.name, property.name)
+            }
+
+            generateSingleton(singleton).writeTo(outputDir)
+            generateEngineIndexesForClass(engineIndexFile, singleton)
+            generateEngineTypesRegistrationForSingleton(registrationFileSpec, singleton)
+        }
+
+        for (enrichedClass in apiService.getClasses()) {
+            for (property in enrichedClass.properties) {
+                apiService.updatePropertyIfShouldUseSuper(enrichedClass.name, property.name)
+            }
+
+            if(enrichedClass.name != "Object" && enrichedClass.name != "RefCounted") {
+                generateClass(enrichedClass).writeTo(outputDir)
+            }
+            generateEngineIndexesForClass(engineIndexFile, enrichedClass)
+            generateEngineTypesRegistrationForClass(registrationFileSpec, enrichedClass)
+        }
+
+        engineIndexFile.build().writeTo(outputDir)
+        registrationFileSpec.build().writeTo(outputDir)
+    }
+
 
     override fun generateSingleton(singletonClass: EnrichedClass): FileSpec {
         val singletonTypeName = singletonClass.getTypeClassName()
@@ -433,7 +506,7 @@ class GenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.getterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = enumService.findEnumValue(
+                                val argumentValue = apiService.findEnumValue(
                                     indexArgument.getBufferType(),
                                     property.internal.index!!.toLong()
                                 ).name
@@ -480,7 +553,7 @@ class GenerationService(
                         if (property.isIndexed) {
                             val indexArgument = property.setterMethod!!.arguments[0]
                             if (indexArgument.isEnum() || indexArgument.isBitField()) {
-                                val argumentValue = enumService.findEnumValue(
+                                val argumentValue = apiService.findEnumValue(
                                     indexArgument.getBufferType(),
                                     property.internal.index!!.toLong()
                                 ).name
@@ -777,7 +850,7 @@ class GenerationService(
 
                 val defaultValueKotlinCode = argument.getDefaultValueKotlinString()
                 val appliedDefault = if ((argument.isEnum() || argument.isBitField()) && defaultValueKotlinCode != null) {
-                    enumService.findEnumValue(
+                    apiService.findEnumValue(
                         argumentTypeClassName,
                         defaultValueKotlinCode.first.toLong()
                     ).name

@@ -2,24 +2,33 @@ package godot.codegen.services.impl
 
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.exceptions.NoMatchingClassFoundException
+import godot.codegen.exceptions.NoMatchingEnumFound
 import godot.codegen.extensions.getTypeClassName
+import godot.codegen.extensions.isBitField
 import godot.codegen.extensions.isEnum
 import godot.codegen.models.ApiType
 import godot.codegen.models.Argument
 import godot.codegen.models.Method
 import godot.codegen.models.ReturnValue
+import godot.codegen.models.custom.DefaultEnumValue
+import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.enriched.EnrichedMethod
+import godot.codegen.poet.ClassTypeNameWrapper
 import godot.codegen.repositories.ClassRepository
+import godot.codegen.repositories.CoreTypeEnumRepository
+import godot.codegen.repositories.GlobalEnumRepository
 import godot.codegen.repositories.SingletonRepository
 import godot.codegen.services.IClassGraphService
-import godot.codegen.services.IClassService
+import godot.codegen.services.IApiService
 import godot.tools.common.constants.GodotTypes
 
-class ClassService(
+class ApiService(
     private val classRepository: ClassRepository,
     private val singletonRepository: SingletonRepository,
+    private val globalEnumRepository: GlobalEnumRepository,
+    private val coreTypeEnumRepository: CoreTypeEnumRepository,
     private val classGraphService: IClassGraphService
-) : IClassService{
+) : IApiService{
     override fun getSingletons() = singletonRepository
         .list()
         .map {
@@ -35,6 +44,8 @@ class ClassService(
             }
             it.apiType == ApiType.CORE
         }
+
+    override fun getGlobalEnums() = globalEnumRepository.list()
 
     override fun updatePropertyIfShouldUseSuper(className: String, propertyName: String) {
         fun inner(className: String, propertyName: String, isSetter: Boolean) {
@@ -114,6 +125,48 @@ class ClassService(
                     }
                 }
             }
+        }
+    }
+
+    override fun findEnumValue(enumClassName: ClassTypeNameWrapper, enumValue: Long): DefaultEnumValue {
+        val simpleNames = enumClassName.className.simpleNames
+        return if (simpleNames.size > 1) {
+            val className = simpleNames[0]
+            val enrichedEnum = if (GodotTypes.coreTypes.contains(className)) {
+                coreTypeEnumRepository.listForCoreType(className)
+            } else {
+                getClasses()
+                    .plus(getSingletons())
+                    .first { it.name == className }
+                    .enums
+            }?.firstOrNull { it.getTypeClassName() == enumClassName } ?:
+            throw NoMatchingEnumFound(simpleNames.joinToString("."))
+
+            val value = enrichedEnum
+                .internal
+                .values
+                .firstOrNull { it.value == enumValue } ?:
+            if (enrichedEnum.isBitField()) {
+                return DefaultEnumValue(
+                    null,
+                    "${enrichedEnum.name}Value($enumValue)",
+                    enrichedEnum.encapsulatingType
+                )
+            }
+            else {
+                throw NoMatchingEnumFound(simpleNames.joinToString("."))
+            }
+
+            DefaultEnumValue(enrichedEnum, value)
+        } else {
+            val enum = getGlobalEnums()
+                .first { it.name == simpleNames[0] }
+            val value = enum
+                .internal
+                .values
+                .first { it.value == enumValue }
+
+            DefaultEnumValue(enum, value)
         }
     }
 }
