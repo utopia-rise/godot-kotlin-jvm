@@ -2,6 +2,12 @@
 
 package godot.registration
 
+import godot.core.KtObject
+import godot.core.LambdaCallable.Companion.withParameters
+import godot.core.LambdaCallable.Companion.withParametersReturn
+import godot.core.ParametersReader
+import godot.core.VariantConverter
+import godot.core.VariantParser
 import godot.core.memory.TransferContext
 import godot.tools.common.extensions.convertToSnakeCase
 import godot.util.GodotLogging

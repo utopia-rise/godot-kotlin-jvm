@@ -1,5 +1,7 @@
 package godot.registration
 
+import godot.core.KtObject
+import godot.core.VariantParser
 import godot.core.memory.TransferContext
 
 @Suppress("unused")

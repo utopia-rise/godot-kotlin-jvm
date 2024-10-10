@@ -2,8 +2,12 @@ package godot.registration
 
 import godot.PropertyHint
 import godot.PropertyUsageFlags
+import godot.core.KtObject
+import godot.core.VariantArray
+import godot.core.VariantCaster
+import godot.core.VariantConverter
+import godot.core.VariantParser
 import godot.core.memory.TransferContext
-import godot.util.GodotLogging
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(

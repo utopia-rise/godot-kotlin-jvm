@@ -2,6 +2,8 @@
 
 package godot.registration
 
+import godot.core.KtObject
+import godot.core.VariantConverter
 import godot.core.memory.MemoryManager
 import godot.core.memory.TransferContext
 import godot.tools.common.constants.Constraints
