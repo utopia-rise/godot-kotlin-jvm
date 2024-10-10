@@ -93,10 +93,11 @@ jobs:
       - name: Setup python and scons
         uses: ./.github/actions/godot-deps
 
-      ##Switch back to the official Godot script when we switch to the next official stable version.
       - name: Setup Vulkan SDK
         run: |
-          sh ./modules/kotlin_jvm/install_vulkan_sdk_macos.sh
+          #TODO: enable again after fixed in godot and delete the copy of our script
+          #sh misc/scripts/install_vulkan_sdk_macos.sh
+          sh modules/kotlin_jvm/install_vulkan_sdk_macos.sh
 
       - name: Compilation
         uses: ./.github/actions/godot-build
