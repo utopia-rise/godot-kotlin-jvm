@@ -35,11 +35,10 @@ jobs:
         with:
           key: gradle_build_cache
           path: |
-            kt/.gradle
-            kt/.kotlin
-            kt/.intellijPlatform
-            kt/build
-            kt/**/build
+            **/.gradle
+            **/.kotlin
+            **/.intellijPlatform
+            **/build
           s3-host: ${{ secrets.S3_HOST }}
           s3-bucket: ${{ secrets.S3_BUCKET }}
           s3-user: ${{ secrets.S3_USER }}
