@@ -8,6 +8,7 @@ import godot.util.RealT
 import godot.util.isZeroApprox
 import kotlin.math.abs
 import kotlin.math.acos
+import kotlin.math.atan
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.tan

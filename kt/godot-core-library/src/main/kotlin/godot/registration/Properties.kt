@@ -8,6 +8,7 @@ import godot.core.VariantCaster
 import godot.core.VariantConverter
 import godot.core.VariantParser
 import godot.core.memory.TransferContext
+import godot.util.GodotLogging
 import kotlin.reflect.KMutableProperty1
 
 data class KtPropertyInfo(

@@ -1,16 +1,17 @@
 package godot.core
 
+import godot.Object
 import godot.core.memory.MemoryManager
 import godot.tools.common.extensions.convertToSnakeCase
 
 private val connectMethodName = "connect".asStringName()
 
 open class Signal internal constructor(
-    val godotObject: KtObject,
+    val godotObject: Object,
     val name: StringName
 ) : CoreType {
 
-    internal constructor(instance: KtObject, jvmName: String) : this(
+    internal constructor(instance: Object, jvmName: String) : this(
         instance,
         jvmName.convertToSnakeCase().asStringName()
     )

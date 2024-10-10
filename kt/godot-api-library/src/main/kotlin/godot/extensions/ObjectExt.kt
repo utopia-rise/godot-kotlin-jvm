@@ -6,10 +6,10 @@ import godot.Object
 import godot.RefCounted
 import godot.core.Callable
 import godot.core.VariantArray
-import godot.core.memory.MemoryManager
 import godot.core.Signal
 import godot.core.asCachedStringName
 import godot.core.toGodotName
+import godot.util.Internals
 import kotlin.reflect.KFunction
 
 /**
@@ -141,8 +141,8 @@ fun <T : Object?> T.asStatic(): T {
     if (this == null || this is RefCounted) {
         return this
     }
-    MemoryManager.registerCallback {
-        if (!MemoryManager.isInstanceValid(this)) {
+    Internals.registerCallback {
+        if (!Internals.isInstanceValid(this)) {
             return@registerCallback
         }
         free()

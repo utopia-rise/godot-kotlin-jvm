@@ -4,6 +4,7 @@ import godot.core.memory.MemoryManager
 import godot.util.nullptr
 import godot.util.toRealT
 import java.nio.ByteBuffer
+import godot.Object
 
 private var ByteBuffer.bool: Boolean
     get() = int == 1
@@ -395,7 +396,7 @@ enum class VariantParser(override val id: Int) : VariantConverter {
         override fun toUnsafeKotlin(buffer: ByteBuffer): Signal {
             val obj = buffer.obj
             val name = buffer.stringName
-            require(obj is KtObject)
+            require(obj is Object)
             require(name is StringName)
             return Signal(obj, name)
         }
