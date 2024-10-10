@@ -41,6 +41,21 @@ jobs:
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
 
+      - name: Setup gradle build cache
+        uses: ./.github/actions/cache
+        with:
+          key: gradle_build_cache_tests
+          path: |
+            **/.gradle
+            **/.kotlin
+            **/.intellijPlatform
+            **/build
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+        continue-on-error: true
+
       - name: Download windows editor ${{ matrix.target }}
         uses: actions/download-artifact@v4
         with:

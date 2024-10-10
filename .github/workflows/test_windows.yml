@@ -28,16 +28,8 @@ jobs:
             bootstrap-target: release
 
     steps:
-      - name: Clone Godot Engine
-        uses: actions/checkout@v4
-        with:
-          repository: godotengine/godot
-          ref: ${{ inputs.godot-version }}
-
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
-        with:
-          path: modules/kotlin_jvm
 
       - uses: actions/setup-java@v4
         with:
@@ -48,6 +40,21 @@ jobs:
         uses: gradle/actions/setup-gradle@v3
         with:
           cache-read-only: ${{ github.ref != 'refs/heads/master' }}
+
+      - name: Setup gradle build cache
+        uses: ./.github/actions/cache
+        with:
+          key: gradle_build_cache_tests
+          path: |
+            **/.gradle
+            **/.kotlin
+            **/.intellijPlatform
+            **/build
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+        continue-on-error: true
 
       - name: Download windows editor ${{ matrix.target }}
         uses: actions/download-artifact@v4
@@ -63,11 +70,11 @@ jobs:
 
       - name: Build tests project
         run: |
-          modules/kotlin_jvm/harness/tests/gradlew -p modules/kotlin_jvm/harness/tests/ build -P${{ matrix.bootstrap-target }}
+          harness/tests/gradlew -p harness/tests/ build -P${{ matrix.bootstrap-target }}
 
       - name: Run Tests
         run: |
-          cd modules/kotlin_jvm/harness/tests/
+          cd harness/tests/
           jlink --add-modules java.base,java.logging --output jre-amd64-windows
           ./gradlew runGutTests
         timeout-minutes: 30
