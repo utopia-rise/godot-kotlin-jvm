@@ -55,6 +55,10 @@ runs:
         path: ${{ inputs.path }}
 
     - name: Use master cache if specific cache was missed
+      # if we got no cache hit, this means we do not yet have a cache for this git ref
+      # hence we restore the cache from master with readonly S3 credentials
+      # this basically allows us to reuse the cache from master, do our compilation and "copy" that to the git ref
+      # specific cache and because the credentials are read only, we do not override the master cache in the end
       if: steps.cache_setup.outputs.cache-hit != 'true'
       uses: philiplehmann/minio-cache@v1.2.10
       with:
