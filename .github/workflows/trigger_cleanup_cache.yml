@@ -1,10 +1,18 @@
 #TODO: ideally this should be implemented using tear functionality of minio: https://min.io/docs/minio/container/administration/object-management/object-lifecycle-management.html
 
 name: Cache cleanup pipeline
+#on:
+#  push:
+#    branches:
+#      - master # cleanup old caches on each push to master
+
 on:
   push:
     branches:
-      - master # cleanup old caches on each push to master
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!master'   # excludes master
 
 concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-trigger_cleanup
