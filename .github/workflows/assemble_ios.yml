@@ -43,6 +43,28 @@ jobs:
           name: export_template_release_ios_arm64
           path: "./"
 
+      - name: Setup MoltenVK build cache
+        uses: ./modules/kotlin_jvm/.github/actions/cache
+        with:
+          key: ${{ matrix.cache-name }}
+          path: |
+            MoltenVk/Package
+            MoltenVk/External
+            MoltenVk/xcuserdata
+            MoltenVk/project.xcworkspace
+            MoltenVk/*.xccheckout
+            MoltenVk/*.xcscmblueprint
+            MoltenVk/build
+            MoltenVk/*.o
+            MoltenVk/*.a
+          s3-host: ${{ secrets.S3_HOST }}
+          s3-bucket: ${{ secrets.S3_BUCKET }}
+          s3-user: ${{ secrets.S3_USER }}
+          s3-password: ${{ secrets.S3_PASSWORD }}
+          s3-user-readonly: ${{ secrets.S3_USER_READONLY }}
+          s3-password-readonly: ${{ secrets.S3_PASSWORD_READONLY }}
+        continue-on-error: true
+
       - name: Clone MoltenVK
         uses: actions/checkout@v4
         with:
