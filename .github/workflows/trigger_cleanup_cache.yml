@@ -38,7 +38,7 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
           # List all folders in the bucket
-          folders=$(mc ls s3/$S3_BUCKET | awk '{print $5}')
+          folders=$(mc ls s3/$S3_BUCKET | awk '{print $5}' | grep -v 'STANDARD')
           
           for folder in $folders
           do
