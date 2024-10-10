@@ -89,6 +89,7 @@ jobs:
       - build-android
     with:
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
+      jvm-version: ${{ needs.setup-build-variables.outputs['jvm-version'] }}
 
   assemble-macos:
     name: 🍎 Assemble macos
