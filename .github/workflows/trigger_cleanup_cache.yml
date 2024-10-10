@@ -31,7 +31,7 @@ jobs:
 
       - name: Configure Minio client
         run: |
-          mc alias set s3 ${{ secrets.S3_HOST }} ${{ secrets.S3_USER }} ${{ secrets.S3_PASSWORD }}
+          mc alias set s3 https://${{ secrets.S3_HOST }} ${{ secrets.S3_USER }} ${{ secrets.S3_PASSWORD }}
 
       - name: Cleanup old caches
         env:
