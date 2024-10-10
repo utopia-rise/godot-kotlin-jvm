@@ -55,7 +55,7 @@ runs:
         path: ${{ inputs.path }}
 
     - name: Use master cache if specific cache was missed
-      if: ${{ steps.cache_setup.outputs.cache-hit == 'false' }}
+      if: ${{ !steps.cache_setup.outputs.cache-hit }}
       uses: philiplehmann/minio-cache@v1.2.10
       with:
         endpoint: ${{inputs.s3-host}}
